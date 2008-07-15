@@ -1,0 +1,7 @@
+
+UNLOAD %|<module> [<submodule>]
+
+Unload a running plugin. List of running plugins can be shown with /LOAD.
+
+See also: LOAD
+

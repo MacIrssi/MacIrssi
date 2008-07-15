@@ -1,0 +1,9 @@
+
+@SYNTAX:disconnect@
+
+Disconnects from the specified IRC-server.
+The server tags can be seen with:
+/SERVER
+
+See also: CONNECT, SERVER
+

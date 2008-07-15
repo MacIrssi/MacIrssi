@@ -1,0 +1,104 @@
+
+BIND %|[-delete] [<key> [<command> [<data>]]]
+
+Bind some action to specified keystroke. Remember that all characters in keystrokes are case-sensitive! Uppercase letter usually means that you need to keep SHIFT pressed to get the key to work.
+
+Most most commonly used keystrokes are:
+
+ ^X - Ctrl-X
+ meta-x - Meta-x (Meta is quite often Alt-key in PCs, ESC-x works too)
+
+Irssi has by default also defined several other keys which you can use:
+
+ return                  - The return/enter key
+ space, backspace        - Space / backspace
+ up, down, left, right   - Arrow keys
+ cleft, cright           - Ctrl-left/right
+ home, end, prior, next  - prior = Page Up, next = Page Down
+ insert, delete
+
+The keystroke can contain as many key presses as you want, and you can define names for different key sequences to use them more easily (the keys above are done like that). For example, you may want to manage windows with ^W key, so that ^W^C creates new window, ^W^K kills the active window, etc. you may do it like:
+
+ /BIND ^W^C /WINDOW NEW HIDE
+ /BIND ^W^K /WINDOW KILL
+
+But maybe you wish to give these binds to other people who want to use some other key than ^W, then it would be better done as:
+
+ /BIND ^W key window
+ /BIND window-^C /WINDOW NEW HIDE
+ /BIND window-^K /WINDOW KILL
+
+
+Command can be one of:
+
+  command - Run any /COMMAND (you could use /COMMAND directly without
+                              specifying this)
+
+(Cursor movement)
+  backward_character
+  forward_character
+  backward_word
+  forward_word
+  beginning_of_line
+  end_of_line
+
+(Scrollback movement)
+  scroll_backward - Previous page
+  scroll_forward - Next page
+  scroll_start - Beginning of the window
+  scroll_end - End of the window
+
+(Switching windows)
+  change_window
+  previous_window
+  next_window
+  upper_window
+  lower_window
+  active_window - Go to next window with the highest activity
+  next_window_item - Next channel/query. In empty windows change
+                     to next server
+  previous_window_item - Previous channel/query. In empty windows change
+                         to previous server
+
+(History)
+  backward_history
+  forward_history
+
+(Deleting text)
+  backspace
+  delete_character
+  delete_next_word
+  delete_previous_word
+  delete_to_next_space
+  delete_to_previous_space
+  erase_line
+  erase_to_beg_of_line
+  erase_to_end_of_line
+
+(Word completion)
+  word_completion
+  erase_completion
+  check_replaces - Check word replaces
+
+(Misc)
+  nothing - use this to disable a built-in key
+  refresh_screen
+  yank_from_cutbuffer - "Undelete" line
+  transpose_characters - Swap current and previous character
+  transpose_words - Swap current and previous word
+  capitalize_word - Capitalize word from current position
+  downcase_word - Downcase word from current position
+  upcase_word - Upcase word from current position
+  escape_char - Insert the next character exactly as-is to input line
+  insert_text - Insert data to entry line, data may contain $variables.
+  stop_irc - Send SIGSTOP to client (^Z)
+
+Examples:
+
+Clear screen:
+  /BIND meta-c /CLEAR
+
+People with qwertz layout probably want to swap meta-y and meta-z:
+  /BIND meta-z change_window 16
+  /BIND -delete meta-y
+

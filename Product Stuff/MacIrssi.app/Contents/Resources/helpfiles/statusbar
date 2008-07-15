@@ -1,0 +1,13 @@
+
+STATUSBAR %|<name> ENABLE
+STATUSBAR %|<name> DISABLE
+STATUSBAR %|<name> RESET
+STATUSBAR %|<name> TYPE window|root
+STATUSBAR %|<name> PLACEMENT top|bottom
+STATUSBAR %|<name> POSITION <num>
+STATUSBAR %|<name> VISIBLE always|active|inactive
+STATUSBAR %|<name> ADD [-before | -after <item>] [-priority #] [-alignment left|right] <item>
+STATUSBAR %|<name> REMOVE <item>
+
+Commands for modifying statusbar.
+

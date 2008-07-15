@@ -1,0 +1,11 @@
+
+QUERY %|[-window] [-<server tag>] <nick> [<message>]
+
+Starts a private conversation with the nick.  All text you type that would normally be sent to your channel now goes to the specified nick in the form of MSGs. 
+
+Usually this command opens up a new window, too.
+
+Note: It removes the active query from the active window when used without parameters, like UNQUERY.
+
+See also: WINDOW, MSG, SET QUERY, UNQUERY
+

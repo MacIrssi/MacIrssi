@@ -1,0 +1,8 @@
+
+FORMAT %|[-delete | -reset] [<module>] [<key> [<value>]]
+
+   -reset
+   -delete
+
+Allows you to view/change irssi's messages. Use this command with care.
+

@@ -1,0 +1,10 @@
+ 
+@SYNTAX:invite@
+
+Invites the specified nick to the current or specified channel.
+
+Example:
+   /INVITE buddy #mychannel
+
+See also: MODE
+

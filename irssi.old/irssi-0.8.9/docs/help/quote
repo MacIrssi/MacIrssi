@@ -1,0 +1,8 @@
+
+QUOTE %|<data>
+
+Sends server raw data without parsing.
+
+Example:
+   /QUOTE PRIVMSG cras :Hey, this works!
+

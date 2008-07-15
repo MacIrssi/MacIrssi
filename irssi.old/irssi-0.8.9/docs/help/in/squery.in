@@ -1,0 +1,10 @@
+
+@SYNTAX:squery@
+
+   <service>   - Service name
+   <commands>  - Commands to pass to the service.
+
+/SQUERY sends a query to the specified service.
+
+See also: SERVLIST, NOTE, LIST
+

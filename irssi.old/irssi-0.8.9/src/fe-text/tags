@@ -1,0 +1,552 @@
+MAIN_WINDOW_TEXT_HEIGHT	mainwindows.h	/^#define MAIN_WINDOW_TEXT_HEIGHT(window) \\$/
+Mirssi	irssi.c	/^int main(int argc, char **argv)$/
+SBAR_ITEM_REDRAW_NEEDED	statusbar.c	/^#define SBAR_ITEM_REDRAW_NEEDED(_bar, _item, _xpos/
+STATUSBAR_IS_VISIBLE	statusbar.c	/^#define STATUSBAR_IS_VISIBLE(bar, window) \\$/
+UTF8_COMPUTE	utf8.c	/^#define UTF8_COMPUTE(Char, Mask, Len)					      \\/
+UTF8_GET	utf8.c	/^#define UTF8_GET(Result, Chars, Count, Mask, Len)	/
+WINDOW_GUI	gui-windows.h	/^#define WINDOW_GUI(a) ((GUI_WINDOW_REC *) ((a)->gu/
+WINDOW_MAIN	gui-windows.h	/^#define WINDOW_MAIN(a) (WINDOW_GUI(a)->parent)$/
+WINDOW_STICKY_MATCH	mainwindows.c	/^#define WINDOW_STICKY_MATCH(window, sticky_parent)/
+_beep	terminfo-core.c	/^static void _beep(TERM_REC *term)$/
+_clear_del	terminfo-core.c	/^static void _clear_del(TERM_REC *term)$/
+_clear_del_1	terminfo-core.c	/^static void _clear_del_1(TERM_REC *term)$/
+_clear_eos	terminfo-core.c	/^static void _clear_eos(TERM_REC *term)$/
+_clear_screen	terminfo-core.c	/^static void _clear_screen(TERM_REC *term)$/
+_clrtoeol	terminfo-core.c	/^static void _clrtoeol(TERM_REC *term)$/
+_fix_big5_pos	gui-entry.c	/^static int _fix_big5_pos(unichar *p, int pos, int /
+_ignore	terminfo-core.c	/^static void _ignore(TERM_REC *term)$/
+_ignore_parm	terminfo-core.c	/^static void _ignore_parm(TERM_REC *term, int param/
+_move_cup	terminfo-core.c	/^static void _move_cup(TERM_REC *term, int x, int y/
+_move_pa	terminfo-core.c	/^static void _move_pa(TERM_REC *term, int x, int y)/
+_move_relative	terminfo-core.c	/^static void _move_relative(TERM_REC *term, int old/
+_repeat	terminfo-core.c	/^static void _repeat(TERM_REC *term, int chr, int c/
+_repeat_manual	terminfo-core.c	/^static void _repeat_manual(TERM_REC *term, int chr/
+_scroll_line	terminfo-core.c	/^static void _scroll_line(TERM_REC *term, int y1, i/
+_scroll_line_1	terminfo-core.c	/^static void _scroll_line_1(TERM_REC *term, int y1,/
+_scroll_region	terminfo-core.c	/^static void _scroll_region(TERM_REC *term, int y1,/
+_scroll_region_1	terminfo-core.c	/^static void _scroll_region_1(TERM_REC *term, int y/
+_set_bg	terminfo-core.c	/^static void _set_bg(TERM_REC *term, int color)$/
+_set_bold	terminfo-core.c	/^static void _set_bold(TERM_REC *term)$/
+_set_cursor_visible	terminfo-core.c	/^static void _set_cursor_visible(TERM_REC *term, in/
+_set_fg	terminfo-core.c	/^static void _set_fg(TERM_REC *term, int color)$/
+_set_normal	terminfo-core.c	/^static void _set_normal(TERM_REC *term)$/
+_set_standout	terminfo-core.c	/^static void _set_standout(TERM_REC *term, int set)/
+_set_uline	terminfo-core.c	/^static void _set_uline(TERM_REC *term, int set)$/
+bookmark_check_remove	textbuffer-view.c	/^static void bookmark_check_remove(char *key, LINE_/
+check_files	irssi.c	/^static void check_files(void)$/
+check_oldcrap	irssi.c	/^static void check_oldcrap(void)$/
+check_pasting	gui-readline.c	/^static int check_pasting(unichar key, int diff)$/
+cmd_clear	textbuffer-commands.c	/^static void cmd_clear(const char *data)$/
+cmd_lastlog	lastlog.c	/^static void cmd_lastlog(const char *data)$/
+cmd_options_get_level	lastlog.c	/^int cmd_options_get_level(const char *cmd, GHashTa/
+cmd_redraw	term.c	/^static void cmd_redraw(void)$/
+cmd_resize	term.c	/^static void cmd_resize(void)$/
+cmd_scrollback	textbuffer-commands.c	/^static void cmd_scrollback(const char *data, SERVE/
+cmd_scrollback_clear	textbuffer-commands.c	/^static void cmd_scrollback_clear(void)$/
+cmd_scrollback_end	textbuffer-commands.c	/^static void cmd_scrollback_end(const char *data)$/
+cmd_scrollback_goto	textbuffer-commands.c	/^static void cmd_scrollback_goto(const char *data)$/
+cmd_scrollback_home	textbuffer-commands.c	/^static void cmd_scrollback_home(const char *data)$/
+cmd_scrollback_redraw	textbuffer-commands.c	/^static void cmd_scrollback_redraw(void)$/
+cmd_scrollback_status	textbuffer-commands.c	/^static void cmd_scrollback_status(void)$/
+cmd_statusbar	statusbar-config.c	/^static void cmd_statusbar(const char *data)$/
+cmd_statusbar_add	statusbar-config.c	/^static void cmd_statusbar_add(const char *data, vo/
+cmd_statusbar_disable	statusbar-config.c	/^static void cmd_statusbar_disable(const char *data/
+cmd_statusbar_enable	statusbar-config.c	/^static void cmd_statusbar_enable(const char *data,/
+cmd_statusbar_list	statusbar-config.c	/^static void cmd_statusbar_list(void)$/
+cmd_statusbar_placement	statusbar-config.c	/^static void cmd_statusbar_placement(const char *da/
+cmd_statusbar_position	statusbar-config.c	/^static void cmd_statusbar_position(const char *dat/
+cmd_statusbar_print_info	statusbar-config.c	/^static void cmd_statusbar_print_info(const char *n/
+cmd_statusbar_remove	statusbar-config.c	/^static void cmd_statusbar_remove(const char *data,/
+cmd_statusbar_reset	statusbar-config.c	/^static void cmd_statusbar_reset(const char *data, /
+cmd_statusbar_type	statusbar-config.c	/^static void cmd_statusbar_type(const char *data, v/
+cmd_statusbar_visible	statusbar-config.c	/^static void cmd_statusbar_visible(const char *data/
+cmd_window_balance	mainwindows.c	/^static void cmd_window_balance(void)$/
+cmd_window_down	mainwindows.c	/^static void cmd_window_down(void)$/
+cmd_window_grow	mainwindows.c	/^static void cmd_window_grow(const char *data)$/
+cmd_window_hide	mainwindows.c	/^static void cmd_window_hide(const char *data)$/
+cmd_window_left	mainwindows.c	/^static void cmd_window_left(const char *data, SERV/
+cmd_window_move_down	mainwindows.c	/^static void cmd_window_move_down(void)$/
+cmd_window_move_left	mainwindows.c	/^static void cmd_window_move_left(void)$/
+cmd_window_move_right	mainwindows.c	/^static void cmd_window_move_right(void)$/
+cmd_window_move_up	mainwindows.c	/^static void cmd_window_move_up(void)$/
+cmd_window_right	mainwindows.c	/^static void cmd_window_right(void)$/
+cmd_window_scroll	textbuffer-commands.c	/^static void cmd_window_scroll(const char *data)$/
+cmd_window_show	mainwindows.c	/^static void cmd_window_show(const char *data)$/
+cmd_window_shrink	mainwindows.c	/^static void cmd_window_shrink(const char *data)$/
+cmd_window_size	mainwindows.c	/^static void cmd_window_size(const char *data)$/
+cmd_window_stick	mainwindows.c	/^static void cmd_window_stick(const char *data)$/
+cmd_window_up	mainwindows.c	/^static void cmd_window_up(void)$/
+create_root_statusbars	statusbar-config.c	/^static void create_root_statusbars(void)$/
+cvtchar	tparm.c	/^static int cvtchar(const char *sp, char *c)$/
+dirty_check	irssi.c	/^static void dirty_check(void)$/
+entry_text_grow	gui-entry.c	/^static void entry_text_grow(GUI_ENTRY_REC *entry, /
+expando_cutbuffer	gui-expandos.c	/^static char *expando_cutbuffer(SERVER_REC *server,/
+expando_idletime	gui-expandos.c	/^static char *expando_idletime(SERVER_REC *server, /
+expando_inputline	gui-expandos.c	/^static char *expando_inputline(SERVER_REC *server,/
+find_window_with_room	mainwindows.c	/^static MAIN_WINDOW_REC *find_window_with_room(void/
+g_free_true	textbuffer-view.c	/^static int g_free_true(void *data)$/
+get_activity_list	statusbar-items.c	/^static char *get_activity_list(MAIN_WINDOW_REC *wi/
+get_attr	term-curses.c	/^static int get_attr(int color)$/
+get_colors	gui-printtext.c	/^static void get_colors(int flags, int *fg, int *bg/
+get_default_indent_func	gui-printtext.c	/^INDENT_FUNC get_default_indent_func(void)$/
+get_idle_time	gui-readline.c	/^time_t get_idle_time(void)$/
+get_lag	statusbar-items.c	/^static int get_lag(SERVER_REC *server, int *unknow/
+get_next_server	gui-readline.c	/^static SERVER_REC *get_next_server(SERVER_REC *cur/
+get_prev_server	gui-readline.c	/^static SERVER_REC *get_prev_server(SERVER_REC *cur/
+get_scroll_count	gui-readline.c	/^static int get_scroll_count(void)$/
+get_sorted_windows_config	mainwindows-layout.c	/^static GSList *get_sorted_windows_config(CONFIG_NO/
+get_sticky_windows_sorted	mainwindows.c	/^static GSList *get_sticky_windows_sorted(MAIN_WIND/
+get_utf8_char	utf8.c	/^unichar get_utf8_char(const unsigned char **ptr, i/
+getarg	tparm.c	/^static int getarg(int argnum, int type, anyptr p)$/
+gui_entry_create	gui-entry.c	/^GUI_ENTRY_REC *gui_entry_create(int xpos, int ypos/
+gui_entry_destroy	gui-entry.c	/^void gui_entry_destroy(GUI_ENTRY_REC *entry)$/
+gui_entry_draw	gui-entry.c	/^static void gui_entry_draw(GUI_ENTRY_REC *entry)$/
+gui_entry_draw_from	gui-entry.c	/^static void gui_entry_draw_from(GUI_ENTRY_REC *ent/
+gui_entry_erase	gui-entry.c	/^void gui_entry_erase(GUI_ENTRY_REC *entry, int siz/
+gui_entry_erase_next_word	gui-entry.c	/^void gui_entry_erase_next_word(GUI_ENTRY_REC *entr/
+gui_entry_erase_to	gui-entry.c	/^void gui_entry_erase_to(GUI_ENTRY_REC *entry, int /
+gui_entry_erase_word	gui-entry.c	/^void gui_entry_erase_word(GUI_ENTRY_REC *entry, in/
+gui_entry_fix_cursor	gui-entry.c	/^static void gui_entry_fix_cursor(GUI_ENTRY_REC *en/
+gui_entry_get_cutbuffer	gui-entry.c	/^char *gui_entry_get_cutbuffer(GUI_ENTRY_REC *entry/
+gui_entry_get_pos	gui-entry.c	/^int gui_entry_get_pos(GUI_ENTRY_REC *entry)$/
+gui_entry_get_text	gui-entry.c	/^char *gui_entry_get_text(GUI_ENTRY_REC *entry)$/
+gui_entry_insert_char	gui-entry.c	/^void gui_entry_insert_char(GUI_ENTRY_REC *entry, u/
+gui_entry_insert_text	gui-entry.c	/^void gui_entry_insert_text(GUI_ENTRY_REC *entry, c/
+gui_entry_move	gui-entry.c	/^void gui_entry_move(GUI_ENTRY_REC *entry, int xpos/
+gui_entry_move_pos	gui-entry.c	/^void gui_entry_move_pos(GUI_ENTRY_REC *entry, int /
+gui_entry_move_words	gui-entry.c	/^void gui_entry_move_words(GUI_ENTRY_REC *entry, in/
+gui_entry_move_words_left	gui-entry.c	/^static void gui_entry_move_words_left(GUI_ENTRY_RE/
+gui_entry_move_words_right	gui-entry.c	/^static void gui_entry_move_words_right(GUI_ENTRY_R/
+gui_entry_redraw	gui-entry.c	/^void gui_entry_redraw(GUI_ENTRY_REC *entry)$/
+gui_entry_redraw_from	gui-entry.c	/^static void gui_entry_redraw_from(GUI_ENTRY_REC *e/
+gui_entry_set_active	gui-entry.c	/^void gui_entry_set_active(GUI_ENTRY_REC *entry)$/
+gui_entry_set_hidden	gui-entry.c	/^void gui_entry_set_hidden(GUI_ENTRY_REC *entry, in/
+gui_entry_set_pos	gui-entry.c	/^void gui_entry_set_pos(GUI_ENTRY_REC *entry, int p/
+gui_entry_set_prompt	gui-entry.c	/^void gui_entry_set_prompt(GUI_ENTRY_REC *entry, co/
+gui_entry_set_text	gui-entry.c	/^void gui_entry_set_text(GUI_ENTRY_REC *entry, cons/
+gui_entry_set_utf8	gui-entry.c	/^void gui_entry_set_utf8(GUI_ENTRY_REC *entry, int /
+gui_entry_transpose_chars	gui-entry.c	/^void gui_entry_transpose_chars(GUI_ENTRY_REC *entr/
+gui_expandos_deinit	gui-expandos.c	/^void gui_expandos_deinit(void)$/
+gui_expandos_init	gui-expandos.c	/^void gui_expandos_init(void)$/
+gui_printtext	gui-printtext.c	/^void gui_printtext(int xpos, int ypos, const char /
+gui_printtext_after	gui-printtext.c	/^void gui_printtext_after(TEXT_DEST_REC *dest, LINE/
+gui_printtext_deinit	gui-printtext.c	/^void gui_printtext_deinit(void)$/
+gui_printtext_init	gui-printtext.c	/^void gui_printtext_init(void)$/
+gui_readline_deinit	gui-readline.c	/^void gui_readline_deinit(void)$/
+gui_readline_init	gui-readline.c	/^void gui_readline_init(void)$/
+gui_register_indent_func	gui-printtext.c	/^void gui_register_indent_func(const char *name, IN/
+gui_set_default_indent	gui-printtext.c	/^void gui_set_default_indent(const char *name)$/
+gui_unregister_indent_func	gui-printtext.c	/^void gui_unregister_indent_func(const char *name, /
+gui_window_created	gui-windows.c	/^static void gui_window_created(WINDOW_REC *window,/
+gui_window_deinit	gui-windows.c	/^static void gui_window_deinit(GUI_WINDOW_REC *gui)/
+gui_window_destroyed	gui-windows.c	/^static void gui_window_destroyed(WINDOW_REC *windo/
+gui_window_init	gui-windows.c	/^static GUI_WINDOW_REC *gui_window_init(WINDOW_REC /
+gui_window_redraw	gui-windows.h	/^#define gui_window_redraw(window) \\$/
+gui_window_reparent	gui-windows.c	/^void gui_window_reparent(WINDOW_REC *window, MAIN_/
+gui_window_resize	gui-windows.c	/^void gui_window_resize(WINDOW_REC *window, int wid/
+gui_window_scroll	gui-windows.c	/^void gui_window_scroll(WINDOW_REC *window, int lin/
+gui_window_scroll_line	gui-windows.c	/^void gui_window_scroll_line(WINDOW_REC *window, LI/
+gui_window_set_sticky	gui-windows.c	/^void gui_window_set_sticky(WINDOW_REC *window)$/
+gui_window_set_unsticky	gui-windows.c	/^void gui_window_set_unsticky(WINDOW_REC *window)$/
+gui_windows_deinit	gui-windows.c	/^void gui_windows_deinit(void)$/
+gui_windows_init	gui-windows.c	/^void gui_windows_init(void)$/
+gui_windows_remove_parent	mainwindows.c	/^static void gui_windows_remove_parent(MAIN_WINDOW_/
+gui_windows_reset_settings	gui-windows.c	/^void gui_windows_reset_settings(void)$/
+handle_entry_redirect	gui-readline.c	/^static void handle_entry_redirect(const char *line/
+handle_key_redirect	gui-readline.c	/^static void handle_key_redirect(int key)$/
+init_curses	term-curses.c	/^static int init_curses(void)$/
+input_8bit	term-terminfo.c	/^static int input_8bit(const unsigned char *buffer,/
+input_big5	term-terminfo.c	/^static int input_big5(const unsigned char *buffer,/
+input_listen_deinit	gui-readline.c	/^void input_listen_deinit(void)$/
+input_listen_init	gui-readline.c	/^void input_listen_init(int handle)$/
+input_utf8	term-terminfo.c	/^static int input_utf8(const unsigned char *buffer,/
+irssi_redraw	irssi.c	/^void irssi_redraw(void)$/
+irssi_set_dirty	irssi.c	/^void irssi_set_dirty(void)$/
+is_big5	utf8.h	/^#define is_big5(hi,lo) (is_big5_hi(hi) && is_big5_/
+is_big5_hi	utf8.h	/^#define is_big5_hi(hi)  (0x81 <= (hi) && (hi) <= 0/
+is_big5_lo	utf8.h	/^#define is_big5_lo(lo)	((is_big5_los(lo) || is_big/
+is_big5_los	utf8.h	/^#define is_big5_los(lo) (0x40 <= (lo) && (lo) <= 0/
+is_big5_lox	utf8.h	/^#define is_big5_lox(lo) (0x80 <= (lo) && (lo) <= 0/
+is_window_visible	gui-windows.h	/^#define is_window_visible(win) \\$/
+item_act	statusbar-items.c	/^static void item_act(SBAR_ITEM_REC *item, int get_/
+item_input	statusbar-items.c	/^static void item_input(SBAR_ITEM_REC *item, int ge/
+item_lag	statusbar-items.c	/^static void item_lag(SBAR_ITEM_REC *item, int get_/
+item_more	statusbar-items.c	/^static void item_more(SBAR_ITEM_REC *item, int get/
+item_window_active	statusbar-items.c	/^static void item_window_active(SBAR_ITEM_REC *item/
+item_window_empty	statusbar-items.c	/^static void item_window_empty(SBAR_ITEM_REC *item,/
+key_active_window	gui-readline.c	/^static void key_active_window(void)$/
+key_backspace	gui-readline.c	/^static void key_backspace(void)$/
+key_backward_character	gui-readline.c	/^static void key_backward_character(void)$/
+key_backward_history	gui-readline.c	/^static void key_backward_history(void)$/
+key_backward_to_space	gui-readline.c	/^static void key_backward_to_space(void)$/
+key_backward_word	gui-readline.c	/^static void key_backward_word(void)$/
+key_beginning_of_line	gui-readline.c	/^static void key_beginning_of_line(void)$/
+key_change_window	gui-readline.c	/^static void key_change_window(const char *data)$/
+key_check_replaces	gui-readline.c	/^static void key_check_replaces(void)$/
+key_combo	gui-readline.c	/^static void key_combo(void)$/
+key_completion	gui-readline.c	/^static void key_completion(int erase)$/
+key_delete_character	gui-readline.c	/^static void key_delete_character(void)$/
+key_delete_next_word	gui-readline.c	/^static void key_delete_next_word(void)$/
+key_delete_previous_word	gui-readline.c	/^static void key_delete_previous_word(void)$/
+key_delete_to_next_space	gui-readline.c	/^static void key_delete_to_next_space(void)$/
+key_delete_to_previous_space	gui-readline.c	/^static void key_delete_to_previous_space(void)$/
+key_end_of_line	gui-readline.c	/^static void key_end_of_line(void)$/
+key_erase_completion	gui-readline.c	/^static void key_erase_completion(void)$/
+key_erase_line	gui-readline.c	/^static void key_erase_line(void)$/
+key_erase_to_beg_of_line	gui-readline.c	/^static void key_erase_to_beg_of_line(void)$/
+key_erase_to_end_of_line	gui-readline.c	/^static void key_erase_to_end_of_line(void)$/
+key_escape	gui-readline.c	/^static void key_escape(void)$/
+key_forward_character	gui-readline.c	/^static void key_forward_character(void)$/
+key_forward_history	gui-readline.c	/^static void key_forward_history(void)$/
+key_forward_to_space	gui-readline.c	/^static void key_forward_to_space(void)$/
+key_forward_word	gui-readline.c	/^static void key_forward_word(void)$/
+key_insert_text	gui-readline.c	/^static void key_insert_text(const char *data)$/
+key_left_window	gui-readline.c	/^static void key_left_window(void)$/
+key_lower_window	gui-readline.c	/^static void key_lower_window(void)$/
+key_next_window	gui-readline.c	/^static void key_next_window(void)$/
+key_next_window_item	gui-readline.c	/^static void key_next_window_item(void)$/
+key_previous_window	gui-readline.c	/^static void key_previous_window(void)$/
+key_previous_window_item	gui-readline.c	/^static void key_previous_window_item(void)$/
+key_right_window	gui-readline.c	/^static void key_right_window(void)$/
+key_scroll_backward	gui-readline.c	/^static void key_scroll_backward(void)$/
+key_scroll_end	gui-readline.c	/^static void key_scroll_end(void)$/
+key_scroll_forward	gui-readline.c	/^static void key_scroll_forward(void)$/
+key_scroll_start	gui-readline.c	/^static void key_scroll_start(void)$/
+key_send_line	gui-readline.c	/^static void key_send_line(void)$/
+key_sig_stop	gui-readline.c	/^static void key_sig_stop(void)$/
+key_transpose_characters	gui-readline.c	/^static void key_transpose_characters(void)$/
+key_upper_window	gui-readline.c	/^static void key_upper_window(void)$/
+key_word_completion	gui-readline.c	/^static void key_word_completion(void)$/
+key_yank_from_cutbuffer	gui-readline.c	/^static void key_yank_from_cutbuffer(void)$/
+lag_check_update	statusbar-items.c	/^static void lag_check_update(void)$/
+lastlog_deinit	lastlog.c	/^void lastlog_deinit(void)$/
+lastlog_init	lastlog.c	/^void lastlog_init(void)$/
+line_add_colors	gui-printtext.c	/^static void line_add_colors(TEXT_BUFFER_REC *buffe/
+line_add_indent_func	gui-printtext.c	/^static void line_add_indent_func(TEXT_BUFFER_REC */
+line_cache_check_remove	textbuffer-view.c	/^static int line_cache_check_remove(void *key, LINE/
+line_cache_destroy	textbuffer-view.c	/^static int line_cache_destroy(void *key, LINE_CACH/
+line_read_format	textbuffer-reformat.c	/^static char *line_read_format(unsigned const char /
+main_window_save	mainwindows-layout.c	/^static void main_window_save(MAIN_WINDOW_REC *wind/
+mainwindow_activity_deinit	mainwindow-activity.m	/^void mainwindow_activity_deinit(void)$/
+mainwindow_activity_init	mainwindow-activity.m	/^void mainwindow_activity_init(void)$/
+mainwindow_change_active	mainwindows.c	/^void mainwindow_change_active(MAIN_WINDOW_REC *mai/
+mainwindow_create	mainwindows.c	/^MAIN_WINDOW_REC *mainwindow_create(void)$/
+mainwindow_create_screen	mainwindows.c	/^#define mainwindow_create_screen(window) \\$/
+mainwindow_destroy	mainwindows.c	/^void mainwindow_destroy(MAIN_WINDOW_REC *window)$/
+mainwindow_find_unsticky	gui-windows.c	/^static MAIN_WINDOW_REC *mainwindow_find_unsticky(v/
+mainwindow_grow	mainwindows.c	/^static int mainwindow_grow(MAIN_WINDOW_REC *window/
+mainwindow_recalc_ypos	statusbar.c	/^static void mainwindow_recalc_ypos(MAIN_WINDOW_REC/
+mainwindow_resize	mainwindows.c	/^static void mainwindow_resize(MAIN_WINDOW_REC *win/
+mainwindow_resize_windows	mainwindows.c	/^static void mainwindow_resize_windows(MAIN_WINDOW_/
+mainwindow_set_screen_size	mainwindows.c	/^#define mainwindow_set_screen_size(window) \\$/
+mainwindow_set_size	mainwindows.c	/^void mainwindow_set_size(MAIN_WINDOW_REC *window, /
+mainwindow_set_statusbar_lines	mainwindows.c	/^int mainwindow_set_statusbar_lines(MAIN_WINDOW_REC/
+mainwindow_shrink	mainwindows.c	/^static int mainwindow_shrink(MAIN_WINDOW_REC *wind/
+mainwindows_add_space	mainwindows.c	/^static void mainwindows_add_space(int first_line, /
+mainwindows_compare	mainwindows.c	/^static int mainwindows_compare(MAIN_WINDOW_REC *w1/
+mainwindows_compare_reverse	mainwindows.c	/^static int mainwindows_compare_reverse(MAIN_WINDOW/
+mainwindows_deinit	mainwindows.c	/^void mainwindows_deinit(void)$/
+mainwindows_find_lower	mainwindows.c	/^static MAIN_WINDOW_REC *mainwindows_find_lower(int/
+mainwindows_find_upper	mainwindows.c	/^static MAIN_WINDOW_REC *mainwindows_find_upper(int/
+mainwindows_get_sorted	mainwindows.c	/^GSList *mainwindows_get_sorted(int reverse)$/
+mainwindows_init	mainwindows.c	/^void mainwindows_init(void)$/
+mainwindows_layout_deinit	mainwindows-layout.c	/^void mainwindows_layout_deinit(void)$/
+mainwindows_layout_init	mainwindows-layout.c	/^void mainwindows_layout_init(void)$/
+mainwindows_recreate	mainwindows.c	/^void mainwindows_recreate(void)$/
+mainwindows_redraw	mainwindows.c	/^void mainwindows_redraw(void)$/
+mainwindows_redraw_dirty	mainwindows.c	/^void mainwindows_redraw_dirty(void)$/
+mainwindows_reserve_lines	mainwindows.c	/^int mainwindows_reserve_lines(int top, int bottom)/
+mainwindows_resize	mainwindows.c	/^void mainwindows_resize(int width, int height)$/
+mainwindows_resize_bigger	mainwindows.c	/^static void mainwindows_resize_bigger(int xdiff, i/
+mainwindows_resize_horiz	mainwindows.c	/^void mainwindows_resize_horiz(int xdiff)$/
+mainwindows_resize_smaller	mainwindows.c	/^static void mainwindows_resize_smaller(int xdiff, /
+mainwindows_resize_two	mainwindows.c	/^static void mainwindows_resize_two(MAIN_WINDOW_REC/
+mark_temp_eol	textbuffer.c	/^#define mark_temp_eol(chunk) G_STMT_START { \\$/
+paste_flush	gui-readline.c	/^static void paste_flush(int send)$/
+paste_send	gui-readline.c	/^static void paste_send(void)$/
+paste_timeout	gui-readline.c	/^static gboolean paste_timeout(gpointer data)$/
+popnum	tparm.c	/^static int popnum(int *num)$/
+popstring	tparm.c	/^static int popstring(char **str)$/
+pusharg	tparm.c	/^static int pusharg(int arg)$/
+pushnum	tparm.c	/^static int pushnum(int num)$/
+read_settings	gui-printtext.c	/^static void read_settings(void)$/
+read_statusbar_config	statusbar-config.c	/^static void read_statusbar_config(void)$/
+read_statusbar_config_from_node	statusbar-config.c	/^static void read_statusbar_config_from_node(CONFIG/
+readline	term-dummy.c	/^static void readline(void)$/
+redraw_timeout	term-terminfo.c	/^static int redraw_timeout(void)$/
+remove_old_lines	gui-printtext.c	/^static void remove_old_lines(TEXT_BUFFER_VIEW_REC /
+reverse_controls	statusbar.c	/^static char *reverse_controls(const char *str)$/
+sbar_cmp_position	statusbar.c	/^static int sbar_cmp_position(STATUSBAR_REC *bar1, /
+sbar_get_placement	statusbar-config.c	/^static const char *sbar_get_placement(STATUSBAR_CO/
+sbar_get_type	statusbar-config.c	/^static const char *sbar_get_type(STATUSBAR_CONFIG_/
+sbar_get_visibility	statusbar-config.c	/^static const char *sbar_get_visibility(STATUSBAR_C/
+sbar_item_cmp	statusbar.c	/^static int sbar_item_cmp(SBAR_ITEM_REC *item1, SBA/
+scroll_region_setup	terminfo-core.c	/^#define scroll_region_setup(term, y1, y2) \\$/
+scrollback_goto_line	textbuffer-commands.c	/^static void scrollback_goto_line(int linenum)$/
+scrollback_goto_time	textbuffer-commands.c	/^static void scrollback_goto_time(const char *datea/
+set_color	textbuffer.c	/^static void set_color(GString *str, int cmd, int */
+setup_changed	gui-readline.c	/^static void setup_changed(void)$/
+show_lastlog	lastlog.c	/^static void show_lastlog(const char *searchtext, G/
+sig_activity	mainwindow-activity.m	/^static void sig_activity(WINDOW_REC *window)$/
+sig_away_changed	textbuffer-commands.c	/^static void sig_away_changed(SERVER_REC *server)$/
+sig_check_linecache	textbuffer-view.c	/^static int sig_check_linecache(void)$/
+sig_cont	term-terminfo.c	/^static void sig_cont(int p)$/
+sig_exit	irssi.c	/^static void sig_exit(void)$/
+sig_gui_entry_redirect	gui-readline.c	/^static void sig_gui_entry_redirect(SIGNAL_FUNC fun/
+sig_gui_key_pressed	gui-readline.c	/^static void sig_gui_key_pressed(gpointer keyp)$/
+sig_gui_print_text	gui-printtext.c	/^static void sig_gui_print_text(WINDOW_REC *window,/
+sig_gui_printtext	term-dummy.c	/^static void sig_gui_printtext(WINDOW_REC *window, /
+sig_gui_printtext_finished	gui-printtext.c	/^static void sig_gui_printtext_finished(WINDOW_REC /
+sig_gui_window_created	statusbar.c	/^static void sig_gui_window_created(WINDOW_REC *win/
+sig_input	gui-readline.c	/^static void sig_input(void)$/
+sig_lag_timeout	statusbar-items.c	/^static int sig_lag_timeout(void)$/
+sig_layout_reset	mainwindows-layout.c	/^static void sig_layout_reset(void)$/
+sig_layout_restore	mainwindows-layout.c	/^static void sig_layout_restore(void)$/
+sig_layout_save	mainwindows-layout.c	/^static void sig_layout_save(void)$/
+sig_layout_window_restore	mainwindows-layout.c	/^static void sig_layout_window_restore(WINDOW_REC */
+sig_layout_window_save	mainwindows-layout.c	/^static void sig_layout_window_save(WINDOW_REC *win/
+sig_mainwindow_destroyed	statusbar.c	/^static void sig_mainwindow_destroyed(MAIN_WINDOW_R/
+sig_mainwindow_resized	statusbar.c	/^static void sig_mainwindow_resized(MAIN_WINDOW_REC/
+sig_print_format	textbuffer-reformat.c	/^static void sig_print_format(THEME_REC *theme, con/
+sig_server_lag_updated	statusbar-items.c	/^static void sig_server_lag_updated(SERVER_REC *ser/
+sig_statusbar_activity_hilight	statusbar-items.c	/^static void sig_statusbar_activity_hilight(WINDOW_/
+sig_statusbar_activity_updated	statusbar-items.c	/^static void sig_statusbar_activity_updated(void)$/
+sig_statusbar_activity_window_destroyed	statusbar-items.c	/^static void sig_statusbar_activity_window_destroye/
+sig_statusbar_more_updated	statusbar-items.c	/^static void sig_statusbar_more_updated(void)$/
+sig_terminal_resized	statusbar.c	/^static void sig_terminal_resized(void)$/
+sig_winch	term.c	/^static void sig_winch(int p)$/
+sig_window_auto_changed	gui-readline.c	/^static void sig_window_auto_changed(void)$/
+sig_window_changed	statusbar.c	/^static void sig_window_changed(void)$/
+sig_window_create_override	gui-windows.c	/^static void sig_window_create_override(gpointer ta/
+sig_window_created	term-dummy.c	/^static void sig_window_created(WINDOW_REC *window)/
+sig_window_print_info	mainwindows.c	/^static void sig_window_print_info(WINDOW_REC *win)/
+signal_window_changed	gui-windows.c	/^static void signal_window_changed(WINDOW_REC *wind/
+statusbar_calc_item_positions	statusbar.c	/^static void statusbar_calc_item_positions(STATUSBA/
+statusbar_config_create	statusbar-config.c	/^statusbar_config_create(STATUSBAR_GROUP_REC *group/
+statusbar_config_deinit	statusbar-config.c	/^void statusbar_config_deinit(void)$/
+statusbar_config_destroy	statusbar-config.c	/^void statusbar_config_destroy(STATUSBAR_GROUP_REC /
+statusbar_config_find	statusbar-config.c	/^statusbar_config_find(STATUSBAR_GROUP_REC *group, /
+statusbar_config_init	statusbar-config.c	/^void statusbar_config_init(void)$/
+statusbar_config_item_destroy	statusbar-config.c	/^static void statusbar_config_item_destroy(STATUSBA/
+statusbar_create	statusbar.c	/^STATUSBAR_REC *statusbar_create(STATUSBAR_GROUP_RE/
+statusbar_deinit	statusbar.c	/^void statusbar_deinit(void)$/
+statusbar_destroy	statusbar.c	/^void statusbar_destroy(STATUSBAR_REC *bar)$/
+statusbar_find	statusbar.c	/^STATUSBAR_REC *statusbar_find(STATUSBAR_GROUP_REC /
+statusbar_group_create	statusbar.c	/^STATUSBAR_GROUP_REC *statusbar_group_create(const /
+statusbar_group_destroy	statusbar.c	/^void statusbar_group_destroy(STATUSBAR_GROUP_REC */
+statusbar_group_find	statusbar.c	/^STATUSBAR_GROUP_REC *statusbar_group_find(const ch/
+statusbar_init	statusbar.c	/^void statusbar_init(void)$/
+statusbar_item_config_create	statusbar-config.c	/^statusbar_item_config_create(STATUSBAR_CONFIG_REC /
+statusbar_item_create	statusbar.c	/^SBAR_ITEM_REC *statusbar_item_create(STATUSBAR_REC/
+statusbar_item_def_destroy	statusbar.c	/^static void statusbar_item_def_destroy(void *key, /
+statusbar_item_default_func	statusbar.c	/^static void statusbar_item_default_func(SBAR_ITEM_/
+statusbar_item_default_handler	statusbar.c	/^void statusbar_item_default_handler(SBAR_ITEM_REC /
+statusbar_item_default_signals	statusbar.c	/^static void statusbar_item_default_signals(SBAR_IT/
+statusbar_item_destroy	statusbar.c	/^void statusbar_item_destroy(SBAR_ITEM_REC *item)$/
+statusbar_item_get_value	statusbar.c	/^const char *statusbar_item_get_value(SBAR_ITEM_REC/
+statusbar_item_redraw	statusbar.c	/^void statusbar_item_redraw(SBAR_ITEM_REC *item)$/
+statusbar_item_register	statusbar.c	/^void statusbar_item_register(const char *name, con/
+statusbar_item_remove_signal	statusbar.c	/^static void statusbar_item_remove_signal(SBAR_ITEM/
+statusbar_item_signal_destroy	statusbar.c	/^static void statusbar_item_signal_destroy(void *ke/
+statusbar_item_unregister	statusbar.c	/^void statusbar_item_unregister(const char *name)$/
+statusbar_items_deinit	statusbar-items.c	/^void statusbar_items_deinit(void)$/
+statusbar_items_init	statusbar-items.c	/^void statusbar_items_init(void)$/
+statusbar_items_redraw	statusbar.c	/^void statusbar_items_redraw(const char *name)$/
+statusbar_items_section	statusbar-config.c	/^static CONFIG_NODE *statusbar_items_section(CONFIG/
+statusbar_list_items	statusbar-config.c	/^static void statusbar_list_items(STATUSBAR_CONFIG_/
+statusbar_print	statusbar-config.c	/^static void statusbar_print(STATUSBAR_CONFIG_REC */
+statusbar_read	statusbar-config.c	/^static void statusbar_read(STATUSBAR_GROUP_REC *gr/
+statusbar_read_group	statusbar-config.c	/^static void statusbar_read_group(CONFIG_NODE *node/
+statusbar_read_item	statusbar-config.c	/^static void statusbar_read_item(STATUSBAR_CONFIG_R/
+statusbar_read_items	statusbar-config.c	/^static void statusbar_read_items(CONFIG_NODE *item/
+statusbar_recreate_items	statusbar.c	/^void statusbar_recreate_items(STATUSBAR_REC *bar)$/
+statusbar_redraw	statusbar.c	/^void statusbar_redraw(STATUSBAR_REC *bar, int forc/
+statusbar_redraw_dirty	statusbar.c	/^void statusbar_redraw_dirty(void)$/
+statusbar_redraw_needed_items	statusbar.c	/^static void statusbar_redraw_needed_items(STATUSBA/
+statusbar_reset_defaults	statusbar-config.c	/^static void statusbar_reset_defaults(void)$/
+statusbar_resize_items	statusbar.c	/^static void statusbar_resize_items(STATUSBAR_REC */
+statusbar_shrink_forced	statusbar.c	/^static void statusbar_shrink_forced(GSList *items,/
+statusbar_shrink_to_min	statusbar.c	/^static int statusbar_shrink_to_min(GSList *items, /
+statusbar_signal_item_destroy	statusbar.c	/^static void statusbar_signal_item_destroy(void *ke/
+statusbar_signal_remove	statusbar.c	/^static void statusbar_signal_remove(int signal_id)/
+statusbar_update_item	statusbar.c	/^static void statusbar_update_item(void)$/
+statusbar_update_server	statusbar.c	/^static void statusbar_update_server(SERVER_REC *se/
+statusbar_update_window	statusbar.c	/^static void statusbar_update_window(WINDOW_REC *wi/
+statusbar_update_window_item	statusbar.c	/^static void statusbar_update_window_item(WI_ITEM_R/
+statusbars_add_visible	statusbar.c	/^static void statusbars_add_visible(MAIN_WINDOW_REC/
+statusbars_create_window_bars	statusbar.c	/^void statusbars_create_window_bars(void)$/
+statusbars_recalc_ypos	statusbar.c	/^static void statusbars_recalc_ypos(STATUSBAR_REC */
+statusbars_recreate_items	statusbar.c	/^void statusbars_recreate_items(void)$/
+statusbars_remove_unvisible	statusbar.c	/^static void statusbars_remove_unvisible(MAIN_WINDO/
+strlen_utf8	utf8.c	/^int strlen_utf8(const char *str)$/
+term_add_unichar	term-curses.c	/^void term_add_unichar(TERM_WINDOW *window, unichar/
+term_addch	term-curses.c	/^void term_addch(TERM_WINDOW *window, int chr)$/
+term_addch_utf8	term-terminfo.c	/^static void term_addch_utf8(TERM_WINDOW *window, u/
+term_addstr	term-curses.c	/^void term_addstr(TERM_WINDOW *window, const char */
+term_attach	term-terminfo.c	/^void term_attach(FILE *in, FILE *out)$/
+term_auto_detach	term-curses.c	/^void term_auto_detach(int set)$/
+term_beep	term-curses.c	/^void term_beep(void)$/
+term_clear	term-curses.c	/^void term_clear(void)$/
+term_clrtoeol	term-curses.c	/^void term_clrtoeol(TERM_WINDOW *window)$/
+term_common_deinit	term.c	/^void term_common_deinit(void)$/
+term_common_init	term.c	/^void term_common_init(void)$/
+term_deinit	term-curses.c	/^void term_deinit(void)$/
+term_deinit_int	term-curses.c	/^static void term_deinit_int(void)$/
+term_detach	term-terminfo.c	/^void term_detach(void)$/
+term_dummy_deinit	term-dummy.c	/^void term_dummy_deinit(void)$/
+term_dummy_init	term-dummy.c	/^void term_dummy_init(void)$/
+term_fill_capabilities	terminfo-core.c	/^static void term_fill_capabilities(TERM_REC *term)/
+term_force_colors	term-curses.c	/^void term_force_colors(int set)$/
+term_get_size	term.c	/^int term_get_size(int *width, int *height)$/
+term_getflag	terminfo-core.c	/^#define term_getflag(x) tigetflag(x.ti_name);$/
+term_getnum	terminfo-core.c	/^#define term_getnum(x) tigetnum(x.ti_name);$/
+term_gets	term-curses.c	/^int term_gets(unichar *buffer, int size)$/
+term_getstr	terminfo-core.c	/^#define term_getstr(x, buffer) tigetstr(x.ti_name)/
+term_has_colors	term-curses.c	/^int term_has_colors(void)$/
+term_init	term-curses.c	/^int term_init(void)$/
+term_init_int	term-curses.c	/^static int term_init_int(void)$/
+term_move	term-curses.c	/^void term_move(TERM_WINDOW *window, int x, int y)$/
+term_move_cursor	term-curses.c	/^void term_move_cursor(int x, int y)$/
+term_move_real	term-terminfo.c	/^static void term_move_real(void)$/
+term_move_reset	term-terminfo.c	/^static void term_move_reset(int x, int y)$/
+term_printed_text	term-terminfo.c	/^static void term_printed_text(int count)$/
+term_putchar	terminfo-core.c	/^inline static int term_putchar(int c)$/
+term_refresh	term-curses.c	/^void term_refresh(TERM_WINDOW *window)$/
+term_refresh_freeze	term-curses.c	/^void term_refresh_freeze(void)$/
+term_refresh_thaw	term-curses.c	/^void term_refresh_thaw(void)$/
+term_resize	term-curses.c	/^void term_resize(int width, int height)$/
+term_resize_dirty	term.c	/^void term_resize_dirty(void)$/
+term_resize_final	term-curses.c	/^void term_resize_final(int width, int height)$/
+term_set_color	term-curses.c	/^void term_set_color(TERM_WINDOW *window, int col)$/
+term_set_input_type	term-curses.c	/^void term_set_input_type(int type)$/
+term_setup	terminfo-core.c	/^static int term_setup(TERM_REC *term)$/
+term_stop	term-curses.c	/^void term_stop(void)$/
+term_window_clear	term-curses.c	/^void term_window_clear(TERM_WINDOW *window)$/
+term_window_create	term-curses.c	/^TERM_WINDOW *term_window_create(int x, int y, int /
+term_window_destroy	term-curses.c	/^void term_window_destroy(TERM_WINDOW *window)$/
+term_window_move	term-curses.c	/^void term_window_move(TERM_WINDOW *window, int x, /
+term_window_scroll	term-curses.c	/^void term_window_scroll(TERM_WINDOW *window, int c/
+terminfo_beep	terminfo-core.h	/^#define terminfo_beep(term) current_term->beep(cur/
+terminfo_clear	terminfo-core.h	/^#define terminfo_clear() current_term->clear(curre/
+terminfo_clrtoeol	terminfo-core.h	/^#define terminfo_clrtoeol() current_term->clrtoeol/
+terminfo_colors_deinit	terminfo-core.c	/^static void terminfo_colors_deinit(TERM_REC *term)/
+terminfo_cont	terminfo-core.c	/^void terminfo_cont(TERM_REC *term)$/
+terminfo_core_deinit	terminfo-core.c	/^void terminfo_core_deinit(TERM_REC *term)$/
+terminfo_core_init	terminfo-core.c	/^TERM_REC *terminfo_core_init(FILE *in, FILE *out)$/
+terminfo_input_deinit	terminfo-core.c	/^static void terminfo_input_deinit(TERM_REC *term)$/
+terminfo_input_init	terminfo-core.c	/^static void terminfo_input_init(TERM_REC *term)$/
+terminfo_is_colors_set	terminfo-core.h	/^#define terminfo_is_colors_set(term) (term->TI_fg[/
+terminfo_move	terminfo-core.h	/^#define terminfo_move(x, y) current_term->move(cur/
+terminfo_move_relative	terminfo-core.h	/^#define terminfo_move_relative(oldx, oldy, x, y) c/
+terminfo_repeat	terminfo-core.h	/^#define terminfo_repeat(chr, count) current_term->/
+terminfo_resize	terminfo-core.c	/^void terminfo_resize(TERM_REC *term)$/
+terminfo_scroll	terminfo-core.h	/^#define terminfo_scroll(y1, y2, count) current_ter/
+terminfo_set_bg	terminfo-core.h	/^#define terminfo_set_bg(color) current_term->set_b/
+terminfo_set_bold	terminfo-core.h	/^#define terminfo_set_bold() current_term->set_bold/
+terminfo_set_cursor_visible	terminfo-core.h	/^#define terminfo_set_cursor_visible(set) current_t/
+terminfo_set_fg	terminfo-core.h	/^#define terminfo_set_fg(color) current_term->set_f/
+terminfo_set_normal	terminfo-core.h	/^#define terminfo_set_normal() current_term->set_no/
+terminfo_set_standout	terminfo-core.h	/^#define terminfo_set_standout(set) current_term->s/
+terminfo_set_uline	terminfo-core.h	/^#define terminfo_set_uline(set) current_term->set_/
+terminfo_setup_colors	terminfo-core.c	/^void terminfo_setup_colors(TERM_REC *term, int for/
+terminfo_stop	terminfo-core.c	/^void terminfo_stop(TERM_REC *term)$/
+text_chunk_append	textbuffer.c	/^static void text_chunk_append(TEXT_BUFFER_REC *buf/
+text_chunk_create	textbuffer.c	/^static TEXT_CHUNK_REC *text_chunk_create(TEXT_BUFF/
+text_chunk_destroy	textbuffer.c	/^static void text_chunk_destroy(TEXT_BUFFER_REC *bu/
+text_chunk_find	textbuffer.c	/^static TEXT_CHUNK_REC *text_chunk_find(TEXT_BUFFER/
+text_chunk_line_free	textbuffer.c	/^static void text_chunk_line_free(TEXT_BUFFER_REC */
+textbuffer_append	textbuffer.c	/^LINE_REC *textbuffer_append(TEXT_BUFFER_REC *buffe/
+textbuffer_cache_destroy	textbuffer-view.c	/^static void textbuffer_cache_destroy(TEXT_BUFFER_C/
+textbuffer_cache_get	textbuffer-view.c	/^textbuffer_cache_get(GSList *views, int width)$/
+textbuffer_cache_unref	textbuffer-view.c	/^static void textbuffer_cache_unref(TEXT_BUFFER_CAC/
+textbuffer_commands_deinit	textbuffer-commands.c	/^void textbuffer_commands_deinit(void)$/
+textbuffer_commands_init	textbuffer-commands.c	/^void textbuffer_commands_init(void)$/
+textbuffer_create	textbuffer.c	/^TEXT_BUFFER_REC *textbuffer_create(void)$/
+textbuffer_deinit	textbuffer.c	/^void textbuffer_deinit(void)$/
+textbuffer_destroy	textbuffer.c	/^void textbuffer_destroy(TEXT_BUFFER_REC *buffer)$/
+textbuffer_find_text	textbuffer.c	/^GList *textbuffer_find_text(TEXT_BUFFER_REC *buffe/
+textbuffer_get_views	textbuffer-view.c	/^static GSList *textbuffer_get_views(TEXT_BUFFER_RE/
+textbuffer_init	textbuffer.c	/^void textbuffer_init(void)$/
+textbuffer_insert	textbuffer.c	/^LINE_REC *textbuffer_insert(TEXT_BUFFER_REC *buffe/
+textbuffer_line2text	textbuffer.c	/^void textbuffer_line2text(LINE_REC *line, int colo/
+textbuffer_line_create	textbuffer.c	/^static LINE_REC *textbuffer_line_create(TEXT_BUFFE/
+textbuffer_line_exists_after	textbuffer.c	/^int textbuffer_line_exists_after(LINE_REC *line, L/
+textbuffer_line_get_format	textbuffer-reformat.c	/^static char *textbuffer_line_get_format(WINDOW_REC/
+textbuffer_line_insert	textbuffer.c	/^static LINE_REC *textbuffer_line_insert(TEXT_BUFFE/
+textbuffer_line_last	textbuffer.c	/^LINE_REC *textbuffer_line_last(TEXT_BUFFER_REC *bu/
+textbuffer_line_ref	textbuffer.c	/^void textbuffer_line_ref(LINE_REC *line)$/
+textbuffer_line_unref	textbuffer.c	/^void textbuffer_line_unref(TEXT_BUFFER_REC *buffer/
+textbuffer_line_unref_list	textbuffer.c	/^void textbuffer_line_unref_list(TEXT_BUFFER_REC *b/
+textbuffer_reformat_deinit	textbuffer-reformat.c	/^void textbuffer_reformat_deinit(void)$/
+textbuffer_reformat_init	textbuffer-reformat.c	/^void textbuffer_reformat_init(void)$/
+textbuffer_reformat_line	textbuffer-reformat.c	/^void textbuffer_reformat_line(WINDOW_REC *window, /
+textbuffer_remove	textbuffer.c	/^void textbuffer_remove(TEXT_BUFFER_REC *buffer, LI/
+textbuffer_remove_all_lines	textbuffer.c	/^void textbuffer_remove_all_lines(TEXT_BUFFER_REC */
+textbuffer_view_clear	textbuffer-view.c	/^void textbuffer_view_clear(TEXT_BUFFER_VIEW_REC *v/
+textbuffer_view_create	textbuffer-view.c	/^TEXT_BUFFER_VIEW_REC *textbuffer_view_create(TEXT_/
+textbuffer_view_deinit	textbuffer-view.c	/^void textbuffer_view_deinit(void)$/
+textbuffer_view_destroy	textbuffer-view.c	/^void textbuffer_view_destroy(TEXT_BUFFER_VIEW_REC /
+textbuffer_view_get_bookmark	textbuffer-view.c	/^LINE_REC *textbuffer_view_get_bookmark(TEXT_BUFFER/
+textbuffer_view_get_line_cache	textbuffer-view.c	/^LINE_CACHE_REC *textbuffer_view_get_line_cache(TEX/
+textbuffer_view_get_lines	textbuffer-view.h	/^#define textbuffer_view_get_lines(view) \\$/
+textbuffer_view_init	textbuffer-view.c	/^void textbuffer_view_init(void)$/
+textbuffer_view_init_bottom	textbuffer-view.c	/^static void textbuffer_view_init_bottom(TEXT_BUFFE/
+textbuffer_view_init_ypos	textbuffer-view.c	/^static void textbuffer_view_init_ypos(TEXT_BUFFER_/
+textbuffer_view_insert_line	textbuffer-view.c	/^void textbuffer_view_insert_line(TEXT_BUFFER_VIEW_/
+textbuffer_view_redraw	textbuffer-view.c	/^void textbuffer_view_redraw(TEXT_BUFFER_VIEW_REC */
+textbuffer_view_remove_all_lines	textbuffer-view.c	/^void textbuffer_view_remove_all_lines(TEXT_BUFFER_/
+textbuffer_view_remove_line	textbuffer-view.c	/^void textbuffer_view_remove_line(TEXT_BUFFER_VIEW_/
+textbuffer_view_resize	textbuffer-view.c	/^void textbuffer_view_resize(TEXT_BUFFER_VIEW_REC */
+textbuffer_view_scroll	textbuffer-view.c	/^void textbuffer_view_scroll(TEXT_BUFFER_VIEW_REC */
+textbuffer_view_scroll_line	textbuffer-view.c	/^void textbuffer_view_scroll_line(TEXT_BUFFER_VIEW_/
+textbuffer_view_set_bookmark	textbuffer-view.c	/^void textbuffer_view_set_bookmark(TEXT_BUFFER_VIEW/
+textbuffer_view_set_bookmark_bottom	textbuffer-view.c	/^void textbuffer_view_set_bookmark_bottom(TEXT_BUFF/
+textbuffer_view_set_default_indent	textbuffer-view.c	/^void textbuffer_view_set_default_indent(TEXT_BUFFE/
+textbuffer_view_set_scroll	textbuffer-view.c	/^void textbuffer_view_set_scroll(TEXT_BUFFER_VIEW_R/
+textbuffer_view_set_utf8	textbuffer-view.c	/^void textbuffer_view_set_utf8(TEXT_BUFFER_VIEW_REC/
+textbuffer_view_set_window	textbuffer-view.c	/^void textbuffer_view_set_window(TEXT_BUFFER_VIEW_R/
+textbuffer_views_unregister_indent_func	textbuffer-view.c	/^void textbuffer_views_unregister_indent_func(INDEN/
+textui_deinit	irssi.c	/^static void textui_deinit(void)$/
+textui_finish_init	irssi.c	/^static void textui_finish_init(void)$/
+textui_init	irssi.c	/^static void textui_init(void)$/
+tparm	tparm.c	/^char *tparm(const char *str, ...) {$/
+tput	terminfo-core.c	/^#define tput(s) tputs(s, 0, term_putchar)$/
+try_grow_lower	mainwindows.c	/^static int try_grow_lower(MAIN_WINDOW_REC *window,/
+try_grow_upper	mainwindows.c	/^static int try_grow_upper(MAIN_WINDOW_REC *window,/
+try_shrink_lower	mainwindows.c	/^static int try_shrink_lower(MAIN_WINDOW_REC *windo/
+try_shrink_upper	mainwindows.c	/^static int try_shrink_upper(MAIN_WINDOW_REC *windo/
+update_cmd_color	textbuffer-view.c	/^static void update_cmd_color(unsigned char cmd, in/
+update_statusbar_bg	statusbar.c	/^static char *update_statusbar_bg(const char *str, /
+utf16_char_to_utf8	utf8.c	/^int utf16_char_to_utf8(unichar c, char *outbuf)$/
+utf16_to_utf8	utf8.c	/^void utf16_to_utf8(const unichar *str, char *out)$/
+utf8_to_utf16	utf8.c	/^void utf8_to_utf16(const char *str, unichar *out)$/
+utf8_width	utf8.c	/^int utf8_width(unichar c)$/
+view_add_eol	gui-printtext.c	/^static void view_add_eol(TEXT_BUFFER_VIEW_REC *vie/
+view_bookmarks_check	textbuffer-view.c	/^static void view_bookmarks_check(TEXT_BUFFER_VIEW_/
+view_draw	textbuffer-view.c	/^static void view_draw(TEXT_BUFFER_VIEW_REC *view, /
+view_draw_bottom	textbuffer-view.c	/^static void view_draw_bottom(TEXT_BUFFER_VIEW_REC /
+view_draw_top	textbuffer-view.c	/^#define view_draw_top(view, lines, fill_bottom) \\/
+view_get_linecount	textbuffer-view.c	/^#define view_get_linecount(view, line) \\$/
+view_get_linecount_all	textbuffer-view.c	/^static int view_get_linecount_all(TEXT_BUFFER_VIEW/
+view_get_lines_height	textbuffer-view.c	/^static int view_get_lines_height(TEXT_BUFFER_VIEW_/
+view_insert_line	textbuffer-view.c	/^static void view_insert_line(TEXT_BUFFER_VIEW_REC /
+view_is_bottom	textbuffer-view.c	/^#define view_is_bottom(view) \\$/
+view_line_draw	textbuffer-view.c	/^static int view_line_draw(TEXT_BUFFER_VIEW_REC *vi/
+view_remove_cache	textbuffer-view.c	/^static void view_remove_cache(TEXT_BUFFER_VIEW_REC/
+view_remove_line	textbuffer-view.c	/^static void view_remove_line(TEXT_BUFFER_VIEW_REC /
+view_remove_line_update_startline	textbuffer-view.c	/^static void view_remove_line_update_startline(TEXT/
+view_reset_cache	textbuffer-view.c	/^static void view_reset_cache(TEXT_BUFFER_VIEW_REC /
+view_scroll	textbuffer-view.c	/^static int view_scroll(TEXT_BUFFER_VIEW_REC *view,/
+view_unregister_indent_func	textbuffer-view.c	/^static void view_unregister_indent_func(TEXT_BUFFE/
+view_update_cache	textbuffer-view.c	/^static void view_update_cache(TEXT_BUFFER_VIEW_REC/
+view_update_line_cache	textbuffer-view.c	/^view_update_line_cache(TEXT_BUFFER_VIEW_REC *view,/
+window_lastlog_clear	lastlog.c	/^static void window_lastlog_clear(WINDOW_REC *windo/
+window_next_page	gui-readline.c	/^static void window_next_page(void)$/
+window_node_cmp	mainwindows-layout.c	/^static int window_node_cmp(CONFIG_NODE *n1, CONFIG/
+window_prev_page	gui-readline.c	/^static void window_prev_page(void)$/
+window_refnum_left	mainwindows.c	/^static int window_refnum_left(int refnum, int wrap/
+window_refnum_right	mainwindows.c	/^static int window_refnum_right(int refnum, int wra/
+window_reparent	mainwindows.c	/^static void window_reparent(WINDOW_REC *win, MAIN_/
+window_size_equals	mainwindows.c	/^#define window_size_equals(window, mainwin) \\$/
+windows_print_sticky	mainwindows.c	/^static void windows_print_sticky(WINDOW_REC *win)$/
+winsock_init	irssi.c	/^static void winsock_init(void)$/

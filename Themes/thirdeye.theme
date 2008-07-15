@@ -1,0 +1,101 @@
+####                                 ####
+####  ThirdEye 1.4                   ####
+####  by salo <salo at Xtrmntr.org>  ####
+####                                 ####
+
+
+replaces = { "[]=" = "%K$0-%n"; };
+abstracts = {
+  line_start = "--- ";
+  timestamp = "[$0-]";
+  hilight = "%_$0-%_";
+  error = "%G$0-%n";
+  channel = "%c$0-%n";
+  nick = "%_$0-%_";
+  nickhost = "[$0-]";
+  server = "%_$0-%_";
+  comment = "[%_$0-%_]";
+  reason = "{comment $0-}";
+  mode = "{comment $0-}";
+  channick_hilight = "%_$0-%_";
+  chanhost_hilight = "{nickhost %c$0-%n}";
+  channick = "%_$0-%_";
+  chanhost = "{nick}";
+  channelhilight = "%c$0-%n";
+  ban = "%c$0-%n";
+  msgnick = "<$1-> %|";
+  ownnick = "%N$0-%n";
+  pubnick = "%N$0-%n";
+  menick = "%G$0-%n";
+  pubmsgnick = "%c{msgnick $0 $1-%c}%N";
+  pubmsgmenick = "%c{msgnick $0 $1-%c}%N";
+  pubmsghinick = "%c{msgnick $1 %G$2-%n%c}%N";
+  ownmsgnick = "%G{msgnick $0 %N$1-%G}%N";
+  msgchannel = "%K:%c$0-%n";
+  privmsg = "[%C$0%K(%c$1-%K)%n] ";
+  ownprivmsg = "[%c$0%C(%n$1-%C)%n] ";
+  ownprivnick = "$0-";
+  ownprivmsgnick = "%C<%n$0%C>%n ";
+  privmsgnick = "%c<%n$0%c>%n ";
+  #  ownprivmsgnick = "%G{msgnick  %N$0-%G}%n";
+  #  privmsgnick = "%c{msgnick  %G$0-%c}%N";
+  action_core = "%G>>> %g$0-";
+  action = "{action_core $0-} ";
+  ownaction = "{action $0-}";
+  ownaction_target = "{action_core $0}%K:%c$1%n ";
+  pvtaction = "%W (*) $0-%n ";
+  pvtaction_query = "{action $0-}";
+  pubaction = "{action $0-}";
+  ownnotice = "[%r$0%K(%R$1-%K)]%n ";
+  notice = "%K-%M$0-%K-%n ";
+  pubnotice_channel = "%K:%m$0-";
+  pvtnotice_host = "%K(%m$0-%K)";
+  servernotice = "%g!$0-%n ";
+  ownctcp = "[%r$0%K(%R$1-%K)] ";
+  ctcp = "%g$0-%n";
+  wallop = "%W$0-%n: ";
+  wallop_nick = "%n$0-";
+  wallop_action = "%W * $0-%n ";
+  netsplit = "%R$0-%n";
+  netjoin = "%G$0-%n";
+  names_nick = "[%G$0%g$1-%n] ";
+  names_users = "$0-";
+  names_channel = "on %G$0-%n:";
+  dcc = "%y$0-%n";
+  dccfile = "%_$0-%_";
+  dccownmsg = "[%b$0%B(%n$1-%B)] ";
+  dccownnick = "%W$0-%n";
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}%K:%c$1%n ";
+  dccmsg = "[%Y(%y$1-%Y)%n] ";
+  dccaction = "%W (*dcc*) $0-%n %|";
+  sb_background = "%4";
+  sb = "%W[%n$0-%W]%n";
+  sbmode = "(%c+%n$0-)";
+  sbaway = " (%GzZzZ%n)";
+  sbservertag = ":$0";
+  sbmore = "%_-- more --%_";
+  sblag = "{sb Lag: $0-}";
+  sbmail = "{sb Mail: $0-}";
+  sbact_act = "Act: $0-";
+  sbact_det = "Det: $0-";
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+};
+formats = {
+  "fe-common/irc" = {
+    whois = "%W$0 %K[%c$1@$2%K]%: ircname  :%W $3%n";
+    whois_channels = " channels :%c $1%n";
+    whois_server = " server   :%c $1 %K[%W$2%K]%n";
+    whois_oper = " operator :%W $1 is IRC Operator%n";
+    whois_away = " away     :%W $1%n";
+    whois_idle = " idle     :%W $1 days, $2 hours, $3 mins, $4 secs%n";
+  };
+  "fe-common/silc" = {
+    whois = "%W$0 %K[%c$1@$2%K]%: nickname    :%W $3 ($4)%n";
+    whois_realname = " realname    :%W $0%n";
+    whois_channels = " channels    :%c $0%n";
+    whois_modes = " modes       :%c $0%n";
+    whois_idle = " idle        :%W $0%n%";
+    whois_fingerprint = " fingerprint :%c $0%n%:End of WHOIS";
+  };
+};

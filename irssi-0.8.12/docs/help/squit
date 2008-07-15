@@ -1,0 +1,7 @@
+
+SQUIT %|<server>|<mask> <reason>
+
+IRC Operator command. Splits the given server and all servers behind it from your side of the IRC network.
+
+See also: SCONNECT, OPER, DIE, RESTART
+

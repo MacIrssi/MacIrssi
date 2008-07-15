@@ -1,0 +1,227 @@
+# ---------------------------------
+# Author: McGovern
+# Mail: McGovern@welho.com
+# Mon Sep 1 2003 22:00
+# ---------------------------------
+
+abstracts = {
+  ##
+  ## generic
+  ##
+
+  # text to insert at the beginning of each non-message line
+  line_start = "%W%n ";
+
+  # timestamp styling, nothing by default
+  timestamp = "%W[%w$0-%W]%n";
+
+  # any kind of text that needs hilighting, default is to bold
+  hilight = "%_$0-%_";
+
+  # any kind of error message, default is bright red
+  error = "%R$0-%n";
+
+  # channel name is printed
+  channel = "%_$0-%_";
+
+  # nick is printed
+  nick = "%_$0-%_";
+
+  # nick host is printed
+  nickhost = "%g[%n$0-%g]%n";
+
+  # server name is printed
+  server = "%_$0-%_";
+
+  # some kind of comment is printed
+  comment = "[$0-]";
+
+  # reason for something is printed (part, quit, kick, ..)
+  reason = "%G[%n$0%G]%n";
+
+  # mode change is printed ([+o nick])
+  mode = "%G[%n$0-%G]%n";
+
+  ##
+  ## channel specific messages
+  ##
+
+  # highlighted nick/host is printed (joins)
+  channick_hilight = "%G$0-%n";
+  chanhost_hilight = "%G$0-%n";
+
+  # nick/host is printed (parts, quits, etc.)
+  channick = "%g$0-%n";
+  chanhost = "%g$0-%n";
+
+  # highlighted channel name is printed
+  channelhilight = "%g$0-%n";
+
+  # ban/ban exception/invite list mask is printed
+  ban = "%c$0-%n";
+
+  ##
+  ## messages
+  ##
+
+  # the basic styling of how to print message, $0 = nick mode, $1 = nick
+  msgnick = "%Y$0%w<$1-%w> %|";
+
+  # message from you is printed. "msgownnick" specifies the styling of the
+  # nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
+  # whole line.
+
+  # Example1: You want the message text to be green:
+  #  ownmsgnick = "{msgnick $0 $1-}%g";
+  # Example2.1: You want < and > chars to be yellow:
+  #  ownmsgnick = "%Y{msgnick $0 $1-%Y}%n";
+  #  (you'll also have to remove <> from replaces list above)
+  # Example2.2: But you still want to keep <> grey for other messages:
+  #  pubmsgnick = "%K{msgnick $0 $1-%K}%n";
+  #  pubmsgmenick = "%K{msgnick $0 $1-%K}%n";
+  #  pubmsghinick = "%K{msgnick $1 $0$2-%n%K}%n";
+  #  ownprivmsgnick = "%K{msgnick  $0-%K}%n";
+  #  privmsgnick = "%K{msgnick  %R$0-%K}%n";
+
+  # $0 = nick mode, $1 = nick
+  ownmsgnick = "{msgnick $0 $1-}%B";
+  ownnick = "%w$0-%B";
+
+  # public message in channel, $0 = nick mode, $1 = nick
+  pubmsgnick = "{msgnick $0 $1-}%w";
+  pubnick = "%B$0-%w";
+
+  # public message in channel meant for me, $0 = nick mode, $1 = nick
+  pubmsgmenick = "{msgnick $0 $1-}%R";
+  menick = "%Y$0-%R";
+
+  # public highlighted message in channel
+  # $0 = highlight color, $1 = nick mode, $2 = nick
+  pubmsghinick = "{msgnick $1 $0$2-}%R";
+
+  # channel name is printed with message
+  msgchannel = "%K:%c$0-%n";
+
+  # private message, $0 = nick, $1 = host
+  privmsg = "%K[%P$0%K(%p$1-%K)%K]%n ";
+
+  # private message from you, $0 = "msg", $1 = target nick
+  ownprivmsg = "%K[%p$0%K(%P$1-%K)%K]%n ";
+
+  # own private message in query
+  ownprivmsgnick = "{msgnick  $0-}%n";
+  ownprivnick = "%w$0-%B";
+
+  # private message in query
+  privmsgnick = "{msgnick  %B$0-}%n";
+
+  ##
+  ## Actions (/ME stuff)
+  ##
+
+  # used internally by this theme
+  action_core = "%W * $0-%n";
+
+  # generic one that's used by most actions
+  action = "{action_core $0-} ";
+
+  # own action, both private/public
+  ownaction = "{action $0-}";
+
+  # own action with target, both private/public
+  ownaction_target = "{action_core $0}%K:%c$1%n ";
+
+  # private action sent by others
+  pvtaction = "%W (*) $0-%n ";
+  pvtaction_query = "{action $0-}";
+
+  # public action sent by others
+  pubaction = "{action $0-}";
+
+
+  ##
+  ## other IRC events
+  ##
+
+  # notices
+  ownnotice = "[%r$0%K(%R$1-%K)]%n ";
+  notice = "%K-%M$0-%K-%n ";
+  pubnotice_channel = "%K:%m$0-";
+  pvtnotice_host = "%K(%m$0-%K)";
+  servernotice = "%g!$0-%n ";
+
+  # CTCPs
+  ownctcp = "%K[%r$0%K(%R$1-%K)] ";
+  ctcp = "%g$0-%n";
+
+  # wallops
+  wallop = "%W$0-%n: ";
+  wallop_nick = "%n$0-";
+  wallop_action = "%W * $0-%n ";
+
+  # netsplits
+  netsplit = "%R$0-%n";
+  netjoin = "%C$0-%n";
+
+  # /names list
+  names_nick = "%g[%n%_$0%_$1-%g]%n ";
+  names_users = "%W::%n $0-%n";
+  names_channel = "%W$0-%n";
+
+  # DCC
+  dcc = "%c$0-%n";
+  dccfile = "%_$0-%_";
+
+  # DCC chat, own msg/action
+  dccownmsg = "%K[%n(%c$0%n) %n$1-%K]%n ";
+  dccownmsgnick = "%g<$0-%g>%n %|";
+  dccownquerynick = "%W$0-";
+  dccownnick = "%C$0-%n";
+
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}%K:%c$1%n ";
+
+  # DCC chat, others
+  dccmsg = "%K[%C$1- %n(%c$0%n)%K]%n ";
+  dccquerynick = "%c$0-%n";
+  dccaction = "%W (*dcc*) $0-%n %|";
+
+  ##
+  ## statusbar
+  ##
+
+  # background of statusbar
+  sb_background = "%0";
+
+  # default statusbar item style
+  sb = "%g[%n$0-%g]%n";
+
+  sbmode = "(%G+%n$0-)";
+  sbaway = " (%CzZzZ%n)";
+  sbservertag = ":$0 ";
+  sbmore = "%_-- more --%_";
+  sblag = "{sb %RLag: $0-}";
+  sbmail = "{sb Mail: $0-}";
+
+  # activity. Det is used for hilights when display doesn't support colors
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+  sb_act_sep = "%w$*";
+  sb_act_text = "%w$*";
+  sbact_act = "A: $0-";
+  sbact_det = " D: $0-";
+};
+formats = {
+  "fe-common/core" = {
+    join = "%gJoin %w: {channick_hilight $0} ({chanhost $1}) to {channel $2}";
+    part = "%rPart %w: {channick $0} ({chanhost $1}) from {channel $2} {reason $3}";
+    quit = "%rQuit %w: {channick $0} ({chanhost $1}) {reason $2}";
+    kick = "%rKick %w: {channick $0} by {nick $2} from {channel $1} {reason $3}";
+  };
+  "fe-common/irc" = {
+    chanmode_change = "Mode: {mode $1} by {channick $2} on {channel $0}";
+    whois = "Whois for: %C$0%n (%c$1@$2%n)%: ircname  : $3";
+  };
+  "fe-common/irc/dcc" = {
+    own_dcc_query = "{dccownmsgnick {dccownquerynick $0}}$2";
+  };
+};

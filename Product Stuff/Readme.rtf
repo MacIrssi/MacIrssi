@@ -1,0 +1,158 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949
+\readonlydoc1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 TimesNewRomanPSMT;\f2\fnil\fcharset0 Monaco;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red26\green26\blue26;}
+\margl1440\margr1440\vieww12600\viewh12040\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\qc
+
+\f0\b\fs36 \cf0 MacIrssi\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\qc
+
+\f1\b0\fs24 \cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural
+
+\f0\fs20 \cf0 Remember: This is a beta version, it may crash and there are features missing. I don't take any responsibility for any harm caused by MacIrssi.
+\f1\fs24 \
+\
+
+\b ...about\
+
+\b0 Based on the *nix IRC client irssi (http://www.irssi.org), MacIrssi is an powerful, free of charge, open source IRC client. It combines the power of the irssi engine with an elegant and flexible GUI.\
+See also http://www.irssi.org/?page=about for more info on irssi.\
+
+\b \
+...configuration\
+
+\b0 MacIrssi is extremely configurable. Some things can be changed in the preference panel. Everything else is configured by editing the configuration files that resides in the folder ~/.irssi (invisible since it starts with a dot). These files are the same files used by irssi, so I urge you to visit http://www.irssi.org if you want to learn more about editing these.\
+\
+Another great thing about being based on irssi is that you can use all the themes and scripts available at http://www.irssi.org without modification.\
+\
+
+\b ...planned enhancements in future versions\
+
+\b0 * Sound events.\
+* Drag files to nicks to initate DCC sends.\
+
+\b \
+...authors\
+
+\b0 Nils Hjelte nils.hjelte@gmail.com\
+Thanks to Andrew de los Reyes for the initial Mac OS X GUI port.\
+Authors of the irssi IRC client are found at http://www.irssi.org/?page=about\
+Beta testing by maupa@QuakeNet\
+
+\b \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 ...history\
+\pard\tx240\pardeftab240\ql\qnatural\pardirnatural
+
+\f2\b0\fs20 \cf2 \CocoaLigature0 0.8.2\
+Compatible with Leopard (10.5), or rather only compatible with Leopard. I'm not sure, have not tested, but since the perl version number chaged\
+again it is probable that it will only work in leopard. Also, this is an Intel-only build, I was unable to do a PPC build.\
+Now correctly remembers changed colors in the preferences!\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b\fs24 \cf0 \CocoaLigature1 \
+\pard\tx480\tx960\tx1440\tx1920\tx2400\tx2880\tx3360\tx3840\tx4320\tx4800\tx5280\tx5760\tx6240\tx6720\tx7200\tx7680\tx8160\tx8640\tx9120\tx9600\tx10080\tx10560\tx11040\tx11520\tx12000\tx12480\tx12960\tx13440\tx13920\tx14400\tx14880\tx15360\tx15840\tx16320\tx16800\tx17280\tx17760\tx18240\tx18720\tx19200\tx19680\tx20160\tx20640\tx21120\tx21600\tx22080\tx22560\tx23040\tx23520\tx24000\tx24480\tx24960\tx25440\tx25920\tx26400\tx26880\tx27360\tx27840\tx28320\tx28800\tx29280\tx29760\tx30240\tx30720\tx31200\tx31680\tx32160\tx32640\tx33120\tx33600\tx34080\tx34560\tx35040\tx35520\tx36000\tx36480\tx36960\tx37440\tx37920\tx38400\tx38880\tx39360\tx39840\tx40320\tx40800\tx41280\tx41760\tx42240\tx42720\tx43200\tx43680\tx44160\tx44640\tx45120\tx45600\tx46080\tx46560\tx47040\tx47520\tx48000\ql\qnatural\pardirnatural
+
+\f2\b0\fs20 \cf0 \CocoaLigature0 0.8.1\
+Upgraded irssi core to 0.8.11\
+Compiled with irssi perl scripting support.\
+Intel native build added!\
+Fixed a crashing bug (in ChannelBarCell).\
+Improved line splitting when pasting multiple lines in input field (carriage returns are now recognized correctly).\
+Dropped support for OS X 10.3 due to perl library linking.\
+\
+0.8.0\
+Remembers current command when browsing command history.\
+Growl support for private messages.\
+Paste text works in search field!\
+Links in topic field are clickable.\
+"Edit Current Channel" menu item is only enabled for actual irc channels.\
+Automatic version checking. Thanks to M. Uli Kusterer for source code (http://www.zathras.de/angelweb/sourcecode.htm).\
+Fixed a nasty crash which sometimes happened when a message was highlighted.\
+Improved text search support: Find next/prev, find selected text, jump to selection.\
+Moved key shortcut for "Edit Current Channel" from command-E to command-I, because command-E is now used as shortcut for "Find selected text" (in conformance with many other OS X apps).\
+Fixed a layoutbug when reconnecting to servers (0.7.1 fix was faulty).\
+Theme preview and selection from preferences panel.\
+Added confirm dialog when pasting many lines of text to avoid unintentional spamming.\
+New application icon. Thanks to Kevin \'d8stmark.\
+User selectable text encoding (global and per channel).\
+Fixed channel bar display bug when the channel buttons combined width is greater than the channel bar.\
+Added support for Unsanitys "Smart Crash Reporter".\
+Fixed a startup crash related to Mac OS X 10.4 poll() implementation.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b\fs24 \cf0 \CocoaLigature1 \
+\pard\tx480\tx960\tx1440\tx1920\tx2400\tx2880\tx3360\tx3840\tx4320\tx4800\tx5280\tx5760\tx6240\tx6720\tx7200\tx7680\tx8160\tx8640\tx9120\tx9600\tx10080\tx10560\tx11040\tx11520\tx12000\tx12480\tx12960\tx13440\tx13920\tx14400\tx14880\tx15360\tx15840\tx16320\tx16800\tx17280\tx17760\tx18240\tx18720\tx19200\tx19680\tx20160\tx20640\tx21120\tx21600\tx22080\tx22560\tx23040\tx23520\tx24000\tx24480\tx24960\tx25440\tx25920\tx26400\tx26880\tx27360\tx27840\tx28320\tx28800\tx29280\tx29760\tx30240\tx30720\tx31200\tx31680\tx32160\tx32640\tx33120\tx33600\tx34080\tx34560\tx35040\tx35520\tx36000\tx36480\tx36960\tx37440\tx37920\tx38400\tx38880\tx39360\tx39840\tx40320\tx40800\tx41280\tx41760\tx42240\tx42720\tx43200\tx43680\tx44160\tx44640\tx45120\tx45600\tx46080\tx46560\tx47040\tx47520\tx48000\ql\qnatural\pardirnatural
+
+\f2\b0\fs20 \cf0 \CocoaLigature0 0.7.1\
+Support for Mac OS X 10.4 Tiger.\
+Fixed a layoutbug when reconnecting to servers.\
+Accepts command line arguments, which are passed on to irssi.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b\fs24 \cf0 \CocoaLigature1 \
+\pard\tx480\tx960\tx1440\tx1920\tx2400\tx2880\tx3360\tx3840\tx4320\tx4800\tx5280\tx5760\tx6240\tx6720\tx7200\tx7680\tx8160\tx8640\tx9120\tx9600\tx10080\tx10560\tx11040\tx11520\tx12000\tx12480\tx12960\tx13440\tx13920\tx14400\tx14880\tx15360\tx15840\tx16320\tx16800\tx17280\tx17760\tx18240\tx18720\tx19200\tx19680\tx20160\tx20640\tx21120\tx21600\tx22080\tx22560\tx23040\tx23520\tx24000\tx24480\tx24960\tx25440\tx25920\tx26400\tx26880\tx27360\tx27840\tx28320\tx28800\tx29280\tx29760\tx30240\tx30720\tx31200\tx31680\tx32160\tx32640\tx33120\tx33600\tx34080\tx34560\tx35040\tx35520\tx36000\tx36480\tx36960\tx37440\tx37920\tx38400\tx38880\tx39360\tx39840\tx40320\tx40800\tx41280\tx41760\tx42240\tx42720\tx43200\tx43680\tx44160\tx44640\tx45120\tx45600\tx46080\tx46560\tx47040\tx47520\tx48000\ql\qnatural
+
+\f2\b0\fs20 \cf3 \CocoaLigature0 0.7.0 (dec 11 2004)\
+Better handling of text attributes.\
+Halfop mode changes are correctly identified.\
+/clear command implemented (temp fix).\
+Only channels contain nicklists.\
+Channels can be displayed horizontally or verticaly.\
+Added tooltips for channelbar.\
+Removed nick tooltip (will maybe return)\
+Multiple nicks can be selected in nicklist.\
+Better color for links.\
+Searching in channels.
+\f1\b\fs24 \cf0 \CocoaLigature1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+\cf0 \
+\pard\tx480\tx960\tx1440\tx1920\tx2400\tx2880\tx3360\tx3840\tx4320\tx4800\tx5280\tx5760\tx6240\tx6720\tx7200\tx7680\tx8160\tx8640\tx9120\tx9600\tx10080\tx10560\tx11040\tx11520\tx12000\tx12480\tx12960\tx13440\tx13920\tx14400\tx14880\tx15360\tx15840\tx16320\tx16800\tx17280\tx17760\tx18240\tx18720\tx19200\tx19680\tx20160\tx20640\tx21120\tx21600\tx22080\tx22560\tx23040\tx23520\tx24000\tx24480\tx24960\tx25440\tx25920\tx26400\tx26880\tx27360\tx27840\tx28320\tx28800\tx29280\tx29760\tx30240\tx30720\tx31200\tx31680\tx32160\tx32640\tx33120\tx33600\tx34080\tx34560\tx35040\tx35520\tx36000\tx36480\tx36960\tx37440\tx37920\tx38400\tx38880\tx39360\tx39840\tx40320\tx40800\tx41280\tx41760\tx42240\tx42720\tx43200\tx43680\tx44160\tx44640\tx45120\tx45600\tx46080\tx46560\tx47040\tx47520\tx48000\ql\qnatural
+
+\f2\b0\fs20 \cf3 \CocoaLigature0 0.6.3 (apr 13 2004)\
+The text output problems that came with 0.6.2 are fixed.\
+Only scrolls visible channels when receiving a message.\
+An improved link-scanner, which also fixes some crash problems.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\ql\qnatural
+
+\f1\b\fs24 \cf0 \CocoaLigature1 \
+\pard\tx480\tx960\tx1440\tx1920\tx2400\tx2880\tx3360\tx3840\tx4320\tx4800\tx5280\tx5760\tx6240\tx6720\tx7200\tx7680\tx8160\tx8640\tx9120\tx9600\tx10080\tx10560\tx11040\tx11520\tx12000\tx12480\tx12960\tx13440\tx13920\tx14400\tx14880\tx15360\tx15840\tx16320\tx16800\tx17280\tx17760\tx18240\tx18720\tx19200\tx19680\tx20160\tx20640\tx21120\tx21600\tx22080\tx22560\tx23040\tx23520\tx24000\tx24480\tx24960\tx25440\tx25920\tx26400\tx26880\tx27360\tx27840\tx28320\tx28800\tx29280\tx29760\tx30240\tx30720\tx31200\tx31680\tx32160\tx32640\tx33120\tx33600\tx34080\tx34560\tx35040\tx35520\tx36000\tx36480\tx36960\tx37440\tx37920\tx38400\tx38880\tx39360\tx39840\tx40320\tx40800\tx41280\tx41760\tx42240\tx42720\tx43200\tx43680\tx44160\tx44640\tx45120\tx45600\tx46080\tx46560\tx47040\tx47520\tx48000\ql\qnatural
+
+\f2\b0\fs20 \cf0 \CocoaLigature0 0.6.2 (mar 18 2004)\
+Much better response time from irssi events. E.g servers outputting lots of text when connecting.\
+Fixed a bug where you couldn't use the floater for public messages if you had op status on the channel.\
+\
+0.6.1 (mar 08 2004)\
+Fixed a potential buffer owerflow.\
+\
+0.6.0 (mar 05 2004)\
+Now has clickable links.\
+Accepts multiple lines of input.\
+Color panel is closed when preference window is closed.\
+No longer need to activate input text field before pasting.\
+Added font panel for changing font in channels.\
+Shift-up/down now works as expected in the input field.\
+Now based on irssi 0.8.9\
+No longer cancels shutdowns\
+Added the 'floater' feature\
+Command-R and ctrl-X changes active server\
+You can now have a default quit message and choose not to be prompted while quitting\
+Icon bounces on private message (optional)\
+Tooltips in userlist\
+Icon changes apperance on private message. (lasting effect compared to bouncing)\
+Binding system to connect F-keys to command sequences\
+Put a users IP into pasteboard through context-menu\
+Irssi perl scripts can be used (see FAQ)\
+\
+0.5.2 (nov 05 2003)\
+Fixes some minor graphic issues that appeared in Mac OSX 10.3.\
+Also adds support for IPv6.\
+\
+0.5.1 (nov 03 2003)\
+Now works in Mac OSX 10.3.\
+Also adds some optimizations to the text processing.\
+\
+0.5 (sept 05 2003)\
+Initial release.}

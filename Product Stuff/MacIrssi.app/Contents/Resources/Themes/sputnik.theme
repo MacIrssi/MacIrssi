@@ -1,0 +1,237 @@
+# TankE theme for irssi
+# by Tanke <tanke@escomposlinux.org> SpZ@QuakeNet
+
+
+replaces = { "=" = "%w$0-%n"; };
+
+abstracts = {
+
+  # text to insert at the beginning of each non-message line
+  line_start = "";
+  ts = ">> ";
+
+  # timestamp styling, nothing by default
+  timestamp = "%G[%B$0-%G]%n";
+
+  # any kind of text that needs hilighting, default is to bold
+  hilight = "%_$0-%_";
+
+  # any kind of error message, default is bright red
+  error = "%r$0-%n";
+
+  # channel name is printed
+  channel = "%B$0-%n";
+
+  # nick is printed
+  nick = "%Y$0-";
+
+  # nick host is printed
+  nickhost = "%W$0-";
+
+  # server name is printed
+  server = "$0-";
+
+  # some kind of comment is printed
+  comment = "%W$0-";
+
+  # reason for something is printed (part, quit, kick, ..)
+  reason = "%c[{comment $0-}%_%c]%n";
+
+  # mode change is printed ([+o nick])
+  mode = "%W$0-%n";
+
+
+  channick_hilight = "%B$0-%n";
+  chanhost_hilight = "{nickhost %W$0-}";
+
+  # nick/host is printed (parts, quits, etc.)
+  channick = "%r$0-%n";
+  chanhost = "{nickhost %W$0-%n}";
+
+  # highlighted channel name is printed
+  channelhilight = "%W$0-%n";
+
+  # ban/ban exception/invite list mask is printed
+  ban = "%W$0-%n";
+
+
+  # the basic styling of how to print message, $0 = nick mode, $1 = nick
+  msgnick = "%B<%m$0%G$1-%B> %|";
+
+  # $0 = nick mode, $1 = nick
+  ownmsgnick = "{msgnick $0 $1}%Y%n";
+  ownnick = "%g$0%C$1%n";
+
+  # public message in channel, $0 = nick mode, $1 = nick
+  pubmsgnick = "{msgnick $0 $1}%n";
+  pubnick = "%c$0$1%n";
+
+  # public message in channel meant for me, $0 = nick mode, $1 = nick
+  pubmsgmenick = "{msgnick %_$0%_ $1}%W";
+  menick = "%Y$0%Y$1";
+
+  # public highlighted message in channel
+  # $0 = highlight color, $1 = nick mode, $2 = nick
+  pubmsghinick = "%R%r$1%y$2%y%R%W ";
+
+  # channel name is printed with message
+  msgchannel = "%w:%r$0-%n";
+
+  # private message, $0 = nick, $1 = host
+  privmsg = "%r%r$0%n %n%|";
+
+  # private message from you, $0 = "msg", $1 = target nick
+  ownprivmsg = "%r--> %n$1%r:%n %|";
+
+  # own private message in query
+  ownprivmsgnick = "%R<%W$0-%R> %|";
+  ownprivnick = "%Y$0";
+
+  # private message in query
+  privmsgnick = "{msgnick %r%Y$0%r }%w%|";
+
+  # Actions (/me)
+  action_core = "* $0-";
+  action = "{action_core %N$0-%n} ";
+  ownaction = "%c{action $0-}%n";
+  pubaction = "{action $0-}";
+  ownaction_target = "{action_core $0}:$1 ";
+  pvtaction_query = "{action $0-}";
+  pvtaction = "* (%W$0-%n) ";
+
+
+  # notices
+  ownnotice = "%Wnotice %R-> %Y$1%n%W:%n %|";
+  notice = "%r- %Y$0 %n %|";
+  pubnotice_channel = "%R$0-%W: %|";
+  pvtnotice_host = "%n ($0-)%|";
+  servernotice = "%G[$0-]%n %|";
+
+  # CTCPs
+  ownctcp = "%W-> $0 to %Y$1%n: ";
+  ctcp = "%W-> %n$0-%n";
+
+  # wallops
+  wallop = "%W$0-%n: ";
+  wallop_nick = "%n$0-";
+  wallop_action = "%W * $0-%n ";
+
+  # netsplits
+  netsplit = "%r$0-%n";
+  netjoin = "%r$0-%n";
+
+  # /names list
+  names_nick = "%K[%C$0%B$1-%K] ";
+  names_users = "%K[%G$0-%n";
+  names_channel = "%g$0-%n%K]";
+
+  # DCC
+  dcc = "%r- $0-%n";
+  dccfile = "$0-";
+
+  # DCC chat, own msg/action
+  dccownmsg = "%Y$1%n ";
+  dccownnick = "%R$0-%n";
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}%K:%c$1%n ";
+
+  # DCC chat, others
+  dccmsg = "[%G$1-%K(%g$0%K)%n] ";
+  dccquerynick = "%G$0-%n";
+  dccaction = "%W (*dcc*) $0-%n %|";
+
+  #
+  ## StatusBar
+  sb_background = "%4";
+  sb = "%Y[%W$0-%Y] ";
+  sb_topic_bg = "%0%YTopic %G: %K";
+  sbstart = "";
+  sbend = " ";
+  sbmode = " %Y(%C+%W$0-%Y)%n";
+  sbaway = " (%n%GzZzZ%n)";
+  sbservertag = ": $0";
+  sbmore = "%_-- more --%_";
+  sblag = "{sb %WLag: %R$0-%n}";
+  sbmail = "{sb Mail: $0-}";
+  sb_act_sep = "%r$*%n";
+  sb_act_text = "%r$*%n";
+  sb_act_msg = "%W$*%n";
+  sb_act_hilight = "%Y$*%n";
+  sb_act_hilight_color = "%_%Y$1-%_%n";
+
+  # default backround for "default" statusbar group
+  sb_default_bg = "%4";
+  # background for prompt / input line
+  sb_prompt_bg = "%0";
+  # background for info statusbar
+  sb_info_bg = "%8";
+
+};
+
+formats = {
+  "fe-common/core" = {
+    join = "%B{ts}%n{channick_hilight $0} joins {channel $2}";
+    nick_changed = "%R{ts}%n{channick $0} is now known as {channick $1}";
+    quit = "%b{ts}%nSignOff: {channick $0} {reason $2} [{channel $3}]";
+    quit_once = "%b{ts}%nSignOff: {channick $0} {reason $2}";
+    part = "%b{ts}%n{channick_hilight $0} parts {channel $2}";
+    kick = "%C{ts}%nKick for {nick $0} by {nick $2} from {channel $1} {reason $3}";
+    your_nick_changed = "%R{ts}%n{channick $0} is now known as {channick $1}";
+    endofnames = "%Y{ts}%nStats {channel $0}: {hilight +o}[$2] {hilight +v}[$4] {hilight -o}[$5] Total: {hilight $1}";
+    new_topic = "%Y{ts}%nTopic change on {channel $1} by $0: $2";
+    topic_unset = "%Y{ts}%nTopic unset on {channel $1} by $0";
+    line_start_irssi = "{line_start}";
+    servertag = "$0%K/%n";
+    daychange = "%G[%B00:00%G] %W{ts}%nDay changed to %%d %%b %%Y";
+    invite = "%W{ts}%n{hilight $0}!$2 invites you to {channel $1}";
+    own_msg_private_query = "%c<%N$2%c>%n %|$1";
+    msg_private_query = "%b<%N$0%b>%n %|$2";
+    timestamp = "{timestamp $Z} ";
+    own_msg_private = "{ownprivmsg msg $0}$1";
+  };
+  "fe-common/irc" = {
+    whois = "%g--- %W$0 %c($1@$2) %K]%g ----- %n%:%g|%c    Ircname %n $3%:%g|%c     Domain %n \"$4\"";
+    whois_channels = "%g|   %cChannels %n %|$1";
+    whois_idle = "%g|       %cIdle %n $1 days $2 hours $3 mins $4 secs";
+    whois_server = "%g|     %cServer %n %|$1 [$2]";
+    whois_idle_signon = "%g|       %cIdle %n $1 days $2 hours $3 mins $4 secs%:%g|     %cSignon %n $5";
+    whois_oper = "%g|   %cOperator %n $0 is an IRC Operator";
+    whois_modes = "%g|      %cModes %n $1";
+    end_of_whois = "%g| %n";
+    whois_away = "%g|       %cAway %b:%n %|$1";
+    whois_registered = "%g| %cRegistered %n has registered this nick";
+    whowas = "%%g--- %W$0 %c($1@$2) %k]%g ----- %n%:%g|%c    Ircname %g|%n $3";
+    end_of_whowas = "%g| %n";
+    chanmode_change = "%c{ts}%nMode {channel $0} {mode $1} by {nick $2}";
+    server_chanmode_change = "%c{ts}%n{netsplit NetHack} {channel $0} {mode $1} by {nick $2}";
+    channel_mode = "{ts}Mode for channel {channel $0} is {mode $1}";
+    topic = "%Y{ts}%nTopic on {channel $0}: $1";
+    no_topic = "%Y{ts}%nNo topic set for {channel $0}";
+    topic_info = "%Y{ts}%nTopic set by $0 {comment $1}";
+    away = "{ts}You have been marked as being away";
+    unaway = "{ts}You are no longer marked as being away";
+    nick_away = "%W{ts}%n$0 is away: $1";
+    channel_synced = "%Y{ts}%nChannel {channel $0} was synced in {hilight $1} seconds";
+    inviting = "%W{ts}%nInviting $0 to channel {channel $1}";
+    whois_oper_type = "%g|   %cOperator %b:%n $0 is an IRC Operator";
+  };
+  "fe-text" = {
+    lastlog_start = "%_------- %c-%n %_{hilight Lastlog}%_:";
+    lastlog_end = "%_------- %c-%n%_ {hilight End of lastlog}%_";
+  };
+  "fe-common/irc/dcc" = {
+    dcc_ctcp = "{dcc %g %n DCC CTCP {hilight $1} received from {hilight $0}: $2}";
+    own_dcc_query = "%r%n{ownmsgnick $0 %r%n}$2";
+    dcc_msg_query = "{privmsgnick $0}$1";
+    own_dcc_action = " %r*%n {dccownaction_target $0 $1}$2";
+    own_dcc_action_query = " %r*%n {dccownaction $0}$2";
+  };
+    "fe-common/irc/notifylist" = {
+    notify_join = "%B{ts}%nSignon detected: {nick $0} ($1@$2) /$4/";
+    notify_part = "%b{ts}%nSignoff detected: {nick $0} /$4/";
+    notify_away = "%p{ts}%nStatus change: {nick $0} /$5/ is now away: $4";
+    notify_unaway = "%P{ts}%nStatus change: {nick $0} /$4/ is now unaway";
+    notify_unidle = "%P{ts}%nStatus change: {nick $0} /$5/ just stopped idling";
+    notify_list = "$[9]0{hilight :} $[6]1 | $[5]2 | $3";
+  };
+};

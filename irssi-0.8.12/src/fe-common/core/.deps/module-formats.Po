@@ -1,0 +1,304 @@
+module-formats.o module-formats.o: module-formats.c module.h \
+  ../../../src/common.h ../../../config.h /usr/include/stdio.h \
+  /usr/include/_types.h /usr/include/sys/_types.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h \
+  /Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/stddef.h \
+  /Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h \
+  /usr/include/ctype.h /usr/include/runetype.h /usr/include/string.h \
+  /usr/include/stdlib.h /usr/include/available.h /usr/include/sys/wait.h \
+  /usr/include/sys/signal.h /usr/include/sys/appleapiopts.h \
+  /usr/include/machine/signal.h /usr/include/i386/signal.h \
+  /usr/include/i386/_structs.h /usr/include/sys/_structs.h \
+  /usr/include/machine/_structs.h /usr/include/mach/i386/_structs.h \
+  /usr/include/sys/resource.h /usr/include/machine/endian.h \
+  /usr/include/i386/endian.h /usr/include/sys/_endian.h \
+  /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
+  /usr/include/machine/types.h /usr/include/i386/types.h \
+  /usr/include/errno.h /usr/include/sys/errno.h /usr/include/time.h \
+  /usr/include/_structs.h /usr/include/sys/types.h \
+  /usr/include/sys/time.h /usr/include/sys/_select.h \
+  /usr/include/sys/stat.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+  /usr/include/sys/select.h /usr/include/dirent.h \
+  /usr/include/sys/dirent.h /usr/include/fcntl.h /usr/include/sys/fcntl.h \
+  /sw/include/glib-2.0/glib.h /sw/include/glib-2.0/glib/galloca.h \
+  /sw/include/glib-2.0/glib/gtypes.h \
+  /sw/lib/glib-2.0/include/glibconfig.h \
+  /sw/include/glib-2.0/glib/gmacros.h \
+  /Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h \
+  /Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h \
+  /Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/float.h \
+  /sw/include/glib-2.0/glib/garray.h \
+  /sw/include/glib-2.0/glib/gasyncqueue.h \
+  /sw/include/glib-2.0/glib/gthread.h /sw/include/glib-2.0/glib/gerror.h \
+  /sw/include/glib-2.0/glib/gquark.h /sw/include/glib-2.0/glib/gatomic.h \
+  /sw/include/glib-2.0/glib/gbacktrace.h \
+  /sw/include/glib-2.0/glib/gbase64.h \
+  /sw/include/glib-2.0/glib/gbookmarkfile.h \
+  /sw/include/glib-2.0/glib/gcache.h /sw/include/glib-2.0/glib/glist.h \
+  /sw/include/glib-2.0/glib/gmem.h /sw/include/glib-2.0/glib/gslice.h \
+  /sw/include/glib-2.0/glib/gcompletion.h \
+  /sw/include/glib-2.0/glib/gconvert.h \
+  /sw/include/glib-2.0/glib/gdataset.h /sw/include/glib-2.0/glib/gdate.h \
+  /sw/include/glib-2.0/glib/gdir.h /sw/include/glib-2.0/glib/gfileutils.h \
+  /sw/include/glib-2.0/glib/ghash.h /sw/include/glib-2.0/glib/ghook.h \
+  /sw/include/glib-2.0/glib/giochannel.h \
+  /sw/include/glib-2.0/glib/gmain.h /sw/include/glib-2.0/glib/gslist.h \
+  /sw/include/glib-2.0/glib/gstring.h \
+  /sw/include/glib-2.0/glib/gunicode.h /sw/include/glib-2.0/glib/gutils.h \
+  /sw/include/glib-2.0/glib/gkeyfile.h \
+  /sw/include/glib-2.0/glib/gmappedfile.h \
+  /sw/include/glib-2.0/glib/gmarkup.h \
+  /sw/include/glib-2.0/glib/gmessages.h /sw/include/glib-2.0/glib/gnode.h \
+  /sw/include/glib-2.0/glib/goption.h \
+  /sw/include/glib-2.0/glib/gpattern.h \
+  /sw/include/glib-2.0/glib/gprimes.h /sw/include/glib-2.0/glib/gqsort.h \
+  /sw/include/glib-2.0/glib/gqueue.h /sw/include/glib-2.0/glib/grand.h \
+  /sw/include/glib-2.0/glib/grel.h /sw/include/glib-2.0/glib/gscanner.h \
+  /sw/include/glib-2.0/glib/gshell.h /sw/include/glib-2.0/glib/gspawn.h \
+  /sw/include/glib-2.0/glib/gstrfuncs.h \
+  /sw/include/glib-2.0/glib/gthreadpool.h \
+  /sw/include/glib-2.0/glib/gtimer.h /sw/include/glib-2.0/glib/gtree.h \
+  /sw/include/glib-2.0/gmodule.h formats.h themes.h fe-windows.h \
+  ../../../src/core/window-item-def.h ../../../src/core/window-item-rec.h \
+  command-history.h
+
+module.h:
+
+../../../src/common.h:
+
+../../../config.h:
+
+/usr/include/stdio.h:
+
+/usr/include/_types.h:
+
+/usr/include/sys/_types.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/machine/_types.h:
+
+/usr/include/i386/_types.h:
+
+/Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/stddef.h:
+
+/Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h:
+
+/usr/include/ctype.h:
+
+/usr/include/runetype.h:
+
+/usr/include/string.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/available.h:
+
+/usr/include/sys/wait.h:
+
+/usr/include/sys/signal.h:
+
+/usr/include/sys/appleapiopts.h:
+
+/usr/include/machine/signal.h:
+
+/usr/include/i386/signal.h:
+
+/usr/include/i386/_structs.h:
+
+/usr/include/sys/_structs.h:
+
+/usr/include/machine/_structs.h:
+
+/usr/include/mach/i386/_structs.h:
+
+/usr/include/sys/resource.h:
+
+/usr/include/machine/endian.h:
+
+/usr/include/i386/endian.h:
+
+/usr/include/sys/_endian.h:
+
+/usr/include/libkern/_OSByteOrder.h:
+
+/usr/include/libkern/i386/_OSByteOrder.h:
+
+/usr/include/alloca.h:
+
+/usr/include/machine/types.h:
+
+/usr/include/i386/types.h:
+
+/usr/include/errno.h:
+
+/usr/include/sys/errno.h:
+
+/usr/include/time.h:
+
+/usr/include/_structs.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/sys/_select.h:
+
+/usr/include/sys/stat.h:
+
+/usr/include/unistd.h:
+
+/usr/include/sys/unistd.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/dirent.h:
+
+/usr/include/sys/dirent.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/sys/fcntl.h:
+
+/sw/include/glib-2.0/glib.h:
+
+/sw/include/glib-2.0/glib/galloca.h:
+
+/sw/include/glib-2.0/glib/gtypes.h:
+
+/sw/lib/glib-2.0/include/glibconfig.h:
+
+/sw/include/glib-2.0/glib/gmacros.h:
+
+/Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h:
+
+/Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h:
+
+/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h:
+
+/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/machine/limits.h:
+
+/usr/include/i386/limits.h:
+
+/usr/include/i386/_limits.h:
+
+/usr/include/sys/syslimits.h:
+
+/Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/float.h:
+
+/sw/include/glib-2.0/glib/garray.h:
+
+/sw/include/glib-2.0/glib/gasyncqueue.h:
+
+/sw/include/glib-2.0/glib/gthread.h:
+
+/sw/include/glib-2.0/glib/gerror.h:
+
+/sw/include/glib-2.0/glib/gquark.h:
+
+/sw/include/glib-2.0/glib/gatomic.h:
+
+/sw/include/glib-2.0/glib/gbacktrace.h:
+
+/sw/include/glib-2.0/glib/gbase64.h:
+
+/sw/include/glib-2.0/glib/gbookmarkfile.h:
+
+/sw/include/glib-2.0/glib/gcache.h:
+
+/sw/include/glib-2.0/glib/glist.h:
+
+/sw/include/glib-2.0/glib/gmem.h:
+
+/sw/include/glib-2.0/glib/gslice.h:
+
+/sw/include/glib-2.0/glib/gcompletion.h:
+
+/sw/include/glib-2.0/glib/gconvert.h:
+
+/sw/include/glib-2.0/glib/gdataset.h:
+
+/sw/include/glib-2.0/glib/gdate.h:
+
+/sw/include/glib-2.0/glib/gdir.h:
+
+/sw/include/glib-2.0/glib/gfileutils.h:
+
+/sw/include/glib-2.0/glib/ghash.h:
+
+/sw/include/glib-2.0/glib/ghook.h:
+
+/sw/include/glib-2.0/glib/giochannel.h:
+
+/sw/include/glib-2.0/glib/gmain.h:
+
+/sw/include/glib-2.0/glib/gslist.h:
+
+/sw/include/glib-2.0/glib/gstring.h:
+
+/sw/include/glib-2.0/glib/gunicode.h:
+
+/sw/include/glib-2.0/glib/gutils.h:
+
+/sw/include/glib-2.0/glib/gkeyfile.h:
+
+/sw/include/glib-2.0/glib/gmappedfile.h:
+
+/sw/include/glib-2.0/glib/gmarkup.h:
+
+/sw/include/glib-2.0/glib/gmessages.h:
+
+/sw/include/glib-2.0/glib/gnode.h:
+
+/sw/include/glib-2.0/glib/goption.h:
+
+/sw/include/glib-2.0/glib/gpattern.h:
+
+/sw/include/glib-2.0/glib/gprimes.h:
+
+/sw/include/glib-2.0/glib/gqsort.h:
+
+/sw/include/glib-2.0/glib/gqueue.h:
+
+/sw/include/glib-2.0/glib/grand.h:
+
+/sw/include/glib-2.0/glib/grel.h:
+
+/sw/include/glib-2.0/glib/gscanner.h:
+
+/sw/include/glib-2.0/glib/gshell.h:
+
+/sw/include/glib-2.0/glib/gspawn.h:
+
+/sw/include/glib-2.0/glib/gstrfuncs.h:
+
+/sw/include/glib-2.0/glib/gthreadpool.h:
+
+/sw/include/glib-2.0/glib/gtimer.h:
+
+/sw/include/glib-2.0/glib/gtree.h:
+
+/sw/include/glib-2.0/gmodule.h:
+
+formats.h:
+
+themes.h:
+
+fe-windows.h:
+
+../../../src/core/window-item-def.h:
+
+../../../src/core/window-item-rec.h:
+
+command-history.h:

@@ -1,0 +1,9 @@
+Makefile
+configure
+.DS_Store
+config.h
+config.log
+config.status
+*.Po
+*.Plo
+perl

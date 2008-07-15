@@ -1,0 +1,7 @@
+
+RELOAD %|[<file>]
+
+Reloads the irssi's configuration file.
+
+See also: SAVE
+

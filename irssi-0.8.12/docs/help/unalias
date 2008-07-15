@@ -1,0 +1,7 @@
+
+UNALIAS %|<alias>
+
+Removes an alias.
+
+See also: ALIAS
+

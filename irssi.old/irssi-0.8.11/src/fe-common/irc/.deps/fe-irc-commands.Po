@@ -1,0 +1,423 @@
+fe-irc-commands.o fe-irc-commands.o: fe-irc-commands.c module.h \
+  ../../../src/common.h ../../../config.h /usr/include/stdio.h \
+  /usr/include/_types.h /usr/include/sys/_types.h \
+  /usr/include/sys/cdefs.h /usr/include/machine/_types.h \
+  /usr/include/i386/_types.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stddef.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h \
+  /usr/include/ctype.h /usr/include/runetype.h /usr/include/string.h \
+  /usr/include/stdlib.h /usr/include/available.h /usr/include/sys/wait.h \
+  /usr/include/sys/signal.h /usr/include/sys/appleapiopts.h \
+  /usr/include/machine/signal.h /usr/include/i386/signal.h \
+  /usr/include/i386/_structs.h /usr/include/sys/_structs.h \
+  /usr/include/machine/_structs.h /usr/include/mach/i386/_structs.h \
+  /usr/include/sys/resource.h /usr/include/machine/endian.h \
+  /usr/include/i386/endian.h /usr/include/sys/_endian.h \
+  /usr/include/libkern/_OSByteOrder.h \
+  /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
+  /usr/include/machine/types.h /usr/include/i386/types.h \
+  /usr/include/errno.h /usr/include/sys/errno.h /usr/include/time.h \
+  /usr/include/_structs.h /usr/include/sys/types.h \
+  /usr/include/sys/time.h /usr/include/sys/_select.h \
+  /usr/include/sys/stat.h /usr/include/unistd.h /usr/include/sys/unistd.h \
+  /usr/include/sys/select.h /usr/include/dirent.h \
+  /usr/include/sys/dirent.h /usr/include/fcntl.h /usr/include/sys/fcntl.h \
+  /opt/local/include/glib-2.0/glib.h \
+  /opt/local/include/glib-2.0/glib/galloca.h \
+  /opt/local/include/glib-2.0/glib/gtypes.h \
+  /opt/local/lib/glib-2.0/include/glibconfig.h \
+  /opt/local/include/glib-2.0/glib/gmacros.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
+  /usr/include/limits.h /usr/include/machine/limits.h \
+  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
+  /usr/include/sys/syslimits.h \
+  /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/float.h \
+  /opt/local/include/glib-2.0/glib/garray.h \
+  /opt/local/include/glib-2.0/glib/gasyncqueue.h \
+  /opt/local/include/glib-2.0/glib/gthread.h \
+  /opt/local/include/glib-2.0/glib/gerror.h \
+  /opt/local/include/glib-2.0/glib/gquark.h \
+  /opt/local/include/glib-2.0/glib/gutils.h \
+  /opt/local/include/glib-2.0/glib/gatomic.h \
+  /opt/local/include/glib-2.0/glib/gbacktrace.h \
+  /opt/local/include/glib-2.0/glib/gbase64.h \
+  /opt/local/include/glib-2.0/glib/gbookmarkfile.h \
+  /opt/local/include/glib-2.0/glib/gcache.h \
+  /opt/local/include/glib-2.0/glib/glist.h \
+  /opt/local/include/glib-2.0/glib/gmem.h \
+  /opt/local/include/glib-2.0/glib/gslice.h \
+  /opt/local/include/glib-2.0/glib/gcompletion.h \
+  /opt/local/include/glib-2.0/glib/gconvert.h \
+  /opt/local/include/glib-2.0/glib/gdataset.h \
+  /opt/local/include/glib-2.0/glib/gdate.h \
+  /opt/local/include/glib-2.0/glib/gdir.h \
+  /opt/local/include/glib-2.0/glib/gfileutils.h \
+  /opt/local/include/glib-2.0/glib/ghash.h \
+  /opt/local/include/glib-2.0/glib/ghook.h \
+  /opt/local/include/glib-2.0/glib/giochannel.h \
+  /opt/local/include/glib-2.0/glib/gmain.h \
+  /opt/local/include/glib-2.0/glib/gslist.h \
+  /opt/local/include/glib-2.0/glib/gstring.h \
+  /opt/local/include/glib-2.0/glib/gunicode.h \
+  /opt/local/include/glib-2.0/glib/gkeyfile.h \
+  /opt/local/include/glib-2.0/glib/gmappedfile.h \
+  /opt/local/include/glib-2.0/glib/gmarkup.h \
+  /opt/local/include/glib-2.0/glib/gmessages.h \
+  /opt/local/include/glib-2.0/glib/gnode.h \
+  /opt/local/include/glib-2.0/glib/goption.h \
+  /opt/local/include/glib-2.0/glib/gpattern.h \
+  /opt/local/include/glib-2.0/glib/gprimes.h \
+  /opt/local/include/glib-2.0/glib/gqsort.h \
+  /opt/local/include/glib-2.0/glib/gqueue.h \
+  /opt/local/include/glib-2.0/glib/grand.h \
+  /opt/local/include/glib-2.0/glib/grel.h \
+  /opt/local/include/glib-2.0/glib/gregex.h \
+  /opt/local/include/glib-2.0/glib/gscanner.h \
+  /opt/local/include/glib-2.0/glib/gsequence.h \
+  /opt/local/include/glib-2.0/glib/gshell.h \
+  /opt/local/include/glib-2.0/glib/gspawn.h \
+  /opt/local/include/glib-2.0/glib/gstrfuncs.h \
+  /opt/local/include/glib-2.0/glib/gthreadpool.h \
+  /opt/local/include/glib-2.0/glib/gtimer.h \
+  /opt/local/include/glib-2.0/glib/gtree.h \
+  /opt/local/include/glib-2.0/gmodule.h ../../../src/irc/core/irc.h \
+  ../../../src/core/commands.h ../../../src/core/signals.h \
+  module-formats.h ../../../src/fe-common/core/formats.h \
+  ../../../src/fe-common/core/themes.h \
+  ../../../src/fe-common/core/fe-windows.h \
+  ../../../src/core/window-item-def.h ../../../src/core/window-item-rec.h \
+  ../../../src/fe-common/core/command-history.h ../../../src/core/misc.h \
+  ../../../src/core/recode.h ../../../src/core/special-vars.h \
+  ../../../src/core/signals.h ../../../src/core/settings.h \
+  ../../../src/core/levels.h ../../../src/core/servers.h \
+  ../../../src/core/modules.h ../../../src/core/server-connect-rec.h \
+  ../../../src/core/server-rec.h ../../../src/irc/core/mode-lists.h \
+  ../../../src/core/nicklist.h ../../../src/core/nick-rec.h \
+  ../../../src/irc/core/irc-commands.h \
+  ../../../src/irc/core/irc-servers.h ../../../src/core/chat-protocols.h \
+  ../../../src/irc/core/modes.h ../../../src/irc/core/irc-channels.h \
+  ../../../src/core/channels.h ../../../src/core/modules.h \
+  ../../../src/core/channel-rec.h ../../../src/core/window-item-rec.h \
+  ../../../src/core/window-item-rec.h ../../../src/irc/core/irc-queries.h \
+  ../../../src/core/queries.h ../../../src/core/modules.h \
+  ../../../src/core/query-rec.h ../../../src/core/window-item-rec.h \
+  ../../../src/fe-common/core/fe-queries.h \
+  ../../../src/fe-common/core/window-items.h \
+  ../../../src/fe-common/core/fe-windows.h \
+  ../../../src/fe-common/core/printtext.h \
+  ../../../src/fe-common/core/fe-windows.h \
+  ../../../src/fe-common/core/formats.h \
+  ../../../src/fe-common/core/keyboard.h
+
+module.h:
+
+../../../src/common.h:
+
+../../../config.h:
+
+/usr/include/stdio.h:
+
+/usr/include/_types.h:
+
+/usr/include/sys/_types.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/machine/_types.h:
+
+/usr/include/i386/_types.h:
+
+/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stddef.h:
+
+/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/stdarg.h:
+
+/usr/include/ctype.h:
+
+/usr/include/runetype.h:
+
+/usr/include/string.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/available.h:
+
+/usr/include/sys/wait.h:
+
+/usr/include/sys/signal.h:
+
+/usr/include/sys/appleapiopts.h:
+
+/usr/include/machine/signal.h:
+
+/usr/include/i386/signal.h:
+
+/usr/include/i386/_structs.h:
+
+/usr/include/sys/_structs.h:
+
+/usr/include/machine/_structs.h:
+
+/usr/include/mach/i386/_structs.h:
+
+/usr/include/sys/resource.h:
+
+/usr/include/machine/endian.h:
+
+/usr/include/i386/endian.h:
+
+/usr/include/sys/_endian.h:
+
+/usr/include/libkern/_OSByteOrder.h:
+
+/usr/include/libkern/i386/_OSByteOrder.h:
+
+/usr/include/alloca.h:
+
+/usr/include/machine/types.h:
+
+/usr/include/i386/types.h:
+
+/usr/include/errno.h:
+
+/usr/include/sys/errno.h:
+
+/usr/include/time.h:
+
+/usr/include/_structs.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/sys/time.h:
+
+/usr/include/sys/_select.h:
+
+/usr/include/sys/stat.h:
+
+/usr/include/unistd.h:
+
+/usr/include/sys/unistd.h:
+
+/usr/include/sys/select.h:
+
+/usr/include/dirent.h:
+
+/usr/include/sys/dirent.h:
+
+/usr/include/fcntl.h:
+
+/usr/include/sys/fcntl.h:
+
+/opt/local/include/glib-2.0/glib.h:
+
+/opt/local/include/glib-2.0/glib/galloca.h:
+
+/opt/local/include/glib-2.0/glib/gtypes.h:
+
+/opt/local/lib/glib-2.0/include/glibconfig.h:
+
+/opt/local/include/glib-2.0/glib/gmacros.h:
+
+/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h:
+
+/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/machine/limits.h:
+
+/usr/include/i386/limits.h:
+
+/usr/include/i386/_limits.h:
+
+/usr/include/sys/syslimits.h:
+
+/usr/lib/gcc/i686-apple-darwin9/4.0.1/include/float.h:
+
+/opt/local/include/glib-2.0/glib/garray.h:
+
+/opt/local/include/glib-2.0/glib/gasyncqueue.h:
+
+/opt/local/include/glib-2.0/glib/gthread.h:
+
+/opt/local/include/glib-2.0/glib/gerror.h:
+
+/opt/local/include/glib-2.0/glib/gquark.h:
+
+/opt/local/include/glib-2.0/glib/gutils.h:
+
+/opt/local/include/glib-2.0/glib/gatomic.h:
+
+/opt/local/include/glib-2.0/glib/gbacktrace.h:
+
+/opt/local/include/glib-2.0/glib/gbase64.h:
+
+/opt/local/include/glib-2.0/glib/gbookmarkfile.h:
+
+/opt/local/include/glib-2.0/glib/gcache.h:
+
+/opt/local/include/glib-2.0/glib/glist.h:
+
+/opt/local/include/glib-2.0/glib/gmem.h:
+
+/opt/local/include/glib-2.0/glib/gslice.h:
+
+/opt/local/include/glib-2.0/glib/gcompletion.h:
+
+/opt/local/include/glib-2.0/glib/gconvert.h:
+
+/opt/local/include/glib-2.0/glib/gdataset.h:
+
+/opt/local/include/glib-2.0/glib/gdate.h:
+
+/opt/local/include/glib-2.0/glib/gdir.h:
+
+/opt/local/include/glib-2.0/glib/gfileutils.h:
+
+/opt/local/include/glib-2.0/glib/ghash.h:
+
+/opt/local/include/glib-2.0/glib/ghook.h:
+
+/opt/local/include/glib-2.0/glib/giochannel.h:
+
+/opt/local/include/glib-2.0/glib/gmain.h:
+
+/opt/local/include/glib-2.0/glib/gslist.h:
+
+/opt/local/include/glib-2.0/glib/gstring.h:
+
+/opt/local/include/glib-2.0/glib/gunicode.h:
+
+/opt/local/include/glib-2.0/glib/gkeyfile.h:
+
+/opt/local/include/glib-2.0/glib/gmappedfile.h:
+
+/opt/local/include/glib-2.0/glib/gmarkup.h:
+
+/opt/local/include/glib-2.0/glib/gmessages.h:
+
+/opt/local/include/glib-2.0/glib/gnode.h:
+
+/opt/local/include/glib-2.0/glib/goption.h:
+
+/opt/local/include/glib-2.0/glib/gpattern.h:
+
+/opt/local/include/glib-2.0/glib/gprimes.h:
+
+/opt/local/include/glib-2.0/glib/gqsort.h:
+
+/opt/local/include/glib-2.0/glib/gqueue.h:
+
+/opt/local/include/glib-2.0/glib/grand.h:
+
+/opt/local/include/glib-2.0/glib/grel.h:
+
+/opt/local/include/glib-2.0/glib/gregex.h:
+
+/opt/local/include/glib-2.0/glib/gscanner.h:
+
+/opt/local/include/glib-2.0/glib/gsequence.h:
+
+/opt/local/include/glib-2.0/glib/gshell.h:
+
+/opt/local/include/glib-2.0/glib/gspawn.h:
+
+/opt/local/include/glib-2.0/glib/gstrfuncs.h:
+
+/opt/local/include/glib-2.0/glib/gthreadpool.h:
+
+/opt/local/include/glib-2.0/glib/gtimer.h:
+
+/opt/local/include/glib-2.0/glib/gtree.h:
+
+/opt/local/include/glib-2.0/gmodule.h:
+
+../../../src/irc/core/irc.h:
+
+../../../src/core/commands.h:
+
+../../../src/core/signals.h:
+
+module-formats.h:
+
+../../../src/fe-common/core/formats.h:
+
+../../../src/fe-common/core/themes.h:
+
+../../../src/fe-common/core/fe-windows.h:
+
+../../../src/core/window-item-def.h:
+
+../../../src/core/window-item-rec.h:
+
+../../../src/fe-common/core/command-history.h:
+
+../../../src/core/misc.h:
+
+../../../src/core/recode.h:
+
+../../../src/core/special-vars.h:
+
+../../../src/core/signals.h:
+
+../../../src/core/settings.h:
+
+../../../src/core/levels.h:
+
+../../../src/core/servers.h:
+
+../../../src/core/modules.h:
+
+../../../src/core/server-connect-rec.h:
+
+../../../src/core/server-rec.h:
+
+../../../src/irc/core/mode-lists.h:
+
+../../../src/core/nicklist.h:
+
+../../../src/core/nick-rec.h:
+
+../../../src/irc/core/irc-commands.h:
+
+../../../src/irc/core/irc-servers.h:
+
+../../../src/core/chat-protocols.h:
+
+../../../src/irc/core/modes.h:
+
+../../../src/irc/core/irc-channels.h:
+
+../../../src/core/channels.h:
+
+../../../src/core/modules.h:
+
+../../../src/core/channel-rec.h:
+
+../../../src/core/window-item-rec.h:
+
+../../../src/core/window-item-rec.h:
+
+../../../src/irc/core/irc-queries.h:
+
+../../../src/core/queries.h:
+
+../../../src/core/modules.h:
+
+../../../src/core/query-rec.h:
+
+../../../src/core/window-item-rec.h:
+
+../../../src/fe-common/core/fe-queries.h:
+
+../../../src/fe-common/core/window-items.h:
+
+../../../src/fe-common/core/fe-windows.h:
+
+../../../src/fe-common/core/printtext.h:
+
+../../../src/fe-common/core/fe-windows.h:
+
+../../../src/fe-common/core/formats.h:
+
+../../../src/fe-common/core/keyboard.h:

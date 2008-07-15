@@ -1,0 +1,74 @@
+
+MODE %|<your nick>|<channel> [<mode> [<mode parameters>]]
+
+Common channel modes are:
+
+     i - Invite only - People can't join to channel without being
+         /INVITEd, or being in invite list (+I, see below).
+     m - Moderated - People who don't have voices (+v) can't send
+         messages to channel
+     p - Private - People who aren't joined to channel can't see it
+         for example with /WHOISing people who are in channel.
+     s - Secret - Like private, but the channel isn't displayed in
+         /LIST's output.
+     n - No external msgs - Without this mode, anyone can send messages
+         to channel without even being joined.
+     t - Topic can be changed only by channel operators.
+
+     k <key> - Channel password (aka. key) - The channel can't be joined
+               without specifying the channel key (see section 6.2).
+
+     l <count> - User limit - No more than <count> people can join to
+                 channel. This can be overridden with /INVITE with some
+                 servers.
+
+                 This is usually used for protecting channel from join
+                 flooding, like some bot allows max. 5 users to join in
+                 one minute or so.
+
+     b - Set/remove ban. For example MODE #channel +b *!*@*.org bans
+         everyone from .org domain.
+
+         If someone from .org domain was already in channel before the
+         ban was set, he/she cannot send any messages to channel (doesn't
+         work with all servers).
+
+         Bans can also be overridden with /INVITE, although many stupid
+         IRC clients automatically kick the user out because they see
+         the ban and think that because of it the user shouldn't be in
+         the channel (doesn't work with all servers).
+
+     e - Ban exceptions. You could for example ban everyone from
+         *!*@*.org but set ban exception to *!*@*.host.org - does not work
+         with all servers.
+
+     I - Invite list. If channel is invite only (+i), people in this
+         list can join it without being /INVITEd - does not work with all
+         servers.
+
+         This is excellent for in-country channels that don't want
+         foreigners (spammers!) to join the channel, for example setting
+         channel's mode to +i and +I *!*@*.fi allows only finnish people
+         to join the channel. In addition to this, there's usually a bot
+         in the channels and sending /MSG bot invite command to it
+         /INVITEs you to the channel.
+
+         On IRCnet, the ':' feature in channel names can also be used for
+         a similar effect, see section 6.2.
+
+     o <nick> - Grant or revoke channel operator status from nick
+     v <nick> - Grant or revoke voice status from nick, only people with
+                +v (or +o) can talk to channel when it's moderated (+m).
+
+You can send multiple mode changes with one mode command:
+
+/MODE #channel +nto-o+v nick1 nick2 nick3
+
+This would set channel's mode to +nt, give ops to nick1, take ops from nick2 and give voices to nick3.
+
+You can set only a limited number of modes that require an argument in one command. In IRCnet it's 3, in EFnet it's 4 and in many others it's 6. If it's not known, Irssi defaults to 3. Irssi will also automatically split them, so you can use /MODE +oooooo n1 n2 ... command to op 6 people and Irssi will split it to two commands in IRCnet/EFnet.
+
+Many networks have additional modes and/or change the meaning of existing modes. Check the documentation for the network or the server software in use for details.
+
+See also: OP, DEOP, VOICE, DEVOICE, BAN, UNBAN
+

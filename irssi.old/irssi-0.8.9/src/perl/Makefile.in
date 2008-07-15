@@ -1,0 +1,489 @@
+# Makefile.in generated automatically by automake 1.4-p6 from Makefile.am
+
+# Copyright (C) 1994, 1995-8, 1999, 2001 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy and/or distribute it,
+# with or without modifications, as long as this notice is preserved.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY, to the extent permitted by law; without
+# even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+
+SHELL = @SHELL@
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+DESTDIR =
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ../..
+
+ACLOCAL = @ACLOCAL@
+AUTOCONF = @AUTOCONF@
+AUTOMAKE = @AUTOMAKE@
+AUTOHEADER = @AUTOHEADER@
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@ $(AM_INSTALL_PROGRAM_FLAGS)
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+NORMAL_INSTALL = :
+PRE_INSTALL = :
+POST_INSTALL = :
+NORMAL_UNINSTALL = :
+PRE_UNINSTALL = :
+POST_UNINSTALL = :
+host_alias = @host_alias@
+host_triplet = @host@
+AR = @AR@
+AS = @AS@
+CC = @CC@
+CHAT_MODULES = @CHAT_MODULES@
+COMMON_LIBS = @COMMON_LIBS@
+COMMON_NOUI_LIBS = @COMMON_NOUI_LIBS@
+CPP = @CPP@
+CURSES_INCLUDEDIR = @CURSES_INCLUDEDIR@
+CURSES_LIBS = @CURSES_LIBS@
+CXX = @CXX@
+CXXCPP = @CXXCPP@
+DLLTOOL = @DLLTOOL@
+DYNALOADER_A = @DYNALOADER_A@
+ECHO = @ECHO@
+EGREP = @EGREP@
+EXEEXT = @EXEEXT@
+F77 = @F77@
+GCJ = @GCJ@
+GCJFLAGS = @GCJFLAGS@
+GLIB_CFLAGS = @GLIB_CFLAGS@
+GLIB_CONFIG = @GLIB_CONFIG@
+GLIB_GENMARSHAL = @GLIB_GENMARSHAL@
+GLIB_LIBS = @GLIB_LIBS@
+GLIB_MKENUMS = @GLIB_MKENUMS@
+GOBJECT_QUERY = @GOBJECT_QUERY@
+LIBPERL_A = @LIBPERL_A@
+LN_S = @LN_S@
+MAINT = @MAINT@
+MAKEINFO = @MAKEINFO@
+OBJDUMP = @OBJDUMP@
+OBJEXT = @OBJEXT@
+PACKAGE = @PACKAGE@
+PERL_CFLAGS = @PERL_CFLAGS@
+PERL_EXTRA_OPTS = @PERL_EXTRA_OPTS@
+PERL_FE_LINK_LIBS = @PERL_FE_LINK_LIBS@
+PERL_LDFLAGS = @PERL_LDFLAGS@
+PERL_LIBTOOL = @PERL_LIBTOOL@
+PERL_LINK_FLAGS = @PERL_LINK_FLAGS@
+PERL_LINK_LIBS = @PERL_LINK_LIBS@
+PERL_MM_PARAMS = @PERL_MM_PARAMS@
+PERL_STATIC_LIBS = @PERL_STATIC_LIBS@
+PERL_USE_LIB = @PERL_USE_LIB@
+PKG_CONFIG = @PKG_CONFIG@
+PROG_LIBS = @PROG_LIBS@
+RANLIB = @RANLIB@
+RC = @RC@
+SSL_LIBS = @SSL_LIBS@
+STRIP = @STRIP@
+TEXTUI_LIBS = @TEXTUI_LIBS@
+VERSION = @VERSION@
+VERSION_DATE = @VERSION_DATE@
+VERSION_TIME = @VERSION_TIME@
+irc_MODULES = @irc_MODULES@
+perl_module_fe_lib = @perl_module_fe_lib@
+perl_module_lib = @perl_module_lib@
+perl_static_fe_lib = @perl_static_fe_lib@
+perl_static_lib = @perl_static_lib@
+perlpath = @perlpath@
+sedpath = @sedpath@
+
+LIBTOOL = $(PERL_LIBTOOL)
+
+moduledir = $(libdir)/irssi/modules
+
+perl_dirs = common irc ui textui
+
+module_LTLIBRARIES = $(perl_module_lib) $(perl_module_fe_lib)
+noinst_LTLIBRARIES = $(perl_static_lib) $(perl_static_fe_lib)
+EXTRA_LTLIBRARIES =  	libperl_core.la libfe_perl.la 	libperl_core_static.la libfe_perl_static.la
+
+
+libperl_core_la_LDFLAGS = -avoid-version -rpath $(moduledir)
+libfe_perl_la_LDFLAGS = -avoid-version -rpath $(moduledir)
+
+INCLUDES =  	-I$(top_srcdir)/src 	-I$(top_srcdir)/src/core 	-I$(top_srcdir)/src/fe-common/core 	$(GLIB_CFLAGS) 	-DSCRIPTDIR=\""$(datadir)/irssi/scripts"\" 	-DPERL_USE_LIB=\""$(PERL_USE_LIB)"\" 	-DPERL_STATIC_LIBS=$(PERL_STATIC_LIBS) 	$(PERL_CFLAGS)
+
+
+perl_sources =  	perl-core.c 	perl-common.c 	perl-signals.c 	perl-sources.c
+
+
+perl_fe_sources =  	module-formats.c 	perl-fe.c
+
+
+noinst_HEADERS =  	module.h 	module-fe.h 	module-formats.h 	perl-core.h 	perl-common.h 	perl-signals.h 	perl-sources.h
+
+
+libperl_core_la_DEPENDENCIES = .libs/libperl_orig.a .libs/DynaLoader.a
+
+libperl_core_la_SOURCES =  	$(perl_sources)
+
+
+libperl_core_static_la_SOURCES =  	$(perl_sources)
+
+
+libfe_perl_la_SOURCES =  	$(perl_fe_sources)
+
+
+libfe_perl_static_la_SOURCES =  	$(perl_fe_sources)
+
+
+common_sources =  	common/Irssi.xs 	common/Irssi.pm 	common/Channel.xs 	common/Core.xs 	common/Expando.xs 	common/Ignore.xs 	common/Log.xs 	common/Masks.xs 	common/Query.xs 	common/Rawlog.xs 	common/Server.xs 	common/Settings.xs 	common/Makefile.PL.in 	common/typemap 	common/module.h
+
+
+irc_sources =  	irc/Irc.xs 	irc/Irc.pm 	irc/Dcc.xs 	irc/Channel.xs 	irc/Ctcp.xs 	irc/Query.xs 	irc/Server.xs 	irc/Modes.xs 	irc/Netsplit.xs 	irc/Notifylist.xs 	irc/Makefile.PL.in 	irc/typemap 	irc/module.h
+
+
+ui_sources =  	ui/UI.xs 	ui/UI.pm 	ui/Formats.xs 	ui/Themes.xs 	ui/Window.xs 	ui/Makefile.PL.in 	ui/typemap 	ui/module.h
+
+
+textui_sources =  	textui/TextUI.xs 	textui/TextUI.pm 	textui/TextBuffer.xs 	textui/TextBufferView.xs 	textui/Statusbar.xs 	textui/Makefile.PL.in 	textui/typemap 	textui/module.h
+
+
+EXTRA_DIST =  	libperl_dynaloader.la 	libperl_orig.la 	get-signals.pl 	irssi-core.pl 	$(common_sources) 	$(irc_sources) 	$(ui_sources) 	$(textui_sources)
+
+
+libperl_core_la_LIBADD = $(PERL_LDFLAGS)
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+CONFIG_HEADER = ../../config.h
+CONFIG_CLEAN_FILES = 
+LTLIBRARIES =  $(module_LTLIBRARIES) $(noinst_LTLIBRARIES)
+
+
+DEFS = @DEFS@ -I. -I$(srcdir) -I../..
+CPPFLAGS = @CPPFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+libperl_core_la_OBJECTS =  perl-core.lo perl-common.lo perl-signals.lo \
+perl-sources.lo
+libfe_perl_la_LIBADD = 
+libfe_perl_la_OBJECTS =  module-formats.lo perl-fe.lo
+libperl_core_static_la_LDFLAGS = 
+libperl_core_static_la_LIBADD = 
+libperl_core_static_la_OBJECTS =  perl-core.lo perl-common.lo \
+perl-signals.lo perl-sources.lo
+libfe_perl_static_la_LDFLAGS = 
+libfe_perl_static_la_LIBADD = 
+libfe_perl_static_la_OBJECTS =  module-formats.lo perl-fe.lo
+CFLAGS = @CFLAGS@
+COMPILE = $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
+HEADERS =  $(noinst_HEADERS)
+
+DIST_COMMON =  Makefile.am Makefile.in
+
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
+
+TAR = tar
+GZIP_ENV = --best
+SOURCES = $(libperl_core_la_SOURCES) $(libfe_perl_la_SOURCES) $(libperl_core_static_la_SOURCES) $(libfe_perl_static_la_SOURCES)
+OBJECTS = $(libperl_core_la_OBJECTS) $(libfe_perl_la_OBJECTS) $(libperl_core_static_la_OBJECTS) $(libfe_perl_static_la_OBJECTS)
+
+all: all-redirect
+.SUFFIXES:
+.SUFFIXES: .S .c .lo .o .obj .s
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu --include-deps src/perl/Makefile
+
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+	cd $(top_builddir) \
+	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
+
+
+mostlyclean-moduleLTLIBRARIES:
+
+clean-moduleLTLIBRARIES:
+	-test -z "$(module_LTLIBRARIES)" || rm -f $(module_LTLIBRARIES)
+
+distclean-moduleLTLIBRARIES:
+
+maintainer-clean-moduleLTLIBRARIES:
+
+install-moduleLTLIBRARIES: $(module_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(moduledir)
+	@list='$(module_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo "$(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(moduledir)/$$p"; \
+	    $(LIBTOOL)  --mode=install $(INSTALL) $$p $(DESTDIR)$(moduledir)/$$p; \
+	  else :; fi; \
+	done
+
+uninstall-moduleLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	list='$(module_LTLIBRARIES)'; for p in $$list; do \
+	  $(LIBTOOL)  --mode=uninstall rm -f $(DESTDIR)$(moduledir)/$$p; \
+	done
+
+mostlyclean-noinstLTLIBRARIES:
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+
+distclean-noinstLTLIBRARIES:
+
+maintainer-clean-noinstLTLIBRARIES:
+
+.c.o:
+	$(COMPILE) -c $<
+
+# FIXME: We should only use cygpath when building on Windows,
+# and only if it is available.
+.c.obj:
+	$(COMPILE) -c `cygpath -w $<`
+
+.s.o:
+	$(COMPILE) -c $<
+
+.S.o:
+	$(COMPILE) -c $<
+
+mostlyclean-compile:
+	-rm -f *.o core *.core
+	-rm -f *.$(OBJEXT)
+
+clean-compile:
+
+distclean-compile:
+	-rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.s.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+.S.lo:
+	$(LIBTOOL) --mode=compile $(COMPILE) -c $<
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
+
+distclean-libtool:
+
+maintainer-clean-libtool:
+
+libperl_core.la: $(libperl_core_la_OBJECTS) $(libperl_core_la_DEPENDENCIES)
+	$(LINK)  $(libperl_core_la_LDFLAGS) $(libperl_core_la_OBJECTS) $(libperl_core_la_LIBADD) $(LIBS)
+
+libfe_perl.la: $(libfe_perl_la_OBJECTS) $(libfe_perl_la_DEPENDENCIES)
+	$(LINK)  $(libfe_perl_la_LDFLAGS) $(libfe_perl_la_OBJECTS) $(libfe_perl_la_LIBADD) $(LIBS)
+
+libperl_core_static.la: $(libperl_core_static_la_OBJECTS) $(libperl_core_static_la_DEPENDENCIES)
+	$(LINK)  $(libperl_core_static_la_LDFLAGS) $(libperl_core_static_la_OBJECTS) $(libperl_core_static_la_LIBADD) $(LIBS)
+
+libfe_perl_static.la: $(libfe_perl_static_la_OBJECTS) $(libfe_perl_static_la_DEPENDENCIES)
+	$(LINK)  $(libfe_perl_static_la_LDFLAGS) $(libfe_perl_static_la_OBJECTS) $(libfe_perl_static_la_LIBADD) $(LIBS)
+
+tags: TAGS
+
+ID: $(HEADERS) $(SOURCES) $(LISP)
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	here=`pwd` && cd $(srcdir) \
+	  && mkid -f$$here/ID $$unique $(LISP)
+
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)'; \
+	unique=`for i in $$list; do echo $$i; done | \
+	  awk '    { files[$$0] = 1; } \
+	       END { for (i in files) print i; }'`; \
+	test -z "$(ETAGS_ARGS)$$unique$(LISP)$$tags" \
+	  || (cd $(srcdir) && etags -o $$here/TAGS $(ETAGS_ARGS) $$tags  $$unique $(LISP))
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	-rm -f TAGS ID
+
+maintainer-clean-tags:
+
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+
+subdir = src/perl
+
+distdir: $(DISTFILES)
+	$(mkinstalldirs) $(distdir)/common $(distdir)/irc $(distdir)/textui \
+	   $(distdir)/ui
+	@for file in $(DISTFILES); do \
+	  d=$(srcdir); \
+	  if test -d $$d/$$file; then \
+	    cp -pr $$d/$$file $(distdir)/$$file; \
+	  else \
+	    test -f $(distdir)/$$file \
+	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
+	    || cp -p $$d/$$file $(distdir)/$$file || :; \
+	  fi; \
+	done
+
+info-am:
+info: info-am
+dvi-am:
+dvi: dvi-am
+check-am: all-am
+check: check-am
+installcheck-am:
+installcheck: installcheck-am
+install-exec-am: install-exec-local
+install-exec: install-exec-am
+
+install-data-am: install-moduleLTLIBRARIES
+install-data: install-data-am
+
+install-am: all-am
+	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
+install: install-am
+uninstall-am: uninstall-moduleLTLIBRARIES
+uninstall: uninstall-am
+all-am: Makefile $(LTLIBRARIES) $(HEADERS) all-local
+all-redirect: all-am
+install-strip:
+	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
+installdirs:
+	$(mkinstalldirs)  $(DESTDIR)$(moduledir)
+
+
+mostlyclean-generic:
+
+maintainer-clean-generic:
+mostlyclean-am:  mostlyclean-moduleLTLIBRARIES \
+		mostlyclean-noinstLTLIBRARIES mostlyclean-compile \
+		mostlyclean-libtool mostlyclean-tags \
+		mostlyclean-generic
+
+mostlyclean: mostlyclean-am
+
+clean-am:  clean-moduleLTLIBRARIES clean-noinstLTLIBRARIES clean-compile \
+		clean-libtool clean-tags clean-generic mostlyclean-am
+
+clean: clean-am
+
+distclean-am:  distclean-moduleLTLIBRARIES distclean-noinstLTLIBRARIES \
+		distclean-compile distclean-libtool distclean-tags \
+		distclean-generic clean-am
+	-rm -f libtool
+
+distclean: distclean-am
+
+maintainer-clean-am:  maintainer-clean-moduleLTLIBRARIES \
+		maintainer-clean-noinstLTLIBRARIES \
+		maintainer-clean-compile maintainer-clean-libtool \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean-am
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+maintainer-clean: maintainer-clean-am
+
+.PHONY: mostlyclean-moduleLTLIBRARIES distclean-moduleLTLIBRARIES \
+clean-moduleLTLIBRARIES maintainer-clean-moduleLTLIBRARIES \
+uninstall-moduleLTLIBRARIES install-moduleLTLIBRARIES \
+mostlyclean-noinstLTLIBRARIES distclean-noinstLTLIBRARIES \
+clean-noinstLTLIBRARIES maintainer-clean-noinstLTLIBRARIES \
+mostlyclean-compile distclean-compile clean-compile \
+maintainer-clean-compile mostlyclean-libtool distclean-libtool \
+clean-libtool maintainer-clean-libtool tags mostlyclean-tags \
+distclean-tags clean-tags maintainer-clean-tags distdir info-am info \
+dvi-am dvi check check-am installcheck-am installcheck \
+install-exec-local install-exec-am install-exec install-data-am \
+install-data install-am install uninstall-am uninstall all-local \
+all-redirect all-am all installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
+
+
+perl-core.c: perl-signals-list.h irssi-core.pl.h
+
+.libs/libperl_orig.a:
+	if [ ! -d .libs ]; then mkdir .libs; fi
+	rm -f .libs/libperl_orig.a
+	if [ x$(LIBPERL_A) = x ]; then touch .libs/libperl_orig.a; else $(LN_S) $(LIBPERL_A) .libs/libperl_orig.a; fi
+.libs/DynaLoader.a:
+	if [ ! -d .libs ]; then mkdir .libs; fi
+	rm -f .libs/DynaLoader.a
+	$(LN_S) $(DYNALOADER_A) .libs/DynaLoader.a
+
+perl-signals-list.h: $(top_srcdir)/docs/signals.txt $(srcdir)/get-signals.pl
+	cat $(top_srcdir)/docs/signals.txt | $(perlpath) $(srcdir)/get-signals.pl > perl-signals-list.h
+
+irssi-core.pl.h: irssi-core.pl
+	$(top_srcdir)/file2header.sh $(srcdir)/irssi-core.pl irssi_core_code > irssi-core.pl.h
+
+all-local:
+	for dir in $(perl_dirs); do \
+	  cd $$dir && \
+	  if [ ! -f Makefile ]; then \
+	    $(perlpath) Makefile.PL $(PERL_MM_PARAMS); \
+	  fi && \
+	  ($(MAKE) CC="$(CC)" CCFLAGS="$(PERL_CFLAGS) $(CFLAGS)" $(PERL_EXTRA_OPTS) || \
+	   $(MAKE) CC="$(CC)" CCFLAGS="$(PERL_CFLAGS) $(CFLAGS)" $(PERL_EXTRA_OPTS)) && \
+	  cd ..; \
+	done
+
+install-exec-local:
+	for dir in $(perl_dirs); do \
+	  cd $$dir && $(MAKE) install && cd ..; \
+	done
+
+clean-generic:
+	for dir in $(perl_dirs); do \
+	  cd $$dir; \
+	  $(MAKE) clean; \
+	  cd ..; \
+	done
+
+distclean-generic:
+	for dir in $(perl_dirs); do \
+	  cd $$dir; \
+	  $(MAKE) realclean; rm -f Makefile.PL Makefile; \
+	  cd ..; \
+	done
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

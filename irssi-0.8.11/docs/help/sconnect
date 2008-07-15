@@ -1,0 +1,7 @@
+
+SCONNECT %|<new server> [[<port>] <existing server>]
+
+IRC Operator command. Makes an IRC server to connect to another server.
+
+See also: OPER, SQUIT, RESTART
+

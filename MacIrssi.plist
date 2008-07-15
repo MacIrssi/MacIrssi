@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>companyAddress</key>
+	<string></string>
+	<key>companyCountry</key>
+	<string>Sweden</string>
+	<key>companyEmail</key>
+	<string>nils.hjelte@gmail.com</string>
+	<key>companyFax</key>
+	<string></string>
+	<key>companyName</key>
+	<string>Nils Hjelte</string>
+	<key>companyPhone</key>
+	<string></string>
+	<key>companyWebSite</key>
+	<string>http://www.g1m0.se/macirssi/</string>
+	<key>fileBundleID</key>
+	<string></string>
+	<key>fileCreator</key>
+	<string></string>
+	<key>fileReleaseDateD</key>
+	<string>11</string>
+	<key>fileReleaseDateM</key>
+	<string>06</string>
+	<key>fileReleaseDateY</key>
+	<string>2007</string>
+	<key>fileType</key>
+	<string></string>
+	<key>padVersion</key>
+	<string>1</string>
+	<key>productDescLong</key>
+	<string>Based on the *nix IRC client irssi (http://www.irssi.org), MacIrssi is an powerful, free of charge, open source IRC client. It combines the power of the irssi engine with an elegant and flexible GUI. See also http://www.irssi.org/?page=about for information on the irssi engine.</string>
+	<key>productDescShort</key>
+	<string>Powerful IRC client based on irssi</string>
+	<key>productDownloadURL</key>
+	<array>
+		<string>http://www.cs.umu.se/~c01nhe/MacIrssi-0.8.1.dmg</string>
+	</array>
+	<key>productFileSize</key>
+	<string>11.2MB</string>
+	<key>productKeywords</key>
+	<array>
+		<string>irc</string>
+		<string>client</string>
+		<string>irssi</string>
+	</array>
+	<key>productLanguages</key>
+	<array>
+		<string>English</string>
+	</array>
+	<key>productLicense</key>
+	<string>Freeware</string>
+	<key>productName</key>
+	<string>MacIrssi</string>
+	<key>productOS</key>
+	<array>
+		<string>Mac OSX 10.4</string>
+	</array>
+	<key>productPageURL</key>
+	<string>http://www.g1m0.se/macirssi/</string>
+	<key>productPrice</key>
+	<string>0</string>
+	<key>productReleaseNotes</key>
+	<string>* Upgraded irssi core to 0.8.11
+* Compiled with irssi perl scripting support.
+* Intel native build added!
+* Fixed a crashing bug (in ChannelBarCell).
+* Improved line splitting when pasting multiple lines in input field (carriage returns are now recognized correctly).
+* Dropped support for OS X 10.3 due to perl library linking.
+</string>
+	<key>productRequirements</key>
+	<string>Mac OSX 10.4</string>
+	<key>productVersion</key>
+	<string>0.8.1</string>
+</dict>
+</plist>

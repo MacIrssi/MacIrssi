@@ -1,0 +1,7 @@
+
+VER %|[<target>]
+
+Sends a CTCP VERSION request to the nick. This is used to find out which client and/or script the nick is using.
+
+See also: CTCP
+

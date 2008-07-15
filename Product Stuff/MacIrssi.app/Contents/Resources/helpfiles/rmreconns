@@ -1,0 +1,7 @@
+
+RMRECONNS
+
+Removes the pending reconnections from the reconnect list.
+
+See also: CONNECT, RECONNECT, SERVER
+

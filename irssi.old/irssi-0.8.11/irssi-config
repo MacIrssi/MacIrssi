@@ -1,0 +1,9 @@
+PROG_LIBS=" -L/opt/local/lib -lgmodule-2.0 -lglib-2.0 -lintl -liconv   -L/opt/local/lib -lssl -lcrypto -lz  "
+COMMON_LIBS="../fe-common/irc/libfe_common_irc.a ../fe-common/irc/dcc/libfe_irc_dcc.a ../fe-common/irc/notifylist/libfe_irc_notifylist.a ../fe-common/core/libfe_common_core.a  ../irc/libirc.a ../irc/core/libirc_core.a ../irc/dcc/libirc_dcc.a ../irc/flood/libirc_flood.a ../irc/notifylist/libirc_notifylist.a ../core/libcore.a ../lib-config/libirssi_config.a ../lib-popt/libpopt.a"
+
+PERL_LINK_LIBS="../perl/libperl_core_static.la"
+PERL_FE_LINK_LIBS="../perl/libfe_perl_static.la"
+PERL_LINK_FLAGS="-arch i386  -L/usr/local/lib /System/Library/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a -L/System/Library/Perl/5.8.8/darwin-thread-multi-2level/CORE -lperl -ldl -lm -lutil"
+
+CHAT_MODULES="irc"
+irc_MODULES="dcc flood notifylist"

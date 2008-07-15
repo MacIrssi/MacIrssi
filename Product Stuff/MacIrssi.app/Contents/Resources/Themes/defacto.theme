@@ -1,0 +1,201 @@
+# statico's theme, a modification of the BitchX theme
+
+#############################################################################
+
+# these characters are automatically replaced with specified color
+# (dark grey by default)
+replaces = { "[]()" = "%K$*%n"; };
+
+abstracts = {
+  ##
+  ## generic
+  ##
+
+  # text to insert at the beginning of each non-message line
+  line_start = "%G>%g>%K>%N ";
+
+  # timestamp styling, nothing by default
+  timestamp = "[%K$*%N]";
+
+  # any kind of text that needs hilighting, default is to bold
+  hilight = "%W$*%n";
+
+  # any kind of error message, default is bright red
+  error = "%r$*%n";
+
+  # channel name is printed
+  channel = "$*";
+
+  # nick is printed
+  nick = "%W$*%n";
+
+  # nick host is printed
+  nickhost = "$*";
+
+  # server name is printed
+  server = "%W$*%n";
+
+  # some kind of comment is printed
+  comment = "[$*]";
+
+  # reason for something is printed (part, quit, kick, ..)
+  reason = "(%n$*)";
+
+  # mode change is printed ([+o nick])
+  mode = "[%W$*%n]";
+
+  ##
+  ## channel specific messages
+  ##
+
+  # highlighted nick/host is printed (joins)
+  channick_hilight = "%C$0-%n";
+  chanhost_hilight = "[%c{nickhost $*}%n]";
+
+  # nick/host is printed (parts, quits, etc.)
+  channick = "%C$0-%n";
+  chanhost = "[%c{nickhost $*}%n]";
+
+  # highlighted channel name is printed
+  channelhilight = "%c$*%n";
+
+  # ban/ban exception/invite list mask is printed
+  ban = "$*";
+
+  ##
+  ## messages
+  ##
+
+  # Extracolors start here
+  magenta = "%M<%n%W$0%n$1-%M>%n %|";
+  blue = "%B<%n%W$0%n$1-%B>%n %|";
+  red = "%R<%n%W$0%n$1-%R>%n %|";
+  cyan = "%C<%n%W$0%n$1-%C>%n %|";
+  # Extracolors end here
+
+  # the basic styling of how to print message, $0 = nick mode, $1 = nick
+  msgnick = "{blue $0$1-}";
+
+  # message from you is printed. "msgownnick" specifies the styling of the
+  # nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
+  # whole line.
+
+  # Example1: You want the message text to be green:
+  #  ownmsgnick = "{msgnick $0 $1-}%g";
+  # Example2.1: You want < and > chars to be yellow:
+  #  ownmsgnick = "%Y{msgnick $0 $1-%Y}%n";
+  #  (you'll also have to remove <> from replaces list above)
+  # Example2.2: But you still want to keep <> grey for other messages:
+  #  pubmsgnick = "%K{msgnick $0 $1-%K}%n";
+  #  pubmsgmenick = "%K{msgnick $0 $1-%K}%n";
+  #  pubmsghinick = "%K{msgnick $1 $0$2-%K}%n";
+  #  ownprivmsgnick = "%K{msgnick  $0-%K}%n";
+  #  privmsgnick = "%K{msgnick  %R$0-%K}%n";
+
+  # $0 = nick mode, $1 = nick
+  ownmsgnick = "{magenta $0$1-}";
+  ownnick = "%n$*";
+
+  # public message in channel, $0 = nick mode, $1 = nick
+  pubmsgnick = "{blue $0$1-}";
+  pubnick = "%n$*";
+
+  # public message in channel meant for me, $0 = nick mode, $1 = nick
+  pubmsgmenick = "{blue $0$1-}";
+  menick = "%Y$0%n";
+
+  # public highlighted message in channel
+  # $0 = highlight color, $1 = nick mode, $2 = nick
+  pubmsghinick = "{blue $1$0$2-}";
+
+  # channel name is printed with message
+  msgchannel = ":%W$*%n";
+
+  # private message, $0 = nick, $1 = host
+  privmsg = "%C<$0> <-%n ";
+
+  # private message from you, $0 = "msg", $1 = target nick
+  ownprivmsg = "%M<$1> ->%n ";
+
+  # own private message in query
+  ownprivmsgnick = "$*";
+  ownprivnick = "{magenta $*}";
+
+  # private message in query
+  privmsgnick = "{cyan $*}";
+
+  ##
+  ## Actions (/ME stuff)
+  ##
+
+  # used internally by this theme
+  action_core = "%K*%n";
+  blue_core = "%B:::%N";
+  magenta_core = "%M:::%N";
+
+  # generic one that's used by most actions
+  action = "{blue_core $0-} ";
+
+  # own action, both private/public
+  ownaction = "{magenta_core } $0 $1-";
+
+  # own action with target, both private/public
+  ownaction_target = "{magenta_core } -> %W$0%n%w/%n%c$1%n ";
+
+  # private action sent by others
+  pvtaction = "{action }$0 $1- ";
+  pvtaction_query = "{action }$* ";
+
+  # public action sent by others
+  pubaction = "{action }$* ";
+
+
+  ##
+  ## other IRC events
+  ##
+
+  # notices
+  ownnotice = "[%rnotice%n(%R$1-%n)] ";
+  notice = "%C%{$0%}%N ";
+  pubnotice_channel = ":$*";
+  pvtnotice_host = "";
+  servernotice = "{notice $*}";
+
+  # CTCPs
+  ownctcp = "[%m$0%n(%M$1-%n)] ";
+  ctcp = "%K>%n>%W>%n $0 %g$1%_%n $2 %g$3%n %g%_$4%n %g$5%n %g%_$6%n%_";
+
+  # wallops
+  wallop = "$*: ";
+  wallop_nick = "$*";
+  wallop_action = " * $* ";
+
+  # netsplits
+  netsplit = "$*";
+  netjoin = "$*";
+
+  # /names list
+  names_nick = "[%C$0%n%B$1-%n] ";
+  names_users = "($*)";
+  names_channel = "{channel $*}";
+
+  # DCC
+  dcc = "{line_start}%R$0%n %n$1-";
+  dccfile = "%_$*%_";
+
+  # DCC chat, own msg/action
+  dccownmsg = "[%rdcc%n(%R$1-%n)] ";
+  dccownnick = "$*";
+  dccownaction = "{action_core } %W$0%n$1 ";
+  dccownaction_target = "{action_core $0}%K:%c$1%n ";
+
+  # DCC chat, others
+  dccmsg = "[%G$1-%n(%gdcc%n)] ";
+  dccquerynick = "$*";
+  dccaction = "{action_core } %Y$0%n %|";
+};
+formats = {
+  "fe-common/core" = {
+    quit = "Signoff {channick $0}: {channel $3} {reason $2}";
+  };
+};
