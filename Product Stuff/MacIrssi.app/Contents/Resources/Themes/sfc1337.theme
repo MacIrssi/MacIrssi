@@ -1,0 +1,225 @@
+# these characters are automatically replaced with specified color
+# (dark grey by default)
+replaces = { "[]=" = "%R$0-%g"; };
+
+abstracts = {
+  ##
+  ## generic
+  ##
+
+  # text to insert at the beginning of each non-message line
+  line_start = "%Ry0->%g ";
+
+  # timestamp styling, nothing by default
+  timestamp = "%RT-%G$0-%g ";
+
+  # any kind of text that needs hilighting, default is to bold
+  hilight = "%R$0-%r";
+
+  # any kind of error message, default is bright red
+  error = "%R$0-%g";
+
+  # channel name is printed
+  channel = "%r$0-";
+  channel_kick = "%R$0-";
+
+  # nick is printed
+  nick = "%r$0-%r";
+  nick_kick = "%R$0";
+
+  # nick host is printed
+  nickhost = "$r$0-";
+
+  # server name is printed
+  server = "%R$0-%g";
+
+  # some kind of comment is printed
+  comment = "%r>>$0-%r<<%g";
+  comment_kick = "%R($0-%R)";
+
+  # reason for something is printed (part, quit, kick, ..)
+  reason = "{comment %r$0-}";
+  reason_kick = "{comment_kick %R$0-}";
+
+  # mode change is printed ([+o nick])
+  mode = "{comment %R$0-}";
+  mode_col = "%r$0-";
+
+  ##
+  ## channel specific messages
+  ##
+
+  # highlighted nick/host is printed (joins)
+  channick_hilight = "%R$0-%g";
+  chanhost_hilight = "{[nickhost] %r$0-%g}";
+
+  # nick/host is printed (parts, quits, etc.)
+  channick = "%r$0-%g";
+  chanhost = "{[nickhost] $0-}";
+
+  # highlighted channel name is printed
+  channelhilight = "%R$0-%g";
+
+  # ban/ban exception/invite list mask is printed
+  ban = "%R$0-%g";
+
+  ##
+  ## messages
+  ##
+
+  # the basic styling of how to print message, $0 = nick mode, $1 = nick
+  msgnick = "%r$0%g$1- %|";
+
+  # $0 = nick mode, $1 = nick
+  ownmsgnick = "{msgnick %R<%g$0%n $1-%R>}%g";
+  ownnick = "%R$0-%g";
+
+  # public message in channel, $0 = nick mode, $1 = nick
+  pubmsgnick = "{msgnick %R<%g$0 %r$1-%R>%g}";
+  pubnick = "$0-%g";
+
+  # public message in channel meant for me, $0 = nick mode, $1 = nick
+  pubmsgmenick = "{msgnick %R>>%G$0 %g$1-%R<<}%g";
+  menick = "%R$0-%g";
+
+  # public highlighted message in channel
+  # $0 = highlight color, $1 = nick mode, $2 = nick
+  pubmsghinick = "{msgnick %R>>%r$1 %G$2-%R<<}%g";
+
+  # channel name is printed with message
+  msgchannel = "%R:%r$0-%g";
+
+  # private message, $0 = nick, $1 = host
+  privmsg = "[%r$0%G(%r$1-%G)%g] ";
+
+  # private message from you, $0 = "msg", $1 = target nick
+  ownprivmsg = "[%G$0%r(%g$1-%r)%g] ";
+
+  # own private message in query
+  ownprivmsgnick = "{msgnick  $0-}";
+  ownprivnick = "%R$0-%g";
+
+  # private message in query
+  privmsgnick = "{msgnick  <%R$0-%g>}";
+
+  ##
+  ## Actions (/ME stuff)
+  ##
+
+  # used internally by this theme
+  action_core = "%r >%R> %G$0-%g";
+
+  # generic one that's used by most actions
+  action = "{action_core $0-} ";
+
+  # own action, both private/public
+  ownaction = "{action $0-}";
+
+  # own action with target, both private/public
+  ownaction_target = "{action_core $0}%R:%r$1%g ";
+
+  # private action sent by others
+  pvtaction = " (%r>%R>%g) %G$0-%g ";
+  pvtaction_query = "{action $0-}";
+
+  # public action sent by others
+  pubaction = "{action $0-}";
+
+
+  ##
+  ## other IRC events
+  ##
+
+  # notices
+  ownnotice = "[%R$0%r(%G$1-%r)]%g ";
+  notice = "%r-%G$0-%r-%g ";
+  pubnotice_channel = "%G:%r$0-";
+  pvtnotice_host = "%R(%G$0-%R)";
+  servernotice = "%r!$0-%g ";
+
+  # CTCPs
+  ownctcp = "[%r$0%R(%G$1-%R)] ";
+  ctcp = "%r$0-%g";
+
+  # wallops
+  wallop = "%R$0-%g: ";
+  wallop_nick = "%g$0-";
+  wallop_action = "%R * $0-%g ";
+
+  # netsplits
+  netsplit = "%R$0-%g";
+  netjoin = "%r$0-%g";
+
+  # /names list
+  names_nick = "[%R$0%g$1-%g] ";
+  names_users = "[%g$0-%g]";
+  names_channel = "%r$0-%g";
+
+  # DCC
+  dcc = "<%r$0-%g>";
+  dccfile = "%R$0-%g";
+
+  # DCC chat, own msg/action
+  dccownmsg = "[%G$0%r($1-%r)%g] ";
+  dccownnick = "<%G$0-%g>";
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}%R:%r$1%g ";
+
+  # DCC chat, others
+  dccmsg = "[%R$1-%r(%G$0%r)%g] ";
+  dccquerynick = "<%R$0-%g>";
+  dccaction = " %r>%R>%g %G$0-%g %|";
+
+  ##
+  ## statusbar
+  ##
+
+  # background of statusbar
+  sb_background = "%2%k";
+
+  # default statusbar item style
+  sb = "%K:%k$0-%K:%n ";
+
+  sbmode = "(%K+%k$0-)";
+  sbaway = " (%k4\\/\\/4y%n)";
+  sbservertag = ":$0 (u53 ^X 70 c|-|4|\\|G3)";
+  sbmore = "%K-|\\/|0r3-$n";
+  sblag = "{sb l4G: $0-}";
+  sbmail = "{sb m41L: $0-}";
+
+  # activity. Det is used for hilights when display doesn't support colors
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+  sbact_act = " 4c7: $0-";
+  sbact_det = " d37: $0-";
+};
+
+
+formats = {
+  "fe-common/core" = {
+    pubmsg = "{pubmsgnick $2 {pubnick $0}}$1";
+    kick = "{channick_kick $0} $g\\/\\/45 K1<K3|) Fr0|\\/| {channel_kick $1} %g|3Y {nick_kick $2} {reason_kick $3}";
+    join = "{channick $0} {chanhost $1} %g|-|az j01|\\|3|) {channel $2}";
+    your_nick_changed = "{mode_col %r|\\|1CKc|-|4|\\|G3: %gy0u 4R3 |\\|0\\/\\/ K|\\|0\\/\\/|\\| Azz} {nick $1}";
+    nick_changed = "{mode_col %g|\\|1CKc|-|4|\\|G3: {channick $0} %g1z |\\|0\\/\\/ K|\\|0\\/\\/|\\| Azz {channick $1}";
+    timestamp = "{timestamp %%T}";
+  };
+  "fe-common/irc" = {
+    chanmode_change = "{mode_col mode/}{channel $0} {mode $1} $g|3Y {nick $2}";
+    server_chanmode_change = "{netsplit ServerMode}/{channel $0} {mode $1} by {nick $2}";
+    channel_mode = "{mode_col mode/}{channel $0} {mode $1}";
+    end_of_whois = "%r+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%n";
+    whois = " %r++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++%n%:%r+  %G|\\|1CK     %r:%g {nick $0}%n%:%r+  %G|-|057     %r:%g {nickhost $1@$2}%:%r+  %G|\\|4|\\/|3  %r:%g $3";
+    whois_idle = "%r+  %G1|)l3      %r:%g $1 DaYz $2 H0uRz $3 M1nZ $4 53cz";
+    whois_idle_signon = "%r+  %G1|)l3      %r:%g $1 DaYz $2 H0uRz $3 M1nZ $4 53cz {comment signon: $5}";
+    whois_server = "%r+  %G53r\\/3R    %r:%g $1 {comment $2}";
+    whois_oper = "%r+%G             %r:%g IRC 455 k1553r";
+    whois_oper_type = "%r+%G             %r:%g {hilight $1}";
+    whois_registered = "%r+%G             %r:%g 0\\/\\/|\\|z |)iz |\\|1K";
+    whois_help = "%r+%G             %r:%g |3 |-|31P1|\\|z";
+    whois_modes = "%r+  %G|\\/|0|)z   %r:%g $1";
+    whois_realhost = "%r+  %G|-|o57     %r:%g $1";
+    whois_channels = "%r+  %GC|-|4|\\|z  %r:%g $1";
+    whois_away = "%r+  %Gg0|\\|3     %r:%g $1";
+    whois_special = "%r+%G             %r:%g $1";
+  };
+};

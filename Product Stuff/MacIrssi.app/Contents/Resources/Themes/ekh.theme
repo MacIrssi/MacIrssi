@@ -1,0 +1,249 @@
+# ekh's irssi.theme
+#
+# Thanks to tyrak for having such a brilliant color eye and thank you, 
+# zhafte, for providing me this theme file to modify for my needs. ;-)
+
+# these characters are automatically replaced with specified color
+# (dark grey by default)
+replaces = { "[]=" = "%w$0-%n"; };
+
+abstracts = {
+
+##
+## General settings
+##
+
+# string to start non-message lines with.
+  line_start = "%K.%w.%W.%n ";
+
+# timestamp styling.
+  timestamp = "[$0-]";
+
+# hilight for any kind of text.
+  hilight = "%_$0-%_";
+
+# how to display an error
+  error = "%r$0-%n";
+
+# how the channel name is printed
+  channel = "$0-";
+
+# how the nick is printed
+  nick = "$0-";
+
+# how the nick host is printed
+  nickhost = "$0-";
+
+# how the server name is printed
+  server = "$0-%_";
+
+# how comment of some kind is printed
+  comment = "$0-";
+
+# how reasons (quit, part, kick...) are printed
+  reason = "{comment $0-%n}";
+
+# how mode change is printed ([+o nick])
+  mode = "{comment %m$0-%n}";
+
+
+##
+## Channel specific messages
+##
+
+# how highlighted nick/host is printed (joins)
+  channick_hilight = "%W$0-%n";
+  chanhost_hilight = "{nickhost %c$0-%n}";
+
+# how nick/host is printed (parts, quits, etc.)
+  channick = "%W$0-%n";
+  chanhost = "{nickhost %c$0-%n}";
+
+# how highlighted channel name is printed
+  channelhilight = "%w$0-%n";
+
+# how ban/ban exception/invite list mask is printed
+  ban = "%c$0-%n";
+
+
+##
+## Messages
+##
+
+# the basic styling of how to print message, $0 = nick mode, $1 = nick
+  msgnick = "<$0$1-%n> %|";
+
+# message from you is printed. "msgownnick" specifies the styling of the
+# nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
+# whole line.
+#
+# Example1: You want the message text to be green:
+#  ownmsgnick = "{msgnick $0 $1-}%g";
+# Example2.1: You want < and > chars to be yellow:
+#  ownmsgnick = "%Y{msgnick $0 $1-%Y}%n";
+#  (you'll also have to remove <> from replaces list above)
+# Example2.2: But you still want to keep <> grey for other messages:
+#  pubmsgnick = "%K{msgnick $0 $1-%K}%n";
+#  pubmsgmenick = "%K{msgnick $0 $1-%K}%n";
+#  pubmsghinick = "%K{msgnick $1 $0$2-%n%K}%n";
+#  ownprivmsgnick = "%K{msgnick  $0-%K}%n";
+#  privmsgnick = "%K{msgnick  %R$0-%K}%n";
+
+# $0 = nick mode, $1 = nick
+  ownmsgnick = "{msgnick $0 $1}%w";
+  ownnick = "%w$0-%n";
+
+# public message in channel, $0 = nick mode, $1 = nick
+  pubmsgmenick = "{msgnick $0$1-}";
+  # pubmsgnick = "{msgnick %w$0%n %w$1%n}";
+  pubnick = "$0-%n";
+
+# public message in channel meant for me, $0 = nick mode, $1 = nick
+# pubmsgmenick = "%w{msgnick %w$0%n %W$1%n}%w";
+  menick = "%W$0%n";
+
+# public highlighted message in channel
+# $0 = highlight color, $1 = nick mode, $2 = nick
+  pubmsghinick = "%w{msgnick %w$1 %W$2}%w";
+
+# channel name is printed with message
+  msgchannel = "%w:%W$0-%n";
+
+# private message, $0 = nick, $1 = host
+  privmsg = "%W$0%w!%g$1%n ";
+
+# private message from you, $0 = "msg", $1 = target nick
+  ownprivmsg = "%W$1%n ";
+
+# own private message in query
+  ownprivmsgnick = "{msgnick %w$0-%w}";
+  ownprivnick = "%w$0%n%w";
+
+# private message in query
+  privmsgnick = "{msgnick %W$0-%w}";
+
+
+##
+## Actions (you know, '/me drinks beer')
+##
+
+# used internally by this theme
+  action_core = "%W*%w $0-%n";
+
+# generic one that's used by most actions
+  action = "%w{action_core %w$0-} ";
+
+# own action, both private/public
+  ownaction = "{action $0-}";
+
+# own action with target, both private/public
+  ownaction_target = "{action_core $0}%w:%W$1%n ";
+
+# private action sent by others
+  pvtaction = "%w $0-%n ";
+  pvtaction_query = "{action $0-}";
+
+# public action sent by others
+  pubaction = "{action $0-}";
+
+
+##
+## Other IRC events
+##
+
+# notices
+  ownnotice = "%g.%G.%W. %W$0%w!%c$1%n: ";
+  notice = "%W$0-%n ";
+  pubnotice_channel = "%K:%g$0-";
+  pvtnotice_host = "%K(%g$0-%K)";
+  servernotice = "%g!$0-%n ";
+
+# CTCPs
+  ownctcp = "%K.%w.%W. %W$0%w!%c$1%n: ";
+  ctcp = "%g$0-%n";
+
+# wallops
+  wallop = "%g$0-%n: ";
+  wallop_nick = "%n$0-";
+  wallop_action = "%W * $0-%n ";
+
+# netsplits
+  netsplit = "%b$0-%n";
+  netjoin = "%b$0-%n";
+
+# /names list
+  names_nick = "[%W$0%w$1-%n] ";
+  names_users = "%w$0-%n:";
+  names_channel = "%g$0-%n";
+
+# DCC
+  dcc = "%g$0-%n";
+  dccfile = "%_$0-%_";
+
+# DCC chat, own msg/action
+  dccownmsg = "[%r$0%K($1-%K)%n] ";
+  dccownnick = "%R$0-%n";
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}%K:%c$1%n ";
+
+# DCC chat, others
+  dccmsg = "[%G$1-%K(%g$0%K)%n] ";
+  dccquerynick = "%G$0-%n";
+  dccaction = "%W (*dcc*) $0-%n %|";
+
+
+##
+## Statusbar
+##
+
+# default backround for "default" statusbar group
+  sb_default_bg = "%0";
+
+# background for prompt / input line
+  sb_prompt_bg = "%0";
+
+# background for info statusbar
+  sb_info_bg = "%0";
+
+  sb = " %g[ %n$0-%g ]%n";
+  sbmode = "(%g+%n$0-)";
+  sbaway = " (%gzZzZ%n)";
+  sbservertag = ":$0 (change with ^X)";
+
+# background of statusbar
+  sb_background = "%0";
+
+  sbmore = "%K-%w-%Wmore%w-%K-";
+  sblag = "{sb lag: %r$0-}";
+  sbmail = "{sb M: $0-}";
+
+# activity. Det is used for hilights when display doesn't support colors
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+  sbact_act = "Act: $0-";
+  sbact_det = " D: $0-";
+};
+
+formats = {
+  "fe-common/core" = {
+    join = "%Cj%coin%w/{channel $2} {channick_hilight $0}!{chanhost_hilight $1}";
+    part = "%Bp%bart%w/{channel $2} {channick $0}!{chanhost $1} (%b{reason $3}%w)";
+    kick = "%Rk%rick%w/{channel $1} {channick $0} by {nick $2} (%r{reason $3}%w)";
+    quit = "%Bq%buit%w/{channel $3} {channick $0}!{chanhost $1} (%b{reason $2}%w)";
+    endofnames = "{channel $0}: {hilight $1} nicks ({comment @/{hilight $2} +/{hilight $3}  -/{hilight $4}})";
+    nick_changed = "%Gn%gick %W{channick $0} %w-> %W{channick_hilight $1}";
+  };
+  "fe-common/irc" = {
+    chanmode_change = "%Mm%mode%w/{channelhilight $0} {mode $1} by {nick $2}";
+    whois = "%W{nick $0}%w!%c{nickhost $1@$2}%: ircname    %W$3";
+    server_chanmode_change = "{netsplit %GS%gerver%GM%gode}%w/{channelhilight $0}: {mode $1} by {nick $2}";
+    whois_server = " %wserver     %c$1 %C{comment $2}";
+  };
+  "Irssi::Script::autorealname" = {
+    join_realname = "{channick_hilight $0}%w is %C({hilight %c$1}%C)";
+  };
+  "Irssi::Script::friends" = {
+    friends_line_head = "[$[!-3]0] Handle: %C$1%n, flags: %c$2%n [password: $3]";
+    friends_line_hosts = "$[-6]9 Hosts: %W$0";
+    friends_line_chan = "$[-6]9 Channel %c$0%n: Flags: %c$1%n, Delay: $2";
+  };
+};

@@ -1,0 +1,284 @@
+#############################################################################
+# foxmask.theme 2002/10/31
+# i use xterm with white background and black foreground.
+#
+# i modify the following colors : 
+# ------------------------------
+# 1) default message are blue
+# 2) part/quit/kick/ban are red
+# 3) join are green
+# 4) /ME are magenta
+# 5) Operators are DarkRed
+# 6) Voices are DarkBleu
+# 7) Others Vistors are Green
+#
+#############################################################################
+
+# default foreground color (%N) - -1 is the "default terminal color"
+default_color = "-1";
+
+# print timestamp/servertag at the end of line, not at beginning
+info_eol = "false";
+
+# these characters are automatically replaced with specified color
+# (dark grey by default)
+replaces = { "[]=" = "%K$*%n"; };
+
+abstracts = {
+  ##
+  ## generic
+  ##
+
+  # text to insert at the beginning of each non-message line
+  line_start = "%B-%B!%B-%n ";
+
+  # timestamp styling, nothing by default
+  timestamp = "%B$*";
+
+  # any kind of text that needs hilighting, default is to bold
+  hilight = "%B$*%B";
+
+  # any kind of error message, default is bright red
+  error = "%R$*%n";
+
+  # channel name is printed
+  channel = "%B$*%B";
+
+  # nick is printed
+  nick = "%B$*%B";
+
+  # nick host is printed
+  nickhost = "[$*]";
+
+  # server name is printed
+  server = "%B$*%B";
+
+  # some kind of comment is printed
+  comment = "%B[$*]%B";
+
+  # reason for something is printed (part, quit, kick, ..)
+  reason = "{comment %G$*%G}";
+
+  # mode change is printed ([+o nick])
+  mode = "{comment %B$*%B}";
+
+  ##
+  ## channel specific messages
+  ##
+
+  # highlighted nick/host is printed (joins)
+  channick_hilight = "%C$*%n";
+  chanhost_hilight = "{nickhost %c$*%n}";
+
+  # nick/host is printed (parts, quits, etc.)
+  channick = "%c$*%n";
+  chanhost = "{nickhost $*}";
+
+  # highlighted channel name is printed
+  channelhilight = "%c$*%n";
+
+  # ban/ban exception/invite list mask is printed
+  ban = "%c$*%n";
+
+  ##
+  ## messages
+  ##
+
+  # the basic styling of how to print message, $0 = nick mode, $1 = nick
+  msgnick = "%K<%n$0$1-%K>%n %|";
+
+  # message from you is printed. "msgownnick" specifies the styling of the
+  # nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
+  # whole line.
+
+  # Example1: You want the message text to be green:
+  #  ownmsgnick = "{msgnick $0 $1-}%g";
+  # Example2.1: You want < and > chars to be yellow:
+  #  ownmsgnick = "%Y{msgnick $0 $1-%Y}%n";
+  #  (you'll also have to remove <> from replaces list above)
+  # Example2.2: But you still want to keep <> grey for other messages:
+  #  pubmsgnick = "%K{msgnick $0 $1-%K}%n";
+  #  pubmsgmenick = "%K{msgnick $0 $1-%K}%n";
+  #  pubmsghinick = "%K{msgnick $1 $0$2-%n%K}%n";
+  #  ownprivmsgnick = "%K{msgnick  $*%K}%n";
+  #  privmsgnick = "%K{msgnick  %R$*%K}%n";
+
+  # $0 = nick mode, $1 = nick
+  ownmsgnick = "{msgnick %G$0 $1-}";
+  ownnick = "%M$*%n";
+
+  # public message in channel, $0 = nick mode, $1 = nick
+  pubmsgnick = "{msgnick %G$0 $1-}";
+  pubnick = "%B$*%n";
+
+  # public message in channel meant for me, $0 = nick mode, $1 = nick
+  pubmsgmenick = "{msgnick %G$0 $1-}";
+  menick = "%R$*%n";
+
+  # public highlighted message in channel
+  # $0 = highlight color, $1 = nick mode, $2 = nick
+  pubmsghinick = "{msgnick $1 $0$2-%n}";
+
+  # channel name is printed with message
+  msgchannel = "%K:%c$*%n";
+
+  # private message, $0 = nick, $1 = host
+  privmsg = "[%R$0%K(%r$1-%K)%n] ";
+
+  # private message from you, $0 = "msg", $1 = target nick
+  ownprivmsg = "[%r$0%K(%R$1-%K)%n] ";
+
+  # own private message in query
+  ownprivmsgnick = "{msgnick  %M$*}";
+  ownprivnick = "%M$*%n";
+
+  # private message in query
+  privmsgnick = "{msgnick  %R$*%n}";
+
+  ##
+  ## Actions (/ME stuff)
+  ##
+
+  # used internally by this theme
+  action_core = "%M * $*%n";
+
+  # generic one that's used by most actions
+  action = "{action_core $*} ";
+
+  # own action, both private/public
+  ownaction = "{action $*}";
+
+  # own action with target, both private/public
+  ownaction_target = "{action_core $0}%K:%c$1%n ";
+
+  # private action sent by others
+  pvtaction = "%M (*) $*%n ";
+  pvtaction_query = "{action $*}";
+
+  # public action sent by others
+  pubaction = "{action $*}";
+
+
+  ##
+  ## other IRC events
+  ##
+
+  # whois
+  whois = "%# $[8]0 : $1-";
+
+  # notices
+  ownnotice = "[%r$0%K(%R$1-%K)]%n ";
+  notice = "%K-%M$*%K-%n ";
+  pubnotice_channel = "%K:%M$*";
+  pvtnotice_host = "%K(%M$*%K)";
+  servernotice = "%g!$*%n ";
+
+  # CTCPs
+  ownctcp = "[%r$0%K(%R$1-%K)] ";
+  ctcp = "%g$*%n";
+
+  # wallops
+  wallop = "%R$*%n: ";
+  wallop_nick = "%n$*";
+  wallop_action = "%R * $*%n ";
+
+  # netsplits
+  netsplit = "%R$*%n";
+  netjoin = "%C$*%n";
+
+  # /names list
+  names_prefix = "";
+  names_nick = "[%G$0%_$1-] ";
+  names_nick_op = "{names_nick %R$*}";
+  names_nick_halfop = "{names_nick %g$*}";
+  names_nick_voice = "{names_nick %B$*%B}";
+  names_users = "[%g$*%n]";
+  names_channel = "%G$*%n";
+
+  # DCC
+  dcc = "%g$*%n";
+  dccfile = "%_$*%_";
+
+  # DCC chat, own msg/action
+  dccownmsg = "[%r$0%K($1-%K)%n] ";
+  dccownnick = "%R$*%n";
+  dccownquerynick = "%W$*%n";
+  dccownaction = "{action $*}";
+  dccownaction_target = "{action_core $0}%K:%c$1%n ";
+
+  # DCC chat, others
+  dccmsg = "[%G$1-%K(%g$0%K)%n] ";
+  dccquerynick = "%G$*%n";
+  dccaction = "%g (*dcc*) $*%n %|";
+
+  ##
+  ## statusbar
+  ##
+
+  # default background for all statusbars. You can also give
+  # the default foreground color for statusbar items.
+  sb_background = "%4%w";
+
+  # default backround for "default" statusbar group
+  #sb_default_bg = "%4";
+  # background for prompt / input line
+  sb_prompt_bg = "%n";
+  # background for info statusbar
+  sb_info_bg = "%8";
+  # background for topicbar (same default)
+  #sb_topic_bg = "%4";
+
+  # text at the beginning of statusbars. sb-item already puts
+  # space there,so we don't use anything by default.
+  sbstart = "";
+  # text at the end of statusbars. Use space so that it's never
+  # used for anything.
+  sbend = " ";
+
+  prompt = "[$*] ";
+
+  sb = " %c[%n$*%c]%n";
+  sbmode = "(%c+%n$*)";
+  sbaway = " (%GzZzZ%n)";
+  sbservertag = ":$0 (change with ^X)";
+
+  # activity in statusbar
+
+  # ',' separator
+  sb_act_sep = "%c$*";
+  # normal text
+  sb_act_text = "%c$*";
+  # public message
+  sb_act_msg = "%W$*";
+  # hilight
+  sb_act_hilight = "%M$*";
+  # hilight with specified color, $0 = color, $1 = text
+  sb_act_hilight_color = "$0$1-%n";
+};
+formats = {
+  "fe-common/irc" = {
+    topic = "%GTopic for {channelhilight $0}: %G$1";
+    topic_info = "%GTopic set by {nick $0} {nickhost $2} {comment $1}";
+    ctcp_reply = "%RCTCP {hilight $0} reply from {nick $1}: $2";
+    ctcp_reply_channel = "%RCTCP {hilight $0} reply from {nick $1} in channel {channel $3}: $2";
+    ctcp_ping_reply = "%RCTCP {hilight PING} reply from {nick $0}: $1.$[-3.0]2 seconds";
+    ctcp_requested = "%R{ctcp {hilight $0} {comment $1} requested CTCP {hilight $2} from {nick $4}}: $3";
+    ctcp_requested_unknown = "%R{ctcp {hilight $0} {comment $1} requested unknown CTCP {hilight $2} from {nick $4}}: $3";
+    nick_away = "%g{nick $0} is away: $1";
+    no_such_nick = "%g{nick $0}: No such nick/channel";
+    nick_in_use = "%gNick {nick $0} is already in use";
+    nick_unavailable = "%gNick {nick $0} is temporarily unavailable";
+    your_nick_owned = "%gYour nick is owned by {nick $3} {comment $1@$2}";
+  };
+  "fe-common/core" = {
+    join = "{channick_hilight %g$0} {chanhost_hilight %g$1} %ghas joined {channel %g$2}";
+    part = "{channick %R$0} {chanhost %R$1} %Rhas left {channel %R$2} {reason %R$3}";
+    kick = "{channick %R$0} was kicked from {channel %R$1} %Rby {nick %R$2} {reason %R$3}";
+    quit = "{channick_hilight %R$0} {chanhost_hilight %R$1} %Rhas quit {channel %R$2}";
+    quit_once = "{channel %R$3} {channick %R$0} {chanhost %R$1} %Rhas quit {reason %R$2}";
+    nick_changed = "%g{channick $0} is now known as {channick_hilight $1}";
+    new_topic = "%G{nick $0} changed the topic of {channel $1} to: $2";
+    topic_unset = "%GTopic unset by {nick $0} on {channel $1}";
+    your_nick_changed = "%GYou're now known as {nick $1}";
+  };
+};

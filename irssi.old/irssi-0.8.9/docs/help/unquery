@@ -1,0 +1,7 @@
+
+UNQUERY %|[<nick>]
+
+Removes a query window of specified nick.
+
+See also: QUERY, SET QUERY
+

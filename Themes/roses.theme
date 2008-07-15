@@ -1,0 +1,92 @@
+# Roses by Miia "Myrtti" Ranta, myrtti@hellokitty.com Myrtti@IRCNet
+# based on
+# en.theme =2002=, (en at irc.pl) or en/IRCNet
+
+replaces = { };
+abstracts = {
+
+  sb_background = "%2";
+  sb_default_bg = "%1";
+  sb_prompt_bg = "%g";
+  sb_info_bg = "%9";
+  sb_topic_bg = "%1";
+  sb_act_sep = "%r$*";
+  sb_act_text = "%R$*";
+  sb_act_msg = "%W$*";
+  sb_act_hilight = "%G%_$*";
+  sb_act_hilight_color = "$0$1-%R";
+
+  sb = " %R[%W$*%R]%n";
+  sbmode = "<%W+$*>";
+  sbaway = " %W.o0O%r";
+  sbservertag = "%R:$0%n ";
+
+  sbstart = " ";
+  sbend = " ";
+
+  line_start = "%R@%G,- ";
+  timestamp = "%K$0-%n";
+  hilight = "%_$0-%_";
+  error = "%R$0-%n";
+  channel = "%_$0-%_";
+  nick = "%_$0-%_";
+  nickhost = "[$0-]";
+  server = "%_$0-%_";
+  comment = "[$0-]";
+  reason = "{comment $0-}";
+  mode = "{comment $0-}";
+  channick_hilight = "%G$0-%n";
+  chanhost_hilight = "{nickhost %g$0-%n}";
+  channick = "%r$0-%n";
+  chanhost = "{nickhost $0-}";
+  channelhilight = "%g$0-%n";
+  ban = "%r$0-%n";
+  msgnick = "%K$0$1-%n";
+  ownmsgnick = "{msgnick $1-} %|%r";
+  ownnick = "%g-´%R@%K:%n";
+  pubmsgnick = "<{msgnick $0 $1-}> %|";
+  pubnick = "%N$0-%n";
+  pubmsgmenick = "{msgnick $0 $1-}%K> %w%U";
+  menick = "%W$0-";
+  pubmsghinick = "{msgnick $1 $0$2-}";
+  msgchannel = "%K:%c$0-%n";
+  privmsg = "[%k %W$0$1-%n] %| %g ";
+  ownprivmsg = "%W$0%K(%R$1-%K)] %|%g";
+  ownprivmsgnick = "{msgnick $0 $1-}%K: %|%W";
+  ownprivnick = "%w@%G,-";
+  privmsgnick = "[{msgnick  %R$0-%n}] %|%g";
+  action_core = "%P * $0-";
+  action = "{action_core $0-} ";
+  ownaction = "{action $0-}";
+  ownaction_target = "{action_core $0}%K:%c$1%n ";
+  pvtaction = "%W (*) $0-%n ";
+  pvtaction_query = "{action $0-}";
+  pubaction = "{action $0-}";
+  ownnotice = "[%r$0%K(%R$1-%K)]%n ";
+  notice = "%K-%M$0-%K-%n ";
+  pubnotice_channel = "%K:%m$0-";
+  pvtnotice_host = "%K(%m$0-%K)";
+  servernotice = "%g!$0-%n ";
+  ownctcp = "[%r$0%K(%R$1-%K)] ";
+  ctcp = "%g$0-%n";
+  wallop = "%W$0-%n: ";
+  wallop_nick = "%n$0-";
+  wallop_action = "%W * $0-%n ";
+  netsplit = "%R$0-%n";
+  netjoin = "%G$0-";
+  names_nick = "[%_$0%_$1-] ";
+  names_users = "[%g$0-%n]";
+  names_channel = "%G$0-%n";
+  dcc = "%g$0-%n";
+  dccfile = "%_$0-%_";
+  dccownmsg = "[%r$0%K($1-%K)%n] ";
+  dccownnick = "%R$0-%n";
+  dccownaction = "{action $0-}";
+  dccownaction_target = "{action_core $0}%K:%c$1%n ";
+  dccmsg = "[%G$1-%K(%g$0%K)%n] ";
+  dccquerynick = "%G$0-%n";
+  dccaction = "%W (*dcc*) $0-%n %|";
+};
+formats = {
+  "fe-common/core" = { pubmsg = "{pubmsgnick $2 {pubnick \00304$0}}$1"; };
+};

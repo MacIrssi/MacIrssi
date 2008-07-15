@@ -1,0 +1,24 @@
+
+BAN %|[<channel>] [<nicks>]
+BAN %|[-normal | -user | -host | -domain | -custom <type>] <nicks/masks>
+
+Bans the specified nick or userhost mask.
+
+If nick is given as parameter, the ban type is used to generate the ban mask. /SET ban_type specified the default ban type. Ban type is one of the following:
+
+    Normal - *!*user@*.domain.net
+    User   - *!*user@*
+    Host   - *!*@host.domain.net
+    Domain - *!*@*.domain.net
+    Custom [nick] [user] [host] [domain]
+
+Examples:
+    /BAN loser        - Bans the nick 'loser'
+    /BAN -host loser  - Bans the host of nick 'loser'
+    /BAN *!*@*.org    - Bans all the users coming from any .org domain.
+
+    /SET ban_type custom nick domain - nick!*@*.domain.net
+    /SET ban_type custom user host   - *!user@host.domain.net
+
+See also: KNOCKOUT, KICKBAN
+

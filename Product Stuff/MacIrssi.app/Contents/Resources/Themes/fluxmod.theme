@@ -1,0 +1,256 @@
+info_eol = "false";
+replaces = { "[]=" = "%b$*%N"; "()=" = "%b$*%N"; "<>=" = "%b$*%N"; };
+
+abstracts = {
+  line_start = "%b»%N ";
+  timestamp = "%b|%N$*%b|";
+  hilight = "%_$*%_";
+  error = "%b$*%N";
+  channel = "%N$*%N";
+  nick = "%b$*%w";
+  server = "%_$*%_";
+
+  #(part, quit, kick, ..)
+  comment = "%B·%N$*%B·";
+  reason = "{comment $*}";
+
+  # mode change is printed ([+o nick])
+  mode_change = "[%p$*]%N";
+  mode = "{mode_change $*}";
+
+  # nick@host.com quit message
+  nickhost = "°$*°";
+  #nickhost = "(%w$*%w)%N";
+
+  channick_hilight = "%w$*%N";
+  chanhost_hilight = "{nickhost $*}";
+  channick = "%w$*%n";
+  chanhost = "{nickhost $*}";
+
+  # highlighted channel name on mode changes
+  channelhilight = "%Y$*%N";
+
+  # ban/ban exception/invite list mask is printed
+  ban = "%b$*%N";
+
+  # the basic styling of how to print message, $0 = nick mode, $1 = nick
+  msgnick = "%b<%b$0%w$1%b>%N %|";
+
+
+  # $0 = nick mode, $1 = nick
+  ownmsgnick = "{msgnick $0 $1-}";
+
+  #my nick color
+  ownnick = "%y$*%N";
+
+  # public message in channel, $0 = nick mode, $1 = nick
+  pubmsgnick = "{msgnick $0 $1-}";
+
+  # public message in channel meant for me, $0 = nick mode, $1 = nick
+  pubmsgmenick = "{msgnick $0 $1-}%W";
+  menick = "%w$*%N";
+
+  # public highlighted message in channel
+  # $0 = highlight color, $1 = nick mode, $2 = nick
+  pubmsghinick = "{msgnick %b$1 %N $0$2-}";
+
+  # channel name is printed with message
+  msgchannel = "%w:%b$*%N";
+
+  # private message, $0 = nick, $1 = host
+  privmsg = "[%b$0%y [%k$1-%y]%N ";
+
+  # private message from you, $0 = "msg", $1 = target nick
+  ownprivmsg = "[%w$0%y[%G$1-%y]%N ";
+
+  # own private message in query
+  ownprivmsgnick = "{msgnick  $*}";
+  ownprivnick = "%y$*%N";
+
+  # private message in query
+  privmsgnick = "{msgnick  %w$*}";
+
+  # /me says
+  action_core = "%g * $*%N";
+
+  # generic one that's used by most actions
+  action = "{action_core $*} ";
+
+  # own action, both private/public
+  ownaction = "{action $*}";
+
+  # own action with target, both private/public
+  ownaction_target = "{action_core $0}%W:%b$1%N ";
+
+  # private action sent by others
+  pvtaction = "%b (*) $*%N ";
+  pvtaction_query = "{action $*}";
+
+  # public action sent by others
+  pubaction = "{action $*}";
+
+  # whois
+  whois = "%# $[8]0 : $1-";
+
+  # notices
+  ownnotice = "[%b$0%w(%y$1-%w)]%N ";
+  notice = "%w-%y$*%w-%N ";
+  pubnotice_channel = "%w:%b$*";
+  pvtnotice_host = "%B(%w$*%y)";
+  servernotice = "%y!$*%N ";
+
+  # CTCPs
+  ownctcp = "[%b$0%y(%b$1-%y)] ";
+  ctcp = "%b$*%N";
+
+  # wallops
+  wallop = "%W$*%N: ";
+  wallop_nick = "%N$*";
+  wallop_action = "%W * $*%N ";
+
+  # netsplits
+  netsplit = "%Y$*%N";
+  netjoin = "%Y$*%N";
+
+  # /names list
+  names_prefix = "";
+  names_nick = "%w|%b$0%Y$1-%N ";
+  names_nick_op = "{names_nick $*}";
+  names_nick_halfop = "{names_nick $*}";
+  names_nick_voice = "{names_nick $*}";
+  names_users = "%w|(%b$*%w)%N";
+  names_channel = "%U%B$*%N";
+
+  # DCC
+  dcc = "%y$*%N";
+  dccfile = "%_$*%_";
+
+  # DCC chat, own msg/action
+  dccownmsg = "[%b$0%y(%b$1-%y)%N] ";
+  dccownnick = "%b$*%N";
+  dccownquerynick = "%W$*%N";
+  dccownaction = "{action $*}";
+  dccownaction_target = "{action_core $0}%w:%b$1%N ";
+
+  # DCC chat, others
+  dccmsg = "[%y$1-%b(%w$0%b)%N] ";
+  dccquerynick = "%y$*%N";
+  dccaction = "%W (*dcc*) $*%N %|";
+
+
+  # default background for all statusbars. You can also give
+  # the default foreground color for statusbar items.
+  sb_background = "%N%W";
+
+  # default backround for "default" statusbar group
+  # background for prompt / input line
+  sb_prompt_bg = "%N";
+  # background for info statusbar
+  sb_info_bg = "%N";
+  # background for topicbar (same default)
+
+  # text at the beginning of statusbars. sb-item already puts
+  # space there,so we don't use anything by default.
+  sbstart = "";
+  # text at the end of statusbars. Use space so that it's never
+  # used for anything.
+  sbend = " ";
+
+  topicsbstart = "{sbstart $*}";
+  topicsbend = "{sbend $*}";
+
+  prompt = "%b[%N$*%b]%N ";
+
+  sb = "%b[%N$*%b]%N";
+  sbmode = "%b(%p+%N$*%b)%N";
+  sbaway = "(%b^_^%N)";
+  sbservertag = ":$0/%b(%b<-=%R°%b=->)";
+  nact_display = " %W$1 %Gin:%W$0 %bout:%W$2 ";
+
+  # activity in statusbar
+  nact_command = "$0)in:$1:out($2";
+
+  # ',' separator
+  sb_act_sep = "%b$*";
+  # normal text
+  sb_act_text = "%b$*";
+  # public message
+  sb_act_msg = "%W$*";
+  # hilight
+
+  # hilight with specified color, $0 = color, $1 = text
+  sb_act_hilight_color = "$0$1-%N";
+};
+
+#formats = {
+#  "fe-common/core" = {
+#    pubmsg = "{pubmsgnick $2 {pubnick $[-16]0}}$1";
+#    own_msg = "{ownmsgnick $2 {ownnick $[-16]0}}$1";
+#    own_msg_channel = "{ownmsgnick $3 {ownnick $[-16]0}{msgchannel $1}}$2";
+#    pubmsg_me = "{pubmsgmenick $2 {menick $[-16]0}}$1";
+#    pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-16]0}{msgchannel $1}}$2";
+#    pubmsg_hilight = "{pubmsghinick $0 $3 $[-16]1%n}$2";
+#    pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-16]1{msgchannel $2}}$3";
+#    pubmsg_channel = "{pubmsgnick $3 {pubnick $[-16]0}{msgchannel $1}}$2";
+#  };
+#  join = " -> {channick $0} %w··>%n {chanhost $1} joins {channel $2}";
+#  part = "<- {channick $0} %n<··%n {chanhost $1} leaves {channel $2} {reason $3}";
+#  quit = "<o {channick $0} %c<···%n {chanhost $1} quits {reason $2}";
+#  kick = "<o> {channick_kick $0} was kicked from {channel_kick $1} by {nick_kick $2} {reason_kick $3}";
+
+
+#};
+
+formats = {
+  idea = {
+    idea_own_msg = "{ownmsgnick $2 {ownnick $[-9]0}}%G$1";
+    idea_own_msg_channel = "{ownmsgnick $3 {ownnick $[-9]0}{msgchannel $1}}%G$2";
+    idea_own_msg_private = "{ownprivmsg msg $0}%G$1";
+    idea_own_msg_private_query = "privmsgnick $[-9]0}%g$2";
+    idea_pubmsg_me = "{pubmsgmenick $2 {menick $[-9]0}}%g$1";
+    idea_pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-9]0}{msgchannel $1}}%g$2";
+    idea_pubmsg_hilight = "{pubmsghinick $0 $3 $[-9]1}%G$2";
+    idea_pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-9]1{msgchannel $2}}%G$3";
+    idea_pubmsg = "{pubmsgnick $2 {pubnick $[-9]0}}%g$1";
+    idea_pubmsg_channel = "{pubmsgnick $3 {pubnick $[-9]0}{msgchannel $1}}%g$2";
+    idea_msg_private = "{privmsg $0 $1}%g$2";
+    idea_msg_private_query = "{privmsgnick $[-9]0}%g$2";
+  };
+  "fe-common/core" = {
+    join = "{channick_hilight $[-11]0} %w··>%n {chanhost_hilight $1}";
+    part = "{channick $[-11]0} %n<··%n {chanhost $1}";
+    quit = "{channick $[-11]0} %c<···%n {chanhost $1}";
+    kick = "{channick $[-11]0} %r:(%n was kicked from {channel $1} by {nick $2} {reason $3}";
+    nick_changed = "{channick $[-11]0} %w<>%m changes nick to {channick_hilight $1}";
+    own_msg = "{ownmsgnick $2 {ownnick $[-10]0}}$1";
+    own_msg_channel = "{ownmsgnick $3 {ownnick $[-10]0}{msgchannel $1}}$2";
+    pubmsg_me = "{pubmsgmenick $2 {menick $[-10]0}}$1";
+    pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-10]0}{msgchannel $1}}$2";
+    pubmsg_hilight = "{pubmsghinick $0 $3 $[-10]1}$2";
+    pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-10]1{msgchannel $2}}$3";
+    pubmsg = "{pubmsgnick $2 {pubnick $[-10]0}}$1";
+    pubmsg_channel = "{pubmsgnick $3 {pubnick $[-10]0}{msgchannel $1}}$2";
+    own_msg_private = "{ownprivmsg msg $0}$1";
+    own_msg_private_query = "{ownprivmsgnick {ownprivnick $[-10]2}}$1";
+    msg_private_query = "{privmsgnick $[-10]0}$2";
+    msg_private = "{privmsg $0 $1}$2";
+  };
+  "fe-common/irc" = {
+    chanmode_change = "{hilight %n~~~ %m{nick $2}} %n sets%m{mode $1} %w on {channelhilight $0 %n~~~}";
+    own_action = "{ownaction $[-10]0}$1";
+    action_private = "{pvtaction $0}$2";
+    action_private_query = "{pvtaction_query $[-9]0}$2";
+    action_public_channel = "{pubaction $[-10]0{msgchannel $1}}$2";
+    action_public = "{pubaction $[-10]0}$1";
+    netsplit = "{netsplit    Netsplit} %r<···%n {server $0} %W<%n-%W>%n {server $1} quits: $2";
+    netsplit_more = "{netsplit    Netsplit} %w<··%n {server $0} %W<%n-%W>%n {server $1} quits: $2 (%K+$3 more%n)";
+    netsplit_join = "{netjoin    Netsplit} %c··>%n $0";
+    netsplit_join_more = "{netjoin    Netsplit} %w>%n $0 (%K+$1 more%n)";
+    server_chanmode_change = "{netsplit   {nick $2}}/{channelhilight $0} sets {mode $1} ";
+  };
+  "fe-common/irc/dcc" = {
+    own_dcc_action_query = "{dccownaction $[-9]0}$2";
+    dcc_msg_query = "{privmsgnick $[-9]0}$1";
+    own_dcc_query = "{ownmsgnick {ownnick $[-9]0}} $2";
+  };
+};

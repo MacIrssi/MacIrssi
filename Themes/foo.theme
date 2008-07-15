@@ -1,0 +1,104 @@
+# foo.theme for irssi by shagr
+
+default_color = "-1";
+replaces = { "[]=" = "%K$*%n"; };
+
+abstracts = {
+
+  line_start = "~ ";
+  timestamp = "$*";
+  hilight = "$*";
+  error = "%R$*%n";
+  channel = "$*";
+  nick = "$*";
+  nickhost = "($*)";
+  server = "($*)";
+  comment = "($*)";
+  reason = "{comment $*}";
+  mode = "{comment $*}";
+
+  channick_hilight = "$*";
+  chanhost_hilight = "{nickhost $*}";
+  channick = "$*";
+  chanhost = "{nickhost $*}";
+  channelhilight = "$*";
+  ban = "$*";
+
+  msgnick = "$0$1- : ";
+
+  ownmsgnick = "{msgnick $0 $1-}";
+  ownnick = "||  $*";
+  pubmsgnick = "{msgnick $0 $1-}";
+  pubnick = " |  $*";
+  pubmsgmenick = "{msgnick $0 $1-}";
+  menick = "||  $*";
+  pubmsghinick = "{msgnick $1 $0$2-}";
+  msgchannel = ":$*";
+  privmsg = "$0($1-)  ";
+  ownprivmsg = "$0($1-)  ";
+  ownprivmsgnick = " ||  $* : ";
+  ownprivnick = "$*";
+  privmsgnick = " ||  $* : ";
+
+  action_core = " *  $* ";
+  action = "{action_core $*} ";
+  ownaction = "{action $*}";
+  ownaction_target = "{action_core $0}:$1 ";
+  pvtaction = " (*) $* ";
+  pvtaction_query = "{action $*}";
+  pubaction = "{action $*}";
+
+  whois = " | $[8]0 : $1-";
+
+  ownnotice = "$0($1-) ";
+  notice = "$* ";
+  pubnotice_channel = ":$*";
+  pvtnotice_host = "($*)";
+  servernotice = "!$* ";
+
+  ownctcp = "$0 $1- ";
+  ctcp = "$* ";
+  wallop = "$*: ";
+  wallop_nick = "$*";
+  wallop_action = " * $* ";
+
+  netsplit = "$*";
+  netjoin = "$*";
+
+  names_prefix = "";
+  names_nick = "[$0$1-] ";
+  names_nick_op = "{names_nick $*}";
+  names_nick_halfop = "{names_nick $*}";
+  names_nick_voice = "{names_nick $*}";
+  names_users = "$*";
+  names_channel = "$*";
+
+  dcc = "$*";
+  dccfile = "$*";
+
+  dccownmsg = "$0($1-) ";
+  dccownnick = "$*";
+  dccownquerynick = "$*";
+  dccownaction = "{action $*}";
+  dccownaction_target = "{action_core $0}:$1 ";
+  dccmsg = "$1-($0) ";
+  dccquerynick = "$*";
+  dccaction = " (*dcc*) $* %|";
+
+  sb_background = "%n";
+  sb_prompt_bg = "%n";
+  sb_info_bg = "%n";
+  sb_topic_bg = "%n";
+  sbstart = "";
+  sbend = " ";
+  prompt = " $$ $* ";
+  sb = " $* ";
+  sbmode = "(+$*)";
+  sbaway = " (away)";
+  sbservertag = ":$0";
+  sb_act_sep = "%n$*";
+  sb_act_text = "%n$*";
+  sb_act_msg = "%W$*";
+  sb_act_hilight = "%B$*";
+  sb_act_hilight_color = "$0$1-%n";
+};

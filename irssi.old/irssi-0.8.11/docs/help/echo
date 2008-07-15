@@ -1,0 +1,5 @@
+
+ECHO %|[-current] [-window <name>] [-level <level>] <text>
+
+Prints text into the current window. Useful for scripts.
+

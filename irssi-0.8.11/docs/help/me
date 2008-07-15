@@ -1,0 +1,7 @@
+
+ME %|<message>
+
+Sends a CTCP ACTION to the current channel or query. For example: /me sits back.
+
+See also: ACTION, CTCP
+

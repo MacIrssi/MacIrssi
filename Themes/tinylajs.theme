@@ -1,0 +1,170 @@
+###########################################################
+## tinyLajs.theme by tewmten - http://bratwurst.tty0.org
+## Based on the epic.theme Irssi theme that can be 
+## found at http://irssi.org/themes/epic.theme
+###########################################################
+
+default_color = "-1";
+info_eol = "false";
+
+replaces = { "[]=" = "%K$*%n"; };
+
+abstracts = {
+  line_start = "## ";
+
+  timestamp = "$*";
+
+  hilight = "$*";
+
+  error = "$*";
+
+  channel = "$*";
+
+  nick = "$*";
+
+  nickhost = "[$*]";
+
+  server = "$*";
+
+  comment = "[$*]";
+
+  reason = "{comment $*}";
+
+  mode = "{comment $*}";
+
+
+  channick_hilight = "$*";
+  chanhost_hilight = "{nickhost $*}";
+
+  channick = "$*";
+  chanhost = "{nickhost $*}";
+
+  channelhilight = "$*";
+
+  ban = "$*";
+
+
+  msgnick = "($0$1): ";
+
+
+
+  ownmsgnick = "%B{msgnick %c$0%n $1-%B}%n";
+  ownnick = "%w$*%n";
+
+  pubmsgnick = "%c{msgnick %B$0%n $1-%c}%n";
+  pubnick = "%w$*%n";
+
+  pubmsgmenick = "%r{msgnick $0 $1-%r}%n";
+  menick = "%W$*%n";
+
+  pubmsghinick = "{msgnick $1 $0$2-%n}";
+
+  msgchannel = "%K:%W$*%n";
+
+  privmsg = "%Kmsg from %B(%c$0%B):%n ";
+
+  ownprivmsg = "%Kmsg to %B(%c$1%B):%n ";
+
+  ownprivmsgnick = "%Kmsg to %B(%c$0%B):%n ";
+  ownprivnick = "%Kmsg to %B(%c$0%B):%n ";
+
+  privmsgnick = "%Kmsg from %B(%c$0%B):%n ";
+
+
+  action_core = "* $*";
+
+  action = "{action_core $*} ";
+
+  ownaction = "{action $*}";
+
+  ownaction_target = "{action_core $0}:$1%n ";
+
+  pvtaction = "(*) $* ";
+  pvtaction_query = "{action $*}";
+
+  pubaction = "{action $*}";
+
+
+
+  whois = "%#[ $[8]0 : $1- ]";
+
+  ownnotice = "[$0($1-)] ";
+  notice = "%K-%P$0-%K-%n ";
+  pubnotice_channel = ":$*";
+  pvtnotice_host = "";
+  servernotice = "!$* ";
+
+  ownctcp = "%m##%n $0[$1-] ";
+  ctcp = "%p##%n $*";
+
+  wallop = "$*: ";
+  wallop_nick = "$*";
+  wallop_action = " * $*%n ";
+
+  netsplit = "$*";
+  netjoin = "$*";
+
+  names_prefix = "%r##%n ";
+  names_nick = "$0$1- ";
+  names_nick_op = "{names_nick $*}";
+  names_nick_halfop = "{names_nick $*}";
+  names_nick_voice = "{names_nick $*}";
+  names_users = "$*";
+  names_channel = "$*";
+
+  dcc = "$*";
+  dccfile = "$*";
+
+  dccownmsg = "[$0($1-)] ";
+  dccownnick = "$*";
+  dccownquerynick = "$*";
+  dccownaction = "{action $*}";
+  dccownaction_target = "{action_core $0}:$1 ";
+
+  dccmsg = "[$1-($0)] ";
+  dccquerynick = "%G$*%n";
+  dccaction = "%W (*dcc*) $*%n %|";
+
+
+  sb_background = "%7%k";
+
+  sb_prompt_bg = "%n";
+  sb_info_bg = "%8";
+
+  sbstart = "";
+  sbend = " ";
+
+  topicsbstart = "{sbstart $*}";
+  topicsbend = "{sbend $*}";
+
+  prompt = "$*%B:%c:%n ";
+
+  sb = " ($*)";
+  sbmode = "(+$*)";
+  sbaway = " (Away)";
+  sbservertag = ":$0 ";
+  sbnickmode = "$0";
+
+
+  sb_act_sep = "$*";
+  sb_act_text = "$*";
+  sb_act_msg = "$*";
+  sb_act_hilight = "$*";
+  sb_act_hilight_color = "$0$1-%n";
+
+};
+
+formats = {
+  "fe-common/core" = {
+    timestamp = "{timestamp %%H.%%M.%%S} ";
+    own_msg_private_query = "{ownprivnick $0}$1";
+    join = "join [{nick_join $0}!$1] {channel $2}";
+    part = "part [{nick_part $0}!$1] {channel $2} {reason $3}";
+    quit = "quit [{nick_quit $0}!$1] {channel $3} {reason $2}";
+  };
+  "fe-common/irc" = {
+    ctcp_reply = "{ctcp CTCP {hilight $0} reply from {nick $1}: $2 }";
+    ctcp_reply_channel = "{ctcp CTCP {hilight $0} reply from {nick $1} in channel {channel $3}: $2 }";
+    ctcp_ping_reply = "{ctcp CTCP {hilight PING} reply from {nick $0}: $1.$[-3.0]2 seconds }";
+  };
+};

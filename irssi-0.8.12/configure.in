@@ -1,0 +1,891 @@
+AC_INIT(irssi, 0.8.12)
+AC_CONFIG_SRCDIR([src])
+AC_PREREQ(2.50)
+
+AC_CONFIG_HEADERS([config.h])
+AM_INIT_AUTOMAKE([1.9 no-define])
+
+AM_MAINTAINER_MODE
+
+AC_ISC_POSIX
+AC_PROG_CC
+AC_PROG_CPP
+AC_STDC_HEADERS
+AM_PROG_LIBTOOL
+
+AC_PATH_PROG(sedpath, sed)
+AC_PATH_PROG(perlpath, perl)
+
+dnl * --disable-static isn't a good idea, complain if it's used
+if test "x$enable_static" = "xno"; then
+	AC_ERROR([Don't give --disable-static option to configure])
+fi
+
+AC_CHECK_HEADERS(string.h stdlib.h unistd.h dirent.h sys/ioctl.h sys/resource.h)
+
+# check posix headers..
+AC_CHECK_HEADERS(sys/time.h sys/utsname.h regex.h)
+
+AC_SYS_LARGEFILE
+
+AC_ARG_WITH(socks,
+[  --with-socks            Build with socks support],
+	if test x$withval = xyes; then
+		want_socks=yes
+	else
+		if test "x$withval" = xno; then
+			want_socks=no
+		else
+			want_socks=yes
+		fi
+	fi,
+	want_socks=no)
+
+AC_ARG_WITH(textui,
+[  --with-textui           Build text frontend],
+	if test x$withval = xyes; then
+		want_textui=yes
+	else
+		if test "x$withval" = xno; then
+			want_textui=no
+		else
+			want_textui=yes
+		fi
+	fi,
+	want_textui=yes)
+
+AC_ARG_WITH(bot,
+[  --with-bot              Build irssi-bot],
+	if test x$withval = xyes; then
+		want_irssibot=yes
+	else
+		if test "x$withval" = xno; then
+			want_irssibot=no
+		else
+			want_irssibot=yes
+		fi
+	fi,
+	want_irssibot=no)
+
+AC_ARG_WITH(proxy,
+[  --with-proxy            Build irssi-proxy],
+	if test x$withval = xyes; then
+		want_irssiproxy=yes
+	else
+		if test "x$withval" = xno; then
+			want_irssiproxy=no
+		else
+			want_irssiproxy=yes
+		fi
+	fi,
+	want_irssiproxy=no)
+
+AC_ARG_WITH(terminfo,
+[  --with-terminfo         Use terminfo directly instead of curses],
+	if test x$withval = xyes; then
+		want_terminfo=yes
+	else
+		if test "x$withval" = xno; then
+			want_terminfo=no
+		else
+			want_terminfo=yes
+		fi
+	fi,
+	want_terminfo=yes)
+
+AC_ARG_WITH(modules,
+[  --with-modules          Specify what modules to build in binary],
+	if test x$withval != xyes -a x$withval != xno; then
+		build_modules="$withval"
+	fi)
+
+if test "x$prefix" != "xNONE"; then
+        prefix=`eval echo $prefix`
+	PERL_MM_PARAMS="INSTALLDIRS=perl PREFIX=$prefix"
+	perl_library_dir="PERL_USE_LIB"
+	perl_set_use_lib=yes
+
+	perl_prefix_note=yes
+fi
+
+AC_ARG_WITH(gc,
+[  --with-gc               Use garbage collector],
+	if test x$withval = xyes; then
+		want_gc=yes
+	else
+		if test "x$withval" = xno; then
+			want_gc=no
+		else
+			want_gc=yes
+		fi
+	fi,
+	want_gc=no)
+
+AC_ARG_WITH(perl-staticlib,
+[  --with-perl-staticlib   Specify that we want to link perl libraries
+                          statically in irssi, default is no],
+	if test x$withval = xyes; then
+		want_staticperllib=yes
+	else
+		if test "x$withval" = xno; then
+			want_staticperllib=no
+		else
+			want_staticperllib=yes
+		fi
+	fi,
+	want_staticperllib=no)
+
+
+AC_ARG_WITH(perl-lib,
+[  --with-perl-lib=[site|vendor|DIR]  Specify where to install the
+                          Perl libraries for irssi, default is site],
+	if test "x$withval" = xyes; then
+		want_perl=yes
+	elif test "x$withval" = xno; then
+		want_perl=no
+	elif test "x$withval" = xsite; then
+		want_perl=yes
+		perl_prefix_note=no
+		PERL_MM_PARAMS=""
+	elif test "x$withval" = xvendor; then
+		want_perl=yes
+		perl_prefix_note=no
+		if test -z "`$perlpath -v|grep '5\.0'`"; then
+			PERL_MM_PARAMS="INSTALLDIRS=vendor"
+		else
+			PERL_MM_PARAMS="INSTALLDIRS=perl PREFIX=`perl -e 'use Config; print $Config{prefix}'`"
+		fi
+		perl_library_dir="(vendor default - `$perlpath -e 'use Config; print $Config{archlib}'`)"
+	else
+		want_perl=yes
+		perl_prefix_note=no
+		PERL_MM_PARAMS="INSTALLDIRS=perl LIB=$withval"
+		perl_library_dir="PERL_USE_LIB"
+		perl_set_use_lib=yes
+	fi,
+	want_perl=yes)
+
+AC_ARG_WITH(perl,
+[  --with-perl[=yes|no|module]  Build with Perl support - also specifies
+                          if it should be built into main irssi binary
+                          (static, default) or as module],
+	if test x$withval = xyes; then
+		want_perl=static
+	elif test x$withval = xstatic; then
+		want_perl=static
+	elif test x$withval = xmodule; then
+		want_perl=module
+	else
+		want_perl=no
+	fi,
+	want_perl=static)
+
+AC_ARG_ENABLE(ipv6,
+[  --enable-ipv6           Enable IPv6 support],
+	if test x$enableval = xyes; then
+		want_ipv6=yes
+	else
+		if test "x$enableval" = xno; then
+			want_ipv6=no
+		else
+			want_ipv6=yes
+		fi
+	fi,
+	want_ipv6=yes)
+
+dnl **
+dnl ** SSL Library checks (OpenSSL)
+dnl **
+
+AC_ARG_ENABLE(ssl,
+	    [  --disable-ssl           Disable Secure Sockets Layer support],,
+	    enable_ssl=yes)
+
+dnl **
+dnl ** just some generic stuff...
+dnl **
+
+dnl * OS specific options
+case "$host_os" in
+  hpux*)
+    CFLAGS="$CFLAGS -D_XOPEN_SOURCE_EXTENDED"
+    ;;
+  *)
+    ;;
+esac
+
+
+AC_CHECK_FUNCS(mkfifo fcntl nl_langinfo)
+
+AC_CHECK_FUNC(socket, [], [
+	AC_CHECK_LIB(socket, socket, [
+		LIBS="$LIBS -lsocket"
+	])
+])
+
+AC_CHECK_FUNC(inet_addr, [], [
+	AC_CHECK_LIB(nsl, inet_addr, [
+		LIBS="$LIBS -lnsl"
+	])
+])
+
+dnl * gcc specific options
+if test "x$ac_cv_prog_gcc" = "xyes"; then
+  CFLAGS="$CFLAGS -Wall"
+fi
+
+dnl * socklen_t - AC_CHECK_TYPE() would be _really_ useful if it only would
+dnl * accept header files where to find the typedef..
+AC_MSG_CHECKING([for socklen_t])
+AC_CACHE_VAL(irssi_cv_type_socklen_t,
+[AC_TRY_COMPILE([
+#include <sys/types.h>
+#include <sys/socket.h>],
+[socklen_t t;],
+irssi_cv_type_socklen_t=yes,
+irssi_cv_type_socklen_t=no,
+)])
+if test $irssi_cv_type_socklen_t = no; then
+AC_DEFINE(socklen_t, int, Define to 'int' if <sys/socket.h> doesn't define.)
+fi
+AC_MSG_RESULT($irssi_cv_type_socklen_t)
+
+AC_CHECK_SIZEOF(int)
+AC_CHECK_SIZEOF(long)
+AC_CHECK_SIZEOF(long long)
+AC_CHECK_SIZEOF(off_t)
+
+if test $ac_cv_sizeof_off_t = 8; then
+  offt_64bit=yes
+else
+  offt_64bit=no
+fi
+
+if test x$ac_cv_sizeof_off_t = x$ac_cv_sizeof_long; then
+  # try to use unsigned long always first
+  AC_DEFINE_UNQUOTED(PRIuUOFF_T, "lu")
+  AC_DEFINE(UOFF_T_LONG)
+elif test x$ac_cv_sizeof_off_t = x$ac_cv_sizeof_int; then
+  # next try int
+  AC_DEFINE_UNQUOTED(PRIuUOFF_T, "u")
+  AC_DEFINE(UOFF_T_INT)
+elif test x$ac_cv_sizeof_off_t = x$ac_cv_sizeof_long_long; then
+  # and finally long long
+  AC_DEFINE_UNQUOTED(PRIuUOFF_T, "llu")
+  AC_DEFINE(UOFF_T_LONG_LONG)
+else
+  AC_ERROR([Couldn't find integer type for off_t])
+fi
+
+dnl **
+dnl ** check for socks
+dnl **
+
+if test "x$want_socks" = "xyes"; then
+	AC_CHECK_LIB(socks, connect, [
+		AC_DEFINE(HAVE_SOCKS,, Build with socks support)
+		LIBS="$LIBS -lsocks"
+		AC_CHECK_HEADER(socks.h, [
+			AC_DEFINE(HAVE_SOCKS_H)
+			CFLAGS="$CFLAGS -DSOCKS"
+			AC_MSG_RESULT(["socks5 library found, building with it"])
+		], [
+			AC_MSG_RESULT(["socks4 library found, building with it"])
+			CFLAGS="$CFLAGS -Dconnect=Rconnect -Dgetsockname=Rgetsockname -Dgetpeername=Rgetpeername -Dbind=Rbind -Daccept=Raccept -Dlisten=Rlisten -Dselect=Rselect"
+		])
+	])
+fi
+
+dnl **
+dnl ** fe-text checks
+dnl **
+
+for try in 1 2; do
+  if test $try = 1; then
+    glib_modules=gmodule
+  else
+    echo "*** trying without -lgmodule"
+    glib_modules=
+  fi
+  AM_PATH_GLIB_2_0(2.0.0,,, $glib_modules)
+  if test "$GLIB_LIBS"; then
+    if test $glib_modules = gmodule; then
+      AC_DEFINE(HAVE_GMODULE)
+      have_gmodule=yes
+    fi
+    break
+  fi
+done
+
+if test -z "$GLIB_LIBS"; then
+  echo
+  echo "*** If you don't have GLIB, you can get it from ftp://ftp.gtk.org/pub/glib/"
+  echo "*** We recommend you get the latest stable GLIB 2 version."
+  echo "*** Compile and install it, and make sure pkg-config finds it,"
+  echo "*** by adding the path where the .pc file is located to PKG_CONFIG_PATH"
+  echo
+
+  AC_ERROR([GLIB is required to build irssi.])
+fi
+
+LIBS="$LIBS $GLIB_LIBS"
+
+have_openssl=no
+if test "$enable_ssl" = "yes"; then
+  PKG_CHECK_MODULES(SSL, openssl, :, :)
+  if test "$SSL_LIBS"; then
+    CFLAGS="$CFLAGS $SSL_CFLAGS"
+    have_openssl=yes
+  else
+    AC_CHECK_LIB(ssl, SSL_read, [
+      AC_CHECK_HEADERS(openssl/ssl.h openssl/err.h, [
+        SSL_LIBS="-lssl -lcrypto"
+        AC_SUBST(SSL_LIBS)
+	have_openssl=yes
+      ])
+    ],, -lcrypto)
+  fi
+  if test "$have_openssl" = "yes"; then
+    AC_DEFINE(HAVE_OPENSSL,, Build with OpenSSL support)
+    LIBS="$LIBS $SSL_LIBS"
+  fi
+fi
+
+dnl **
+dnl ** Garbage Collector
+dnl **
+have_gc=no
+if test "x$want_gc" = xyes; then
+  AC_CHECK_LIB(gc, GC_malloc, [
+    AC_CHECK_HEADER(gc/gc.h, [
+      AC_DEFINE(HAVE_GC_GC_H)
+      AC_DEFINE(USE_GC)
+      LIBS="$LIBS -lgc"
+      have_gc=yes
+    ], [
+      AC_CHECK_HEADER(gc.h, [
+	AC_DEFINE(HAVE_GC_H)
+	AC_DEFINE(USE_GC)
+	LIBS="$LIBS -lgc"
+	have_gc=yes
+      ])
+    ])
+  ])
+fi
+
+dnl **
+dnl ** check if we can link dynamic libraries to modules
+dnl ** also checks if libraries are built to .libs dir
+dnl **
+
+AC_MSG_CHECKING([if we can link dynamic libraries with modules])
+DYNLIB_MODULES=no
+
+dnl ** compile object file
+cat > conftest.c <<EOF
+#include <math.h>
+int modfunc(){return (int)floor(1.2);}
+EOF
+
+./libtool --tag=CC --mode=compile $CC $CFLAGS -c conftest.c 2> /dev/null > /dev/null
+if test ! -s conftest.lo; then
+  AC_ERROR([error compiling test module])
+fi
+
+dnl ** link to library
+./libtool --tag=CC --mode=link $CC $CFLAGS $LDFLAGS -rpath /usr/lib conftest.lo -lm -o libconftest.la > /dev/null
+if test ! -s .libs/libconftest.a; then
+  AC_ERROR([error, can't even find .a library])
+fi
+
+dnl ** check if dynamic linking worked
+libfile=`grep '^library_names' libconftest.la|$sedpath "s/library_names='\(.*\)'.*/\1/"|$sedpath 's/.* \([[^ ]]*\)$/\1/'`
+if test ! -s .libs/$libfile; then
+  AC_MSG_RESULT([no, error linking test module])
+else
+  cat > conftest.c <<EOF
+#include <gmodule.h>
+main() {
+GModule *m; int (*modfunc)(void);
+m = g_module_open(".libs/$libfile", 0);
+if (!m) g_print("error loading: %s", g_module_error());
+else if (!g_module_symbol(m, "modfunc", (gpointer *) &modfunc))
+  g_print("modfunc() symbol not found from module");
+else if (modfunc() == 1) g_print("ok"); else g_print("wrong result?! 1 vs %d", modfunc());
+return 0; }
+EOF
+  $CC $CFLAGS $LDFLAGS conftest.c -o conftest $GLIB_CFLAGS $GLIB_LIBS 2> /dev/null > /dev/null
+  if test ! -s conftest; then
+    AC_MSG_RESULT([no, error compiling test program])
+  else
+    status="`./conftest`"
+    if test "x$status" = "xok"; then
+      DYNLIB_MODULES=yes
+      AC_MSG_RESULT([yes])
+    else
+      AC_MSG_RESULT([no, error running: $status])
+    fi
+  fi
+fi
+rm -rf conftest conftest.* libconftest.* .libs
+
+dnl **
+dnl ** curses checks
+dnl **
+
+if test "x$want_textui" = "xyes"; then
+	AC_CHECK_CURSES
+
+	TEXTUI_LIBS="$CURSES_LIBS"
+	if test "x$has_curses" = "xtrue"; then
+		old_libs=$LIBS
+		LIBS="$LIBS $CURSES_LIBS"
+		if test $want_terminfo = no; then
+			AC_CHECK_FUNC(use_default_colors, AC_DEFINE(HAVE_NCURSES_USE_DEFAULT_COLORS))
+			AC_CHECK_FUNC(idcok, AC_DEFINE(HAVE_CURSES_IDCOK))
+			AC_CHECK_FUNC(resizeterm, AC_DEFINE(HAVE_CURSES_RESIZETERM))
+			AC_CHECK_FUNC(wresize, AC_DEFINE(HAVE_CURSES_WRESIZE))
+		fi
+		AC_CHECK_FUNC(setupterm,, [
+		       	want_termcap=yes
+		])
+		LIBS=$old_libs
+	else
+		AC_CHECK_LIB(tinfo, setupterm, [
+		  TEXTUI_LIBS="-ltinfo"
+		  want_terminfo=yes
+		], AC_CHECK_LIB(termlib, tgetent, [
+		  TEXTUI_LIBS="-ltermlib"
+		  want_termcap=yes
+		], AC_CHECK_LIB(termcap, tgetent, [
+		  TEXTUI_LIBS="-ltermcap"
+		  want_termcap=yes
+		], [
+		  AC_ERROR(Terminfo/termcap not found - install ncurses-devel package)
+		  want_textui=no
+		])))
+        fi
+	AC_SUBST(TEXTUI_LIBS)
+
+       	if test "x$want_termcap" = "xyes"; then
+       		AC_CHECK_FUNC(tparm,, need_tparm=yes)
+	else
+		AC_DEFINE(HAVE_TERMINFO)
+       	fi
+fi
+
+dnl **
+dnl ** perl checks
+dnl **
+
+if test "$want_perl" != "no"; then
+	AC_MSG_CHECKING(for working Perl support)
+
+	if test -z "$perlpath"; then
+       		perl_check_error="perl binary not found"
+	else
+		PERL_CFLAGS=`$perlpath -MExtUtils::Embed -e ccopts 2>/dev/null`
+	fi
+
+	if test "x$ac_cv_prog_gcc" = "xyes" -a -z "`echo $host_os|grep 'bsd\|linux'`"; then
+		dnl * several systems have Perl compiled with native compiler
+		dnl * but irssi is being compiled with GCC. Here we try to
+		dnl * fix those command line options a bit so GCC won't
+		dnl * complain about them. Normally there's only few options
+		dnl * that we want to keep:
+		dnl * -Ddefine -Uundef -I/path -fopt -mopt
+		PERL_CFLAGS=`echo $PERL_CFLAGS | $perlpath -pe 's/^(.* )?-[^DUIfm][^ ]+/\1/g; s/^(.* )?\+[^ ]+/\1/g'`
+
+		PERL_EXTRA_OPTS="CCCDLFLAGS=\"-fPIC\""
+		AC_SUBST(PERL_EXTRA_OPTS)
+	fi
+
+	if test -z "$PERL_CFLAGS"; then
+		if test -n "$perl_check_error"; then
+			perl_check_error="Error getting perl CFLAGS"
+		fi
+		AC_MSG_RESULT([not found, building without Perl])
+		want_perl=no
+	else
+		PERL_LDFLAGS=`$perlpath -MExtUtils::Embed -e ldopts 2>/dev/null`
+
+		dnl * Perl 5.004 and older use perl_xxx variables while
+		dnl * later use PL_perl_xxx variables ..
+		have_pl_perl=`$perlpath -e 'print $] < 5.005 ? "no" : "yes";'`
+                if test "x$have_pl_perl" = "xyes"; then
+			AC_DEFINE(HAVE_PL_PERL)
+		fi
+
+		if test "x$DYNLIB_MODULES" = "xno" -a "$want_perl" != "static"; then
+			dnl * wanted perl as module, won't get it.
+			want_perl=static
+			perl_mod_error="Dynamic library dependencies don't work with modules"
+		fi
+
+		if test "$want_perl" != "static"; then
+			dnl * dynaloader.a -> libperl_dynaloader.la
+			DYNALOADER_A=`echo $PERL_LDFLAGS | $perlpath -pe 's/^(.* )*([[^ ]]*DynaLoader\.a).*/\2/'`
+		fi
+
+		dnl * don't check libperl.a if dynaloader.a wasn't found..
+		if test -n "$DYNALOADER_A"; then
+			dnl * find either libperl.a or libperl.so
+			LIBPERL_A=`echo "$PERL_LDFLAGS -L/usr/lib"|$perlpath -e 'foreach (split(/ /, <STDIN>)) { if (/^-L(.*)/) { my $dir=$1; if (\`ls $dir/libperl.so* 2>/dev/null\`) { print "-lperl"; last; }; if (-e "$dir/libperl.a") { print "$dir/libperl.a"; last } } };'`
+			if test -z "$LIBPERL_A"; then
+				perl_mod_error="Didn't find location of -lperl"
+				DYNALOADER_A=
+			elif test "$LIBPERL_A" = "-lperl"; then
+				LIBPERL_A=
+			fi
+		fi
+
+		dnl * remove all database stuffs
+		dnl * nsl is already in ldflags
+		dnl * libc is of course linked without needing -lc
+		dnl * -rdynamic must not be in LIBADD line
+		for word in -ldb -ldbm -lndbm -lgdbm -lc -rdynamic; do
+		  PERL_LDFLAGS=`echo $PERL_LDFLAGS | $sedpath -e "s/$word //" -e "s/$word$//"`
+		done
+
+		case "$host_os" in
+		  linux*)
+		    PERL_LDFLAGS=`echo $PERL_LDFLAGS | $sedpath -e 's/-lposix //' -e 's/-lposix$//'`
+		    ;;
+		  hpux*)
+		    if test "x$ac_cv_prog_gcc" = "xyes"; then
+		      PERL_CFLAGS=`echo $PERL_CFLAGS | $sedpath -e 's/-Ae //' -e 's/-Ae$//'`
+		      PERL_LDFLAGS=`echo $PERL_LDFLAGS | $sedpath -e 's/-Ae //' -e 's/-Ae$//'`
+		    fi
+		    ;;
+		  *)
+		    ;;
+		esac
+
+		dnl * check that perl's ldflags actually work
+		echo "main(){perl_alloc(); return 0;}" > conftest.c
+		$CC $CFLAGS conftest.c -o conftest $LDFLAGS $PERL_LDFLAGS 2> perl.error.tmp > /dev/null
+		if test ! -s conftest -a "x$ignore_perl_errors" = "x"; then
+			perl_check_error="Error linking with perl libraries: $PERL_LDFLAGS: `cat perl.error.tmp`"
+			AC_MSG_RESULT([error linking with perl libraries, building without Perl])
+			want_perl=no
+		fi
+
+		rm -f perl.error.tmp
+	fi
+
+	if test "x$want_perl" != "xno"; then
+		if test "x$want_perl" = "xstatic"; then
+			AC_MSG_RESULT(ok)
+		elif test -z "$DYNALOADER_A"; then
+			AC_MSG_RESULT([error parsing ldopts, building Perl into irssi binary instead of as module])
+			want_perl=static
+		else
+			AC_MSG_RESULT(ok)
+			PERL_LDFLAGS=`echo $PERL_LDFLAGS | $perlpath -pe 's/^(.* )*[[^ ]]*DynaLoader\.a/\1libperl_dynaloader.la/'`
+			if test -n "$LIBPERL_A"; then
+				PERL_LDFLAGS=`echo $PERL_LDFLAGS | $sedpath -e 's/-lperl /libperl_orig.la /' -e 's/-lperl$/libperl_orig.la$/'`
+			fi
+			AC_SUBST(LIBPERL_A)
+			AC_SUBST(DYNALOADER_A)
+		fi
+
+		if test "x$want_perl" = "xstatic"; then
+			dnl * building with static perl support
+			dnl * all PERL_LDFLAGS linking is done in fe-text
+			PERL_LINK_FLAGS="$PERL_LDFLAGS"
+			PERL_LINK_LIBS="../perl/libperl_core_static.la"
+			PERL_FE_LINK_LIBS="../perl/libfe_perl_static.la"
+			PERL_LDFLAGS=
+			AC_DEFINE(HAVE_STATIC_PERL)
+
+			dnl * build only static library of perl module
+			perl_module_lib=
+			perl_module_fe_lib=
+			perl_static_lib=libperl_core_static.la
+			perl_static_fe_lib=libfe_perl_static.la
+			PERL_LIBTOOL='$(SHELL) $(top_builddir)/libtool'
+		else
+			dnl * build dynamic library of perl module
+			perl_module_lib=libperl_core.la
+			perl_module_fe_lib=libfe_perl.la
+			perl_static_lib=
+			perl_static_fe_lib=
+			PERL_LIBTOOL='$(SHELL) $(top_builddir)/libtool'
+		fi
+
+		if test "x$want_staticperllib" = "xyes"; then
+			PERL_MM_PARAMS="$PERL_MM_PARAMS LINKTYPE=static"
+			PERL_LINK_LIBS="$PERL_LINK_LIBS ../perl/common/blib/arch/auto/Irssi/Irssi.a ../perl/irc/blib/arch/auto/Irssi/Irc/Irc.a ../perl/ui/blib/arch/auto/Irssi/UI/UI.a ../perl/textui/blib/arch/auto/Irssi/TextUI/TextUI.a"
+			PERL_STATIC_LIBS=1
+		else
+			PERL_STATIC_LIBS=0
+		fi
+
+		# figure out the correct @INC path - we'll need to do this
+		# through MakeMaker since it's difficult to get it right
+		# otherwise.
+		if test "x$perl_set_use_lib" = "xyes"; then
+			perl -e 'use ExtUtils::MakeMaker; WriteMakefile("NAME" => "test", "MAKEFILE" => "Makefile.test");' $PERL_MM_PARAMS >/dev/null
+			PERL_USE_LIB=`perl -e 'open(F, "Makefile.test"); while (<F>) { chomp; if (/^(\w+) = (.*$)/) { $keys{$1} = $2; } }; $key = $keys{INSTALLARCHLIB}; while ($key =~ /\\$\((\w+)\)/) { $value = $keys{$1}; $key =~ s/\\$\($1\)/$value/; }; print $key;'`
+			rm -f Makefile.test
+		fi
+
+		AC_SUBST(perl_module_lib)
+		AC_SUBST(perl_static_lib)
+		AC_SUBST(perl_module_fe_lib)
+		AC_SUBST(perl_static_fe_lib)
+		AC_SUBST(PERL_LIBTOOL)
+
+		AC_SUBST(PERL_LINK_FLAGS)
+		AC_SUBST(PERL_LINK_LIBS)
+                AC_SUBST(PERL_FE_LINK_LIBS)
+
+		AC_SUBST(PERL_LDFLAGS)
+		AC_SUBST(PERL_CFLAGS)
+
+		AC_SUBST(PERL_USE_LIB)
+		AC_SUBST(PERL_MM_PARAMS)
+		AC_SUBST(PERL_STATIC_LIBS)
+	fi
+fi
+
+dnl ** check what we want to build
+AM_CONDITIONAL(BUILD_TEXTUI, test "$want_textui" = "yes")
+AM_CONDITIONAL(BUILD_IRSSIBOT, test "$want_irssibot" = "yes")
+AM_CONDITIONAL(BUILD_IRSSIPROXY, test "$want_irssiproxy" = "yes")
+AM_CONDITIONAL(HAVE_PERL, test "$want_perl" != "no")
+AM_CONDITIONAL(HAVE_STATIC_PERL, test "$want_perl" = "static")
+AM_CONDITIONAL(NEED_TPARM, test "$need_tparm" = "yes")
+AM_CONDITIONAL(USE_CURSES, test "$want_terminfo" != "yes" -a "$want_termcap" != "yes")
+
+# move LIBS to PROG_LIBS so they're not tried to be used when linking eg. perl libraries
+PROG_LIBS=$LIBS
+LIBS=
+AC_SUBST(PROG_LIBS)
+
+dnl **
+dnl ** Keep all the libraries here so each frontend doesn't need to
+dnl ** keep track of them all
+dnl **
+dnl ** (these could be made configurable)
+
+CHAT_MODULES="irc"
+irc_MODULES="dcc flood notifylist"
+if test -n "$build_modules"; then
+	irc_MODULES="$irc_MODULES $build_modules"
+fi
+
+dnl ****************************************
+
+AC_SUBST(CHAT_MODULES)
+AC_SUBST(irc_MODULES)
+
+CORE_LIBS="../core/libcore.a ../lib-config/libirssi_config.a ../lib-popt/libpopt.a"
+FE_COMMON_LIBS=""
+
+CHAT_LIBS=""
+for c in $CHAT_MODULES; do
+	module_inits=""
+	module_deinits=""
+	fe_module_inits=""
+	fe_module_deinits=""
+	CHAT_LIBS="$CHAT_LIBS ../$c/lib$c.a ../$c/core/lib${c}_core.a"
+	if test -f $srcdir/src/fe-common/$c/module.h; then
+		FE_COMMON_LIBS="$FE_COMMON_LIBS../fe-common/$c/libfe_common_$c.a "
+	fi
+	for s in `eval echo \\$${c}_MODULES`; do
+		CHAT_LIBS="$CHAT_LIBS ../$c/$s/lib${c}_$s.a"
+		module_inits="$module_inits ${c}_${s}_init();"
+		module_deinits="${c}_${s}_deinit(); $module_deinits"
+		if test -f $srcdir/src/fe-common/$c/$s/module.h; then
+			FE_COMMON_LIBS="$FE_COMMON_LIBS../fe-common/$c/$s/libfe_${c}_$s.a "
+			fe_module_inits="$fe_module_inits fe_${c}_${s}_init();"
+			fe_module_deinits="fe_${c}_${s}_deinit(); $fe_module_deinits"
+		fi
+	done
+
+	mkdir -p src/$c
+	file="src/$c/$c.c"
+        echo "/* this file is automatically generated by configure - don't change */" > $file
+	echo "void ${c}_core_init(void); void ${c}_core_deinit(void);" >> $file
+	if test -n "$module_inits"; then
+        	echo "$module_inits" | $sedpath -e 's/()/(void)/g' -e 's/ /void /g' >> $file
+        	echo "$module_deinits" | $sedpath -e 's/ *$//' -e 's/()/(void)/g' -e 's/ /void /g' -e 's/^/void /' >> $file
+	fi
+        echo "void ${c}_init(void) { ${c}_core_init(); $module_inits }" >> $file
+        echo "void ${c}_deinit(void) { $module_deinits ${c}_core_deinit(); }" >> $file
+
+	if test -f $srcdir/src/fe-common/$c/module.h; then
+		mkdir -p src/fe-common/$c
+	        file="src/fe-common/$c/${c}-modules.c"
+	        echo "/* this file is automatically generated by configure - don't change */" > $file
+                if test -n "$fe_module_inits"; then
+		        echo "$fe_module_inits" | $sedpath -e 's/()/(void)/g' -e 's/ /void /g' >> $file
+		        echo "$fe_module_deinits" | $sedpath -e 's/ *$//' -e 's/()/(void)/g' -e 's/ /void /g' -e 's/^/void /' >> $file
+		fi
+	        echo "void fe_${c}_modules_init(void) { $fe_module_inits }" >> $file
+	        echo "void fe_${c}_modules_deinit(void) { $fe_module_deinits }" >> $file
+	fi
+done
+
+FE_COMMON_LIBS="$FE_COMMON_LIBS../fe-common/core/libfe_common_core.a"
+
+dnl ** common libraries needed by frontends
+COMMON_NOUI_LIBS="$CHAT_LIBS $CORE_LIBS"
+COMMON_LIBS="$FE_COMMON_LIBS $COMMON_NOUI_LIBS"
+AC_SUBST(COMMON_NOUI_LIBS)
+AC_SUBST(COMMON_LIBS)
+
+dnl **
+dnl ** IPv6 support
+dnl **
+
+have_ipv6=no
+if test "x$want_ipv6" = "xyes"; then
+	AC_MSG_CHECKING([for IPv6])
+	AC_CACHE_VAL(irssi_cv_type_in6_addr,
+	[AC_TRY_COMPILE([
+	#include <sys/types.h>
+	#include <sys/socket.h>
+	#include <netinet/in.h>
+	#include <netdb.h>
+	#include <arpa/inet.h>],
+	[struct in6_addr i;],
+	have_ipv6=yes,
+	)])
+	if test $have_ipv6 = yes; then
+		AC_DEFINE(HAVE_IPV6)
+	fi
+	AC_MSG_RESULT($have_ipv6)
+fi
+
+dnl **
+dnl ** IRSSI_VERSION_DATE and IRSSI_VERSION_TIME
+dnl **
+VERSION_DATE=`head -n 2 $srcdir/ChangeLog| grep '^r' | awk '{print $5}' | tr -d '-'`
+VERSION_TIME=`head -n 2 $srcdir/ChangeLog| grep '^r' | awk '{print $6}' | awk -F: '{printf "%d\n", $1$2}'`
+AC_SUBST(VERSION_DATE)
+AC_SUBST(VERSION_TIME)
+
+AC_CONFIG_FILES([
+Makefile
+src/Makefile
+src/core/Makefile
+src/irc/Makefile
+src/irc/core/Makefile
+src/irc/dcc/Makefile
+src/irc/notifylist/Makefile
+src/irc/proxy/Makefile
+src/irc/flood/Makefile
+src/fe-common/Makefile
+src/fe-common/core/Makefile
+src/fe-common/irc/Makefile
+src/fe-common/irc/dcc/Makefile
+src/fe-common/irc/notifylist/Makefile
+src/fe-none/Makefile
+src/fe-text/Makefile
+src/lib-config/Makefile
+src/lib-popt/Makefile
+src/perl/Makefile
+src/perl/common/Makefile.PL
+src/perl/irc/Makefile.PL
+src/perl/ui/Makefile.PL
+src/perl/textui/Makefile.PL
+scripts/Makefile
+scripts/examples/Makefile
+docs/Makefile
+docs/help/Makefile
+docs/help/in/Makefile
+irssi-version.h
+irssi.spec
+])
+
+AC_OUTPUT
+
+dnl ** for building from objdir
+old_dir=`pwd` && cd $srcdir && whole_dir=`pwd` && cd $old_dir
+if test "x$old_dir" != "x$whole_dir"; then
+	if test "x$want_perl" != "xno"; then
+		subdirfiles=""
+		for i in $whole_dir/src/perl/common $whole_dir/src/perl/irc $whole_dir/src/perl/ui $whole_dir/src/perl/textui; do
+			subdirfiles=`echo $subdirfiles $i/typemap $i/module.h $i/*.pm $i/*.xs`
+		done
+		for file in $whole_dir/src/perl/*.[[ch]] $whole_dir/src/perl/libperl_orig.la $whole_dir/src/perl/libperl_dynaloader.la $subdirfiles; do
+			link=`echo $file|$sedpath "s?$whole_dir/??"`
+			rm -f $link
+			$LN_S $file $link
+		done
+	fi
+fi
+
+echo
+
+if test "x$want_textui" = "xno"; then
+	text=no
+elif test "x$want_termcap" = "xyes"; then
+	text="yes, using termcap"
+elif test "x$want_terminfo" = "xyes"; then
+	text="yes, using terminfo"
+else
+	text="yes, using curses"
+fi
+echo "Building text frontend ........... : $text"
+echo "Building irssi bot ............... : $want_irssibot"
+echo "Building irssi proxy ............. : $want_irssiproxy"
+if test "x$have_gmodule" = "xyes"; then
+	echo "Building with module support ..... : yes"
+else
+	echo "Building with module support : NO!! /LOAD will not work!"
+	echo " - You're missing gmodule (comes with glib) for some reason,"
+	echo "   or it doesn't work in your system."
+fi
+
+if test "x$want_perl" = "xstatic"; then
+	echo "Building with Perl support ....... : static (in irssi binary)"
+elif test "x$want_perl" = "xmodule"; then
+	echo "Building with Perl support ....... : module"
+else
+	if test -z "$perl_check_error"; then
+		echo "Building with Perl support ....... : no"
+	else
+		echo "Building with Perl support ....... : NO!"
+		echo " - $perl_check_error"
+	fi
+fi
+
+if test "x$want_perl" != "xno" -a "x$perl_mod_error" != "x"; then
+	echo " - NOTE: Perl support will be compiled statically to irssi, not as"
+	echo "   a module as requested. Reason:"
+	echo "   $perl_mod_error"
+
+	if test -f /etc/debian_version; then
+		echo " - Try: apt-get install libperl-dev"
+	fi
+fi
+
+if test "x$want_perl" != "xno"; then
+	if test "$perl_library_dir" = "PERL_USE_LIB"; then
+		perl_library_dir=$PERL_USE_LIB
+	fi
+	if test -z "$perl_library_dir"; then
+		perl_library_dir="(site default - `$perlpath -e 'use Config; print $Config{sitearch}'`)"
+	fi
+       	echo "Perl library directory ........... : $perl_library_dir"
+	if test "x$perl_prefix_note" = "xyes"; then
+		echo "  - NOTE: This was automatically set to the same directory you gave with"
+		echo "  --prefix. If you want the perl libraries to install to their 'correct'"
+		echo "  path, you'll need to give --with-perl-lib=site option to configure."
+		echo "  Anyway, installing perl to this directory should work just as well."
+	fi
+fi
+echo "Install prefix ................... : $prefix"
+
+echo
+
+echo "Building with IPv6 support ....... : $have_ipv6"
+echo "Building with SSL support ........ : $have_openssl"
+echo "Building with 64bit DCC support .. : $offt_64bit"
+echo "Building with garbage collector .. : $have_gc"
+
+echo
+echo "If there are any problems, read the INSTALL file."

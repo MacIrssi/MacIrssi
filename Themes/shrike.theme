@@ -1,0 +1,171 @@
+# Shrike.theme by Riku Lindblad
+
+# these characters are automatically replaced with specified color
+replaces = { "[]<>=" = "%K$0-%n"; };
+
+# %n specifies the color set in higher level, like in
+#   {ctcp {nick $0-} requested ... }
+# if the ctcp was specified as "%g$0-" and nick was "%W$0-%n", the
+# "requested" text would be green
+
+# You also need these to make this theme fully functional:
+# (To fill up the lower statusbar)
+#
+# Add this to your irssi config, in the statusbar = {} section
+#
+#   info = {  
+#   	 type = "root";
+#   	 placement = "bottom";
+#   	 position = "0";
+#         visible = "always";
+#         items = {
+#               barstart = { priority = "100"; };
+#               lag = { priority = "-1"; };
+#               loadavg = { };
+#               mail = { };
+#               hitcount = { };
+#               stats = { };
+#               barend = { priority = "100"; alignment = "right"; };
+#       	 };
+#    };
+#
+#  Needed perl modules
+#
+# loadavg.pl   | unix load average
+# mail.pl      | mail spool checker
+# hitcount.pl  | homepage hit counter
+# bandwidth.pl | unix bandwidth meter
+#
+
+abstracts = {
+  # generic
+  # start line with [bold black -] [bold white !] [bold black -]
+  line_start = "%K-%W!%K-%n ";
+  timestamp = "[$0-]";
+  hilight = "%_$0-%_";
+  error = "%R$0-%n";
+
+  channel = "%_$0-%_";
+  nick = "%_$0-%_";
+  nickhost = "[$0-]";
+  server = "%_$0-%_";
+  comment = "[$0-]";
+  reason = "{comment $0-}";
+  mode = "%_$0-%_";
+
+  # modes
+  nick_target = "{comment %_$0-%_}";
+  nick_source = "%C$0-%n";
+
+  # channel specific messages
+  nick_join = "%C$0-%n";
+  nick_part = "%c$0-%n";
+  nick_quit = "%B$0-%n";
+
+  channick_hilight = "%c$0-%n";
+  chanhost_hilight = "{nickhost $0-%n}";
+  channick = "%c$0-%n";
+  chanhost = "{nickhost $0-}";
+  channelhilight = "%c$0-%n";
+  ban = "%c$0-%n";
+
+  # messages
+  msgnick = "<$0$1-> %|";
+  ownmsgnick = "{msgnick $0-}";
+  pubmsgnick = "{msgnick $0-}";
+  pubmsgmenick = "{msgnick $0-}";
+  pubmsghinick = "{msgnick $1$0$2-}";
+  msgownnick = "%W$0-%n";
+  msgchannel = "%K:%c$0-%n";
+  msgme = "%Y$0-%n";
+  privmsg = "[%R$0%K(%r$1-%K)%n] ";
+  privmsgnick = "{msgnick %R$0-%n}";
+  ownprivmsg = "[%r$0%K(%R$1-%K)-%n] ";
+
+  # actions
+  action = "%W * $0-%n ";
+  ownaction = "{action $0-}";
+  pvtaction = "%W (*) $0-%n ";
+  pvtaction_query = "{action $0-}";
+  pubaction = "{action $0-}";
+
+  # notices
+  # own notices look like shit, but who uses them anyway =)
+  ownnotice = "[%r$0%K(%R$1-%K)]%n ";
+  #ownnotice "$0 $1 ";
+  # notices look just like ordinary messages, except 
+  # the nick is surrounded by minus-signs (-nick- instead of <nick>)
+  notice = "%K-%W$0-%K-%n ";
+  pubnotice_channel = "$0-";
+  pvtnotice_host = "%K%m$0-%K";
+  servernotice = "%g!$0-%n ";
+
+  # ctcp
+  ownctcp = "[%r$0%K(%R$1-%K)] ";
+  ctcp = "%g$0-%n";
+
+  # wall
+  ownwall = "[%W$0%K/%c$1-] ";
+
+  # wallops
+  wallop = "%W$0-%n: ";
+  wallop_nick = "%n$0-";
+  wallop_action = "%W * $0-%n ";
+
+  # netsplits
+  netsplit = "%R$0-%n";
+  netjoin = "%C$0-%n";
+
+  # /names list
+  names_nick = "[%_$0%_$1-] ";
+  names_users = "[%g$0-%n]";
+  names_channel = "%G$0-%n";
+
+  # dcc
+  dcc = "%g$0-%n";
+  dccfile = "%_$0-%_";
+
+  dccownmsg = "[%r$0%K(%R$1-%K)%n] ";
+  dccownaction = "{action $0-}";
+  dccmsg = "[%G$1-%K(%g$0%K)%n] ";
+  dccquerynick = "%G$0-%n";
+  dccaction = "%W (*dcc*) $0-%n %|";
+
+  # timestamping with HH:MM:SS
+
+
+  # topic bar
+  sb_topic_bg = "%7%k";
+
+  # black background on status bar
+  sb_background = "%0";
+  # status bar items are enclosed in bold white braces 
+  # with white text inside "[item]"
+  sb = "%W[%w$0-%W]";
+  # Like so -> [6:#irssi|+lnst 256]
+  sbmode = "%W|%w+$0-%W";
+  # away. [blue line] [yellow away] [blue line]
+  sbaway = " %W(%B---- %YAway%N %B----%N%W)";
+  sbservertag = ":%w$0 %W(%Kchange => ^X%W)";
+  sbmore = "%W[ %Gmore %W]";
+  sblag = "%W{sb %wLag: %w$0-%W}";
+  sbmail = "%W{sb %wMail: $0-%W}";
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+  sbact_act = "Act: $0-%n";
+  sbact_det = " Det: $0-";
+  # black background on info bar
+  sb_info_bg = "%0";
+};
+formats = {
+  "fe-common/core" = {
+    msg_private_query = "{privmsgnick $0}$2";
+    join = "%K[%N{nick_join $0}%K!%N$1%K]%N has joined";
+    part = "%K[%N{nick_part $0}%K!%N$1%K]%N has left {reason $3}";
+    quit = "%K[%N{nick_quit $0}%K!%N$1%K]%N has quit {reason $2}";
+  };
+  "fe-common/irc" = {
+    chanmode_change = "{nick_target $1} by {nick_source $2}";
+    notice_private = "{notice $0%N%K!%N{pvtnotice_host $1}}$2";
+    notice_public = "{notice $0}$2";
+  };
+};

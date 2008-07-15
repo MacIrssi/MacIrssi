@@ -1,0 +1,22 @@
+#ifndef __IRSSI_CORE_H
+#define __IRSSI_CORE_H
+
+/* for determining what GUI is currently in use: */
+#define IRSSI_GUI_NONE	0
+#define IRSSI_GUI_TEXT	1
+#define IRSSI_GUI_GTK	2
+#define IRSSI_GUI_GNOME	3
+#define IRSSI_GUI_QT   	4
+#define IRSSI_GUI_KDE  	5
+#define IRSSI_GUI_AQUA 	6
+
+extern int irssi_gui;
+extern int irssi_init_finished; /* TRUE after "irssi init finished" signal is sent */
+extern int reload_config; /* TRUE after received SIGHUP. */
+
+void core_init_paths(int argc, char *argv[]);
+
+void core_init(void);
+void core_deinit(void);
+
+#endif

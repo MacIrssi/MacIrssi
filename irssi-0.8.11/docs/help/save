@@ -1,0 +1,9 @@
+
+SAVE %|[<file>]
+
+     -formats: Save all /FORMATs into theme file
+
+Saves the current Irssi configuration into the configuration file.
+
+See also: RELOAD
+

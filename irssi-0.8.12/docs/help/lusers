@@ -1,0 +1,5 @@
+
+LUSERS %|[<server mask> [<remote server>]]
+
+Shows user statistics of the current IRC network.
+

@@ -1,0 +1,132 @@
+# stevee.theme by Istvan Sebestyen <stevee@alphanet.ch>
+# Last Modified: Sat Mar  2 16:04:20 CET 2002
+
+# these characters are automatically replaced with specified color
+replaces = { "[]<>=" = "%K$0-%n"; };
+
+abstracts = {
+  line_start = "%K-%K=%K-%n ";
+  timestamp = "%K$0-";
+  timestamp_format = "%T";
+  hilight = "%_$0-%_";
+  error = "%R$0-%n";
+
+  channel = "%_$0-%_";
+  nick = "%_$0-%_";
+  nickhost = "[$0-]";
+  server = "%_$0-%_";
+  comment = "[$0-]";
+  reason = "{comment $0-}";
+  mode = "%_$0-%_";
+
+  ## Modes
+  nick_target = "{comment %_$0-%_}";
+  nick_source = "%C$0-%n";
+
+  ## Channel specific messages
+  nick_join = "%C$0-%n";
+  nick_part = "%c$0-%n";
+  nick_quit = "%n$0-%n";
+
+  channick_hilight = "%M$0-%n";
+  chanhost_hilight = "{nickhost %g$0-%n}";
+  channick = "%m$0-%n";
+  chanhost = "{nickhost $0-}";
+  channelhilight = "%M$0-%n";
+  ban = "%r$0-%n";
+
+  ## Messages
+  ownnick = "%C$0-%n";
+  pubnick = "%c$0-%n";
+  msgnick = "<$0$1-> %|";
+  ownmsgnick = "{msgnick %B$0-}";
+  pubmsgnick = "{msgnick %B$0-}";
+  pubmsgmenick = "{msgnick %B$0-}";
+  pubmsghinick = "{msgnick $1$0$2-}";
+  msgownnick = "%B$0-%n";
+  msgchannel = "%K:%c$0-%n";
+  msgme = "%Y$0-%n";
+  privmsg = "[%M$0%K(%m$1-%K)%n] ";
+  privmsgnick = "{msgnick %G$0-%n}";
+  ownprivmsg = "[%r$0%K(%R$1-%K)-%n] ";
+  ownprivmsgnick = "{msgnick $0-}";
+  ownprivnick = "%g$0-%n";
+
+  ## Actions
+  action = "%c * $0-%n ";
+  ownaction = "{action %C$0-}";
+  pvtaction = "%g (*) $0-%n ";
+  pvtaction_query = "{action %g$0-}";
+  pubaction = "{action $0-}";
+
+  ## Notices
+  ownnotice = "[%r$0%K(%R$1-%K)]%n ";
+  notice = "%K-%W$0-%K-%n ";
+  pubnotice_channel = "$0-";
+  pvtnotice_host = "%K%m$0-%K";
+  servernotice = "%g!$0-%n ";
+
+  ## CTCP
+  ownctcp = "[%r$0%K(%R$1-%K)] ";
+  ctcp = "%g$0-%n";
+
+  ## Wall
+  ownwall = "[%W$0%K/%c$1-] ";
+
+  ## Wallops
+  wallop = "%W$0-%n: ";
+  wallop_nick = "%n$0-";
+  wallop_action = "%W * $0-%n ";
+
+  ## Netsplit
+  netsplit = "%R$0-%n";
+  netjoin = "%C$0-%n";
+
+  ## Names list
+  names_nick = "[%_%C$0%_$1-] ";
+  names_users = "[%g$0-%n]";
+  names_channel = "%G$0-%n";
+
+  ## DCC
+  dcc = "%g$0-%n";
+  dccfile = "%_$0-%_";
+
+  dccownmsg = "[%r$0%K(%R$1-%K)%n] ";
+  dccownaction = "{action $0-}";
+  dccmsg = "[%G$1-%K(%g$0%K)%n] ";
+  dccquerynick = "%G$0-%n";
+  dccaction = "%W (*dcc*) $0-%n %|";
+
+  ## Statusbar
+
+  # Topic bar
+  sb_topic_bg = "%0%B";
+
+  sb_background = "%0";
+  sb = "%b[%B$0-%b]";
+  sbmode = "%C|%B%c+%C$0-%b";
+  sbaway = " %W[%B-=: %YAway%N %B:=-%N%W]";
+  sbservertag = ":%w$0 %W(%Kchange => ^X%W)";
+  sbmore = "%b[ %Gmore %b]";
+  sblag = "%b{sb %BLag: %c$0-%b}";
+  sbmail = "%b{sb %BMail: $0-%b}";
+  sbact = "{sb {sbact_act $0}{sbact_det $1}}";
+  sbact_act = "Act: $0-%n";
+  sbact_det = " Det: $0-";
+  sb_info_bg = "%0";
+};
+
+formats = {
+  "fe-common/core" = {
+    timestamp = "{timestamp $Z} ";
+    msg_private_query = "{privmsgnick $0}$2";
+    join = "%K%N{nick_join $0}%K [%c$1]%N has joined {channel $2}";
+    part = "%K%N{nick_part $0}%K [%n$1]%N has left {channel $2} {reason $3}";
+    quit = "%K%N{nick_quit $0}%K [%n$1]%N has quit {channel $3} {reason $2}";
+  };
+  "fe-common/irc" = {
+    chanmode_change = "{nick_target $1} by {nick_source $2}";
+    notice_private = "{notice $0%N%K!%N{pvtnotice_host $1}}$2";
+    notice_public = "{notice $0}$2";
+  };
+};

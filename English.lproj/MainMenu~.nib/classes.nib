@@ -1,0 +1,83 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                activeChannel = id; 
+                closeChannel = id; 
+                editCurrentChannel = id; 
+                endErrorWindow = id; 
+                endReasonWindow = id; 
+                findNext = id; 
+                findPrevious = id; 
+                gotoChannel = id; 
+                makeSearchFieldFirstResponder = id; 
+                nextChannel = id; 
+                performShortcut = id; 
+                previousChannel = id; 
+                sendCommand = id; 
+                showFontPanel = id; 
+                showPreferencePanel = id; 
+                useSelectionForFind = id; 
+            }; 
+            CLASS = AppController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                box = id; 
+                channelBar = ChannelBar; 
+                channelMenu = NSMenu; 
+                channelTableView = CustomTableView; 
+                editCurrentChannelMenuItem = NSMenuItem; 
+                errorTextField = NSTextField; 
+                errorWindow = NSWindow; 
+                findNextMenuItem = NSMenuItem; 
+                findPreviousMenuItem = NSMenuItem; 
+                inputTextField = NSTextField; 
+                mainWindow = NSWindow; 
+                reasonTextField = NSTextField; 
+                reasonWindow = NSWindow; 
+                shortcutsMenu = NSMenu; 
+                tabView = NSTabView; 
+                updateChecker = UKUpdateChecker; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = ChannelBar; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {tabView = NSTabView; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {CLASS = CustomTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {
+            ACTIONS = {changeServer = id; }; 
+            CLASS = CustomWindow; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                controller = AppController; 
+                inputTextField = NSTextField; 
+                searchField = NSSearchField; 
+            }; 
+            SUPERCLASS = NSWindow; 
+        }, 
+        {
+            ACTIONS = {pageDown = id; pageUp = id; scrollBottom = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = FloaterWindow; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {appController = AppController; message = NSTextField; }; 
+            SUPERCLASS = NSWindow; 
+        }, 
+        {
+            ACTIONS = {checkForUpdates = id; takeBoolFromObject = id; }; 
+            CLASS = UKUpdateChecker; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {prefsButton = NSButton; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

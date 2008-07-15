@@ -1,0 +1,7 @@
+
+ISON %|<nicks>
+
+Tells whether specified nicks (space-separated) are online.
+
+See also: WHOIS, WHOWAS, NOTIFY
+

@@ -1,0 +1,13 @@
+
+HELP %|[<command>]
+
+Shows help on commands. Try:
+  /HELP command
+
+Also try, for example:
+  /SET beep
+or
+  /SET auto
+
+See also: 
+

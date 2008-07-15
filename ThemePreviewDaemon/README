@@ -1,0 +1,6 @@
+This is a hack to create previews for themes in MacIrssi. It works by connecting
+a scaled down irssi client to a fake IRC server which sends a predefined set of
+IRC protocol messages (simulation of a session). The irssi client parses the IRC
+messages and sends the result to MacIrssi via remote messaging. And technically
+it is not a deamon, but I still think it is a good name.
+
