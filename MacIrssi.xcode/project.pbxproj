@@ -1504,7 +1504,7 @@
 		C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_dcc.a; path = "irssi-0.8.11/src/fe-common/irc/dcc/libfe_irc_dcc.a"; sourceTree = "<group>"; };
 		C2CC3AF50C09EEAF001C0DDD /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "irssi-0.8.11/src/core/libcore.a"; sourceTree = "<group>"; };
 		C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_notifylist.a; path = "irssi-0.8.11/src/fe-common/irc/notifylist/libfe_irc_notifylist.a"; sourceTree = "<group>"; };
-		C2CC3B030C09F404001C0DDD /* libglib-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libglib-2.0.dylib"; sourceTree = "<group>"; };
+		C2CC3B030C09F404001C0DDD /* libglib-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libglib-2.0.dylib"; path = "/Users/matt/Projects/MacIrssi/glib/libglib-2.0.dylib"; sourceTree = "<absolute>"; };
 		C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libgmodule-2.0.dylib"; sourceTree = "<group>"; };
 		C2CC3B090C09F404001C0DDD /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libiconv.dylib; sourceTree = "<group>"; };
 		C2CC3B0C0C09F404001C0DDD /* libintl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libintl.dylib; sourceTree = "<group>"; };
@@ -3071,7 +3071,6 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "\U0001";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -3142,7 +3141,7 @@
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = "";
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
@@ -3195,7 +3194,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(IRSSI_PATH)/src/irc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(IRSSI_PATH)/src/lib-config\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(IRSSI_PATH)/src/irc/dcc\"";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-lssl",
@@ -3293,6 +3291,7 @@
 					"-bind_at_load",
 					"-multiply_defined",
 					suppress,
+					"-headerpad_max_install_names",
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = MacIrssi;
@@ -3418,6 +3417,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				HEADER_SEARCH_PATHS = (
@@ -3464,7 +3464,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(IRSSI_PATH)/src/irc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(IRSSI_PATH)/src/lib-config\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(IRSSI_PATH)/src/irc/dcc\"";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -3485,6 +3484,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				HEADER_SEARCH_PATHS = (
@@ -3530,7 +3530,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(SRCROOT)/irssi-0.8.12/src/irc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(SRCROOT)/irssi-0.8.12/src/lib-config\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/dcc\"";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -3550,6 +3549,7 @@
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				HEADER_SEARCH_PATHS = (
@@ -3595,7 +3595,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(SRCROOT)/irssi-0.8.11/src/irc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(SRCROOT)/irssi-0.8.11/src/lib-config\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/dcc\"";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -3615,7 +3614,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				OPTIMIZATION_CFLAGS = "-O0";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -3634,7 +3633,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				OPTIMIZATION_CFLAGS = "-O0";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -3651,7 +3650,7 @@
 		C224D32B08C651FF00E66C62 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				OPTIMIZATION_CFLAGS = "-O0";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";

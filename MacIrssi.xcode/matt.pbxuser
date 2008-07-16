@@ -8,8 +8,7 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeArchitecture = i386;
-		activeBuildConfigurationName = Development;
+		activeBuildConfigurationName = Deployment;
 		activeExecutable = C9315E950E1E534800AD599B /* MacIrssi */;
 		activeTarget = 8D1107260486CEB800E47090 /* MacIrssi */;
 		addToTargets = (
@@ -66,7 +65,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					1042,
+					683,
 					20,
 					48,
 					43,
@@ -88,7 +87,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					1002,
+					643,
 					60,
 					20,
 					48,
@@ -105,8 +104,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 237774076;
-			PBXWorkspaceStateSaveDate = 237774076;
+			PBXPerProjectTemplateStateSaveDate = 237906882;
+			PBXWorkspaceStateSaveDate = 237906882;
 		};
 		perUserProjectItems = {
 			C922B3770E230C3C000AA7BE /* PBXTextBookmark */ = C922B3770E230C3C000AA7BE /* PBXTextBookmark */;
@@ -130,24 +129,17 @@
 			C922B60B0E24B981000AA7BE /* PBXTextBookmark */ = C922B60B0E24B981000AA7BE /* PBXTextBookmark */;
 			C922B60E0E24B981000AA7BE /* PBXTextBookmark */ = C922B60E0E24B981000AA7BE /* PBXTextBookmark */;
 			C9261D770E2C2A9A0029EFDB /* PBXTextBookmark */ = C9261D770E2C2A9A0029EFDB /* PBXTextBookmark */;
-			C9261D790E2C2A9A0029EFDB /* PBXTextBookmark */ = C9261D790E2C2A9A0029EFDB /* PBXTextBookmark */;
 			C9261D7D0E2CC5F60029EFDB /* PBXTextBookmark */ = C9261D7D0E2CC5F60029EFDB /* PBXTextBookmark */;
-			C9261D7F0E2CC5F60029EFDB /* PBXTextBookmark */ = C9261D7F0E2CC5F60029EFDB /* PBXTextBookmark */;
-			C9261D870E2CC6610029EFDB /* PBXTextBookmark */ = C9261D870E2CC6610029EFDB /* PBXTextBookmark */;
 			C9261DA20E2CCCDF0029EFDB /* PBXTextBookmark */ = C9261DA20E2CCCDF0029EFDB /* PBXTextBookmark */;
 			C9261DA40E2CCCDF0029EFDB /* PBXTextBookmark */ = C9261DA40E2CCCDF0029EFDB /* PBXTextBookmark */;
 			C9261DAB0E2CCD5B0029EFDB /* PBXTextBookmark */ = C9261DAB0E2CCD5B0029EFDB /* PBXTextBookmark */;
 			C9261DAC0E2CCD5B0029EFDB /* PBXTextBookmark */ = C9261DAC0E2CCD5B0029EFDB /* PBXTextBookmark */;
-			C9261DAE0E2CCD5B0029EFDB /* PBXTextBookmark */ = C9261DAE0E2CCD5B0029EFDB /* PBXTextBookmark */;
 			C9261DAF0E2CCD5B0029EFDB /* PBXTextBookmark */ = C9261DAF0E2CCD5B0029EFDB /* PBXTextBookmark */;
-			C9261DB00E2CCD5B0029EFDB /* PBXTextBookmark */ = C9261DB00E2CCD5B0029EFDB /* PBXTextBookmark */;
 			C9261DC30E2CD42A0029EFDB /* PBXTextBookmark */ = C9261DC30E2CD42A0029EFDB /* PBXTextBookmark */;
 			C9261DC40E2CD42A0029EFDB /* PBXTextBookmark */ = C9261DC40E2CD42A0029EFDB /* PBXTextBookmark */;
-			C9261DC50E2CD42A0029EFDB /* PBXTextBookmark */ = C9261DC50E2CD42A0029EFDB /* PBXTextBookmark */;
-			C9261DC60E2CD42A0029EFDB /* PBXTextBookmark */ = C9261DC60E2CD42A0029EFDB /* PBXTextBookmark */;
 			C9261DC70E2CD42A0029EFDB /* PBXTextBookmark */ = C9261DC70E2CD42A0029EFDB /* PBXTextBookmark */;
 			C9261DC80E2CD42A0029EFDB /* PBXTextBookmark */ = C9261DC80E2CD42A0029EFDB /* PBXTextBookmark */;
-			C9261DC90E2CD42A0029EFDB /* PBXTextBookmark */ = C9261DC90E2CD42A0029EFDB /* PBXTextBookmark */;
+			C9454CFC0E2E2B6F009E278E /* PBXTextBookmark */ = C9454CFC0E2E2B6F009E278E /* PBXTextBookmark */;
 			C947E1F40E1E89970001380E /* PBXTextBookmark */ = C947E1F40E1E89970001380E /* PBXTextBookmark */;
 			C947E1F60E1E89970001380E /* PBXTextBookmark */ = C947E1F60E1E89970001380E /* PBXTextBookmark */;
 			C947E1F70E1E89970001380E /* PBXTextBookmark */ = C947E1F70E1E89970001380E /* PBXTextBookmark */;
@@ -246,6 +238,7 @@
 			C98BAA060E259EB80065ED43 /* PBXTextBookmark */ = C98BAA060E259EB80065ED43 /* PBXTextBookmark */;
 			C9A927790E29A3FB00C49D94 /* PBXTextBookmark */ = C9A927790E29A3FB00C49D94 /* PBXTextBookmark */;
 			C9A9277B0E29A3FB00C49D94 /* PBXTextBookmark */ = C9A9277B0E29A3FB00C49D94 /* PBXTextBookmark */;
+			C9D7DB2F0E2EBE9B00652E50 /* PBXTextBookmark */ = C9D7DB2F0E2EBE9B00652E50 /* PBXTextBookmark */;
 		};
 		sourceControlManager = C9315EA40E1E534A00AD599B /* Source Control */;
 		userBuildSettings = {
@@ -446,9 +439,9 @@
 	};
 	B3836EF805F6A1FD002D734A /* servers-reconnect.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {987, 7406}}";
-			sepNavSelRange = "{10252, 0}";
-			sepNavVisRange = "{9957, 561}";
+			sepNavIntBoundsRect = "{{0, 0}, {861, 7364}}";
+			sepNavSelRange = "{11710, 0}";
+			sepNavVisRange = "{11422, 1152}";
 		};
 	};
 	B3836EFA05F6A1FD002D734A /* servers-setup.c */ = {
@@ -991,16 +984,6 @@
 		vrLen = 1523;
 		vrLoc = 2160;
 	};
-	C9261D790E2C2A9A0029EFDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = B322DD9F05EF9AB300E640C2 /* AppController.h */;
-		name = "AppController.h: 99";
-		rLen = 0;
-		rLoc = 2741;
-		rType = 0;
-		vrLen = 1523;
-		vrLoc = 2160;
-	};
 	C9261D7D0E2CC5F60029EFDB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */;
@@ -1010,26 +993,6 @@
 		rType = 0;
 		vrLen = 2324;
 		vrLoc = 324;
-	};
-	C9261D7F0E2CC5F60029EFDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */;
-		name = "IrssiBridge.m: 13";
-		rLen = 0;
-		rLoc = 359;
-		rType = 0;
-		vrLen = 2324;
-		vrLoc = 324;
-	};
-	C9261D870E2CC6610029EFDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = B322DDA005EF9AB300E640C2 /* AppController.m */;
-		name = "AppController.m: 1011";
-		rLen = 0;
-		rLoc = 31909;
-		rType = 0;
-		vrLen = 2296;
-		vrLoc = 30673;
 	};
 	C9261DA20E2CCCDF0029EFDB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1071,16 +1034,6 @@
 		vrLen = 1948;
 		vrLoc = 1315;
 	};
-	C9261DAE0E2CCD5B0029EFDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = B322DDA005EF9AB300E640C2 /* AppController.m */;
-		name = "AppController.m: 1013";
-		rLen = 0;
-		rLoc = 31974;
-		rType = 0;
-		vrLen = 2274;
-		vrLoc = 30673;
-	};
 	C9261DAF0E2CCD5B0029EFDB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = B3836F0E05F6A1FD002D734A /* chat-completion.c */;
@@ -1090,16 +1043,6 @@
 		rType = 0;
 		vrLen = 4396;
 		vrLoc = 28594;
-	};
-	C9261DB00E2CCD5B0029EFDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = B322DDA205EF9AB300E640C2 /* ChannelController.h */;
-		name = "ChannelController.h: 101";
-		rLen = 0;
-		rLoc = 2626;
-		rType = 0;
-		vrLen = 1948;
-		vrLoc = 1315;
 	};
 	C9261DC30E2CD42A0029EFDB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1121,26 +1064,6 @@
 		vrLen = 1162;
 		vrLoc = 43;
 	};
-	C9261DC50E2CD42A0029EFDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = B3836EF805F6A1FD002D734A /* servers-reconnect.c */;
-		name = "servers-reconnect.c: 266";
-		rLen = 0;
-		rLoc = 7592;
-		rType = 0;
-		vrLen = 2207;
-		vrLoc = 11660;
-	};
-	C9261DC60E2CD42A0029EFDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = B322DDA005EF9AB300E640C2 /* AppController.m */;
-		name = "AppController.m: 1024";
-		rLen = 0;
-		rLoc = 32376;
-		rType = 0;
-		vrLen = 2191;
-		vrLoc = 30743;
-	};
 	C9261DC70E2CD42A0029EFDB /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = B3836EF805F6A1FD002D734A /* servers-reconnect.c */;
@@ -1160,16 +1083,6 @@
 		rType = 0;
 		vrLen = 1162;
 		vrLoc = 43;
-	};
-	C9261DC90E2CD42A0029EFDB /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = B3836EF805F6A1FD002D734A /* servers-reconnect.c */;
-		name = "servers-reconnect.c: 498";
-		rLen = 0;
-		rLoc = 13340;
-		rType = 0;
-		vrLen = 2228;
-		vrLoc = 11639;
 	};
 	C9315E950E1E534800AD599B /* MacIrssi */ = {
 		isa = PBXExecutable;
@@ -1262,6 +1175,16 @@
 	C9315EA50E1E534A00AD599B /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
+	};
+	C9454CFC0E2E2B6F009E278E /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B3836EF805F6A1FD002D734A /* servers-reconnect.c */;
+		name = "servers-reconnect.c: 498";
+		rLen = 0;
+		rLoc = 13340;
+		rType = 0;
+		vrLen = 1421;
+		vrLoc = 11639;
 	};
 	C947E1DA0E1E871F0001380E /* EventController.h */ = {
 		uiCtxt = {
@@ -2258,5 +2181,15 @@
 		rType = 0;
 		vrLen = 324;
 		vrLoc = 0;
+	};
+	C9D7DB2F0E2EBE9B00652E50 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = B3836EF805F6A1FD002D734A /* servers-reconnect.c */;
+		name = "servers-reconnect.c: 443";
+		rLen = 0;
+		rLoc = 11710;
+		rType = 0;
+		vrLen = 1152;
+		vrLoc = 11422;
 	};
 }
