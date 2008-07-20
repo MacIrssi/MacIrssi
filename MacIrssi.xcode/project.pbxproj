@@ -3194,7 +3194,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(IRSSI_PATH)/src/irc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(IRSSI_PATH)/src/lib-config\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(IRSSI_PATH)/src/irc/dcc\"";
-				OTHER_CFLAGS = "";
+				OTHER_CFLAGS = "-DMACIRSSI_DEBUG";
 				OTHER_LDFLAGS = (
 					"-lssl",
 					"-lcrypto",

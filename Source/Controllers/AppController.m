@@ -1271,7 +1271,11 @@ char **argv;
 	}	
 
 	/* Start up irssi code */
-	
+#ifdef MACIRSSI_DEBUG
+  char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};
+  int irssi_argc = 2;
+  irssi_main(irssi_argc, irssi_argv);
+#else
 	/* Double clicking an app gives a "-psn..." argument which irssi does
 		not like, remove if present */
 	if ( argc > 1 && strncmp(argv[1], "-psn", 4) == 0)
@@ -1282,6 +1286,7 @@ char **argv;
 	}
 	else
 		irssi_main(argc, argv);
+#endif
 	
 	main_loop = g_main_new(TRUE);
 
