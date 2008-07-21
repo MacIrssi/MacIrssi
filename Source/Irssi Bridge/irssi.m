@@ -299,6 +299,13 @@ int irssi_main(int argc, char **argv)
 
 	dummy = FALSE;
 	//quitting = FALSE;
+  
+  core_register_options();
+	fe_common_core_register_options();
+  
+  args_register(options);
+	args_execute(argc, argv);
+  
 	core_preinit(argv[0]);
 
 	check_files();
@@ -321,9 +328,6 @@ int irssi_main(int argc, char **argv)
 	setlocale(LC_CTYPE, "");
 
 	textui_init();
-  args_register(options);
-	args_execute(argc, argv);
-
 	textui_finish_init();
 
 	/* Does the same as g_main_run(main_loop), except we
