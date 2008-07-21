@@ -7,7 +7,7 @@
 #import "nicklist.h"
 
 
-#include "module.h"
+#include "common.h"
 #include "module-formats.h"
 #include "modules-load.h"
 #include "args.h"
@@ -22,6 +22,9 @@
 #include "window-items.h"
 #include "irc-servers-setup.h"
 #include "iconfig.h"
+
+#undef MODULE_NAME
+#define MODULE_NAME "fe-aqua"
 
 @class AppController;
 @class ChannelController;

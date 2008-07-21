@@ -98,7 +98,7 @@ void signal_add_full_id(const char *module, int priority,
 
 	g_return_if_fail(signal_id >= 0);
 	g_return_if_fail(func != NULL);
-
+  
 	signal = g_hash_table_lookup(signals, GINT_TO_POINTER(signal_id));
 	if (signal == NULL) {
                 /* new signal */
@@ -152,7 +152,7 @@ static int signal_remove_func(Signal *rec, SIGNAL_FUNC func, void *user_data)
 			if (rec->emitting) {
 				/* mark it removed after emitting is done */
 				(*hook)->func = NULL;
-                                rec->remove_count++;
+        rec->remove_count++;
 			} else {
 				/* remove the function from emit list */
 				signal_remove_hook(rec, hook);
@@ -262,7 +262,7 @@ static int signal_emit_real(Signal *rec, int params, va_list va,
 		g_assert(rec->stop_emit == 0);
 		g_assert(rec->continue_emit == 0);
 
-                if (rec->remove_count > 0)
+  if (rec->remove_count > 0)
 			signal_hooks_clean(rec);
 	}
 
@@ -416,14 +416,13 @@ void signals_init(void)
 
 static void signal_free(void *key, Signal *rec)
 {
+  signal_hooks_clean(rec);
+  
 	/* refcount-1 because we just referenced it ourself */
-	g_warning("signal_free(%s) : signal still has %d references:",
-		  signal_get_id_str(rec->id), rec->refcount-1);
+	fprintf(stderr, "signal_free(%s) : signal still has %d references:\n", signal_get_id_str(rec->id), rec->refcount-1);
 
 	while (rec->hooks != NULL) {
-		g_warning(" - module '%s' function %p",
-			  rec->hooks->module, rec->hooks->func);
-
+		fprintf(stderr, " - module '%s' function %p\n", rec->hooks->module, rec->hooks->func);
 		signal_remove_hook(rec, &rec->hooks);
 	}
 }
