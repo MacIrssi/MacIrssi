@@ -429,11 +429,18 @@
 			remoteGlobalIDString = B32A9E9005F0F99C00DB2595;
 			remoteInfo = irssi;
 		};
+		C98F77D00E3651DC00CF2AAF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C98F778D0E36500900CF2AAF;
+			remoteInfo = "Irssi Configure";
+		};
 		C9EC9F220E363AE500445345 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D1107260486CEB800E47090 /* MacIrssi */;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = MacIrssi;
 		};
 /* End PBXContainerItemProxy section */
@@ -2824,6 +2831,20 @@
 			passBuildSettingsInEnvironment = 1;
 			productName = "Fake IRC Server";
 		};
+		C98F778D0E36500900CF2AAF /* Irssi Configure */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "--with-modules --with-proxy --enable-ipv6 --enable-ssl --without-textui --with-perl=no";
+			buildConfigurationList = C98F77960E36501500CF2AAF /* Build configuration list for PBXLegacyTarget "Irssi Configure" */;
+			buildPhases = (
+			);
+			buildToolPath = ../xcodeConfigure.sh;
+			buildWorkingDirectory = "/Users/matt/Projects/MacIrssi/irssi-0.8.12";
+			dependencies = (
+			);
+			name = "Irssi Configure";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Irssi Configure";
+		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
@@ -2847,6 +2868,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C98F77D10E3651DC00CF2AAF /* PBXTargetDependency */,
 				B32A9E9805F0FB4B00DB2595 /* PBXTargetDependency */,
 				C224D33A08C6523800E66C62 /* PBXTargetDependency */,
 			);
@@ -2887,6 +2909,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* MacIrssi */,
+				C98F778D0E36500900CF2AAF /* Irssi Configure */,
 				B32A9E9005F0F99C00DB2595 /* irssi */,
 				C224D2F008C6502200E66C62 /* ThemePreviewDaemon */,
 				C224D32708C651E000E66C62 /* Fake IRC Server */,
@@ -3034,6 +3057,11 @@
 			target = B32A9E9005F0F99C00DB2595 /* irssi */;
 			targetProxy = C224D34E08C6532B00E66C62 /* PBXContainerItemProxy */;
 		};
+		C98F77D10E3651DC00CF2AAF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C98F778D0E36500900CF2AAF /* Irssi Configure */;
+			targetProxy = C98F77D00E3651DC00CF2AAF /* PBXContainerItemProxy */;
+		};
 		C9EC9F230E363AE500445345 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D1107260486CEB800E47090 /* MacIrssi */;
@@ -3120,7 +3148,6 @@
 		C209D3A508BF5CE6009C9E21 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CFLAGS = "\U0001-g";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3720,6 +3747,50 @@
 			};
 			name = Default;
 		};
+		C98F778E0E36500900CF2AAF /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ACLOCAL_FLAGS = "\"-I /sw/share/aclocal\"";
+				CFLAGS = "-I/sw/include -g";
+				COPY_PHASE_STRIP = NO;
+				CPPFLAGS = $CXXFLAGS;
+				CXXFLAGS = $CFLAGS;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LDFLAGS = "-L/sw/lib -g";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PKG_CONFIG_PATH = /sw/lib/pkgconfig;
+				PRODUCT_NAME = "Irssi Configure";
+			};
+			name = Development;
+		};
+		C98F778F0E36500900CF2AAF /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ACLOCAL_FLAGS = "\"-I /sw/share/aclocal\"";
+				CFLAGS = "-I/sw/include";
+				COPY_PHASE_STRIP = NO;
+				CPPFLAGS = $CXXFLAGS;
+				CXXFLAGS = $CFLAGS;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LDFLAGS = "-L/sw/lib";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PKG_CONFIG_PATH = /sw/lib/pkgconfig;
+				PRODUCT_NAME = "Irssi Configure";
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		C98F77900E36500900CF2AAF /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Irssi Configure";
+			};
+			name = Default;
+		};
 		C9EC9F1F0E363AE000445345 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3799,6 +3870,16 @@
 				C224D32908C651FF00E66C62 /* Development */,
 				C224D32A08C651FF00E66C62 /* Deployment */,
 				C224D32B08C651FF00E66C62 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		C98F77960E36501500CF2AAF /* Build configuration list for PBXLegacyTarget "Irssi Configure" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C98F778E0E36500900CF2AAF /* Development */,
+				C98F778F0E36500900CF2AAF /* Deployment */,
+				C98F77900E36500900CF2AAF /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
