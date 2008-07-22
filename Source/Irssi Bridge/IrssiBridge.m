@@ -11,7 +11,7 @@
 
 //#define	G_LOG_DOMAIN "MacIrssi"
 #define printf(...)
-#define NSLog(...)
+//#define NSLog(...)
 
 @implementation IrssiBridge
 //-------------------------------------------------------------------
@@ -72,8 +72,8 @@
 @end
 
 /****************************************************************
-* Below are receivers of various irssi signals to drive the GUI *
-****************************************************************/
+ * Below are receivers of various irssi signals to drive the GUI *
+ ****************************************************************/
 void textui_deinit(void);
 AppController *appController;
 ChannelController *windowController;
@@ -87,14 +87,14 @@ void irssibridge_channel_mode_changed(CHANNEL_REC *channel, char *setby)
 {
 	printf("(Channel)Mode change in %s to %s\n", channel->name, channel->mode);
 	WINDOW_REC *wind = window_item_window((WI_ITEM_REC *) channel);
-    [(ChannelController *)(wind->gui_data) channelModeChanged:channel setBy:setby];
+  [(ChannelController *)(wind->gui_data) channelModeChanged:channel setBy:setby];
 }
 
 void irssibridge_nick_mode_changed(CHANNEL_REC *channel, NICK_REC *nick, char *setby, char *mode, char *type)
 {
 	NSLog(@"(Nick)Mode change in %s. Nick %s gets mode %s (type:%s)\n", channel->name, nick->nick, mode, type);
 	WINDOW_REC *wind = window_item_window((WI_ITEM_REC *) channel);
-    [(ChannelController *)(wind->gui_data) setMode:mode type:type forNickRec:nick];
+  [(ChannelController *)(wind->gui_data) setMode:mode type:type forNickRec:nick];
   
   NSString *message = @"";
   NSString *event = @"";
@@ -113,7 +113,7 @@ void irssibridge_nick_mode_changed(CHANNEL_REC *channel, NICK_REC *nick, char *s
         event = @"IRSSI_ROOM_DEOP";
       }
       break;
-    case '%':
+      case '%':
       if (*type == '+')
       {
         message = [NSString stringWithFormat:@"%s was promoted to half-operator in %s by %s.", nick->nick, channel->name, setby];
@@ -125,7 +125,7 @@ void irssibridge_nick_mode_changed(CHANNEL_REC *channel, NICK_REC *nick, char *s
         event = @"IRSSI_ROOM_DEHALFOP";
       }      
       break;
-    case '+':
+      case '+':
       if (*type == '+')
       {
         message = [NSString stringWithFormat:@"%s was given voice in %s by %s.", nick->nick, channel->name, setby];
@@ -188,7 +188,7 @@ void irssibridge_channel_wholist(CHANNEL_REC *channel)
 void irssibridge_channel_destroyed(CHANNEL_REC *channel)
 {
 	NSLog(@"destroyed channel %p",[NSThread currentThread]);
-
+  
 	WINDOW_REC *wind = window_item_window((WI_ITEM_REC *) channel);
 	
 	if (wind) {
@@ -198,20 +198,20 @@ void irssibridge_channel_destroyed(CHANNEL_REC *channel)
 }
 
 void irssibridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *text, TEXT_DEST_REC *dest_rect) {
-    [(ChannelController *)(wind->gui_data) printText:text forground:fg background:bg flags:flags];
+  [(ChannelController *)(wind->gui_data) printText:text forground:fg background:bg flags:flags];
 }
 
 void irssibridge_print_text_finished(WINDOW_REC *wind) {
-    //[(ChannelController *)(wind->gui_data) finishLine];
+  //[(ChannelController *)(wind->gui_data) finishLine];
 	[(ChannelController *)(wind->gui_data) performSelectorOnMainThread:@selector(finishLine) withObject:nil waitUntilDone:TRUE];
 }
 
 void irssibridge_window_created(WINDOW_REC *wind) {
-    [appController newTabWithWindowRec:wind];
+  [appController newTabWithWindowRec:wind];
 }
 
 void irssibridge_window_changed(WINDOW_REC *wind, WINDOW_REC *oldwind) {
-    [appController windowChanged:wind withOldWind:oldwind];
+  [appController windowChanged:wind withOldWind:oldwind];
 }
 
 void irssibridge_window_changed_automatic(WINDOW_REC *wind) {
@@ -228,10 +228,10 @@ void irssibridge_window_refnum_changed(WINDOW_REC *wind, int old) {
 
 void irssibridge_window_destroyed(WINDOW_REC *wind) {
 	NSLog(@"destroyed window %p",[NSThread currentThread]);
-
+  
 	[(ChannelController *)(wind->gui_data) clearNickView];
-    [appController removeTabWithWindowRec:wind];
-
+  [appController removeTabWithWindowRec:wind];
+  
 }
 
 void irssibridge_window_item_new(WINDOW_REC *wind, WI_ITEM_REC *wir) {
@@ -248,8 +248,8 @@ void irssibridge_window_name_changed(WINDOW_REC *wind) {
 
 void irssibridge_channel_topic_changed(CHANNEL_REC * chan) {
 	//printf("Topic changed in channel:%s\n", chan->name);
-    WINDOW_REC *wind = window_item_window((WI_ITEM_REC *) chan);
-    [(ChannelController *)(wind->gui_data) setTopic:chan->topic setBy:chan->topic_by atTime:chan->topic_time];
+  WINDOW_REC *wind = window_item_window((WI_ITEM_REC *) chan);
+  [(ChannelController *)(wind->gui_data) setTopic:chan->topic setBy:chan->topic_by atTime:chan->topic_time];
 }
 
 void irssibridge_query_created(QUERY_REC *qr, int automatic) {
@@ -273,7 +273,7 @@ void irssibridge_window_activity(WINDOW_REC *wind, int old_level) {
 
 void irssibridge_window_hilight(WINDOW_REC *wind)
 {
-    [appController highlightChanged:wind];
+  [appController highlightChanged:wind];
 }
 
 void irssibridge_gui_exit(void) {
@@ -294,7 +294,7 @@ void irssibridge_nicklist_new(CHANNEL_REC *channel, NICK_REC *nick)
 void irssibridge_nicklist_remove(CHANNEL_REC *channel, NICK_REC *nick)
 {
 	NSLog(@"irssibridge_nicklist_remove: %s", nick->nick);
-
+  
 	WINDOW_REC *wind;
 	if (channel->destroying)
 		return;
@@ -305,7 +305,7 @@ void irssibridge_nicklist_remove(CHANNEL_REC *channel, NICK_REC *nick)
 void irssibridge_nicklist_changed(CHANNEL_REC *channel, NICK_REC *nick, char *old_nick)
 {
 	NSLog(@"irssibridge_nicklist_changed");
-
+  
 	WINDOW_REC *wind;
 	wind = window_item_window((WI_ITEM_REC *) channel);
 	[(ChannelController *)(wind->gui_data) changeNickForNickRec:nick fromNick:old_nick];
@@ -318,7 +318,7 @@ void irssibridge_nicklist_host_changed(CHANNEL_REC *channel, NICK_REC *nick)
 		return;
 	
 	printf("[nicklist host changed] nick:%s\n", nick->nick);
-
+  
 }
 
 void irssibridge_nicklist_gone_changed(CHANNEL_REC *channel, NICK_REC *nick)
@@ -328,7 +328,7 @@ void irssibridge_nicklist_gone_changed(CHANNEL_REC *channel, NICK_REC *nick)
 		return;
 	
 	printf("[nicklist gone changed] nick:%s\n", nick->nick);
-
+  
 }
 
 void irssibridge_nicklist_serverop_changed(CHANNEL_REC *channel, NICK_REC *nick)
@@ -380,8 +380,20 @@ void irssibridge_message_notice(SERVER_REC *server, const char *msg, const char 
 void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char *address)
 {
   NSLog(@"[Private event] nick: %s msg: %s", nick, msg);
-
-  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[IrssiBridge stringWithIrssiCString:msg], @"Description",
-                        [NSString stringWithFormat:@"Private Message from %s.", nick], @"Title", nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_QUERY" object:nil userInfo:info];
+  
+  QUERY_REC *rec = query_find(server, nick);
+  
+  // existing PM
+  if (rec) 
+  {
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[IrssiBridge stringWithIrssiCString:msg], @"Description",
+                          [NSString stringWithFormat:@"Private Message from %s.", nick], @"Title", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_QUERY_OLD" object:nil userInfo:info];  
+  }
+  else
+  {
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[IrssiBridge stringWithIrssiCString:msg], @"Description",
+                          [NSString stringWithFormat:@"New Private Message from %s.", nick], @"Title", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_QUERY_NEW" object:nil userInfo:info];
+  }
 }

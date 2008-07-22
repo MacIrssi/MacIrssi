@@ -25,7 +25,10 @@
           [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:true], @"playSound", @"Stoof", @"playSoundSound", 
            [NSNumber numberWithBool:true], @"bounceIcon",
            [NSNumber numberWithBool:true], @"growlEvent", 
-           [NSNumber numberWithBool:true], @"growlEventBackground", nil], @"IRSSI_QUERY",
+           [NSNumber numberWithBool:true], @"growlEventBackground", nil], @"IRSSI_QUERY_NEW",
+          
+          [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:true], @"bounceIcon", nil], @"IRSSI_QUERY_OLD",
+          
           [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:true], @"playSound", @"Morse", @"playSoundSound", 
            [NSNumber numberWithBool:true], @"bounceIcon",
            [NSNumber numberWithBool:true], @"bounceIconUntilFront",
@@ -55,7 +58,8 @@
                         @"IRSSI_ROOM_VOICE",
                         @"IRSSI_ROOM_DEVOICE",
                         @"IRSSI_SEPARATOR",
-                        @"IRSSI_QUERY",
+                        @"IRSSI_QUERY_NEW",
+                        @"IRSSI_QUERY_OLD",
                         @"IRSSI_NOTICE",
                         @"IRSSI_ROOM_HIGHLIGHT",
                         nil] retain];
@@ -72,7 +76,8 @@
                             @"Member Demoted from Half-Operator", @"IRSSI_ROOM_DEHALFOP",
                             @"Member given Voice", @"IRSSI_ROOM_VOICE",
                             @"Member de-Voiced", @"IRSSI_ROOM_DEVOICE",
-                            @"Private Message", @"IRSSI_QUERY",
+                            @"New Private Message", @"IRSSI_QUERY_NEW",
+                            @"Additional Private Message", @"IRSSI_QUERY_OLD",
                             @"Notice Message", @"IRSSI_NOTICE",
                             @"Highlighted in Room", @"IRSSI_ROOM_HIGHLIGHT",
                             nil] retain];
@@ -84,6 +89,14 @@
       if ([event isEqualToString:@"IRSSI_SEPARATOR"]) continue;
       [notificationCenter addObserver:self selector:@selector(event:) name:event object:nil];
     }
+    
+    // Copy defaults, remove keys that exist in user defaults, merge in new defaults and save
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionaryWithDictionary:[EventController defaults]];
+    NSMutableDictionary *eventDefaults = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"eventDefaults"]];
+    [defaults removeObjectsForKeys:[eventDefaults allKeys]];
+    [eventDefaults addEntriesFromDictionary:defaults];
+    [[NSUserDefaults standardUserDefaults] setObject:eventDefaults forKey:@"eventDefaults"];
+    
   }
   return self;
 }

@@ -3,16 +3,16 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
-
+ 
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
-
+ 
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 //*****************************************************************
 // MacIrssi - AppController
@@ -188,16 +188,16 @@ char **argv;
 {
 	int i;
 	NSString *cmd = [sender stringValue];
-
+  
 	if ([cmd length] == 0)
 		return;
 	
 	WINDOW_REC *rec = [currentChannelController windowRec];
 	[commandHistory addCommand:cmd];
 	[sender setStringValue:@""];
-
+  
 	NSArray *commands = [self splitCommand:cmd];
-
+  
 	/* Check with user before sending multiple lines */
 	if ([commands count] > PASTE_WARNING_THRESHOLD) {
 		int button = [[NSAlert alertWithMessageText:@"Confirmation request" defaultButton:@"Ok" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you really want to paste %d lines?", [commands count]] runModal];
@@ -256,7 +256,7 @@ char **argv;
 {
 	if ([[preferenceController window] isKeyWindow])
 		return;
-
+  
 	WINDOW_REC *tmp = [currentChannelController windowRec];
 	signal_emit("command window close", 3, "", tmp->active_server, tmp->active);
 }
@@ -397,22 +397,22 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)newTabWithWindowRec:(WINDOW_REC *)wind
 {
-    ChannelController *owner = [[ChannelController alloc] initWithWindowRec:wind];
+  ChannelController *owner = [[ChannelController alloc] initWithWindowRec:wind];
 	
 	NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:owner];
 	
-    if (![NSBundle loadNibNamed:@"Tab new.nib" owner:owner]) {
-        [owner release];
-        printf("can't load Tab new.nib\n");
-        return;
-    }
+  if (![NSBundle loadNibNamed:@"Tab new.nib" owner:owner]) {
+    [owner release];
+    printf("can't load Tab new.nib\n");
+    return;
+  }
 	
 	/* Set references */
 	[owner setTabViewItem:tabViewItem colors:macIrssiColors appController:self];
 	
-    wind->gui_data = (void *)owner;
-    wind->width = 80;
-    wind->height = 24;
+  wind->gui_data = (void *)owner;
+  wind->width = 80;
+  wind->height = 24;
 	
 	NSString *label;
 	
@@ -426,10 +426,10 @@ char **argv;
 		label = @"joining...";
 	
 	[(ChannelController *)[tabViewItem identifier] setName:label];
-    [tabViewItem setView:[owner view]];
-    [tabView addTabViewItem:tabViewItem];
+  [tabViewItem setView:[owner view]];
+  [tabView addTabViewItem:tabViewItem];
 	[channelBar addChannel:wind];
-
+  
 	/* Update up channel menu */
 	int channelCount = [tabView numberOfTabViewItems];
 	NSString *keyEquivalent = (channelCount < 10) ? [[NSNumber numberWithInt:channelCount] stringValue] : @"";
@@ -456,10 +456,10 @@ char **argv;
 	currentChannelController = (ChannelController *)(wind->gui_data);
 	NSTextView *textView = [currentChannelController mainTextView];
 	NSRange endRange;
-
+  
 	/* Since we only update the scrollbar of the front window we must save it's
-	state when we switch. Likewise we must also update the new front window with 
-	the status it had when it last was active */
+   state when we switch. Likewise we must also update the new front window with 
+   the status it had when it last was active */
 	if (oldwind)
 		[(ChannelController *)(oldwind->gui_data) saveScrollState];
 	
@@ -468,7 +468,7 @@ char **argv;
 		endRange.length = 0;
 		[textView scrollRangeToVisible:endRange];
 	}
-			
+  
 	/* Do the window switch */
 	NSTabViewItem *tmp = [currentChannelController tabViewItem];
 	[(CustomWindow *)[tabView window] setCurrentChannelTextView:textView];
@@ -512,10 +512,10 @@ char **argv;
 	for (i = index; i < 10+7 && i < [channelMenu numberOfItems]; i++)
 		[[channelMenu itemAtIndex:i] setKeyEquivalent:[[NSNumber numberWithInt:i-7] stringValue]];
 	
-
+  
 	[channelBar removeChannel:wind];
 	[tabView removeTabViewItem:tmp];
-
+  
 	[channelTableView reloadData];
 	[channelBar setNeedsDisplay:TRUE];
 }
@@ -581,16 +581,16 @@ char **argv;
 		[tabView setNeedsDisplay:TRUE];
 		[channelBar setHidden:TRUE];
 	}
-
+  
 }
 
 - (void)useVerticalChannelBar:(BOOL)b
 {
-
+  
 	if (b && [channelTableView isHidden]) {
 		
 		NSRect frame = [tabView frame];
-
+    
 		/* Resize tab view */
 		frame.size.width -= 160;
 		frame.origin.x += 160;
@@ -639,7 +639,7 @@ char **argv;
 		/* Resize tab view */
 		frame.size.width += 160;
 		frame.origin.x -= 160;
-
+    
 		[tabView retain];
 		[tabView removeFromSuperview];
 		[tabView setFrame:frame];
@@ -663,7 +663,7 @@ char **argv;
 		frame = [channelTableView frame];
 		frame.size.width += 1;
 		frame.size.height -= [tabView frame].size.height + [channelBar frame].size.height;
-				
+    
 		coverView = [[CoverView alloc] initWithFrame:frame];
 		[[mainWindow contentView] addSubview:coverView];
 		[coverView setNeedsDisplay:TRUE];
@@ -833,7 +833,7 @@ char **argv;
 	NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
 	NSTabViewItem *tmp;
 	channelFont = [sender convertFont:channelFont];
-
+  
 	/* Iterate through all channels */
 	while (tmp = [enumerator nextObject])
 		[[tmp identifier] setFont:channelFont];
@@ -867,7 +867,7 @@ char **argv;
 		[tmp addObject:[NSString stringWithCString:get_irssi_dir()]];
 		[tmp addObject:[NSString stringWithFormat:@"%s/%@", get_irssi_dir(), @"themes"]];
 	}
-
+  
 	[tmp addObject:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"Contents/Resources/Themes"]];
 	
 	return [tmp autorelease];
@@ -914,7 +914,7 @@ char **argv;
 	if (item == findNextMenuItem || item == findPreviousMenuItem)
 		return [currentChannelController hasActiveSearch];
 	
-    return YES;
+  return YES;
 }
 
 /**
@@ -997,10 +997,10 @@ char **argv;
 	/* Bring forth the main window if it was ordered out during a hide */
 	if (![mainWindow isVisible])
 		[mainWindow makeKeyAndOrderFront:self];
-		
+  
 	/* If icon was changed to notify user of priv in active channel when the
-		app was inactive while no other channel needs notification, then we
-		must revert icon to normal */
+   app was inactive while no other channel needs notification, then we
+   must revert icon to normal */
 	if (hilightChannels == 0)
 		[self setIcon:defaultIcon];
 }
@@ -1020,7 +1020,7 @@ char **argv;
   {
     sleeping = false;
     fe_common_core_finish_init(); // AWFUL HACK. but...it is the only way to get the frontend to do an
-                                  // autoconnect without hacking my way into the backend.
+    // autoconnect without hacking my way into the backend.
   }
 }
 
@@ -1080,7 +1080,7 @@ char **argv;
 {
 	NSTabViewItem *item = [tabView tabViewItemAtIndex:rowIndex];
 	WINDOW_REC *tmp = [[item identifier] windowRec];
-
+  
 	[highlightAttributes setObject:[highlightColors objectAtIndex:tmp->data_level] forKey:NSForegroundColorAttributeName];
 	return [[[NSAttributedString alloc] initWithString:[item label] attributes:highlightAttributes] autorelease];	
 }
@@ -1103,9 +1103,9 @@ char **argv;
 	sprintf(num, "%d", rowIndex+1);
 	signal_emit("command window goto", 3, num, active_win->active_server, active_win->active);
 #endif
-//	ChannelController *tmp = [[tabView tabViewItemAtIndex:rowIndex] identifier];
-//	if (tmp)
-//		window_set_active([tmp windowRec]);
+  //	ChannelController *tmp = [[tabView tabViewItemAtIndex:rowIndex] identifier];
+  //	if (tmp)
+  //		window_set_active([tmp windowRec]);
 	return TRUE;
 }
 
@@ -1137,17 +1137,17 @@ char **argv;
 	quitting = FALSE;
 	hilightChannels = 0;
 	mainRunLoop = [NSRunLoop currentRunLoop];
-
+  
 	const char *path = [[[NSBundle mainBundle] bundlePath] fileSystemRepresentation];
 	if (chdir(path) == -1)
 		NSLog(@"Can't set path!");
-
+  
 #if 0
 	char *filename = "stdout.txt";
 	int fd;
 	if ( (fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR)) == -1)
 		NSLog(@"Can't open file %s!", filename);
-
+  
 	if (dup2(fd, STDOUT_FILENO) == -1)
 		NSLog(@"Can't redirect stdout!");
 	
@@ -1163,28 +1163,28 @@ char **argv;
 	
 	[[NSFontManager sharedFontManager] setAction:@selector(specialFontChange:)];
   eventController = [[EventController alloc] init];
-
+  
 	/* Register defaults */
 	NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];
 	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-		[NSArchiver archivedDataWithRootObject:defaultChannelFont], @"channelFont",
-		[NSNumber numberWithInt:kCFStringEncodingISOLatin1], @"defaultTextEncoding",
-		[NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
-		[NSNumber numberWithBool:TRUE], @"askQuit",
-		[NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
-		[NSNumber numberWithInt:0], @"channelBarOrientation",
-    [EventController defaults], @"eventDefaults",
-		nil];
+                        [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"channelFont",
+                        [NSNumber numberWithInt:kCFStringEncodingISOLatin1], @"defaultTextEncoding",
+                        [NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
+                        [NSNumber numberWithBool:TRUE], @"askQuit",
+                        [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
+                        [NSNumber numberWithInt:0], @"channelBarOrientation",
+                        [EventController defaults], @"eventDefaults",
+                        nil];
   
-		
+  
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	[defaults registerDefaults:dict];
-
+  
 	/* Read settings */
 	channelFont = [[NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelFont"]] retain];
 	askQuit = [defaults boolForKey:@"askQuit"];
 	int channelBarOrientation = [defaults integerForKey:@"channelBarOrientation"];
-
+  
 	if (channelBarOrientation == 0) {
 		[self useHorizontalChannelBar:TRUE];
 		[self useVerticalChannelBar:FALSE];
@@ -1230,18 +1230,18 @@ char **argv;
 	defaultQuitMessage = [[defaults objectForKey:@"defaultQuitMessage"] retain];
 	if (!channelFont)
 		channelFont = [NSFont fontWithName:@"Monaco" size:9.0];
-
+  
 	/* Delete first tab */
 	[tabView removeTabViewItem:[tabView tabViewItemAtIndex:0]];
 	/* Yes please =) */
 	[[tabView window] useOptimizedDrawing:TRUE];
 	/* Enable parts of window to be transparent */
 	[[tabView window] setOpaque:FALSE];
-
+  
 	commandHistory = [[History alloc] initWithCapacity:150];
 	[nc addObserver:self selector:@selector(inputTextFieldColorChanged:) name:@"inputTextFieldColorChanged" object:nil];
 	[nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
-
+  
 	/* Set up colors */
 	macIrssiColors = [[ColorSet alloc] init];
 	highlightColors = [macIrssiColors channelListFGColors];
@@ -1257,7 +1257,7 @@ char **argv;
   /* Sleep registration */
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceWillSleep:) name:NSWorkspaceWillSleepNotification object:nil];
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:nil];
-		
+  
 	/* Init theme dirs */
 	const char *tmp;
 	
@@ -1269,7 +1269,7 @@ char **argv;
 		theme_dirs[i] = (char *)malloc(strlen(tmp)+1);
 		strcpy(theme_dirs[i], tmp);
 	}	
-
+  
 	/* Start up irssi code */
 #ifdef MACIRSSI_DEBUG
   char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};
@@ -1277,7 +1277,7 @@ char **argv;
   irssi_main(irssi_argc, irssi_argv);
 #else
 	/* Double clicking an app gives a "-psn..." argument which irssi does
-		not like, remove if present */
+   not like, remove if present */
 	if ( argc > 1 && strncmp(argv[1], "-psn", 4) == 0)
 	{
 		argc--;
@@ -1289,7 +1289,7 @@ char **argv;
 #endif
 	
 	main_loop = g_main_new(TRUE);
-
+  
 	/* Create new thread to run main irssi loop */
 	[NSThread detachNewThreadSelector:@selector(runGlibLoopIteration:) toTarget:self withObject:nil];
 }
