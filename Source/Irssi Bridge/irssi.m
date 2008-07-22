@@ -150,7 +150,7 @@ static void textui_finish_init(void)
   signal_add("message kick", (SIGNAL_FUNC) irssibridge_message_kick);
   
   signal_add("message irc notice", (SIGNAL_FUNC) irssibridge_message_notice);
-  signal_add("message private", (SIGNAL_FUNC) irssibridge_message_private);
+  signal_add_first("message private", (SIGNAL_FUNC) irssibridge_message_private);
   
   signal_add_last("channel joined", (SIGNAL_FUNC) irssibridge_channel_joined);
   signal_add_last("channel wholist", (SIGNAL_FUNC) irssibridge_channel_wholist);

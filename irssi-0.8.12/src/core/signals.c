@@ -278,7 +278,7 @@ int signal_emit(const char *signal, int params, ...)
 
 	g_return_val_if_fail(params >= 0 && params <= SIGNAL_MAX_ARGUMENTS, FALSE);
 
-  fprintf(stderr, "signal_emit(%s, params: %d, ...)\n", signal, params);
+  //fprintf(stderr, "signal_emit(%s, params: %d, ...)\n", signal, params);
   
 	signal_id = signal_get_uniq_id(signal);
 
