@@ -1328,6 +1328,8 @@ char **argv;
   int irssi_argc = 2;
   irssi_main(irssi_argc, irssi_argv);
 #else
+  [[NSApp mainMenu] removeItem:[[NSApp mainMenu] itemWithTitle:@"Debug"]];
+  
 	/* Double clicking an app gives a "-psn..." argument which irssi does
    not like, remove if present */
 	if ( argc > 1 && strncmp(argv[1], "-psn", 4) == 0)
