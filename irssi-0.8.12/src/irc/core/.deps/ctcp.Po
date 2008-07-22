@@ -16,7 +16,8 @@ ctcp.o ctcp.o: ctcp.c module.h ../../../src/common.h ../../../config.h \
   /usr/include/libkern/i386/_OSByteOrder.h /usr/include/alloca.h \
   /usr/include/machine/types.h /usr/include/i386/types.h \
   /usr/include/errno.h /usr/include/sys/errno.h /usr/include/time.h \
-  /usr/include/_structs.h /usr/include/sys/types.h \
+  /usr/include/_structs.h /usr/include/machine/_limits.h \
+  /usr/include/i386/_limits.h /usr/include/sys/types.h \
   /usr/include/sys/time.h /usr/include/sys/_select.h \
   /usr/include/sys/stat.h /usr/include/unistd.h /usr/include/sys/unistd.h \
   /usr/include/sys/select.h /usr/include/dirent.h \
@@ -30,8 +31,7 @@ ctcp.o ctcp.o: ctcp.c module.h ../../../src/common.h ../../../config.h \
   /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/limits.h \
   /usr/lib/gcc/i686-apple-darwin9/4.0.1/include/syslimits.h \
   /usr/include/limits.h /usr/include/machine/limits.h \
-  /usr/include/i386/limits.h /usr/include/i386/_limits.h \
-  /usr/include/sys/syslimits.h \
+  /usr/include/i386/limits.h /usr/include/sys/syslimits.h \
   /Developer/usr/bin/../lib/gcc/i686-apple-darwin9/4.0.1/include/float.h \
   /sw/include/glib-2.0/glib/garray.h \
   /sw/include/glib-2.0/glib/gasyncqueue.h \
@@ -152,6 +152,10 @@ module.h:
 
 /usr/include/_structs.h:
 
+/usr/include/machine/_limits.h:
+
+/usr/include/i386/_limits.h:
+
 /usr/include/sys/types.h:
 
 /usr/include/sys/time.h:
@@ -197,8 +201,6 @@ module.h:
 /usr/include/machine/limits.h:
 
 /usr/include/i386/limits.h:
-
-/usr/include/i386/_limits.h:
 
 /usr/include/sys/syslimits.h:
 
