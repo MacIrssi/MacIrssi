@@ -11,7 +11,7 @@
 
 //#define	G_LOG_DOMAIN "MacIrssi"
 #define printf(...)
-//#define NSLog(...)
+#define NSLog(...)
 
 @implementation IrssiBridge
 //-------------------------------------------------------------------

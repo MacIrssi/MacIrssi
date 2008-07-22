@@ -31,6 +31,7 @@
 #import "queries.h"
 #import "servers-setup.h"
 #import "channels-setup.h"
+#import "servers-reconnect.h"
 #import "UKUpdateChecker.h"
 
 @class ChannelController;
@@ -84,6 +85,8 @@ extern char **argv;
 	NSString **shortcutCommands;
 	NSRunLoop *mainRunLoop;
 	CoverView *coverView;
+  
+  GSList *sleepList;
 }
 
 - (WINDOW_REC *)currentWindowRec;
@@ -115,6 +118,9 @@ extern char **argv;
 - (IBAction)performShortcut:(id)sender;
 - (IBAction)makeSearchFieldFirstResponder:(id)sender;
 - (IBAction)editCurrentChannel:(id)sender;
+
+- (IBAction)debugAction1:(id)sender;
+- (IBAction)debugAction2:(id)sender;
 
 - (void)highlightChanged:(WINDOW_REC *)wind;
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old;
