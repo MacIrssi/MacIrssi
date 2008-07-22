@@ -62,6 +62,10 @@ extern char **argv;
 	IBOutlet ChannelBar *channelBar;
 	IBOutlet id box;
 	IBOutlet UKUpdateChecker *updateChecker;
+  
+  IBOutlet NSWindow *aboutBox;
+  IBOutlet NSTextField *aboutVersionLabel;
+  IBOutlet NSTextView *copyrightTextView;
 	
 	History *commandHistory;
 	ChannelController *currentChannelController;
@@ -114,6 +118,7 @@ extern char **argv;
 - (IBAction)endErrorWindow:(id)sender;
 - (IBAction)showFontPanel:(id)sender;
 - (IBAction)showPreferencePanel:(id)sender;
+- (IBAction)showAbout:(id)sender;
 //- (IBAction)paste:(id)sender;
 - (IBAction)performShortcut:(id)sender;
 - (IBAction)makeSearchFieldFirstResponder:(id)sender;

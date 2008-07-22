@@ -334,6 +334,19 @@ char **argv;
 	[preferenceController showWindow:self];
 }
 
+- (IBAction)showAbout:(id)sender
+{
+  [aboutVersionLabel setStringValue:[NSString stringWithFormat:@"Version %@ (Build %@)", 
+                                     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
+                                     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSGitRevision"]]];
+  
+  [copyrightTextView setString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]];
+  [copyrightTextView setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [[copyrightTextView textStorage] length])];
+  
+  [aboutBox center];
+  [aboutBox makeKeyAndOrderFront:sender];
+}
+
 - (IBAction)debugAction1:(id)sender
 {
   [self workspaceWillSleep:nil];

@@ -6,6 +6,21 @@
 	objectVersion = 42;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		C9EC9F1E0E363AE000445345 /* Packages */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */;
+			buildPhases = (
+				C9EC9F250E363AEB00445345 /* ShellScript */,
+			);
+			dependencies = (
+				C9EC9F230E363AE500445345 /* PBXTargetDependency */,
+			);
+			name = Packages;
+			productName = Packages;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8D1107280486CEB800E47090 /* MacIrssi_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
@@ -413,6 +428,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B32A9E9005F0F99C00DB2595;
 			remoteInfo = irssi;
+		};
+		C9EC9F220E363AE500445345 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090 /* MacIrssi */;
+			remoteInfo = MacIrssi;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -2868,6 +2890,7 @@
 				B32A9E9005F0F99C00DB2595 /* irssi */,
 				C224D2F008C6502200E66C62 /* ThemePreviewDaemon */,
 				C224D32708C651E000E66C62 /* Fake IRC Server */,
+				C9EC9F1E0E363AE000445345 /* Packages */,
 			);
 		};
 /* End PBXProject section */
@@ -2932,7 +2955,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/perl;
-			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git show --abbrev-commit | grep \"^commit\"`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\nif( $version =~ /^commit\\s+([^.]+)\\.\\.\\.$/ )\n{ \n\t$version = $1;\n}\nelse\n{\n\t$version = undef;\n}\ndie \"$0: No Git revision found\" unless $version;\n \nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>CFBundleVersion<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
+			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git show --abbrev-commit | grep \"^commit\"`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\nif( $version =~ /^commit\\s+([^.]+)\\.\\.\\.$/ )\n{ \n\t$version = $1;\n}\nelse\n{\n\t$version = undef;\n}\ndie \"$0: No Git revision found\" unless $version;\n \nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>NSGitRevision<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
+		};
+		C9EC9F250E363AEB00445345 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "VERSION=`pl < $PRODUCT_SETTINGS_PATH | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\\s+=\\s+\"(.*?)\"/); }'`\nDMG_NAME=\"$PROJECT-$VERSION.dmg\"\nAPP_NAME=\"MacIrssi.app\"\n\nmkdir \"$TEMP_DIR/dmg\"\ncd \"$TEMP_DIR/dmg\"\necho \"Making DMG build dir ($DMG_NAME)...\"\nrm -rf \"$PROJECT\"\nmkdir \"$PROJECT\"\necho \"Copying Product...\"\ncp -rf \"$TARGET_BUILD_DIR/$APP_NAME\" \"$PROJECT/$APP_NAME\"\necho \"Creating DMG...\"\nhdiutil create -quiet -ov -srcfolder \"$PROJECT\" \"$DMG_NAME\"\necho \"Moving to products dir...\"\nmv -f \"$DMG_NAME\" \"$BUILT_PRODUCTS_DIR\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2997,6 +3033,11 @@
 			isa = PBXTargetDependency;
 			target = B32A9E9005F0F99C00DB2595 /* irssi */;
 			targetProxy = C224D34E08C6532B00E66C62 /* PBXContainerItemProxy */;
+		};
+		C9EC9F230E363AE500445345 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* MacIrssi */;
+			targetProxy = C9EC9F220E363AE500445345 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3679,6 +3720,36 @@
 			};
 			name = Default;
 		};
+		C9EC9F1F0E363AE000445345 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Packages;
+			};
+			name = Development;
+		};
+		C9EC9F200E363AE000445345 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GENERATE_PKGINFO_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = Packages;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		C9EC9F210E363AE000445345 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Packages;
+			};
+			name = Default;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3728,6 +3799,16 @@
 				C224D32908C651FF00E66C62 /* Development */,
 				C224D32A08C651FF00E66C62 /* Deployment */,
 				C224D32B08C651FF00E66C62 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9EC9F1F0E363AE000445345 /* Development */,
+				C9EC9F200E363AE000445345 /* Deployment */,
+				C9EC9F210E363AE000445345 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
