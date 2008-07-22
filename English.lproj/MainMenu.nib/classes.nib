@@ -93,6 +93,10 @@
 				<string>id</string>
 				<key>closeChannel</key>
 				<string>id</string>
+				<key>debugAction1</key>
+				<string>id</string>
+				<key>debugAction2</key>
+				<string>id</string>
 				<key>editCurrentChannel</key>
 				<string>id</string>
 				<key>endErrorWindow</key>
