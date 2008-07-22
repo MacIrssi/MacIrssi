@@ -2820,6 +2820,7 @@
 				C237874108C25AE000D73190 /* CopyFiles */,
 				C232FB6E08C897DA000C624E /* CopyFiles */,
 				C922B4290E23BCE4000AA7BE /* CopyFiles */,
+				C9EC9EE30E36386C00445345 /* Update Git version */,
 			);
 			buildRules = (
 			);
@@ -2918,6 +2919,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = ./lib_path_fix.sh;
+		};
+		C9EC9EE30E36386C00445345 /* Update Git version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Git version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/perl;
+			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git show --abbrev-commit | grep \"^commit\"`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\nif( $version =~ /^commit\\s+([^.]+)\\.\\.\\.$/ )\n{ \n\t$version = $1;\n}\nelse\n{\n\t$version = undef;\n}\ndie \"$0: No Git revision found\" unless $version;\n \nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>CFBundleVersion<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
 		};
 /* End PBXShellScriptBuildPhase section */
 
