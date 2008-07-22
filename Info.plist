@@ -26,5 +26,7 @@
 	<string>Nils Hjelte</string>
 	<key>SmartCrashReports_EmailTicket</key>
 	<string>SCR-7AE0CF3CEA</string>
+  <key>NSGitRevision</key>
+  <string>N/A</string>
 </dict>
 </plist>

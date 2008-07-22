@@ -119,6 +119,8 @@
 				<string>id</string>
 				<key>sendCommand</key>
 				<string>id</string>
+				<key>showAbout</key>
+				<string>id</string>
 				<key>showFontPanel</key>
 				<string>id</string>
 				<key>showPreferencePanel</key>
@@ -132,6 +134,10 @@
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
+				<key>aboutBox</key>
+				<string>NSWindow</string>
+				<key>aboutVersionLabel</key>
+				<string>NSTextField</string>
 				<key>box</key>
 				<string>id</string>
 				<key>channelBar</key>
@@ -140,6 +146,8 @@
 				<string>NSMenu</string>
 				<key>channelTableView</key>
 				<string>CustomTableView</string>
+				<key>copyrightTextView</key>
+				<string>NSTextView</string>
 				<key>editCurrentChannelMenuItem</key>
 				<string>NSMenuItem</string>
 				<key>errorTextField</key>
