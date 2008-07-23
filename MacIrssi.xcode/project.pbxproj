@@ -398,6 +398,9 @@
 		C9550E530E2C217B00658372 /* wjoin in CopyFiles */ = {isa = PBXBuildFile; fileRef = B322DD0B05EF98E200E640C2 /* wjoin */; };
 		C9550E540E2C217B00658372 /* wquery in CopyFiles */ = {isa = PBXBuildFile; fileRef = B322DD0C05EF98E200E640C2 /* wquery */; };
 		C9553A9F0E24C17200626859 /* activityNewImportant.png in Resources */ = {isa = PBXBuildFile; fileRef = C9553A9E0E24C17200626859 /* activityNewImportant.png */; };
+		C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */; };
+		C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */; };
+		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1567,6 +1570,9 @@
 		C947E1DB0E1E871F0001380E /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventController.m; sourceTree = "<group>"; };
 		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MacIrssi-Alert.png"; sourceTree = "<group>"; };
 		C9553A9E0E24C17200626859 /* activityNewImportant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityNewImportant.png; sourceTree = "<group>"; };
+		C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectivityMonitor.h; sourceTree = "<group>"; };
+		C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectivityMonitor.m; sourceTree = "<group>"; };
+		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1598,6 +1604,7 @@
 				C2A9B10C0C1187BC002A9848 /* Growl-WithInstaller.framework in Frameworks */,
 				C229C73D0C1AA7B900D7CCD0 /* libssl.dylib in Frameworks */,
 				C229C7400C1AA82900D7CCD0 /* libcrypto.dylib in Frameworks */,
+				C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1648,6 +1655,8 @@
 				B322DDBA05EF9AE600E640C2 /* CustomWindow.m */,
 				C25491760681A35900C43D63 /* CustomTextView.h */,
 				C25491770681A35900C43D63 /* CustomTextView.m */,
+				C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */,
+				C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */,
 				B322DDBD05EF9AE600E640C2 /* History.h */,
 				B322DDBE05EF9AE600E640C2 /* History.m */,
 				B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */,
@@ -1672,6 +1681,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9667E020E3790FD00014B02 /* SystemConfiguration.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -2797,6 +2807,7 @@
 				C24AE90108C7A32A00A2CA0D /* Protocols.h in Headers */,
 				C2A5697B08D0D74100788905 /* TextEncodings.h in Headers */,
 				C947E1DC0E1E871F0001380E /* EventController.h in Headers */,
+				C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3019,6 +3030,7 @@
 				C26FC75708C4735300CFD1B3 /* UKUpdateChecker.m in Sources */,
 				C2A5697C08D0D74100788905 /* TextEncodings.m in Sources */,
 				C947E1DD0E1E871F0001380E /* EventController.m in Sources */,
+				C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

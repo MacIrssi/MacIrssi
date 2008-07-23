@@ -152,9 +152,6 @@ extern char **argv;
 
 - (EventController*)eventController;
 
-- (void)workspaceWillSleep:(NSNotification*)notification;
-- (void)workspaceDidWake:(NSNotification*)notification;
-
 /* Growl delegate */
 - (NSDictionary *) registrationDictionaryForGrowl;
 - (void) growlNotificationWasClicked:(id)clickContext;
