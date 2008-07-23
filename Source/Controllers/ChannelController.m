@@ -1183,6 +1183,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 	[mainTextScrollView setVerticalScroller:scroller];
 	textStorage = [mainTextView textStorage];
 	searchRanges = [[NSMutableArray alloc] init];
+	commandHistory = [[History alloc] initWithCapacity:150];
 
 	[self saveScrollState];
 	[nickTableView setTarget:self];
@@ -1248,6 +1249,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 	[voiceColor release];
 	[defaultColor release];
 	[serverOpColor release];
+	[commandHistory release];
 
 	[defaultTextColor release];
 
@@ -1324,6 +1326,21 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 // The view of the tab. 
 //-------------------------------------------------------------------
 - (NSView *)view { return wholeView; }
+
+
+//-------------------------------------------------------------------
+// Command history
+//-------------------------------------------------------------------
+- (History *)commandHistory { return commandHistory; }
+
+- (NSString *)partialCommand { return partialCommand; }
+
+- (void)setPartialCommand:(NSString*)cmd
+{
+	[cmd retain];
+	[partialCommand release];
+	partialCommand = cmd;
+}
 
 
 //-------------------------------------------------------------------
