@@ -17,6 +17,7 @@
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 #import <time.h>
+#import "History.h"
 #import "common.h"
 #import "signals.h"
 #import "channels.h"
@@ -159,6 +160,9 @@ enum nickContextMenuTags {
 	int searchIteratorIndex;
 	NSRange oldSearchMatchRange;
 	//int currentDataLevel;
+	
+	History *commandHistory;
+	NSString *partialCommand;
 }
 - (NSString *)mode;
 - (NSArray *)nicks;
@@ -178,6 +182,10 @@ enum nickContextMenuTags {
 - (WINDOW_REC *)windowRec;
 - (NSString *)name;
 - (void)setName:(NSString *)newName;
+
+- (History *)commandHistory;
+- (NSString *)partialCommand;
+- (void)setPartialCommand:(NSString*)cmd;
 
 - (void)channelModeChanged:(CHANNEL_REC *)rec setBy:(char *)setter;
 - (void)setTabViewItem:(NSTabViewItem *)newTabViewItem colors:(ColorSet *)colors appController:(AppController *)ref;

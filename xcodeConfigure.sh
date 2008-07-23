@@ -12,6 +12,7 @@ fi
 
 ./configure $@
 CONF_EXIT=$?
+make clean
 
 if [ "$CONF_EXIT" -eq "0" ]; then
   echo $CONFIGURATION > config.xcode

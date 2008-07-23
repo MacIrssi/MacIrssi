@@ -3,18 +3,19 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
-
+ 
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
-
+ 
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #import <Cocoa/Cocoa.h>
+#import "Growl/Growl.h"
 #import "ChannelBar.h"
 #import "CoverView.h"
 
@@ -45,7 +46,7 @@
 extern int argc;
 extern char **argv;
 
-@interface AppController : NSObject {
+@interface AppController : NSObject <GrowlApplicationBridgeDelegate> {
 	IBOutlet NSWindow *mainWindow;
 	IBOutlet NSTabView *tabView;
 	IBOutlet CustomTableView *channelTableView;
@@ -62,15 +63,14 @@ extern char **argv;
 	IBOutlet ChannelBar *channelBar;
 	IBOutlet id box;
 	IBOutlet UKUpdateChecker *updateChecker;
-  
-  IBOutlet NSWindow *aboutBox;
-  IBOutlet NSTextField *aboutVersionLabel;
-  IBOutlet NSTextView *copyrightTextView;
 	
-	History *commandHistory;
+	IBOutlet NSWindow *aboutBox;
+	IBOutlet NSTextField *aboutVersionLabel;
+	IBOutlet NSTextView *copyrightTextView;
+	
 	ChannelController *currentChannelController;
 	PreferenceController *preferenceController;
-  EventController *eventController;
+	EventController *eventController;
 	ColorSet *macIrssiColors;
 	NSMutableArray *highlightColors;
 	NSMutableDictionary *highlightAttributes;
@@ -79,7 +79,7 @@ extern char **argv;
 	NSFont *channelFont;
 	NSMutableArray *networks;
 	bool quitting;
-  bool sleeping;
+	bool sleeping;
 	bool askQuit;
 	NSString *defaultQuitMessage;
 	NSImage *iconOnPriv;
@@ -89,8 +89,8 @@ extern char **argv;
 	NSString **shortcutCommands;
 	NSRunLoop *mainRunLoop;
 	CoverView *coverView;
-  
-  GSList *sleepList;
+	
+	GSList *sleepList;
 }
 
 - (WINDOW_REC *)currentWindowRec;
@@ -159,14 +159,14 @@ extern char **argv;
 - (NSDictionary *) registrationDictionaryForGrowl;
 - (void) growlNotificationWasClicked:(id)clickContext;
 
-	/* for NSTableView's dataSource */
+/* for NSTableView's dataSource */
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 
-	/* for NSTableView's delegate */
+/* for NSTableView's delegate */
 - (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(int)rowIndex;
 - (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 
-	/* for NSApplication's delegate */
+/* for NSApplication's delegate */
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)app;
 @end
