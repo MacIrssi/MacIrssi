@@ -29,6 +29,7 @@
 #import "CustomTableView.h"
 #import "History.h"
 #import "ColorSet.h"
+#import "ConnectivityMonitor.h"
 #import "chatnets.h"
 #import "irc.h"
 #import "irc-chatnets.h"
@@ -349,12 +350,12 @@ char **argv;
 
 - (IBAction)debugAction1:(id)sender
 {
-	[self workspaceWillSleep:nil];
+	[[ConnectivityMonitor sharedMonitor] workspaceWillSleep:nil];
 }
 
 - (IBAction)debugAction2:(id)sender
 {
-	[self workspaceDidWake:nil];
+	[[ConnectivityMonitor sharedMonitor] workspaceDidWake:nil];
 }
 
 
@@ -1042,54 +1043,6 @@ char **argv;
 		[self setIcon:defaultIcon];
 }
 
-// Handles waking and sleeping, need to disconnect cleanly before sleeping.
-// I'm not completely happy with using so much C-isms in a ObjC class but
-// it is 3:40am and I really can't be arsed doing it any other way.
-- (void)workspaceWillSleep:(NSNotification*)notification
-{
-	sleeping = true;
-	sleepList = NULL;
-	
-	GSList *tmp, *next;
-	SERVER_CONNECT_REC *conn;
-	for (tmp = servers; tmp != NULL; tmp = next)
-	{
-		SERVER_REC *rec = (SERVER_REC*)tmp->data;
-		conn = server_connect_copy_skeleton(rec->connrec, TRUE);
-		if (rec->connected)
-		{
-			reconnect_save_status(conn, rec);
-		}
-		conn->reconnection = TRUE;
-		
-		signal_emit("command disconnect", 2, "* Computer has gone to sleep", rec);
-		
-		sleepList = g_slist_append(sleepList, conn);
-		next = tmp->next;
-	}
-	
-	NSLog(@"Sleeping");
-}
-
-- (void)workspaceDidWake:(NSNotification*)notification
-{
-	if (sleeping)
-	{
-		sleeping = false;
-		
-		GSList *tmp, *next;
-		for (tmp = sleepList; tmp != NULL; tmp = next)
-		{
-			SERVER_CONNECT_REC *conn = (SERVER_CONNECT_REC*)tmp->data;
-			server_connect(conn);
-			server_connect_unref(conn);
-			
-			next = tmp->next;
-		}
-	}
-}
-
-
 //-------------------------------------------------------------------
 // inputTextFieldColorChanged:
 // Updates the color of the input text field.
@@ -1321,8 +1274,8 @@ char **argv;
 	[updateChecker safeInit]; // To make sure growl is regitred before update check tries to send growl notification
 	
 	/* Sleep registration */
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceWillSleep:) name:NSWorkspaceWillSleepNotification object:[NSWorkspace sharedWorkspace]];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:[NSWorkspace sharedWorkspace]];
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceWillSleep:) name:NSWorkspaceWillSleepNotification object:[NSWorkspace sharedWorkspace]];
+	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:[NSWorkspace sharedWorkspace]];
 	
 	/* Init theme dirs */
 	const char *tmp;
