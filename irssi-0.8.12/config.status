@@ -603,14 +603,14 @@ s,@am__fastdepCC_FALSE@,|#_!!_#|#,g
 s,@CPP@,|#_!!_#|gcc -E,g
 s,@GREP@,|#_!!_#|/usr/bin/grep,g
 s,@EGREP@,|#_!!_#|/usr/bin/grep -E,g
-s,@build@,|#_!!_#|i386-apple-darwin9.3.0,g
+s,@build@,|#_!!_#|i386-apple-darwin9.4.0,g
 s,@build_cpu@,|#_!!_#|i386,g
 s,@build_vendor@,|#_!!_#|apple,g
-s,@build_os@,|#_!!_#|darwin9.3.0,g
-s,@host@,|#_!!_#|i386-apple-darwin9.3.0,g
+s,@build_os@,|#_!!_#|darwin9.4.0,g
+s,@host@,|#_!!_#|i386-apple-darwin9.4.0,g
 s,@host_cpu@,|#_!!_#|i386,g
 s,@host_vendor@,|#_!!_#|apple,g
-s,@host_os@,|#_!!_#|darwin9.3.0,g
+s,@host_os@,|#_!!_#|darwin9.4.0,g
 s,@LN_S@,|#_!!_#|ln -s,g
 s,@ECHO@,|#_!!_#|/bin/echo,g
 s,@AR@,|#_!!_#|ar,g
@@ -631,7 +631,7 @@ s,@ac_ct_F77@,|#_!!_#|,g
 s,@LIBTOOL@,|#_!!_#|$(SHELL) $(top_builddir)/libtool,g
 s,@sedpath@,|#_!!_#|/usr/bin/sed,g
 s,@perlpath@,|#_!!_#|/usr/bin/perl,g
-s,@PKG_CONFIG@,|#_!!_#|/sw/bin/pkg-config,g
+s,@PKG_CONFIG@,|#_!!_#|/usr/local/bin/pkg-config,g
 s,@GLIB_CFLAGS@,|#_!!_#|-I/sw/include/glib-2.0 -I/sw/lib/glib-2.0/include  ,g
 s,@GLIB_LIBS@,|#_!!_#|-L/sw/lib -lgmodule-2.0 -lglib-2.0 -lintl -liconv  ,g
 s,@GLIB_GENMARSHAL@,|#_!!_#|glib-genmarshal,g
