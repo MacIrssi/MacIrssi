@@ -44,7 +44,7 @@ available_tags=" CXX"
 
 # ### BEGIN LIBTOOL CONFIG
 
-# Libtool was configured on host Beryllium.local:
+# Libtool was configured on host Caesium.local:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -66,13 +66,13 @@ fast_install=needless
 
 # The host system.
 host_alias=
-host=i386-apple-darwin9.3.0
-host_os=darwin9.3.0
+host=i386-apple-darwin9.4.0
+host_os=darwin9.4.0
 
 # The build system.
 build_alias=
-build=i386-apple-darwin9.3.0
-build_os=darwin9.3.0
+build=i386-apple-darwin9.4.0
+build_os=darwin9.4.0
 
 # An echo program that does not interpret backslashes.
 echo="/bin/echo"
@@ -7220,7 +7220,7 @@ disable_libs=static
 # End:
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
-# Libtool was configured on host Beryllium.local:
+# Libtool was configured on host Caesium.local:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7242,13 +7242,13 @@ fast_install=needless
 
 # The host system.
 host_alias=
-host=i386-apple-darwin9.3.0
-host_os=darwin9.3.0
+host=i386-apple-darwin9.4.0
+host_os=darwin9.4.0
 
 # The build system.
 build_alias=
-build=i386-apple-darwin9.3.0
-build_os=darwin9.3.0
+build=i386-apple-darwin9.4.0
+build_os=darwin9.4.0
 
 # An echo program that does not interpret backslashes.
 echo="/bin/echo"

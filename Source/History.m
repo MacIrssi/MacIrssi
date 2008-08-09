@@ -96,6 +96,7 @@
 	indexIterator = 0;
 	[self setHasTemporaryCommand:FALSE];
 	commands = (NSString **)malloc( sizeof(NSString *) * maxSize);
+  memset(commands, '\0', sizeof(NSString*) * maxSize);
 
 	return self;
 }
