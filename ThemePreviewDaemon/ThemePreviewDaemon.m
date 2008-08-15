@@ -150,6 +150,7 @@ BOOL tpd_quitting;
  */
 - (void)shutDown
 {
+	NSLog(@"textserver shutdown");
 	[textServerTask terminate];
 	[textServerTask release];
 	signal_emit("command quit", 1, "ThemePreviewDaemon quitting!");

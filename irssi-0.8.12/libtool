@@ -44,7 +44,7 @@ available_tags=" CXX"
 
 # ### BEGIN LIBTOOL CONFIG
 
-# Libtool was configured on host Caesium.local:
+# Libtool was configured on host Beryllium.local:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -85,7 +85,7 @@ AR_FLAGS="cru"
 LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-I/sw/include"
+LTCFLAGS="-I/sw/include -g"
 
 # A language-specific compiler.
 CC="gcc"
@@ -7220,7 +7220,7 @@ disable_libs=static
 # End:
 # ### BEGIN LIBTOOL TAG CONFIG: CXX
 
-# Libtool was configured on host Caesium.local:
+# Libtool was configured on host Beryllium.local:
 
 # Shell to use when invoking shell scripts.
 SHELL="/bin/sh"
@@ -7261,7 +7261,7 @@ AR_FLAGS="cru"
 LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-I/sw/include"
+LTCFLAGS="-I/sw/include -g"
 
 # A language-specific compiler.
 CC="g++"
