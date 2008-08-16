@@ -1,7 +1,0 @@
-
-@SYNTAX:squit@
-
-IRC Operator command. Makes server to quit IRC network.
-
-See also: OPER, DIE, RESTART
-
