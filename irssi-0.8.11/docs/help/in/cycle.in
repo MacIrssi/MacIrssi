@@ -1,8 +1,0 @@
-
-@SYNTAX:cycle@
-
-Cycles (leaves and joins) the current channel or the specified 
-channel.
-
-See also: JOIN, LEAVE, PART
-
