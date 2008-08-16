@@ -228,11 +228,11 @@
 		C2CC3AF70C09EEAF001C0DDD /* libcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF50C09EEAF001C0DDD /* libcore.a */; };
 		C2CC3AF90C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */; };
 		C2CC3AFA0C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */; };
-		C2CC3B0F0C09F404001C0DDD /* libglib-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.dylib */; };
+		C2CC3B0F0C09F404001C0DDD /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */; };
 		C2CC3B120C09F404001C0DDD /* libgmodule-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */; };
 		C2CC3B150C09F404001C0DDD /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.dylib */; };
 		C2CC3B180C09F404001C0DDD /* libintl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.dylib */; };
-		C2CC3B1B0C09F404001C0DDD /* libglib-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.dylib */; };
+		C2CC3B1B0C09F404001C0DDD /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */; };
 		C2CC3B1E0C09F404001C0DDD /* libgmodule-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */; };
 		C2CC3B210C09F404001C0DDD /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.dylib */; };
 		C2CC3B240C09F404001C0DDD /* libintl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.dylib */; };
@@ -244,7 +244,7 @@
 		C2CC3B570C0B42BD001C0DDD /* libperl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B550C0B42BD001C0DDD /* libperl.dylib */; };
 		C2CC3B5C0C0B43C7001C0DDD /* DynaLoader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */; };
 		C2CC3B5D0C0B43C7001C0DDD /* DynaLoader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */; };
-		C2CC3BF90C0B7B48001C0DDD /* libglib-2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.dylib */; };
+		C2CC3BF90C0B7B48001C0DDD /* libglib-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */; };
 		C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */; };
 		C2CC3BFB0C0B7B5B001C0DDD /* libiconv.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.dylib */; };
 		C2CC3BFC0C0B7B63001C0DDD /* libintl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.dylib */; };
@@ -455,7 +455,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C2CC3BF90C0B7B48001C0DDD /* libglib-2.0.dylib in CopyFiles */,
+				C2CC3BF90C0B7B48001C0DDD /* libglib-2.0.0.dylib in CopyFiles */,
 				C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.dylib in CopyFiles */,
 				C2CC3BFB0C0B7B5B001C0DDD /* libiconv.dylib in CopyFiles */,
 				C2CC3BFC0C0B7B63001C0DDD /* libintl.dylib in CopyFiles */,
@@ -1536,8 +1536,8 @@
 		C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_dcc.a; path = "irssi-0.8.11/src/fe-common/irc/dcc/libfe_irc_dcc.a"; sourceTree = "<group>"; };
 		C2CC3AF50C09EEAF001C0DDD /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "irssi-0.8.11/src/core/libcore.a"; sourceTree = "<group>"; };
 		C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_notifylist.a; path = "irssi-0.8.11/src/fe-common/irc/notifylist/libfe_irc_notifylist.a"; sourceTree = "<group>"; };
-		C2CC3B030C09F404001C0DDD /* libglib-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libglib-2.0.dylib"; path = "/Users/matt/Projects/MacIrssi/glib/libglib-2.0.dylib"; sourceTree = "<absolute>"; };
-		C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libgmodule-2.0.dylib"; sourceTree = "<group>"; };
+		C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libglib-2.0.0.dylib"; path = "/usr/local/lib/libglib-2.0.0.dylib"; sourceTree = "<absolute>"; };
+		C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgmodule-2.0.dylib"; path = "/usr/local/lib/libgmodule-2.0.dylib"; sourceTree = "<absolute>"; };
 		C2CC3B090C09F404001C0DDD /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libiconv.dylib; sourceTree = "<group>"; };
 		C2CC3B0C0C09F404001C0DDD /* libintl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libintl.dylib; sourceTree = "<group>"; };
 		C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_perl_static.a; path = "irssi-0.8.11/src/perl/.libs/libfe_perl_static.a"; sourceTree = "<group>"; };
@@ -1593,7 +1593,7 @@
 				C2CC3AF00C09EE89001C0DDD /* libirc_dcc.a in Frameworks */,
 				C2CC3AF30C09EEA1001C0DDD /* libfe_irc_dcc.a in Frameworks */,
 				C2CC3AF90C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */,
-				C2CC3B0F0C09F404001C0DDD /* libglib-2.0.dylib in Frameworks */,
+				C2CC3B0F0C09F404001C0DDD /* libglib-2.0.0.dylib in Frameworks */,
 				C2CC3B120C09F404001C0DDD /* libgmodule-2.0.dylib in Frameworks */,
 				C2CC3B150C09F404001C0DDD /* libiconv.dylib in Frameworks */,
 				C2CC3B180C09F404001C0DDD /* libintl.dylib in Frameworks */,
@@ -1626,7 +1626,7 @@
 				C2CC3AF10C09EE89001C0DDD /* libirc_dcc.a in Frameworks */,
 				C2CC3AF40C09EEA1001C0DDD /* libfe_irc_dcc.a in Frameworks */,
 				C2CC3AFA0C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */,
-				C2CC3B1B0C09F404001C0DDD /* libglib-2.0.dylib in Frameworks */,
+				C2CC3B1B0C09F404001C0DDD /* libglib-2.0.0.dylib in Frameworks */,
 				C2CC3B1E0C09F404001C0DDD /* libgmodule-2.0.dylib in Frameworks */,
 				C2CC3B210C09F404001C0DDD /* libiconv.dylib in Frameworks */,
 				C2CC3B240C09F404001C0DDD /* libintl.dylib in Frameworks */,
@@ -2746,7 +2746,7 @@
 		C2CC3B000C09F404001C0DDD /* glib */ = {
 			isa = PBXGroup;
 			children = (
-				C2CC3B030C09F404001C0DDD /* libglib-2.0.dylib */,
+				C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */,
 				C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */,
 				C2CC3B090C09F404001C0DDD /* libiconv.dylib */,
 				C2CC3B0C0C09F404001C0DDD /* libintl.dylib */,
@@ -2844,7 +2844,7 @@
 		};
 		C98F778D0E36500900CF2AAF /* Irssi Configure */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "--with-modules --with-proxy --enable-ipv6 --enable-ssl --without-textui --with-perl=no";
+			buildArgumentsString = "--with-modules --with-proxy --enable-ipv6 --enable-ssl --without-textui --with-perl=yes --disable-dependency-tracking";
 			buildConfigurationList = C98F77960E36501500CF2AAF /* Build configuration list for PBXLegacyTarget "Irssi Configure" */;
 			buildPhases = (
 			);
@@ -3220,6 +3220,8 @@
 		C209D3A908BF5CE6009C9E21 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3245,9 +3247,8 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					Growl.framework/Versions/A/Headers,
-					"/sw/include/glib-2.0",
-					"/sw/lib/glib-2.0/include",
-					"/opt/local/include/glib-2.0",
+					"/usr/local/include/glib-2.0",
+					"/usr/local/lib/glib-2.0/include",
 					"irssi-0.8.12/src",
 					"irssi-0.8.12",
 				);
@@ -3277,7 +3278,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_10 = "\"$(IRSSI_PATH)/src/fe-common/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_11 = "\"$(IRSSI_PATH)/src/core\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(IRSSI_PATH)/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"$(SRCROOT)/glib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"/usr/local/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(IRSSI_PATH)/src/perl/.libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.8\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader\"";
@@ -3313,6 +3314,8 @@
 		C209D3AA08BF5CE6009C9E21 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
@@ -3336,9 +3339,8 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					Growl.framework/Versions/A/Headers,
-					"/sw/include/glib-2.0",
-					"/sw/lib/glib-2.0/include",
-					"/opt/local/include/glib-2.0",
+					"/usr/local/include/glib-2.0",
+					"/usr/local/lib/glib-2.0/include",
 					"irssi-0.8.12/src",
 					"irssi-0.8.12",
 				);
@@ -3367,7 +3369,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_10 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_11 = "\"$(SRCROOT)/irssi-0.8.12/src/core\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"$(SRCROOT)/glib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"/usr/local/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.8\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader\"";
@@ -3508,6 +3510,8 @@
 		C224D30308C6503D00E66C62 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -3517,9 +3521,9 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				HEADER_SEARCH_PATHS = (
 					Growl.framework/Versions/A/Headers,
-					"/sw/lib/glib-2.0/include",
-					/sw/include,
-					"/sw/include/glib-2.0",
+					"/usr/local/lib/glib-2.0/include",
+					/usr/local/include,
+					"/usr/local/include/glib-2.0",
 					"irssi-0.8.12/src",
 					"irssi-0.8.12",
 				);
@@ -3547,7 +3551,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_10 = "\"$(IRSSI_PATH)/src/fe-common/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_11 = "\"$(IRSSI_PATH)/src/core\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(IRSSI_PATH)/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"$(SRCROOT)/glib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"/usr/local/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(IRSSI_PATH)/src/perl/.libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.8\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader\"";
@@ -3576,6 +3580,8 @@
 		C224D30408C6503D00E66C62 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -3584,9 +3590,8 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				HEADER_SEARCH_PATHS = (
 					Growl.framework/Versions/A/Headers,
-					"/sw/include/glib-2.0",
-					"/sw/lib/glib-2.0/include",
-					"/opt/local/include/glib-2.0",
+					"/usr/local/include/glib-2.0",
+					"/usr/local/lib/glib-2.0/include",
 					"irssi-0.8.12/src",
 					"irssi-0.8.12",
 				);
@@ -3613,7 +3618,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_10 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_11 = "\"$(SRCROOT)/irssi-0.8.12/src/core\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"$(SRCROOT)/glib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"/usr/local/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.8\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.8.6/darwin-thread-multi-2level/auto/DynaLoader\"";
@@ -3762,16 +3767,14 @@
 		C98F778E0E36500900CF2AAF /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACLOCAL_FLAGS = "\"-I /sw/share/aclocal\"";
-				CFLAGS = "-I/sw/include -g";
+				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
+				CFLAGS = "-I/usr/local/include -g -arch ppc -arch i386";
 				COPY_PHASE_STRIP = NO;
-				CPPFLAGS = $CXXFLAGS;
-				CXXFLAGS = $CFLAGS;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LDFLAGS = "-L/sw/lib -g";
+				LDFLAGS = "-L/usr/local/lib -g -arch ppc -arch i386";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PKG_CONFIG_PATH = /sw/lib/pkgconfig;
+				PKG_CONFIG_PATH = /usr/local/lib/pkgconfig;
 				PRODUCT_NAME = "Irssi Configure";
 			};
 			name = Development;
@@ -3779,18 +3782,16 @@
 		C98F778F0E36500900CF2AAF /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ACLOCAL_FLAGS = "\"-I /sw/share/aclocal\"";
-				CFLAGS = "-I/sw/include";
+				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
+				CFLAGS = "-I/usr/local/include -arch ppc -arch i386";
 				COPY_PHASE_STRIP = NO;
-				CPPFLAGS = $CXXFLAGS;
-				CXXFLAGS = $CFLAGS;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LDFLAGS = "-L/sw/lib";
+				LDFLAGS = "-L/usr/local/lib -arch ppc -arch i386";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
-				PKG_CONFIG_PATH = /sw/lib/pkgconfig;
+				PKG_CONFIG_PATH = /usr/local/lib/pkgconfig;
 				PRODUCT_NAME = "Irssi Configure";
 				ZERO_LINK = NO;
 			};

@@ -10,7 +10,7 @@
 #
 #   MakeMaker Parameters:
 
-#     INC => q[-I../../.. -I../../../src -I../../../src/core -I../../../src/fe-common/core -I../../../src/fe-text -I/usr/local/include/glib-2.0 -I/usr/local/lib/glib-2.0/include  ]
+#     INC => q[-I../../.. -I../../../src -I../../../src/core -I../../../src/fe-common/core -I../../../src/fe-text -I/sw/include/glib-2.0 -I/sw/lib/glib-2.0/include  ]
 #     LIBS => q[]
 #     NAME => q[Irssi::TextUI]
 #     OBJECT => q[$(O_FILES)]
@@ -142,7 +142,7 @@ BASEEXT = TextUI
 PARENT_NAME = Irssi
 DLBASE = $(BASEEXT)
 VERSION_FROM = ./TextUI.pm
-INC = -I../../.. -I../../../src -I../../../src/core -I../../../src/fe-common/core -I../../../src/fe-text -I/usr/local/include/glib-2.0 -I/usr/local/lib/glib-2.0/include  
+INC = -I../../.. -I../../../src -I../../../src/core -I../../../src/fe-common/core -I../../../src/fe-text -I/sw/include/glib-2.0 -I/sw/lib/glib-2.0/include  
 OBJECT = $(O_FILES)
 LDFROM = $(OBJECT)
 LINKTYPE = dynamic
