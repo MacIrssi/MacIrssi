@@ -1271,7 +1271,6 @@ char **argv;
 	
 	/* Init Growl */
 	[GrowlApplicationBridge setGrowlDelegate:self];
-	[updateChecker safeInit]; // To make sure growl is regitred before update check tries to send growl notification
 	
 	/* Sleep registration */
 	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceWillSleep:) name:NSWorkspaceWillSleepNotification object:[NSWorkspace sharedWorkspace]];
