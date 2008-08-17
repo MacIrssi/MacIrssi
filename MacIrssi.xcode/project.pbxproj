@@ -924,9 +924,9 @@
 		B3241ACA06286AF7000B4624 /* NSAttributedStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringAdditions.m; sourceTree = "<group>"; };
 		B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringAdditions.h; sourceTree = "<group>"; };
 		B32A9E5F05F0B14800DB2595 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		B32A9E6105F0B18C00DB2595 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		B32A9E6105F0B18C00DB2595 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = Docs/README; sourceTree = "<group>"; };
 		B32A9E6305F0C69800DB2595 /* HISTORY */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = HISTORY; sourceTree = SOURCE_ROOT; };
-		B32A9E6405F0C69800DB2595 /* TODO */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = TODO; sourceTree = SOURCE_ROOT; };
+		B32A9E6405F0C69800DB2595 /* TODO */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = TODO; path = Docs/TODO; sourceTree = "<group>"; };
 		B3836EB505F6A1FD002D734A /* common.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		B3836EB705F6A1FD002D734A /* args.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = args.c; sourceTree = "<group>"; };
 		B3836EB805F6A1FD002D734A /* args.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = args.h; sourceTree = "<group>"; };
@@ -1496,7 +1496,7 @@
 		C232FAE908C8978D000C624E /* xmas.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = xmas.theme; path = Themes/xmas.theme; sourceTree = SOURCE_ROOT; };
 		C232FAEA08C8978D000C624E /* zhafte.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = zhafte.theme; path = Themes/zhafte.theme; sourceTree = SOURCE_ROOT; };
 		C232FAEB08C8978D000C624E /* zng.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = zng.theme; path = Themes/zng.theme; sourceTree = SOURCE_ROOT; };
-		C240EC5908D19DF3002EE99A /* Files containing version number */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Files containing version number"; sourceTree = "<group>"; };
+		C240EC5908D19DF3002EE99A /* Files containing version number */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Files containing version number"; path = "Docs/Files containing version number"; sourceTree = "<group>"; };
 		C24AE84408C7691A00A2CA0D /* Makefile */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		C24AE84508C7691A00A2CA0D /* parse_raw.sh */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.script.sh; path = parse_raw.sh; sourceTree = "<group>"; };
 		C24AE84608C7691A00A2CA0D /* rawlog */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; path = rawlog; sourceTree = "<group>"; };
@@ -1517,7 +1517,7 @@
 		C26FC75A08C4746200CFD1B3 /* English */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/UKUpdateChecker.strings; sourceTree = "<group>"; };
 		C26FC77608C4780300CFD1B3 /* MacPAD.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacPAD.url; sourceTree = "<group>"; };
 		C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MacIrssi.icns; sourceTree = "<group>"; };
-		C273D9480757EC7E0032A7B8 /* MemoryCheck */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MemoryCheck; sourceTree = "<group>"; };
+		C273D9480757EC7E0032A7B8 /* MemoryCheck */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MemoryCheck; path = Docs/MemoryCheck; sourceTree = "<group>"; };
 		C2A5697908D0D74100788905 /* TextEncodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEncodings.h; sourceTree = "<group>"; };
 		C2A5697A08D0D74100788905 /* TextEncodings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEncodings.m; sourceTree = "<group>"; };
 		C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Growl-WithInstaller.framework"; sourceTree = "<group>"; };
