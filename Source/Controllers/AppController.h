@@ -33,7 +33,7 @@
 #import "servers-setup.h"
 #import "channels-setup.h"
 #import "servers-reconnect.h"
-#import "UKUpdateChecker.h"
+#import <Sparkle/Sparkle.h>
 
 @class ChannelController;
 @class PreferenceController;
@@ -62,7 +62,7 @@ extern char **argv;
 	IBOutlet NSTextField *errorTextField;
 	IBOutlet ChannelBar *channelBar;
 	IBOutlet id box;
-	IBOutlet UKUpdateChecker *updateChecker;
+	IBOutlet SUUpdater *updateChecker;
 	
 	IBOutlet NSWindow *aboutBox;
 	IBOutlet NSTextField *aboutVersionLabel;

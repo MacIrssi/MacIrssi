@@ -193,8 +193,6 @@
 		C24AE90108C7A32A00A2CA0D /* Protocols.h in Headers */ = {isa = PBXBuildFile; fileRef = C24AE90008C7A32A00A2CA0D /* Protocols.h */; };
 		C25491780681A35900C43D63 /* CustomTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C25491760681A35900C43D63 /* CustomTextView.h */; };
 		C25491790681A35900C43D63 /* CustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25491770681A35900C43D63 /* CustomTextView.m */; };
-		C26FC75608C4735300CFD1B3 /* UKUpdateChecker.h in Headers */ = {isa = PBXBuildFile; fileRef = C26FC75408C4735300CFD1B3 /* UKUpdateChecker.h */; };
-		C26FC75708C4735300CFD1B3 /* UKUpdateChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = C26FC75508C4735300CFD1B3 /* UKUpdateChecker.m */; };
 		C26FC75B08C4746200CFD1B3 /* UKUpdateChecker.strings in Resources */ = {isa = PBXBuildFile; fileRef = C26FC75908C4746200CFD1B3 /* UKUpdateChecker.strings */; };
 		C26FC77708C4780300CFD1B3 /* MacPAD.url in Resources */ = {isa = PBXBuildFile; fileRef = C26FC77608C4780300CFD1B3 /* MacPAD.url */; };
 		C26FC9BD08C4E56300CFD1B3 /* MacIrssi.icns in Resources */ = {isa = PBXBuildFile; fileRef = C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */; };
@@ -401,6 +399,8 @@
 		C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */; };
 		C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */; };
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
+		C9F435120E573D330001D6D6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F435110E573D330001D6D6 /* Sparkle.framework */; };
+		C9F435330E574A8F0001D6D6 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9F435110E573D330001D6D6 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -459,6 +459,7 @@
 				C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.dylib in CopyFiles */,
 				C2CC3BFB0C0B7B5B001C0DDD /* libiconv.dylib in CopyFiles */,
 				C2CC3BFC0C0B7B63001C0DDD /* libintl.dylib in CopyFiles */,
+				C9F435330E574A8F0001D6D6 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1513,8 +1514,6 @@
 		C24AE90008C7A32A00A2CA0D /* Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
 		C25491760681A35900C43D63 /* CustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextView.h; sourceTree = "<group>"; };
 		C25491770681A35900C43D63 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
-		C26FC75408C4735300CFD1B3 /* UKUpdateChecker.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = UKUpdateChecker.h; sourceTree = "<group>"; };
-		C26FC75508C4735300CFD1B3 /* UKUpdateChecker.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = UKUpdateChecker.m; sourceTree = "<group>"; };
 		C26FC75A08C4746200CFD1B3 /* English */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/UKUpdateChecker.strings; sourceTree = "<group>"; };
 		C26FC77608C4780300CFD1B3 /* MacPAD.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacPAD.url; sourceTree = "<group>"; };
 		C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MacIrssi.icns; sourceTree = "<group>"; };
@@ -1573,6 +1572,7 @@
 		C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectivityMonitor.h; sourceTree = "<group>"; };
 		C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectivityMonitor.m; sourceTree = "<group>"; };
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
+		C9F435110E573D330001D6D6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1605,6 +1605,7 @@
 				C229C73D0C1AA7B900D7CCD0 /* libssl.dylib in Frameworks */,
 				C229C7400C1AA82900D7CCD0 /* libcrypto.dylib in Frameworks */,
 				C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */,
+				C9F435120E573D330001D6D6 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1669,8 +1670,6 @@
 				C2E05FE70740E35600A4950D /* CoverView.m */,
 				C2C2C0F7074B822700396F82 /* MarkedScroller.h */,
 				C2C2C0F8074B822700396F82 /* MarkedScroller.m */,
-				C26FC75408C4735300CFD1B3 /* UKUpdateChecker.h */,
-				C26FC75508C4735300CFD1B3 /* UKUpdateChecker.m */,
 				C2A5697908D0D74100788905 /* TextEncodings.h */,
 				C2A5697A08D0D74100788905 /* TextEncodings.m */,
 			);
@@ -1681,6 +1680,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9F435110E573D330001D6D6 /* Sparkle.framework */,
 				C9667E020E3790FD00014B02 /* SystemConfiguration.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
@@ -2803,7 +2803,6 @@
 				C200D027073FC03700B850B1 /* ChannelBarCell.h in Headers */,
 				C2E05FE80740E35600A4950D /* CoverView.h in Headers */,
 				C2C2C0F9074B822700396F82 /* MarkedScroller.h in Headers */,
-				C26FC75608C4735300CFD1B3 /* UKUpdateChecker.h in Headers */,
 				C24AE90108C7A32A00A2CA0D /* Protocols.h in Headers */,
 				C2A5697B08D0D74100788905 /* TextEncodings.h in Headers */,
 				C947E1DC0E1E871F0001380E /* EventController.h in Headers */,
@@ -3027,7 +3026,6 @@
 				C200D028073FC03700B850B1 /* ChannelBarCell.m in Sources */,
 				C2E05FE90740E35600A4950D /* CoverView.m in Sources */,
 				C2C2C0FA074B822700396F82 /* MarkedScroller.m in Sources */,
-				C26FC75708C4735300CFD1B3 /* UKUpdateChecker.m in Sources */,
 				C2A5697C08D0D74100788905 /* TextEncodings.m in Sources */,
 				C947E1DD0E1E871F0001380E /* EventController.m in Sources */,
 				C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */,
@@ -3228,10 +3226,12 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -3321,10 +3321,12 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -3410,10 +3412,12 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
