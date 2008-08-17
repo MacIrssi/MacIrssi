@@ -372,6 +372,8 @@
   [self updateSoundListPopUpButton];
   
   //[self chatEventPopup:self];
+  
+  [preferenceWindow center];
 }
 
 /**

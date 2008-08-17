@@ -137,12 +137,12 @@ BOOL tpd_quitting;
 
 	/* Load the theme */
 	char command[12 + [theme length]];
-	sprintf(command, "/set theme %s", [theme lossyCString]);
+	sprintf(command, "/set theme %s", [theme cStringUsingEncoding:NSASCIIStringEncoding]);
 	signal_emit("send command", 3, command, windowRec->active_server, windowRec->active);
 
 	/* Connect to fake IRC server */
 	NSString *connectString = [NSString stringWithFormat:@"/server localhost %d", serverPort];
-	signal_emit("send command", 3, [connectString lossyCString], windowRec->active_server, windowRec->active);
+	signal_emit("send command", 3, [connectString cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
 }
 
 /**
