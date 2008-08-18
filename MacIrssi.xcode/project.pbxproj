@@ -2873,6 +2873,7 @@
 				C237874108C25AE000D73190 /* CopyFiles */,
 				C232FB6E08C897DA000C624E /* CopyFiles */,
 				C922B4290E23BCE4000AA7BE /* CopyFiles */,
+				C91025090E59C2A200E041F7 /* ShellScript */,
 				C9EC9EE30E36386C00445345 /* Update Git version */,
 			);
 			buildRules = (
@@ -2975,6 +2976,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = ./lib_path_fix.sh;
+		};
+		C91025090E59C2A200E041F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# copies perl libraries\n\nPERLPATH=\"irssi-0.8.12/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p $DSTPATH\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nexit 0";
 		};
 		C9EC9EE30E36386C00445345 /* Update Git version */ = {
 			isa = PBXShellScriptBuildPhase;
