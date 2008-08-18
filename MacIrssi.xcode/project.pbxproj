@@ -227,13 +227,12 @@
 		C2CC3AF90C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */; };
 		C2CC3AFA0C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */; };
 		C2CC3B0F0C09F404001C0DDD /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */; };
-		C2CC3B120C09F404001C0DDD /* libgmodule-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */; };
-		C2CC3B150C09F404001C0DDD /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.dylib */; };
-		C2CC3B180C09F404001C0DDD /* libintl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.dylib */; };
+		C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
+		C2CC3B180C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2CC3B1B0C09F404001C0DDD /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */; };
-		C2CC3B1E0C09F404001C0DDD /* libgmodule-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */; };
-		C2CC3B210C09F404001C0DDD /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.dylib */; };
-		C2CC3B240C09F404001C0DDD /* libintl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.dylib */; };
+		C2CC3B1E0C09F404001C0DDD /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
+		C2CC3B210C09F404001C0DDD /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
+		C2CC3B240C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2CC3B350C0A058D001C0DDD /* libfe_perl_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */; };
 		C2CC3B360C0A058D001C0DDD /* libperl_core_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B340C0A058D001C0DDD /* libperl_core_static.a */; };
 		C2CC3B370C0A058D001C0DDD /* libfe_perl_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */; };
@@ -243,13 +242,14 @@
 		C2CC3B5C0C0B43C7001C0DDD /* DynaLoader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */; };
 		C2CC3B5D0C0B43C7001C0DDD /* DynaLoader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */; };
 		C2CC3BF90C0B7B48001C0DDD /* libglib-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */; };
-		C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */; };
-		C2CC3BFB0C0B7B5B001C0DDD /* libiconv.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.dylib */; };
-		C2CC3BFC0C0B7B63001C0DDD /* libintl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.dylib */; };
+		C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
+		C2CC3BFB0C0B7B5B001C0DDD /* libiconv.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
+		C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2D1679106E3E16C000EC6F9 /* ChannelBar.h in Headers */ = {isa = PBXBuildFile; fileRef = C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */; };
 		C2D1679206E3E16C000EC6F9 /* ChannelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D1679006E3E16C000EC6F9 /* ChannelBar.m */; };
 		C2E05FE80740E35600A4950D /* CoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E05FE60740E35600A4950D /* CoverView.h */; };
 		C2E05FE90740E35600A4950D /* CoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E05FE70740E35600A4950D /* CoverView.m */; };
+		C91024360E58976B00E041F7 /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
 		C922B4140E23BCE1000AA7BE /* Beep 1.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */; };
 		C922B4150E23BCE1000AA7BE /* Beep 2.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */; };
 		C922B4160E23BCE1000AA7BE /* Bell 1.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */; };
@@ -456,9 +456,9 @@
 			dstSubfolderSpec = 10;
 			files = (
 				C2CC3BF90C0B7B48001C0DDD /* libglib-2.0.0.dylib in CopyFiles */,
-				C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.dylib in CopyFiles */,
-				C2CC3BFB0C0B7B5B001C0DDD /* libiconv.dylib in CopyFiles */,
-				C2CC3BFC0C0B7B63001C0DDD /* libintl.dylib in CopyFiles */,
+				C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in CopyFiles */,
+				C2CC3BFB0C0B7B5B001C0DDD /* libiconv.2.dylib in CopyFiles */,
+				C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in CopyFiles */,
 				C9F435330E574A8F0001D6D6 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1536,9 +1536,9 @@
 		C2CC3AF50C09EEAF001C0DDD /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "irssi-0.8.11/src/core/libcore.a"; sourceTree = "<group>"; };
 		C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_notifylist.a; path = "irssi-0.8.11/src/fe-common/irc/notifylist/libfe_irc_notifylist.a"; sourceTree = "<group>"; };
 		C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libglib-2.0.0.dylib"; path = "/usr/local/lib/libglib-2.0.0.dylib"; sourceTree = "<absolute>"; };
-		C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgmodule-2.0.dylib"; path = "/usr/local/lib/libgmodule-2.0.dylib"; sourceTree = "<absolute>"; };
-		C2CC3B090C09F404001C0DDD /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libiconv.dylib; sourceTree = "<group>"; };
-		C2CC3B0C0C09F404001C0DDD /* libintl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libintl.dylib; sourceTree = "<group>"; };
+		C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgmodule-2.0.0.dylib"; path = "/usr/local/lib/libgmodule-2.0.0.dylib"; sourceTree = "<absolute>"; };
+		C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = /usr/lib/libiconv.2.dylib; sourceTree = "<absolute>"; };
+		C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libintl.8.0.2.dylib; path = /usr/local/lib/libintl.8.0.2.dylib; sourceTree = "<absolute>"; };
 		C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_perl_static.a; path = "irssi-0.8.11/src/perl/.libs/libfe_perl_static.a"; sourceTree = "<group>"; };
 		C2CC3B340C0A058D001C0DDD /* libperl_core_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libperl_core_static.a; path = "irssi-0.8.11/src/perl/.libs/libperl_core_static.a"; sourceTree = "<group>"; };
 		C2CC3B550C0B42BD001C0DDD /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = /System/Library/Perl/lib/5.8/libperl.dylib; sourceTree = "<absolute>"; };
@@ -1594,9 +1594,9 @@
 				C2CC3AF30C09EEA1001C0DDD /* libfe_irc_dcc.a in Frameworks */,
 				C2CC3AF90C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */,
 				C2CC3B0F0C09F404001C0DDD /* libglib-2.0.0.dylib in Frameworks */,
-				C2CC3B120C09F404001C0DDD /* libgmodule-2.0.dylib in Frameworks */,
-				C2CC3B150C09F404001C0DDD /* libiconv.dylib in Frameworks */,
-				C2CC3B180C09F404001C0DDD /* libintl.dylib in Frameworks */,
+				C91024360E58976B00E041F7 /* libgmodule-2.0.0.dylib in Frameworks */,
+				C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */,
+				C2CC3B180C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */,
 				C2CC3B350C0A058D001C0DDD /* libfe_perl_static.a in Frameworks */,
 				C2CC3B360C0A058D001C0DDD /* libperl_core_static.a in Frameworks */,
 				C2CC3B560C0B42BD001C0DDD /* libperl.dylib in Frameworks */,
@@ -1628,9 +1628,9 @@
 				C2CC3AF40C09EEA1001C0DDD /* libfe_irc_dcc.a in Frameworks */,
 				C2CC3AFA0C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */,
 				C2CC3B1B0C09F404001C0DDD /* libglib-2.0.0.dylib in Frameworks */,
-				C2CC3B1E0C09F404001C0DDD /* libgmodule-2.0.dylib in Frameworks */,
-				C2CC3B210C09F404001C0DDD /* libiconv.dylib in Frameworks */,
-				C2CC3B240C09F404001C0DDD /* libintl.dylib in Frameworks */,
+				C2CC3B1E0C09F404001C0DDD /* libgmodule-2.0.0.dylib in Frameworks */,
+				C2CC3B210C09F404001C0DDD /* libiconv.2.dylib in Frameworks */,
+				C2CC3B240C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */,
 				C2CC3B370C0A058D001C0DDD /* libfe_perl_static.a in Frameworks */,
 				C2CC3B380C0A058D001C0DDD /* libperl_core_static.a in Frameworks */,
 				C2CC3B570C0B42BD001C0DDD /* libperl.dylib in Frameworks */,
@@ -2747,9 +2747,9 @@
 			isa = PBXGroup;
 			children = (
 				C2CC3B030C09F404001C0DDD /* libglib-2.0.0.dylib */,
-				C2CC3B060C09F404001C0DDD /* libgmodule-2.0.dylib */,
-				C2CC3B090C09F404001C0DDD /* libiconv.dylib */,
-				C2CC3B0C0C09F404001C0DDD /* libintl.dylib */,
+				C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */,
+				C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */,
+				C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */,
 			);
 			path = glib;
 			sourceTree = "<group>";
