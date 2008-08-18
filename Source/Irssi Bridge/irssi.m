@@ -329,6 +329,10 @@ int irssi_main(int argc, char **argv)
 
 	textui_init();
 	textui_finish_init();
+  
+  char *bundleStr = [IrssiBridge irssiCStringWithString:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Scripts"]];
+  settings_add_str("perl", "macirssi_lib", bundleStr);
+  free(bundleStr);
 
 	/* Does the same as g_main_run(main_loop), except we
 	   can call our dirty-checker after each iteration */
