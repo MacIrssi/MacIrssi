@@ -1,5 +1,0 @@
-
-EVAL %|<command(s)>
-
-Evaluates the given commands and executes them. Internal variables are expanded. See the special_vars.txt file in the docs-directory.
-
