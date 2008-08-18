@@ -1,9 +1,0 @@
-
-UNSILENCE %|<nick!user@host>
-
-Works only in the Undernet and Open Projects (ircu).
-
-Removes a pattern from your silence list.
-
-See also: SILENCE
-
