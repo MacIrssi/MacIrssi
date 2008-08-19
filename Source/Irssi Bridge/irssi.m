@@ -326,13 +326,14 @@ int irssi_main(int argc, char **argv)
 	   locales aren't actually used for anything else than autodetection
 	   of UTF-8 currently.. */
 	setlocale(LC_CTYPE, "");
-
+	
 	textui_init();
-	textui_finish_init();
-  
-  char *bundleStr = [IrssiBridge irssiCStringWithString:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Scripts"]];
+	
+	char *bundleStr = [IrssiBridge irssiCStringWithString:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Scripts"]];
   settings_add_str("perl", "macirssi_lib", bundleStr);
   free(bundleStr);
+	
+	textui_finish_init();
 
 	/* Does the same as g_main_run(main_loop), except we
 	   can call our dirty-checker after each iteration */

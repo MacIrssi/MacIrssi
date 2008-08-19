@@ -121,7 +121,7 @@ void perl_scripts_init(void)
 	char *code, *use_code;
 
 	perl_scripts = NULL;
-        perl_sources_start();
+	perl_sources_start();
 	perl_signals_start();
 
 	my_perl = perl_alloc();
