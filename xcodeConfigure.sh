@@ -12,6 +12,8 @@ if [ "x$ACTION" == "xclean" ]; then
   exit 0
 fi
 
+VERSION=`pl < ../Info.plist | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\s+=\s+"(.*?)"/); }'`
+
 if [[ ( -e config.xcode ) && ( -e Makefile ) && "$CONFIGURATION" != "" ]]; then
   if grep -q "$CONFIGURATION" config.xcode; then
 		exit 0
@@ -23,6 +25,7 @@ fi
 
 [ -e config.xcode ] && rm config.xcode
 
+CFLAGS="$CFLAGS -DMACIRSSI_VERSION=\\\"$VERSION\\\""
 ./configure $@
 CONF_EXIT=$?
 

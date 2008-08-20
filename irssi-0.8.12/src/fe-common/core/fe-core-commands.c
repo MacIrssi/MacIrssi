@@ -106,7 +106,7 @@ static void cmd_version(char *data)
 	if (*data == '\0') {
                 g_snprintf(time, sizeof(time), "%04d", IRSSI_VERSION_TIME);
 		printtext(NULL, NULL, MSGLEVEL_CLIENTNOTICE,
-              "Client: MacIrssi 0.8.5.8 (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")");
+              "Client: MacIrssi "MACIRSSI_VERSION" (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")");
 	}
 }
 
