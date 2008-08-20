@@ -2885,7 +2885,7 @@
 			buildPhases = (
 			);
 			buildToolPath = ../xcodeConfigure.sh;
-			buildWorkingDirectory = "/Users/matt/Projects/MacIrssi/irssi-0.8.12";
+			buildWorkingDirectory = "irssi-0.8.12";
 			dependencies = (
 			);
 			name = "Irssi Configure";
