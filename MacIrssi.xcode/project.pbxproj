@@ -193,7 +193,6 @@
 		C24AE90108C7A32A00A2CA0D /* Protocols.h in Headers */ = {isa = PBXBuildFile; fileRef = C24AE90008C7A32A00A2CA0D /* Protocols.h */; };
 		C25491780681A35900C43D63 /* CustomTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C25491760681A35900C43D63 /* CustomTextView.h */; };
 		C25491790681A35900C43D63 /* CustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25491770681A35900C43D63 /* CustomTextView.m */; };
-		C26FC75B08C4746200CFD1B3 /* UKUpdateChecker.strings in Resources */ = {isa = PBXBuildFile; fileRef = C26FC75908C4746200CFD1B3 /* UKUpdateChecker.strings */; };
 		C26FC77708C4780300CFD1B3 /* MacPAD.url in Resources */ = {isa = PBXBuildFile; fileRef = C26FC77608C4780300CFD1B3 /* MacPAD.url */; };
 		C26FC9BD08C4E56300CFD1B3 /* MacIrssi.icns in Resources */ = {isa = PBXBuildFile; fileRef = C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */; };
 		C2A5697B08D0D74100788905 /* TextEncodings.h in Headers */ = {isa = PBXBuildFile; fileRef = C2A5697908D0D74100788905 /* TextEncodings.h */; };
@@ -248,6 +247,15 @@
 		C2E05FE80740E35600A4950D /* CoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E05FE60740E35600A4950D /* CoverView.h */; };
 		C2E05FE90740E35600A4950D /* CoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E05FE70740E35600A4950D /* CoverView.m */; };
 		C91024360E58976B00E041F7 /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
+		C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265A0E5C654800E041F7 /* UKCrashReporter.h */; };
+		C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
+		C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265C0E5C654800E041F7 /* UKSystemInfo.h */; };
+		C91026650E5C654800E041F7 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265D0E5C654800E041F7 /* UKCrashReporter.m */; };
+		C91026660E5C654800E041F7 /* UKNibOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265E0E5C654800E041F7 /* UKNibOwner.h */; };
+		C91026670E5C654800E041F7 /* UKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265F0E5C654800E041F7 /* UKSystemInfo.m */; };
+		C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */ = {isa = PBXBuildFile; fileRef = C91026600E5C654800E041F7 /* UKCrashReporter.nib */; };
+		C91026690E5C654800E041F7 /* UKNibOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = C91026610E5C654800E041F7 /* UKNibOwner.m */; };
+		C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91026760E5C665B00E041F7 /* AddressBook.framework */; };
 		C922B4140E23BCE1000AA7BE /* Beep 1.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */; };
 		C922B4150E23BCE1000AA7BE /* Beep 2.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */; };
 		C922B4160E23BCE1000AA7BE /* Bell 1.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */; };
@@ -1514,7 +1522,6 @@
 		C24AE90008C7A32A00A2CA0D /* Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
 		C25491760681A35900C43D63 /* CustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextView.h; sourceTree = "<group>"; };
 		C25491770681A35900C43D63 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
-		C26FC75A08C4746200CFD1B3 /* English */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/UKUpdateChecker.strings; sourceTree = "<group>"; };
 		C26FC77608C4780300CFD1B3 /* MacPAD.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacPAD.url; sourceTree = "<group>"; };
 		C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MacIrssi.icns; sourceTree = "<group>"; };
 		C273D9480757EC7E0032A7B8 /* MemoryCheck */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MemoryCheck; path = Docs/MemoryCheck; sourceTree = "<group>"; };
@@ -1546,6 +1553,15 @@
 		C2D1679006E3E16C000EC6F9 /* ChannelBar.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ChannelBar.m; sourceTree = "<group>"; };
 		C2E05FE60740E35600A4950D /* CoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverView.h; sourceTree = "<group>"; };
 		C2E05FE70740E35600A4950D /* CoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverView.m; sourceTree = "<group>"; };
+		C910265A0E5C654800E041F7 /* UKCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKCrashReporter.h; sourceTree = "<group>"; };
+		C910265B0E5C654800E041F7 /* UKCrashReporter.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = UKCrashReporter.strings; path = UKCrashReporter/UKCrashReporter.strings; sourceTree = "<group>"; };
+		C910265C0E5C654800E041F7 /* UKSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKSystemInfo.h; sourceTree = "<group>"; };
+		C910265D0E5C654800E041F7 /* UKCrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKCrashReporter.m; sourceTree = "<group>"; };
+		C910265E0E5C654800E041F7 /* UKNibOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKNibOwner.h; sourceTree = "<group>"; };
+		C910265F0E5C654800E041F7 /* UKSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKSystemInfo.m; sourceTree = "<group>"; };
+		C91026600E5C654800E041F7 /* UKCrashReporter.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = UKCrashReporter.nib; sourceTree = "<group>"; };
+		C91026610E5C654800E041F7 /* UKNibOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKNibOwner.m; sourceTree = "<group>"; };
+		C91026760E5C665B00E041F7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
 		C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 1.aiff"; sourceTree = "<group>"; };
 		C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 2.aiff"; sourceTree = "<group>"; };
 		C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Bell 1.aiff"; sourceTree = "<group>"; };
@@ -1581,6 +1597,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */,
 				C2CC3AE10C09EE1B001C0DDD /* libfe_common_irc.a in Frameworks */,
 				C2CC3AF60C09EEAF001C0DDD /* libcore.a in Frameworks */,
 				C2CC3AEA0C09EE42001C0DDD /* libirc.a in Frameworks */,
@@ -1646,6 +1663,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C91026570E5C652000E041F7 /* UKCrashReporter */,
 				B322DD9205EF9A5C00E640C2 /* Irssi Bridge */,
 				B322DD9E05EF9A9100E640C2 /* Controllers */,
 				B322DDB505EF9AE600E640C2 /* ColorSet.h */,
@@ -1708,7 +1726,6 @@
 		29B97314FDCFA39411CA2CEA /* MacIrssi */ = {
 			isa = PBXGroup;
 			children = (
-				C925E7710E5A2D550041921B /* libperl_core_static.a */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -1724,6 +1741,7 @@
 				C273D9480757EC7E0032A7B8 /* MemoryCheck */,
 				C240EC5908D19DF3002EE99A /* Files containing version number */,
 				C24AE84208C7691A00A2CA0D /* ThemePreviewDaemon */,
+				C91026760E5C665B00E041F7 /* AddressBook.framework */,
 			);
 			name = MacIrssi;
 			sourceTree = "<group>";
@@ -1747,7 +1765,7 @@
 				C9550D140E29A97400658372 /* MacIrssi-Alert.png */,
 				C922B4300E23BD34000AA7BE /* sound.png */,
 				C9553A9E0E24C17200626859 /* activityNewImportant.png */,
-				C26FC75908C4746200CFD1B3 /* UKUpdateChecker.strings */,
+				C910265B0E5C654800E041F7 /* UKCrashReporter.strings */,
 				C26FC77608C4780300CFD1B3 /* MacPAD.url */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -1789,6 +1807,7 @@
 				C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */,
 				C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */,
 				C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */,
+				C925E7710E5A2D550041921B /* libperl_core_static.a */,
 				C2CC3B550C0B42BD001C0DDD /* libperl.dylib */,
 			);
 			name = irssi;
@@ -2754,6 +2773,21 @@
 			path = glib;
 			sourceTree = "<group>";
 		};
+		C91026570E5C652000E041F7 /* UKCrashReporter */ = {
+			isa = PBXGroup;
+			children = (
+				C910265A0E5C654800E041F7 /* UKCrashReporter.h */,
+				C910265D0E5C654800E041F7 /* UKCrashReporter.m */,
+				C910265C0E5C654800E041F7 /* UKSystemInfo.h */,
+				C910265E0E5C654800E041F7 /* UKNibOwner.h */,
+				C910265F0E5C654800E041F7 /* UKSystemInfo.m */,
+				C91026600E5C654800E041F7 /* UKCrashReporter.nib */,
+				C91026610E5C654800E041F7 /* UKNibOwner.m */,
+			);
+			name = UKCrashReporter;
+			path = ../UKCrashReporter;
+			sourceTree = "<group>";
+		};
 		C922B3D90E23BAE6000AA7BE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -2807,6 +2841,9 @@
 				C2A5697B08D0D74100788905 /* TextEncodings.h in Headers */,
 				C947E1DC0E1E871F0001380E /* EventController.h in Headers */,
 				C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */,
+				C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */,
+				C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */,
+				C91026660E5C654800E041F7 /* UKNibOwner.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2938,13 +2975,14 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				B322DD8F05EF9A3200E640C2 /* Preferences.nib in Resources */,
 				B322DD9005EF9A3200E640C2 /* Tab new.nib in Resources */,
-				C26FC75B08C4746200CFD1B3 /* UKUpdateChecker.strings in Resources */,
 				C26FC77708C4780300CFD1B3 /* MacPAD.url in Resources */,
 				C26FC9BD08C4E56300CFD1B3 /* MacIrssi.icns in Resources */,
 				C224D19508C5A6FC00E66C62 /* Macirssi-dot.png in Resources */,
 				C922B4310E23BD34000AA7BE /* sound.png in Resources */,
 				C9553A9F0E24C17200626859 /* activityNewImportant.png in Resources */,
 				C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */,
+				C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */,
+				C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3043,6 +3081,9 @@
 				C2A5697C08D0D74100788905 /* TextEncodings.m in Sources */,
 				C947E1DD0E1E871F0001380E /* EventController.m in Sources */,
 				C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */,
+				C91026650E5C654800E041F7 /* UKCrashReporter.m in Sources */,
+				C91026670E5C654800E041F7 /* UKSystemInfo.m in Sources */,
+				C91026690E5C654800E041F7 /* UKNibOwner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3158,14 +3199,6 @@
 			name = gui.h;
 			sourceTree = "<group>";
 		};
-		C26FC75908C4746200CFD1B3 /* UKUpdateChecker.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C26FC75A08C4746200CFD1B3 /* English */,
-			);
-			name = UKUpdateChecker.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -3241,11 +3274,13 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -3338,11 +3373,13 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -3431,11 +3468,13 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;

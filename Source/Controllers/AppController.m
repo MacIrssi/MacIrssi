@@ -350,7 +350,7 @@ char **argv;
 
 - (IBAction)debugAction1:(id)sender
 {
-	[[ConnectivityMonitor sharedMonitor] workspaceWillSleep:nil];
+  *(long*)0 = 0xdeadbeef;
 }
 
 - (IBAction)debugAction2:(id)sender
@@ -504,6 +504,7 @@ char **argv;
 	[tabView selectTabViewItem:tmp];
 	[channelBar selectCellWithWindowRec:wind];
 	[channelTableView selectRow:[tabView indexOfTabViewItem:tmp] byExtendingSelection:FALSE];
+  [currentChannelController setWaitingEvents:0];
 	
 	NSRange r;
 	if ([[mainWindow firstResponder] isMemberOfClass:[NSTextView class]]) {
@@ -1041,6 +1042,8 @@ char **argv;
 	 must revert icon to normal */
 	if (hilightChannels == 0)
 		[self setIcon:defaultIcon];
+  
+  [currentChannelController setWaitingEvents:0];
 }
 
 //-------------------------------------------------------------------
@@ -1147,6 +1150,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)awakeFromNib
 {
+  UKCrashReporterCheckForCrash();
+  
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	//char *argv[2] = {"MacIrssi", NULL};
 	//char *argv[4] = {"MacIrssi", "--config=tmp", "--nick=g1m0", NULL};
@@ -1244,7 +1249,7 @@ char **argv;
 		iconOnPriv = [[NSApp applicationIconImage] retain];
 	}
 	
-	[defaults registerDefaults:[NSDictionary dictionaryWithObject:@"Get MacIrssi - http://www.g1m0.se/macirssi/ " forKey:@"defaultQuitMessage"]];
+	[defaults registerDefaults:[NSDictionary dictionaryWithObject:@"Get MacIrssi - http://www.sysctl.co.uk/projects/macirssi/ " forKey:@"defaultQuitMessage"]];
 	defaultQuitMessage = [[defaults objectForKey:@"defaultQuitMessage"] retain];
 	if (!channelFont)
 	{

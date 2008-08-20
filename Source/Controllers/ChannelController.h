@@ -3,16 +3,16 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
-
+ 
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
-
+ 
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*/
+ */
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
@@ -38,7 +38,7 @@ enum nickContextMenuTags {
 	Query,
 	Whois,
 	Who,
-
+  
 	Ignore,
 	Op,
 	Deop,
@@ -47,14 +47,14 @@ enum nickContextMenuTags {
 	Kick,
 	Ban,
 	KickBan,
-
+  
 	Ping,
 	Finger,
 	Version,
 	Time,
 	Userinfo,
 	Clientinfo,
-
+  
 	Send,
 	Chat,
 	List,
@@ -66,21 +66,21 @@ enum nickContextMenuTags {
 	NSString *name;
 	NSString *topic_by;
 	time_t topic_time;
-
+  
 	NSMutableArray *nicks; /* list of nicks */
 	NICK_REC *ownnick; /* our own nick */
 	CHANNEL_REC *channel;
-
+  
 	BOOL no_modes; /* channel doesn't support modes */
 	NSString *mode;
 	int limit; /* user limit */
 	NSString *key; /* password key */
-
+  
 	BOOL chanop; /* You're a channel operator */
 	BOOL names_got; /* Received /NAMES list */
 	BOOL wholist; /* WHO list got */
 	BOOL synced; /* Channel synced - all queries done */
-
+  
 	BOOL joined; /* Have we even received JOIN event for this channel? */
 	BOOL justLeft; /* You just left the channel */
 	BOOL kicked; /* You just got kicked */
@@ -104,24 +104,24 @@ enum nickContextMenuTags {
 	IBOutlet NSButton *cancelButton;
 	IBOutlet NSButton *floaterCheckBox;
 	IBOutlet NSPopUpButton *textEncodingPopUpButton;
-
+  
 	/* Reason window */
 	IBOutlet NSWindow *reasonWindow;
-
+  
 	/* Main view */
-    IBOutlet NSTextView *mainTextView;
-    IBOutlet NSScrollView *mainTextScrollView;
+  IBOutlet NSTextView *mainTextView;
+  IBOutlet NSScrollView *mainTextScrollView;
 	IBOutlet NSTableView *nickTableView;
-    IBOutlet NSTextField *topicTextField;
-    IBOutlet NSView *wholeView;
+  IBOutlet NSTextField *topicTextField;
+  IBOutlet NSView *wholeView;
 	IBOutlet NSSplitView *splitView;
 	IBOutlet NSButton *editChannelButton;
-    IBOutlet NSScrollView *nickTableScrollView;
-
+  IBOutlet NSScrollView *nickTableScrollView;
+  
 	/* Context menus */
 	IBOutlet NSMenu *nickViewMenu;
 	IBOutlet NSMenu *mainTextViewMenu;
-
+  
 	IBOutlet NSSearchField *searchField;
 	MarkedScroller *scroller;
 	NSTabViewItem *tabViewItem;
@@ -139,7 +139,7 @@ enum nickContextMenuTags {
 	NSColor *defaultColor;
 	NSColor *serverOpColor;
 	NSColor *defaultTextColor;
-
+  
 	NSColor *searchColor;
 	NSColor *currentSearchMatchColor;
 	NSTextStorage *textStorage;
@@ -163,6 +163,9 @@ enum nickContextMenuTags {
 	
 	History *commandHistory;
 	NSString *partialCommand;
+  
+  int waitingEvents;
+  NSString *lastEventOwner;
 }
 - (NSString *)mode;
 - (NSArray *)nicks;
@@ -186,6 +189,11 @@ enum nickContextMenuTags {
 - (History *)commandHistory;
 - (NSString *)partialCommand;
 - (void)setPartialCommand:(NSString*)cmd;
+
+- (int)waitingEvents;
+- (void)setWaitingEvents:(int)count;
+- (NSString*)lastEventOwner;
+- (void)setLastEventOwner:(NSString*)owner;
 
 - (void)channelModeChanged:(CHANNEL_REC *)rec setBy:(char *)setter;
 - (void)setTabViewItem:(NSTabViewItem *)newTabViewItem colors:(ColorSet *)colors appController:(AppController *)ref;
