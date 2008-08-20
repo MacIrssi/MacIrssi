@@ -11,7 +11,9 @@
 
 //#define	G_LOG_DOMAIN "MacIrssi"
 #define printf(...)
-#define NSLog(...)
+#ifndef MACIRSSI_DEBUG
+# define NSLog(...)
+#endif
 
 @implementation IrssiBridge
 //-------------------------------------------------------------------
@@ -396,4 +398,37 @@ void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char
                           [NSString stringWithFormat:@"New Private Message from %s.", nick], @"Title", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_QUERY_NEW" object:nil userInfo:info];
   }
+}
+
+void irssibridge_message_channel(SERVER_REC *server, char *msg, char *nick, char *address, char *target)
+{
+  NSLog(@"[Public event] nick: %s target: %s address: %s msg: %s", nick, target, address, msg);
+  // find the channel
+  CHANNEL_REC *channel = channel_find(server, target);
+  if (!channel)
+  {
+    NSLog(@"[Public event] Could not infer CHANNEL_REC from SERVER_REC + %s", target);
+    return;
+  }
+  WINDOW_REC *window = window_item_window((WI_ITEM_REC*)channel);
+  ChannelController *controller = (ChannelController*)window->gui_data;
+  
+  NSLog(@"Got controller for %s: %@", target, controller);
+  
+  [controller setWaitingEvents:[controller waitingEvents]+1];
+  [controller setLastEventOwner:[IrssiBridge stringWithIrssiCString:nick]];
+  
+  NSString *eventDescription;
+  
+  if ([controller waitingEvents] == 1)
+  {
+    eventDescription = [NSString stringWithFormat:@"%@ has a message waiting from %@.", [controller name], [controller lastEventOwner]];
+  }
+  else
+  {
+    eventDescription = [NSString stringWithFormat:@"%@ has %d messages waiting. Last from %@.", [controller name], [controller waitingEvents], [controller lastEventOwner]];
+  }
+  
+  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:eventDescription, @"Description", [NSString stringWithFormat:@"Activity in %@", [controller name]], @"Title", nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_ACTIVITY" object:nil userInfo:info];
 }

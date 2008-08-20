@@ -149,6 +149,8 @@ static void textui_finish_init(void)
   signal_add("message quit", (SIGNAL_FUNC) irssibridge_message_quit);
   signal_add("message kick", (SIGNAL_FUNC) irssibridge_message_kick);
   
+  signal_add("message public", (SIGNAL_FUNC) irssibridge_message_channel);
+  
   signal_add("message irc notice", (SIGNAL_FUNC) irssibridge_message_notice);
   signal_add_first("message private", (SIGNAL_FUNC) irssibridge_message_private);
   
@@ -223,6 +225,8 @@ void textui_deinit(void)
   signal_remove("message part", (SIGNAL_FUNC) irssibridge_message_part);
   signal_remove("message quit", (SIGNAL_FUNC) irssibridge_message_quit);
   signal_remove("message kick", (SIGNAL_FUNC) irssibridge_message_kick);
+  
+  signal_remove("message public", (SIGNAL_FUNC) irssibridge_message_channel);
   
   signal_remove("message irc notice", (SIGNAL_FUNC) irssibridge_message_notice);
   signal_remove("message private", (SIGNAL_FUNC) irssibridge_message_private);

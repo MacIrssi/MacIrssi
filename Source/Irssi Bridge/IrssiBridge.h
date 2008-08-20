@@ -80,6 +80,7 @@ void irssibridge_message_part(SERVER_REC *server, const char *channel, const cha
 void irssibridge_message_quit(SERVER_REC *server, const char *nick, const char *address, const char *reason);
 void irssibridge_message_kick(SERVER_REC *server, const char *channel, const char *nick, const char *kicker, const char *address, const char *reason);
 
+void irssibridge_message_channel(SERVER_REC *server, char *msg, char *nick, char *address, char *target);
 void irssibridge_message_notice(SERVER_REC *server, const char *msg, const char *nick, const char *address, const char *target);
 void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char *address);
 

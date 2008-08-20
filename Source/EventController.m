@@ -29,6 +29,9 @@
           
           [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:true], @"bounceIcon", nil], @"IRSSI_QUERY_OLD",
           
+          [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], @"growlEvent",
+           [NSNumber numberWithBool:YES], @"growlEventBackground", nil], @"IRSSI_ROOM_ACTIVITY",
+          
           [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:true], @"playSound", @"Morse", @"playSoundSound", 
            [NSNumber numberWithBool:true], @"bounceIcon",
            [NSNumber numberWithBool:true], @"bounceIconUntilFront",
@@ -61,6 +64,7 @@
                         @"IRSSI_QUERY_NEW",
                         @"IRSSI_QUERY_OLD",
                         @"IRSSI_NOTICE",
+                        @"IRSSI_ROOM_ACTIVITY",
                         @"IRSSI_ROOM_HIGHLIGHT",
                         nil] retain];
     availableEventNames = [[NSDictionary dictionaryWithObjectsAndKeys:
@@ -79,6 +83,7 @@
                             @"New Private Message", @"IRSSI_QUERY_NEW",
                             @"Additional Private Message", @"IRSSI_QUERY_OLD",
                             @"Notice Message", @"IRSSI_NOTICE",
+                            @"Activity in Room", @"IRSSI_ROOM_ACTIVITY",
                             @"Highlighted in Room", @"IRSSI_ROOM_HIGHLIGHT",
                             nil] retain];
     
