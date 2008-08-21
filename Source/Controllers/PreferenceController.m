@@ -330,16 +330,56 @@
   [eventController setStringForEvent:event alert:@"playSoundSound" value:[[soundListPopUpButton selectedItem] title]];
 }
 
+- (float)toolbarHeightForWindow:(NSWindow*)window
+{
+  NSToolbar *toolbar;
+  float toolbarHeight = 0.0;
+  NSRect windowFrame;
+  
+  toolbar = [window toolbar];
+  
+  if(toolbar && [toolbar isVisible])
+  {
+    windowFrame = [NSWindow contentRectForFrameRect:[window frame]
+                                          styleMask:[window styleMask]];
+    toolbarHeight = NSHeight(windowFrame)
+    - NSHeight([[window contentView] frame]);
+  }
+  
+  return toolbarHeight;
+}
+
+- (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate
+{
+  NSView *paneView = [preferencePane contentView];
+  NSRect newWindowFrame;
+  
+  newWindowFrame.origin.x = [preferenceWindow frame].origin.x;
+  newWindowFrame.origin.y = [preferenceWindow frame].origin.y;
+  newWindowFrame.size.width = [paneView bounds].size.width + 40;
+  newWindowFrame.size.height = [paneView bounds].size.height + [self toolbarHeightForWindow:preferenceWindow] + 62;
+  
+  [preferencesWindowView setContentView:[generalPreferencesTab contentView]];
+  [preferenceWindow setFrame:newWindowFrame display:YES animate:animate];
+  
+  [preferenceWindow setTitle:[preferencePane title]];
+}
+
 //-------------------------------------------------------------------
 // showWindow
 // Updates the preference panel to reflect current settings
 //-------------------------------------------------------------------
 - (void)showWindow:(id)sender
 {
+  [super showWindow:sender];
+
 	colorChanged = FALSE;
 	appController = sender;
   eventController = [appController eventController];
-	
+
+  /* By default open the general tab and resize the window around it */
+  [self switchPreferenceWindowTo:generalPreferencesTab animate:NO];
+  
 	/* Make preferencepanel reflect current settings */
 	[self updateColorWells];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -366,11 +406,12 @@
 	
 	[self findAvailibleThemes];
 	[self connectToThemePreviewDaemon];
-	[super showWindow:sender];
 	[self updateTextEncodingPopUpButton];
   [self updateChatEventsPopUpButton];
   [self updateSoundListPopUpButton];
-  
+
+
+	
   //[self chatEventPopup:self];
   
   [preferenceWindow center];
@@ -815,7 +856,7 @@
 	
 	if (![connection registerName:@"MacIrssi"]) {
 		NSLog(@"Unable to register name!");
-		[[NSAlert alertWithMessageText:@"Another copy of MacIrssi is running" defaultButton:@"Quit" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Unable to register remote object used for theme preview funcionality!"] runModal];
+		//[[NSAlert alertWithMessageText:@"Another copy of MacIrssi is running" defaultButton:@"Quit" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Unable to register remote object used for theme preview funcionality!"] runModal];
 		//[NSApp terminate:self];
     return;
 	}
