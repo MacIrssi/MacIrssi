@@ -24,6 +24,10 @@
 {
 	IBOutlet NSWindow *preferenceWindow;
 	
+  /* Preference Tabs */
+  IBOutlet NSBox *preferencesWindowView;
+  IBOutlet NSWindow *generalPreferencesTab;
+  
 	/* Themes tab */
 	IBOutlet NSTextView *previewTextView;
 	IBOutlet NSTableView *themeTableView;
@@ -90,6 +94,10 @@
 	bool colorChanged;
 	id themePreviewDaemon;
 }
+
+- (float)toolbarHeightForWindow:(NSWindow*)window;
+- (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate;
+
 - (IBAction)swithChannelBar:(id)sender;
 - (IBAction)changeColor:(id)sender;
 - (IBAction)revertColorsToDefaults:(id)sender;

@@ -90,6 +90,8 @@
 				<string>NSTextField</string>
 				<key>defaultUsernameField</key>
 				<string>NSTextField</string>
+				<key>generalPreferencesTab</key>
+				<string>NSWindow</string>
 				<key>growlEventBackgroundButton</key>
 				<string>NSButton</string>
 				<key>growlEventButton</key>
@@ -118,6 +120,8 @@
 				<string>NSButton</string>
 				<key>preferenceWindow</key>
 				<string>NSWindow</string>
+				<key>preferencesWindowView</key>
+				<string>NSBox</string>
 				<key>previewTextView</key>
 				<string>NSTextView</string>
 				<key>soundListPopUpButton</key>
