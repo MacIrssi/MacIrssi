@@ -36,6 +36,40 @@
 @implementation PreferenceController
 
 //-------------------------------------------------------------------
+// initWithColorSet:
+// Initializer for this class
+//
+// "colors" - The colorset to use
+//
+// Returns: self
+//-------------------------------------------------------------------
+- (id)initWithColorSet:(ColorSet *)colors appController:(AppController*)controller
+{
+  if (self = [super initWithWindowNibName:@"Preferences"])
+  {
+    int i;
+    
+    colorSet = colors;
+    shortcutCommands = malloc(12 * sizeof(NSString *));
+    for (i = 0; i < 12; i++)
+    {
+      shortcutCommands[i] = nil;
+    }
+    availibleThemes = [[NSMutableArray alloc] init];
+    themePreviewDaemon = nil;
+    previewTimer = nil;
+    appController = controller;
+    eventController = [appController eventController];
+    
+    [[NSColorPanel sharedColorPanel] setShowsAlpha:TRUE];
+    [[NSColorPanel sharedColorPanel] setContinuous:TRUE];
+    
+    [self registerDistributedObject];  
+  }
+	return self;
+}
+
+//-------------------------------------------------------------------
 // changeColor:
 // Changes the color of an GUI item
 //
@@ -332,13 +366,13 @@
 
 - (float)toolbarHeightForWindow:(NSWindow*)window
 {
-  NSToolbar *toolbar;
+  NSToolbar *bar;
   float toolbarHeight = 0.0;
   NSRect windowFrame;
   
-  toolbar = [window toolbar];
+  bar = [window toolbar];
   
-  if(toolbar && [toolbar isVisible])
+  if(bar && [bar isVisible])
   {
     windowFrame = [NSWindow contentRectForFrameRect:[window frame]
                                           styleMask:[window styleMask]];
@@ -351,6 +385,15 @@
 
 - (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate
 {
+  if (currentPreferenceTab)
+  {
+    NSView *oldView = [[preferencesWindowView contentView] retain];
+    [oldView removeFromSuperview];
+    [currentPreferenceTab setContentView:oldView];
+    [oldView release];
+  }
+  
+  currentPreferenceTab = preferencePane;
   NSView *paneView = [preferencePane contentView];
   NSRect newWindowFrame;
   
@@ -359,8 +402,10 @@
   newWindowFrame.size.width = [paneView bounds].size.width + 40;
   newWindowFrame.size.height = [paneView bounds].size.height + [self toolbarHeightForWindow:preferenceWindow] + 62;
   
-  [preferencesWindowView setContentView:[generalPreferencesTab contentView]];
+  newWindowFrame.origin.y += [preferenceWindow frame].size.height - newWindowFrame.size.height;
+  
   [preferenceWindow setFrame:newWindowFrame display:YES animate:animate];
+  [preferencesWindowView setContentView:paneView];
   
   [preferenceWindow setTitle:[preferencePane title]];
 }
@@ -371,14 +416,17 @@
 //-------------------------------------------------------------------
 - (void)showWindow:(id)sender
 {
-  [super showWindow:sender];
+  [self window]; // dirty hack, window won't load first time till we do this
+  
+  preferencesToolbar = [[NSToolbar alloc] initWithIdentifier:@"MacIrssiPreferences"];
+  [preferencesToolbar setDelegate:self];
+  [preferenceWindow setToolbar:preferencesToolbar];
 
 	colorChanged = FALSE;
-	appController = sender;
-  eventController = [appController eventController];
 
   /* By default open the general tab and resize the window around it */
   [self switchPreferenceWindowTo:generalPreferencesTab animate:NO];
+  [preferencesToolbar setSelectedItemIdentifier:@"General"];
   
 	/* Make preferencepanel reflect current settings */
 	[self updateColorWells];
@@ -407,12 +455,10 @@
 	[self findAvailibleThemes];
 	[self connectToThemePreviewDaemon];
 	[self updateTextEncodingPopUpButton];
-  [self updateChatEventsPopUpButton];
   [self updateSoundListPopUpButton];
+  [self updateChatEventsPopUpButton];
 
-
-	
-  //[self chatEventPopup:self];
+  [super showWindow:sender];
   
   [preferenceWindow center];
 }
@@ -452,6 +498,8 @@
 
 - (void)initChatEventsPopUpButton
 {
+  NSLog(@"%@", chatEventPopUpButton);
+  
   [chatEventPopUpButton removeAllItems];
   NSArray *events = [eventController availableEvents];
   NSEnumerator *eventEnumerator = [events objectEnumerator];
@@ -472,8 +520,8 @@
 }
 
 - (void)updateChatEventsPopUpButton
-{
-  
+{  
+  [self chatEventPopup:self];
 }
 
 - (void)initSoundListPopUpButton
@@ -572,6 +620,7 @@
 //-------------------------------------------------------------------
 - (void)windowDidLoad
 {
+  NSLog(@"Fart");
 	[self updateColorWells];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
@@ -780,32 +829,6 @@
 	
 }
 
-//-------------------------------------------------------------------
-// initWithColorSet:
-// Initializer for this class
-//
-// "colors" - The colorset to use
-//
-// Returns: self
-//-------------------------------------------------------------------
-- (id)initWithColorSet:(ColorSet *)colors
-{
-	int i;
-	self = [super initWithWindowNibName:@"Preferences"];
-	colorSet = colors;
-	shortcutCommands = malloc(12 * sizeof(NSString *));
-	for (i = 0; i < 12; i++)
-		shortcutCommands[i] = nil;
-	[[NSColorPanel sharedColorPanel] setShowsAlpha:TRUE];
-	[[NSColorPanel sharedColorPanel] setContinuous:TRUE];
-	availibleThemes = [[NSMutableArray alloc] init];
-	themePreviewDaemon = nil;
-	previewTimer = nil;
-	
-	[self registerDistributedObject];
-	return self;
-}
-
 /**
  * Called when ThemePreviewDaemon is ready for connections.
  */
@@ -929,6 +952,69 @@
 		NSLog(@"Unable to create preivew!");
 		[[NSAlert alertWithMessageText:@"Unable to create preivew!" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Exception while contacting Theme Preivew Daemon."] runModal];
 	}
+}
+
+#pragma mark Toolbar Delegates
+
+// Called from toolbar pushes
+- (IBAction)changeViewFromToolbar:(id)sender
+{
+  NSToolbarItem *toolbarItem = (NSToolbarItem*)sender;
+  if ([[toolbarItem itemIdentifier] isEqualToString:@"General"])
+  {
+    [self switchPreferenceWindowTo:generalPreferencesTab animate:YES];
+  }
+  else if ([[toolbarItem itemIdentifier] isEqualToString:@"Notifications"])
+  {
+    [self switchPreferenceWindowTo:notificationsPreferencesTab animate:YES];
+  }
+  else if ([[toolbarItem itemIdentifier] isEqualToString:@"Colours"])
+  {
+    [self switchPreferenceWindowTo:coloursPreferencesTab animate:YES];
+  }
+}
+
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
+{
+  return [NSArray arrayWithObjects:@"General", @"Notifications", @"Colours", nil];
+}
+
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
+{
+  return [self toolbarAllowedItemIdentifiers:toolbar];
+}
+
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
+{
+  return [self toolbarAllowedItemIdentifiers:toolbar];  
+}
+
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
+{
+  NSToolbarItem *toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+  if ([itemIdentifier isEqualToString:@"General"])
+  {
+    [toolbarItem setImage:[NSImage imageNamed:@"General"]];
+    [toolbarItem setLabel:@"General"];
+    [toolbarItem setAction:@selector(changeViewFromToolbar:)];
+    [toolbarItem setTarget:self];
+  }
+  else if ([itemIdentifier isEqualToString:@"Notifications"])
+  {
+    [toolbarItem setLabel:@"Notifications"];
+    [toolbarItem setImage:[NSImage imageNamed:@"Notifications"]];
+    [toolbarItem setAction:@selector(changeViewFromToolbar:)];
+    [toolbarItem setTarget:self];
+  }
+  else if ([itemIdentifier isEqualToString:@"Colours"])
+  {
+    [toolbarItem setLabel:@"Colours"];
+    [toolbarItem setImage:[NSImage imageNamed:@"Colours"]];
+    [toolbarItem setAction:@selector(changeViewFromToolbar:)];
+    [toolbarItem setTarget:self];
+  }
+  
+  return [toolbarItem autorelease];
 }
 
 @end

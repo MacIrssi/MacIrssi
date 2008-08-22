@@ -331,7 +331,7 @@ char **argv;
 - (IBAction)showPreferencePanel:(id)sender
 {
 	if (!preferenceController)
-		preferenceController = [[PreferenceController alloc] initWithColorSet:macIrssiColors];
+		preferenceController = [[PreferenceController alloc] initWithColorSet:macIrssiColors appController:self];
 	
 	[preferenceController showWindow:self];
 }

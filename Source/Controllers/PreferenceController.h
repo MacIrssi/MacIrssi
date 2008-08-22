@@ -26,7 +26,12 @@
 	
   /* Preference Tabs */
   IBOutlet NSBox *preferencesWindowView;
+  NSToolbar *preferencesToolbar;
+  
+  NSWindow *currentPreferenceTab;
   IBOutlet NSWindow *generalPreferencesTab;
+  IBOutlet NSWindow *notificationsPreferencesTab;
+  IBOutlet NSWindow *coloursPreferencesTab;
   
 	/* Themes tab */
 	IBOutlet NSTextView *previewTextView;
@@ -95,6 +100,8 @@
 	id themePreviewDaemon;
 }
 
+- (id)initWithColorSet:(ColorSet *)colors appController:(AppController*)controller;
+
 - (float)toolbarHeightForWindow:(NSWindow*)window;
 - (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate;
 
@@ -107,13 +114,13 @@
 - (IBAction)chatEventPopup:(id)sender;
 - (IBAction)soundListPopUp:(id)sender;
 
-- (void)saveColorChanges;
-- (void)cancelColorChanges;
 - (void)showWindow:(id)sender;
 - (void)windowDidLoad;
-- (void)updateColorWells;
-- (id)initWithColorSet:(ColorSet *)colors;
 - (void)windowWillClose:(NSNotification *)aNotification;
+
+- (void)saveColorChanges;
+- (void)cancelColorChanges;
+- (void)updateColorWells;
 - (IBAction)updateThemeList:(id)sender;
 - (void)findAvailibleThemes;
 - (void)registerDistributedObject;
@@ -132,5 +139,11 @@
 - (void)daemonInitiationComplete;
 - (void)returnPreview:(NSAttributedString *)result;
 - (void)requestPreview:(NSTimer*)theTimer;
+
+#pragma mark Toolbar Delegates
+
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar;
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar;
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;
 
 @end

@@ -409,6 +409,9 @@
 		C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */; };
 		C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */; };
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
+		C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C97A36D00E5DCB0F007D1191 /* General.tiff */; };
+		C97A37220E5DCFED007D1191 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
+		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
 		C9F435120E573D330001D6D6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F435110E573D330001D6D6 /* Sparkle.framework */; };
 		C9F435330E574A8F0001D6D6 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9F435110E573D330001D6D6 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
@@ -1377,7 +1380,7 @@
 		B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IrssiBridge.m; sourceTree = "<group>"; };
 		C200D025073FC03700B850B1 /* ChannelBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelBarCell.h; sourceTree = "<group>"; };
 		C200D026073FC03700B850B1 /* ChannelBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelBarCell.m; sourceTree = "<group>"; };
-		C224D19408C5A6FC00E66C62 /* Macirssi-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Macirssi-dot.png"; sourceTree = "<group>"; };
+		C224D19408C5A6FC00E66C62 /* Macirssi-dot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Macirssi-dot.png"; path = "../Macirssi-dot.png"; sourceTree = "<group>"; };
 		C224D2F108C6502200E66C62 /* ThemePreviewDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ThemePreviewDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		C229C73C0C1AA7B900D7CCD0 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = /usr/lib/libssl.dylib; sourceTree = "<absolute>"; };
 		C229C73F0C1AA82900D7CCD0 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
@@ -1525,7 +1528,7 @@
 		C25491760681A35900C43D63 /* CustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextView.h; sourceTree = "<group>"; };
 		C25491770681A35900C43D63 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
 		C26FC77608C4780300CFD1B3 /* MacPAD.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacPAD.url; sourceTree = "<group>"; };
-		C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MacIrssi.icns; sourceTree = "<group>"; };
+		C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacIrssi.icns; path = ../MacIrssi.icns; sourceTree = "<group>"; };
 		C273D9480757EC7E0032A7B8 /* MemoryCheck */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MemoryCheck; path = Docs/MemoryCheck; sourceTree = "<group>"; };
 		C2A5697908D0D74100788905 /* TextEncodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEncodings.h; sourceTree = "<group>"; };
 		C2A5697A08D0D74100788905 /* TextEncodings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEncodings.m; sourceTree = "<group>"; };
@@ -1587,11 +1590,14 @@
 		C925E7710E5A2D550041921B /* libperl_core_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libperl_core_static.a; path = "irssi-0.8.12/src/perl/.libs/libperl_core_static.a"; sourceTree = "<group>"; };
 		C947E1DA0E1E871F0001380E /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventController.h; sourceTree = "<group>"; };
 		C947E1DB0E1E871F0001380E /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventController.m; sourceTree = "<group>"; };
-		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MacIrssi-Alert.png"; sourceTree = "<group>"; };
+		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MacIrssi-Alert.png"; path = "../MacIrssi-Alert.png"; sourceTree = "<group>"; };
 		C9553A9E0E24C17200626859 /* activityNewImportant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityNewImportant.png; sourceTree = "<group>"; };
 		C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectivityMonitor.h; sourceTree = "<group>"; };
 		C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectivityMonitor.m; sourceTree = "<group>"; };
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
+		C97A36D00E5DCB0F007D1191 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
+		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
+		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
 		C9F435110E573D330001D6D6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1763,11 +1769,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C97A36C10E5DCAD4007D1191 /* Images */,
 				C922B3D90E23BAE6000AA7BE /* Sounds */,
 				C232FA6E08C8978D000C624E /* Themes */,
-				C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */,
-				C224D19408C5A6FC00E66C62 /* Macirssi-dot.png */,
-				C9550D140E29A97400658372 /* MacIrssi-Alert.png */,
 				C922B4300E23BD34000AA7BE /* sound.png */,
 				C9553A9E0E24C17200626859 /* activityNewImportant.png */,
 				C910265B0E5C654800E041F7 /* UKCrashReporter.strings */,
@@ -2826,6 +2830,19 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		C97A36C10E5DCAD4007D1191 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */,
+				C224D19408C5A6FC00E66C62 /* Macirssi-dot.png */,
+				C9550D140E29A97400658372 /* MacIrssi-Alert.png */,
+				C97A36D00E5DCB0F007D1191 /* General.tiff */,
+				C97A37210E5DCFED007D1191 /* Notifications.png */,
+				C98E88750E5E21500051AD53 /* Colours.tiff */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2998,6 +3015,9 @@
 				C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */,
 				C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */,
 				C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */,
+				C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */,
+				C97A37220E5DCFED007D1191 /* Notifications.png in Resources */,
+				C98E88760E5E21500051AD53 /* Colours.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

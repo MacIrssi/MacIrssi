@@ -80,6 +80,8 @@
 				<string>NSColorWell</string>
 				<key>chatEventPopUpButton</key>
 				<string>NSPopUpButton</string>
+				<key>coloursPreferencesTab</key>
+				<string>NSWindow</string>
 				<key>defaultAltNickField</key>
 				<string>NSTextField</string>
 				<key>defaultNickField</key>
@@ -114,6 +116,8 @@
 				<string>NSColorWell</string>
 				<key>nickListFGVoiceColorWell</key>
 				<string>NSColorWell</string>
+				<key>notificationsPreferencesTab</key>
+				<string>NSWindow</string>
 				<key>playSoundBackgroundButton</key>
 				<string>NSButton</string>
 				<key>playSoundButton</key>
