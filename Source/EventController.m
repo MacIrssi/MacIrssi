@@ -163,17 +163,35 @@
         {
           title = [[notification userInfo] valueForKey:@"Title"];
         }
-        
-        NSData *icon = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"activityNewImportant" ofType:@"png"]];
-        [GrowlApplicationBridge notifyWithTitle:title
-                                    description:description
-                               notificationName:[self eventNameForCode:[notification name]]
-                                       iconData:icon
-                                       priority:0
-                                       isSticky:stick
-                                   clickContext:nil];
-      }
-    }
+
+				NSData *icon = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"activityNewImportant" ofType:@"png"]];
+				
+				if (![notification userInfo] ||
+					([notification userInfo] && [[notification userInfo] valueForKey:@"Coalesce"] && ![[[notification userInfo] valueForKey:@"Coalesce"] boolValue]) ||
+					([notification userInfo] && ![[notification userInfo] valueForKey:@"Coalesce"]))
+				{
+					[GrowlApplicationBridge notifyWithTitle:title
+																			description:description
+																 notificationName:[self eventNameForCode:[notification name]]
+																				 iconData:icon
+																				 priority:0
+																				 isSticky:stick
+																		 clickContext:nil];
+				}
+				else
+				{
+					[GrowlApplicationBridge notifyWithTitle:title
+																			description:description
+																 notificationName:[self eventNameForCode:[notification name]]
+																				 iconData:icon
+																				 priority:0
+																				 isSticky:stick
+																		 clickContext:nil
+																			 identifier:[notification name]];
+				}
+				
+			}
+		}
   }
 }
 

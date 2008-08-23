@@ -429,6 +429,9 @@ void irssibridge_message_channel(SERVER_REC *server, char *msg, char *nick, char
     eventDescription = [NSString stringWithFormat:@"%@ has %d messages waiting. Last from %@.", [controller name], [controller waitingEvents], [controller lastEventOwner]];
   }
   
-  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:eventDescription, @"Description", [NSString stringWithFormat:@"Activity in %@", [controller name]], @"Title", nil];
+  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:eventDescription, @"Description", 
+												[NSString stringWithFormat:@"Activity in %@", [controller name]], @"Title", 
+												[NSNumber numberWithBool:YES], @"Coalesce",
+												nil];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_ACTIVITY" object:nil userInfo:info];
 }
