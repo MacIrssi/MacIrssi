@@ -3555,18 +3555,27 @@
 		C209D3AD08BF5CE6009C9E21 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
 		C209D3AE08BF5CE6009C9E21 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
 		};
 		C209D3AF08BF5CE6009C9E21 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Default;
 		};
@@ -3837,7 +3846,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
-				CFLAGS = "-I/usr/local/include -g -arch ppc -arch i386";
+				CFLAGS = "-I/usr/local/include -g -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -3852,7 +3861,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
-				CFLAGS = "-I/usr/local/include -arch ppc -arch i386";
+				CFLAGS = "-I/usr/local/include -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = NO;
