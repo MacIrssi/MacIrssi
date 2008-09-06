@@ -26734,7 +26734,7 @@ _ACEOF
 			fi
 		fi
 
-										for word in -ldb -ldbm -lndbm -lgdbm -lc -rdynamic; do
+										for word in -ldb -ldbm -lndbm -lgdbm -lc -rdynamic -lutil; do
 		  PERL_LDFLAGS=`echo $PERL_LDFLAGS | $sedpath -e "s/$word //" -e "s/$word$//"`
 		done
 

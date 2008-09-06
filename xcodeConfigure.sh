@@ -7,7 +7,10 @@ if [ ! -e configure ]; then
   exit 1
 fi
 
-echo $PATH
+if [ "x$ACTION" == "xclean" ]; then
+  echo "warning: skipping configure, clean requested."
+  exit 0
+fi
 
 if [[ ( -e config.xcode ) && ( -e Makefile ) && "$CONFIGURATION" != "" ]]; then
   if grep -q "$CONFIGURATION" config.xcode; then
@@ -15,12 +18,16 @@ if [[ ( -e config.xcode ) && ( -e Makefile ) && "$CONFIGURATION" != "" ]]; then
   fi 
 fi
 
-rm config.xcode
+[ -e config.xcode ] && echo "warning: build configuration changed, running ./configure"
+[ ! -e config.xcode ] && echo "warning: config.xcode not found, running ./configure"
+
+[ -e config.xcode ] && rm config.xcode
 
 ./configure $@
 CONF_EXIT=$?
 
 if [ "$CONF_EXIT" -eq "0" ]; then
+  echo "warning: successful ./configure executed, cleaning irssi build tree."
   make clean
   echo $CONFIGURATION > config.xcode
 fi
