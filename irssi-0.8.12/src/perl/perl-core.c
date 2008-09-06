@@ -119,7 +119,7 @@ void perl_scripts_init(void)
 {
 	char *args[] = {"", "-e", "0"};
 	char *code, *use_code;
-
+  
 	perl_scripts = NULL;
 	perl_sources_start();
 	perl_signals_start();
