@@ -31,7 +31,7 @@
 
 static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkConnectionFlags flags, void *info)
 {
-	[[ConnectivityMonitor sharedMonitor] networkReachabilityCallback:target flags:flags info:info];
+  	[[ConnectivityMonitor sharedMonitor] networkReachabilityCallback:target flags:flags info:info];
 }
 
 // Notifications from workspace on system state
