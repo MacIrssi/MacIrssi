@@ -20,6 +20,8 @@
 
 #import "IrssiBridge.h"
 #import "fe-common-core.h"
+#import "commands.h"
+#import "printtext.h"
 
 #include <signal.h>
 #include <locale.h>
@@ -294,6 +296,12 @@ static void check_files(void)
 	}
 }
 
+static void perl_cmd_override(const char *data, SERVER_REC *server, void *item)
+{
+  printtext(NULL, NULL, MSGLEVEL_CLIENTERROR, "Perl scripts are only supported on this platform while running Mac OS X 10.5.");
+  signal_stop();
+}
+
 int irssi_main(int argc, char **argv)
 {
 	static struct poptOption options[] = {
@@ -339,6 +347,19 @@ int irssi_main(int argc, char **argv)
 	
 	textui_finish_init();
 
+  long systemVersion;
+  Gestalt(gestaltSystemVersion, &systemVersion);
+  
+  int majorVersion, minorVerson;
+  majorVersion = (((systemVersion & 0xF000) >> 12) * 10) + ((systemVersion & 0x0F00) >> 8);
+  minorVerson = ((systemVersion & 0x00F0) >> 4);
+  
+  // FIXME: We never unregister this
+  if ( majorVersion == 10 && minorVerson == 4 )
+  {
+    command_bind_first("script", NULL, (SIGNAL_FUNC)perl_cmd_override);
+  }
+  
 	/* Does the same as g_main_run(main_loop), except we
 	   can call our dirty-checker after each iteration */
   return 0;
