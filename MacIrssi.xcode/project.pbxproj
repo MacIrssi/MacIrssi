@@ -3846,6 +3846,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
+				ACTION = $ACTION;
 				CFLAGS = "-I/usr/local/include -g -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3861,6 +3862,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
+				ACTION = $ACTION;
 				CFLAGS = "-I/usr/local/include -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
