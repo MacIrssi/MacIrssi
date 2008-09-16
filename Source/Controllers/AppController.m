@@ -350,7 +350,7 @@ char **argv;
 
 - (IBAction)debugAction1:(id)sender
 {
-  *(long*)0 = 0xdeadbeef;
+  [[ConnectivityMonitor sharedMonitor] workspaceWillSleep:nil];
 }
 
 - (IBAction)debugAction2:(id)sender
@@ -1118,15 +1118,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(int)rowIndex
 {
-#if 0
-	static char num[3];
-	//[tabView selectTabViewItemAtIndex:rowIndex];
-	sprintf(num, "%d", rowIndex+1);
-	signal_emit("command window goto", 3, num, active_win->active_server, active_win->active);
-#endif
-	//	ChannelController *tmp = [[tabView tabViewItemAtIndex:rowIndex] identifier];
-	//	if (tmp)
-	//		window_set_active([tmp windowRec]);
+  NSString *channelAsString = [NSString stringWithFormat:@"%d", rowIndex + 1];
+  signal_emit("command window goto", 3, [channelAsString cStringUsingEncoding:NSASCIIStringEncoding], active_win->active_server, active_win->active);
 	return TRUE;
 }
 
