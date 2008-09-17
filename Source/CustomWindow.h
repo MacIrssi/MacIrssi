@@ -25,7 +25,7 @@
 
 @interface CustomWindow : NSWindow
 {
-	IBOutlet NSTextField *inputTextField;
+	IBOutlet NSTextView *inputTextField;
 	IBOutlet NSSearchField *searchField;
 	IBOutlet AppController *controller;
 	NSTextView *currentChannelTextView;

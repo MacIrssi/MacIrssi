@@ -188,14 +188,13 @@ char **argv;
 - (IBAction)sendCommand:(id)sender
 {
 	int i;
-	NSString *cmd = [sender stringValue];
+	NSString *cmd = [[sender string] retain];
 	
 	if ([cmd length] == 0)
 		return;
 	
 	WINDOW_REC *rec = [currentChannelController windowRec];
 	[[currentChannelController commandHistory] addCommand:cmd];
-	[sender setStringValue:@""];
 	
 	NSArray *commands = [self splitCommand:cmd];
 	
@@ -220,6 +219,9 @@ char **argv;
 		signal_emit("send command", 3, tmp, rec->active_server, rec->active);
 		free(tmp);
 	}
+  
+  [sender setString:@""];
+  [cmd release];
 }
 
 #if 0
@@ -489,7 +491,7 @@ char **argv;
 	{
 		ChannelController *oldWindowController = (ChannelController *)(oldwind->gui_data);
 		[oldWindowController saveScrollState];
-		[oldWindowController setPartialCommand:[inputTextField stringValue]];
+		[oldWindowController setPartialCommand:[inputTextField string]];
 	}
 	
 	if ([currentChannelController scrollState]) {
@@ -517,7 +519,7 @@ char **argv;
 	
 	if ([currentChannelController partialCommand])
 	{
-		[inputTextField setStringValue:[currentChannelController partialCommand]];
+		[inputTextField setString:[currentChannelController partialCommand]];
 		[(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[currentChannelController partialCommand] length], 0)];
 	}
 }
@@ -830,7 +832,7 @@ char **argv;
 - (void)historyUp
 {	
 	/* If we are at the front of the command history we save the current command temporarly in the history if the user wants to return to it */
-	NSString *currentCommand = [inputTextField stringValue];
+	NSString *currentCommand = [inputTextField string];
 	if ([[currentChannelController commandHistory] iteratorAtFront] && 
 		![currentCommand isEqualToString:@""])
 	{
@@ -842,7 +844,7 @@ char **argv;
 	if (!command)
 		return;
 	
-	[inputTextField setStringValue:command];
+	[inputTextField setString:command];
 	[(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
 }
 
@@ -856,7 +858,7 @@ char **argv;
 - (void)historyDown
 {
 	NSString *command = [[currentChannelController commandHistory] nextCommand];
-	[inputTextField setStringValue:command ? command : @""];
+	[inputTextField setString:command ? command : @""];
 	[(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
 }
 
@@ -1035,7 +1037,9 @@ char **argv;
 {
 	/* Bring forth the main window if it was ordered out during a hide */
 	if (![mainWindow isVisible])
-		[mainWindow makeKeyAndOrderFront:self];
+  {
+    [mainWindow makeKeyAndOrderFront:self];
+  }
 	
 	/* If icon was changed to notify user of priv in active channel when the
 	 app was inactive while no other channel needs notification, then we
@@ -1043,7 +1047,15 @@ char **argv;
 	if (hilightChannels == 0)
 		[self setIcon:defaultIcon];
   
+  [channelBar setNeedsDisplay:YES];
+  
   [currentChannelController setWaitingEvents:0];
+}
+
+- (void)applicationDidResignActive:(NSNotification *)aNotification
+{
+  // The channel bar looks really odd if its left as normal while in the background
+  [channelBar setNeedsDisplay:YES];
 }
 
 //-------------------------------------------------------------------
@@ -1118,8 +1130,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(int)rowIndex
 {
-  NSString *channelAsString = [NSString stringWithFormat:@"%d", rowIndex + 1];
-  signal_emit("command window goto", 3, [channelAsString cStringUsingEncoding:NSASCIIStringEncoding], active_win->active_server, active_win->active);
+//  NSString *channelAsString = [NSString stringWithFormat:@"%d", rowIndex + 1];
+//  signal_emit("command window goto", 3, [channelAsString cStringUsingEncoding:NSASCIIStringEncoding], active_win->active_server, active_win->active);
 	return TRUE;
 }
 
@@ -1156,28 +1168,16 @@ char **argv;
 	
 	const char *path = [[[NSBundle mainBundle] bundlePath] fileSystemRepresentation];
 	if (chdir(path) == -1)
-		NSLog(@"Can't set path!");
-	
-#if 0
-	char *filename = "stdout.txt";
-	int fd;
-	if ( (fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR)) == -1)
-		NSLog(@"Can't open file %s!", filename);
-	
-	if (dup2(fd, STDOUT_FILENO) == -1)
-		NSLog(@"Can't redirect stdout!");
-	
-	filename = "stderr.txt";
-	if ( (fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR)) == -1)
-		NSLog(@"Can't open file %s!", filename);
-	
-	if (dup2(fd, STDERR_FILENO) == -1)
-		NSLog(@"Can't redirect stderr!");
-	
-	NSLog(@"--- STARTING UP ---");
-#endif
+  {
+    NSLog(@"Can't set path!");
+  }
 	
 	[[NSFontManager sharedFontManager] setAction:@selector(specialFontChange:)];
+  
+  // Doesn't look like you can set this in IB
+  [inputTextField setFont:[NSFont fontWithName:@"Monaco" size:10.0]];
+  
+  // Setup the event controller
 	eventController = [[EventController alloc] init];
 	
 	/* Register defaults */

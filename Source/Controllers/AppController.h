@@ -51,7 +51,7 @@ extern char **argv;
 	IBOutlet NSWindow *mainWindow;
 	IBOutlet NSTabView *tabView;
 	IBOutlet CustomTableView *channelTableView;
-	IBOutlet NSTextField *inputTextField;
+	IBOutlet NSTextView *inputTextField;
 	IBOutlet NSMenu *channelMenu;
 	IBOutlet NSMenu *shortcutsMenu;
 	IBOutlet NSMenuItem *editCurrentChannelMenuItem;

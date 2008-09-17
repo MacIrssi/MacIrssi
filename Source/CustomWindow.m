@@ -110,7 +110,8 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 	if (uchar == NSHomeFunctionKey || uchar == NSEndFunctionKey || uchar == NSPageUpFunctionKey || uchar == NSPageDownFunctionKey) {
 		[self makeFirstResponder:currentChannelTextView];
 	}
-	else {
+	else
+  {
 		[self makeInputTextFieldFirstResponder];
 		
 		/* Handle special key */
@@ -165,7 +166,16 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 			free(new_s);
 			free(old_s);
 			return TRUE;
-			
+      
+    case 0x0d:
+    case 0x03:
+      if (flags & NSControlKeyMask)
+      {
+        break;
+      }
+      [controller sendCommand:inputTextField];
+      return FALSE;
+      
 		case 0x1b:
 			/****************************/
 			/* ESC -> clear input field */

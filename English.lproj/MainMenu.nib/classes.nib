@@ -70,7 +70,7 @@
 				<key>controller</key>
 				<string>AppController</string>
 				<key>inputTextField</key>
-				<string>NSTextField</string>
+				<string>NSTextView</string>
 				<key>searchField</key>
 				<string>NSSearchField</string>
 			</dict>
@@ -163,7 +163,7 @@
 				<key>findPreviousMenuItem</key>
 				<string>NSMenuItem</string>
 				<key>inputTextField</key>
-				<string>NSTextField</string>
+				<string>NSTextView</string>
 				<key>mainWindow</key>
 				<string>NSWindow</string>
 				<key>reasonTextField</key>
