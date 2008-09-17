@@ -15,6 +15,8 @@
   NSDictionary *availableEventNames;
   
   NSMutableDictionary *changedEventSettings;
+  
+  NSLock *eventControllerLock;
 }
 
 + (NSDictionary*)defaults;

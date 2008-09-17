@@ -188,7 +188,7 @@ char **argv;
 - (IBAction)sendCommand:(id)sender
 {
 	int i;
-	NSString *cmd = [[sender string] retain];
+	NSString *cmd = [NSString stringWithString:[sender string]];
 	
 	if ([cmd length] == 0)
 		return;
@@ -221,7 +221,6 @@ char **argv;
 	}
   
   [sender setString:@""];
-  [cmd release];
 }
 
 #if 0
@@ -833,8 +832,7 @@ char **argv;
 {	
 	/* If we are at the front of the command history we save the current command temporarly in the history if the user wants to return to it */
 	NSString *currentCommand = [inputTextField string];
-	if ([[currentChannelController commandHistory] iteratorAtFront] && 
-		![currentCommand isEqualToString:@""])
+	if ([[currentChannelController commandHistory] iteratorAtFront] && ![currentCommand isEqualToString:@""])
 	{
 		[[currentChannelController commandHistory] setTemporaryCommand:currentCommand];
 	}
@@ -958,16 +956,55 @@ char **argv;
 	return YES;
 }
 
+#pragma mark Growl Delegates
+
 /**
  * Bring application to front and select the channel from which the priv was received
  * @param clickContext The refnum of the channel
  */
 - (void) growlNotificationWasClicked:(id)clickContext
 {
-	[NSApp activateIgnoringOtherApps:TRUE];
-	WINDOW_REC *rec = [currentChannelController windowRec];
-	NSString *cmd = [NSString stringWithFormat:@"/window %d", [(NSNumber *)clickContext intValue]];
-	signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);		
+  if (!clickContext)
+  {
+    // I don't think growl would ever deliver a nil context, but just in case
+    return;
+  }
+  
+  // One way or another we're gonna find a windowRef
+  int windowRef = -1;
+  
+  // If we're given an NSNumber, then our clickContext is a window refnum
+  if ([clickContext isKindOfClass:[NSNumber class]])
+  {
+    windowRef = [(NSNumber*)clickContext intValue];
+  }
+  else if ([clickContext isKindOfClass:[NSDictionary class]])
+  {
+    // Otherwise, if we're given a dict. It means it was harder to find a windowRefNum than it was to just supply
+    // the server tag and a channel name.
+    NSString *server = [clickContext objectForKey:@"Server"];
+    NSString *channel = [clickContext objectForKey:@"Channel"];
+    
+    // Find the server rec
+    SERVER_REC *newServerRec = server_find_tag([server cStringUsingEncoding:NSASCIIStringEncoding]);
+    
+    // If we got the server rec, ask irssi for the window rec to go with it
+    if (newServerRec)
+    {
+      WINDOW_REC *newWindowRec = window_find_item(newServerRec, [channel cStringUsingEncoding:NSASCIIStringEncoding]);
+      windowRef = (newWindowRec) ? newWindowRec->refnum : -1;
+    }
+  }
+  
+  // If all went well, then select the window.
+  if (windowRef != -1)
+  {
+    [NSApp activateIgnoringOtherApps:TRUE];
+    WINDOW_REC *rec = [currentChannelController windowRec];
+    NSString *cmd = [NSString stringWithFormat:@"/window %d", windowRef];
+    signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);		
+  }
+  
 }
 
 /**
@@ -975,10 +1012,23 @@ char **argv;
  */
 - (NSDictionary *) registrationDictionaryForGrowl
 {
-	NSArray *growlNotifications = [NSArray arrayWithObjects:@"Version check", nil];
-	growlNotifications = [[eventController availableEventNames] arrayByAddingObjectsFromArray:growlNotifications];
+	NSArray *growlNotifications = [eventController availableEventNames];
 	return [NSDictionary dictionaryWithObjectsAndKeys:growlNotifications, GROWL_NOTIFICATIONS_ALL, growlNotifications, GROWL_NOTIFICATIONS_DEFAULT, nil];
 }
+
+#pragma mark Sparkle Delegates
+
+- (void)updaterWillRelaunchApplication:(SUUpdater *)updater
+{
+  // Force the quit message not to apppear
+  askQuit = NO;
+  
+  // Give a slightly more sensible quit message.
+  [defaultQuitMessage release];
+  defaultQuitMessage = [@"Be right back. Restarting after update." retain];
+}
+
+#pragma mark NSApp notifications
 
 //-------------------------------------------------------------------
 // applicationShouldTerminate:
@@ -1035,6 +1085,9 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)applicationDidBecomeActive:(NSNotification *)aNotification
 {
+  // Bring the visible window back to activeness
+  window_set_active([currentChannelController windowRec]);
+  
 	/* Bring forth the main window if it was ordered out during a hide */
 	if (![mainWindow isVisible])
   {
@@ -1054,6 +1107,10 @@ char **argv;
 
 - (void)applicationDidResignActive:(NSNotification *)aNotification
 {
+  // Tell irssi core that we don't have an active window anymore (we don't really, we're not active).
+  // This will cause all windows (including the "active") to trigger data_level updates.
+  window_set_active(NULL);
+  
   // The channel bar looks really odd if its left as normal while in the background
   [channelBar setNeedsDisplay:YES];
 }
@@ -1130,9 +1187,13 @@ char **argv;
 //-------------------------------------------------------------------
 - (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(int)rowIndex
 {
-//  NSString *channelAsString = [NSString stringWithFormat:@"%d", rowIndex + 1];
-//  signal_emit("command window goto", 3, [channelAsString cStringUsingEncoding:NSASCIIStringEncoding], active_win->active_server, active_win->active);
-	return TRUE;
+  if (active_win)
+  {
+    NSString *channelAsString = [NSString stringWithFormat:@"%d", rowIndex + 1];
+    signal_emit("command window goto", 3, [channelAsString cStringUsingEncoding:NSASCIIStringEncoding], active_win->active_server, active_win->active);
+    return YES;
+  }
+	return NO;
 }
 
 
@@ -1155,6 +1216,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)awakeFromNib
 {
+  // The crash catcher should be first in the list apparently.
   UKCrashReporterCheckForCrash();
   
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -1179,6 +1241,10 @@ char **argv;
   
   // Setup the event controller
 	eventController = [[EventController alloc] init];
+  
+  // Setup sparkle, we're gonna be delegate for sparkle routines. In particular, I want to stop the retarded quit message
+  // box appearing when sparkle tries to update the application.
+  [[SUUpdater sharedUpdater] setDelegate:self];
 	
 	/* Register defaults */
 	NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];

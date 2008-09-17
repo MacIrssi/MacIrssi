@@ -71,6 +71,11 @@ NOTIFY_NICK_REC *notify_nick_find(IRC_SERVER_REC *server, const char *nick)
 	GSList *tmp;
 
 	mserver = MODULE_DATA(server);
+  if (!mserver)
+  {
+    return NULL;
+  }
+  
 	for (tmp = mserver->notify_users; tmp != NULL; tmp = tmp->next) {
 		rec = tmp->data;
 
