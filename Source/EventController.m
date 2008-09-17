@@ -7,6 +7,8 @@
 //
 
 #import "EventController.h"
+#import "ChannelController.h"
+
 #import "GrowlApplicationBridge.h"
 
 @implementation EventController
@@ -45,6 +47,7 @@
   if (self = [super init])
   {
     notificationCenter = [NSNotificationCenter defaultCenter];
+    eventControllerLock = [[NSLock alloc] init];
     
     availableEvents = [[NSArray arrayWithObjects:
                         @"IRSSI_SERVER_CONNECTED", 
@@ -112,9 +115,16 @@
   if ([eventSettings valueForKey:[notification name]])
   {
     NSDictionary *event = [eventSettings valueForKey:[notification name]];
+    
+    // Here we should lock, I think I've had event based crashes because of multi-threadedness
+    [eventControllerLock lock];
+    
+    // If we've been asked to play a sound...start working out what to do
     if ([event valueForKey:@"playSound"] && [[event valueForKey:@"playSound"] intValue] == 1)
     {
-      // do sound
+      // Sound is only played if:
+      //   a) only in background is set AND NSApp isn't active
+      //   b) if only in background is not set
       if (([event valueForKey:@"playSoundBackground"] && ([[event valueForKey:@"playSoundBackground"] intValue] == 1) && ![NSApp isActive]) ||
           ([event valueForKey:@"playSoundBackground"] && [[event valueForKey:@"playSoundBackground"] intValue] == 0) ||
           (![event valueForKey:@"playSoundBackground"]))
@@ -129,12 +139,19 @@
           soundPath = [soundPath stringByAppendingPathExtension:@"aiff"];
           sound = [[[NSSound alloc] initWithContentsOfFile:soundPath byReference:YES] autorelease];
         }
+        // Pew pew
         [sound play];
       }
     }
+    
+    // Similarly, we work out if we're meant to bounce the dock
     if ([event valueForKey:@"bounceIcon"] && [[event valueForKey:@"bounceIcon"] intValue] == 1)
     {
-      // bounce icon
+      // We bounce the dock if
+      //   a) background AND ![NSApp isActive]
+      //   b) !background
+      // However, if bounce until front is set. We need to make it a critical request. Informational
+      // only bounces the icon once.
       NSRequestUserAttentionType type = NSInformationalRequest;
       if ([event valueForKey:@"bounceIconUntilFront"] && [[event valueForKey:@"bounceIconUntilFront"] intValue] == 1)
       {
@@ -142,30 +159,62 @@
       }
       [NSApp requestUserAttention:type];
     }
+    
+    // Growling is a little more interesting though :)
     if ([event valueForKey:@"growlEvent"] && [[event valueForKey:@"growlEvent"] intValue] == 1)
     {
-      // growl event
+      // Work out if we're gonna growl at all, like the other events we only growl if:
+      //   a) background is set AND ![NSApp isActive]
+      //   b) !background
       if (([event valueForKey:@"growlEventBackground"] && ([[event valueForKey:@"growlEventBackground"] intValue] == 1) && ![NSApp isActive]) ||
           ([event valueForKey:@"growlEventBackground"] && [[event valueForKey:@"growlEventBackground"] intValue] == 0) ||
           (![event valueForKey:@"growlEventBackground"]))
       {
+        // By default, the growl contains MacIrssi as the title and the event long name as the description.
         NSString *title = @"MacIrssi";
         NSString *description = [self eventNameForCode:[notification name]];
+        
+        // Set stick if we've been asked to stick until front.
         BOOL stick = (([event valueForKey:@"growlEventUntilFront"] && [[event valueForKey:@"growlEventUntilFront"] intValue] == 1) ? YES : NO);
         
+        // clickContext's allow growl to callback to us if the growl box is clicked. Contexts have to be provided in propertyList types
+        // So we can do one of a couple of things here:
+        //   a) We're given a ChannelController, extract the refnum (window number, basically) and set context to be an NSNumber
+        //   b) No ChannelController object but Server and Channel keys exist in the userinfo. So supply them in an NSDictionary.
+        // The callback handler will cope with these later.
+        NSNumber *context = nil;
+        if ([notification object] && [[notification object] isKindOfClass:[ChannelController class]])
+        {
+          ChannelController *controller = [notification object];
+          context = [NSNumber numberWithInt:[controller windowRec]->refnum];
+        }
+        else if ([notification userInfo] &&
+                 [[notification userInfo] valueForKey:@"Server"] &&
+                 [[notification userInfo] valueForKey:@"Channel"])
+        {
+          context = [NSDictionary dictionaryWithObjectsAndKeys:[[notification userInfo] valueForKey:@"Server"], @"Server",
+                     [[notification userInfo] valueForKey:@"Channel"], @"Channel", nil];
+        }
+        
+        // If there is a Description key in the dictionary, move the event name into the title and use the description
         if ([notification userInfo] && [[notification userInfo] valueForKey:@"Description"])
         {
           title = [self eventNameForCode:[notification name]];
           description = [[notification userInfo] valueForKey:@"Description"];
         }
         
+        // We let you override the title too, isn't that nice. Its all supposed to be done so that you can supply as little or as much
+        // cutsomisation per event tha you need.
         if ([notification userInfo] && [[notification userInfo] valueForKey:@"Title"])
         {
           title = [[notification userInfo] valueForKey:@"Title"];
         }
 
+        // I haven't implemented icon overrides. Wouldn't be hard to do though.
 				NSData *icon = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"activityNewImportant" ofType:@"png"]];
 				
+        // This is a bit messy though, if you want an event to "coalesce" (that is, only even display one growl event, updating the first if dupliates are raised)
+        // then you need to add an identifier argument to the end of the notify call. Used in room activity.
 				if (![notification userInfo] ||
 					([notification userInfo] && [[notification userInfo] valueForKey:@"Coalesce"] && ![[[notification userInfo] valueForKey:@"Coalesce"] boolValue]) ||
 					([notification userInfo] && ![[notification userInfo] valueForKey:@"Coalesce"]))
@@ -176,7 +225,7 @@
 																				 iconData:icon
 																				 priority:0
 																				 isSticky:stick
-																		 clickContext:nil];
+																		 clickContext:context];
 				}
 				else
 				{
@@ -186,12 +235,15 @@
 																				 iconData:icon
 																				 priority:0
 																				 isSticky:stick
-																		 clickContext:nil
+																		 clickContext:context
 																			 identifier:[notification name]];
 				}
 				
 			}
 		}
+    
+    // Time to unlock
+    [eventControllerLock unlock];
   }
 }
 

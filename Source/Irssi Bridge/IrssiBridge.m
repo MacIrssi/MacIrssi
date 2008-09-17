@@ -95,8 +95,10 @@ void irssibridge_channel_mode_changed(CHANNEL_REC *channel, char *setby)
 void irssibridge_nick_mode_changed(CHANNEL_REC *channel, NICK_REC *nick, char *setby, char *mode, char *type)
 {
 	NSLog(@"(Nick)Mode change in %s. Nick %s gets mode %s (type:%s)\n", channel->name, nick->nick, mode, type);
+  
 	WINDOW_REC *wind = window_item_window((WI_ITEM_REC *) channel);
-  [(ChannelController *)(wind->gui_data) setMode:mode type:type forNickRec:nick];
+  ChannelController *windowController = wind->gui_data;
+  [windowController setMode:mode type:type forNickRec:nick];
   
   NSString *message = @"";
   NSString *event = @"";
@@ -140,7 +142,7 @@ void irssibridge_nick_mode_changed(CHANNEL_REC *channel, NICK_REC *nick, char *s
       }      
       break;
   }
-  [[NSNotificationCenter defaultCenter] postNotificationName:event object:nil userInfo:[NSDictionary dictionaryWithObject:message forKey:@"Description"]];
+  [[NSNotificationCenter defaultCenter] postNotificationName:event object:windowController userInfo:[NSDictionary dictionaryWithObject:message forKey:@"Description"]];
 }
 
 void irssibridge_user_mode_changed(SERVER_REC *server, char *old)
@@ -346,7 +348,9 @@ void irssibridge_message_join(SERVER_REC *server, const char *channel, const cha
 {
 	NSLog(@"[Join event] channel:%s nick:%s\n", channel, nick);
   
-  NSDictionary *info = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%s joined the chat room %s.", nick, channel] forKey:@"Description"];
+  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s joined the chat room %s.", nick, channel], @"Description", 
+                        [NSString stringWithFormat:@"%s", server->tag], @"Server", 
+                        [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_JOIN" object:nil userInfo:info];
 }
 
@@ -354,7 +358,9 @@ void irssibridge_message_part(SERVER_REC *server, const char *channel, const cha
 {
 	NSLog(@"[Part event] channel:%s nick:%s\n", channel, nick);
   
-  NSDictionary *info = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%s has left the chat room %s.", nick, channel] forKey:@"Description"];
+  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s has left the chat room %s.", nick, channel], @"Description", 
+                        [NSString stringWithFormat:@"%s", server->tag], @"Server",
+                        [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_PART" object:nil userInfo:info];
 }
 
@@ -367,7 +373,9 @@ void irssibridge_message_kick(SERVER_REC *server, const char *channel, const cha
 {
 	NSLog(@"[Kick event] channel:%s nick:%s\n", channel, nick);
   
-  NSDictionary *info = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%s was kicked from %s by %s.", nick, channel, kicker] forKey:@"Description"];
+  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s was kicked from %s by %s.", nick, channel, kicker], @"Description",
+                        [NSString stringWithFormat:@"%s", server->tag], @"Server",
+                        [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_KICK" object:nil userInfo:info];
 }
 
@@ -389,13 +397,17 @@ void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char
   if (rec) 
   {
     NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[IrssiBridge stringWithIrssiCString:msg], @"Description",
-                          [NSString stringWithFormat:@"Private Message from %s.", nick], @"Title", nil];
+                          [NSString stringWithFormat:@"Private Message from %s.", nick], @"Title", 
+                          [NSString stringWithFormat:@"%s", server->tag], @"Server",
+                          [NSString stringWithFormat:@"%s", nick], @"Channel", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_QUERY_OLD" object:nil userInfo:info];  
   }
   else
   {
     NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[IrssiBridge stringWithIrssiCString:msg], @"Description",
-                          [NSString stringWithFormat:@"New Private Message from %s.", nick], @"Title", nil];
+                          [NSString stringWithFormat:@"New Private Message from %s.", nick], @"Title", 
+                          [NSString stringWithFormat:@"%s", server->tag], @"Server",
+                          [NSString stringWithFormat:@"%s", nick], @"Channel", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_QUERY_NEW" object:nil userInfo:info];
   }
 }
@@ -433,5 +445,5 @@ void irssibridge_message_channel(SERVER_REC *server, char *msg, char *nick, char
 												[NSString stringWithFormat:@"Activity in %@", [controller name]], @"Title", 
 												[NSNumber numberWithBool:YES], @"Coalesce",
 												nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_ACTIVITY" object:nil userInfo:info];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_ACTIVITY" object:controller userInfo:info];
 }

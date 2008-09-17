@@ -173,7 +173,7 @@
 	r1.size.width -= 4;
 	r1.size.height -= 4;
 	
-	if (isActive) {
+  if (isActive) {
 		[[NSColor clearColor] set];
 		NSRectFillUsingOperation([self bounds], NSCompositeDestinationOver);	
 		[[NSColor  colorWithCalibratedRed:246.0/255 green:249.0/255 blue:232.0/255 alpha:1.0] set];
@@ -190,17 +190,27 @@
 	r2.origin.y += 1;
 	r2.origin.x += [ChannelBarCell borderWidth];
   
-	if (isActive)
+	if (isActive && [NSApp isActive])
   {
     [highlightAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
   }
 	else 
   {
 		int dataLevel = windowRec->data_level;
-		if (dataLevel > 3)//TODO: ugly fix
-			dataLevel = 3;
-		[highlightAttributes setObject:highlightColors[dataLevel] forKey:NSForegroundColorAttributeName];
-	}
+    
+    if (isActive && ![NSApp isActive] && (dataLevel == 0))
+    {
+      [highlightAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
+    }
+    else
+    {
+  		if (dataLevel > 3)//TODO: ugly fix
+      {
+        dataLevel = 3;
+      }
+      [highlightAttributes setObject:highlightColors[dataLevel] forKey:NSForegroundColorAttributeName];
+    }
+  }
 	
 	[[self name] drawAtPoint:r2.origin withAttributes:highlightAttributes];
 	
@@ -209,7 +219,7 @@
 		removeRect.origin.x += [self bounds].size.width - [ChannelBarCell borderWidth];
 		removeRect.size.width = [ChannelBarCell borderWidth];
 		
-		if (isActive)
+		if (isActive && [NSApp isActive])
     {
       [[NSColor colorWithCalibratedRed:246.0/255 green:249.0/255 blue:232.0/255 alpha:1.0] set];
     }
