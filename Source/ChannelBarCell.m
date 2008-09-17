@@ -14,7 +14,7 @@
 {
 	NSRect frame;
 	self = [super initWithFrame:frame];
-
+  
 	highlightAttributes = [[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Monaco" size:9.0], NSFontAttributeName, nil] retain];
 	highlightColors[0] = [[NSColor whiteColor] retain];
 	highlightColors[1] = [[NSColor yellowColor] retain];
@@ -65,7 +65,7 @@
 {
 	NSRect oldFrame = [self frame];
 	[super setFrame:frame];
-
+  
 	if ( !equalRects(frame, oldFrame))
 	{
 		[self removeAllToolTips];
@@ -92,7 +92,7 @@
 	
 	for (i = 0; i < nickCount; i++) {
 		nick = (NICK_REC *)[[nicks objectAtIndex:i] pointerValue];
-
+    
 		if (nick->serverop)
 			serverOpCount++;
 		else if (nick->op)
@@ -165,7 +165,7 @@
 //-------------------------------------------------------------------
 - (void)drawRect:(NSRect)rect
 {	
-
+  
 	/* Draw background */
 	NSRect r1 = [self bounds];
 	r1.origin.x += 2;
@@ -179,18 +179,23 @@
 		[[NSColor  colorWithCalibratedRed:246.0/255 green:249.0/255 blue:232.0/255 alpha:1.0] set];
 	}
 	else
-		[[NSColor grayColor] set];
-	
+  {
+    [[NSColor grayColor] set];
+  }
+  
 	NSRectFillUsingOperation(r1, NSCompositeCopy);	
 	
 	/* Draw channel name */
 	NSRect r2 = [self bounds];
 	r2.origin.y += 1;
 	r2.origin.x += [ChannelBarCell borderWidth];
-
+  
 	if (isActive)
-		[highlightAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
-	else {
+  {
+    [highlightAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
+  }
+	else 
+  {
 		int dataLevel = windowRec->data_level;
 		if (dataLevel > 3)//TODO: ugly fix
 			dataLevel = 3;
@@ -205,13 +210,17 @@
 		removeRect.size.width = [ChannelBarCell borderWidth];
 		
 		if (isActive)
-			[[NSColor  colorWithCalibratedRed:246.0/255 green:249.0/255 blue:232.0/255 alpha:1.0] set];
+    {
+      [[NSColor colorWithCalibratedRed:246.0/255 green:249.0/255 blue:232.0/255 alpha:1.0] set];
+    }
 		else
-			[[NSColor grayColor] set];
-				
+    {
+      [[NSColor grayColor] set];
+    }
+    
 		[NSBezierPath fillRect:removeRect];
 	}		
-
+  
 	/* Draw border */
 	if (!isActive) {
 		[[NSColor whiteColor] set];

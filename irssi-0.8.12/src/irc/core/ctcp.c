@@ -328,7 +328,7 @@ void ctcp_init(void)
 {
 	ctcp_cmds = NULL;
 
-	settings_add_str("misc", "ctcp_version_reply", "MacIrssi 0.8.5.2 (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")");
+	settings_add_str("misc", "ctcp_version_reply", "MacIrssi 0.8.5.3 (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")");
 	settings_add_str("misc", "ctcp_userinfo_reply", "$Y");
 	settings_add_int("flood", "max_ctcp_queue", 5);
 
