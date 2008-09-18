@@ -92,6 +92,9 @@ extern char **argv;
 	CoverView *coverView;
 	
 	GSList *sleepList;
+  
+  WINDOW_REC *inactiveTempWindowRec;
+  BOOL windowCreationBlocked;
 }
 
 - (WINDOW_REC *)currentWindowRec;

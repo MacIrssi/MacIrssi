@@ -104,28 +104,28 @@ static void windows_pack(int removed_refnum)
 void window_destroy(WINDOW_REC *window)
 {
 	g_return_if_fail(window != NULL);
-
+  
 	if (window->destroying) return;
 	window->destroying = TRUE;
 	windows = g_slist_remove(windows, window);
-
+  
 	if (active_win == window) {
 		active_win = NULL; /* it's corrupted */
 		if (windows != NULL)
 			window_set_active(windows->data);
 	}
-
+  
 	while (window->items != NULL)
 		window_item_destroy(window->items->data);
-
-        if (settings_get_bool("windows_auto_renumber"))
+  
+  if (settings_get_bool("windows_auto_renumber"))
 		windows_pack(window->refnum);
-
+  
 	signal_emit("window destroyed", 1, window);
-
+  
 	while (window->bound_items != NULL)
-                window_bind_destroy(window, window->bound_items->data);
-
+    window_bind_destroy(window, window->bound_items->data);
+  
 	g_free_not_null(window->hilight_color);
 	g_free_not_null(window->servertag);
 	g_free_not_null(window->theme_name);
