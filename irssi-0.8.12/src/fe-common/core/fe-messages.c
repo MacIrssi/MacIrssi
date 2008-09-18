@@ -378,9 +378,10 @@ static void sig_message_quit(SERVER_REC *server, const char *nick,
 			continue;
 		}
 
-		if (print_channel == NULL ||
-		    active_win->active == (WI_ITEM_REC *) rec)
-			print_channel = rec->visible_name;
+		if (print_channel == NULL || active_win->active == (WI_ITEM_REC *) rec)
+    {
+      print_channel = rec->visible_name;
+    }
 
 		if (once)
 			g_string_sprintfa(chans, "%s,", rec->visible_name);

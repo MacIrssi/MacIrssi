@@ -423,6 +423,12 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)newTabWithWindowRec:(WINDOW_REC *)wind
 {
+  if (windowCreationBlocked)
+  {
+    // We've asked not to create new windows, so we should stop here.
+    return;
+  }
+  
 	ChannelController *owner = [[ChannelController alloc] initWithWindowRec:wind];
 	
 	NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:owner];
@@ -541,6 +547,11 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)removeTabWithWindowRec:(WINDOW_REC *)wind
 {
+  if (windowCreationBlocked)
+  {
+    return;
+  }
+  
 	NSTabViewItem *tmp = [(ChannelController *)(wind->gui_data) tabViewItem];
 	
 	/* Fix channel menu */
@@ -1084,9 +1095,17 @@ char **argv;
 // "aNotification" - Ignored
 //-------------------------------------------------------------------
 - (void)applicationDidBecomeActive:(NSNotification *)aNotification
-{
+{ 
   // Bring the visible window back to activeness
   window_set_active([currentChannelController windowRec]);
+  
+  // Free willy!
+  if (inactiveTempWindowRec)
+  {
+    windowCreationBlocked = YES;
+    window_destroy(inactiveTempWindowRec);
+    windowCreationBlocked = NO;
+  }
   
 	/* Bring forth the main window if it was ordered out during a hide */
 	if (![mainWindow isVisible])
@@ -1107,9 +1126,21 @@ char **argv;
 
 - (void)applicationDidResignActive:(NSNotification *)aNotification
 {
+  // Ok, this is a hack. Lots of the irssi code-base assume that active_win is not NULL, so the time I did
+  // set this to NULL when we resigned active things crashed when events happened with the main window inactive.
+
+  // To do this, we need to do a window_create. I tried alllocating it manually but window_set_active puts it into
+  // lists that means we have to use window_destroy to kill it (or we just crash later anyway). So, this is messy but
+  // I'll block the creation of a window in the UI, create the window and unblock. Then later we block window
+  // creation again while we destroy this "window". I'm sorry it is hacky but live with it!
+  
+  windowCreationBlocked = YES;
+  inactiveTempWindowRec = window_create(NULL, FALSE);
+  windowCreationBlocked = NO;
+    
   // Tell irssi core that we don't have an active window anymore (we don't really, we're not active).
   // This will cause all windows (including the "active") to trigger data_level updates.
-  window_set_active(NULL);
+  window_set_active(inactiveTempWindowRec);
   
   // The channel bar looks really odd if its left as normal while in the background
   [channelBar setNeedsDisplay:YES];
@@ -1224,9 +1255,11 @@ char **argv;
 	//char *argv[4] = {"MacIrssi", "--config=tmp", "--nick=g1m0", NULL};
 	setRefToAppController(self);
 	highlightAttributes = [[NSMutableDictionary alloc] init];
-	quitting = FALSE;
-	hilightChannels = 0;
 	mainRunLoop = [NSRunLoop currentRunLoop];
+  quitting = FALSE;
+	hilightChannels = 0;
+  inactiveTempWindowRec = NULL;
+  windowCreationBlocked = NO;
 	
 	const char *path = [[[NSBundle mainBundle] bundlePath] fileSystemRepresentation];
 	if (chdir(path) == -1)
