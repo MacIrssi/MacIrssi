@@ -1096,16 +1096,18 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)applicationDidBecomeActive:(NSNotification *)aNotification
 { 
+  // Ok, this was a truely shit hack. So I'm gonna take it out to try and stabilise MacIrssi
+  
   // Bring the visible window back to activeness
-  window_set_active([currentChannelController windowRec]);
+//  window_set_active([currentChannelController windowRec]);
   
   // Free willy!
-  if (inactiveTempWindowRec)
-  {
-    windowCreationBlocked = YES;
-    window_destroy(inactiveTempWindowRec);
-    windowCreationBlocked = NO;
-  }
+//  if (inactiveTempWindowRec)
+//  {
+//    windowCreationBlocked = YES;
+//    window_destroy(inactiveTempWindowRec);
+//    windowCreationBlocked = NO;
+//  }
   
 	/* Bring forth the main window if it was ordered out during a hide */
 	if (![mainWindow isVisible])
@@ -1134,9 +1136,10 @@ char **argv;
   // I'll block the creation of a window in the UI, create the window and unblock. Then later we block window
   // creation again while we destroy this "window". I'm sorry it is hacky but live with it!
   
-  windowCreationBlocked = YES;
-  inactiveTempWindowRec = window_create(NULL, FALSE);
-  windowCreationBlocked = NO;
+  // Ok, this was a truely shit hack. So I'm gonna take it out to try and stabilise MacIrssi
+  //  windowCreationBlocked = YES;
+  //  inactiveTempWindowRec = window_create(NULL, FALSE);
+  //  windowCreationBlocked = NO;
     
   // Tell irssi core that we don't have an active window anymore (we don't really, we're not active).
   // This will cause all windows (including the "active") to trigger data_level updates.
