@@ -1143,7 +1143,7 @@ char **argv;
     
   // Tell irssi core that we don't have an active window anymore (we don't really, we're not active).
   // This will cause all windows (including the "active") to trigger data_level updates.
-  window_set_active(inactiveTempWindowRec);
+  // window_set_active(inactiveTempWindowRec);
   
   // The channel bar looks really odd if its left as normal while in the background
   [channelBar setNeedsDisplay:YES];
