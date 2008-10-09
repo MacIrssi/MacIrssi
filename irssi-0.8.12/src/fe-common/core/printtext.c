@@ -53,25 +53,32 @@ void printformat_module_dest_args(const char *module, TEXT_DEST_REC *dest,
 	char *str;
 
 	theme = window_get_theme(dest->window);
-
-	formats = g_hash_table_lookup(default_formats, module);
-	format_read_arglist(va, &formats[formatnum],
-			    arglist, sizeof(arglist)/sizeof(char *),
-			    buffer, sizeof(buffer));
-
-	if (!sending_print_starting) {
-		sending_print_starting = TRUE;
-		signal_emit_id(signal_print_starting, 1, dest);
-                sending_print_starting = FALSE;
-	}
-
-	signal_emit_id(signal_print_format, 5, theme, module,
-		       dest, GINT_TO_POINTER(formatnum), arglist);
-
-	str = format_get_text_theme_charargs(theme, module, dest,
-					     formatnum, arglist);
-	if (str != NULL && *str != '\0') print_line(dest, str);
-	g_free(str);
+  
+  if (default_formats)
+  {
+    formats = g_hash_table_lookup(default_formats, module);
+    format_read_arglist(va, &formats[formatnum],
+                        arglist, sizeof(arglist)/sizeof(char *),
+                        buffer, sizeof(buffer));
+    
+    if (!sending_print_starting) {
+      sending_print_starting = TRUE;
+      signal_emit_id(signal_print_starting, 1, dest);
+      sending_print_starting = FALSE;
+    }
+    
+    signal_emit_id(signal_print_format, 5, theme, module,
+                   dest, GINT_TO_POINTER(formatnum), arglist);
+    
+    str = format_get_text_theme_charargs(theme, module, dest,
+                                         formatnum, arglist);
+    if (str != NULL && *str != '\0') print_line(dest, str);
+    g_free(str);
+  }
+  else
+  {
+    fprintf(stderr, "warning: printformat_module_dest_args called while default_formats == NULL, cannot print message.\n");
+  }
 }
 
 void printformat_module_dest(const char *module, TEXT_DEST_REC *dest,

@@ -351,7 +351,8 @@ char **argv;
 
 - (IBAction)debugAction1:(id)sender
 {
-  [[ConnectivityMonitor sharedMonitor] workspaceWillSleep:nil];
+//  [[ConnectivityMonitor sharedMonitor] workspaceWillSleep:nil];
+  g_log("moo", G_LOG_LEVEL_WARNING, "moo");
 }
 
 - (IBAction)debugAction2:(id)sender
