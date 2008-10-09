@@ -489,7 +489,7 @@ char **argv;
 	currentChannelController = (ChannelController *)(wind->gui_data);
 	NSTextView *textView = [currentChannelController mainTextView];
 	NSRange endRange;
-	
+  
 	/* Since we only update the scrollbar of the front window we must save it's
 	 state when we switch. Likewise we must also update the new front window with 
 	 the status it had when it last was active */
@@ -497,7 +497,7 @@ char **argv;
 	{
 		ChannelController *oldWindowController = (ChannelController *)(oldwind->gui_data);
 		[oldWindowController saveScrollState];
-		[oldWindowController setPartialCommand:[inputTextField string]];
+		[oldWindowController setPartialCommand:[NSString stringWithString:[inputTextField string]]];
 	}
 	
 	if ([currentChannelController scrollState]) {
@@ -528,6 +528,10 @@ char **argv;
 		[inputTextField setString:[currentChannelController partialCommand]];
 		[(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[currentChannelController partialCommand] length], 0)];
 	}
+  else
+  {
+    [inputTextField setString:@""];
+  }
 }
 
 //-------------------------------------------------------------------
