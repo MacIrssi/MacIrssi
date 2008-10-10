@@ -36,7 +36,7 @@
 
 - (void)moveChannel:(WINDOW_REC *)rec fromRefNum:(int)fromRefNum toRefNum:(int)toRefNum
 {
-  ChannelBarCell *cell;
+  ChannelBarCell *cell = nil;
   int i;
   
   // Grab the cell before we remove it
@@ -49,13 +49,20 @@
     }
   }
   
-  [cell removeFromSuperview];
-  [channelBarCells removeObject:cell];
-  
-  [channelBarCells insertObject:cell atIndex:toRefNum-1];
-  [self addSubview:cell];
-  
-  [cell release];
+  if (cell)
+  {
+    [cell removeFromSuperview];
+    [channelBarCells removeObject:cell];
+    
+    [channelBarCells insertObject:cell atIndex:toRefNum-1];
+    [self addSubview:cell];
+    
+    [cell release];
+  }
+  else
+  {
+    NSLog(@"moveChannel: cell == nil, this is not a good thing really.");
+  }
 }
 
 #if 0
