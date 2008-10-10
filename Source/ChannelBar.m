@@ -34,6 +34,30 @@
 	[cell release];
 }
 
+- (void)moveChannel:(WINDOW_REC *)rec fromRefNum:(int)fromRefNum toRefNum:(int)toRefNum
+{
+  ChannelBarCell *cell;
+  int i;
+  
+  // Grab the cell before we remove it
+  for (i = 0; i < [channelBarCells count]; i++)
+  {
+    if ([[channelBarCells objectAtIndex:i] windowRec] == rec)
+    {
+      cell = [[channelBarCells objectAtIndex:i] retain];
+      break;
+    }
+  }
+  
+  [cell removeFromSuperview];
+  [channelBarCells removeObject:cell];
+  
+  [channelBarCells insertObject:cell atIndex:toRefNum-1];
+  [self addSubview:cell];
+  
+  [cell release];
+}
+
 #if 0
 - (NSString)name
 {

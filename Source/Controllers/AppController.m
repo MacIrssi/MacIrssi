@@ -539,7 +539,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)refnumChanged:(WINDOW_REC *)wind old:(int)old
 {
-	//printf("[REFNUM] old:%d new:%d\n", old, wind->refnum);
+  [channelBar moveChannel:wind fromRefNum:old toRefNum:wind->refnum];
 }
 
 
