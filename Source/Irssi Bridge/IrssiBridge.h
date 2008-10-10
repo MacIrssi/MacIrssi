@@ -52,6 +52,7 @@ void irssibridge_server_setup_read(IRC_SERVER_SETUP_REC *rec, CONFIG_NODE *node)
 void irssibridge_display_nicks(CHANNEL_REC *channel, int flags);
 void irssibridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *text, TEXT_DEST_REC *dest_rect);
 void irssibridge_print_text_finished(WINDOW_REC *wind);
+
 void irssibridge_window_created(WINDOW_REC *wind);
 void irssibridge_window_changed(WINDOW_REC *wind, WINDOW_REC *oldwind);
 void irssibridge_window_refnum_changed(WINDOW_REC *wind, int old);
@@ -61,12 +62,15 @@ void irssibridge_window_destroyed(WINDOW_REC *wind);
 void irssibridge_window_item_new(WINDOW_REC *wind, WI_ITEM_REC *wir);
 void irssibridge_window_item_changed(WINDOW_REC *wind, WI_ITEM_REC *wir);
 void irssibridge_window_name_changed(WINDOW_REC *wind);
+
 void irssibridge_channel_topic_changed(CHANNEL_REC * chan);
 void irssibridge_query_created(QUERY_REC *qr, int automatic);
+
 void irssibridge_window_server_changed(WINDOW_REC *wind, SERVER_REC *serv);
 void irssibridge_window_level_changed(WINDOW_REC *wind);
 void irssibridge_window_activity(WINDOW_REC *wind, int old_level);
 void irssibridge_window_hilight(WINDOW_REC *wind);
+
 void irssibridge_gui_exit(void);
 void irssibridge_nicklist_new(CHANNEL_REC *channel, NICK_REC *nick);
 void irssibridge_nicklist_remove(CHANNEL_REC *channel, NICK_REC *nick);
