@@ -836,7 +836,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
     
     if ([self isChannel])
     {
-      [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_HIGHLIGHT" object:nil userInfo:info];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_HIGHLIGHT" object:self userInfo:info];
     }
   }
   
