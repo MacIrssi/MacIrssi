@@ -23,7 +23,7 @@
 
 #import "AppController.h"
 #import "ChannelController.h"
-#import "PreferenceController.h"
+#import "PreferenceViewController.h"
 #import "EventController.h"
 #import "CustomWindow.h"
 #import "CustomTableView.h"
@@ -319,7 +319,9 @@ char **argv;
 	[NSApp endSheet:errorWindow returnCode:1];
 	
 	if ([[sender title] isEqual:@"Quit"])
-		signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:defaultQuitMessage]);
+  {
+    signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"]]);
+  }
 }
 
 //-------------------------------------------------------------------
@@ -331,7 +333,7 @@ char **argv;
 - (IBAction)showPreferencePanel:(id)sender
 {
 	if (!preferenceController)
-		preferenceController = [[PreferenceController alloc] initWithColorSet:macIrssiColors appController:self];
+		preferenceController = [[PreferenceViewController alloc] initWithColorSet:macIrssiColors appController:self];
 	
 	[preferenceController showWindow:self];
 }
@@ -424,12 +426,6 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)newTabWithWindowRec:(WINDOW_REC *)wind
 {
-  if (windowCreationBlocked)
-  {
-    // We've asked not to create new windows, so we should stop here.
-    return;
-  }
-  
 	ChannelController *owner = [[ChannelController alloc] initWithWindowRec:wind];
 	
 	NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:owner];
@@ -552,11 +548,6 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)removeTabWithWindowRec:(WINDOW_REC *)wind
 {
-  if (windowCreationBlocked)
-  {
-    return;
-  }
-  
 	NSTabViewItem *tmp = [(ChannelController *)(wind->gui_data) tabViewItem];
 	
 	/* Fix channel menu */
@@ -1041,12 +1032,7 @@ char **argv;
 
 - (void)updaterWillRelaunchApplication:(SUUpdater *)updater
 {
-  // Force the quit message not to apppear
-  askQuit = NO;
-  
-  // Give a slightly more sensible quit message.
-  [defaultQuitMessage release];
-  defaultQuitMessage = [@"Be right back. Restarting after update." retain];
+  isRestartingForUpdate = YES;
 }
 
 #pragma mark NSApp notifications
@@ -1065,16 +1051,19 @@ char **argv;
 	/* If /quit command */
 	if (quitting)
 		return NSTerminateNow;
+  
+  NSString *quitMessage = (isRestartingForUpdate) ? @"Be right back. Restarting after update." : [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"];
+  BOOL askQuit = (isRestartingForUpdate) ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:@"askQuit"];
 	
 	/* Else, check if we should bring up quit sheet */
 	if (askQuit) {
-		[reasonTextField setStringValue:defaultQuitMessage];
+		[reasonTextField setStringValue:quitMessage];
 		[NSApp beginSheet:reasonWindow modalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
 		return NSTerminateLater; // Handle termination after reason is recieved
 	}
 	
 	/* Else quit with default quit message */
-	signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:defaultQuitMessage]);
+	signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:quitMessage]);
 	return NSTerminateNow;
 }
 
@@ -1091,8 +1080,10 @@ char **argv;
 	ChannelController *tmp;
 	
 	while (tmp = [[enumerator nextObject] identifier])
-		[tmp clearNickView];
-	
+  {
+    [tmp clearNickView];
+  }
+  
 	g_main_destroy(main_loop);
 	textui_deinit();	
 }
@@ -1106,19 +1097,6 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)applicationDidBecomeActive:(NSNotification *)aNotification
 { 
-  // Ok, this was a truely shit hack. So I'm gonna take it out to try and stabilise MacIrssi
-  
-  // Bring the visible window back to activeness
-//  window_set_active([currentChannelController windowRec]);
-  
-  // Free willy!
-//  if (inactiveTempWindowRec)
-//  {
-//    windowCreationBlocked = YES;
-//    window_destroy(inactiveTempWindowRec);
-//    windowCreationBlocked = NO;
-//  }
-  
 	/* Bring forth the main window if it was ordered out during a hide */
 	if (![mainWindow isVisible])
   {
@@ -1138,25 +1116,7 @@ char **argv;
 
 - (void)applicationDidResignActive:(NSNotification *)aNotification
 {
-  // Ok, this is a hack. Lots of the irssi code-base assume that active_win is not NULL, so the time I did
-  // set this to NULL when we resigned active things crashed when events happened with the main window inactive.
 
-  // To do this, we need to do a window_create. I tried alllocating it manually but window_set_active puts it into
-  // lists that means we have to use window_destroy to kill it (or we just crash later anyway). So, this is messy but
-  // I'll block the creation of a window in the UI, create the window and unblock. Then later we block window
-  // creation again while we destroy this "window". I'm sorry it is hacky but live with it!
-  
-  // Ok, this was a truely shit hack. So I'm gonna take it out to try and stabilise MacIrssi
-  //  windowCreationBlocked = YES;
-  //  inactiveTempWindowRec = window_create(NULL, FALSE);
-  //  windowCreationBlocked = NO;
-    
-  // Tell irssi core that we don't have an active window anymore (we don't really, we're not active).
-  // This will cause all windows (including the "active") to trigger data_level updates.
-  // window_set_active(inactiveTempWindowRec);
-  
-  // The channel bar looks really odd if its left as normal while in the background
-  [channelBar setNeedsDisplay:YES];
 }
 
 //-------------------------------------------------------------------
@@ -1271,8 +1231,6 @@ char **argv;
 	mainRunLoop = [NSRunLoop currentRunLoop];
   quitting = FALSE;
 	hilightChannels = 0;
-  inactiveTempWindowRec = NULL;
-  windowCreationBlocked = NO;
 	
 	const char *path = [[[NSBundle mainBundle] bundlePath] fileSystemRepresentation];
 	if (chdir(path) == -1)
@@ -1310,7 +1268,6 @@ char **argv;
 	
 	/* Read settings */
 	channelFont = [[NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelFont"]] retain];
-	askQuit = [defaults boolForKey:@"askQuit"];
 	int channelBarOrientation = [defaults integerForKey:@"channelBarOrientation"];
 	
 	if (channelBarOrientation == 0) {
@@ -1355,7 +1312,6 @@ char **argv;
 	}
 	
 	[defaults registerDefaults:[NSDictionary dictionaryWithObject:@"Get MacIrssi - http://www.sysctl.co.uk/projects/macirssi/ " forKey:@"defaultQuitMessage"]];
-	defaultQuitMessage = [[defaults objectForKey:@"defaultQuitMessage"] retain];
 	if (!channelFont)
 	{
 		channelFont = [NSFont fontWithName:@"Monaco" size:9.0];
@@ -1432,16 +1388,5 @@ char **argv;
 // The current channel font.
 //-------------------------------------------------------------------
 - (NSFont *)channelFont { return channelFont; }
-
-//-------------------------------------------------------------------
-// The default quit message
-//-------------------------------------------------------------------
-- (void)setDefaultQuitMessage:(NSString *)msg { defaultQuitMessage = [msg retain]; }
-
-
-//-------------------------------------------------------------------
-// If the user wants an quit message dialog when quitting
-//-------------------------------------------------------------------
-- (void)setAskQuit:(bool)set { askQuit = set; }
 
 @end

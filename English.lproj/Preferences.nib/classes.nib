@@ -7,6 +7,8 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>addNetworkAction</key>
+				<string>id</string>
 				<key>buttonChange</key>
 				<string>id</string>
 				<key>cancelChanges</key>
@@ -14,6 +16,8 @@
 				<key>changeColor</key>
 				<string>id</string>
 				<key>chatEventPopup</key>
+				<string>id</string>
+				<key>deleteNetworkAction</key>
 				<string>id</string>
 				<key>revertColorsToDefaults</key>
 				<string>id</string>
@@ -29,7 +33,7 @@
 				<string>id</string>
 			</dict>
 			<key>CLASS</key>
-			<string>PreferenceController</string>
+			<string>PreferenceViewController</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
 			<key>OUTLETS</key>
@@ -58,6 +62,8 @@
 				<string>NSTextField</string>
 				<key>F9Field</key>
 				<string>NSTextField</string>
+				<key>addNetworkButton</key>
+				<string>NSButton</string>
 				<key>askQuitCheckBox</key>
 				<string>NSButton</string>
 				<key>bounceIconButton</key>
@@ -92,6 +98,8 @@
 				<string>NSTextField</string>
 				<key>defaultUsernameField</key>
 				<string>NSTextField</string>
+				<key>deleteNetworkButton</key>
+				<string>NSButton</string>
 				<key>generalPreferencesTab</key>
 				<string>NSWindow</string>
 				<key>growlEventBackgroundButton</key>
@@ -104,6 +112,12 @@
 				<string>NSColorWell</string>
 				<key>inputTextFieldFGColorWell</key>
 				<string>NSColorWell</string>
+				<key>irssiObjectController</key>
+				<string>NSObjectController</string>
+				<key>networksArrayController</key>
+				<string>NSArrayController</string>
+				<key>networksPreferencesTab</key>
+				<string>NSWindow</string>
 				<key>nickListBGColorWell</key>
 				<string>NSColorWell</string>
 				<key>nickListFGHalfOpColorWell</key>
@@ -128,6 +142,10 @@
 				<string>NSBox</string>
 				<key>previewTextView</key>
 				<string>NSTextView</string>
+				<key>serversArrayController</key>
+				<string>NSArrayController</string>
+				<key>serversPreferencesTab</key>
+				<string>NSWindow</string>
 				<key>soundListPopUpButton</key>
 				<string>NSPopUpButton</string>
 				<key>textEncodingPopUpButton</key>
@@ -138,7 +156,7 @@
 				<string>NSTableView</string>
 			</dict>
 			<key>SUPERCLASS</key>
-			<string>NSWindowController</string>
+			<string>NSObject</string>
 		</dict>
 		<dict>
 			<key>CLASS</key>

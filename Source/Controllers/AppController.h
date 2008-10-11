@@ -37,7 +37,7 @@
 #import <Sparkle/Sparkle.h>
 
 @class ChannelController;
-@class PreferenceController;
+@class PreferenceViewController;
 @class EventController;
 @class History;
 @class CustomTableView;
@@ -70,7 +70,7 @@ extern char **argv;
 	IBOutlet NSTextView *copyrightTextView;
 	
 	ChannelController *currentChannelController;
-	PreferenceController *preferenceController;
+	PreferenceViewController *preferenceController;
 	EventController *eventController;
 	ColorSet *macIrssiColors;
 	NSMutableArray *highlightColors;
@@ -81,8 +81,6 @@ extern char **argv;
 	NSMutableArray *networks;
 	bool quitting;
 	bool sleeping;
-	bool askQuit;
-	NSString *defaultQuitMessage;
 	NSImage *iconOnPriv;
 	NSImage *defaultIcon;
 	NSImage *currentIcon;
@@ -92,9 +90,7 @@ extern char **argv;
 	CoverView *coverView;
 	
 	GSList *sleepList;
-  
-  WINDOW_REC *inactiveTempWindowRec;
-  BOOL windowCreationBlocked;
+  BOOL isRestartingForUpdate;
 }
 
 - (WINDOW_REC *)currentWindowRec;
@@ -147,8 +143,6 @@ extern char **argv;
 - (void)channelJoined:(WINDOW_REC *)rec;
 
 - (void)setIcon:(NSImage *)icon;
-- (void)setDefaultQuitMessage:(NSString *)msg;
-- (void)setAskQuit:(bool)set;
 - (void)presentUnexpectedEvent:(NSString *)description;
 
 - (NSArray *)themeLocations;
@@ -171,4 +165,5 @@ extern char **argv;
 
 /* for NSApplication's delegate */
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)app;
+
 @end
