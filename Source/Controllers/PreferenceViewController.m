@@ -21,7 +21,7 @@
 // Controls the preference panel
 //*****************************************************************
 
-#import "PreferenceController.h"
+#import "PreferenceViewController.h"
 #import "IrssiBridge.h"
 #import <Foundation/Foundation.h>
 #import "settings.h"
@@ -33,7 +33,7 @@
 #import "TextEncodings.h"
 
 	
-@implementation PreferenceController
+@implementation PreferenceViewController
 
 //-------------------------------------------------------------------
 // initWithColorSet:
@@ -45,8 +45,20 @@
 //-------------------------------------------------------------------
 - (id)initWithColorSet:(ColorSet *)colors appController:(AppController*)controller
 {
-  if (self = [super initWithWindowNibName:@"Preferences"])
+  if (self = [super init])
   {
+    if (![NSBundle loadNibNamed:@"Preferences" owner:self])
+    {
+      [self release];
+      return nil;
+    }
+    
+    // Allocate a preference proxy controller and assign it to the bindings controllers
+    preferenceObjectController = [[PreferenceObjectController alloc] init];
+    [irssiObjectController setContent:preferenceObjectController];
+    [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+    [serversArrayController setContent:[preferenceObjectController serverArray]];
+    
     int i;
     
     colorSet = colors;
@@ -231,15 +243,6 @@
 	free(tmp);
 	
 	/* TODO: sound setting */
-	
-	/************************
-	* Quit message settings	* 
-	*************************/
-	[appController setDefaultQuitMessage:[defaultQuitMessageField stringValue]];
-	[[NSUserDefaults standardUserDefaults] setObject:[defaultQuitMessageField stringValue] forKey:@"defaultQuitMessage"];
-
-	[appController setAskQuit:[askQuitCheckBox state] == NSOnState];
-	[[NSUserDefaults standardUserDefaults] setBool:([askQuitCheckBox state] == NSOnState) forKey:@"askQuit"];
 	
 	/*****************
 	* Color	settings * 
@@ -431,13 +434,6 @@
 	/* Make preferencepanel reflect current settings */
 	[self updateColorWells];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[askQuitCheckBox setState:(([defaults boolForKey:@"askQuit"] == TRUE) ? NSOnState : NSOffState)];
-	
-	[defaultNickField setStringValue:[NSString stringWithCString:settings_get_str("nick")]];
-	[defaultAltNickField setStringValue:[NSString stringWithCString:settings_get_str("alternate_nick")]];
-	[defaultUsernameField setStringValue:[NSString stringWithCString:settings_get_str("user_name")]];
-	[defaultRealnameField setStringValue:[NSString stringWithCString:settings_get_str("real_name")]];
-	[defaultQuitMessageField setStringValue:[defaults objectForKey:@"defaultQuitMessage"]];
 	
 	[F1Field setStringValue:[defaults objectForKey:@"shortcut1"]];
 	[F2Field setStringValue:[defaults objectForKey:@"shortcut2"]];
@@ -458,8 +454,8 @@
   [self updateSoundListPopUpButton];
   [self updateChatEventsPopUpButton];
 
-  [super showWindow:sender];
-  
+//  [super showWindow:sender];
+  [preferenceWindow makeKeyAndOrderFront:self];
   [preferenceWindow center];
 }
 
@@ -623,14 +619,6 @@
   NSLog(@"Fart");
 	[self updateColorWells];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-	[askQuitCheckBox setState:(([defaults boolForKey:@"askQuit"] == TRUE) ? NSOnState : NSOffState)];
-	
-	[defaultNickField setStringValue:[NSString stringWithCString:settings_get_str("nick")]];
-	[defaultAltNickField setStringValue:[NSString stringWithCString:settings_get_str("alternate_nick")]];
-	[defaultUsernameField setStringValue:[NSString stringWithCString:settings_get_str("user_name")]];
-	[defaultRealnameField setStringValue:[NSString stringWithCString:settings_get_str("real_name")]];
-	[defaultQuitMessageField setStringValue:[defaults objectForKey:@"defaultQuitMessage"]];
 	
 	[F1Field setStringValue:[defaults objectForKey:@"shortcut1"]];
 	[F2Field setStringValue:[defaults objectForKey:@"shortcut2"]];
@@ -899,8 +887,6 @@
 	@catch (NSException *e) {
 		NSLog(@"Unable to shut down ThemePreviewDaemon");
 	}
-	
-	[super close];
 }
 
 #pragma mark TableView delegate/data source
@@ -954,6 +940,27 @@
 	}
 }
 
+#pragma mark Network Preference Panel
+
+- (IBAction)addNetworkAction:(id)sender
+{
+  [preferenceObjectController addChatnetWithName:@"Foo"];
+  [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+}
+
+- (IBAction)deleteNetworkAction:(id)sender
+{
+  [preferenceObjectController deleteChatnetWithIndexSet:[networksArrayController selectionIndexes]];
+  [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+}
+
+#pragma mark Window
+
+- (NSWindow*)window
+{
+  return preferenceWindow;
+}
+
 #pragma mark Toolbar Delegates
 
 // Called from toolbar pushes
@@ -972,11 +979,19 @@
   {
     [self switchPreferenceWindowTo:coloursPreferencesTab animate:YES];
   }
+  else if ([[toolbarItem itemIdentifier] isEqualToString:@"Networks"])
+  {
+    [self switchPreferenceWindowTo:networksPreferencesTab animate:YES];
+  }
+  else if ([[toolbarItem itemIdentifier] isEqualToString:@"Servers"])
+  {
+    [self switchPreferenceWindowTo:serversPreferencesTab animate:YES];
+  }
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
-  return [NSArray arrayWithObjects:@"General", @"Notifications", @"Colours", nil];
+  return [NSArray arrayWithObjects:@"General", @"Notifications", @"Colours", @"Networks", @"Servers", nil];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
@@ -1010,6 +1025,20 @@
   {
     [toolbarItem setLabel:@"Colours"];
     [toolbarItem setImage:[NSImage imageNamed:@"Colours"]];
+    [toolbarItem setAction:@selector(changeViewFromToolbar:)];
+    [toolbarItem setTarget:self];
+  }
+  else if ([itemIdentifier isEqualToString:@"Networks"])
+  {
+    [toolbarItem setLabel:@"Networks"];
+    [toolbarItem setImage:[NSImage imageNamed:@"Networks"]];
+    [toolbarItem setAction:@selector(changeViewFromToolbar:)];
+    [toolbarItem setTarget:self];
+  }
+  else if ([itemIdentifier isEqualToString:@"Servers"])
+  {
+    [toolbarItem setLabel:@"Servers"];
+    [toolbarItem setImage:[NSImage imageNamed:@"Servers"]];
     [toolbarItem setAction:@selector(changeViewFromToolbar:)];
     [toolbarItem setTarget:self];
   }

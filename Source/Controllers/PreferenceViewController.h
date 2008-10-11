@@ -16,11 +16,13 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ColorSet.h"
-#import "AppController.h"
-#import "EventController.h"
 #import "Protocols.h"
 
-@interface PreferenceController : NSWindowController <ThemePreviewClientProtocol>
+#import "AppController.h"
+#import "EventController.h"
+#import "PreferenceObjectController.h"
+
+@interface PreferenceViewController : NSObject
 {
 	IBOutlet NSWindow *preferenceWindow;
 	
@@ -32,6 +34,12 @@
   IBOutlet NSWindow *generalPreferencesTab;
   IBOutlet NSWindow *notificationsPreferencesTab;
   IBOutlet NSWindow *coloursPreferencesTab;
+  IBOutlet NSWindow *networksPreferencesTab;
+  IBOutlet NSWindow *serversPreferencesTab;
+  
+  /* Irssi Settings Object Controller */
+  IBOutlet NSObjectController *irssiObjectController;
+  PreferenceObjectController *preferenceObjectController;
   
 	/* Themes tab */
 	IBOutlet NSTextView *previewTextView;
@@ -90,7 +98,15 @@
   IBOutlet NSButton *growlEventButton;
   IBOutlet NSButton *growlEventBackgroundButton;
   IBOutlet NSButton *growlEventUntilFrontButton;
-	
+  
+  /* Networks tab */
+	IBOutlet NSArrayController *networksArrayController;
+  IBOutlet NSButton *addNetworkButton;
+  IBOutlet NSButton *deleteNetworkButton;
+  
+  /* Servers tab */
+  IBOutlet NSArrayController *serversArrayController;
+  
 	AppController *appController;
   EventController *eventController;
 	NSString **shortcutCommands;
@@ -139,6 +155,16 @@
 - (void)daemonInitiationComplete;
 - (void)returnPreview:(NSAttributedString *)result;
 - (void)requestPreview:(NSTimer*)theTimer;
+
+#pragma mark Network Preference Panel
+
+- (IBAction)addNetworkAction:(id)sender;
+- (IBAction)deleteNetworkAction:(id)sender;
+
+#pragma mark Window
+
+- (NSWindow*)window;
+- (void)close;
 
 #pragma mark Toolbar Delegates
 
