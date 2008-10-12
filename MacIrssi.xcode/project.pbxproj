@@ -278,6 +278,12 @@
 		C922B4310E23BD34000AA7BE /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = C922B4300E23BD34000AA7BE /* sound.png */; };
 		C925E7720E5A2D550041921B /* libperl_core_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C925E7710E5A2D550041921B /* libperl_core_static.a */; };
 		C925E7850E5A30F10041921B /* libperl_core_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C925E7710E5A2D550041921B /* libperl_core_static.a */; };
+		C9432BFE0EA16540005237E3 /* addWidgetSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C9432BFA0EA16540005237E3 /* addWidgetSelected.png */; };
+		C9432BFF0EA16540005237E3 /* addWidget.png in Resources */ = {isa = PBXBuildFile; fileRef = C9432BFB0EA16540005237E3 /* addWidget.png */; };
+		C9432C000EA16540005237E3 /* removeWidgetSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C9432BFC0EA16540005237E3 /* removeWidgetSelected.png */; };
+		C9432C010EA16540005237E3 /* removeWidget.png in Resources */ = {isa = PBXBuildFile; fileRef = C9432BFD0EA16540005237E3 /* removeWidget.png */; };
+		C9432C250EA1673E005237E3 /* ChannelBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9432C230EA1673E005237E3 /* ChannelBridgeController.h */; };
+		C9432C260EA1673E005237E3 /* ChannelBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9432C240EA1673E005237E3 /* ChannelBridgeController.m */; };
 		C947E1DC0E1E871F0001380E /* EventController.h in Headers */ = {isa = PBXBuildFile; fileRef = C947E1DA0E1E871F0001380E /* EventController.h */; };
 		C947E1DD0E1E871F0001380E /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947E1DB0E1E871F0001380E /* EventController.m */; };
 		C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = C9550D140E29A97400658372 /* MacIrssi-Alert.png */; };
@@ -1724,6 +1730,12 @@
 		C922B3EB0E23BB1D000AA7BE /* Whip.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Whip.aiff; sourceTree = "<group>"; };
 		C922B4300E23BD34000AA7BE /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound.png; sourceTree = "<group>"; };
 		C925E7710E5A2D550041921B /* libperl_core_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libperl_core_static.a; path = "irssi-0.8.12/src/perl/.libs/libperl_core_static.a"; sourceTree = "<group>"; };
+		C9432BFA0EA16540005237E3 /* addWidgetSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addWidgetSelected.png; sourceTree = "<group>"; };
+		C9432BFB0EA16540005237E3 /* addWidget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addWidget.png; sourceTree = "<group>"; };
+		C9432BFC0EA16540005237E3 /* removeWidgetSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeWidgetSelected.png; sourceTree = "<group>"; };
+		C9432BFD0EA16540005237E3 /* removeWidget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeWidget.png; sourceTree = "<group>"; };
+		C9432C230EA1673E005237E3 /* ChannelBridgeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelBridgeController.h; sourceTree = "<group>"; };
+		C9432C240EA1673E005237E3 /* ChannelBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelBridgeController.m; sourceTree = "<group>"; };
 		C947E1DA0E1E871F0001380E /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventController.h; sourceTree = "<group>"; };
 		C947E1DB0E1E871F0001380E /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventController.m; sourceTree = "<group>"; };
 		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MacIrssi-Alert.png"; path = "../MacIrssi-Alert.png"; sourceTree = "<group>"; };
@@ -3117,6 +3129,10 @@
 				C9EBAC160EA0BCEC00025466 /* addSquareWidget.png */,
 				C9EBAC110EA0BCE000025466 /* deleteWidgetPressed.png */,
 				C9EBAC120EA0BCE000025466 /* deleteWidget.png */,
+				C9432BFA0EA16540005237E3 /* addWidgetSelected.png */,
+				C9432BFB0EA16540005237E3 /* addWidget.png */,
+				C9432BFC0EA16540005237E3 /* removeWidgetSelected.png */,
+				C9432BFD0EA16540005237E3 /* removeWidget.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -3263,6 +3279,8 @@
 				C9EBAB6F0EA0AF7600025466 /* IrcnetBridgeController.m */,
 				C9EBACA90EA100D400025466 /* ServerBridgeController.h */,
 				C9EBACAA0EA100D400025466 /* ServerBridgeController.m */,
+				C9432C230EA1673E005237E3 /* ChannelBridgeController.h */,
+				C9432C240EA1673E005237E3 /* ChannelBridgeController.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -3302,6 +3320,7 @@
 				C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */,
 				C9EBAB700EA0AF7600025466 /* IrcnetBridgeController.h in Headers */,
 				C9EBACAB0EA100D400025466 /* ServerBridgeController.h in Headers */,
+				C9432C250EA1673E005237E3 /* ChannelBridgeController.h in Headers */,
 				C91F0B170F06E3C900763699 /* MISplitView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3575,6 +3594,10 @@
 				C9EBAC170EA0BCEC00025466 /* addSquareWidgetPressed.png in Resources */,
 				C9EBAC180EA0BCEC00025466 /* addSquareWidget.png in Resources */,
 				C9EBACE50EA1055F00025466 /* Servers.png in Resources */,
+				C9432BFE0EA16540005237E3 /* addWidgetSelected.png in Resources */,
+				C9432BFF0EA16540005237E3 /* addWidget.png in Resources */,
+				C9432C000EA16540005237E3 /* removeWidgetSelected.png in Resources */,
+				C9432C010EA16540005237E3 /* removeWidget.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3679,6 +3702,7 @@
 				C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */,
 				C9EBAB710EA0AF7600025466 /* IrcnetBridgeController.m in Sources */,
 				C9EBACAC0EA100D400025466 /* ServerBridgeController.m in Sources */,
+				C9432C260EA1673E005237E3 /* ChannelBridgeController.m in Sources */,
 				C91F0B180F06E3C900763699 /* MISplitView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

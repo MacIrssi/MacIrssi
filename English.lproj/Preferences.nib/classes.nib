@@ -7,7 +7,11 @@
 		<dict>
 			<key>ACTIONS</key>
 			<dict>
+				<key>addChannelAction</key>
+				<string>id</string>
 				<key>addNetworkAction</key>
+				<string>id</string>
+				<key>addServerAction</key>
 				<string>id</string>
 				<key>buttonChange</key>
 				<string>id</string>
@@ -15,13 +19,25 @@
 				<string>id</string>
 				<key>changeColor</key>
 				<string>id</string>
+				<key>channetPanelCancelAction</key>
+				<string>id</string>
+				<key>channetPanelOKAction</key>
+				<string>id</string>
 				<key>chatEventPopup</key>
 				<string>id</string>
+				<key>deleteChannelAction</key>
+				<string>id</string>
 				<key>deleteNetworkAction</key>
+				<string>id</string>
+				<key>deleteServerAction</key>
 				<string>id</string>
 				<key>revertColorsToDefaults</key>
 				<string>id</string>
 				<key>saveChanges</key>
+				<string>id</string>
+				<key>showChannelPanel</key>
+				<string>id</string>
+				<key>showNetworkPanel</key>
 				<string>id</string>
 				<key>showWindow</key>
 				<string>id</string>
@@ -62,6 +78,8 @@
 				<string>NSTextField</string>
 				<key>F9Field</key>
 				<string>NSTextField</string>
+				<key>addChannelButton</key>
+				<string>NSButton</string>
 				<key>addNetworkButton</key>
 				<string>NSButton</string>
 				<key>askQuitCheckBox</key>
@@ -84,6 +102,14 @@
 				<string>NSColorWell</string>
 				<key>channelListFGPublicMessageColorWell</key>
 				<string>NSColorWell</string>
+				<key>channelsArrayController</key>
+				<string>NSArrayController</string>
+				<key>channetPanelLabel</key>
+				<string>NSTextField</string>
+				<key>channetPanelTextField</key>
+				<string>NSTextField</string>
+				<key>channetPanelWindow</key>
+				<string>NSWindow</string>
 				<key>chatEventPopUpButton</key>
 				<string>NSPopUpButton</string>
 				<key>coloursPreferencesTab</key>
@@ -98,6 +124,8 @@
 				<string>NSTextField</string>
 				<key>defaultUsernameField</key>
 				<string>NSTextField</string>
+				<key>deleteChannelButton</key>
+				<string>NSButton</string>
 				<key>deleteNetworkButton</key>
 				<string>NSButton</string>
 				<key>generalPreferencesTab</key>

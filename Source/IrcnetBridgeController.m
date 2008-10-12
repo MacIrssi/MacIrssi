@@ -7,7 +7,11 @@
 //
 
 #import "IrcnetBridgeController.h"
+#import "ChannelBridgeController.h"
 #import "IrssiBridge.h"
+
+/* Irssi Headers */
+#import "channels-setup.h"
 
 @implementation IrcnetBridgeController
 
@@ -15,7 +19,23 @@
 {
   if (self = [super init])
   {
+    channelArray = [[NSMutableArray alloc] init];
     rec = chatrec;
+    
+    // We've just been initialised, go see what channels we've got assigned to us
+    GSList *tmp, *next;
+    for (tmp = setupchannels; tmp != NULL; tmp = next)
+    {
+      CHANNEL_SETUP_REC *channelrec = CHANNEL_SETUP(tmp->data);
+      
+      if (channel_chatnet_match(channelrec->chatnet, rec->name))
+      {
+        ChannelBridgeController *controller = [[[ChannelBridgeController alloc] initWithChannelRec:channelrec] autorelease];
+        [channelArray addObject:controller];
+      }
+      
+      next = tmp->next;
+    }
   }
   return self;
 }
@@ -23,6 +43,11 @@
 - (IRC_CHATNET_REC*)rec
 {
   return rec;
+}
+
+- (NSMutableArray*)channelArray
+{
+  return channelArray;
 }
 
 - (NSString*)name
