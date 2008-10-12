@@ -37,7 +37,6 @@
 #import <Sparkle/Sparkle.h>
 
 @class ChannelController;
-@class PreferenceViewController;
 @class EventController;
 @class History;
 @class CustomTableView;
@@ -70,7 +69,6 @@ extern char **argv;
 	IBOutlet NSTextView *copyrightTextView;
 	
 	ChannelController *currentChannelController;
-	PreferenceViewController *preferenceController;
 	EventController *eventController;
 	ColorSet *macIrssiColors;
 	NSMutableArray *highlightColors;
