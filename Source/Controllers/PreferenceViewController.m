@@ -944,14 +944,104 @@
 
 - (IBAction)addNetworkAction:(id)sender
 {
-  [preferenceObjectController addChatnetWithName:@"Foo"];
-  [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+  [self showNetworkPanel:self];
 }
 
 - (IBAction)deleteNetworkAction:(id)sender
 {
-  [preferenceObjectController deleteChatnetWithIndexSet:[networksArrayController selectionIndexes]];
+  [preferenceObjectController deleteChatnetWithIndex:[networksArrayController selectionIndex]];
   [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+}
+
+- (IBAction)addChannelAction:(id)sender
+{
+  [self showChannelPanel:self];
+}
+
+- (IBAction)deleteChannelAction:(id)sender
+{
+  [preferenceObjectController deleteChannelWithIndex:[channelsArrayController selectionIndex] fromChatnet:[[networksArrayController selectedObjects] objectAtIndex:0]];
+}
+
+#pragma mark Network/Channel Panel
+
+- (void)showChannelPanel:(id)sender 
+{
+  [channetPanelLabel setStringValue:@"Channel:"];
+  [channetPanelTextField setStringValue:@""];
+  isChannetPanelNetwork = NO;
+  
+  [NSApp beginSheet:channetPanelWindow
+     modalForWindow:preferenceWindow 
+      modalDelegate:self 
+     didEndSelector:@selector(channetPanelDidEnd:returnCode:contextInfo:)
+        contextInfo:nil];
+}
+
+- (void)showNetworkPanel:(id)sender
+{
+  [channetPanelLabel setStringValue:@"Network:"];
+  [channetPanelTextField setStringValue:@""];
+  isChannetPanelNetwork = YES;
+  
+  [NSApp beginSheet:channetPanelWindow
+     modalForWindow:preferenceWindow 
+      modalDelegate:self
+     didEndSelector:@selector(channetPanelDidEnd:returnCode:contextInfo:)
+        contextInfo:nil];
+}
+
+- (void)channetPanelDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+  [sheet orderOut:self];
+  
+  // Firstly, may as well bomb out here if the entry is empty
+  if ([[[channetPanelTextField stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
+  {
+    return;
+  }
+  
+  // Two code paths here, one if we're a network box. Another if we're a channel box.
+  if (isChannetPanelNetwork)
+  {
+    NSString *networkName = [NSString stringWithString:[channetPanelTextField stringValue]];
+    IrcnetBridgeController *controller = [preferenceObjectController addChatnetWithName:networkName];
+    [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+    [networksArrayController setSelectedObjects:[NSArray arrayWithObject:controller]];
+  }
+  else
+  {
+    NSString *channelName = [NSString stringWithString:[channetPanelTextField stringValue]];
+    IrcnetBridgeController *ircController = [[networksArrayController selectedObjects] objectAtIndex:0];
+    [preferenceObjectController addChannelWithName:channelName toChatnet:ircController];
+    [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+    [networksArrayController setSelectedObjects:[NSArray arrayWithObject:ircController]];
+  }
+  
+}
+
+- (IBAction)channetPanelOKAction:(id)sender
+{
+  [NSApp endSheet:channetPanelWindow returnCode:NSOKButton];
+}
+
+- (IBAction)channetPanelCancelAction:(id)sender
+{
+  [NSApp endSheet:channetPanelWindow returnCode:NSCancelButton];
+}
+
+#pragma mark Servers Preference Panel
+
+- (IBAction)addServerAction:(id)sender
+{
+  [preferenceObjectController addServerWithAddress:@"irc.example.com" port:6667];
+  [serversArrayController setContent:[preferenceObjectController serverArray]];
+}
+
+- (IBAction)deleteServerAction:(id)sender
+{
+  [preferenceObjectController deleteServerWithIndex:[serversArrayController selectionIndex]];
+  [serversArrayController setContent:[preferenceObjectController serverArray]];
 }
 
 #pragma mark Window

@@ -20,11 +20,13 @@
 
 @interface IrcnetBridgeController : NSObject {
   IRC_CHATNET_REC *rec;
+  NSMutableArray *channelArray;
 }
 
 - (id)initWithChatnetRec:(IRC_CHATNET_REC*)chatrec;
 
 - (IRC_CHATNET_REC*)rec;
+- (NSMutableArray*)channelArray;
 
 - (NSString*)name;
 

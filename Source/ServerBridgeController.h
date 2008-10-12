@@ -18,4 +18,18 @@
 
 - (id)initWithServerSetupRec:(SERVER_SETUP_REC*)rec;
 
+- (SERVER_SETUP_REC*)rec;
+
+- (NSString*)address;
+- (void)setAddress:(NSString*)value;
+
+- (NSString*)chatnet;
+- (void)setChatnet:(NSString*)value;
+
+- (int)port;
+- (void)setPort:(int)port;
+
+- (BOOL)autoconnect;
+- (void)setAutoconnect:(BOOL)flag;
+
 @end

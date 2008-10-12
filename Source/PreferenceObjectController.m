@@ -7,8 +7,6 @@
 //
 
 #import "PreferenceObjectController.h"
-#import "IrcnetBridgeController.h"
-#import "ServerBridgeController.h"
 #import "IrssiBridge.h"
 
 // Irssi Imports
@@ -59,7 +57,7 @@
   return serverArray;
 }
 
-- (void)addChatnetWithName:(NSString*)string
+- (IrcnetBridgeController*)addChatnetWithName:(NSString*)string
 {
   IRC_CHATNET_REC *rec = g_new0(IRC_CHATNET_REC, 1);
   rec->name = g_strdup([IrssiBridge irssiCStringWithString:string]);
@@ -71,12 +69,19 @@
   [self willChangeValueForKey:@"chatnetArray"];
   [chatnetArray addObject:controller];
   [self didChangeValueForKey:@"chatnetArray"];
+  
+  return controller;
 }
 
-- (void)deleteChatnetWithIndexSet:(NSIndexSet*)indexSet
+- (void)deleteChatnetWithIndex:(int)index
 {
-  IrcnetBridgeController *controller = [chatnetArray objectAtIndex:[indexSet firstIndex]];
-  NSLog(@"%@", [controller name]);
+  IrcnetBridgeController *controller = [chatnetArray objectAtIndex:index];
+  
+  // First bin all the channel_setups that this network owns
+  while ([[controller channelArray] count])
+  {
+    [self deleteChannelWithIndex:0 fromChatnet:controller];
+  }
   
   IRC_CHATNET_REC *rec = [controller rec];
   chatnet_remove(CHATNET(rec));
@@ -84,6 +89,58 @@
   [self willChangeValueForKey:@"chatnetArray"];
   [chatnetArray removeObject:controller];
   [self didChangeValueForKey:@"chatnetArray"];
+}
+
+- (ChannelBridgeController*)addChannelWithName:(NSString*)name toChatnet:(IrcnetBridgeController*)controller
+{
+  CHANNEL_SETUP_REC *rec = g_new0(CHANNEL_SETUP_REC, 1);
+  rec->name = g_strdup([IrssiBridge irssiCStringWithString:name]);
+  rec->chatnet = g_strdup([controller rec]->name);
+  channel_setup_create(rec);
+  
+  ChannelBridgeController *channelController = [[[ChannelBridgeController alloc] initWithChannelRec:rec] autorelease];
+  [[controller channelArray] addObject:channelController];
+  
+  return channelController;
+}
+
+- (void)deleteChannelWithIndex:(int)index fromChatnet:(IrcnetBridgeController*)ircController
+{
+  ChannelBridgeController *channelController = [[ircController channelArray] objectAtIndex:index];
+  
+  CHANNEL_SETUP_REC *rec = [channelController rec];
+  channel_setup_remove(rec);
+  
+  [ircController willChangeValueForKey:@"channelArray"];
+  [[ircController channelArray] removeObject:channelController];
+  [ircController didChangeValueForKey:@"channelArray"];
+}
+
+- (ServerBridgeController*)addServerWithAddress:(NSString*)name port:(int)port
+{
+  SERVER_SETUP_REC *rec = g_new0(SERVER_SETUP_REC, 1);
+  rec->address = g_strdup([IrssiBridge irssiCStringWithString:name]);
+  rec->port = port;
+  server_setup_add(rec);
+  
+  ServerBridgeController *serverController = [[[ServerBridgeController alloc] initWithServerSetupRec:rec] autorelease];
+  [self willChangeValueForKey:@"serverArray"];
+  [serverArray addObject:serverController];
+  [self didChangeValueForKey:@"serverArray"];
+  
+  return serverController;
+}
+
+- (void)deleteServerWithIndex:(int)index
+{
+  ServerBridgeController *controller = [serverArray objectAtIndex:index];
+  
+  SERVER_SETUP_REC *rec = [controller rec];
+  server_setup_remove(rec);
+  
+  [self willChangeValueForKey:@"serverArray"];
+  [serverArray removeObject:controller];
+  [self didChangeValueForKey:@"serverArray"];
 }
 
 #pragma mark Irssi Settings KVC/KVO Proxies

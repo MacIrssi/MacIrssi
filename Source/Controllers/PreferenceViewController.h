@@ -101,8 +101,17 @@
   
   /* Networks tab */
 	IBOutlet NSArrayController *networksArrayController;
+  IBOutlet NSArrayController *channelsArrayController;
   IBOutlet NSButton *addNetworkButton;
   IBOutlet NSButton *deleteNetworkButton;
+  IBOutlet NSButton *addChannelButton;
+  IBOutlet NSButton *deleteChannelButton;
+  
+  /* Channel/Networks panel */
+  IBOutlet NSWindow *channetPanelWindow;
+  IBOutlet NSTextField *channetPanelLabel; 
+  IBOutlet NSTextField *channetPanelTextField;
+  BOOL isChannetPanelNetwork;
   
   /* Servers tab */
   IBOutlet NSArrayController *serversArrayController;
@@ -160,6 +169,22 @@
 
 - (IBAction)addNetworkAction:(id)sender;
 - (IBAction)deleteNetworkAction:(id)sender;
+
+- (IBAction)addChannelAction:(id)sender;
+- (IBAction)deleteChannelAction:(id)sender;
+
+#pragma mark Network/Channel Panel
+
+- (void)showChannelPanel:(id)sender;
+- (void)showNetworkPanel:(id)sender;
+
+- (IBAction)channetPanelOKAction:(id)sender;
+- (IBAction)channetPanelCancelAction:(id)sender;
+
+#pragma mark Servers Preference Panel
+
+- (IBAction)addServerAction:(id)sender;
+- (IBAction)deleteServerAction:(id)sender;
 
 #pragma mark Window
 

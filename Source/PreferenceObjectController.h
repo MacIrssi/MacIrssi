@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "IrcnetBridgeController.h"
+#import "ChannelBridgeController.h"
+#import "ServerBridgeController.h"
+
 @interface PreferenceObjectController : NSObject {
   NSMutableArray *chatnetArray;
   NSMutableArray *serverArray;
@@ -16,8 +20,14 @@
 - (NSMutableArray*)chatnetArray;
 - (NSMutableArray*)serverArray;
 
-- (void)addChatnetWithName:(NSString*)string;
-- (void)deleteChatnetWithIndexSet:(NSIndexSet*)indexSet;
+- (IrcnetBridgeController*)addChatnetWithName:(NSString*)string;
+- (void)deleteChatnetWithIndex:(int)index;
+
+- (ChannelBridgeController*)addChannelWithName:(NSString*)name toChatnet:(IrcnetBridgeController*)controller;
+- (void)deleteChannelWithIndex:(int)index fromChatnet:(IrcnetBridgeController*)ircController;
+
+- (ServerBridgeController*)addServerWithAddress:(NSString*)name port:(int)port;
+- (void)deleteServerWithIndex:(int)index;
 
 - (NSString*)nick;
 - (void)setNick:(NSString*)nick;
