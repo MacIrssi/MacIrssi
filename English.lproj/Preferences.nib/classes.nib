@@ -43,7 +43,7 @@
 				<string>id</string>
 				<key>soundListPopUp</key>
 				<string>id</string>
-				<key>swithChannelBar</key>
+				<key>switchChannelBar</key>
 				<string>id</string>
 				<key>updateThemeList</key>
 				<string>id</string>
@@ -193,14 +193,6 @@
 			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
-			<string>CustomTextView</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSTextView</string>
 		</dict>
 	</array>
 	<key>IBVersion</key>

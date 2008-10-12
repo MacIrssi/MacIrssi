@@ -256,8 +256,12 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)closeChannel:(id)sender
 {
-	if ([[preferenceController window] isKeyWindow])
-		return;
+  if (![mainWindow isKeyWindow])
+  {
+    // Probably the preference window, redirect the command there instead.
+    [[NSApp keyWindow] close];
+    return;
+  }
 	
 	WINDOW_REC *tmp = [currentChannelController windowRec];
 	signal_emit("command window close", 3, "", tmp->active_server, tmp->active);
@@ -332,9 +336,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)showPreferencePanel:(id)sender
 {
-	if (!preferenceController)
-		preferenceController = [[PreferenceViewController alloc] initWithColorSet:macIrssiColors appController:self];
-	
+	PreferenceViewController *preferenceController = [[PreferenceViewController alloc] initWithColorSet:macIrssiColors appController:self];	
 	[preferenceController showWindow:self];
 }
 

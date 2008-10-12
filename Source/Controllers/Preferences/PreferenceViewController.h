@@ -130,7 +130,7 @@
 - (float)toolbarHeightForWindow:(NSWindow*)window;
 - (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate;
 
-- (IBAction)swithChannelBar:(id)sender;
+- (IBAction)switchChannelBar:(id)sender;
 - (IBAction)changeColor:(id)sender;
 - (IBAction)revertColorsToDefaults:(id)sender;
 - (IBAction)saveChanges:(id)sender;

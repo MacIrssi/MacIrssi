@@ -270,6 +270,8 @@
 	colorAsData = [defaults objectForKey:@"channelListBGColor"];
 	channelListBGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
 
+  [channelListFGColors removeAllObjects];
+  
 	colorAsData = [defaults objectForKey:@"channelListFGNoActivityColor"];
 	[channelListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
 
@@ -284,6 +286,8 @@
 
 	colorAsData = [defaults objectForKey:@"nickListBGColor"];
 	nickListBGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
+  
+  [nickListFGColors removeAllObjects];
 
 	colorAsData = [defaults objectForKey:@"nickListFGNormalColor"];
 	[nickListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
