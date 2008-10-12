@@ -1066,8 +1066,8 @@
 		B322DDA005EF9AB300E640C2 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = AppController.m; path = Controllers/AppController.m; sourceTree = "<group>"; };
 		B322DDA205EF9AB300E640C2 /* ChannelController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ChannelController.h; path = Controllers/ChannelController.h; sourceTree = "<group>"; };
 		B322DDA405EF9AB300E640C2 /* ChannelController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = ChannelController.m; path = Controllers/ChannelController.m; sourceTree = "<group>"; };
-		B322DDA705EF9AB300E640C2 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = PreferenceViewController.h; path = Controllers/PreferenceViewController.h; sourceTree = "<group>"; };
-		B322DDA805EF9AB300E640C2 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = PreferenceViewController.m; path = Controllers/PreferenceViewController.m; sourceTree = "<group>"; };
+		B322DDA705EF9AB300E640C2 /* PreferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PreferenceViewController.h; sourceTree = "<group>"; };
+		B322DDA805EF9AB300E640C2 /* PreferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PreferenceViewController.m; sourceTree = "<group>"; };
 		B322DDB505EF9AE600E640C2 /* ColorSet.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = ColorSet.h; sourceTree = "<group>"; };
 		B322DDB605EF9AE600E640C2 /* ColorSet.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = ColorSet.m; sourceTree = "<group>"; };
 		B322DDB705EF9AE600E640C2 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
@@ -3283,6 +3283,7 @@
 				C9432C240EA1673E005237E3 /* ChannelBridgeController.m */,
 			);
 			name = Preferences;
+			path = Controllers/Preferences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
