@@ -87,6 +87,17 @@
 	return self;
 }
 
+- (void)dealloc
+{
+  [irssiObjectController setContent:nil];
+  [networksArrayController setContent:nil];
+  [serversArrayController setContent:nil];
+  [preferenceObjectController release];
+  
+  [availibleThemes release];
+  [super dealloc];
+}
+
 #pragma mark Window Functions
 
 - (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate
@@ -167,16 +178,7 @@
   {
     [[NSColorPanel sharedColorPanel] close];
   }
-  
-  // We want to release here.
-  [generalPreferencesTab release];
-  [notificationsPreferencesTab release];
-  [coloursPreferencesTab release];
-  [networksPreferencesTab release];
-  [serversPreferencesTab release];
-  
-  [channetPanelWindow release];
-  
+
   [self release];
 }
 
@@ -502,7 +504,7 @@
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	NSColor *color = [sender color];
-	NSString *key;
+	NSString *key = nil;
 	
 	colorChanged = TRUE;
 	
@@ -585,8 +587,11 @@
 	}
   
   // Update the colors
-  NSData *colorAsData = [NSArchiver archivedDataWithRootObject:color];
-  [[NSUserDefaults standardUserDefaults] setObject:colorAsData forKey:key];
+  if (key)
+  {
+    NSData *colorAsData = [NSArchiver archivedDataWithRootObject:color];
+    [[NSUserDefaults standardUserDefaults] setObject:colorAsData forKey:key];
+  }
 }
 
 //-------------------------------------------------------------------

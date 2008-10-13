@@ -40,6 +40,12 @@
   return self;
 }
 
+- (void)dealloc
+{
+  [channelArray release];
+  [super dealloc];
+}
+
 - (IRC_CHATNET_REC*)rec
 {
   return rec;
