@@ -47,6 +47,13 @@
   return self;
 }
 
+- (void)dealloc
+{
+  [serverArray release];
+  [chatnetArray release];
+  [super dealloc];
+}
+
 - (NSMutableArray*)chatnetArray
 {
   return chatnetArray;
