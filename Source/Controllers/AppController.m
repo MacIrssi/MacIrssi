@@ -21,22 +21,25 @@
 // Main application controller
 //*****************************************************************
 
+#import "GrowlApplicationBridge.h"
+
 #import "AppController.h"
 #import "ChannelController.h"
 #import "PreferenceViewController.h"
 #import "EventController.h"
+#import "AppcastVersionComparator.h"
 #import "CustomWindow.h"
 #import "CustomTableView.h"
 #import "History.h"
 #import "ColorSet.h"
 #import "ConnectivityMonitor.h"
+#import "IrssiBridge.h"
+
 #import "chatnets.h"
 #import "irc.h"
 #import "irc-chatnets.h"
 #import "irc-servers-setup.h"
 #import "fe-common-core.h"
-#import "IrssiBridge.h"
-#import "GrowlApplicationBridge.h"
 
 #define PASTE_WARNING_THRESHOLD 4
 
@@ -1035,6 +1038,11 @@ char **argv;
 - (void)updaterWillRelaunchApplication:(SUUpdater *)updater
 {
   isRestartingForUpdate = YES;
+}
+
+- (id <SUVersionComparison>)versionComparatorForUpdater:(SUUpdater *)updater
+{
+  return [AppcastVersionComparator defaultComparator];
 }
 
 #pragma mark NSApp notifications
