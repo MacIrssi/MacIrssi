@@ -5,7 +5,7 @@
 	<key>SUEnableSystemProfiling</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
-	<string>http://www.sysctl.co.uk/projects/macirssi/feed.xml</string>
+	<string>http://www.sysctl.co.uk/projects/macirssi/testfeed.php</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.8.6</string>
+	<string>0.8.4</string>
 	<key>NSGitRevision</key>
 	<string>N/A</string>
 	<key>NSMainNibFile</key>

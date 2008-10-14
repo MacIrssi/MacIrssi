@@ -294,6 +294,8 @@
 		C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C97A36D00E5DCB0F007D1191 /* General.tiff */; };
 		C97A37220E5DCFED007D1191 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
+		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
+		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBA9FC0EA0A3C700025466 /* accept in Resources */ = {isa = PBXBuildFile; fileRef = C9EBA9800EA0A3C700025466 /* accept */; };
@@ -1746,6 +1748,8 @@
 		C97A36D00E5DCB0F007D1191 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
 		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
 		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
+		C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppcastVersionComparator.h; sourceTree = "<group>"; };
+		C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppcastVersionComparator.m; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBA9800EA0A3C700025466 /* accept */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = accept; sourceTree = "<group>"; };
@@ -1961,6 +1965,8 @@
 				B322DD9205EF9A5C00E640C2 /* Irssi Bridge */,
 				B322DD9E05EF9A9100E640C2 /* Controllers */,
 				C91F0B130F06E3AA00763699 /* Custom Views */,
+				C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */,
+				C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */,
 				B322DDB505EF9AE600E640C2 /* ColorSet.h */,
 				B322DDB605EF9AE600E640C2 /* ColorSet.m */,
 				B322DDB705EF9AE600E640C2 /* CustomTableView.h */,
@@ -3322,6 +3328,7 @@
 				C9EBAB700EA0AF7600025466 /* IrcnetBridgeController.h in Headers */,
 				C9EBACAB0EA100D400025466 /* ServerBridgeController.h in Headers */,
 				C9432C250EA1673E005237E3 /* ChannelBridgeController.h in Headers */,
+				C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */,
 				C91F0B170F06E3C900763699 /* MISplitView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3704,6 +3711,7 @@
 				C9EBAB710EA0AF7600025466 /* IrcnetBridgeController.m in Sources */,
 				C9EBACAC0EA100D400025466 /* ServerBridgeController.m in Sources */,
 				C9432C260EA1673E005237E3 /* ChannelBridgeController.m in Sources */,
+				C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */,
 				C91F0B180F06E3C900763699 /* MISplitView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
