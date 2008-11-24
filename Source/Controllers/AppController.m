@@ -950,6 +950,11 @@ char **argv;
 	[NSThread exit];
 }
 
+- (void)glibRunLoopTimerEvent:(NSTimer*)timer
+{
+  g_main_iteration(FALSE);
+}
+
 - (EventController*)eventController
 {
 	return eventController;
@@ -1410,13 +1415,15 @@ char **argv;
 		irssi_main(argc, argv+1);
 	}
 	else
-		irssi_main(argc, argv);
+  {
+    irssi_main(argc, argv);
+  }
 #endif
 	
 	main_loop = g_main_new(TRUE);
-	
-	/* Create new thread to run main irssi loop */
-	[NSThread detachNewThreadSelector:@selector(runGlibLoopIteration:) toTarget:self withObject:nil];
+  
+  // Get rid of the shit old run loop thread and schedule the glib runloop on the NSRunLoop
+  [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];
 }
 
 
