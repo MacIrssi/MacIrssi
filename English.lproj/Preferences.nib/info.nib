@@ -3,24 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>IBFramework Version</key>
-	<string>672</string>
+	<string>670</string>
 	<key>IBLastKnownRelativeProjectPath</key>
 	<string>../MacIrssi.xcode</string>
 	<key>IBOldestOS</key>
 	<integer>5</integer>
 	<key>IBOpenObjects</key>
 	<array>
-<<<<<<< HEAD:English.lproj/Preferences.nib/info.nib
 		<integer>109</integer>
-=======
-		<integer>1006</integer>
-		<integer>1334</integer>
-		<integer>379</integer>
-		<integer>1195</integer>
->>>>>>> b6e1d0c... Commit before preference rewrite:English.lproj/Preferences.nib/info.nib
 	</array>
 	<key>IBSystem Version</key>
-	<string>9F33</string>
+	<string>9E17</string>
 	<key>targetFramework</key>
 	<string>IBCocoaFramework</string>
 </dict>
