@@ -143,6 +143,7 @@ extern char **argv;
 - (void)channelListColorChanged:(NSNotification *)note;
 - (void)awakeFromNib;
 - (void)runGlibLoopIteration:(id)anArgument;
+- (void)glibRunLoopTimerEvent:(NSTimer*)timer;
 - (void)channelJoined:(WINDOW_REC *)rec;
 
 - (void)setIcon:(NSImage *)icon;
