@@ -3040,7 +3040,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/perl;
-			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git show --abbrev-commit | grep \"^commit\"`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\nif( $version =~ /^commit\\s+([^.]+)\\.\\.\\.$/ )\n{ \n\t$version = $1;\n}\nelse\n{\n\t$version = undef;\n}\ndie \"$0: No Git revision found\" unless $version;\n \nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>NSGitRevision<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
+			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git-show-ref --hash --abbrev HEAD`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\ndie \"$0: No Git revision found\" unless $version;\n \nchomp($version);\n\nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>NSGitRevision<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
 		};
 		C9EC9F250E363AEB00445345 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
