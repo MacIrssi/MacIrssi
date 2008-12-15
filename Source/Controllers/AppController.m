@@ -205,6 +205,8 @@ char **argv;
 		if (button == 0)
 			return;
 	}
+  
+  [sender setString:@""];
 	
 	for (i = 0; i < [commands count]; i++) {
 		/* Test if clear command (special case) */
@@ -219,8 +221,6 @@ char **argv;
 		signal_emit("send command", 3, tmp, rec->active_server, rec->active);
 		free(tmp);
 	}
-  
-  [sender setString:@""];
 }
 
 #if 0
