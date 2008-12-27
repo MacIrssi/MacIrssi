@@ -43,7 +43,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
  */
 - (IBAction)performSearch:(id)sender
 {
-	[self searchForString:[sender stringValue]];
+  [self searchForString:[sender stringValue]];
 }
 
 /**
@@ -51,14 +51,14 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
  */
 - (void)moveToNextSearchMatch
 {
-	if (![self hasActiveSearch] || searchIteratorIndex < -1)
-		return;
-	
-	/* Increase iterator, wraparound at end */
-	if (++searchIteratorIndex >= [searchRanges count])
-		searchIteratorIndex = 0;
+  if (![self hasActiveSearch] || searchIteratorIndex < -1)
+    return;
+  
+  /* Increase iterator, wraparound at end */
+  if (++searchIteratorIndex >= [searchRanges count])
+    searchIteratorIndex = 0;
 
-	[self highlightCurrentSearchMatch];
+  [self highlightCurrentSearchMatch];
 }
 
 /**
@@ -66,14 +66,14 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
  */
 - (void)moveToPreviousSearchMatch
 {
-	if (![self hasActiveSearch] || searchIteratorIndex > [searchRanges count])
-		return;
-	
-	/* Decrease iterator, wraparound at end */
-	if (--searchIteratorIndex < 0)
-		searchIteratorIndex = [searchRanges count] - 1;
+  if (![self hasActiveSearch] || searchIteratorIndex > [searchRanges count])
+    return;
+  
+  /* Decrease iterator, wraparound at end */
+  if (--searchIteratorIndex < 0)
+    searchIteratorIndex = [searchRanges count] - 1;
 
-	[self highlightCurrentSearchMatch];
+  [self highlightCurrentSearchMatch];
 }
 
 
@@ -85,7 +85,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (IBAction)modeChanged:(id)sender
 {
-	modeChanged = TRUE;
+  modeChanged = TRUE;
 }
 
 
@@ -97,100 +97,100 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (IBAction)endTopicWindow:(id)sender
 {
-	/* Check if changes has been made */
-	if ([[sender title] isEqual:@"Save"] && ownnick->op) {
-		if ([[topicEditableTextField stringValue] isEqual:[topicTextField stringValue]] == FALSE) {
-			NSString *cmd = [NSString stringWithFormat:@"/topic %@", [topicEditableTextField stringValue]];
-			char *tmp = [IrssiBridge irssiCStringWithString:cmd];
-			signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
-			free(tmp);
-		}
-		
-		/* mode-parser */
-		if (modeChanged) {
-			NSMutableString *removeMode = [[NSMutableString alloc] initWithFormat:@"/mode %@ -", name];
-			NSMutableString *addMode = [[NSMutableString alloc] initWithString:@"+"];
-			
-			/* invite */
-			if ([inviteCheckBox state] == NSOnState)
-				[addMode appendString:@"i"];
-			else
-				[removeMode appendString:@"i"];
-			
-			/* moderated */
-			if ([moderatedCheckBox state] == NSOnState)
-				[addMode appendString:@"m"];
-			else
-				[removeMode appendString:@"m"];
-			
-			/* private */
-			if ([privateCheckBox state] == NSOnState)
-				[addMode appendString:@"p"];
-			else
-				[removeMode appendString:@"p"];
-			
-			/* secret */
-			if ([secretCheckBox state] == NSOnState)
-				[addMode appendString:@"s"];
-			else
-				[removeMode appendString:@"s"];
-			
-			/* no external messages */
-			if ([noExternalMessagesCheckBox state] == NSOnState)
-				[addMode appendString:@"n"];
-			else
-				[removeMode appendString:@"n"];
-			
-			/* only ops can change topic */
-			if ([onlyOpsCanChangeTopicCheckBox state] == NSOnState)
-				[addMode appendString:@"t"];
-			else
-				[removeMode appendString:@"t"];
-			
-			/* limit */
-			if ([maxUsersTextField intValue] != 0)
-				[addMode appendFormat:@"l %d ", [maxUsersTextField intValue]];
-			else
-				[removeMode appendString:@"l"];
-			
-			/* key (special treatment) */
-			if ([[keyTextField stringValue] isEqual:@""] && ([mode rangeOfString:@"k"].location != NSNotFound))
-				[removeMode appendString:@"k"];
-			else if (![[keyTextField stringValue] isEqual:key]) {
-				if ([mode rangeOfString:@"k"].location != NSNotFound) {
-					/* Remove old key */
-					NSString *removeKey = [NSString stringWithFormat:@"/mode %@ -k", name];
-					char *tmp = [IrssiBridge irssiCStringWithString:removeKey];
-					signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
-					free(tmp);
-				}
-				[addMode appendFormat:@"+k %@", [keyTextField stringValue]];
-			}
-			
-			[removeMode appendString:addMode];
-			NSLog(removeMode);
-			char *tmp2 = [IrssiBridge irssiCStringWithString:removeMode];
-			signal_emit("send command", 3, tmp2, windowRec->active_server, windowRec->active);
-			free(tmp2);
-			[addMode release];
-			[removeMode release];
-			modeChanged = FALSE;
-		}
-	}
-	
-	/* Settings not requiring op status */
-	if ([[sender title] isEqual:@"Save"])
-		useFloater = ([floaterCheckBox state] == NSOnState);
-	
-	int selectedEncodingIndex = [textEncodingPopUpButton indexOfSelectedItem];
-	if (selectedEncodingIndex < 0 || selectedEncodingIndex >= NUM_TEXT_ENCODINGS)
-		NSLog(@"selectedEncodingIndex out of bounds!");
-	else
-		[self setTextEncoding:textEncodingTable[selectedEncodingIndex]];
-	
-	/* Remove sheet */
-	[topicWindow orderOut:sender];
-	[NSApp endSheet:topicWindow returnCode:1];
+  /* Check if changes has been made */
+  if ([[sender title] isEqual:@"Save"] && ownnick->op) {
+    if ([[topicEditableTextField stringValue] isEqual:[topicTextField stringValue]] == FALSE) {
+      NSString *cmd = [NSString stringWithFormat:@"/topic %@", [topicEditableTextField stringValue]];
+      char *tmp = [IrssiBridge irssiCStringWithString:cmd];
+      signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
+      free(tmp);
+    }
+    
+    /* mode-parser */
+    if (modeChanged) {
+      NSMutableString *removeMode = [[NSMutableString alloc] initWithFormat:@"/mode %@ -", name];
+      NSMutableString *addMode = [[NSMutableString alloc] initWithString:@"+"];
+      
+      /* invite */
+      if ([inviteCheckBox state] == NSOnState)
+        [addMode appendString:@"i"];
+      else
+        [removeMode appendString:@"i"];
+      
+      /* moderated */
+      if ([moderatedCheckBox state] == NSOnState)
+        [addMode appendString:@"m"];
+      else
+        [removeMode appendString:@"m"];
+      
+      /* private */
+      if ([privateCheckBox state] == NSOnState)
+        [addMode appendString:@"p"];
+      else
+        [removeMode appendString:@"p"];
+      
+      /* secret */
+      if ([secretCheckBox state] == NSOnState)
+        [addMode appendString:@"s"];
+      else
+        [removeMode appendString:@"s"];
+      
+      /* no external messages */
+      if ([noExternalMessagesCheckBox state] == NSOnState)
+        [addMode appendString:@"n"];
+      else
+        [removeMode appendString:@"n"];
+      
+      /* only ops can change topic */
+      if ([onlyOpsCanChangeTopicCheckBox state] == NSOnState)
+        [addMode appendString:@"t"];
+      else
+        [removeMode appendString:@"t"];
+      
+      /* limit */
+      if ([maxUsersTextField intValue] != 0)
+        [addMode appendFormat:@"l %d ", [maxUsersTextField intValue]];
+      else
+        [removeMode appendString:@"l"];
+      
+      /* key (special treatment) */
+      if ([[keyTextField stringValue] isEqual:@""] && ([mode rangeOfString:@"k"].location != NSNotFound))
+        [removeMode appendString:@"k"];
+      else if (![[keyTextField stringValue] isEqual:key]) {
+        if ([mode rangeOfString:@"k"].location != NSNotFound) {
+          /* Remove old key */
+          NSString *removeKey = [NSString stringWithFormat:@"/mode %@ -k", name];
+          char *tmp = [IrssiBridge irssiCStringWithString:removeKey];
+          signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
+          free(tmp);
+        }
+        [addMode appendFormat:@"+k %@", [keyTextField stringValue]];
+      }
+      
+      [removeMode appendString:addMode];
+      NSLog(removeMode);
+      char *tmp2 = [IrssiBridge irssiCStringWithString:removeMode];
+      signal_emit("send command", 3, tmp2, windowRec->active_server, windowRec->active);
+      free(tmp2);
+      [addMode release];
+      [removeMode release];
+      modeChanged = FALSE;
+    }
+  }
+  
+  /* Settings not requiring op status */
+  if ([[sender title] isEqual:@"Save"])
+    useFloater = ([floaterCheckBox state] == NSOnState);
+  
+  int selectedEncodingIndex = [textEncodingPopUpButton indexOfSelectedItem];
+  if (selectedEncodingIndex < 0 || selectedEncodingIndex >= NUM_TEXT_ENCODINGS)
+    NSLog(@"selectedEncodingIndex out of bounds!");
+  else
+    [self setTextEncoding:textEncodingTable[selectedEncodingIndex]];
+  
+  /* Remove sheet */
+  [topicWindow orderOut:sender];
+  [NSApp endSheet:topicWindow returnCode:1];
 }
 
 
@@ -202,16 +202,16 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (IBAction)endReasonWindow:(id)sender
 {
-	[commandWithReason appendString:[sender stringValue]];
-	char *tmp = [IrssiBridge irssiCStringWithString:commandWithReason];
-	signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
-	free(tmp);
-	[commandWithReason release];
-				
-	/* Remove sheet */
-	[reasonWindow orderOut:sender];
-	[NSApp endSheet:reasonWindow returnCode:1];
-	[sender setStringValue:@""];
+  [commandWithReason appendString:[sender stringValue]];
+  char *tmp = [IrssiBridge irssiCStringWithString:commandWithReason];
+  signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
+  free(tmp);
+  [commandWithReason release];
+        
+  /* Remove sheet */
+  [reasonWindow orderOut:sender];
+  [NSApp endSheet:reasonWindow returnCode:1];
+  [sender setStringValue:@""];
 }
 
 
@@ -223,103 +223,103 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (IBAction)nickViewMenuClicked:(id)sender
 {
-	NSIndexSet *indexSet = [nickTableView selectedRowIndexes];
-	unsigned int row = [indexSet firstIndex];
-	
-	while (row != NSNotFound) {
-		
-		NSString *nick = [NSString stringWithCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick];
-		NSString *command;
-		NSString *host;
-		
-		switch ([sender tag]) {
-			case Query:
-				command = [NSString stringWithFormat:@"/query %@", nick];
-				break;
-			case Whois:
-				command = [NSString stringWithFormat:@"/whois %@", nick];
-				break;
-			case Who:
-				command = [NSString stringWithFormat:@"/who %@", nick];
-				break;
-				/* Control */
-			case Ignore:
-				/* todo */
-				return;
-			case Op:
-				command = [NSString stringWithFormat:@"/op %@", nick];
-				break;
-			case Deop:
-				command = [NSString stringWithFormat:@"/deop %@", nick];
-				break;
-			case Voice:
-				command = [NSString stringWithFormat:@"/voice %@", nick];
-				break;
-			case Devoice:
-				command = [NSString stringWithFormat:@"/devoice %@", nick];
-				break;
-			case Kick:
-				commandWithReason = [[NSMutableString alloc] initWithFormat:@"/kick %@ ", nick];
-				[NSApp beginSheet:reasonWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
-				return;
-			case Ban:
-				command = [NSString stringWithFormat:@"/ban %@", nick];
-				break;
-			case KickBan:
-				commandWithReason = [[NSMutableString alloc] initWithFormat:@"/kickban %@ ", nick];
-				[NSApp beginSheet:reasonWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
-				return;
-				/* CTCP */
-			case Ping:
-				command = [NSString stringWithFormat:@"/ctcp %@ ping", nick];
-				break;
-			case Finger:
-				command = [NSString stringWithFormat:@"/ctcp %@ finger", nick];
-				break;
-			case Version:
-				command = [NSString stringWithFormat:@"/ctcp %@ version", nick];
-				break;
-			case Time:
-				command = [NSString stringWithFormat:@"/ctcp %@ time", nick];
-				break;
-			case Userinfo:
-				command = [NSString stringWithFormat:@"/ctcp %@ userinfo", nick];
-				break;
-			case Clientinfo:
-				command = [NSString stringWithFormat:@"/ctcp %@ clientinfo", nick];
-				break;
-				/* DCC */
-			case Send:
-				/* todo */
-				return;
-			case Chat:
-				/* todo */
-				return;
-			case List:
-				command = [NSString stringWithFormat:@"/msg %@ xdcc list", nick];
-				break;
-			case CopyIP:
-				host = [IrssiBridge stringWithIrssiCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->host];
-				NSArray *tmp = [host componentsSeparatedByString:@"@"];
-				
-				if ([tmp count] < 2)
-					command = [NSString stringWithFormat:@"/echo Error: Couldn't copy IP address!"];
-				else {
-					[[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
-					[[NSPasteboard generalPasteboard] setString:[tmp lastObject] forType:NSStringPboardType];
-					return;
-				}
-					break;
-			default:
-				NSLog(@"Error: Unknown menu item.");
-				return;
-		}
-	
-		//printf("Menu: %s\n", [command lossyCString]);
-		signal_emit("send command", 3, [command cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
-		row = [indexSet indexGreaterThanIndex:row];
-	}
-	
+  NSIndexSet *indexSet = [nickTableView selectedRowIndexes];
+  unsigned int row = [indexSet firstIndex];
+  
+  while (row != NSNotFound) {
+    
+    NSString *nick = [NSString stringWithCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick];
+    NSString *command;
+    NSString *host;
+    
+    switch ([sender tag]) {
+      case Query:
+        command = [NSString stringWithFormat:@"/query %@", nick];
+        break;
+      case Whois:
+        command = [NSString stringWithFormat:@"/whois %@", nick];
+        break;
+      case Who:
+        command = [NSString stringWithFormat:@"/who %@", nick];
+        break;
+        /* Control */
+      case Ignore:
+        /* todo */
+        return;
+      case Op:
+        command = [NSString stringWithFormat:@"/op %@", nick];
+        break;
+      case Deop:
+        command = [NSString stringWithFormat:@"/deop %@", nick];
+        break;
+      case Voice:
+        command = [NSString stringWithFormat:@"/voice %@", nick];
+        break;
+      case Devoice:
+        command = [NSString stringWithFormat:@"/devoice %@", nick];
+        break;
+      case Kick:
+        commandWithReason = [[NSMutableString alloc] initWithFormat:@"/kick %@ ", nick];
+        [NSApp beginSheet:reasonWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
+        return;
+      case Ban:
+        command = [NSString stringWithFormat:@"/ban %@", nick];
+        break;
+      case KickBan:
+        commandWithReason = [[NSMutableString alloc] initWithFormat:@"/kickban %@ ", nick];
+        [NSApp beginSheet:reasonWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
+        return;
+        /* CTCP */
+      case Ping:
+        command = [NSString stringWithFormat:@"/ctcp %@ ping", nick];
+        break;
+      case Finger:
+        command = [NSString stringWithFormat:@"/ctcp %@ finger", nick];
+        break;
+      case Version:
+        command = [NSString stringWithFormat:@"/ctcp %@ version", nick];
+        break;
+      case Time:
+        command = [NSString stringWithFormat:@"/ctcp %@ time", nick];
+        break;
+      case Userinfo:
+        command = [NSString stringWithFormat:@"/ctcp %@ userinfo", nick];
+        break;
+      case Clientinfo:
+        command = [NSString stringWithFormat:@"/ctcp %@ clientinfo", nick];
+        break;
+        /* DCC */
+      case Send:
+        /* todo */
+        return;
+      case Chat:
+        /* todo */
+        return;
+      case List:
+        command = [NSString stringWithFormat:@"/msg %@ xdcc list", nick];
+        break;
+      case CopyIP:
+        host = [IrssiBridge stringWithIrssiCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->host];
+        NSArray *tmp = [host componentsSeparatedByString:@"@"];
+        
+        if ([tmp count] < 2)
+          command = [NSString stringWithFormat:@"/echo Error: Couldn't copy IP address!"];
+        else {
+          [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
+          [[NSPasteboard generalPasteboard] setString:[tmp lastObject] forType:NSStringPboardType];
+          return;
+        }
+          break;
+      default:
+        NSLog(@"Error: Unknown menu item.");
+        return;
+    }
+  
+    //printf("Menu: %s\n", [command lossyCString]);
+    signal_emit("send command", 3, [command cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
+    row = [indexSet indexGreaterThanIndex:row];
+  }
+  
 }
 
 //-------------------------------------------------------------------
@@ -330,7 +330,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (IBAction)mainTextViewMenuClicked:(id)sender
 {
-	NSLog([sender title]);
+  NSLog([sender title]);
 }
 
 
@@ -342,61 +342,61 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (IBAction)raiseTopicWindow:(id)sender
 {
-	
-	/* If op, allow editing, else disallow */
-	if (ownnick->op) {
-		[topicEditableTextField setEditable:TRUE];
-		[inviteCheckBox setEnabled:TRUE];
-		[moderatedCheckBox setEnabled:TRUE];
-		[privateCheckBox setEnabled:TRUE];
-		[secretCheckBox setEnabled:TRUE];
-		[noExternalMessagesCheckBox setEnabled:TRUE];
-		[onlyOpsCanChangeTopicCheckBox setEnabled:TRUE];
-		[maxUsersTextField setEnabled:TRUE];
-		[keyTextField setEnabled:TRUE];
-		//[saveButton setEnabled:TRUE];
-	}
-	else {
-		[topicEditableTextField setEditable:FALSE];
-		[inviteCheckBox setEnabled:FALSE];
-		[moderatedCheckBox setEnabled:FALSE];
-		[privateCheckBox setEnabled:FALSE];
-		[secretCheckBox setEnabled:FALSE];
-		[noExternalMessagesCheckBox setEnabled:FALSE];
-		[onlyOpsCanChangeTopicCheckBox setEnabled:FALSE];
-		[maxUsersTextField setEnabled:FALSE];
-		[keyTextField setEnabled:FALSE];
-		//[saveButton setEnabled:FALSE];
-	}
-	
-	/* Make sheet reflect current channel settings */
-	[topicEditableTextField setStringValue:[topicTextField stringValue] ? [topicTextField stringValue] : @""];
-	[topicByTextField setStringValue:topic_by ? [[topic_by componentsSeparatedByString:@"!"] objectAtIndex:0]: @""];
-	
-	NSString *topicTime;
-	if (topic_time == 0)
-		topicTime = @"";
-	else
-		topicTime = [NSString stringWithCString:ctime(&topic_time)];
-	[topicTimeTextField setStringValue:topicTime];
-	[maxUsersTextField setIntValue:limit];
-	[floaterCheckBox setState:(useFloater ? NSOnState : NSOffState)];
-	
-	/* mode-parser */
-	NSString *tmp = [[mode componentsSeparatedByString:@" "] objectAtIndex:0]; // Don't include the key
-	[inviteCheckBox setState:([tmp rangeOfString:@"i"].location == NSNotFound) ? NSOffState : NSOnState];
-	[moderatedCheckBox setState:([tmp rangeOfString:@"m"].location == NSNotFound) ? NSOffState : NSOnState];
-	[privateCheckBox setState:([tmp rangeOfString:@"p"].location == NSNotFound) ? NSOffState : NSOnState];
-	[secretCheckBox setState:([tmp rangeOfString:@"s"].location == NSNotFound) ? NSOffState : NSOnState];
-	[noExternalMessagesCheckBox setState:([tmp rangeOfString:@"n"].location == NSNotFound) ? NSOffState : NSOnState];
-	[onlyOpsCanChangeTopicCheckBox setState:([tmp rangeOfString:@"t"].location == NSNotFound) ? NSOffState : NSOnState];
-	[maxUsersTextField setIntValue:limit];
-	[keyTextField setStringValue:key ? key : @""];
-	
-	[self updateTextEncodingPopUpButton];
-	
-	/* Bring up sheet */
-	[NSApp beginSheet:topicWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
+  
+  /* If op, allow editing, else disallow */
+  if (ownnick->op) {
+    [topicEditableTextField setEditable:TRUE];
+    [inviteCheckBox setEnabled:TRUE];
+    [moderatedCheckBox setEnabled:TRUE];
+    [privateCheckBox setEnabled:TRUE];
+    [secretCheckBox setEnabled:TRUE];
+    [noExternalMessagesCheckBox setEnabled:TRUE];
+    [onlyOpsCanChangeTopicCheckBox setEnabled:TRUE];
+    [maxUsersTextField setEnabled:TRUE];
+    [keyTextField setEnabled:TRUE];
+    //[saveButton setEnabled:TRUE];
+  }
+  else {
+    [topicEditableTextField setEditable:FALSE];
+    [inviteCheckBox setEnabled:FALSE];
+    [moderatedCheckBox setEnabled:FALSE];
+    [privateCheckBox setEnabled:FALSE];
+    [secretCheckBox setEnabled:FALSE];
+    [noExternalMessagesCheckBox setEnabled:FALSE];
+    [onlyOpsCanChangeTopicCheckBox setEnabled:FALSE];
+    [maxUsersTextField setEnabled:FALSE];
+    [keyTextField setEnabled:FALSE];
+    //[saveButton setEnabled:FALSE];
+  }
+  
+  /* Make sheet reflect current channel settings */
+  [topicEditableTextField setStringValue:[topicTextField stringValue] ? [topicTextField stringValue] : @""];
+  [topicByTextField setStringValue:topic_by ? [[topic_by componentsSeparatedByString:@"!"] objectAtIndex:0]: @""];
+  
+  NSString *topicTime;
+  if (topic_time == 0)
+    topicTime = @"";
+  else
+    topicTime = [NSString stringWithCString:ctime(&topic_time)];
+  [topicTimeTextField setStringValue:topicTime];
+  [maxUsersTextField setIntValue:limit];
+  [floaterCheckBox setState:(useFloater ? NSOnState : NSOffState)];
+  
+  /* mode-parser */
+  NSString *tmp = [[mode componentsSeparatedByString:@" "] objectAtIndex:0]; // Don't include the key
+  [inviteCheckBox setState:([tmp rangeOfString:@"i"].location == NSNotFound) ? NSOffState : NSOnState];
+  [moderatedCheckBox setState:([tmp rangeOfString:@"m"].location == NSNotFound) ? NSOffState : NSOnState];
+  [privateCheckBox setState:([tmp rangeOfString:@"p"].location == NSNotFound) ? NSOffState : NSOnState];
+  [secretCheckBox setState:([tmp rangeOfString:@"s"].location == NSNotFound) ? NSOffState : NSOnState];
+  [noExternalMessagesCheckBox setState:([tmp rangeOfString:@"n"].location == NSNotFound) ? NSOffState : NSOnState];
+  [onlyOpsCanChangeTopicCheckBox setState:([tmp rangeOfString:@"t"].location == NSNotFound) ? NSOffState : NSOnState];
+  [maxUsersTextField setIntValue:limit];
+  [keyTextField setStringValue:key ? key : @""];
+  
+  [self updateTextEncodingPopUpButton];
+  
+  /* Bring up sheet */
+  [NSApp beginSheet:topicWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
 }
 
 
@@ -408,9 +408,9 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)nickListRowDoubleClicked:(id)sender
 {
-	int row = [nickTableView selectedRow];
-	NSString *command = [NSString stringWithFormat:@"/query %s", ((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick];
-	signal_emit("send command", 3, [command cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
+  int row = [nickTableView selectedRow];
+  NSString *command = [NSString stringWithFormat:@"/query %s", ((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick];
+  signal_emit("send command", 3, [command cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
 }
 
 
@@ -425,18 +425,18 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)setTopic:(char *)newTopic setBy:(char *)setter atTime:(time_t)time
 {
-	if (!newTopic)
-		newTopic = "";
-	if (!setter)
-		setter = "";
-	
-	
-	[topic_by release];
-	topic_by = [[NSString alloc] initWithCString:setter];
-	topic_time = time;
+  if (!newTopic)
+    newTopic = "";
+  if (!setter)
+    setter = "";
+  
+  
+  [topic_by release];
+  topic_by = [[NSString alloc] initWithCString:setter];
+  topic_time = time;
 
-	/* Error prone when updating on irssi thread (graphical glitches) - update on main thread instead */
-	[topicTextField performSelectorOnMainThread:@selector(setAttributedStringValue:) withObject:[self parseTopic:newTopic] waitUntilDone:TRUE];
+  /* Error prone when updating on irssi thread (graphical glitches) - update on main thread instead */
+  [topicTextField performSelectorOnMainThread:@selector(setAttributedStringValue:) withObject:[self parseTopic:newTopic] waitUntilDone:TRUE];
 }
 
 //-------------------------------------------------------------------
@@ -445,9 +445,9 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)clearNickView
 {
-	[nicks removeAllObjects];
-	[nickTableView removeAllToolTips]; 
-	[nickTableView reloadData];
+  [nicks removeAllObjects];
+  [nickTableView removeAllToolTips]; 
+  [nickTableView reloadData];
 }
 
 
@@ -459,7 +459,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)queryCreated:(QUERY_REC *)rec
 {
-	//printf("Hi\n");
+  //printf("Hi\n");
 }
 
 
@@ -471,76 +471,76 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)channelJoined:(CHANNEL_REC *)rec
 {
-	if (rec == NULL)
-		return;
-	
-	channel = rec;
-	isChannel = TRUE;
-	
-	/* Make nicklist into a NSMutableArray and sort by nickname */
-	nicks = [[NSMutableArray alloc] initWithCapacity:g_hash_table_size(rec->nicks)];
-	g_hash_table_foreach(rec->nicks, (GHFunc)personFromNickRec, nicks);
-	[self sortNicks];
-	
-	/* Make NSString objects from (char *) */
-	name = rec->name ? [[NSString alloc] initWithData:[NSData dataWithBytesNoCopy:rec->name length:strlen(rec->name) freeWhenDone:FALSE] encoding:NSISOLatin1StringEncoding] : @"";
-	topic_by = [[NSString alloc] initWithCString:rec->topic_by ? rec->topic_by : ""];
-	mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
-	key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
-	
-	
-	/* Copy rest of the values */
-	topic_time = rec->topic_time;
-	ownnick = rec->ownnick;
-	limit = rec->limit;
-	no_modes = (BOOL)rec->no_modes;
-	chanop = (BOOL)rec->chanop;
-	names_got = (BOOL)rec->names_got;
-	wholist = (BOOL)rec->wholist;
-	synced = (BOOL)rec->synced;
-	joined = (BOOL)rec->joined;
-	justLeft = (BOOL)rec->left;
-	kicked = (BOOL)rec->kicked;
-	session_rejoin = (BOOL)rec->session_rejoin;
-	destroying = (BOOL)rec->destroying;
-	
-	/* Update GUI */
-	[tabViewItem setLabel:name];
-	[nickTableView removeAllToolTips];
-	[nickTableView reloadData];
-	[editChannelButton setEnabled:TRUE];
-	
-	/* Only create split view on first join, not on reconnects */
-	if (splitView) {
-		[splitView setNeedsDisplay:TRUE];
-		return;
-	}
-	
-	[mainTextScrollView retain];
-	[nickTableScrollView retain];
-	
-	[mainTextScrollView removeFromSuperview];
-	[nickTableScrollView removeFromSuperview];
-	
-	[nickTableScrollView setHidden:FALSE];
-	NSRect frame = NSUnionRect([mainTextScrollView frame],[nickTableScrollView frame]);
-	
-	splitView = [[MISplitView alloc] initWithFrame:frame];
-	[splitView setVertical:TRUE];
-	[splitView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+  if (rec == NULL)
+    return;
+  
+  channel = rec;
+  isChannel = TRUE;
+  
+  /* Make nicklist into a NSMutableArray and sort by nickname */
+  nicks = [[NSMutableArray alloc] initWithCapacity:g_hash_table_size(rec->nicks)];
+  g_hash_table_foreach(rec->nicks, (GHFunc)personFromNickRec, nicks);
+  [self sortNicks];
+  
+  /* Make NSString objects from (char *) */
+  name = rec->name ? [[NSString alloc] initWithData:[NSData dataWithBytesNoCopy:rec->name length:strlen(rec->name) freeWhenDone:FALSE] encoding:NSISOLatin1StringEncoding] : @"";
+  topic_by = [[NSString alloc] initWithCString:rec->topic_by ? rec->topic_by : ""];
+  mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
+  key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
+  
+  
+  /* Copy rest of the values */
+  topic_time = rec->topic_time;
+  ownnick = rec->ownnick;
+  limit = rec->limit;
+  no_modes = (BOOL)rec->no_modes;
+  chanop = (BOOL)rec->chanop;
+  names_got = (BOOL)rec->names_got;
+  wholist = (BOOL)rec->wholist;
+  synced = (BOOL)rec->synced;
+  joined = (BOOL)rec->joined;
+  justLeft = (BOOL)rec->left;
+  kicked = (BOOL)rec->kicked;
+  session_rejoin = (BOOL)rec->session_rejoin;
+  destroying = (BOOL)rec->destroying;
+  
+  /* Update GUI */
+  [tabViewItem setLabel:name];
+  [nickTableView removeAllToolTips];
+  [nickTableView reloadData];
+  [editChannelButton setEnabled:TRUE];
+  
+  /* Only create split view on first join, not on reconnects */
+  if (splitView) {
+    [splitView setNeedsDisplay:TRUE];
+    return;
+  }
+  
+  [mainTextScrollView retain];
+  [nickTableScrollView retain];
+  
+  [mainTextScrollView removeFromSuperview];
+  [nickTableScrollView removeFromSuperview];
+  
+  [nickTableScrollView setHidden:FALSE];
+  NSRect frame = NSUnionRect([mainTextScrollView frame],[nickTableScrollView frame]);
+  
+  splitView = [[MISplitView alloc] initWithFrame:frame];
+  [splitView setVertical:TRUE];
+  [splitView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
   [splitView setDelegate:self];
-	[splitView addSubview:mainTextScrollView];
-	[splitView addSubview:nickTableScrollView];
+  [splitView addSubview:mainTextScrollView];
+  [splitView addSubview:nickTableScrollView];
   [splitView restoreLayoutUsingName:@"MainNickSplit"];
-	
-	[mainTextScrollView release];
-	[nickTableScrollView release];
+  
+  [mainTextScrollView release];
+  [nickTableScrollView release];
 
-	frame.size.width -= [nickTableScrollView frame].size.width;	
-	[mainTextScrollView setFrame:frame];
-	
-	[wholeView addSubview:splitView];
-	[splitView setNeedsDisplay:TRUE];
+  frame.size.width -= [nickTableScrollView frame].size.width; 
+  [mainTextScrollView setFrame:frame];
+  
+  [wholeView addSubview:splitView];
+  [splitView setNeedsDisplay:TRUE];
 }
 
 
@@ -552,30 +552,30 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)changeServerOpForNickRec:(NICK_REC *)rec
 {
-	/* First undo modechange so we can find him */
-	rec->serverop = (rec->serverop) ? FALSE : TRUE;
-	
-	@synchronized(nicks) {
-		
-		int i = [self findNick:rec];
-		if(i == -1) {
-			NSLog(@"[changeServerOpForNickRec] Error: \"%s\" not found!\n", rec->nick);
-			return;
-		}
-		
-		[nicks removeObjectAtIndex:i];
-		
-		/* Redo modechange */
-		rec->serverop = (rec->serverop) ? FALSE : TRUE;
-		
-		/* Insert into new position */
-		i = [self findInsertionPositionForNick:rec];
-		
-		[nicks insertObject:[NSValue valueWithPointer:rec] atIndex:i];
-	}
-	
-	[nickTableView removeAllToolTips]; 
-	[nickTableView reloadData];
+  /* First undo modechange so we can find him */
+  rec->serverop = (rec->serverop) ? FALSE : TRUE;
+  
+  @synchronized(nicks) {
+    
+    int i = [self findNick:rec];
+    if(i == -1) {
+      NSLog(@"[changeServerOpForNickRec] Error: \"%s\" not found!\n", rec->nick);
+      return;
+    }
+    
+    [nicks removeObjectAtIndex:i];
+    
+    /* Redo modechange */
+    rec->serverop = (rec->serverop) ? FALSE : TRUE;
+    
+    /* Insert into new position */
+    i = [self findInsertionPositionForNick:rec];
+    
+    [nicks insertObject:[NSValue valueWithPointer:rec] atIndex:i];
+  }
+  
+  [nickTableView removeAllToolTips]; 
+  [nickTableView reloadData];
 }
 
 
@@ -589,45 +589,45 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)setMode:(char *)mode1 type:(char *)type forNickRec:(NICK_REC *)nick
 {
-	int index;
-	
-	/* First undo modechange so we can find him */
-	if (*mode1 == '@')
-		nick->op = (*type == '-') ? TRUE : FALSE;
-	else if (*mode1 == '+')
-		nick->voice = (*type == '-') ? TRUE : FALSE;
-	else if (*mode1 == '%')
-		nick->halfop = (*type == '-') ? TRUE : FALSE;
-	else
-		NSLog(@"Nick \"%@\" received unknown mode!", [IrssiBridge stringWithIrssiCString:nick->nick]);
-	
-	@synchronized(nicks) {
+  int index;
+  
+  /* First undo modechange so we can find him */
+  if (*mode1 == '@')
+    nick->op = (*type == '-') ? TRUE : FALSE;
+  else if (*mode1 == '+')
+    nick->voice = (*type == '-') ? TRUE : FALSE;
+  else if (*mode1 == '%')
+    nick->halfop = (*type == '-') ? TRUE : FALSE;
+  else
+    NSLog(@"Nick \"%@\" received unknown mode!", [IrssiBridge stringWithIrssiCString:nick->nick]);
+  
+  @synchronized(nicks) {
 
-		index = [self findNick:nick];
-		if (index < 0) {
-			NSLog(@"[ChannelController setMode] Error: Couldn't find nick %@ in thread %p", [IrssiBridge stringWithIrssiCString:nick->nick], [NSThread currentThread]);
-			return;
-		}
-		
-		[nicks removeObjectAtIndex:index];
-		
-		/* Redo modechange so we can insert him in new position */
-		if (*mode1 == '@')
-			nick->op = (*type == '+') ? TRUE : FALSE;
-		else if (*mode1 == '+')
-			nick->voice = (*type == '+') ? TRUE : FALSE;
-		else if (*mode1 == '%')
-			nick->halfop = (*type == '+') ? TRUE : FALSE;
-		else
-			NSLog(@"Nick \"%@\" received unknown mode!", [IrssiBridge stringWithIrssiCString:nick->nick]);
+    index = [self findNick:nick];
+    if (index < 0) {
+      NSLog(@"[ChannelController setMode] Error: Couldn't find nick %@ in thread %p", [IrssiBridge stringWithIrssiCString:nick->nick], [NSThread currentThread]);
+      return;
+    }
+    
+    [nicks removeObjectAtIndex:index];
+    
+    /* Redo modechange so we can insert him in new position */
+    if (*mode1 == '@')
+      nick->op = (*type == '+') ? TRUE : FALSE;
+    else if (*mode1 == '+')
+      nick->voice = (*type == '+') ? TRUE : FALSE;
+    else if (*mode1 == '%')
+      nick->halfop = (*type == '+') ? TRUE : FALSE;
+    else
+      NSLog(@"Nick \"%@\" received unknown mode!", [IrssiBridge stringWithIrssiCString:nick->nick]);
 
-		
-		index = [self findInsertionPositionForNick:nick];
-		[nicks insertObject:[NSValue valueWithPointer:nick] atIndex:index];
-	}
-	
-	[nickTableView removeAllToolTips]; 
-	[nickTableView reloadData];	
+    
+    index = [self findInsertionPositionForNick:nick];
+    [nicks insertObject:[NSValue valueWithPointer:nick] atIndex:index];
+  }
+  
+  [nickTableView removeAllToolTips]; 
+  [nickTableView reloadData]; 
 }
 
 
@@ -639,12 +639,12 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)addNickRec:(NICK_REC *)nick
 {
-	@synchronized(nicks) {
-		int i = [self findInsertionPositionForNick:nick];
-		[nicks insertObject:[NSValue valueWithPointer:nick] atIndex:i];
-	}
-	[nickTableView removeAllToolTips]; 
-	[nickTableView reloadData];
+  @synchronized(nicks) {
+    int i = [self findInsertionPositionForNick:nick];
+    [nicks insertObject:[NSValue valueWithPointer:nick] atIndex:i];
+  }
+  [nickTableView removeAllToolTips]; 
+  [nickTableView reloadData];
 }
 
 
@@ -656,17 +656,17 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)removeNickRec:(NICK_REC *)nick
 {
-	@synchronized(nicks) {
-		int i = [self findNick:nick];
-		if (i == -1) {
-			NSLog(@"Error: nick %@ not found in thread %p!\n", [IrssiBridge stringWithIrssiCString:nick->nick], [NSThread currentThread]);
-			return;
-		}
-		[nicks removeObjectAtIndex:i];
-	}
-	
-	[nickTableView removeAllToolTips]; 
-	[nickTableView reloadData];
+  @synchronized(nicks) {
+    int i = [self findNick:nick];
+    if (i == -1) {
+      NSLog(@"Error: nick %@ not found in thread %p!\n", [IrssiBridge stringWithIrssiCString:nick->nick], [NSThread currentThread]);
+      return;
+    }
+    [nicks removeObjectAtIndex:i];
+  }
+  
+  [nickTableView removeAllToolTips]; 
+  [nickTableView reloadData];
 }
 
 
@@ -679,31 +679,31 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)changeNickForNickRec:(NICK_REC *)rec fromNick:(char *)oldNick
 {
-	/* First undo nickchange so we can find him */
-	char *newNick = rec->nick;
-	rec->nick = oldNick;
-	
-	@synchronized(nicks) {
-		int i = [self findNick:rec];
-		if(i == -1) {
-			NSLog(@"Error: nick %s (new: %s) not found!\n", oldNick, newNick);
-			return;
-		}
-		
-		/* Remove from from nicks-array */
-		[nicks removeObjectAtIndex:i];
-	
-		/* Redo nickchange */
-		rec->nick = newNick;
-		
-		/* Insert into new position */
-		i = [self findInsertionPositionForNick:rec];
-		
-		[nicks insertObject:[NSValue valueWithPointer:rec] atIndex:i];
-	}
-	
-	[nickTableView removeAllToolTips];
-	[nickTableView reloadData];
+  /* First undo nickchange so we can find him */
+  char *newNick = rec->nick;
+  rec->nick = oldNick;
+  
+  @synchronized(nicks) {
+    int i = [self findNick:rec];
+    if(i == -1) {
+      NSLog(@"Error: nick %s (new: %s) not found!\n", oldNick, newNick);
+      return;
+    }
+    
+    /* Remove from from nicks-array */
+    [nicks removeObjectAtIndex:i];
+  
+    /* Redo nickchange */
+    rec->nick = newNick;
+    
+    /* Insert into new position */
+    i = [self findInsertionPositionForNick:rec];
+    
+    [nicks insertObject:[NSValue valueWithPointer:rec] atIndex:i];
+  }
+  
+  [nickTableView removeAllToolTips];
+  [nickTableView reloadData];
 }
 
 
@@ -716,11 +716,11 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (void)channelModeChanged:(CHANNEL_REC *)rec setBy:(char *)setter
 {
-	[mode release];
-	[key release];
-	mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
-	key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
-	limit = rec->limit;
+  [mode release];
+  [key release];
+  mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
+  key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
+  limit = rec->limit;
 }
 
 /* From gui-printtext.c */
@@ -738,64 +738,64 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)printText:(char *)text forground:(int)fg background:(int)bg flags:(int)flags
 {
-	NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, textEncoding, kCFAllocatorNull);
+  NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, textEncoding, kCFAllocatorNull);
 
-	if (decodedString == NULL) {
-		NSLog(@"[ChannelController printText] unable to decode text.");
-		return;
-	}
-	
-	/* Handle colors */
-	if (flags & GUI_PRINT_FLAG_MIRC_COLOR) {
-		/* mirc colors - real range is 0..15, but after 16
-		colors wrap to 0, 1, ... */
-		if (bg >= 0) bg = mirc_colors[bg % 16];
-		if (fg >= 0) fg = mirc_colors[fg % 16];
-	}
-	
-	if (fg < 0 || fg > 15) {
-		[textAttributes setObject:defaultTextColor forKey:NSForegroundColorAttributeName];
-	}
-	else {
-		[textAttributes setObject:[fg_colors objectAtIndex:fg] forKey:NSForegroundColorAttributeName];
-	}
-	
+  if (decodedString == NULL) {
+    NSLog(@"[ChannelController printText] unable to decode text.");
+    return;
+  }
+  
+  /* Handle colors */
+  if (flags & GUI_PRINT_FLAG_MIRC_COLOR) {
+    /* mirc colors - real range is 0..15, but after 16
+    colors wrap to 0, 1, ... */
+    if (bg >= 0) bg = mirc_colors[bg % 16];
+    if (fg >= 0) fg = mirc_colors[fg % 16];
+  }
+  
+  if (fg < 0 || fg > 15) {
+    [textAttributes setObject:defaultTextColor forKey:NSForegroundColorAttributeName];
+  }
+  else {
+    [textAttributes setObject:[fg_colors objectAtIndex:fg] forKey:NSForegroundColorAttributeName];
+  }
+  
 #if 0
-	//TODO
-	if (bg < 0 || bg > 15)
-		[textAttributes removeObjectForKey:NSBackgroundColorAttributeName];
-	else
-		[textAttributes setObject:[bg_colors objectAtIndex:bg] forKey:NSBackgroundColorAttributeName];
+  //TODO
+  if (bg < 0 || bg > 15)
+    [textAttributes removeObjectForKey:NSBackgroundColorAttributeName];
+  else
+    [textAttributes setObject:[bg_colors objectAtIndex:bg] forKey:NSBackgroundColorAttributeName];
 #endif
-	
-	/* Handle flags */ //TODO
-	if (flags & GUI_PRINT_FLAG_REVERSE) {
-	}
-	if (flags & GUI_PRINT_FLAG_BOLD) {
-	}
-	if (flags & GUI_PRINT_FLAG_UNDERLINE) {
-	}
-	if (flags & GUI_PRINT_FLAG_BLINK) {
-		/* Ignore */
-	} 
-	if (flags & GUI_PRINT_FLAG_NEWLINE) {
-		NSLog(@"GUI_PRINT_FLAG_NEWLINE for text \'%@\'", decodedString);
-		[line appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
-	}
-	if (flags & GUI_PRINT_FLAG_INDENT_FUNC) {
-		NSLog(@"GUI_PRINT_FLAG_INDENT_FUNC for text \'%@\'", decodedString);
-	}
-	if (flags & GUI_PRINT_FLAG_INDENT) {
-		//NSLog(@"GUI_PRINT_FLAG_INDENT for text \'%@\'", decodedString);
-	}
-	if (flags & GUI_PRINT_FLAG_CLRTOEOL) {
-		NSLog(@"GUI_PRINT_FLAG_CLRTOEOL for text \'%@\'", decodedString);
-	}
-	
-	NSAttributedString *tmp = [[NSAttributedString alloc] initWithString:decodedString attributes:textAttributes];
-	[line appendAttributedString:tmp];
-	[decodedString release];
-	[tmp release];
+  
+  /* Handle flags */ //TODO
+  if (flags & GUI_PRINT_FLAG_REVERSE) {
+  }
+  if (flags & GUI_PRINT_FLAG_BOLD) {
+  }
+  if (flags & GUI_PRINT_FLAG_UNDERLINE) {
+  }
+  if (flags & GUI_PRINT_FLAG_BLINK) {
+    /* Ignore */
+  } 
+  if (flags & GUI_PRINT_FLAG_NEWLINE) {
+    NSLog(@"GUI_PRINT_FLAG_NEWLINE for text \'%@\'", decodedString);
+    [line appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
+  }
+  if (flags & GUI_PRINT_FLAG_INDENT_FUNC) {
+    NSLog(@"GUI_PRINT_FLAG_INDENT_FUNC for text \'%@\'", decodedString);
+  }
+  if (flags & GUI_PRINT_FLAG_INDENT) {
+    //NSLog(@"GUI_PRINT_FLAG_INDENT for text \'%@\'", decodedString);
+  }
+  if (flags & GUI_PRINT_FLAG_CLRTOEOL) {
+    NSLog(@"GUI_PRINT_FLAG_CLRTOEOL for text \'%@\'", decodedString);
+  }
+  
+  NSAttributedString *tmp = [[NSAttributedString alloc] initWithString:decodedString attributes:textAttributes];
+  [line appendAttributedString:tmp];
+  [decodedString release];
+  [tmp release];
 }
 
 
@@ -806,28 +806,28 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)finishLine
 {
-	BOOL scroll = [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
+  BOOL scroll = [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
 
-	[line detectURLs:[NSColor yellowColor]];
-	[textStorage appendAttributedString:line];
-	
-	/* Check if we are in search mode */
-	if ([searchString length] > 0) {
-		NSRange searchRange = {0, [line length]};
-		NSRange r = [[line string] rangeOfString:searchString options:NSCaseInsensitiveSearch range:searchRange]; 
-		if (r.location != NSNotFound) {
-			r.location += [textStorage length] - [line length];
-			[textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:r];
-			
-			[searchRanges addObject:[NSValue valueWithRange:r]];
-			[scroller addMarker:[self yPositionInTextView:r]];
-		}
-		
-		[scroller setMaxPos:[mainTextView bounds].size.height];
-		[scroller setNeedsDisplay:TRUE];
-	}
+  [line detectURLs:[NSColor yellowColor]];
+  [textStorage appendAttributedString:line];
+  
+  /* Check if we are in search mode */
+  if ([searchString length] > 0) {
+    NSRange searchRange = {0, [line length]};
+    NSRange r = [[line string] rangeOfString:searchString options:NSCaseInsensitiveSearch range:searchRange]; 
+    if (r.location != NSNotFound) {
+      r.location += [textStorage length] - [line length];
+      [textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:r];
+      
+      [searchRanges addObject:[NSValue valueWithRange:r]];
+      [scroller addMarker:[self yPositionInTextView:r]];
+    }
+    
+    [scroller setMaxPos:[mainTextView bounds].size.height];
+    [scroller setNeedsDisplay:TRUE];
+  }
 
-	/* User notifications */
+  /* User notifications */
   if (currentDataLevel > 2)
   {
     NSString *str = [line string];
@@ -842,15 +842,15 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
     }
   }
   
-	/* Don't scroll to bottom if user is reading somewhere higher up */
-	if (scroll && active_win == windowRec) {
-		endRange.location = [textStorage length];
-		[mainTextView scrollRangeToVisible:endRange];
-	}
-	
-	/* Reset line */
-	[line release];
-	line = [[NSMutableAttributedString alloc] initWithString:@"\n"];
+  /* Don't scroll to bottom if user is reading somewhere higher up */
+  if (scroll && active_win == windowRec) {
+    endRange.location = [textStorage length];
+    [mainTextView scrollRangeToVisible:endRange];
+  }
+  
+  /* Reset line */
+  [line release];
+  line = [[NSMutableAttributedString alloc] initWithString:@"\n"];
 }
 
 
@@ -860,63 +860,63 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
  */
 - (void)searchForString:(NSString *)string
 {
-	/* First remove old search */
-	if ([searchString length] > 0) {
-		NSEnumerator *e = [searchRanges objectEnumerator];
-		NSValue *value;
-		
-		while (value = [e nextObject])
-			[textStorage removeAttribute:NSBackgroundColorAttributeName range:[value rangeValue]];
-		
-		[searchRanges removeAllObjects];
-		[scroller removeAllMarkers];
-		[scroller setNeedsDisplay:TRUE];
-	}
-	
-	if (searchString != string) {
-		[searchString release];
-		searchString = [string retain];
-	}
-	
-	oldSearchMatchRange = NSMakeRange(0,0);
-	[searchField setStringValue:string];
+  /* First remove old search */
+  if ([searchString length] > 0) {
+    NSEnumerator *e = [searchRanges objectEnumerator];
+    NSValue *value;
+    
+    while (value = [e nextObject])
+      [textStorage removeAttribute:NSBackgroundColorAttributeName range:[value rangeValue]];
+    
+    [searchRanges removeAllObjects];
+    [scroller removeAllMarkers];
+    [scroller setNeedsDisplay:TRUE];
+  }
+  
+  if (searchString != string) {
+    [searchString release];
+    searchString = [string retain];
+  }
+  
+  oldSearchMatchRange = NSMakeRange(0,0);
+  [searchField setStringValue:string];
 
-	if ([searchString length] == 0)
-		return;
-	
-	searchIteratorIndex = -1;
-	NSString *text = [textStorage string];
-	NSRange searchRange;
-	searchRange.location = 0;
-	searchRange.length = [text length];
-	NSRange r;
-	searchColor = [NSColor redColor];
-	currentSearchMatchColor = [NSColor orangeColor];
-	
-	//[textStorage beginEditing];
-	
-	while (TRUE) {
-		r = [text rangeOfString:searchString options:NSCaseInsensitiveSearch range:searchRange]; 
-		if (r.location == NSNotFound)
-			break;
-		
-		[searchRanges addObject:[NSValue valueWithRange:r]];
-		[textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:r];
-		
-		[scroller addMarker:[self yPositionInTextView:r]];
-		
-		searchRange.location = r.location + r.length;
-		searchRange.length = [text length] - searchRange.location;
-	}
-	
-	//[textStorage endEditing];
-	
-	[scroller setMaxPos:[mainTextView bounds].size.height];
-	[scroller setNeedsDisplay:TRUE];
-	
-	/* If we found 1+ matches, goto first match */
-	if ([searchRanges count] > 0)
-		[self moveToNextSearchMatch];
+  if ([searchString length] == 0)
+    return;
+  
+  searchIteratorIndex = -1;
+  NSString *text = [textStorage string];
+  NSRange searchRange;
+  searchRange.location = 0;
+  searchRange.length = [text length];
+  NSRange r;
+  searchColor = [NSColor redColor];
+  currentSearchMatchColor = [NSColor orangeColor];
+  
+  //[textStorage beginEditing];
+  
+  while (TRUE) {
+    r = [text rangeOfString:searchString options:NSCaseInsensitiveSearch range:searchRange]; 
+    if (r.location == NSNotFound)
+      break;
+    
+    [searchRanges addObject:[NSValue valueWithRange:r]];
+    [textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:r];
+    
+    [scroller addMarker:[self yPositionInTextView:r]];
+    
+    searchRange.location = r.location + r.length;
+    searchRange.length = [text length] - searchRange.location;
+  }
+  
+  //[textStorage endEditing];
+  
+  [scroller setMaxPos:[mainTextView bounds].size.height];
+  [scroller setNeedsDisplay:TRUE];
+  
+  /* If we found 1+ matches, goto first match */
+  if ([searchRanges count] > 0)
+    [self moveToNextSearchMatch];
 }
 
 /**
@@ -924,7 +924,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
  */
 - (BOOL)hasActiveSearch
 {
-	return [searchRanges count] > 0;
+  return [searchRanges count] > 0;
 }
 
 //-------------------------------------------------------------------
@@ -933,7 +933,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)makeSearchFieldFirstResponder
 {
-	[[mainTextView window] makeFirstResponder:searchField];
+  [[mainTextView window] makeFirstResponder:searchField];
 }
 
 //-------------------------------------------------------------------
@@ -942,10 +942,10 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)clearTextView
 {
-	NSRange range;
-	range.location = 0;
-	range.length = [textStorage length];
-	[textStorage deleteCharactersInRange:range];
+  NSRange range;
+  range.location = 0;
+  range.length = [textStorage length];
+  [textStorage deleteCharactersInRange:range];
 }
 
 //-------------------------------------------------------------------
@@ -954,9 +954,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)saveScrollState
 {
-	//if ([scroller floatValue] == 0.0)
-	//	NSLog(@"[%@] scroller:%f, knob:%f", name, [scroller floatValue], [scroller knobProportion]);
-	scrollState = [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
+  //if ([scroller floatValue] == 0.0)
+  //  NSLog(@"[%@] scroller:%f, knob:%f", name, [scroller floatValue], [scroller knobProportion]);
+  scrollState = [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
 }
 
 //-------------------------------------------------------------------
@@ -967,10 +967,10 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)setFont:(NSFont *)font
 {
-	NSRange range = {0, [textStorage length]};
+  NSRange range = {0, [textStorage length]};
 
-	[textAttributes setObject:font forKey:NSFontAttributeName];
-	[textStorage addAttribute:NSFontAttributeName value:font range:range];
+  [textAttributes setObject:font forKey:NSFontAttributeName];
+  [textStorage addAttribute:NSFontAttributeName value:font range:range];
 }
 
 
@@ -984,11 +984,11 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (BOOL)validateMenuItem:(NSMenuItem *)menuItem
 {
-	/* Control sub-menu are only for ops */
-	if ([[[menuItem menu] title] isEqual:@"Control"] && !ownnick->op)
-		return FALSE;
-	else
-		return TRUE;
+  /* Control sub-menu are only for ops */
+  if ([[[menuItem menu] title] isEqual:@"Control"] && !ownnick->op)
+    return FALSE;
+  else
+    return TRUE;
 }
 
 //-------------------------------------------------------------------
@@ -1001,31 +1001,31 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)setTabViewItem:(NSTabViewItem *)newTabViewItem colors:(ColorSet *)colors appController:(AppController *)ref;
 {
-	appController = ref;
-	tabViewItem = newTabViewItem;
-	colorSet = colors;
-	fg_colors = [colorSet channelFGColors];
-	defaultTextColor = [[colorSet channelFGDefaultColor] retain];
-	defaultColor = [[colorSet nickListFGColorOfStatus:normalStatus] retain];
-	voiceColor = [[colorSet nickListFGColorOfStatus:voiceStatus] retain];
-	halfOpColor = [[colorSet nickListFGColorOfStatus:halfOpStatus] retain];
-	opColor = [[colorSet nickListFGColorOfStatus:opStatus] retain];
-	serverOpColor = [[colorSet nickListFGColorOfStatus:serverOpStatus] retain];
-	[mainTextView setBackgroundColor:[colorSet channelBGColor]];
-	[nickTableView setBackgroundColor:[colorSet nickListBGColor]];
-	
-	/* Set up fonts and attributes */
-	NSFont *font = [appController channelFont];
-	textAttributes = [[NSMutableDictionary alloc] init];
-	topicAttributes = [[NSMutableDictionary alloc] init];
-	nickAttributes = [[NSMutableDictionary alloc] init];
-	[textAttributes setObject:font forKey:NSFontAttributeName];
-	[topicAttributes setObject:[NSFont fontWithName:@"Monaco" size:9.0] forKey:NSFontAttributeName];
-	[topicTextField setFont:font];
-	[topicEditableTextField setFont:font];
-	[maxUsersTextField setFont:font];
-	[keyTextField setFont:font];
-	
+  appController = ref;
+  tabViewItem = newTabViewItem;
+  colorSet = colors;
+  fg_colors = [colorSet channelFGColors];
+  defaultTextColor = [[colorSet channelFGDefaultColor] retain];
+  defaultColor = [[colorSet nickListFGColorOfStatus:normalStatus] retain];
+  voiceColor = [[colorSet nickListFGColorOfStatus:voiceStatus] retain];
+  halfOpColor = [[colorSet nickListFGColorOfStatus:halfOpStatus] retain];
+  opColor = [[colorSet nickListFGColorOfStatus:opStatus] retain];
+  serverOpColor = [[colorSet nickListFGColorOfStatus:serverOpStatus] retain];
+  [mainTextView setBackgroundColor:[colorSet channelBGColor]];
+  [nickTableView setBackgroundColor:[colorSet nickListBGColor]];
+  
+  /* Set up fonts and attributes */
+  NSFont *font = [appController channelFont];
+  textAttributes = [[NSMutableDictionary alloc] init];
+  topicAttributes = [[NSMutableDictionary alloc] init];
+  nickAttributes = [[NSMutableDictionary alloc] init];
+  [textAttributes setObject:font forKey:NSFontAttributeName];
+  [topicAttributes setObject:[NSFont fontWithName:@"Monaco" size:9.0] forKey:NSFontAttributeName];
+  [topicTextField setFont:font];
+  [topicEditableTextField setFont:font];
+  [maxUsersTextField setFont:font];
+  [keyTextField setFont:font];
+  
 }
 
 
@@ -1040,7 +1040,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [nicks count];
+  return [nicks count];
 }
 
 
@@ -1056,27 +1056,27 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-	if (rowIndex >= [nicks count]) {
-		NSLog(@"rowIndex >= [nicks count] !!!");
-		return @"";
-	}
-	
-	NICK_REC *nick = (NICK_REC *)[[nicks objectAtIndex:rowIndex] pointerValue];
-	NSColor *color;
-	
-	if (nick->serverop)
-		color = serverOpColor;
-	else if (nick->op)
-		color = opColor;
-	else if (nick->halfop)
-		color = halfOpColor;
-	else if (nick->voice)
-		color = voiceColor;
-	else
-		color = defaultColor;
-	
-	[nickAttributes setObject:color forKey:NSForegroundColorAttributeName];
-	return [[[NSAttributedString alloc] initWithString:[NSString stringWithCString:nick->nick] attributes:nickAttributes] autorelease];
+  if (rowIndex >= [nicks count]) {
+    NSLog(@"rowIndex >= [nicks count] !!!");
+    return @"";
+  }
+  
+  NICK_REC *nick = (NICK_REC *)[[nicks objectAtIndex:rowIndex] pointerValue];
+  NSColor *color;
+  
+  if (nick->serverop)
+    color = serverOpColor;
+  else if (nick->op)
+    color = opColor;
+  else if (nick->halfop)
+    color = halfOpColor;
+  else if (nick->voice)
+    color = voiceColor;
+  else
+    color = defaultColor;
+  
+  [nickAttributes setObject:color forKey:NSForegroundColorAttributeName];
+  return [[[NSAttributedString alloc] initWithString:[NSString stringWithCString:nick->nick] attributes:nickAttributes] autorelease];
 }
 
 
@@ -1091,8 +1091,8 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex {
 #if 0
-	[nickTableView addToolTipRect:[nickTableView frameOfCellAtColumn:0 row:rowIndex] 
-							owner:self userData:(void *)rowIndex];
+  [nickTableView addToolTipRect:[nickTableView frameOfCellAtColumn:0 row:rowIndex] 
+              owner:self userData:(void *)rowIndex];
 #endif
 }
 
@@ -1104,21 +1104,21 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (NSString *)view:(NSView *)view stringForToolTip:(NSToolTipTag)tag point:(NSPoint)point userData:(void *)userData
 {
-	NICK_REC *nick = (NICK_REC *)[[nicks objectAtIndex:(int)userData] pointerValue];
-		
-	if (!nick || !nick->nick) {
-		[appController presentUnexpectedEvent:@"Can't create tooltip when nick is NULL!"];
-		return @"";
-	}
-	
-	if (!nick->realname || !nick->host) {
-		/* If we don't have all info, do a who lookup */
-		char tmp[strlen(nick->nick) + 5];
-		sprintf(tmp, "/who %s", nick->nick);
-		signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
-	}
-	
-	return [NSString stringWithFormat:@"%@ -- [%@]\n%@", [IrssiBridge stringWithIrssiCString:nick->nick], nick->realname ? [IrssiBridge stringWithIrssiCString:nick->realname] : @"real name not received", nick->host ? [IrssiBridge stringWithIrssiCString:nick->host] : @"host name not received"];
+  NICK_REC *nick = (NICK_REC *)[[nicks objectAtIndex:(int)userData] pointerValue];
+    
+  if (!nick || !nick->nick) {
+    [appController presentUnexpectedEvent:@"Can't create tooltip when nick is NULL!"];
+    return @"";
+  }
+  
+  if (!nick->realname || !nick->host) {
+    /* If we don't have all info, do a who lookup */
+    char tmp[strlen(nick->nick) + 5];
+    sprintf(tmp, "/who %s", nick->nick);
+    signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
+  }
+  
+  return [NSString stringWithFormat:@"%@ -- [%@]\n%@", [IrssiBridge stringWithIrssiCString:nick->nick], nick->realname ? [IrssiBridge stringWithIrssiCString:nick->realname] : @"real name not received", nick->host ? [IrssiBridge stringWithIrssiCString:nick->host] : @"host name not received"];
 }
 
 
@@ -1130,10 +1130,10 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)channelColorChanged:(NSNotification *)note
 {
-	[defaultTextColor release];
-	defaultTextColor = [[colorSet channelFGDefaultColor] retain];
-	[mainTextView setBackgroundColor:[colorSet channelBGColor]];
-	[mainTextView setNeedsDisplay:TRUE];
+  [defaultTextColor release];
+  defaultTextColor = [[colorSet channelFGDefaultColor] retain];
+  [mainTextView setBackgroundColor:[colorSet channelBGColor]];
+  [mainTextView setNeedsDisplay:TRUE];
 }
 
 
@@ -1145,21 +1145,21 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)nickListColorChanged:(NSNotification *)note
 {
-	[defaultColor release];
-	[voiceColor release];
-	[halfOpColor release];
-	[opColor release];
-	[serverOpColor release];
-	
-	defaultColor = [[colorSet nickListFGColorOfStatus:normalStatus] retain];
-	voiceColor = [[colorSet nickListFGColorOfStatus:voiceStatus] retain];
-	halfOpColor = [[colorSet nickListFGColorOfStatus:halfOpStatus] retain];
-	opColor = [[colorSet nickListFGColorOfStatus:opStatus] retain];
-	serverOpColor = [[colorSet nickListFGColorOfStatus:serverOpStatus] retain];
-	
-	[nickTableView setBackgroundColor:[colorSet nickListBGColor]];
-	[nickTableView removeAllToolTips]; 
-	[nickTableView reloadData];
+  [defaultColor release];
+  [voiceColor release];
+  [halfOpColor release];
+  [opColor release];
+  [serverOpColor release];
+  
+  defaultColor = [[colorSet nickListFGColorOfStatus:normalStatus] retain];
+  voiceColor = [[colorSet nickListFGColorOfStatus:voiceStatus] retain];
+  halfOpColor = [[colorSet nickListFGColorOfStatus:halfOpStatus] retain];
+  opColor = [[colorSet nickListFGColorOfStatus:opStatus] retain];
+  serverOpColor = [[colorSet nickListFGColorOfStatus:serverOpStatus] retain];
+  
+  [nickTableView setBackgroundColor:[colorSet nickListBGColor]];
+  [nickTableView removeAllToolTips]; 
+  [nickTableView reloadData];
 }
 
 // Force a splitView resize save on resize
@@ -1176,35 +1176,35 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)awakeFromNib
 {
-	/* Register for color notifications */
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[nc addObserver:self selector:@selector(channelColorChanged:) name:@"channelColorChanged" object:nil];
-	[nc addObserver:self selector:@selector(nickListColorChanged:) name:@"nickListColorChanged" object:nil];
+  /* Register for color notifications */
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+  [nc addObserver:self selector:@selector(channelColorChanged:) name:@"channelColorChanged" object:nil];
+  [nc addObserver:self selector:@selector(nickListColorChanged:) name:@"nickListColorChanged" object:nil];
 
-	/* Set up context-menus */
-	[nickTableView setMenu:nickViewMenu];
-	//[mainTextView setMenu:mainTextViewMenu];
-	[mainTextView setUsesFontPanel:FALSE];
+  /* Set up context-menus */
+  [nickTableView setMenu:nickViewMenu];
+  //[mainTextView setMenu:mainTextViewMenu];
+  [mainTextView setUsesFontPanel:FALSE];
 
-	/* Other */
-	scroller = [[MarkedScroller alloc] initWithFrame:[[mainTextScrollView verticalScroller] frame]];
-	[mainTextScrollView setVerticalScroller:scroller];
-	textStorage = [mainTextView textStorage];
-	searchRanges = [[NSMutableArray alloc] init];
-	commandHistory = [[History alloc] initWithCapacity:150];
+  /* Other */
+  scroller = [[MarkedScroller alloc] initWithFrame:[[mainTextScrollView verticalScroller] frame]];
+  [mainTextScrollView setVerticalScroller:scroller];
+  textStorage = [mainTextView textStorage];
+  searchRanges = [[NSMutableArray alloc] init];
+  commandHistory = [[History alloc] initWithCapacity:150];
 
-	[self saveScrollState];
-	[nickTableView setTarget:self];
-	[nickTableView setDoubleAction:@selector(nickListRowDoubleClicked:)];
+  [self saveScrollState];
+  [nickTableView setTarget:self];
+  [nickTableView setDoubleAction:@selector(nickListRowDoubleClicked:)];
 
-	[nickTableScrollView setHidden:TRUE];
-	[nickTableScrollView setDrawsBackground:YES];
-	NSRect frame = [mainTextScrollView frame];
-	frame.size.width += [nickTableScrollView frame].size.width + 8;
-	[mainTextScrollView setFrame:frame];
-	[mainTextScrollView setNeedsDisplay:TRUE];
-	[topicTextField setAllowsEditingTextAttributes:TRUE];
-	[self initTextEncodingPopUpButton];
+  [nickTableScrollView setHidden:TRUE];
+  [nickTableScrollView setDrawsBackground:YES];
+  NSRect frame = [mainTextScrollView frame];
+  frame.size.width += [nickTableScrollView frame].size.width + 8;
+  [mainTextScrollView setFrame:frame];
+  [mainTextScrollView setNeedsDisplay:TRUE];
+  [topicTextField setAllowsEditingTextAttributes:TRUE];
+  [self initTextEncodingPopUpButton];
 }
 
 //-------------------------------------------------------------------
@@ -1217,21 +1217,21 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (id)initWithWindowRec:(WINDOW_REC *)rec
 {
-	[super init];
-	if (rec == NULL) {
-		NSLog(@"Warning: WINDOW_REC is NULL");
-		return self;
-	}
+  [super init];
+  if (rec == NULL) {
+    NSLog(@"Warning: WINDOW_REC is NULL");
+    return self;
+  }
 
-	splitView = nil;
-	windowRec = rec;
-	isChannel = FALSE;
-	useFloater = FALSE;
-	textEncoding = [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultTextEncoding"];
+  splitView = nil;
+  windowRec = rec;
+  isChannel = FALSE;
+  useFloater = FALSE;
+  textEncoding = [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultTextEncoding"];
 
-	line = [[NSMutableAttributedString alloc] init];
-	oldSearchMatchRange = NSMakeRange(0,0);
-	return self;
+  line = [[NSMutableAttributedString alloc] init];
+  oldSearchMatchRange = NSMakeRange(0,0);
+  return self;
 }
 
 
@@ -1246,33 +1246,33 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[wholeView release];
-	[topicWindow release];
-	//[mainTextViewMenu release];
-	[nickViewMenu release];
-	
-	[opColor release];
-	[halfOpColor release];
-	[voiceColor release];
-	[defaultColor release];
-	[serverOpColor release];
-	[commandHistory release];
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [wholeView release];
+  [topicWindow release];
+  //[mainTextViewMenu release];
+  [nickViewMenu release];
+  
+  [opColor release];
+  [halfOpColor release];
+  [voiceColor release];
+  [defaultColor release];
+  [serverOpColor release];
+  [commandHistory release];
 
-	[defaultTextColor release];
+  [defaultTextColor release];
 
-	[nicks release];
-	[name release];
-	[topic_by release];
-	[mode release];
-	[key release];
+  [nicks release];
+  [name release];
+  [topic_by release];
+  [mode release];
+  [key release];
 
-	[textAttributes release];
-	[topicAttributes release];
-	[nickAttributes release];
-	[searchRanges release];
-	
-	[super dealloc];
+  [textAttributes release];
+  [topicAttributes release];
+  [nickAttributes release];
+  [searchRanges release];
+  
+  [super dealloc];
 }
 
 #pragma mark Instance variables
@@ -1284,13 +1284,13 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
  */
 - (void)setTextEncoding:(CFStringEncoding)encoding
 {
-	textEncoding = encoding;
-	// TODO reinterpret existing text
+  textEncoding = encoding;
+  // TODO reinterpret existing text
 }
 
 - (CFStringEncoding)textEncoding
 {
-	return textEncoding;
+  return textEncoding;
 }
 
 /* If it is an actual irc channel */
@@ -1345,9 +1345,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 - (void)setPartialCommand:(NSString*)cmd
 {
-	[cmd retain];
-	[partialCommand release];
-	partialCommand = cmd;
+  [cmd retain];
+  [partialCommand release];
+  partialCommand = cmd;
 }
 
 //-------------------------------------------------------------------
@@ -1397,12 +1397,12 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 - (void)setName:(NSString *)newName
 {
-	if (name == newName)
-		return;
-	
-	[name release];
-	name = [newName retain];
-	[tabViewItem setLabel:name];
+  if (name == newName)
+    return;
+  
+  [name release];
+  name = [newName retain];
+  [tabViewItem setLabel:name];
 }
 
 #pragma mark Private methods
@@ -1411,16 +1411,16 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
  */
 - (void)updateTextEncodingPopUpButton
 {
-	/* Reverse lookup of user readable name by using linear search */
-	int i;
-	for (i = 0; i < NUM_TEXT_ENCODINGS; i++) {
-		if (textEncodingTable[i] == textEncoding) {
-			[textEncodingPopUpButton selectItemAtIndex:i];
-			return;
-		}
-	}
-	
-	NSLog(@"Reverse lookup of default text encoding failed!");
+  /* Reverse lookup of user readable name by using linear search */
+  int i;
+  for (i = 0; i < NUM_TEXT_ENCODINGS; i++) {
+    if (textEncodingTable[i] == textEncoding) {
+      [textEncodingPopUpButton selectItemAtIndex:i];
+      return;
+    }
+  }
+  
+  NSLog(@"Reverse lookup of default text encoding failed!");
 }
 
 /**
@@ -1428,12 +1428,12 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
  */
 - (void)initTextEncodingPopUpButton
 {
-	int i;
-	
-	[textEncodingPopUpButton removeAllItems];
-	
-	for (i = 0; i < NUM_TEXT_ENCODINGS; i++)
-		[textEncodingPopUpButton addItemWithTitle:textEncodings[i]];
+  int i;
+  
+  [textEncodingPopUpButton removeAllItems];
+  
+  for (i = 0; i < NUM_TEXT_ENCODINGS; i++)
+    [textEncodingPopUpButton addItemWithTitle:textEncodings[i]];
 }
 
 /**
@@ -1441,12 +1441,12 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
  */
 - (void)highlightCurrentSearchMatch
 {
-	NSRange range = [[searchRanges objectAtIndex:searchIteratorIndex] rangeValue];
-	[textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:oldSearchMatchRange];
-	[textStorage addAttribute:NSBackgroundColorAttributeName value:currentSearchMatchColor range:range];
-	
-	[mainTextView scrollRangeToVisible:range];
-	oldSearchMatchRange = range;
+  NSRange range = [[searchRanges objectAtIndex:searchIteratorIndex] rangeValue];
+  [textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:oldSearchMatchRange];
+  [textStorage addAttribute:NSBackgroundColorAttributeName value:currentSearchMatchColor range:range];
+  
+  [mainTextView scrollRangeToVisible:range];
+  oldSearchMatchRange = range;
 }
 
 //-------------------------------------------------------------------
@@ -1460,9 +1460,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (float)yPositionInTextView:(NSRange)r
 {
-	NSRange glyphRange = [[mainTextView layoutManager] glyphRangeForCharacterRange:r actualCharacterRange:nil];
-	NSRect rect = [[mainTextView layoutManager] lineFragmentRectForGlyphAtIndex:glyphRange.location effectiveRange:nil];
-	return rect.origin.y+rect.size.height/2;
+  NSRange glyphRange = [[mainTextView layoutManager] glyphRangeForCharacterRange:r actualCharacterRange:nil];
+  NSRect rect = [[mainTextView layoutManager] lineFragmentRectForGlyphAtIndex:glyphRange.location effectiveRange:nil];
+  return rect.origin.y+rect.size.height/2;
 }
 
 //-------------------------------------------------------------------
@@ -1476,70 +1476,70 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 - (NSAttributedString *)parseTopic:(char *)str
 {
 #if 0
-	const char *p, *start = NULL;
-	char tmp[strlen(str)];
-	int fg, bg, len;
-	NSAttributedString *partialTopic;
-	NSMutableDictionary *topicAttributes = [[NSMutableDictionary alloc] init];
-	NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] init];
-	
-	for (p = str; *p != '\0'; p++) {
-		
-		/* Only parse mirc colors on first pass */
-		if (*p != 3)
-			continue;
-		/* Check if this is the end of a color range */
-		if (start) {
-			len = p - start;
-			NSAssert(len >= 0, @"Len is subzero!"); //TODO: remove?
-			
-			tmp = (char *)malloc(len+1);
-			bcopy(start, tmp, len);
-			tmp[len] = 0;
-			
-			
-			/* Check foreground color */
-			if (fg < 0 || fg > 15)
-				[topicAttributes setObject:defaultTextColor forKey:NSForegroundColorAttributeName];
-			else
-				[topicAttributes setObject:[fg_colors objectAtIndex:[mirc_colors[fg % 16]]] forKey:NSForegroundColorAttributeName];
+  const char *p, *start = NULL;
+  char tmp[strlen(str)];
+  int fg, bg, len;
+  NSAttributedString *partialTopic;
+  NSMutableDictionary *topicAttributes = [[NSMutableDictionary alloc] init];
+  NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] init];
+  
+  for (p = str; *p != '\0'; p++) {
+    
+    /* Only parse mirc colors on first pass */
+    if (*p != 3)
+      continue;
+    /* Check if this is the end of a color range */
+    if (start) {
+      len = p - start;
+      NSAssert(len >= 0, @"Len is subzero!"); //TODO: remove?
+      
+      tmp = (char *)malloc(len+1);
+      bcopy(start, tmp, len);
+      tmp[len] = 0;
+      
+      
+      /* Check foreground color */
+      if (fg < 0 || fg > 15)
+        [topicAttributes setObject:defaultTextColor forKey:NSForegroundColorAttributeName];
+      else
+        [topicAttributes setObject:[fg_colors objectAtIndex:[mirc_colors[fg % 16]]] forKey:NSForegroundColorAttributeName];
 
-			/* Check background color */
-			if (bg < 0 || bg > 15)
-				[topicAttributes removeObjectForKey:NSBackgroundColorAttributeName];
-			else
-				[topicAttributes setObject:[bg_colors objectAtIndex:[mirc_colors[bg % 16]]] forKey:NSBackgroundColorAttributeName];
+      /* Check background color */
+      if (bg < 0 || bg > 15)
+        [topicAttributes removeObjectForKey:NSBackgroundColorAttributeName];
+      else
+        [topicAttributes setObject:[bg_colors objectAtIndex:[mirc_colors[bg % 16]]] forKey:NSBackgroundColorAttributeName];
 
-			partialTopic = [[NSAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:tmp] attributes:topicAttributes];
-			[attributedTopic appendAttributedString:partialTopic];
-			
-			free(tmp);
-			[partialTopic release];
-			
-		}
-		
-		/* get mirc color */
-		p++;  
-		get_mirc_color(&p, &fg, &bg);
-		start = p;
-		p--;			
-	}
-	
-	[topicAttributes release];
+      partialTopic = [[NSAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:tmp] attributes:topicAttributes];
+      [attributedTopic appendAttributedString:partialTopic];
+      
+      free(tmp);
+      [partialTopic release];
+      
+    }
+    
+    /* get mirc color */
+    p++;  
+    get_mirc_color(&p, &fg, &bg);
+    start = p;
+    p--;      
+  }
+  
+  [topicAttributes release];
 #endif
 
-	NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:strip_codes(str)] attributes:topicAttributes];
-	[attributedTopic detectURLs:[NSColor blueColor]];
-	
-	return [attributedTopic autorelease];
+  NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:strip_codes(str)] attributes:topicAttributes];
+  [attributedTopic detectURLs:[NSColor blueColor]];
+  
+  return [attributedTopic autorelease];
 }
 
 /* Wrapper - Start recursion */
 - (void)sortNicks
 {
-	@synchronized(nicks) {
-		[self sortNicksWithLeftBound:0 rightBound:[nicks count] - 1];
-	}
+  @synchronized(nicks) {
+    [self sortNicksWithLeftBound:0 rightBound:[nicks count] - 1];
+  }
 }
 
 //-------------------------------------------------------------------
@@ -1552,23 +1552,23 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)sortNicksWithLeftBound:(int)left rightBound:(int)right
 {
-	int i, last;
+  int i, last;
 
-	/* Check if sorted (base case) */
-	if (left >= right)
-		return;
+  /* Check if sorted (base case) */
+  if (left >= right)
+    return;
 
-	const char *nick_flags = channel->server->get_nick_flags(channel->server);
-	[nicks exchangeObjectAtIndex:left withObjectAtIndex:(left + right)/2];
-	last = left;
-	for (i = left+1; i <= right; i++)
-		if (nicklist_compare((NICK_REC *)[[nicks objectAtIndex:i] pointerValue], (NICK_REC *)[[nicks objectAtIndex:left] pointerValue], (void *)nick_flags) < 0)
-			[nicks exchangeObjectAtIndex:++last withObjectAtIndex:i];
-	[nicks exchangeObjectAtIndex:left withObjectAtIndex:last];
+  const char *nick_flags = channel->server->get_nick_flags(channel->server);
+  [nicks exchangeObjectAtIndex:left withObjectAtIndex:(left + right)/2];
+  last = left;
+  for (i = left+1; i <= right; i++)
+    if (nicklist_compare((NICK_REC *)[[nicks objectAtIndex:i] pointerValue], (NICK_REC *)[[nicks objectAtIndex:left] pointerValue], (void *)nick_flags) < 0)
+      [nicks exchangeObjectAtIndex:++last withObjectAtIndex:i];
+  [nicks exchangeObjectAtIndex:left withObjectAtIndex:last];
 
-	/* Recursive call */
-	[self sortNicksWithLeftBound:left rightBound:last-1];
-	[self sortNicksWithLeftBound:last+1 rightBound:right];
+  /* Recursive call */
+  [self sortNicksWithLeftBound:left rightBound:last-1];
+  [self sortNicksWithLeftBound:last+1 rightBound:right];
 }
 
 
@@ -1582,23 +1582,23 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (int)findNick:(NICK_REC *)nick
 {
-	int mid, result, low = 0, high = [nicks count] - 1;
+  int mid, result, low = 0, high = [nicks count] - 1;
 
-	const char *nick_flags = channel ? channel->server->get_nick_flags(channel->server) : NULL;
-	
-	while (low <= high) {
-		mid = (low + high) / 2;
-		result = nicklist_compare((NICK_REC *)[[nicks objectAtIndex:mid] pointerValue], nick, (void *)nick_flags);
-		if (result < 0)
-			low = mid + 1;
-		else if (result > 0)
-			high = mid - 1;
-		else
-			return mid; // Found
-	}
-	
-	/* Not found, try linear search (synchronizing problem?) */
-	return [self findNickLinear:nick];
+  const char *nick_flags = channel ? channel->server->get_nick_flags(channel->server) : NULL;
+  
+  while (low <= high) {
+    mid = (low + high) / 2;
+    result = nicklist_compare((NICK_REC *)[[nicks objectAtIndex:mid] pointerValue], nick, (void *)nick_flags);
+    if (result < 0)
+      low = mid + 1;
+    else if (result > 0)
+      high = mid - 1;
+    else
+      return mid; // Found
+  }
+  
+  /* Not found, try linear search (synchronizing problem?) */
+  return [self findNickLinear:nick];
 }
 
 //-------------------------------------------------------------------
@@ -1611,18 +1611,18 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (int)findNickLinear:(NICK_REC *)nick
 {
-	int i;
-	const char *nick_flags = channel ? channel->server->get_nick_flags(channel->server) : NULL;
+  int i;
+  const char *nick_flags = channel ? channel->server->get_nick_flags(channel->server) : NULL;
 
-	for (i = 0; i < [nicks count]; i++)
-		if (nicklist_compare((NICK_REC *)[[nicks objectAtIndex:i] pointerValue], nick, (void *)nick_flags) == 0)
-			return i;
-	
-	/* Not found */
-	for (i = 0; i < [nicks count]; i++)
-		NSLog(@"%s", ((NICK_REC *)[[nicks objectAtIndex:i] pointerValue])->nick);
+  for (i = 0; i < [nicks count]; i++)
+    if (nicklist_compare((NICK_REC *)[[nicks objectAtIndex:i] pointerValue], nick, (void *)nick_flags) == 0)
+      return i;
+  
+  /* Not found */
+  for (i = 0; i < [nicks count]; i++)
+    NSLog(@"%s", ((NICK_REC *)[[nicks objectAtIndex:i] pointerValue])->nick);
 
-	return -1;
+  return -1;
 }
 
 //-------------------------------------------------------------------
@@ -1636,29 +1636,29 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (int)findInsertionPositionForNick:(NICK_REC *)nick
 {
-	int mid = 0, result, low = 0, high = [nicks count] - 1;
-	const char *nick_flags = channel->server->get_nick_flags(channel->server);
+  int mid = 0, result, low = 0, high = [nicks count] - 1;
+  const char *nick_flags = channel->server->get_nick_flags(channel->server);
 
-	while (low < high) {
-		mid = (low + high) / 2;
-		result = nicklist_compare((NICK_REC *)[[nicks objectAtIndex:mid] pointerValue], nick, (void *)nick_flags);
-		if (result < 0)
-			low = mid + 1;
-		else if (result > 0)
-			high = mid - 1;
-		else {
-			NSLog(@"Error: Two identical nicks in channel!");
-			return mid;
-		}
-	}
-	/* Find free slot when inserting */
-	if (low == high) {
-		mid = (low + high) / 2;
-		if (nicklist_compare((NICK_REC *)[[nicks objectAtIndex:mid] pointerValue], nick, (void *)nick_flags) < 0)
-			mid++;
-	}
+  while (low < high) {
+    mid = (low + high) / 2;
+    result = nicklist_compare((NICK_REC *)[[nicks objectAtIndex:mid] pointerValue], nick, (void *)nick_flags);
+    if (result < 0)
+      low = mid + 1;
+    else if (result > 0)
+      high = mid - 1;
+    else {
+      NSLog(@"Error: Two identical nicks in channel!");
+      return mid;
+    }
+  }
+  /* Find free slot when inserting */
+  if (low == high) {
+    mid = (low + high) / 2;
+    if (nicklist_compare((NICK_REC *)[[nicks objectAtIndex:mid] pointerValue], nick, (void *)nick_flags) < 0)
+      mid++;
+  }
 
-	return mid;
+  return mid;
 }
 
 
@@ -1670,7 +1670,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)controlTextDidChange:(NSNotification *)aNotification
 {
-	[self modeChanged:nil];
+  [self modeChanged:nil];
 }
 
 //-------------------------------------------------------------------
@@ -1684,7 +1684,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 void personFromNickRec(gpointer key, NICK_REC *rec, NSMutableArray *nicks)
 {
-	[nicks addObject:[NSValue valueWithPointer:rec]];
+  [nicks addObject:[NSValue valueWithPointer:rec]];
 }
 
 @end
