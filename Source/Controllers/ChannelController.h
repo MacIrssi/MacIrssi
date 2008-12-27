@@ -24,6 +24,7 @@
 #import "nicklist.h"
 #import "glib.h"
 #import "MarkedScroller.h"
+#import "MISplitView.h"
 
 #import "fe-windows.h"
 
@@ -114,7 +115,7 @@ enum nickContextMenuTags {
 	IBOutlet NSTableView *nickTableView;
   IBOutlet NSTextField *topicTextField;
   IBOutlet NSView *wholeView;
-	IBOutlet NSSplitView *splitView;
+	IBOutlet MISplitView *splitView;
 	IBOutlet NSButton *editChannelButton;
   IBOutlet NSScrollView *nickTableScrollView;
   

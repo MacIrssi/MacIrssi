@@ -256,6 +256,8 @@
 		C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */ = {isa = PBXBuildFile; fileRef = C91026600E5C654800E041F7 /* UKCrashReporter.nib */; };
 		C91026690E5C654800E041F7 /* UKNibOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = C91026610E5C654800E041F7 /* UKNibOwner.m */; };
 		C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91026760E5C665B00E041F7 /* AddressBook.framework */; };
+		C91F0B170F06E3C900763699 /* MISplitView.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F0B150F06E3C900763699 /* MISplitView.h */; };
+		C91F0B180F06E3C900763699 /* MISplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F0B160F06E3C900763699 /* MISplitView.m */; };
 		C922B4140E23BCE1000AA7BE /* Beep 1.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */; };
 		C922B4150E23BCE1000AA7BE /* Beep 2.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */; };
 		C922B4160E23BCE1000AA7BE /* Bell 1.aiff in CopyFiles */ = {isa = PBXBuildFile; fileRef = C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */; };
@@ -1562,6 +1564,8 @@
 		C91026600E5C654800E041F7 /* UKCrashReporter.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = UKCrashReporter.nib; sourceTree = "<group>"; };
 		C91026610E5C654800E041F7 /* UKNibOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKNibOwner.m; sourceTree = "<group>"; };
 		C91026760E5C665B00E041F7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
+		C91F0B150F06E3C900763699 /* MISplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISplitView.h; sourceTree = "<group>"; };
+		C91F0B160F06E3C900763699 /* MISplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISplitView.m; sourceTree = "<group>"; };
 		C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 1.aiff"; sourceTree = "<group>"; };
 		C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 2.aiff"; sourceTree = "<group>"; };
 		C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Bell 1.aiff"; sourceTree = "<group>"; };
@@ -1666,6 +1670,7 @@
 				C91026570E5C652000E041F7 /* UKCrashReporter */,
 				B322DD9205EF9A5C00E640C2 /* Irssi Bridge */,
 				B322DD9E05EF9A9100E640C2 /* Controllers */,
+				C91F0B130F06E3AA00763699 /* Custom Views */,
 				B322DDB505EF9AE600E640C2 /* ColorSet.h */,
 				B322DDB605EF9AE600E640C2 /* ColorSet.m */,
 				B322DDB705EF9AE600E640C2 /* CustomTableView.h */,
@@ -2788,6 +2793,15 @@
 			path = ../UKCrashReporter;
 			sourceTree = "<group>";
 		};
+		C91F0B130F06E3AA00763699 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				C91F0B150F06E3C900763699 /* MISplitView.h */,
+				C91F0B160F06E3C900763699 /* MISplitView.m */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		C922B3D90E23BAE6000AA7BE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -2844,6 +2858,7 @@
 				C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */,
 				C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */,
 				C91026660E5C654800E041F7 /* UKNibOwner.h in Headers */,
+				C91F0B170F06E3C900763699 /* MISplitView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3084,6 +3099,7 @@
 				C91026650E5C654800E041F7 /* UKCrashReporter.m in Sources */,
 				C91026670E5C654800E041F7 /* UKSystemInfo.m in Sources */,
 				C91026690E5C654800E041F7 /* UKNibOwner.m in Sources */,
+				C91F0B180F06E3C900763699 /* MISplitView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
