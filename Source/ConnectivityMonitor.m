@@ -104,7 +104,7 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
  	      (flags & kSCNetworkFlagsIsLocalAddress)       ? 'l' : '-',  
  	      (flags & kSCNetworkFlagsIsDirect)             ? 'd' : '-');
 	
-	if (flags & kSCNetworkFlagsReachable)
+	if ((flags & kSCNetworkFlagsReachable) && !(flags & kSCNetworkFlagsConnectionRequired))
 	{
 		// Remove from callback now that we're connected again
 		SCNetworkReachabilityUnscheduleFromRunLoop(target, [[NSRunLoop currentRunLoop] getCFRunLoop], kCFRunLoopDefaultMode);
