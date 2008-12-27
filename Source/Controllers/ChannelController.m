@@ -525,11 +525,13 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 	[nickTableScrollView setHidden:FALSE];
 	NSRect frame = NSUnionRect([mainTextScrollView frame],[nickTableScrollView frame]);
 	
-	splitView = [[NSSplitView alloc] initWithFrame:frame];
+	splitView = [[MISplitView alloc] initWithFrame:frame];
 	[splitView setVertical:TRUE];
 	[splitView setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+  [splitView setDelegate:self];
 	[splitView addSubview:mainTextScrollView];
 	[splitView addSubview:nickTableScrollView];
+  [splitView restoreLayoutUsingName:@"MainNickSplit"];
 	
 	[mainTextScrollView release];
 	[nickTableScrollView release];
@@ -1158,6 +1160,12 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 	[nickTableView setBackgroundColor:[colorSet nickListBGColor]];
 	[nickTableView removeAllToolTips]; 
 	[nickTableView reloadData];
+}
+
+// Force a splitView resize save on resize
+- (void)splitViewDidResizeSubviews:(NSNotification *)aNotification
+{
+  [splitView saveLayoutUsingName:@"MainNickSplit"];
 }
 
 
