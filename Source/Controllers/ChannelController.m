@@ -967,10 +967,18 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)setFont:(NSFont *)font
 {
+  [channelFont release];
+  channelFont = [font retain];
+  
   NSRange range = {0, [textStorage length]};
 
   [textAttributes setObject:font forKey:NSFontAttributeName];
   [textStorage addAttribute:NSFontAttributeName value:font range:range];
+  
+  // Nick list uses the current font anyway but it'll need poking to reload
+  NSSize textSize = [@"" sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil]];
+  [nickTableView setRowHeight:textSize.height];
+  [nickTableView reloadData];
 }
 
 
@@ -1015,16 +1023,18 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [nickTableView setBackgroundColor:[colorSet nickListBGColor]];
   
   /* Set up fonts and attributes */
-  NSFont *font = [appController channelFont];
+  [self setFont:[appController channelFont]];
+  
   textAttributes = [[NSMutableDictionary alloc] init];
   topicAttributes = [[NSMutableDictionary alloc] init];
   nickAttributes = [[NSMutableDictionary alloc] init];
-  [textAttributes setObject:font forKey:NSFontAttributeName];
+  
+  [textAttributes setObject:channelFont forKey:NSFontAttributeName];
   [topicAttributes setObject:[NSFont fontWithName:@"Monaco" size:9.0] forKey:NSFontAttributeName];
-  [topicTextField setFont:font];
-  [topicEditableTextField setFont:font];
-  [maxUsersTextField setFont:font];
-  [keyTextField setFont:font];
+  [topicTextField setFont:channelFont];
+  [topicEditableTextField setFont:channelFont];
+  [maxUsersTextField setFont:channelFont];
+  [keyTextField setFont:channelFont];
   
 }
 
@@ -1076,6 +1086,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
     color = defaultColor;
   
   [nickAttributes setObject:color forKey:NSForegroundColorAttributeName];
+  [nickAttributes setObject:channelFont forKey:NSFontAttributeName];
   return [[[NSAttributedString alloc] initWithString:[NSString stringWithCString:nick->nick] attributes:nickAttributes] autorelease];
 }
 
