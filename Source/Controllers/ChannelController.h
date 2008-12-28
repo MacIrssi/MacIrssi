@@ -36,135 +36,135 @@
 //int mircColors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 enum nickContextMenuTags {
-	Query,
-	Whois,
-	Who,
+  Query,
+  Whois,
+  Who,
   
-	Ignore,
-	Op,
-	Deop,
-	Voice,
-	Devoice,
-	Kick,
-	Ban,
-	KickBan,
+  Ignore,
+  Op,
+  Deop,
+  Voice,
+  Devoice,
+  Kick,
+  Ban,
+  KickBan,
   
-	Ping,
-	Finger,
-	Version,
-	Time,
-	Userinfo,
-	Clientinfo,
+  Ping,
+  Finger,
+  Version,
+  Time,
+  Userinfo,
+  Clientinfo,
   
-	Send,
-	Chat,
-	List,
-	CopyIP
+  Send,
+  Chat,
+  List,
+  CopyIP
 };
 
 @interface ChannelController : NSObject {
-	
-	NSString *name;
-	NSString *topic_by;
-	time_t topic_time;
   
-	NSMutableArray *nicks; /* list of nicks */
-	NICK_REC *ownnick; /* our own nick */
-	CHANNEL_REC *channel;
+  NSString *name;
+  NSString *topic_by;
+  time_t topic_time;
   
-	BOOL no_modes; /* channel doesn't support modes */
-	NSString *mode;
-	int limit; /* user limit */
-	NSString *key; /* password key */
+  NSMutableArray *nicks; /* list of nicks */
+  NICK_REC *ownnick; /* our own nick */
+  CHANNEL_REC *channel;
   
-	BOOL chanop; /* You're a channel operator */
-	BOOL names_got; /* Received /NAMES list */
-	BOOL wholist; /* WHO list got */
-	BOOL synced; /* Channel synced - all queries done */
+  BOOL no_modes; /* channel doesn't support modes */
+  NSString *mode;
+  int limit; /* user limit */
+  NSString *key; /* password key */
   
-	BOOL joined; /* Have we even received JOIN event for this channel? */
-	BOOL justLeft; /* You just left the channel */
-	BOOL kicked; /* You just got kicked */
-	BOOL session_rejoin; /* This channel was joined with /UPGRADE */
-	BOOL destroying;
-	
-	/* Topic window */
-	IBOutlet NSWindow *topicWindow;
-	IBOutlet NSTextField *topicEditableTextField;
-	IBOutlet NSTextField *topicByTextField;
-	IBOutlet NSTextField *topicTimeTextField;
-	IBOutlet NSButton *inviteCheckBox;
-	IBOutlet NSButton *moderatedCheckBox;
-	IBOutlet NSButton *privateCheckBox;
-	IBOutlet NSButton *secretCheckBox;
-	IBOutlet NSButton *noExternalMessagesCheckBox;
-	IBOutlet NSButton *onlyOpsCanChangeTopicCheckBox;
-	IBOutlet NSTextField *maxUsersTextField;
-	IBOutlet NSTextField *keyTextField;
-	IBOutlet NSButton *saveButton;
-	IBOutlet NSButton *cancelButton;
-	IBOutlet NSButton *floaterCheckBox;
-	IBOutlet NSPopUpButton *textEncodingPopUpButton;
+  BOOL chanop; /* You're a channel operator */
+  BOOL names_got; /* Received /NAMES list */
+  BOOL wholist; /* WHO list got */
+  BOOL synced; /* Channel synced - all queries done */
   
-	/* Reason window */
-	IBOutlet NSWindow *reasonWindow;
+  BOOL joined; /* Have we even received JOIN event for this channel? */
+  BOOL justLeft; /* You just left the channel */
+  BOOL kicked; /* You just got kicked */
+  BOOL session_rejoin; /* This channel was joined with /UPGRADE */
+  BOOL destroying;
   
-	/* Main view */
+  /* Topic window */
+  IBOutlet NSWindow *topicWindow;
+  IBOutlet NSTextField *topicEditableTextField;
+  IBOutlet NSTextField *topicByTextField;
+  IBOutlet NSTextField *topicTimeTextField;
+  IBOutlet NSButton *inviteCheckBox;
+  IBOutlet NSButton *moderatedCheckBox;
+  IBOutlet NSButton *privateCheckBox;
+  IBOutlet NSButton *secretCheckBox;
+  IBOutlet NSButton *noExternalMessagesCheckBox;
+  IBOutlet NSButton *onlyOpsCanChangeTopicCheckBox;
+  IBOutlet NSTextField *maxUsersTextField;
+  IBOutlet NSTextField *keyTextField;
+  IBOutlet NSButton *saveButton;
+  IBOutlet NSButton *cancelButton;
+  IBOutlet NSButton *floaterCheckBox;
+  IBOutlet NSPopUpButton *textEncodingPopUpButton;
+  
+  /* Reason window */
+  IBOutlet NSWindow *reasonWindow;
+  
+  /* Main view */
   IBOutlet NSTextView *mainTextView;
   IBOutlet NSScrollView *mainTextScrollView;
-	IBOutlet NSTableView *nickTableView;
+  IBOutlet NSTableView *nickTableView;
   IBOutlet NSTextField *topicTextField;
   IBOutlet NSView *wholeView;
-	IBOutlet MISplitView *splitView;
-	IBOutlet NSButton *editChannelButton;
+  IBOutlet MISplitView *splitView;
+  IBOutlet NSButton *editChannelButton;
   IBOutlet NSScrollView *nickTableScrollView;
   
-	/* Context menus */
-	IBOutlet NSMenu *nickViewMenu;
-	IBOutlet NSMenu *mainTextViewMenu;
+  /* Context menus */
+  IBOutlet NSMenu *nickViewMenu;
+  IBOutlet NSMenu *mainTextViewMenu;
   
-	IBOutlet NSSearchField *searchField;
-	MarkedScroller *scroller;
-	NSTabViewItem *tabViewItem;
-	NSRange endRange;
-	NSMutableDictionary *textAttributes;
-	NSMutableDictionary *topicAttributes;
-	NSMutableDictionary *nickAttributes;
-	NSMutableArray *fg_colors;
-	NSMutableArray *bg_colors;//TODO
-	WINDOW_REC *windowRec;
-	BOOL modeChanged;
+  IBOutlet NSSearchField *searchField;
+  MarkedScroller *scroller;
+  NSTabViewItem *tabViewItem;
+  NSRange endRange;
+  NSMutableDictionary *textAttributes;
+  NSMutableDictionary *topicAttributes;
+  NSMutableDictionary *nickAttributes;
+  NSMutableArray *fg_colors;
+  NSMutableArray *bg_colors;//TODO
+  WINDOW_REC *windowRec;
+  BOOL modeChanged;
   NSFont *channelFont;
-	NSColor *opColor;
-	NSColor *halfOpColor;
-	NSColor *voiceColor;
-	NSColor *defaultColor;
-	NSColor *serverOpColor;
-	NSColor *defaultTextColor;
+  NSColor *opColor;
+  NSColor *halfOpColor;
+  NSColor *voiceColor;
+  NSColor *defaultColor;
+  NSColor *serverOpColor;
+  NSColor *defaultTextColor;
   
-	NSColor *searchColor;
-	NSColor *currentSearchMatchColor;
-	NSTextStorage *textStorage;
-	NSString *searchString;
-	NSMutableArray *searchRanges;
-	AppController *appController;
-	ColorSet *colorSet;
-	NSMutableString *commandWithReason;
-	char linebuf[MAX_LINE]; 
-	int linebufIndex;
-	NSRange attrRanges[MAX_LINE];
-	int attrRangesIndex;
-	bool useFloater;
-	bool isChannel;
-	bool scrollState;
-	CFStringEncoding textEncoding;
-	NSMutableAttributedString *line;
-	int searchIteratorIndex;
-	NSRange oldSearchMatchRange;
-	//int currentDataLevel;
-	
-	History *commandHistory;
-	NSString *partialCommand;
+  NSColor *searchColor;
+  NSColor *currentSearchMatchColor;
+  NSTextStorage *textStorage;
+  NSString *searchString;
+  NSMutableArray *searchRanges;
+  AppController *appController;
+  ColorSet *colorSet;
+  NSMutableString *commandWithReason;
+  char linebuf[MAX_LINE]; 
+  int linebufIndex;
+  NSRange attrRanges[MAX_LINE];
+  int attrRangesIndex;
+  bool useFloater;
+  bool isChannel;
+  bool scrollState;
+  CFStringEncoding textEncoding;
+  NSMutableAttributedString *line;
+  int searchIteratorIndex;
+  NSRange oldSearchMatchRange;
+  //int currentDataLevel;
+  
+  History *commandHistory;
+  NSString *partialCommand;
   
   int waitingEvents;
   NSString *lastEventOwner;
