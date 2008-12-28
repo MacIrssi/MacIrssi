@@ -34,6 +34,7 @@
 + (char *)irssiCStringWithString:(NSString *)string;
 + (NSString *)stringWithIrssiCString:(char *)string;
 + (NSString *)stringWithIrssiCStringNoCopy:(char *)string;
++ (NSString *)stringWithIrssiCStringNoCopy:(char *)string encoding:(CFStringEncoding)encoding;
 @end
 
 void irssibridge_channel_mode_changed(CHANNEL_REC *channel, char *setby);

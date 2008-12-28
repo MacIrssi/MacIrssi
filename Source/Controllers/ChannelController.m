@@ -1539,7 +1539,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [topicAttributes release];
 #endif
 
-  NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:strip_codes(str)] attributes:topicAttributes];
+  NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:strip_codes(str) encoding:textEncoding] attributes:topicAttributes];
   [attributedTopic detectURLs:[NSColor blueColor]];
   
   return [attributedTopic autorelease];

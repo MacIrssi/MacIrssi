@@ -71,6 +71,11 @@
 	return [(NSString *)CFStringCreateWithCStringNoCopy(NULL, string, kCFStringEncodingISOLatin1, kCFAllocatorNull) autorelease];
 }
 
++ (NSString *)stringWithIrssiCStringNoCopy:(char *)string encoding:(CFStringEncoding)encoding
+{
+  return [(NSString *)CFStringCreateWithCStringNoCopy(NULL, string, encoding, kCFAllocatorNull) autorelease];
+}
+
 @end
 
 /****************************************************************
