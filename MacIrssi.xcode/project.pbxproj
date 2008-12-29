@@ -444,13 +444,6 @@
 			remoteGlobalIDString = B32A9E9005F0F99C00DB2595;
 			remoteInfo = irssi;
 		};
-		C224D33908C6523800E66C62 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C224D2F008C6502200E66C62;
-			remoteInfo = "Theme Preview Deamon";
-		};
 		C224D33B08C6524700E66C62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -3285,7 +3278,6 @@
 			dependencies = (
 				C98F77D10E3651DC00CF2AAF /* PBXTargetDependency */,
 				B32A9E9805F0FB4B00DB2595 /* PBXTargetDependency */,
-				C224D33A08C6523800E66C62 /* PBXTargetDependency */,
 			);
 			name = MacIrssi;
 			productInstallPath = "$(HOME)/Applications";
@@ -3495,11 +3487,6 @@
 			isa = PBXTargetDependency;
 			target = B32A9E9005F0F99C00DB2595 /* irssi */;
 			targetProxy = B32A9E9705F0FB4B00DB2595 /* PBXContainerItemProxy */;
-		};
-		C224D33A08C6523800E66C62 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C224D2F008C6502200E66C62 /* ThemePreviewDaemon */;
-			targetProxy = C224D33908C6523800E66C62 /* PBXContainerItemProxy */;
 		};
 		C224D33C08C6524700E66C62 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
