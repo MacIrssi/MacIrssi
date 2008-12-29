@@ -130,7 +130,6 @@ enum nickContextMenuTags {
   NSMutableDictionary *textAttributes;
   NSMutableDictionary *topicAttributes;
   NSMutableDictionary *nickAttributes;
-  NSMutableArray *fg_colors;
   NSMutableArray *bg_colors;//TODO
   WINDOW_REC *windowRec;
   BOOL modeChanged;
