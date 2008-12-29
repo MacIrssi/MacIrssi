@@ -36,6 +36,7 @@ enum nickStatus {
 	NSColor *channelFGDefaultColor;
 	NSMutableArray *channelFGColors;
 	NSColor *channelBGColor;
+  NSColor *channelLinkColor;
 
 	/* Channel list colors */
 	NSMutableArray *channelListFGColors;
@@ -59,6 +60,9 @@ enum nickStatus {
 
 - (NSColor *)channelBGColor;
 - (void)setChannelBGColor:(NSColor *)newColor;
+
+- (NSColor *)channelLinkColor;
+- (void)setChannelLinkColor:(NSColor *)newColor;
 
 - (NSColor *)channelListBGColor;
 - (void)setChannelListBGColor:(NSColor *)newColor;

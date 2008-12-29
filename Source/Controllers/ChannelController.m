@@ -808,7 +808,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 {
   BOOL scroll = [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
 
-  [line detectURLs:[NSColor yellowColor]];
+  [line detectURLs:linkColor];
   [textStorage appendAttributedString:line];
   
   /* Check if we are in search mode */
@@ -1014,6 +1014,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   colorSet = colors;
   fg_colors = [colorSet channelFGColors];
   defaultTextColor = [[colorSet channelFGDefaultColor] retain];
+  linkColor = [[colorSet channelLinkColor] retain];
   defaultColor = [[colorSet nickListFGColorOfStatus:normalStatus] retain];
   voiceColor = [[colorSet nickListFGColorOfStatus:voiceStatus] retain];
   halfOpColor = [[colorSet nickListFGColorOfStatus:halfOpStatus] retain];
@@ -1270,6 +1271,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [serverOpColor release];
   [commandHistory release];
 
+  [linkColor release];
   [defaultTextColor release];
 
   [nicks release];

@@ -64,6 +64,18 @@
 	channelBGColor = newColor;
 }
 
+- (NSColor *)channelLinkColor
+{
+  return channelLinkColor;
+}
+
+- (void)setChannelLinkColor:(NSColor *)newColor
+{
+  [newColor retain];
+  [channelLinkColor release];
+  channelLinkColor = newColor;
+}
+
 - (NSColor *)channelListBGColor
 {
 	return channelListBGColor;
@@ -155,6 +167,7 @@
 	channelFGDefaultColor = [[NSColor  colorWithCalibratedRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0] retain];
 	//channelBGColor = [[NSColor  colorWithCalibratedRed:41.0/255 green:41.0/255 blue:41.0/255 alpha:1.0] retain];
 	channelBGColor = [[NSColor  colorWithCalibratedRed:5.0/255 green:13.0/255 blue:25.0/255 alpha:0.92] retain];
+  channelLinkColor = [[NSColor yellowColor] retain];
 	
 	/* Channel list colors */
 	[channelListFGColors removeAllObjects];
@@ -191,6 +204,10 @@
 	color = channelBGColor;
 	colorAsData = [NSArchiver archivedDataWithRootObject:color];
 	[defaultValues setObject:colorAsData forKey:@"channelBGColor"];
+  
+  color = channelLinkColor;
+  colorAsData = [NSArchiver archivedDataWithRootObject:color];
+  [defaultValues setObject:colorAsData forKey:@"channelLinkColor"];
 
 	color = channelListBGColor;
 	colorAsData = [NSArchiver archivedDataWithRootObject:color];
@@ -266,6 +283,9 @@
 	
 	colorAsData = [defaults objectForKey:@"channelBGColor"];
 	channelBGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
+  
+  colorAsData = [defaults objectForKey:@"channelLinkColor"];
+  channelLinkColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
 
 	colorAsData = [defaults objectForKey:@"channelListBGColor"];
 	channelListBGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];

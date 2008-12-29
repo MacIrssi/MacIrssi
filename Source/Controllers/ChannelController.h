@@ -141,6 +141,7 @@ enum nickContextMenuTags {
   NSColor *defaultColor;
   NSColor *serverOpColor;
   NSColor *defaultTextColor;
+  NSColor *linkColor;
   
   NSColor *searchColor;
   NSColor *currentSearchMatchColor;
