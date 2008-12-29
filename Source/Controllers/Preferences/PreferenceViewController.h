@@ -143,9 +143,6 @@
 - (void)windowDidLoad;
 - (void)windowWillClose:(NSNotification *)aNotification;
 
-- (void)saveColorChanges;
-- (void)cancelColorChanges;
-- (void)updateColorWells;
 - (IBAction)updateThemeList:(id)sender;
 - (void)findAvailibleThemes;
 - (void)registerDistributedObject;

@@ -144,7 +144,6 @@
   [preferencesToolbar setSelectedItemIdentifier:@"General"];
   
 	/* Make preferencepanel reflect current settings */
-	[self updateColorWells];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 //	[F1Field setStringValue:[defaults objectForKey:@"shortcut1"]];
@@ -189,7 +188,6 @@
 - (void)windowDidLoad
 {
   NSLog(@"Fart");
-	[self updateColorWells];
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
 //	[F1Field setStringValue:[defaults objectForKey:@"shortcut1"]];
@@ -267,7 +265,7 @@
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[colorSet revertToDefaultColors];
 	[colorSet registerColorDefaults:TRUE];
-	[self updateColorWells];
+  
 	[nc postNotificationName:@"channelColorChanged" object:nil];
 	[nc postNotificationName:@"channelListColorChanged" object:nil];
 	[nc postNotificationName:@"nickListColorChanged" object:nil];
@@ -592,174 +590,6 @@
     NSData *colorAsData = [NSArchiver archivedDataWithRootObject:color];
     [[NSUserDefaults standardUserDefaults] setObject:colorAsData forKey:key];
   }
-}
-
-//-------------------------------------------------------------------
-// saveColorChanges
-// Saves the colors selected in preference panel
-//-------------------------------------------------------------------
-  - (void)saveColorChanges
-{
-	if (!colorChanged)
-		return;
-	
-	NSData *colorAsData;
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[channelBGColorWell color]];
-	[defaults setObject:colorAsData forKey:@"channelBGColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[channelFGColorWell color]];
-	[defaults setObject:colorAsData forKey:@"channelFGDefaultColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[channelListBGColorWell color]];
-	[defaults setObject:colorAsData forKey:@"channelListBGColor"];
-		
-	colorAsData = [NSArchiver archivedDataWithRootObject:[channelListFGNoActivityColorWell color]];
-	[defaults setObject:colorAsData forKey:@"channelListFGNoActivityColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[channelListFGActionColorWell color]];
-	[defaults setObject:colorAsData forKey:@"channelListFGActionColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[channelListFGPublicMessageColorWell color]];
-	[defaults setObject:colorAsData forKey:@"channelListFGPublicMessageColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[channelListFGPrivateMessageColorWell color]];
-	[defaults setObject:colorAsData forKey:@"channelListFGPrivateMessageColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[inputTextFieldBGColorWell color]];
-	[defaults setObject:colorAsData forKey:@"inputTextFieldBGColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[inputTextFieldFGColorWell color]];
-	[defaults setObject:colorAsData forKey:@"inputTextFieldFGColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[nickListBGColorWell color]];
-	[defaults setObject:colorAsData forKey:@"nickListBGColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[nickListFGHalfOpColorWell color]];
-	[defaults setObject:colorAsData forKey:@"nickListFGHalfOpColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[nickListFGNormalColorWell color]];
-	[defaults setObject:colorAsData forKey:@"nickListFGNormalColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[nickListFGOpColorWell color]];
-	[defaults setObject:colorAsData forKey:@"nickListFGOpColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[nickListFGServerOpColorWell color]];
-	[defaults setObject:colorAsData forKey:@"nickListFGServerOpColor"];
-	
-	colorAsData = [NSArchiver archivedDataWithRootObject:[nickListFGVoiceColorWell color]];
-	[defaults setObject:colorAsData forKey:@"nickListFGVoiceColor"];
-	
-}
-
-//-------------------------------------------------------------------
-// cancelColorChanges
-// Revert colors to their 'pre-preferenced' state
-//-------------------------------------------------------------------
-- (void)cancelColorChanges
-{
-	if (!colorChanged)
-		return;
-
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSColor *color;
-	
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelBGColor"]];
-	[colorSet setChannelBGColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelFGDefaultColor"]];
-	[colorSet setChannelFGDefaultColor:color];
-	
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelListBGColor"]];
-	[colorSet setChannelListBGColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelListFGNoActivityColor"]];
-	[colorSet setChannelListFGColorOfLevel:0 toColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelListFGActionColor"]];
-	[colorSet setChannelListFGColorOfLevel:1 toColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelListFGPublicMessageColor"]];
-	[colorSet setChannelListFGColorOfLevel:2 toColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelListFGPrivateMessageColor"]];
-	[colorSet setChannelListFGColorOfLevel:3 toColor:color];
-	
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"inputTextFieldBGColor"]];
-	[colorSet setInputTextFieldBGColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"inputTextFieldFGColor"]];
-	[colorSet setInputTextFieldFGColor:color];
-	
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"nickListBGColor"]];
-	[colorSet setNickListBGColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"nickListFGHalfOpColor"]];
-	[colorSet setNickListFGColorOfStatus:halfOpStatus toColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"nickListFGNormalColor"]];
-	[colorSet setNickListFGColorOfStatus:normalStatus toColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"nickListFGOpColor"]];
-	[colorSet setNickListFGColorOfStatus:opStatus toColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"nickListFGServerOpColor"]];
-	[colorSet setNickListFGColorOfStatus:serverOpStatus toColor:color];
-	color = [NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"nickListFGVoiceColor"]];
-	[colorSet setNickListFGColorOfStatus:voiceStatus toColor:color];
-	
-	[nc postNotificationName:@"inputTextFieldColorChanged" object:color];
-	[nc postNotificationName:@"channelListColorChanged" object:color];
-	[nc postNotificationName:@"channelColorChanged" object:color];
-	[nc postNotificationName:@"nickListColorChanged" object:color];
-}
-
-//-------------------------------------------------------------------
-// updateColorWells
-// Updates the color wells to reflect current settings
-//-------------------------------------------------------------------
-- (void)updateColorWells
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSData *colorAsData;
-
-	colorAsData = [defaults objectForKey:@"channelFGDefaultColor"];
-	[channelFGColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelBGColor"];
-	[channelBGColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelListBGColor"];
-	[channelListBGColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelListFGNoActivityColor"];
-	[channelListFGNoActivityColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelListFGActionColor"];
-	[channelListFGActionColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelListFGPublicMessageColor"];
-	[channelListFGPublicMessageColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelListFGPrivateMessageColor"];
-	[channelListFGPrivateMessageColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListBGColor"];
-	[nickListBGColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGNormalColor"];
-	[nickListFGNormalColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGVoiceColor"];
-	[nickListFGVoiceColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGHalfOpColor"];
-	[nickListFGHalfOpColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGOpColor"];
-	[nickListFGOpColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGServerOpColor"];
-	[nickListFGServerOpColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"inputTextFieldFGColor"];
-	[inputTextFieldFGColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"inputTextFieldBGColor"];
-	[inputTextFieldBGColorWell setColor:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-	
 }
 
 #pragma mark Daemon Crap
@@ -1112,12 +942,7 @@
 		settings_set_str("real_name", tmp);
 	
 	free(tmp);
-	
-	/*****************
-   * Color	settings * 
-   ******************/
-	[self saveColorChanges];
-	
+		
 	/************************
    * Key bindings settings *
    ************************/
@@ -1170,7 +995,6 @@
 //-------------------------------------------------------------------
 - (IBAction)cancelChanges:(id)sender
 {
-	[self cancelColorChanges];
   [eventController cancelChanges];
 	[self close];
 }
