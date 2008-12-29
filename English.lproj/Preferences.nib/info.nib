@@ -3,22 +3,22 @@
 <plist version="1.0">
 <dict>
 	<key>IBFramework Version</key>
-	<string>672</string>
+	<string>677</string>
 	<key>IBLastKnownRelativeProjectPath</key>
 	<string>../MacIrssi.xcode</string>
 	<key>IBOldestOS</key>
 	<integer>5</integer>
 	<key>IBOpenObjects</key>
 	<array>
-		<integer>1758</integer>
-		<integer>1196</integer>
 		<integer>1531</integer>
+		<integer>1334</integer>
+		<integer>1758</integer>
 		<integer>1466</integer>
 		<integer>1006</integer>
-		<integer>1334</integer>
+		<integer>1196</integer>
 	</array>
 	<key>IBSystem Version</key>
-	<string>9F33</string>
+	<string>9G55</string>
 	<key>targetFramework</key>
 	<string>IBCocoaFramework</string>
 </dict>
