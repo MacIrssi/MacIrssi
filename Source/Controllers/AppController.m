@@ -1260,10 +1260,6 @@ char **argv;
   // Setup the event controller
   eventController = [[EventController alloc] init];
   
-  // Setup sparkle, we're gonna be delegate for sparkle routines. In particular, I want to stop the retarded quit message
-  // box appearing when sparkle tries to update the application.
-  [[SUUpdater sharedUpdater] setDelegate:self];
-  
   /* Register defaults */
   NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];
   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1279,6 +1275,10 @@ char **argv;
   
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults registerDefaults:dict];
+  
+  // Setup sparkle, we're gonna be delegate for sparkle routines. In particular, I want to stop the retarded quit message
+  // box appearing when sparkle tries to update the application.
+  [[SUUpdater sharedUpdater] setDelegate:self];
   
   /* Read settings */
   channelFont = [[NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelFont"]] retain];
