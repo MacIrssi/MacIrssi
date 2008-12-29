@@ -34,7 +34,6 @@ enum nickStatus {
 @interface ColorSet : NSObject {
 	/* Channel colors */
 	NSColor *channelFGDefaultColor;
-	NSMutableArray *channelFGColors;
 	NSColor *channelBGColor;
   NSColor *channelLinkColor;
 
@@ -51,7 +50,8 @@ enum nickStatus {
 	NSColor *inputTextFieldBGColor;
 }
 
-- (NSMutableArray *)channelFGColors;
++ (NSArray*)mircColours;
+
 - (NSMutableArray *)channelListFGColors;
 - (NSMutableArray *)nickListFGColors;
 

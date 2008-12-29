@@ -25,9 +25,26 @@
 
 @implementation ColorSet
 
-- (NSMutableArray *)channelFGColors
++ (NSArray*) mircColours
 {
-	return channelFGColors;
+  return [NSArray arrayWithObjects:
+          [NSColor blackColor],
+          [NSColor blueColor],
+          [NSColor greenColor],
+          [NSColor cyanColor],
+          [NSColor redColor],
+          [NSColor magentaColor],
+          [NSColor orangeColor],
+          [NSColor lightGrayColor],
+          [NSColor grayColor],
+          [NSColor blueColor], //light
+          [NSColor greenColor], //light
+          [NSColor cyanColor], //light
+          [NSColor redColor], //light
+          [NSColor magentaColor], //light
+          [NSColor yellowColor],
+          [NSColor whiteColor],
+          nil];
 }
 
 - (NSMutableArray *)channelListFGColors
@@ -147,23 +164,6 @@
 - (void)revertToDefaultColors
 {
 	/* Channel colors */
-	[channelFGColors removeAllObjects];
-	[channelFGColors addObject:[NSColor blackColor]];
-	[channelFGColors addObject:[NSColor blueColor]];
-	[channelFGColors addObject:[NSColor greenColor]];
-	[channelFGColors addObject:[NSColor cyanColor]];
-	[channelFGColors addObject:[NSColor redColor]];
-	[channelFGColors addObject:[NSColor magentaColor]];
-	[channelFGColors addObject:[NSColor orangeColor]];
-	[channelFGColors addObject:[NSColor lightGrayColor]];
-	[channelFGColors addObject:[NSColor grayColor]];
-	[channelFGColors addObject:[NSColor blueColor]]; //light
-	[channelFGColors addObject:[NSColor greenColor]]; //light
-	[channelFGColors addObject:[NSColor cyanColor]]; //light
-	[channelFGColors addObject:[NSColor redColor]]; //light
-	[channelFGColors addObject:[NSColor magentaColor]]; //light
-	[channelFGColors addObject:[NSColor yellowColor]];
-	[channelFGColors addObject:[NSColor whiteColor]];
 	channelFGDefaultColor = [[NSColor  colorWithCalibratedRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0] retain];
 	//channelBGColor = [[NSColor  colorWithCalibratedRed:41.0/255 green:41.0/255 blue:41.0/255 alpha:1.0] retain];
 	channelBGColor = [[NSColor  colorWithCalibratedRed:5.0/255 green:13.0/255 blue:25.0/255 alpha:0.92] retain];
@@ -272,7 +272,6 @@
 	
 	channelListFGColors = [[NSMutableArray alloc] init];
 	nickListFGColors = [[NSMutableArray alloc] init];
-	channelFGColors = [[NSMutableArray alloc] initWithCapacity:20];
 	[self revertToDefaultColors];
 	[self registerColorDefaults:FALSE];
 	
@@ -338,7 +337,6 @@
 	/* Channel colors */
 	[channelFGDefaultColor release];
 	[channelBGColor release];
-	[channelFGColors release];
 
 	/* Channel list colors */
 	[channelListBGColor release];

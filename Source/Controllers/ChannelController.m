@@ -757,7 +757,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
     [textAttributes setObject:defaultTextColor forKey:NSForegroundColorAttributeName];
   }
   else {
-    [textAttributes setObject:[fg_colors objectAtIndex:fg] forKey:NSForegroundColorAttributeName];
+    [textAttributes setObject:[[ColorSet mircColours] objectAtIndex:fg] forKey:NSForegroundColorAttributeName];
   }
   
 #if 0
@@ -1012,7 +1012,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   appController = ref;
   tabViewItem = newTabViewItem;
   colorSet = colors;
-  fg_colors = [colorSet channelFGColors];
   defaultTextColor = [[colorSet channelFGDefaultColor] retain];
   linkColor = [[colorSet channelLinkColor] retain];
   defaultColor = [[colorSet nickListFGColorOfStatus:normalStatus] retain];
@@ -1513,9 +1512,13 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
       
       /* Check foreground color */
       if (fg < 0 || fg > 15)
+      {
         [topicAttributes setObject:defaultTextColor forKey:NSForegroundColorAttributeName];
+      }
       else
-        [topicAttributes setObject:[fg_colors objectAtIndex:[mirc_colors[fg % 16]]] forKey:NSForegroundColorAttributeName];
+      {
+        [topicAttributes setObject:[[ColorSet mircColours] objectAtIndex:[mirc_colors[fg % 16]]] forKey:NSForegroundColorAttributeName];
+      }
 
       /* Check background color */
       if (bg < 0 || bg > 15)
