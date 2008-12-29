@@ -52,39 +52,37 @@ enum nickStatus {
 
 + (NSArray*)mircColours;
 
-- (NSMutableArray *)channelListFGColors;
-- (NSMutableArray *)nickListFGColors;
++ (void)registerDefaults;
++ (void)revertToDefaults;
 
-- (NSColor *)channelFGDefaultColor;
-- (void)setChannelFGDefaultColor:(NSColor *)newColor;
++ (NSArray*)channelListForegroundKeys;
++ (NSArray*)nickListForegroundKeys;
 
-- (NSColor *)channelBGColor;
-- (void)setChannelBGColor:(NSColor *)newColor;
++ (NSColor*)colorForKey:(NSString*)key;
++ (void)setColor:(NSColor*)color forKey:(NSString*)key;
 
-- (NSColor *)channelLinkColor;
-- (void)setChannelLinkColor:(NSColor *)newColor;
+#pragma mark Common Colour Accessors
 
-- (NSColor *)channelListBGColor;
-- (void)setChannelListBGColor:(NSColor *)newColor;
++ (NSColor*)channelForegroundColor;
++ (NSColor*)channelBackgroundColor;
++ (NSColor*)channelLinkColour;
 
-- (NSColor *)channelListFGColorOfLevel:(int)level;
-- (void)setChannelListFGColorOfLevel:(int)level toColor:(NSColor *)newColor;
++ (NSColor*)channelListBackgroundColor;
++ (NSColor*)channelListForegroundNoActivityColor;
++ (NSColor*)channelListForegroundActionColor;
++ (NSColor*)channelListForegroundPublicColor;
++ (NSColor*)channelListForegroundPrivateColor;
 
-- (NSColor *)nickListBGColor;
-- (void)setNickListBGColor:(NSColor *)newColor;
+// These are simply for ease-of-use, the ChannelController doesn't
+// actually need to access these colours as an array, makes the code nicer
++ (NSColor*)nickListBackgroundColor;
++ (NSColor*)nickListForegroundNormalColor;
++ (NSColor*)nickListForegroundVoiceColor;
++ (NSColor*)nickListForegroundHalfOpColor;
++ (NSColor*)nickListForegroundOpColor;
++ (NSColor*)nickListForegroundServerOpColor;
 
-- (NSColor *)nickListFGColorOfStatus:(enum nickStatus)status;
-- (void)setNickListFGColorOfStatus:(enum nickStatus)status toColor:(NSColor *)newColor;
-
-- (NSColor *)inputTextFieldFGColor;
-- (void)setInputTextFieldFGColor:(NSColor *)newColor;
-
-- (NSColor *)inputTextFieldBGColor;
-- (void)setInputTextFieldBGColor:(NSColor *)newColor;
-
-- (void)revertToDefaultColors;
-- (void)registerColorDefaults:(BOOL)revert;
-- (id)init;
-- (void)dealloc;
++ (NSColor*)inputTextForegroundColor;
++ (NSColor*)inputTextBackgroundColor;
 
 @end

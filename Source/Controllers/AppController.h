@@ -70,8 +70,6 @@ extern char **argv;
 	
 	ChannelController *currentChannelController;
 	EventController *eventController;
-	ColorSet *macIrssiColors;
-	NSMutableArray *highlightColors;
 	NSMutableDictionary *highlightAttributes;
 	NSString *queryObject;
 	BOOL timeToQuit;

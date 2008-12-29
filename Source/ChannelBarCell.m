@@ -3,6 +3,7 @@
 #import "ChannelController.h"
 #import "fe-windows.h"
 #import "servers.h"
+#import "ColorSet.h"
 
 @implementation ChannelBarCell
 
@@ -16,10 +17,6 @@
 	self = [super initWithFrame:frame];
   
 	highlightAttributes = [[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Monaco" size:9.0], NSFontAttributeName, nil] retain];
-	highlightColors[0] = [[NSColor whiteColor] retain];
-	highlightColors[1] = [[NSColor yellowColor] retain];
-	highlightColors[2] = [[NSColor orangeColor] retain];
-	highlightColors[3] = [[NSColor redColor] retain];
 	
 	//[self setDataLevel:rec->data_level];
 	isActive = false;
@@ -34,11 +31,6 @@
 /* Dealloc */
 - (void)dealloc
 {
-	int i;
-	
-	for (i = 0; i < 4; i++)
-		[highlightColors[i] release];
-	
 	[highlightAttributes release];
 	[bezierPath release];
 	[super dealloc];
@@ -208,7 +200,7 @@
       {
         dataLevel = 3;
       }
-      [highlightAttributes setObject:highlightColors[dataLevel] forKey:NSForegroundColorAttributeName];
+      [highlightAttributes setObject:[ColorSet colorForKey:[[ColorSet channelListForegroundKeys] objectAtIndex:dataLevel]] forKey:NSForegroundColorAttributeName];
     }
   }
 	

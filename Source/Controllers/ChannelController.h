@@ -130,17 +130,9 @@ enum nickContextMenuTags {
   NSMutableDictionary *textAttributes;
   NSMutableDictionary *topicAttributes;
   NSMutableDictionary *nickAttributes;
-  NSMutableArray *bg_colors;//TODO
   WINDOW_REC *windowRec;
   BOOL modeChanged;
   NSFont *channelFont;
-  NSColor *opColor;
-  NSColor *halfOpColor;
-  NSColor *voiceColor;
-  NSColor *defaultColor;
-  NSColor *serverOpColor;
-  NSColor *defaultTextColor;
-  NSColor *linkColor;
   
   NSColor *searchColor;
   NSColor *currentSearchMatchColor;
@@ -148,7 +140,6 @@ enum nickContextMenuTags {
   NSString *searchString;
   NSMutableArray *searchRanges;
   AppController *appController;
-  ColorSet *colorSet;
   NSMutableString *commandWithReason;
   char linebuf[MAX_LINE]; 
   int linebufIndex;
