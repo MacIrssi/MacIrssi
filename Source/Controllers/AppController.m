@@ -54,23 +54,23 @@ char **argv;
 #pragma mark IBAction methods
 - (IBAction)findNext:(id)sender
 {
-	[currentChannelController moveToNextSearchMatch];
+  [currentChannelController moveToNextSearchMatch];
 }
 
 - (IBAction)findPrevious:(id)sender
 {
-	[currentChannelController moveToPreviousSearchMatch];
+  [currentChannelController moveToPreviousSearchMatch];
 }
 
 - (IBAction)useSelectionForFind:(id)sender
 {
-	if (![[mainWindow firstResponder] isKindOfClass:[NSTextView class]])
-		return;
-	
-	NSTextView *textView = (NSTextView *)[mainWindow firstResponder];
-	NSString *selectedText = [[textView string] substringWithRange:[textView selectedRange]];
-	
-	[currentChannelController searchForString:selectedText];
+  if (![[mainWindow firstResponder] isKindOfClass:[NSTextView class]])
+    return;
+  
+  NSTextView *textView = (NSTextView *)[mainWindow firstResponder];
+  NSString *selectedText = [[textView string] substringWithRange:[textView selectedRange]];
+  
+  [currentChannelController searchForString:selectedText];
 }
 
 //-------------------------------------------------------------------
@@ -81,7 +81,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)editCurrentChannel:(id)sender
 {
-	[currentChannelController raiseTopicWindow:sender];
+  [currentChannelController raiseTopicWindow:sender];
 }
 
 //-------------------------------------------------------------------
@@ -92,7 +92,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)makeSearchFieldFirstResponder:(id)sender
 {
-	[currentChannelController makeSearchFieldFirstResponder];
+  [currentChannelController makeSearchFieldFirstResponder];
 }
 
 //-------------------------------------------------------------------
@@ -103,24 +103,24 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)performShortcut:(id)sender
 {
-	if (!shortcutCommands)
-		return;
-	
-	WINDOW_REC *rec = [currentChannelController windowRec];
-	NSArray *commands = [shortcutCommands[[sender tag]] componentsSeparatedByString:@";"];
-	NSEnumerator *enumerator = [commands objectEnumerator];
-	NSString *command;
-	char *tmp, *tmp2;
-	
-	while (command = [enumerator nextObject]) {
-		tmp2 = tmp = [IrssiBridge irssiCStringWithString:command];
-		
-		/* Skip whitespaces */
-		while (*tmp2 == ' ')
-			tmp2++;
-		signal_emit("send command", 3, tmp2, rec->active_server, rec->active);
-		free(tmp);
-	}
+  if (!shortcutCommands)
+    return;
+  
+  WINDOW_REC *rec = [currentChannelController windowRec];
+  NSArray *commands = [shortcutCommands[[sender tag]] componentsSeparatedByString:@";"];
+  NSEnumerator *enumerator = [commands objectEnumerator];
+  NSString *command;
+  char *tmp, *tmp2;
+  
+  while (command = [enumerator nextObject]) {
+    tmp2 = tmp = [IrssiBridge irssiCStringWithString:command];
+    
+    /* Skip whitespaces */
+    while (*tmp2 == ' ')
+      tmp2++;
+    signal_emit("send command", 3, tmp2, rec->active_server, rec->active);
+    free(tmp);
+  }
 }
 
 
@@ -132,8 +132,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)showFontPanel:(id)sender
 {
-	[[NSFontManager sharedFontManager] orderFrontFontPanel:sender];
-	[[NSFontManager sharedFontManager] setSelectedFont:channelFont isMultiple:FALSE];
+  [[NSFontManager sharedFontManager] orderFrontFontPanel:sender];
+  [[NSFontManager sharedFontManager] setSelectedFont:channelFont isMultiple:FALSE];
 }
 
 
@@ -146,10 +146,10 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)gotoChannel:(id)sender
 {
-	WINDOW_REC *tmp = [currentChannelController windowRec];
-	int index = [channelMenu indexOfItem:sender] - 7;
-	NSString *cmd = [NSString stringWithFormat:@"/window %d", index];
-	signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], tmp->active_server, tmp->active);
+  WINDOW_REC *tmp = [currentChannelController windowRec];
+  int index = [channelMenu indexOfItem:sender] - 7;
+  NSString *cmd = [NSString stringWithFormat:@"/window %d", index];
+  signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], tmp->active_server, tmp->active);
 }
 
 
@@ -161,25 +161,25 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)activeChannel:(id)sender
 {
-	WINDOW_REC *tmp = [currentChannelController windowRec];
-	signal_emit("command window goto", 3, "active", tmp->active_server, tmp->active);
+  WINDOW_REC *tmp = [currentChannelController windowRec];
+  signal_emit("command window goto", 3, "active", tmp->active_server, tmp->active);
 }
 
 - (NSArray *)splitCommand:(NSString *)command
 {
-	int i, j;
-	NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:100];
-	NSArray *firstSplit = [command componentsSeparatedByString:@"\n"];
-	for (i = 0; i < [firstSplit count]; i++) {
-		
-		/* Also need to remove carriage returns */
-		NSArray *secondSplit = [[firstSplit objectAtIndex:i] componentsSeparatedByString:@"\r"];
-		
-		for (j = 0; j < [secondSplit count]; j++)
-			[commands addObject:[secondSplit objectAtIndex:j]];
-	}
-	
-	return [commands autorelease];
+  int i, j;
+  NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:100];
+  NSArray *firstSplit = [command componentsSeparatedByString:@"\n"];
+  for (i = 0; i < [firstSplit count]; i++) {
+    
+    /* Also need to remove carriage returns */
+    NSArray *secondSplit = [[firstSplit objectAtIndex:i] componentsSeparatedByString:@"\r"];
+    
+    for (j = 0; j < [secondSplit count]; j++)
+      [commands addObject:[secondSplit objectAtIndex:j]];
+  }
+  
+  return [commands autorelease];
 }
 
 //-------------------------------------------------------------------
@@ -190,40 +190,40 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)sendCommand:(id)sender
 {
-	int i;
-	NSString *cmd = [NSString stringWithString:[sender string]];
-	
-	if ([cmd length] == 0)
-		return;
-	
-	WINDOW_REC *rec = [currentChannelController windowRec];
-	[[currentChannelController commandHistory] addCommand:cmd];
-	
-	NSArray *commands = [self splitCommand:cmd];
-	
-	/* Check with user before sending multiple lines */
-	if ([commands count] > PASTE_WARNING_THRESHOLD) {
-		int button = [[NSAlert alertWithMessageText:@"Confirmation request" defaultButton:@"Ok" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you really want to paste %d lines?", [commands count]] runModal];
-		
-		if (button == 0)
-			return;
-	}
+  int i;
+  NSString *cmd = [NSString stringWithString:[sender string]];
+  
+  if ([cmd length] == 0)
+    return;
+  
+  WINDOW_REC *rec = [currentChannelController windowRec];
+  [[currentChannelController commandHistory] addCommand:cmd];
+  
+  NSArray *commands = [self splitCommand:cmd];
+  
+  /* Check with user before sending multiple lines */
+  if ([commands count] > PASTE_WARNING_THRESHOLD) {
+    int button = [[NSAlert alertWithMessageText:@"Confirmation request" defaultButton:@"Ok" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you really want to paste %d lines?", [commands count]] runModal];
+    
+    if (button == 0)
+      return;
+  }
   
   [sender setString:@""];
-	
-	for (i = 0; i < [commands count]; i++) {
-		/* Test if clear command (special case) */
-		if ([[commands objectAtIndex:i] isEqualToString:@"/clear"]) {
-			[currentChannelController clearTextView];
-			continue;
-		}
-		
-		/* Else normal command */
-		CFStringEncoding currentEncoding = [currentChannelController textEncoding];
-		char *tmp = [IrssiBridge irssiCStringWithString:[commands objectAtIndex:i] encoding:currentEncoding];
-		signal_emit("send command", 3, tmp, rec->active_server, rec->active);
-		free(tmp);
-	}
+  
+  for (i = 0; i < [commands count]; i++) {
+    /* Test if clear command (special case) */
+    if ([[commands objectAtIndex:i] isEqualToString:@"/clear"]) {
+      [currentChannelController clearTextView];
+      continue;
+    }
+    
+    /* Else normal command */
+    CFStringEncoding currentEncoding = [currentChannelController textEncoding];
+    char *tmp = [IrssiBridge irssiCStringWithString:[commands objectAtIndex:i] encoding:currentEncoding];
+    signal_emit("send command", 3, tmp, rec->active_server, rec->active);
+    free(tmp);
+  }
 }
 
 #if 0
@@ -235,19 +235,19 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)paste:(id)sender
 {
-	if (![mainWindow isKeyWindow]) {
-		[[[NSApp keyWindow] fieldEditor:FALSE forObject:nil] paste:sender];
-		return;
-	}
-	
-	if (![[mainWindow firstResponder] respondsToSelector:@selector(isDescendantOf:)] || ![(NSTextView *)[mainWindow firstResponder] isDescendantOf:inputTextField]) {
-		NSRange tmp;
-		[mainWindow makeFirstResponder:inputTextField];
-		tmp.location = [[(NSTextView *)[mainWindow firstResponder] textStorage] length];
-		[(NSTextView *)[mainWindow firstResponder] setSelectedRange:tmp];
-	}
-	
-	[[mainWindow fieldEditor:FALSE forObject:nil] paste:sender];
+  if (![mainWindow isKeyWindow]) {
+    [[[NSApp keyWindow] fieldEditor:FALSE forObject:nil] paste:sender];
+    return;
+  }
+  
+  if (![[mainWindow firstResponder] respondsToSelector:@selector(isDescendantOf:)] || ![(NSTextView *)[mainWindow firstResponder] isDescendantOf:inputTextField]) {
+    NSRange tmp;
+    [mainWindow makeFirstResponder:inputTextField];
+    tmp.location = [[(NSTextView *)[mainWindow firstResponder] textStorage] length];
+    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:tmp];
+  }
+  
+  [[mainWindow fieldEditor:FALSE forObject:nil] paste:sender];
 }
 #endif
 
@@ -265,9 +265,9 @@ char **argv;
     [[NSApp keyWindow] close];
     return;
   }
-	
-	WINDOW_REC *tmp = [currentChannelController windowRec];
-	signal_emit("command window close", 3, "", tmp->active_server, tmp->active);
+  
+  WINDOW_REC *tmp = [currentChannelController windowRec];
+  signal_emit("command window close", 3, "", tmp->active_server, tmp->active);
 }
 
 //-------------------------------------------------------------------
@@ -278,8 +278,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)nextChannel:(id)sender
 {
-	WINDOW_REC *tmp = [currentChannelController windowRec];
-	signal_emit("command window next", 3, "", tmp->active_server, tmp->active);
+  WINDOW_REC *tmp = [currentChannelController windowRec];
+  signal_emit("command window next", 3, "", tmp->active_server, tmp->active);
 }
 
 
@@ -291,8 +291,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)previousChannel:(id)sender
 {
-	WINDOW_REC *tmp = [currentChannelController windowRec];
-	signal_emit("command window previous", 3, "", tmp->active_server, tmp->active);
+  WINDOW_REC *tmp = [currentChannelController windowRec];
+  signal_emit("command window previous", 3, "", tmp->active_server, tmp->active);
 }
 
 
@@ -304,14 +304,14 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)endReasonWindow:(id)sender
 {
-	[reasonWindow orderOut:sender];
-	[NSApp endSheet:reasonWindow returnCode:1];
-	if ([[sender title] isEqual:@"Ok"]) {
-		NSString *str = [reasonTextField stringValue];
-		signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:str]);
-		[NSApp replyToApplicationShouldTerminate:YES];
-	}
-	[reasonTextField setStringValue:@""];
+  [reasonWindow orderOut:sender];
+  [NSApp endSheet:reasonWindow returnCode:1];
+  if ([[sender title] isEqual:@"Ok"]) {
+    NSString *str = [reasonTextField stringValue];
+    signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:str]);
+    [NSApp replyToApplicationShouldTerminate:YES];
+  }
+  [reasonTextField setStringValue:@""];
 }
 
 //-------------------------------------------------------------------
@@ -322,10 +322,10 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)endErrorWindow:(id)sender
 {
-	[errorWindow orderOut:sender];
-	[NSApp endSheet:errorWindow returnCode:1];
-	
-	if ([[sender title] isEqual:@"Quit"])
+  [errorWindow orderOut:sender];
+  [NSApp endSheet:errorWindow returnCode:1];
+  
+  if ([[sender title] isEqual:@"Quit"])
   {
     signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"]]);
   }
@@ -339,21 +339,21 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)showPreferencePanel:(id)sender
 {
-	PreferenceViewController *preferenceController = [[PreferenceViewController alloc] initWithColorSet:macIrssiColors appController:self];	
-	[preferenceController showWindow:self];
+  PreferenceViewController *preferenceController = [[PreferenceViewController alloc] initWithColorSet:macIrssiColors appController:self]; 
+  [preferenceController showWindow:self];
 }
 
 - (IBAction)showAbout:(id)sender
 {
-	[aboutVersionLabel setStringValue:[NSString stringWithFormat:@"Version %@ (Build %@)", 
-									   [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
-									   [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSGitRevision"]]];
-	
-	[copyrightTextView setString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]];
-	[copyrightTextView setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [[copyrightTextView textStorage] length])];
-	
-	[aboutBox center];
-	[aboutBox makeKeyAndOrderFront:sender];
+  [aboutVersionLabel setStringValue:[NSString stringWithFormat:@"Version %@ (Build %@)", 
+                     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
+                     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSGitRevision"]]];
+  
+  [copyrightTextView setString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]];
+  [copyrightTextView setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [[copyrightTextView textStorage] length])];
+  
+  [aboutBox center];
+  [aboutBox makeKeyAndOrderFront:sender];
 }
 
 - (IBAction)debugAction1:(id)sender
@@ -364,7 +364,7 @@ char **argv;
 
 - (IBAction)debugAction2:(id)sender
 {
-	[[ConnectivityMonitor sharedMonitor] workspaceDidWake:nil];
+  [[ConnectivityMonitor sharedMonitor] workspaceDidWake:nil];
 }
 
 
@@ -377,8 +377,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)highlightChanged:(WINDOW_REC*)wind
 {
-	[channelTableView reloadData];
-	[channelBar setNeedsDisplay:TRUE];
+  [channelTableView reloadData];
+  [channelBar setNeedsDisplay:TRUE];
 }
 
 
@@ -392,17 +392,17 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old
 {
-	if (wind->data_level > 2 && old <= 2) {
-		/* Notify user by changing icon */
-		hilightChannels++;
-		[self setIcon:iconOnPriv];
-	}
-	else if (wind->data_level == 0 && old > 2) {
-		/* Check if all notified channels have been visited */
-		hilightChannels--;
-		if (hilightChannels == 0)
-			[self setIcon:defaultIcon];
-	}
+  if (wind->data_level > 2 && old <= 2) {
+    /* Notify user by changing icon */
+    hilightChannels++;
+    [self setIcon:iconOnPriv];
+  }
+  else if (wind->data_level == 0 && old > 2) {
+    /* Check if all notified channels have been visited */
+    hilightChannels--;
+    if (hilightChannels == 0)
+      [self setIcon:defaultIcon];
+  }
 }
 
 
@@ -415,12 +415,12 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)setServer:(NSString *)serverName
 {
-	NSString *tmp = [NSString stringWithFormat:@"Console [%@]", serverName];
-	[[channelMenu itemAtIndex:8] setTitle:tmp];
-	ChannelController *c = (ChannelController *)[[tabView tabViewItemAtIndex:0] identifier];
-	[c setName:tmp];
-	[channelTableView reloadData];
-	[channelBar setNeedsDisplay:TRUE];
+  NSString *tmp = [NSString stringWithFormat:@"Console [%@]", serverName];
+  [[channelMenu itemAtIndex:8] setTitle:tmp];
+  ChannelController *c = (ChannelController *)[[tabView tabViewItemAtIndex:0] identifier];
+  [c setName:tmp];
+  [channelTableView reloadData];
+  [channelBar setNeedsDisplay:TRUE];
 }
 
 //-------------------------------------------------------------------
@@ -431,50 +431,50 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)newTabWithWindowRec:(WINDOW_REC *)wind
 {
-	ChannelController *owner = [[ChannelController alloc] initWithWindowRec:wind];
-	
-	NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:owner];
-	
-	if (![NSBundle loadNibNamed:@"Tab new.nib" owner:owner]) {
-		[owner release];
-		printf("can't load Tab new.nib\n");
-		return;
-	}
-	
-	/* Set references */
-	[owner setTabViewItem:tabViewItem colors:macIrssiColors appController:self];
-	
-	wind->gui_data = (void *)owner;
-	wind->width = 80;
-	wind->height = 24;
-	
-	NSString *label;
-	
-	if (queryObject) {
-		label = queryObject;
-		queryObject = nil;
-	}
-	else if ([tabView numberOfTabViewItems] == 0)
-		label = @"Console [Not connected]";
-	else
-		label = @"joining...";
-	
-	[(ChannelController *)[tabViewItem identifier] setName:label];
-	[tabViewItem setView:[owner view]];
-	[tabView addTabViewItem:tabViewItem];
-	[channelBar addChannel:wind];
-	
-	/* Update up channel menu */
-	int channelCount = [tabView numberOfTabViewItems];
-	NSString *keyEquivalent = (channelCount < 10) ? [[NSNumber numberWithInt:channelCount] stringValue] : @"";
-	NSMenuItem *newMenuItem = [[NSMenuItem alloc] initWithTitle:label action:@selector(gotoChannel:) keyEquivalent:keyEquivalent];
-	[newMenuItem setTarget:self];
-	[channelMenu addItem:newMenuItem];
-	[newMenuItem release];
-	[owner release];
-	[tabViewItem release];
-	[channelTableView reloadData];
-	[channelBar setNeedsDisplay:TRUE];
+  ChannelController *owner = [[ChannelController alloc] initWithWindowRec:wind];
+  
+  NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:owner];
+  
+  if (![NSBundle loadNibNamed:@"Tab new.nib" owner:owner]) {
+    [owner release];
+    printf("can't load Tab new.nib\n");
+    return;
+  }
+  
+  /* Set references */
+  [owner setTabViewItem:tabViewItem colors:macIrssiColors appController:self];
+  
+  wind->gui_data = (void *)owner;
+  wind->width = 80;
+  wind->height = 24;
+  
+  NSString *label;
+  
+  if (queryObject) {
+    label = queryObject;
+    queryObject = nil;
+  }
+  else if ([tabView numberOfTabViewItems] == 0)
+    label = @"Console [Not connected]";
+  else
+    label = @"joining...";
+  
+  [(ChannelController *)[tabViewItem identifier] setName:label];
+  [tabViewItem setView:[owner view]];
+  [tabView addTabViewItem:tabViewItem];
+  [channelBar addChannel:wind];
+  
+  /* Update up channel menu */
+  int channelCount = [tabView numberOfTabViewItems];
+  NSString *keyEquivalent = (channelCount < 10) ? [[NSNumber numberWithInt:channelCount] stringValue] : @"";
+  NSMenuItem *newMenuItem = [[NSMenuItem alloc] initWithTitle:label action:@selector(gotoChannel:) keyEquivalent:keyEquivalent];
+  [newMenuItem setTarget:self];
+  [channelMenu addItem:newMenuItem];
+  [newMenuItem release];
+  [owner release];
+  [tabViewItem release];
+  [channelTableView reloadData];
+  [channelBar setNeedsDisplay:TRUE];
 }
 
 
@@ -487,48 +487,48 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)windowChanged:(WINDOW_REC*)wind withOldWind:(WINDOW_REC*)oldwind
 {
-	currentChannelController = (ChannelController *)(wind->gui_data);
-	NSTextView *textView = [currentChannelController mainTextView];
-	NSRange endRange;
+  currentChannelController = (ChannelController *)(wind->gui_data);
+  NSTextView *textView = [currentChannelController mainTextView];
+  NSRange endRange;
   
-	/* Since we only update the scrollbar of the front window we must save it's
-	 state when we switch. Likewise we must also update the new front window with 
-	 the status it had when it last was active */
-	if (oldwind)
-	{
-		ChannelController *oldWindowController = (ChannelController *)(oldwind->gui_data);
-		[oldWindowController saveScrollState];
-		[oldWindowController setPartialCommand:[NSString stringWithString:[inputTextField string]]];
-	}
-	
-	if ([currentChannelController scrollState]) {
-		endRange.location = [[textView textStorage] length];
-		endRange.length = 0;
-		[textView scrollRangeToVisible:endRange];
-	}
-	
-	/* Do the window switch */
-	NSTabViewItem *tmp = [currentChannelController tabViewItem];
-	[(CustomWindow *)[tabView window] setCurrentChannelTextView:textView];
-	[tabView selectTabViewItem:tmp];
-	[channelBar selectCellWithWindowRec:wind];
-	[channelTableView selectRow:[tabView indexOfTabViewItem:tmp] byExtendingSelection:FALSE];
+  /* Since we only update the scrollbar of the front window we must save it's
+   state when we switch. Likewise we must also update the new front window with 
+   the status it had when it last was active */
+  if (oldwind)
+  {
+    ChannelController *oldWindowController = (ChannelController *)(oldwind->gui_data);
+    [oldWindowController saveScrollState];
+    [oldWindowController setPartialCommand:[NSString stringWithString:[inputTextField string]]];
+  }
+  
+  if ([currentChannelController scrollState]) {
+    endRange.location = [[textView textStorage] length];
+    endRange.length = 0;
+    [textView scrollRangeToVisible:endRange];
+  }
+  
+  /* Do the window switch */
+  NSTabViewItem *tmp = [currentChannelController tabViewItem];
+  [(CustomWindow *)[tabView window] setCurrentChannelTextView:textView];
+  [tabView selectTabViewItem:tmp];
+  [channelBar selectCellWithWindowRec:wind];
+  [channelTableView selectRow:[tabView indexOfTabViewItem:tmp] byExtendingSelection:FALSE];
   [currentChannelController setWaitingEvents:0];
-	
-	NSRange r;
-	if ([[mainWindow firstResponder] isMemberOfClass:[NSTextView class]]) {
-		r = [(NSTextView *)[mainWindow firstResponder] selectedRange];
-		[mainWindow makeFirstResponder:inputTextField];
-		[(NSTextView *)[mainWindow firstResponder] setSelectedRange:r];
-	}
-	else
-		[mainWindow makeFirstResponder:inputTextField];
-	
-	if ([currentChannelController partialCommand])
-	{
-		[inputTextField setString:[currentChannelController partialCommand]];
-		[(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[currentChannelController partialCommand] length], 0)];
-	}
+  
+  NSRange r;
+  if ([[mainWindow firstResponder] isMemberOfClass:[NSTextView class]]) {
+    r = [(NSTextView *)[mainWindow firstResponder] selectedRange];
+    [mainWindow makeFirstResponder:inputTextField];
+    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:r];
+  }
+  else
+    [mainWindow makeFirstResponder:inputTextField];
+  
+  if ([currentChannelController partialCommand])
+  {
+    [inputTextField setString:[currentChannelController partialCommand]];
+    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[currentChannelController partialCommand] length], 0)];
+  }
   else
   {
     [inputTextField setString:@""];
@@ -553,20 +553,20 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)removeTabWithWindowRec:(WINDOW_REC *)wind
 {
-	NSTabViewItem *tmp = [(ChannelController *)(wind->gui_data) tabViewItem];
-	
-	/* Fix channel menu */
-	int i, index = [tabView indexOfTabViewItem:tmp] + 8;
-	[channelMenu removeItemAtIndex:index];
-	for (i = index; i < 10+7 && i < [channelMenu numberOfItems]; i++)
-		[[channelMenu itemAtIndex:i] setKeyEquivalent:[[NSNumber numberWithInt:i-7] stringValue]];
-	
-	
-	[channelBar removeChannel:wind];
-	[tabView removeTabViewItem:tmp];
-	
-	[channelTableView reloadData];
-	[channelBar setNeedsDisplay:TRUE];
+  NSTabViewItem *tmp = [(ChannelController *)(wind->gui_data) tabViewItem];
+  
+  /* Fix channel menu */
+  int i, index = [tabView indexOfTabViewItem:tmp] + 8;
+  [channelMenu removeItemAtIndex:index];
+  for (i = index; i < 10+7 && i < [channelMenu numberOfItems]; i++)
+    [[channelMenu itemAtIndex:i] setKeyEquivalent:[[NSNumber numberWithInt:i-7] stringValue]];
+  
+  
+  [channelBar removeChannel:wind];
+  [tabView removeTabViewItem:tmp];
+  
+  [channelTableView reloadData];
+  [channelBar setNeedsDisplay:TRUE];
 }
 
 
@@ -580,7 +580,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)queryCreated:(QUERY_REC *)qr automatically:(int)automatic
 {
-	queryObject = [[NSString alloc] initWithCString:qr->name];
+  queryObject = [[NSString alloc] initWithCString:qr->name];
 }
 
 
@@ -592,12 +592,12 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)channelJoined:(WINDOW_REC *)rec
 {
-	NSTabViewItem *tmp = [(ChannelController *)(rec->gui_data) tabViewItem];
-	int index = [tabView indexOfTabViewItem:tmp];
-	NSString *channelName = [(ChannelController *)(rec->gui_data) name];
-	[[channelMenu itemAtIndex:index+8] setTitle:channelName];
-	[channelTableView reloadData];
-	[channelBar setNeedsDisplay:TRUE];
+  NSTabViewItem *tmp = [(ChannelController *)(rec->gui_data) tabViewItem];
+  int index = [tabView indexOfTabViewItem:tmp];
+  NSString *channelName = [(ChannelController *)(rec->gui_data) name];
+  [[channelMenu itemAtIndex:index+8] setTitle:channelName];
+  [channelTableView reloadData];
+  [channelBar setNeedsDisplay:TRUE];
 }
 
 
@@ -607,152 +607,152 @@ char **argv;
  */
 - (void)loadTheme:(NSString *)theme
 {
-	WINDOW_REC *rec = [currentChannelController windowRec];
-	NSString *cmd = [NSString stringWithFormat:@"/set theme %@", theme];
-	signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);			
+  WINDOW_REC *rec = [currentChannelController windowRec];
+  NSString *cmd = [NSString stringWithFormat:@"/set theme %@", theme];
+  signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);      
 }
 
 - (void)useHorizontalChannelBar:(BOOL)b
 {
-	if (b && [channelBar isHidden]) {
-		NSRect frame = [tabView frame];
-		frame.size.height -= 21;
-		[tabView setFrame:frame];
-		[tabView setNeedsDisplay:TRUE];
-		
-		[channelBar setHidden:FALSE];
-		[channelBar setNeedsDisplay:TRUE];
-	}
-	else if (!b && ![channelBar isHidden]) {
-		NSRect frame = [tabView frame];
-		frame.size.height += 21;
-		[tabView setFrame:frame];
-		[tabView setNeedsDisplay:TRUE];
-		[channelBar setHidden:TRUE];
-	}
-	
+  if (b && [channelBar isHidden]) {
+    NSRect frame = [tabView frame];
+    frame.size.height -= 21;
+    [tabView setFrame:frame];
+    [tabView setNeedsDisplay:TRUE];
+    
+    [channelBar setHidden:FALSE];
+    [channelBar setNeedsDisplay:TRUE];
+  }
+  else if (!b && ![channelBar isHidden]) {
+    NSRect frame = [tabView frame];
+    frame.size.height += 21;
+    [tabView setFrame:frame];
+    [tabView setNeedsDisplay:TRUE];
+    [channelBar setHidden:TRUE];
+  }
+  
 }
 
 - (void)useVerticalChannelBar:(BOOL)b
 {
-	
-	if (b && [channelTableView isHidden]) {
-		
-		NSRect frame = [tabView frame];
-		
-		/* Resize tab view */
-		frame.size.width -= 160;
-		frame.origin.x += 160;
-		
-		[tabView retain];
-		[tabView removeFromSuperview];
-		[tabView setFrame:frame];
-		[[mainWindow contentView] addSubview:tabView];
-		[tabView release];
-		[tabView setNeedsDisplay:TRUE];
-		
-		/* Resize channel bar */	
-		frame = [channelBar frame];
-		frame.size.width -= 160;
-		frame.origin.x += 160;
-		
-		[channelBar retain];
-		[channelBar removeFromSuperview];
-		[channelBar setFrame:frame];
-		[[mainWindow contentView] addSubview:channelBar];
-		[channelBar release];
-		[channelBar setNeedsDisplay:TRUE];
-		
-		/* Resize input field */	
-		frame = [box frame];
-		frame.size.width -= 160;
-		frame.origin.x += 160;
-		
-		[box retain];
-		[box removeFromSuperview];
-		[box setFrame:frame];
-		[[mainWindow contentView] addSubview:box];
-		[box release];
-		[box setNeedsDisplay:TRUE];
-		[inputTextField setNeedsDisplay:TRUE];
-		
-		[coverView removeFromSuperview];	
-		[channelTableView setHidden:FALSE];
-		[channelTableView setNeedsDisplay:TRUE];
-	}
-	else if (!b && ![channelTableView isHidden]) {
-		
-		[channelTableView setHidden:TRUE];
-		NSRect frame = [tabView frame];
-		
-		/* Resize tab view */
-		frame.size.width += 160;
-		frame.origin.x -= 160;
-		
-		[tabView retain];
-		[tabView removeFromSuperview];
-		[tabView setFrame:frame];
-		[[mainWindow contentView] addSubview:tabView];
-		[tabView release];
-		[tabView setNeedsDisplay:TRUE];
-		
-		/* Resize channel bar */	
-		frame = [channelBar frame];
-		frame.size.width += 160;
-		frame.origin.x -= 160;
-		
-		[channelBar retain];
-		[channelBar removeFromSuperview];
-		[channelBar setFrame:frame];
-		[[mainWindow contentView] addSubview:channelBar];
-		[channelBar release];
-		[channelBar setNeedsDisplay:TRUE];
-		
-		/* Resize input field */
-		frame = [channelTableView frame];
-		frame.size.width += 1;
-		frame.size.height -= [tabView frame].size.height + [channelBar frame].size.height;
-		
-		coverView = [[CoverView alloc] initWithFrame:frame];
-		[[mainWindow contentView] addSubview:coverView];
-		[coverView setNeedsDisplay:TRUE];
-		[coverView release];
-		
-		frame = [box frame];
-		frame.size.width += 160;
-		frame.origin.x -= 160;
-		
-		[box retain];
-		[box removeFromSuperview];
-		[box setFrame:frame];
-		[[mainWindow contentView] addSubview:box];
-		[box release];
-		[box setNeedsDisplay:TRUE];
-		[inputTextField setNeedsDisplay:TRUE];
-		
-	}
+  
+  if (b && [channelTableView isHidden]) {
+    
+    NSRect frame = [tabView frame];
+    
+    /* Resize tab view */
+    frame.size.width -= 160;
+    frame.origin.x += 160;
+    
+    [tabView retain];
+    [tabView removeFromSuperview];
+    [tabView setFrame:frame];
+    [[mainWindow contentView] addSubview:tabView];
+    [tabView release];
+    [tabView setNeedsDisplay:TRUE];
+    
+    /* Resize channel bar */  
+    frame = [channelBar frame];
+    frame.size.width -= 160;
+    frame.origin.x += 160;
+    
+    [channelBar retain];
+    [channelBar removeFromSuperview];
+    [channelBar setFrame:frame];
+    [[mainWindow contentView] addSubview:channelBar];
+    [channelBar release];
+    [channelBar setNeedsDisplay:TRUE];
+    
+    /* Resize input field */  
+    frame = [box frame];
+    frame.size.width -= 160;
+    frame.origin.x += 160;
+    
+    [box retain];
+    [box removeFromSuperview];
+    [box setFrame:frame];
+    [[mainWindow contentView] addSubview:box];
+    [box release];
+    [box setNeedsDisplay:TRUE];
+    [inputTextField setNeedsDisplay:TRUE];
+    
+    [coverView removeFromSuperview];  
+    [channelTableView setHidden:FALSE];
+    [channelTableView setNeedsDisplay:TRUE];
+  }
+  else if (!b && ![channelTableView isHidden]) {
+    
+    [channelTableView setHidden:TRUE];
+    NSRect frame = [tabView frame];
+    
+    /* Resize tab view */
+    frame.size.width += 160;
+    frame.origin.x -= 160;
+    
+    [tabView retain];
+    [tabView removeFromSuperview];
+    [tabView setFrame:frame];
+    [[mainWindow contentView] addSubview:tabView];
+    [tabView release];
+    [tabView setNeedsDisplay:TRUE];
+    
+    /* Resize channel bar */  
+    frame = [channelBar frame];
+    frame.size.width += 160;
+    frame.origin.x -= 160;
+    
+    [channelBar retain];
+    [channelBar removeFromSuperview];
+    [channelBar setFrame:frame];
+    [[mainWindow contentView] addSubview:channelBar];
+    [channelBar release];
+    [channelBar setNeedsDisplay:TRUE];
+    
+    /* Resize input field */
+    frame = [channelTableView frame];
+    frame.size.width += 1;
+    frame.size.height -= [tabView frame].size.height + [channelBar frame].size.height;
+    
+    coverView = [[CoverView alloc] initWithFrame:frame];
+    [[mainWindow contentView] addSubview:coverView];
+    [coverView setNeedsDisplay:TRUE];
+    [coverView release];
+    
+    frame = [box frame];
+    frame.size.width += 160;
+    frame.origin.x -= 160;
+    
+    [box retain];
+    [box removeFromSuperview];
+    [box setFrame:frame];
+    [[mainWindow contentView] addSubview:box];
+    [box release];
+    [box setNeedsDisplay:TRUE];
+    [inputTextField setNeedsDisplay:TRUE];
+    
+  }
 }
 
 - (void)setChannelNavigationShortcuts:(int)direction
 {
-	if (direction == 0) // up/down
-	{
-		NSMenuItem *upItem = [channelMenu itemWithTitle:@"Previous"];
-		NSMenuItem *downItem = [channelMenu itemWithTitle:@"Next"];
-		unichar keyCode = 0xf700; // up
-		[upItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
-		keyCode = 0xf701;
-		[downItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
-	}
-	else
-	{
-		NSMenuItem *leftItem = [channelMenu itemWithTitle:@"Previous"];
-		NSMenuItem *rightItem = [channelMenu itemWithTitle:@"Next"];
-		unichar keyCode = 0xf702; // left;
-		[leftItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
-		keyCode= 0xf703; // right
-		[rightItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
-	}
+  if (direction == 0) // up/down
+  {
+    NSMenuItem *upItem = [channelMenu itemWithTitle:@"Previous"];
+    NSMenuItem *downItem = [channelMenu itemWithTitle:@"Next"];
+    unichar keyCode = 0xf700; // up
+    [upItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
+    keyCode = 0xf701;
+    [downItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
+  }
+  else
+  {
+    NSMenuItem *leftItem = [channelMenu itemWithTitle:@"Previous"];
+    NSMenuItem *rightItem = [channelMenu itemWithTitle:@"Next"];
+    unichar keyCode = 0xf702; // left;
+    [leftItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
+    keyCode= 0xf703; // right
+    [rightItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
+  }
 }
 
 //-------------------------------------------------------------------
@@ -764,9 +764,9 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)presentUnexpectedEvent:(NSString *)description
 {
-	[mainWindow orderFront:self];
-	[errorTextField setStringValue:description];
-	[NSApp beginSheet:errorWindow modalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+  [mainWindow orderFront:self];
+  [errorTextField setStringValue:description];
+  [NSApp beginSheet:errorWindow modalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
 }
 
 
@@ -778,27 +778,27 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)setShortcutCommands:(NSString **)commands
 {
-	if (!commands)
-		return;
-	
-	shortcutCommands = commands;
-	
-	NSMenuItem *menuItem;
-	int i;
-	
-	for (i = 0; i < 12; i++) {
-		menuItem = (NSMenuItem *)[shortcutsMenu itemAtIndex:i];
-		if (!commands[i] || [commands[i] length] == 0) {
-			[menuItem setTitle:@"Nothing"];
-			[menuItem setTarget:nil];
-			[menuItem setAction:nil];
-		}
-		else {
-			[menuItem setTitle:commands[i]];
-			[menuItem setTarget:self];
-			[menuItem setAction:@selector(performShortcut:)];
-		}
-	}
+  if (!commands)
+    return;
+  
+  shortcutCommands = commands;
+  
+  NSMenuItem *menuItem;
+  int i;
+  
+  for (i = 0; i < 12; i++) {
+    menuItem = (NSMenuItem *)[shortcutsMenu itemAtIndex:i];
+    if (!commands[i] || [commands[i] length] == 0) {
+      [menuItem setTitle:@"Nothing"];
+      [menuItem setTarget:nil];
+      [menuItem setAction:nil];
+    }
+    else {
+      [menuItem setTitle:commands[i]];
+      [menuItem setTarget:self];
+      [menuItem setAction:@selector(performShortcut:)];
+    }
+  }
 }
 
 
@@ -812,7 +812,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (WINDOW_REC *)currentWindowRec
 {
-	return [currentChannelController windowRec];
+  return [currentChannelController windowRec];
 }
 
 //-------------------------------------------------------------------
@@ -823,14 +823,14 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)setIcon:(NSImage *)icon
 {
-	if (icon == iconOnPriv && currentIcon != iconOnPriv) {
-		[NSApp setApplicationIconImage:iconOnPriv];
-		currentIcon = iconOnPriv;
-	}
-	else if (icon == defaultIcon && currentIcon != defaultIcon) {
-		[NSApp setApplicationIconImage:defaultIcon];
-		currentIcon = defaultIcon;
-	}
+  if (icon == iconOnPriv && currentIcon != iconOnPriv) {
+    [NSApp setApplicationIconImage:iconOnPriv];
+    currentIcon = iconOnPriv;
+  }
+  else if (icon == defaultIcon && currentIcon != defaultIcon) {
+    [NSApp setApplicationIconImage:defaultIcon];
+    currentIcon = defaultIcon;
+  }
 }
 
 
@@ -841,21 +841,21 @@ char **argv;
 // Returns: The length of the history-command
 //-------------------------------------------------------------------
 - (void)historyUp
-{	
-	/* If we are at the front of the command history we save the current command temporarly in the history if the user wants to return to it */
-	NSString *currentCommand = [inputTextField string];
-	if ([[currentChannelController commandHistory] iteratorAtFront] && ![currentCommand isEqualToString:@""])
-	{
-		[[currentChannelController commandHistory] setTemporaryCommand:currentCommand];
-	}
-	
-	NSString *command = [[currentChannelController commandHistory] previousCommand];
-	
-	if (!command)
-		return;
-	
-	[inputTextField setString:command];
-	[(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
+{ 
+  /* If we are at the front of the command history we save the current command temporarly in the history if the user wants to return to it */
+  NSString *currentCommand = [inputTextField string];
+  if ([[currentChannelController commandHistory] iteratorAtFront] && ![currentCommand isEqualToString:@""])
+  {
+    [[currentChannelController commandHistory] setTemporaryCommand:currentCommand];
+  }
+  
+  NSString *command = [[currentChannelController commandHistory] previousCommand];
+  
+  if (!command)
+    return;
+  
+  [inputTextField setString:command];
+  [(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
 }
 
 
@@ -867,9 +867,9 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)historyDown
 {
-	NSString *command = [[currentChannelController commandHistory] nextCommand];
-	[inputTextField setString:command ? command : @""];
-	[(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
+  NSString *command = [[currentChannelController commandHistory] nextCommand];
+  [inputTextField setString:command ? command : @""];
+  [(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
 }
 
 
@@ -881,16 +881,16 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)specialFontChange:(id)sender
 {
-	NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
-	NSTabViewItem *tmp;
-	channelFont = [sender convertFont:channelFont];
-	
-	/* Iterate through all channels */
-	while (tmp = [enumerator nextObject])
-		[[tmp identifier] setFont:channelFont];
-	
-	/* Save change in user defaults */
-	[[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:channelFont] forKey:@"channelFont"];
+  NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
+  NSTabViewItem *tmp;
+  channelFont = [sender convertFont:channelFont];
+  
+  /* Iterate through all channels */
+  while (tmp = [enumerator nextObject])
+    [[tmp identifier] setFont:channelFont];
+  
+  /* Save change in user defaults */
+  [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:channelFont] forKey:@"channelFont"];
 }
 
 
@@ -900,7 +900,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)irssiQuit
 {
-	quitting = TRUE;
+  quitting = TRUE;
 }
 
 
@@ -913,15 +913,15 @@ char **argv;
  */
 - (NSArray *)themeLocations
 {
-	NSMutableArray *tmp = [[NSMutableArray alloc] init];
-	if (get_irssi_dir()) {
-		[tmp addObject:[NSString stringWithCString:get_irssi_dir()]];
-		[tmp addObject:[NSString stringWithFormat:@"%s/%@", get_irssi_dir(), @"themes"]];
-	}
-	
-	[tmp addObject:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"Contents/Resources/Themes"]];
-	
-	return [tmp autorelease];
+  NSMutableArray *tmp = [[NSMutableArray alloc] init];
+  if (get_irssi_dir()) {
+    [tmp addObject:[NSString stringWithCString:get_irssi_dir()]];
+    [tmp addObject:[NSString stringWithFormat:@"%s/%@", get_irssi_dir(), @"themes"]];
+  }
+  
+  [tmp addObject:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], @"Contents/Resources/Themes"]];
+  
+  return [tmp autorelease];
 }
 
 
@@ -933,17 +933,17 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)runGlibLoopIteration:(id)anArgument
 {
-	NSAutoreleasePool *pool;
-	[NSThread setThreadPriority:0.1];
-	
-	while (!quitting) {
-		pool = [[NSAutoreleasePool alloc] init];
-		g_main_iteration(TRUE);
-		[pool release];
-	}
-	
-	[NSApp terminate:self];
-	[NSThread exit];
+  NSAutoreleasePool *pool;
+  [NSThread setThreadPriority:0.1];
+  
+  while (!quitting) {
+    pool = [[NSAutoreleasePool alloc] init];
+    g_main_iteration(TRUE);
+    [pool release];
+  }
+  
+  [NSApp terminate:self];
+  [NSThread exit];
 }
 
 - (void)glibRunLoopTimerEvent:(NSTimer*)timer
@@ -953,7 +953,7 @@ char **argv;
 
 - (EventController*)eventController
 {
-	return eventController;
+  return eventController;
 }
 
 
@@ -965,12 +965,12 @@ char **argv;
  */
 - (BOOL)validateMenuItem:(NSMenuItem*)item
 {
-	if (item == editCurrentChannelMenuItem)
-		return [currentChannelController isChannel];
-	if (item == findNextMenuItem || item == findPreviousMenuItem)
-		return [currentChannelController hasActiveSearch];
-	
-	return YES;
+  if (item == editCurrentChannelMenuItem)
+    return [currentChannelController isChannel];
+  if (item == findNextMenuItem || item == findPreviousMenuItem)
+    return [currentChannelController hasActiveSearch];
+  
+  return YES;
 }
 
 #pragma mark Growl Delegates
@@ -1019,7 +1019,7 @@ char **argv;
     [NSApp activateIgnoringOtherApps:TRUE];
     WINDOW_REC *rec = [currentChannelController windowRec];
     NSString *cmd = [NSString stringWithFormat:@"/window %d", windowRef];
-    signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);		
+    signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);    
   }
   
 }
@@ -1029,8 +1029,8 @@ char **argv;
  */
 - (NSDictionary *) registrationDictionaryForGrowl
 {
-	NSArray *growlNotifications = [eventController availableEventNames];
-	return [NSDictionary dictionaryWithObjectsAndKeys:growlNotifications, GROWL_NOTIFICATIONS_ALL, growlNotifications, GROWL_NOTIFICATIONS_DEFAULT, nil];
+  NSArray *growlNotifications = [eventController availableEventNames];
+  return [NSDictionary dictionaryWithObjectsAndKeys:growlNotifications, GROWL_NOTIFICATIONS_ALL, growlNotifications, GROWL_NOTIFICATIONS_DEFAULT, nil];
 }
 
 #pragma mark Sparkle Delegates
@@ -1058,23 +1058,23 @@ char **argv;
 //-------------------------------------------------------------------
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)app
 {
-	/* If /quit command */
-	if (quitting)
-		return NSTerminateNow;
+  /* If /quit command */
+  if (quitting)
+    return NSTerminateNow;
   
   NSString *quitMessage = (isRestartingForUpdate) ? @"Be right back. Restarting after update." : [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"];
   BOOL askQuit = (isRestartingForUpdate) ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:@"askQuit"];
-	
-	/* Else, check if we should bring up quit sheet */
-	if (askQuit) {
-		[reasonTextField setStringValue:quitMessage];
-		[NSApp beginSheet:reasonWindow modalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
-		return NSTerminateLater; // Handle termination after reason is recieved
-	}
-	
-	/* Else quit with default quit message */
-	signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:quitMessage]);
-	return NSTerminateNow;
+  
+  /* Else, check if we should bring up quit sheet */
+  if (askQuit) {
+    [reasonTextField setStringValue:quitMessage];
+    [NSApp beginSheet:reasonWindow modalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+    return NSTerminateLater; // Handle termination after reason is recieved
+  }
+  
+  /* Else quit with default quit message */
+  signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:quitMessage]);
+  return NSTerminateNow;
 }
 
 
@@ -1086,16 +1086,16 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-	NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
-	ChannelController *tmp;
-	
-	while (tmp = [[enumerator nextObject] identifier])
+  NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
+  ChannelController *tmp;
+  
+  while (tmp = [[enumerator nextObject] identifier])
   {
     [tmp clearNickView];
   }
   
-	g_main_destroy(main_loop);
-	textui_deinit();	
+  g_main_destroy(main_loop);
+  textui_deinit();  
 }
 
 
@@ -1107,17 +1107,17 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)applicationDidBecomeActive:(NSNotification *)aNotification
 { 
-	/* Bring forth the main window if it was ordered out during a hide */
-	if (![mainWindow isVisible])
+  /* Bring forth the main window if it was ordered out during a hide */
+  if (![mainWindow isVisible])
   {
     [mainWindow makeKeyAndOrderFront:self];
   }
-	
-	/* If icon was changed to notify user of priv in active channel when the
-	 app was inactive while no other channel needs notification, then we
-	 must revert icon to normal */
-	if (hilightChannels == 0)
-		[self setIcon:defaultIcon];
+  
+  /* If icon was changed to notify user of priv in active channel when the
+   app was inactive while no other channel needs notification, then we
+   must revert icon to normal */
+  if (hilightChannels == 0)
+    [self setIcon:defaultIcon];
   
   [channelBar setNeedsDisplay:YES];
   
@@ -1137,8 +1137,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)inputTextFieldColorChanged:(NSNotification *)note
 {
-	[inputTextField setTextColor:[macIrssiColors inputTextFieldFGColor]];
-	[inputTextField setBackgroundColor:[macIrssiColors inputTextFieldBGColor]];
+  [inputTextField setTextColor:[macIrssiColors inputTextFieldFGColor]];
+  [inputTextField setBackgroundColor:[macIrssiColors inputTextFieldBGColor]];
 }
 
 
@@ -1150,9 +1150,9 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)channelListColorChanged:(NSNotification *)note
 {
-	[channelTableView setBackgroundColor:[macIrssiColors channelListBGColor]];
-	[channelTableView reloadData];
-	[channelBar setNeedsDisplay:TRUE];	
+  [channelTableView setBackgroundColor:[macIrssiColors channelListBGColor]];
+  [channelTableView reloadData];
+  [channelBar setNeedsDisplay:TRUE];  
 }
 
 
@@ -1166,7 +1166,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [tabView numberOfTabViewItems];
+  return [tabView numberOfTabViewItems];
 }
 
 
@@ -1182,11 +1182,11 @@ char **argv;
 //-------------------------------------------------------------------
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-	NSTabViewItem *item = [tabView tabViewItemAtIndex:rowIndex];
-	WINDOW_REC *tmp = [[item identifier] windowRec];
-	
-	[highlightAttributes setObject:[highlightColors objectAtIndex:tmp->data_level] forKey:NSForegroundColorAttributeName];
-	return [[[NSAttributedString alloc] initWithString:[item label] attributes:highlightAttributes] autorelease];	
+  NSTabViewItem *item = [tabView tabViewItemAtIndex:rowIndex];
+  WINDOW_REC *tmp = [[item identifier] windowRec];
+  
+  [highlightAttributes setObject:[highlightColors objectAtIndex:tmp->data_level] forKey:NSForegroundColorAttributeName];
+  return [[[NSAttributedString alloc] initWithString:[item label] attributes:highlightAttributes] autorelease]; 
 }
 
 //-------------------------------------------------------------------
@@ -1207,7 +1207,7 @@ char **argv;
     signal_emit("command window goto", 3, [channelAsString cStringUsingEncoding:NSASCIIStringEncoding], active_win->active_server, active_win->active);
     return YES;
   }
-	return NO;
+  return NO;
 }
 
 
@@ -1219,7 +1219,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-	return FALSE;
+  return FALSE;
 }
 
 
@@ -1233,160 +1233,159 @@ char **argv;
   // The crash catcher should be first in the list apparently.
   UKCrashReporterCheckForCrash();
   
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	//char *argv[2] = {"MacIrssi", NULL};
-	//char *argv[4] = {"MacIrssi", "--config=tmp", "--nick=g1m0", NULL};
-	setRefToAppController(self);
-	highlightAttributes = [[NSMutableDictionary alloc] init];
-	mainRunLoop = [NSRunLoop currentRunLoop];
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+  //char *argv[2] = {"MacIrssi", NULL};
+  //char *argv[4] = {"MacIrssi", "--config=tmp", "--nick=g1m0", NULL};
+  setRefToAppController(self);
+  highlightAttributes = [[NSMutableDictionary alloc] init];
+  mainRunLoop = [NSRunLoop currentRunLoop];
   quitting = FALSE;
-	hilightChannels = 0;
-	
-	const char *path = [[[NSBundle mainBundle] bundlePath] fileSystemRepresentation];
-	if (chdir(path) == -1)
+  hilightChannels = 0;
+  
+  const char *path = [[[NSBundle mainBundle] bundlePath] fileSystemRepresentation];
+  if (chdir(path) == -1)
   {
     NSLog(@"Can't set path!");
   }
-	
-	[[NSFontManager sharedFontManager] setAction:@selector(specialFontChange:)];
+  
+  [[NSFontManager sharedFontManager] setAction:@selector(specialFontChange:)];
   
   // Doesn't look like you can set this in IB
   [inputTextField setFont:[NSFont fontWithName:@"Monaco" size:10.0]];
   
   // Setup the event controller
-	eventController = [[EventController alloc] init];
+  eventController = [[EventController alloc] init];
   
   // Setup sparkle, we're gonna be delegate for sparkle routines. In particular, I want to stop the retarded quit message
   // box appearing when sparkle tries to update the application.
   [[SUUpdater sharedUpdater] setDelegate:self];
-	
-	/* Register defaults */
-	NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];
-	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-						  [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"channelFont",
-						  [NSNumber numberWithInt:kCFStringEncodingISOLatin1], @"defaultTextEncoding",
-						  [NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
-						  [NSNumber numberWithBool:TRUE], @"askQuit",
-						  [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
-						  [NSNumber numberWithInt:0], @"channelBarOrientation",
-						  [EventController defaults], @"eventDefaults",
-						  nil];
-	
-	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults registerDefaults:dict];
-	
-	/* Read settings */
-	channelFont = [[NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelFont"]] retain];
-	int channelBarOrientation = [defaults integerForKey:@"channelBarOrientation"];
-	
-	if (channelBarOrientation == 0) {
-		[self useHorizontalChannelBar:TRUE];
-		[self useVerticalChannelBar:FALSE];
-		[self setChannelNavigationShortcuts:1];
-	}
-	else {
-		[self useVerticalChannelBar:TRUE];
-		[self useHorizontalChannelBar:FALSE];
-		[self setChannelNavigationShortcuts:0];
-	}
-	
-	int i;
-	NSString *keyArray[12];
-	NSString *valueArray[12];
-	for (i = 0; i < 12; i++) {
-		keyArray[i] = [NSString stringWithFormat:@"shortcut%d", i+1];
-		valueArray[i] = @"";
-	}
-	
-	NSDictionary *shortcuts = [NSDictionary dictionaryWithObjects:(id *)valueArray forKeys:(id *)keyArray count:12];
-	[defaults registerDefaults:shortcuts];
-	shortcutCommands = malloc(12 * sizeof(NSString *));
-	
-	NSMenuItem *menuItem;
-	for (i = 0; i < 12; i++) {
-		shortcutCommands[i] = [[defaults objectForKey:[NSString stringWithFormat:@"shortcut%d", i+1]] retain];
-		menuItem = [[shortcutsMenu itemArray] objectAtIndex:i];
-		if ([shortcutCommands[i] length] > 0) {
-			[menuItem setTitle:shortcutCommands[i]];
-			[menuItem setTarget:self];
-			[menuItem setAction:@selector(performShortcut:)];
-		}
-	}
-	
-	currentIcon = defaultIcon = [[NSApp applicationIconImage] copy];
-	iconOnPriv = [[NSImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/MacIrssi-Alert.png"]];
-	if (!iconOnPriv) {
-		NSLog(@"Can't load 'icon-dot' image!");
-		iconOnPriv = [[NSApp applicationIconImage] retain];
-	}
-	
-	[defaults registerDefaults:[NSDictionary dictionaryWithObject:@"Get MacIrssi - http://www.sysctl.co.uk/projects/macirssi/ " forKey:@"defaultQuitMessage"]];
-	if (!channelFont)
-	{
-		channelFont = [NSFont fontWithName:@"Monaco" size:9.0];
-	}
-	
-	/* Delete first tab */
-	[tabView removeTabViewItem:[tabView tabViewItemAtIndex:0]];
-	/* Yes please =) */
-	[[tabView window] useOptimizedDrawing:TRUE];
-	/* Enable parts of window to be transparent */
-	[[tabView window] setOpaque:FALSE];
-	
-	[nc addObserver:self selector:@selector(inputTextFieldColorChanged:) name:@"inputTextFieldColorChanged" object:nil];
-	[nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
-	
-	/* Set up colors */
-	macIrssiColors = [[ColorSet alloc] init];
-	highlightColors = [macIrssiColors channelListFGColors];
-	[inputTextField setTextColor:[macIrssiColors inputTextFieldFGColor]];
-	[inputTextField setBackgroundColor:[macIrssiColors inputTextFieldBGColor]];
-	[channelTableView setBackgroundColor:[macIrssiColors channelListBGColor]];
-	//[((NSTextView *)inputTextField) setInsertionPointColor:[NSColor whiteColor]]; //TODO: preference
-	
-	/* Init Growl */
-	[GrowlApplicationBridge setGrowlDelegate:self];
-	
-	/* Sleep registration */
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceWillSleep:) name:NSWorkspaceWillSleepNotification object:[NSWorkspace sharedWorkspace]];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:[NSWorkspace sharedWorkspace]];
-	
-	/* Init theme dirs */
-	const char *tmp;
-	
-	NSArray *dirs = [self themeLocations];
-	num_theme_dirs = [dirs count];
-	theme_dirs = (char **)malloc(num_theme_dirs * sizeof(char *));
-	for (i = 0; i < [dirs count]; i++) {
-		tmp = [[dirs objectAtIndex:i] lossyCString];
-		theme_dirs[i] = (char *)malloc(strlen(tmp)+1);
-		strcpy(theme_dirs[i], tmp);
-	}	
-	
-	/* Start up irssi code */
+  
+  /* Register defaults */
+  NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];
+  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                        [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"channelFont",
+                        [NSNumber numberWithInt:kCFStringEncodingISOLatin1], @"defaultTextEncoding",
+                        [NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
+                        [NSNumber numberWithBool:TRUE], @"askQuit",
+                        [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
+                        [NSNumber numberWithInt:0], @"channelBarOrientation",
+                        [EventController defaults], @"eventDefaults",
+                        nil];
+  
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults registerDefaults:dict];
+  
+  /* Read settings */
+  channelFont = [[NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelFont"]] retain];
+  int channelBarOrientation = [defaults integerForKey:@"channelBarOrientation"];
+  
+  if (channelBarOrientation == 0) {
+    [self useHorizontalChannelBar:TRUE];
+    [self useVerticalChannelBar:FALSE];
+    [self setChannelNavigationShortcuts:1];
+  }
+  else {
+    [self useVerticalChannelBar:TRUE];
+    [self useHorizontalChannelBar:FALSE];
+    [self setChannelNavigationShortcuts:0];
+  }
+  
+  int i;
+  NSString *keyArray[12];
+  NSString *valueArray[12];
+  for (i = 0; i < 12; i++) {
+    keyArray[i] = [NSString stringWithFormat:@"shortcut%d", i+1];
+    valueArray[i] = @"";
+  }
+  
+  NSDictionary *shortcuts = [NSDictionary dictionaryWithObjects:(id *)valueArray forKeys:(id *)keyArray count:12];
+  [defaults registerDefaults:shortcuts];
+  shortcutCommands = malloc(12 * sizeof(NSString *));
+  
+  NSMenuItem *menuItem;
+  for (i = 0; i < 12; i++) {
+    shortcutCommands[i] = [[defaults objectForKey:[NSString stringWithFormat:@"shortcut%d", i+1]] retain];
+    menuItem = [[shortcutsMenu itemArray] objectAtIndex:i];
+    if ([shortcutCommands[i] length] > 0) {
+      [menuItem setTitle:shortcutCommands[i]];
+      [menuItem setTarget:self];
+      [menuItem setAction:@selector(performShortcut:)];
+    }
+  }
+  
+  currentIcon = defaultIcon = [[NSApp applicationIconImage] copy];
+  iconOnPriv = [[NSImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/MacIrssi-Alert.png"]];
+  if (!iconOnPriv) {
+    NSLog(@"Can't load 'icon-dot' image!");
+    iconOnPriv = [[NSApp applicationIconImage] retain];
+  }
+  
+  [defaults registerDefaults:[NSDictionary dictionaryWithObject:@"Get MacIrssi - http://www.sysctl.co.uk/projects/macirssi/ " forKey:@"defaultQuitMessage"]];
+  if (!channelFont)
+  {
+    channelFont = [NSFont fontWithName:@"Monaco" size:9.0];
+  }
+  
+  /* Delete first tab */
+  [tabView removeTabViewItem:[tabView tabViewItemAtIndex:0]];
+  /* Yes please =) */
+  [[tabView window] useOptimizedDrawing:TRUE];
+  /* Enable parts of window to be transparent */
+  [[tabView window] setOpaque:FALSE];
+  
+  [nc addObserver:self selector:@selector(inputTextFieldColorChanged:) name:@"inputTextFieldColorChanged" object:nil];
+  [nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
+  
+  /* Set up colors */
+  macIrssiColors = [[ColorSet alloc] init];
+  highlightColors = [macIrssiColors channelListFGColors];
+  [inputTextField setTextColor:[macIrssiColors inputTextFieldFGColor]];
+  [inputTextField setBackgroundColor:[macIrssiColors inputTextFieldBGColor]];
+  [channelTableView setBackgroundColor:[macIrssiColors channelListBGColor]];
+  //[((NSTextView *)inputTextField) setInsertionPointColor:[NSColor whiteColor]]; //TODO: preference
+  
+  /* Init Growl */
+  [GrowlApplicationBridge setGrowlDelegate:self];
+  
+  /* Sleep registration */
+  [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceWillSleep:) name:NSWorkspaceWillSleepNotification object:[NSWorkspace sharedWorkspace]];
+  [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:[NSWorkspace sharedWorkspace]];
+  
+  /* Init theme dirs */
+  const char *tmp;
+  
+  NSArray *dirs = [self themeLocations];
+  num_theme_dirs = [dirs count];
+  theme_dirs = (char **)malloc(num_theme_dirs * sizeof(char *));
+  for (i = 0; i < [dirs count]; i++) {
+    tmp = [[dirs objectAtIndex:i] lossyCString];
+    theme_dirs[i] = (char *)malloc(strlen(tmp)+1);
+    strcpy(theme_dirs[i], tmp);
+  } 
+  
+  /* Start up irssi code */
 #ifdef MACIRSSI_DEBUG
-	char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};
-	int irssi_argc = 2;
-	irssi_main(irssi_argc, irssi_argv);
+  char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};
+  int irssi_argc = 2;
+  irssi_main(irssi_argc, irssi_argv);
 #else
-	[[NSApp mainMenu] removeItem:[[NSApp mainMenu] itemWithTitle:@"Debug"]];
-	
-	/* Double clicking an app gives a "-psn..." argument which irssi does
-	 not like, remove if present */
-	if ( argc > 1 && strncmp(argv[1], "-psn", 4) == 0)
-	{
-		argc--;
-		argv[1] = argv[0];
-		irssi_main(argc, argv+1);
-	}
-	else
+  [[NSApp mainMenu] removeItem:[[NSApp mainMenu] itemWithTitle:@"Debug"]];
+  
+  /* Double clicking an app gives a "-psn..." argument which irssi does
+   not like, remove if present */
+  if ( argc > 1 && strncmp(argv[1], "-psn", 4) == 0)
+  {
+    argc--;
+    argv[1] = argv[0];
+    irssi_main(argc, argv+1);
+  }
+  else
   {
     irssi_main(argc, argv);
   }
 #endif
-	
-	main_loop = g_main_new(TRUE);
+  
+  main_loop = g_main_new(TRUE);
   
   // Get rid of the shit old run loop thread and schedule the glib runloop on the NSRunLoop
   [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];
