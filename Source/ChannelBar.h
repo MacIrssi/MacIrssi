@@ -10,7 +10,6 @@
 	NSMutableArray *channelBarCells;
 	float totalStringWidth;
 	float totalWidth;
-	NSColor *bgColor;
 	ChannelBarCell *activeCell;
 }
 

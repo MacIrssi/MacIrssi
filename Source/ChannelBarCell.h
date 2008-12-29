@@ -7,7 +7,6 @@
 {
 	WINDOW_REC *windowRec;
 	NSMutableDictionary *highlightAttributes;
-	NSColor *highlightColors[4];
 	NSBezierPath *bezierPath;
 	BOOL isActive;
 	//int dataLevel;

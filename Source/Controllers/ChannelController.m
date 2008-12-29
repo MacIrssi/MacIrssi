@@ -33,7 +33,6 @@
 extern int currentDataLevel;
 void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 
-
 @implementation ChannelController
 
 #pragma mark IBAction methods
@@ -754,7 +753,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   }
   
   if (fg < 0 || fg > 15) {
-    [textAttributes setObject:defaultTextColor forKey:NSForegroundColorAttributeName];
+    [textAttributes setObject:[ColorSet channelForegroundColor] forKey:NSForegroundColorAttributeName];
   }
   else {
     [textAttributes setObject:[[ColorSet mircColours] objectAtIndex:fg] forKey:NSForegroundColorAttributeName];
@@ -808,7 +807,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 {
   BOOL scroll = [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
 
-  [line detectURLs:linkColor];
+  [line detectURLs:[ColorSet channelLinkColour]];
   [textStorage appendAttributedString:line];
   
   /* Check if we are in search mode */
@@ -1011,16 +1010,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 {
   appController = ref;
   tabViewItem = newTabViewItem;
-  colorSet = colors;
-  defaultTextColor = [[colorSet channelFGDefaultColor] retain];
-  linkColor = [[colorSet channelLinkColor] retain];
-  defaultColor = [[colorSet nickListFGColorOfStatus:normalStatus] retain];
-  voiceColor = [[colorSet nickListFGColorOfStatus:voiceStatus] retain];
-  halfOpColor = [[colorSet nickListFGColorOfStatus:halfOpStatus] retain];
-  opColor = [[colorSet nickListFGColorOfStatus:opStatus] retain];
-  serverOpColor = [[colorSet nickListFGColorOfStatus:serverOpStatus] retain];
-  [mainTextView setBackgroundColor:[colorSet channelBGColor]];
-  [nickTableView setBackgroundColor:[colorSet nickListBGColor]];
+
+  [mainTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
+  [nickTableView setBackgroundColor:[ColorSet nickListBackgroundColor]];
   
   /* Set up fonts and attributes */
   [self setFont:[appController channelFont]];
@@ -1075,15 +1067,25 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   NSColor *color;
   
   if (nick->serverop)
-    color = serverOpColor;
+  {
+    color = [ColorSet nickListForegroundServerOpColor];
+  }
   else if (nick->op)
-    color = opColor;
+  {
+    color = [ColorSet nickListForegroundOpColor];
+  }
   else if (nick->halfop)
-    color = halfOpColor;
+  {
+    color = [ColorSet nickListForegroundHalfOpColor];
+  }
   else if (nick->voice)
-    color = voiceColor;
+  {
+    color = [ColorSet nickListForegroundVoiceColor];
+  }
   else
-    color = defaultColor;
+  {
+    color = [ColorSet nickListForegroundNormalColor];
+  }
   
   [nickAttributes setObject:color forKey:NSForegroundColorAttributeName];
   [nickAttributes setObject:channelFont forKey:NSFontAttributeName];
@@ -1141,9 +1143,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)channelColorChanged:(NSNotification *)note
 {
-  [defaultTextColor release];
-  defaultTextColor = [[colorSet channelFGDefaultColor] retain];
-  [mainTextView setBackgroundColor:[colorSet channelBGColor]];
+//  [defaultTextColor release];
+//  defaultTextColor = [[colorSet channelFGDefaultColor] retain];
+  [mainTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
   [mainTextView setNeedsDisplay:TRUE];
 }
 
@@ -1156,19 +1158,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)nickListColorChanged:(NSNotification *)note
 {
-  [defaultColor release];
-  [voiceColor release];
-  [halfOpColor release];
-  [opColor release];
-  [serverOpColor release];
-  
-  defaultColor = [[colorSet nickListFGColorOfStatus:normalStatus] retain];
-  voiceColor = [[colorSet nickListFGColorOfStatus:voiceStatus] retain];
-  halfOpColor = [[colorSet nickListFGColorOfStatus:halfOpStatus] retain];
-  opColor = [[colorSet nickListFGColorOfStatus:opStatus] retain];
-  serverOpColor = [[colorSet nickListFGColorOfStatus:serverOpStatus] retain];
-  
-  [nickTableView setBackgroundColor:[colorSet nickListBGColor]];
+  [nickTableView setBackgroundColor:[ColorSet nickListBackgroundColor]];
   [nickTableView removeAllToolTips]; 
   [nickTableView reloadData];
 }
@@ -1263,16 +1253,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   //[mainTextViewMenu release];
   [nickViewMenu release];
   
-  [opColor release];
-  [halfOpColor release];
-  [voiceColor release];
-  [defaultColor release];
-  [serverOpColor release];
-  [commandHistory release];
-
-  [linkColor release];
-  [defaultTextColor release];
-
   [nicks release];
   [name release];
   [topic_by release];

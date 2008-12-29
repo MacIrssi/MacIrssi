@@ -212,7 +212,7 @@
   [self initChatEventsPopUpButton];
   [self initSoundListPopUpButton];
   
-	[previewTextView setBackgroundColor:[colorSet channelBGColor]];
+	[previewTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
 	[previewTextView setNeedsDisplay:TRUE];
 	[preferenceWindow setOpaque:FALSE];
   
@@ -263,8 +263,7 @@
 - (IBAction)revertColorsToDefaults:(id)sender
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	[colorSet revertToDefaultColors];
-	[colorSet registerColorDefaults:TRUE];
+  [ColorSet revertToDefaults];
   
 	[nc postNotificationName:@"channelColorChanged" object:nil];
 	[nc postNotificationName:@"channelListColorChanged" object:nil];
@@ -507,80 +506,50 @@
 	colorChanged = TRUE;
 	
 	if (sender == channelBGColorWell) {
-		key = @"channelBGColor";
-		[colorSet setChannelBGColor:color];
 		[nc postNotificationName:@"channelColorChanged" object:color];
 		[previewTextView setBackgroundColor:color];
 		[previewTextView setNeedsDisplay:TRUE];
 	}
 	else if (sender == channelFGColorWell) {
-		key = @"channelFGDefaultColor";
-		[colorSet setChannelFGDefaultColor:color];
 		[nc postNotificationName:@"channelColorChanged" object:color];
 	}
 	else if (sender == channelListBGColorWell) {
-		key = @"channelListBGColor";
-		[colorSet setChannelListBGColor:color];
 		[nc postNotificationName:@"channelListColorChanged" object:color];
 	}
 	else if (sender == channelListFGNoActivityColorWell) {
-		key = @"channelListFGNoActivityColor";
-		[colorSet setChannelListFGColorOfLevel:0 toColor:color];
 		[nc postNotificationName:@"channelListColorChanged" object:color];
 	}
 	else if (sender == channelListFGActionColorWell) {
-		key = @"channelListFGActionColor";
-		[colorSet setChannelListFGColorOfLevel:1 toColor:color];
 		[nc postNotificationName:@"channelListColorChanged" object:color];
 	}
 	else if (sender == channelListFGPublicMessageColorWell) {
-		key = @"channelListFGPublicMessageColor";
-		[colorSet setChannelListFGColorOfLevel:2 toColor:color];
 		[nc postNotificationName:@"channelListColorChanged" object:color];
 	}
 	else if (sender == channelListFGPrivateMessageColorWell) {
-		key = @"channelListFGPrivateMessageColor";
-		[colorSet setChannelListFGColorOfLevel:3 toColor:color];
 		[nc postNotificationName:@"channelListColorChanged" object:color];
 	}
 	else if (sender == inputTextFieldBGColorWell) {
-		key = @"inputTextFieldBGColor";
-		[colorSet setInputTextFieldBGColor:color];
 		[nc postNotificationName:@"inputTextFieldColorChanged" object:color];
 	}
 	else if (sender == inputTextFieldFGColorWell) {
-		key = @"inputTextFieldFGColor";
-		[colorSet setInputTextFieldFGColor:color];
 		[nc postNotificationName:@"inputTextFieldColorChanged" object:color];
 	}
 	else if (sender == nickListBGColorWell) {
-		key = @"nickListBGColor";
-		[colorSet setNickListBGColor:color];
 		[nc postNotificationName:@"nickListColorChanged" object:color];
 	}
 	else if (sender == nickListFGHalfOpColorWell) {
-		key = @"nickListFGHalfOpColor";
-		[colorSet setNickListFGColorOfStatus:halfOpStatus toColor:color];
 		[nc postNotificationName:@"nickListColorChanged" object:color];
 	}
 	else if (sender == nickListFGNormalColorWell) {
-		key = @"nickListFGNormalColor";
-		[colorSet setNickListFGColorOfStatus:normalStatus toColor:color];
 		[nc postNotificationName:@"nickListColorChanged" object:color];
 	}
 	else if (sender == nickListFGOpColorWell) {
-		key = @"nickListFGOpColor";
-		[colorSet setNickListFGColorOfStatus:opStatus toColor:color];
 		[nc postNotificationName:@"nickListColorChanged" object:color];
 	}
 	else if (sender == nickListFGServerOpColorWell) {
-		key = @"nickListFGServerOpColor";
-		[colorSet setNickListFGColorOfStatus:serverOpStatus toColor:color];
 		[nc postNotificationName:@"nickListColorChanged" object:color];
 	}
 	else if (sender == nickListFGVoiceColorWell) {
-		key = @"nickListFGVoiceColor";
-		[colorSet setNickListFGColorOfStatus:voiceStatus toColor:color];
 		[nc postNotificationName:@"nickListColorChanged" object:color];
 	}
   

@@ -1,4 +1,5 @@
 #import "ChannelBar.h"
+#import "ColorSet.h"
 
 @implementation ChannelBar
 
@@ -7,7 +8,6 @@
 	if (![super initWithFrame:frameRect])
 		return nil;
 
-	bgColor = [[NSColor  colorWithCalibratedRed:103.0/255 green:103.0/255 blue:103.0/255 alpha:0.82] retain];
 	channelBarCells = [[NSMutableArray alloc] init];
 	return self;
 }
@@ -20,7 +20,6 @@
 - (void)dealloc
 {
 	[activeCell release];
-	[bgColor release];
 	[channelBarCells release];
 	[super dealloc];
 }
@@ -175,7 +174,7 @@
 {
 	[self fitCells];
 	
-	[bgColor set];
+	[[ColorSet channelListBackgroundColor] set];
 	NSRectFillUsingOperation([self bounds], NSCompositeCopy);	
 
 	NSEnumerator *enumerator = [channelBarCells objectEnumerator];

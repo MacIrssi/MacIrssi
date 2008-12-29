@@ -339,7 +339,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)showPreferencePanel:(id)sender
 {
-  PreferenceViewController *preferenceController = [[PreferenceViewController alloc] initWithColorSet:macIrssiColors appController:self]; 
+  PreferenceViewController *preferenceController = [[PreferenceViewController alloc] initWithColorSet:nil appController:self]; 
   [preferenceController showWindow:self];
 }
 
@@ -442,7 +442,7 @@ char **argv;
   }
   
   /* Set references */
-  [owner setTabViewItem:tabViewItem colors:macIrssiColors appController:self];
+  [owner setTabViewItem:tabViewItem colors:nil appController:self];
   
   wind->gui_data = (void *)owner;
   wind->width = 80;
@@ -1141,8 +1141,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)inputTextFieldColorChanged:(NSNotification *)note
 {
-  [inputTextField setTextColor:[macIrssiColors inputTextFieldFGColor]];
-  [inputTextField setBackgroundColor:[macIrssiColors inputTextFieldBGColor]];
+  [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
+  [inputTextField setBackgroundColor:[ColorSet inputTextBackgroundColor]];
 }
 
 
@@ -1154,7 +1154,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)channelListColorChanged:(NSNotification *)note
 {
-  [channelTableView setBackgroundColor:[macIrssiColors channelListBGColor]];
+  [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
   [channelTableView reloadData];
   [channelBar setNeedsDisplay:TRUE];  
 }
@@ -1189,7 +1189,7 @@ char **argv;
   NSTabViewItem *item = [tabView tabViewItemAtIndex:rowIndex];
   WINDOW_REC *tmp = [[item identifier] windowRec];
   
-  [highlightAttributes setObject:[highlightColors objectAtIndex:tmp->data_level] forKey:NSForegroundColorAttributeName];
+  [highlightAttributes setObject:[ColorSet colorForKey:[[ColorSet channelListForegroundKeys] objectAtIndex:tmp->data_level]] forKey:NSForegroundColorAttributeName];
   return [[[NSAttributedString alloc] initWithString:[item label] attributes:highlightAttributes] autorelease]; 
 }
 
@@ -1276,6 +1276,9 @@ char **argv;
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults registerDefaults:dict];
   
+  // Register the default colours too.
+  [ColorSet registerDefaults];
+  
   // Setup sparkle, we're gonna be delegate for sparkle routines. In particular, I want to stop the retarded quit message
   // box appearing when sparkle tries to update the application.
   [[SUUpdater sharedUpdater] setDelegate:self];
@@ -1342,11 +1345,9 @@ char **argv;
   [nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
   
   /* Set up colors */
-  macIrssiColors = [[ColorSet alloc] init];
-  highlightColors = [macIrssiColors channelListFGColors];
-  [inputTextField setTextColor:[macIrssiColors inputTextFieldFGColor]];
-  [inputTextField setBackgroundColor:[macIrssiColors inputTextFieldBGColor]];
-  [channelTableView setBackgroundColor:[macIrssiColors channelListBGColor]];
+  [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
+  [inputTextField setBackgroundColor:[ColorSet inputTextBackgroundColor]];
+  [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
   //[((NSTextView *)inputTextField) setInsertionPointColor:[NSColor whiteColor]]; //TODO: preference
   
   /* Init Growl */

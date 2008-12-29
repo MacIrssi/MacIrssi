@@ -47,311 +47,167 @@
           nil];
 }
 
-- (NSMutableArray *)channelListFGColors
++ (void)registerDefaults
 {
-	return channelListFGColors;
+  NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0]], @"channelFGDefaultColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:5.0/255 green:13.0/255 blue:25.0/255 alpha:0.92]], @"channelBGColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor yellowColor]], @"channelLinkColor",
+                            
+                            [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:103.0/255 green:103.0/255 blue:103.0/255 alpha:0.82]], @"channelListBGColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor whiteColor]], @"channelListFGNoActivityColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor yellowColor]], @"channelListFGActionColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor orangeColor]], @"channelListFGPublicMessageColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor redColor]], @"channelListFGPrivateMessageColor",
+                            
+                            [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:0.82]], @"nickListBGColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor colorWithCalibratedRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0]], @"nickListFGNormalColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor yellowColor]], @"nickListFGVoiceColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor cyanColor]], @"nickListFGHalfOpColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor orangeColor]], @"nickListFGOpColor",
+                            [NSArchiver archivedDataWithRootObject:[NSColor redColor]], @"nickListFGServerOpColor",
+                            
+                            nil];
+  [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
-- (NSMutableArray *)nickListFGColors
++ (void)revertToDefaults
 {
-	return nickListFGColors;
-}
-
-- (NSColor *)channelFGDefaultColor
-{
-	return channelFGDefaultColor;
-}
-
-- (void)setChannelFGDefaultColor:(NSColor *)newColor
-{
-	[newColor retain];
-	[channelFGDefaultColor release];
-	channelFGDefaultColor = newColor;
-}
-
-- (NSColor *)channelBGColor
-{
-	return channelBGColor;
-}
-
-- (void)setChannelBGColor:(NSColor *)newColor
-{
-	[newColor retain];
-	[channelBGColor release];
-	channelBGColor = newColor;
-}
-
-- (NSColor *)channelLinkColor
-{
-  return channelLinkColor;
-}
-
-- (void)setChannelLinkColor:(NSColor *)newColor
-{
-  [newColor retain];
-  [channelLinkColor release];
-  channelLinkColor = newColor;
-}
-
-- (NSColor *)channelListBGColor
-{
-	return channelListBGColor;
-}
-
-- (void)setChannelListBGColor:(NSColor *)newColor
-{
-	[newColor retain];
-	[channelListBGColor release];
-	channelListBGColor = newColor;
-}
-
-- (NSColor *)channelListFGColorOfLevel:(int)level
-{
-	return [channelListFGColors objectAtIndex:level];
-}
-
-- (void)setChannelListFGColorOfLevel:(int)level toColor:(NSColor *)newColor
-{
-	[channelListFGColors insertObject:newColor atIndex:level];
-}
-
-- (NSColor *)nickListBGColor
-{
-	return nickListBGColor;
-}
-
-- (void)setNickListBGColor:(NSColor *)newColor
-{
-	[newColor retain];
-	[nickListBGColor release];
-	nickListBGColor = newColor;
-}
-
-- (NSColor *)nickListFGColorOfStatus:(enum nickStatus)status
-{
-	return [nickListFGColors objectAtIndex:status];
-}
-
-- (void)setNickListFGColorOfStatus:(enum nickStatus)status toColor:(NSColor *)newColor
-{
-	[nickListFGColors insertObject:newColor atIndex:status];
-}	
-
-- (NSColor *)inputTextFieldFGColor
-{
-	return inputTextFieldFGColor;
-}
-
-- (void)setInputTextFieldFGColor:(NSColor *)newColor
-{
-	[newColor retain];
-	[inputTextFieldFGColor release];
-	inputTextFieldFGColor = newColor;
-}	
-
-- (NSColor *)inputTextFieldBGColor
-{
-	return inputTextFieldBGColor;
-}
-
-- (void)setInputTextFieldBGColor:(NSColor *)newColor
-{
-	[newColor retain];
-	[inputTextFieldBGColor release];
-	inputTextFieldBGColor = newColor;	
-}
-
-- (void)revertToDefaultColors
-{
-	/* Channel colors */
-	channelFGDefaultColor = [[NSColor  colorWithCalibratedRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0] retain];
-	//channelBGColor = [[NSColor  colorWithCalibratedRed:41.0/255 green:41.0/255 blue:41.0/255 alpha:1.0] retain];
-	channelBGColor = [[NSColor  colorWithCalibratedRed:5.0/255 green:13.0/255 blue:25.0/255 alpha:0.92] retain];
-  channelLinkColor = [[NSColor yellowColor] retain];
-	
-	/* Channel list colors */
-	[channelListFGColors removeAllObjects];
-	[channelListFGColors addObject:[NSColor whiteColor]];
-	[channelListFGColors addObject:[NSColor yellowColor]];
-	[channelListFGColors addObject:[NSColor orangeColor]];
-	[channelListFGColors addObject:[NSColor redColor]];
-	channelListBGColor = [[NSColor  colorWithCalibratedRed:103.0/255 green:103.0/255 blue:103.0/255 alpha:0.82] retain];
-
-	/* Nick list colors */
-	[nickListFGColors removeAllObjects];
-	[nickListFGColors addObject:[NSColor  colorWithCalibratedRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1.0]];
-	[nickListFGColors addObject:[NSColor yellowColor]];
-	[nickListFGColors addObject:[NSColor cyanColor]];
-	[nickListFGColors addObject:[NSColor orangeColor]];
-	[nickListFGColors addObject:[NSColor redColor]];
-	nickListBGColor = [[NSColor  colorWithCalibratedRed:0.0/255 green:0.0/255 blue:0.0/255 alpha:0.82] retain];
-
-	/* Input text field colors */
-	inputTextFieldFGColor = [[NSColor blackColor] retain];
-	inputTextFieldBGColor = [[NSColor whiteColor] retain];	
-}
-
-- (void)registerColorDefaults:(BOOL)revert
-{
-	NSData *colorAsData;
-	NSColor *color;
-	id defaultValues = revert ? [NSUserDefaults standardUserDefaults] : [NSMutableDictionary dictionary];
-
-	color = channelFGDefaultColor;
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"channelFGDefaultColor"];
-
-	color = channelBGColor;
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"channelBGColor"];
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  [defaults removeObjectForKey:@"channelFGDefaultColor"];
+  [defaults removeObjectForKey:@"channelBGColor"];
+  [defaults removeObjectForKey:@"channelLinkColor"];
   
-  color = channelLinkColor;
-  colorAsData = [NSArchiver archivedDataWithRootObject:color];
-  [defaultValues setObject:colorAsData forKey:@"channelLinkColor"];
-
-	color = channelListBGColor;
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"channelListBGColor"];
-
-	color = [channelListFGColors objectAtIndex:0];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"channelListFGNoActivityColor"];
-
-	color = [channelListFGColors objectAtIndex:1];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"channelListFGActionColor"];
-
-	color = [channelListFGColors objectAtIndex:2];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"channelListFGPublicMessageColor"];
-
-	color = [channelListFGColors objectAtIndex:3];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"channelListFGPrivateMessageColor"];
-
-	color = nickListBGColor;
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"nickListBGColor"];
-
-	color = [nickListFGColors objectAtIndex:normalStatus];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"nickListFGNormalColor"];
-
-	color = [nickListFGColors objectAtIndex:voiceStatus];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"nickListFGVoiceColor"];
-
-	color = [nickListFGColors objectAtIndex:halfOpStatus];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"nickListFGHalfOpColor"];
-
-	color = [nickListFGColors objectAtIndex:opStatus];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"nickListFGOpColor"];
-
-	color = [nickListFGColors objectAtIndex:serverOpStatus];
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"nickListFGServerOpColor"];
-
-	color = inputTextFieldFGColor;
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"inputTextFieldFGColor"];
-
-	color = inputTextFieldBGColor;
-	colorAsData = [NSArchiver archivedDataWithRootObject:color];
-	[defaultValues setObject:colorAsData forKey:@"inputTextFieldBGColor"];
-
-	if (!revert)
-		[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];	
+  [defaults removeObjectForKey:@"channelListBGColor"];
+  [defaults removeObjectForKey:@"channelListFGNoActivityColor"];
+  [defaults removeObjectForKey:@"channelListFGActionColor"];
+  [defaults removeObjectForKey:@"channelListFGPublicMessageColor"];
+  [defaults removeObjectForKey:@"channelListFGPrivateMessageColor"];
+  
+  [defaults removeObjectForKey:@"nickListBGColor"];
+  [defaults removeObjectForKey:@"nickListFGNormalColor"];
+  [defaults removeObjectForKey:@"nickListFGVoiceColor"];
+  [defaults removeObjectForKey:@"nickListFGHalfOpColor"];
+  [defaults removeObjectForKey:@"nickListFGOpColor"];
+  [defaults removeObjectForKey:@"nickListFGServerOpColor"];
+  [defaults synchronize];
 }
 
-- (id)init
++ (NSArray*)channelListForegroundKeys
 {
-	NSData *colorAsData;
-	[super init];
-	
-	channelListFGColors = [[NSMutableArray alloc] init];
-	nickListFGColors = [[NSMutableArray alloc] init];
-	[self revertToDefaultColors];
-	[self registerColorDefaults:FALSE];
-	
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	colorAsData = [defaults objectForKey:@"channelFGDefaultColor"];
-	channelFGDefaultColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
-	
-	colorAsData = [defaults objectForKey:@"channelBGColor"];
-	channelBGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
-  
-  colorAsData = [defaults objectForKey:@"channelLinkColor"];
-  channelLinkColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
-
-	colorAsData = [defaults objectForKey:@"channelListBGColor"];
-	channelListBGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
-
-  [channelListFGColors removeAllObjects];
-  
-	colorAsData = [defaults objectForKey:@"channelListFGNoActivityColor"];
-	[channelListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelListFGActionColor"];
-	[channelListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelListFGPublicMessageColor"];
-	[channelListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"channelListFGPrivateMessageColor"];
-	[channelListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListBGColor"];
-	nickListBGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
-  
-  [nickListFGColors removeAllObjects];
-
-	colorAsData = [defaults objectForKey:@"nickListFGNormalColor"];
-	[nickListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGVoiceColor"];
-	[nickListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGHalfOpColor"];
-	[nickListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGOpColor"];
-	[nickListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"nickListFGServerOpColor"];
-	[nickListFGColors addObject:[NSUnarchiver unarchiveObjectWithData:colorAsData]];
-
-	colorAsData = [defaults objectForKey:@"inputTextFieldFGColor"];
-	inputTextFieldFGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
-
-	colorAsData = [defaults objectForKey:@"inputTextFieldBGColor"];
-	inputTextFieldBGColor = [[NSUnarchiver unarchiveObjectWithData:colorAsData] retain];
-
-	return self;
+  return [NSArray arrayWithObjects:
+          @"channelListFGNoActivityColor",
+          @"channelListFGActionColor",
+          @"channelListFGPublicMessageColor",
+          @"channelListFGPrivateMessageColor",
+          nil];
 }
 
-- (void)dealloc
++ (NSArray*)nickListForegroundKeys
 {
-	/* Channel colors */
-	[channelFGDefaultColor release];
-	[channelBGColor release];
+  return [NSArray arrayWithObjects:
+          @"nickListFGNormalColor",
+          @"nickListFGVoiceColor",
+          @"nickListFGHalfOpColor",
+          @"nickListFGOpColor",
+          @"nickListFGServerOpColor",
+          nil];
+}
 
-	/* Channel list colors */
-	[channelListBGColor release];
-	[channelListFGColors release];
++ (NSColor*)colorForKey:(NSString*)key
+{
+  return [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:key]];
+}
 
-	/* Nick list colors */
-	[nickListBGColor release];
-	[nickListFGColors release];
++ (void)setColor:(NSColor*)color forKey:(NSString*)key
+{
+  [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:color] forKey:key];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
+#pragma mark Common Colour Accessors
 
-	/* Input text field colors */
-	[inputTextFieldFGColor release];
-	[inputTextFieldBGColor release];
++ (NSColor*)channelForegroundColor
+{
+  return [ColorSet colorForKey:@"channelFGDefaultColor"];
+}
 
-	[super dealloc];
++ (NSColor*)channelBackgroundColor
+{
+  return [ColorSet colorForKey:@"channelBGColor"];
+}
+
++ (NSColor*)channelLinkColour
+{
+  return [ColorSet colorForKey:@"channelLinkColor"];
+}
+
+// Did these ones by accident, would be surprised if I ever used them
++ (NSColor*)channelListBackgroundColor
+{
+  return [ColorSet colorForKey:@"channelListBGColor"];
+}
+
++ (NSColor*)channelListForegroundNoActivityColor
+{
+  return [ColorSet colorForKey:@"channelListFGNoActivityColor"];
+}
+
++ (NSColor*)channelListForegroundActionColor
+{
+  return [ColorSet colorForKey:@"channelListFGActionColor"];
+}
+
++ (NSColor*)channelListForegroundPublicColor
+{
+  return [ColorSet colorForKey:@"channelListFGPublicMessageColor"];
+}
+
++ (NSColor*)channelListForegroundPrivateColor
+{
+  return [ColorSet colorForKey:@"channelListFGPrivateMessageColor"];
+}
+
+// These are simply for ease-of-use, the ChannelController doesn't
+// actually need to access these colours as an array, makes the code nicer
++ (NSColor*)nickListBackgroundColor
+{
+  return [ColorSet colorForKey:@"nickListBGColor"];
+}
+
++ (NSColor*)nickListForegroundNormalColor
+{
+  return [ColorSet colorForKey:@"nickListFGNormalColor"];
+}
+
++ (NSColor*)nickListForegroundVoiceColor
+{
+  return [ColorSet colorForKey:@"nickListFGVoiceColor"];
+}
+
++ (NSColor*)nickListForegroundHalfOpColor
+{
+  return [ColorSet colorForKey:@"nickListFGHalfOpColor"];
+}
+
++ (NSColor*)nickListForegroundOpColor
+{
+  return [ColorSet colorForKey:@"nickListFGOpColor"];
+}
+
++ (NSColor*)nickListForegroundServerOpColor
+{
+  return [ColorSet colorForKey:@"nickListFGServerOpColor"];
+}
+
++ (NSColor*)inputTextForegroundColor
+{
+  return [NSColor blackColor];
+}
+
++ (NSColor*)inputTextBackgroundColor
+{
+  return [NSColor whiteColor];
 }
 
 @end
