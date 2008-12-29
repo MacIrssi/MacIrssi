@@ -514,6 +514,10 @@ char **argv;
   [channelBar selectCellWithWindowRec:wind];
   [channelTableView selectRow:[tabView indexOfTabViewItem:tmp] byExtendingSelection:FALSE];
   [currentChannelController setWaitingEvents:0];
+
+  // Update the window title
+  NSString *titleString = ([[NSUserDefaults standardUserDefaults] boolForKey:@"channelInTitle"]) ? [NSString stringWithFormat:@"MacIrssi - %@", [currentChannelController name]] : @"MacIrssi";
+  [mainWindow setTitle:titleString];
   
   NSRange r;
   if ([[mainWindow firstResponder] isMemberOfClass:[NSTextView class]]) {
@@ -1270,6 +1274,7 @@ char **argv;
                         [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
                         [NSNumber numberWithInt:0], @"channelBarOrientation",
                         [EventController defaults], @"eventDefaults",
+                        [NSNumber numberWithBool:YES], @"channelInTitle",
                         nil];
   
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
