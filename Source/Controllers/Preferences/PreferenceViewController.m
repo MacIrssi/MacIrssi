@@ -28,7 +28,6 @@
 #import "settings.h"
 #import "common.h"
 #import "signals.h"
-#import "ThemePreviewDaemon.h"
 #include <unistd.h>
 #include "themes.h"
 #import "TextEncodings.h"

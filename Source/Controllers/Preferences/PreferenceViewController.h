@@ -16,7 +16,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ColorSet.h"
-#import "Protocols.h"
 
 #import "AppController.h"
 #import "EventController.h"
