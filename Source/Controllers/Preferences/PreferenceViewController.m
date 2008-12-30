@@ -142,22 +142,6 @@
   /* By default open the general tab and resize the window around it */
   [self switchPreferenceWindowTo:generalPreferencesTab animate:NO];
   [preferencesToolbar setSelectedItemIdentifier:@"General"];
-  
-	/* Make preferencepanel reflect current settings */
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-//	[F1Field setStringValue:[defaults objectForKey:@"shortcut1"]];
-//	[F2Field setStringValue:[defaults objectForKey:@"shortcut2"]];
-//	[F3Field setStringValue:[defaults objectForKey:@"shortcut3"]];
-//	[F4Field setStringValue:[defaults objectForKey:@"shortcut4"]];
-//	[F5Field setStringValue:[defaults objectForKey:@"shortcut5"]];
-//	[F6Field setStringValue:[defaults objectForKey:@"shortcut6"]];
-//	[F7Field setStringValue:[defaults objectForKey:@"shortcut7"]];
-//	[F8Field setStringValue:[defaults objectForKey:@"shortcut8"]];
-//	[F9Field setStringValue:[defaults objectForKey:@"shortcut9"]];
-//	[F10Field setStringValue:[defaults objectForKey:@"shortcut10"]];
-//	[F11Field setStringValue:[defaults objectForKey:@"shortcut11"]];
-//	[F12Field setStringValue:[defaults objectForKey:@"shortcut12"]];
 	
 	[self updateTextEncodingPopUpButton];
   [self updateSoundListPopUpButton];
@@ -188,20 +172,6 @@
 - (void)windowDidLoad
 {
   NSLog(@"Fart");
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-//	[F1Field setStringValue:[defaults objectForKey:@"shortcut1"]];
-//	[F2Field setStringValue:[defaults objectForKey:@"shortcut2"]];
-//	[F3Field setStringValue:[defaults objectForKey:@"shortcut3"]];
-//	[F4Field setStringValue:[defaults objectForKey:@"shortcut4"]];
-//	[F5Field setStringValue:[defaults objectForKey:@"shortcut5"]];
-//	[F6Field setStringValue:[defaults objectForKey:@"shortcut6"]];
-//	[F7Field setStringValue:[defaults objectForKey:@"shortcut7"]];
-//	[F8Field setStringValue:[defaults objectForKey:@"shortcut8"]];
-//	[F9Field setStringValue:[defaults objectForKey:@"shortcut9"]];
-//	[F10Field setStringValue:[defaults objectForKey:@"shortcut10"]];
-//	[F11Field setStringValue:[defaults objectForKey:@"shortcut11"]];
-//	[F12Field setStringValue:[defaults objectForKey:@"shortcut12"]];
 	
 	NSTextContainer *textContainer = [previewTextView textContainer];
   NSSize theSize = [textContainer containerSize];
