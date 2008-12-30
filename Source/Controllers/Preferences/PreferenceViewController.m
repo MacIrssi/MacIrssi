@@ -73,8 +73,6 @@
     }
     
     availableThemes = [[NSMutableArray alloc] init];
-    themePreviewDaemon = nil;
-    previewTimer = nil;
     appController = controller;
     eventController = [appController eventController];
     
@@ -181,17 +179,10 @@
 {
   NSLog(@"Fart");
 	
-	NSTextContainer *textContainer = [previewTextView textContainer];
-  NSSize theSize = [textContainer containerSize];
-  theSize.width = 1.0e7;
-  [textContainer setContainerSize:theSize];
-  [textContainer setWidthTracksTextView:NO];
 	[self initTextEncodingPopUpButton];
   [self initChatEventsPopUpButton];
   [self initSoundListPopUpButton];
   
-	[previewTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
-	[previewTextView setNeedsDisplay:TRUE];
 	[preferenceWindow setOpaque:FALSE];
   
   [self chatEventPopup:self];
@@ -409,35 +400,6 @@
   [eventController setStringForEvent:event alert:@"playSoundSound" value:[[soundListPopUpButton selectedItem] title]];
 }
 
-#pragma mark Themes
-
-- (IBAction)updateThemeList:(id)sender
-{
-	[self findAvailableThemes];
-}
-
-/**
- * Selects the currently used theme in the theme table view
- */
-- (void)selectCurrentTheme
-{
-	int i;
-	
-	if (!current_theme)
-		return;
-	
-	NSString *currentTheme = [NSString stringWithCString:current_theme->name];
-	for (i = 0; i < [availableThemes count]; i++) {
-		if ([[availableThemes objectAtIndex:i] caseInsensitiveCompare:currentTheme] == NSOrderedSame) {
-			[themeTableView selectRow:i byExtendingSelection:FALSE];
-			[themeTableView scrollRowToVisible:i];
-			
-			previewTimer = [[NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(requestPreview:) userInfo:currentTheme repeats:FALSE] retain];
-			return;
-		}
-	}
-}
-
 #pragma mark Colour Functions
 
 //-------------------------------------------------------------------
@@ -456,8 +418,8 @@
 	
 	if (sender == channelBGColorWell) {
 		[nc postNotificationName:@"channelColorChanged" object:color];
-		[previewTextView setBackgroundColor:color];
-		[previewTextView setNeedsDisplay:TRUE];
+		[themePreviewTextView setBackgroundColor:color];
+		[themePreviewTextView setNeedsDisplay:TRUE];
 	}
 	else if (sender == channelFGColorWell) {
 		[nc postNotificationName:@"channelColorChanged" object:color];
@@ -508,131 +470,6 @@
     NSData *colorAsData = [NSArchiver archivedDataWithRootObject:color];
     [[NSUserDefaults standardUserDefaults] setObject:colorAsData forKey:key];
   }
-}
-
-#pragma mark Daemon Crap
-
-/**
- * Called when ThemePreviewDaemon is ready for connections.
- */
-- (void)daemonInitiationComplete
-{	
-	/* Set up connection to ThemePreviewDaemon */
-	themePreviewDaemon = [NSConnection rootProxyForConnectionWithRegisteredName:@"ThemePreviewDaemon" host:nil];
-	
-	if (!themePreviewDaemon) {
-		NSLog(@"Unable to connect to ThemePreviewDaemon!");
-		return;
-	}
-	
-	[themePreviewDaemon retain];
-	[themePreviewDaemon setProtocolForProxy:@protocol(ThemePreviewDaemonProtocol)];	
-	[self selectCurrentTheme];
-}
-
-- (void)returnPreview:(NSAttributedString *)result
-{
-	[[previewTextView textStorage] setAttributedString:result];
-}
-
-/**
- * Initiates connection to theme preivew daemon
- */
-- (void)connectToThemePreviewDaemon
-{
-	/* first kill old daemon if running */
-	system("killall ThemePreviewDaemon textserver");
-	
-	/* Launch daemon as a NSTask */
-	NSTask *task = [[NSTask alloc] init];
-	NSString *launchPath = @"Contents/ThemePreviewDaemon/ThemePreviewDaemon";
-	[task setLaunchPath:[NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], launchPath]];
-	[task setArguments:[NSArray array]];
-	[task launch];	//TODO: release task when done	
-}
-
-/**
- * Registers self as a distributed object. Then launches the Theme Preview Daemon in a subprocess.
- */
-- (void)registerDistributedObject
-{
-	/* Register as distributed object */
-	NSConnection *connection = [NSConnection defaultConnection];
-	[connection setRootObject:self];
-	
-	if (![connection registerName:@"MacIrssi"]) {
-		NSLog(@"Unable to register name!");
-		//[[NSAlert alertWithMessageText:@"Another copy of MacIrssi is running" defaultButton:@"Quit" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Unable to register remote object used for theme preview funcionality!"] runModal];
-		//[NSApp terminate:self];
-    return;
-	}
-	
-	[connection retain]; //TODO release
-	[connection setDelegate:self];
-}
-
-/**
- * Shuts down theme preview daemon and closes window
- */
-- (void)close
-{
-	@try {
-		[themePreviewDaemon shutDown];
-	}
-	@catch (NSException *e) {
-		NSLog(@"Unable to shut down ThemePreviewDaemon");
-	}
-}
-
-#pragma mark TableView delegate/data source
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
-{
-	return [availableThemes count];
-}
-
-- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
-{
-	NSAssert(aTableView == themeTableView, @"aTableView != themeTableView");
-	
-	if (rowIndex >= [availableThemes count]) {
-		NSLog(@"Theme table is requesting a row that is out of bounds!");
-		return nil;
-	}
-	
-	return [availableThemes objectAtIndex:rowIndex];
-}
-
-- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
-{
-	//NSAssert([aNotification object] == themeTableView, @"[aNotification object] != themeTableView");
-  if ([aNotification object] == themeTableView)
-  {
-    int row = [themeTableView selectedRow];
-    
-    if (!themePreviewDaemon || row < 0 || row >= [availableThemes count])
-      return;
-    
-    /* If we have a old request waiting to be processed, remove it */
-    if ([previewTimer isValid])
-      [previewTimer invalidate];
-    
-    
-    /* Wait at least a small time intervall between preview requests */
-    NSString *theme = [availableThemes objectAtIndex:row];
-    [previewTimer release];
-    previewTimer = [[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(requestPreview:) userInfo:theme repeats:FALSE] retain];
-  }	
-}
-
-- (void)requestPreview:(NSTimer*)theTimer
-{
-	@try {
-		[themePreviewDaemon requestPreviewForThemeNamed:[theTimer userInfo] usingColorSet:colorSet font:[NSFont fontWithName:@"Monaco" size:9.0]];
-	}
-	@catch (NSException *e) {
-		NSLog(@"Unable to create preivew!");
-		[[NSAlert alertWithMessageText:@"Unable to create preivew!" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Exception while contacting Theme Preivew Daemon."] runModal];
-	}
 }
 
 #pragma mark Network Preference Panel
@@ -956,7 +793,7 @@
   else if ([itemIdentifier isEqualToString:@"Themes"])
   {
     [toolbarItem setLabel:@"Themes"];
-    //[toolbarItem setImage:<#(NSImage *)image#>];
+    [toolbarItem setImage:[NSImage imageNamed:@"Themes"]];
     [toolbarItem setAction:@selector(changeViewFromToolbar:)];
     [toolbarItem setTarget:self];
   }
@@ -1019,12 +856,7 @@
 		[[NSUserDefaults standardUserDefaults] setObject:shortcutCommands[i] forKey:[NSString stringWithFormat:@"shortcut%d", i+1]];
 	
 	[appController setShortcutCommands:shortcutCommands];
-	
-	/********
-   * Theme *
-   ********/
-	[appController loadTheme:[availableThemes objectAtIndex:[themeTableView selectedRow]]];
-	
+		
 	/****************
    * Text encoding *
    ****************/
@@ -1036,7 +868,6 @@
   
   [eventController commitChanges];
   
-	[self close];
 }
 
 //-------------------------------------------------------------------
@@ -1047,14 +878,13 @@
 - (IBAction)cancelChanges:(id)sender
 {
   [eventController cancelChanges];
-	[self close];
 }
 
 @end
 
 #pragma mark Internal C Functions
 
-static void _preferences_printformat(const char* module, TEXT_DEST_REC* dest, int formatnum, ...)
+void _preferences_printformat(const char* module, TEXT_DEST_REC* dest, int formatnum, ...)
 {
   va_list va;
   va_start(va, formatnum);

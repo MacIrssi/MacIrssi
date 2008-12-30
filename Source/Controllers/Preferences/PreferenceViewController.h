@@ -41,11 +41,6 @@
   /* Irssi Settings Object Controller */
   IBOutlet NSObjectController *irssiObjectController;
   PreferenceObjectController *preferenceObjectController;
-  
-	/* Themes tab */
-	IBOutlet NSTextView *previewTextView;
-	IBOutlet NSTableView *themeTableView;
-	NSTimer *previewTimer;
 	
 	/* Key bindings tab */
 	IBOutlet NSTextField *F1Field;
@@ -128,7 +123,6 @@
 	NSString *oldAddress;
 	ColorSet *colorSet;
 	bool colorChanged;
-	id themePreviewDaemon;
 }
 
 - (id)initWithColorSet:(ColorSet *)colors appController:(AppController*)controller;
@@ -149,12 +143,6 @@
 - (void)windowDidLoad;
 - (void)windowWillClose:(NSNotification *)aNotification;
 
-- (IBAction)updateThemeList:(id)sender;
-- (void)findAvailableThemes;
-- (void)registerDistributedObject;
-- (void)connectToThemePreviewDaemon;
-- (void)selectCurrentTheme;
-
 - (void)updateTextEncodingPopUpButton;
 - (void)initTextEncodingPopUpButton;
 
@@ -163,10 +151,6 @@
 
 - (void)initSoundListPopUpButton;
 - (void)updateSoundListPopUpButton;
-
-- (void)daemonInitiationComplete;
-- (void)returnPreview:(NSAttributedString *)result;
-- (void)requestPreview:(NSTimer*)theTimer;
 
 #pragma mark Network Preference Panel
 
@@ -201,7 +185,6 @@
 #pragma mark Window
 
 - (NSWindow*)window;
-- (void)close;
 
 #pragma mark Toolbar Delegates
 
@@ -213,6 +196,6 @@
 
 #pragma mark Internal C Functions
 
-static void _preferences_printformat(const char* module, TEXT_DEST_REC* dest, int formatnum, ...);
+void _preferences_printformat(const char* module, TEXT_DEST_REC* dest, int formatnum, ...);
 void _preferences_bridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *text, TEXT_DEST_REC *dest_rect);
 void _preferences_bridge_print_text_finished(WINDOW_REC *wind);
