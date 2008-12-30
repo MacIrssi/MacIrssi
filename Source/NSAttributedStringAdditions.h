@@ -21,10 +21,11 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#import <AppKit/AppKit.h>
-
+#import <Foundation/Foundation.h>
 
 @interface NSMutableAttributedString (Additions)
+
+- (NSMutableAttributedString*)attributedStringByAppendingString:(NSString*)text foreground:(int)fg background:(int)bg flags:(int)flags attributes:(NSDictionary*)attributes;
 - (void)detectURLs:(NSColor*)linkColor;
 
 @end

@@ -22,6 +22,7 @@
 //*****************************************************************
 
 #import "PreferenceViewController.h"
+#import "NSAttributedStringAdditions.h"
 #import "IrssiBridge.h"
 #import <Foundation/Foundation.h>
 #import "settings.h"
@@ -71,11 +72,13 @@
       shortcutCommands[i] = nil;
     }
     
-    availibleThemes = [[NSMutableArray alloc] init];
+    availableThemes = [[NSMutableArray alloc] init];
     themePreviewDaemon = nil;
     previewTimer = nil;
     appController = controller;
     eventController = [appController eventController];
+    
+    [themePreviewTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
     
     [self initTextEncodingPopUpButton];
     [self initChatEventsPopUpButton];
@@ -92,9 +95,10 @@
   [irssiObjectController setContent:nil];
   [networksArrayController setContent:nil];
   [serversArrayController setContent:nil];
+  [themesArrayController setContent:nil];
   [preferenceObjectController release];
   
-  [availibleThemes release];
+  [availableThemes release];
   [super dealloc];
 }
 
@@ -146,6 +150,10 @@
 	[self updateTextEncodingPopUpButton];
   [self updateSoundListPopUpButton];
   [self updateChatEventsPopUpButton];
+
+  [self findAvailableThemes];
+  [themesArrayController setSelectedObjects:[NSArray arrayWithObjects:[preferenceObjectController theme], nil]];
+  [self previewTheme:[preferenceObjectController theme]];
   
   [preferenceWindow makeKeyAndOrderFront:self];
   [preferenceWindow center];
@@ -405,7 +413,7 @@
 
 - (IBAction)updateThemeList:(id)sender
 {
-	[self findAvailibleThemes];
+	[self findAvailableThemes];
 }
 
 /**
@@ -419,8 +427,8 @@
 		return;
 	
 	NSString *currentTheme = [NSString stringWithCString:current_theme->name];
-	for (i = 0; i < [availibleThemes count]; i++) {
-		if ([[availibleThemes objectAtIndex:i] caseInsensitiveCompare:currentTheme] == NSOrderedSame) {
+	for (i = 0; i < [availableThemes count]; i++) {
+		if ([[availableThemes objectAtIndex:i] caseInsensitiveCompare:currentTheme] == NSOrderedSame) {
 			[themeTableView selectRow:i byExtendingSelection:FALSE];
 			[themeTableView scrollRowToVisible:i];
 			
@@ -429,35 +437,6 @@
 		}
 	}
 }
-
-/**
- * Finds all availible themes
- */
-- (void)findAvailibleThemes
-{
-	[availibleThemes removeAllObjects];
-	
-	NSArray *locations = [appController themeLocations];
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	int i, j;
-	for (i = 0; i < [locations count]; i++) {
-		NSArray *files = [fileManager directoryContentsAtPath:[locations objectAtIndex:i]];
-		
-		if (!files)
-			continue;
-		
-		for (j = 0; j < [files count]; j++) {
-			NSString *file = [files objectAtIndex:j];
-			
-			/** Remove .theme suffix and add to array */
-			if ([file hasSuffix:@".theme"])
-				[availibleThemes addObject:[file substringToIndex:[file length] - 6]];
-		}			
-	}
-
-	[themeTableView reloadData];
-}
-
 
 #pragma mark Colour Functions
 
@@ -608,19 +587,19 @@
 #pragma mark TableView delegate/data source
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
 {
-	return [availibleThemes count];
+	return [availableThemes count];
 }
 
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
 	NSAssert(aTableView == themeTableView, @"aTableView != themeTableView");
 	
-	if (rowIndex >= [availibleThemes count]) {
+	if (rowIndex >= [availableThemes count]) {
 		NSLog(@"Theme table is requesting a row that is out of bounds!");
 		return nil;
 	}
 	
-	return [availibleThemes objectAtIndex:rowIndex];
+	return [availableThemes objectAtIndex:rowIndex];
 }
 
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
@@ -630,7 +609,7 @@
   {
     int row = [themeTableView selectedRow];
     
-    if (!themePreviewDaemon || row < 0 || row >= [availibleThemes count])
+    if (!themePreviewDaemon || row < 0 || row >= [availableThemes count])
       return;
     
     /* If we have a old request waiting to be processed, remove it */
@@ -639,7 +618,7 @@
     
     
     /* Wait at least a small time intervall between preview requests */
-    NSString *theme = [availibleThemes objectAtIndex:row];
+    NSString *theme = [availableThemes objectAtIndex:row];
     [previewTimer release];
     previewTimer = [[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(requestPreview:) userInfo:theme repeats:FALSE] retain];
   }	
@@ -760,6 +739,128 @@
   [serversArrayController setContent:[preferenceObjectController serverArray]];
 }
 
+#pragma mark Themes Preference Panel
+
+- (void)findAvailableThemes
+{
+  [availableThemes release];
+  availableThemes = [[NSMutableArray alloc] init];
+	
+	NSArray *locations = [appController themeLocations];
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+  
+  NSString *location, *file;
+  NSEnumerator *locationsEnumerator = [locations objectEnumerator];
+  
+  while (location = [locationsEnumerator nextObject])
+  {
+    NSArray *files = [fileManager directoryContentsAtPath:location];
+    
+    if (!files)
+    {
+      continue;
+    }
+    
+    NSEnumerator *filesEnumerator = [files objectEnumerator];
+    while (file = [filesEnumerator nextObject])
+    {
+      /** Remove .theme suffix and add to array */
+			if ([file hasSuffix:@".theme"] && ![availableThemes containsObject:[file stringByDeletingPathExtension]])
+      {
+        [availableThemes addObject:[file stringByDeletingPathExtension]];
+      }
+    }
+  }
+  [themesArrayController setContent:availableThemes];
+}
+
+- (IBAction)previewTheme:(id)sender
+{
+  NSString *theme = [[themesArrayController selectedObjects] objectAtIndex:0];
+  [self renderPreviewTheme:theme];
+  [preferenceObjectController setTheme:theme];
+}
+
+- (void)renderPreviewTheme:(NSString*)themeName
+{
+  WINDOW_REC windowRec;
+  TEXT_DEST_REC dest;
+  
+  /* So the basic plan here is to:
+      1.  Create a fake "window", its actually just a variable at the top of this function
+      2.  Unlike normal traffic, we can buffer up all the lines in one string till the end
+          of the traffic. So we declare an attributed string to use.
+      3.  Hook our printText and printTextFinished into the callchain at the top, it needs
+          to be first so we can catch this message stream before it hits the normal print
+          signal handlers.
+      4.  Create a fake stream of traffic, I've got some C functions at the bottom of this
+          file that basically call Irssi functions, the traffic is the same as partially-
+          processed IRC traffic.
+      5.  The signal handlers check if wind->gui_data is actually this class, not a
+          ChannelController (as it usually is), if so they call the ObjC callbacks then
+          kill the signal from going any further.
+      6.  We render the data into a string, the ChannelController print text function has
+          been migrated to an NSAttributedString addition so we can call it from both places.
+      7.  Once we're done, put the string on screen then kill off our extra hooks and tidy
+          up.
+   
+    This is all to get rid of the theme preview daemon, this is a "relatively" simple way of
+    doing theme preview and doesn't rely on external daemons to do the work for us.
+   */
+   
+  // This is hacky but I can't send it through the callbacks. So meh.
+  themeRenderLineBuffer = [[NSMutableAttributedString alloc] init];
+  [[themePreviewTextView textStorage] setAttributedString:themeRenderLineBuffer];
+  
+  signal_add_first("gui print text", (SIGNAL_FUNC)_preferences_bridge_print_text);
+  signal_add_first("gui print text finished", (SIGNAL_FUNC)_preferences_bridge_print_text_finished);
+  
+  windowRec.theme = theme_load([IrssiBridge irssiCStringWithString:themeName]);
+  windowRec.gui_data = self;
+  
+  // The signal chain reassigns this but it frees it first, so need to put something here.
+  windowRec.hilight_color = malloc(1);
+  
+  // Lets have a conversation with ourself
+  format_create_dest(&dest, NULL, "#test", 4, &windowRec);
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "Obj-Cow", "yeah, it'd never make it into those functions if absoluteURL was NULL", " ");
+  _preferences_printformat("fe-common/core", &dest, TXT_JOIN, "xTina", "xTina@vpn2-dynip175.informatik.uni-stuttgart.de", "#macdev");
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "hennker", "anyone has a guess, why cisco' vpnclient links against the quicktime.framework?", " ");
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "mikeash", "easter egg?", " ");
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "hennker", "hehe", " ");
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG_ME, "Gruul", "Daagaak: ping", "+");
+  _preferences_printformat("fe-common/core", &dest, TXT_QUIT, "CrackBunny", "CrackBun@66-188-151-29.dhcp.stcl.mn.charter.com", "Laptop goes to sleep!", "CrackBunny");
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "AngryLuke", "what's wrong with it linking to QuickTime?", " ");
+	_preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "hennker", "not wrong, i am just wondering, why they'd need something out of quicktime for a vpn-client", " ");
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "AngryLuke", "how are you determining that it is loading?", " ");
+  _preferences_printformat("fe-common/core", &dest, TXT_PART, "rici2", "rlake@grail1.oxfam.org.uk", "#macdev", "");
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "AngryLuke", "err, that it is linking to QuickTime, I mean", " ");
+  _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "hennker", "otool -L", " ");
+
+  [[themePreviewTextView textStorage] appendAttributedString:themeRenderLineBuffer];
+  [themeRenderLineBuffer release];
+
+  signal_remove("gui print text", (SIGNAL_FUNC)(SIGNAL_FUNC)_preferences_bridge_print_text);
+  signal_remove("gui print text finished", (SIGNAL_FUNC)_preferences_bridge_print_text_finished);
+  
+  free(windowRec.hilight_color);
+}
+
+- (void)printTextCallback:(char*)cText foreground:(int)fg background:(int)bg flags:(int)flags
+{
+  NSString *text = [IrssiBridge stringWithIrssiCString:cText];
+  
+  NSFont *channelFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
+  NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:channelFont, NSFontAttributeName,nil];
+  
+  themeRenderLineBuffer = [themeRenderLineBuffer attributedStringByAppendingString:text foreground:fg background:bg flags:flags attributes:attributes];
+}
+
+- (void)printTextFinishedCallback
+{
+  [themeRenderLineBuffer appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
+}
+
 #pragma mark Window
 
 - (NSWindow*)window
@@ -793,11 +894,15 @@
   {
     [self switchPreferenceWindowTo:serversPreferencesTab animate:YES];
   }
+  else if ([[toolbarItem itemIdentifier] isEqualToString:@"Themes"])
+  {
+    [self switchPreferenceWindowTo:themePreferencesTab animate:YES];
+  }
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
-  return [NSArray arrayWithObjects:@"General", @"Notifications", @"Colours", @"Networks", @"Servers", nil];
+  return [NSArray arrayWithObjects:@"General", @"Notifications", @"Colours", @"Networks", @"Servers", @"Themes", nil];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
@@ -845,6 +950,13 @@
   {
     [toolbarItem setLabel:@"Servers"];
     [toolbarItem setImage:[NSImage imageNamed:@"Servers"]];
+    [toolbarItem setAction:@selector(changeViewFromToolbar:)];
+    [toolbarItem setTarget:self];
+  }
+  else if ([itemIdentifier isEqualToString:@"Themes"])
+  {
+    [toolbarItem setLabel:@"Themes"];
+    //[toolbarItem setImage:<#(NSImage *)image#>];
     [toolbarItem setAction:@selector(changeViewFromToolbar:)];
     [toolbarItem setTarget:self];
   }
@@ -911,7 +1023,7 @@
 	/********
    * Theme *
    ********/
-	[appController loadTheme:[availibleThemes objectAtIndex:[themeTableView selectedRow]]];
+	[appController loadTheme:[availableThemes objectAtIndex:[themeTableView selectedRow]]];
 	
 	/****************
    * Text encoding *
@@ -939,3 +1051,37 @@
 }
 
 @end
+
+#pragma mark Internal C Functions
+
+static void _preferences_printformat(const char* module, TEXT_DEST_REC* dest, int formatnum, ...)
+{
+  va_list va;
+  va_start(va, formatnum);
+  printformat_module_dest_args(module, dest, formatnum, va);
+  va_end(va);
+}
+
+void _preferences_bridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *text, TEXT_DEST_REC *dest_rect)
+{
+  id context = wind->gui_data;
+  
+  if ([context isKindOfClass:[PreferenceViewController class]])
+  {
+    [(PreferenceViewController*)context printTextCallback:text foreground:fg background:bg flags:flags];
+    signal_stop();
+  }
+  // Else, carry on.
+}
+
+void _preferences_bridge_print_text_finished(WINDOW_REC *wind)
+{
+  id context = wind->gui_data;
+  
+  if ([context isKindOfClass:[PreferenceViewController class]])
+  {
+    [(PreferenceViewController*)context printTextFinishedCallback];
+    signal_stop();
+  }
+  // Else, carry on.
+}

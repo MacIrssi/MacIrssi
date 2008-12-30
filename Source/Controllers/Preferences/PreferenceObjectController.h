@@ -41,4 +41,7 @@
 - (NSString*)realName;
 - (void)setRealName:(NSString*)name;
 
+- (NSString*)theme;
+- (void)setTheme:(NSString*)theme;
+
 @end
