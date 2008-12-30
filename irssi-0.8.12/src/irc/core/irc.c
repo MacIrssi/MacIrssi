@@ -283,7 +283,7 @@ static void irc_server_event(IRC_SERVER_REC *server, const char *line,
         const char *signal;
 	char *event, *args;
 	char *params, *target, *recoded_line, *recoded_nick;
-
+  
 	g_return_if_fail(line != NULL);
 
 	params = event_get_params(line, 2, NULL, &args);

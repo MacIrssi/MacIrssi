@@ -1238,11 +1238,10 @@ char **argv;
   UKCrashReporterCheckForCrash();
   
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-  //char *argv[2] = {"MacIrssi", NULL};
-  //char *argv[4] = {"MacIrssi", "--config=tmp", "--nick=g1m0", NULL};
+
   setRefToAppController(self);
   highlightAttributes = [[NSMutableDictionary alloc] init];
-  mainRunLoop = [NSRunLoop currentRunLoop];
+  
   quitting = FALSE;
   hilightChannels = 0;
   

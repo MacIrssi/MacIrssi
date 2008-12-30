@@ -22,11 +22,96 @@
  */
 
 #import "NSAttributedStringAdditions.h"
+#import "ColorSet.h"
 
+#import "common.h"
+#import "formats.h"
 
 static NSURL* findURL(NSString* string);
 
+/* From gui-printtext.c */
+static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
+
 @implementation NSMutableAttributedString (Additions)
+
+- (NSMutableAttributedString*)attributedStringByAppendingString:(NSString*)text foreground:(int)fg background:(int)bg flags:(int)flags attributes:(NSDictionary*)attributes;
+{
+  NSMutableAttributedString *buffer = [[NSMutableAttributedString alloc] initWithAttributedString:self];
+  NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
+  
+  /* Handle colors */
+  if (flags & GUI_PRINT_FLAG_MIRC_COLOR) {
+    /* mirc colors - real range is 0..15, but after 16
+     colors wrap to 0, 1, ... */
+    if (bg >= 0)
+    {
+      bg = mirc_colors[bg % 16];
+    }
+    
+    if (fg >= 0)
+    {
+      fg = mirc_colors[fg % 16];
+    }
+  }
+  
+  if (fg < 0 || fg > 15) 
+  {
+    [mutableAttributes setObject:[ColorSet channelForegroundColor] forKey:NSForegroundColorAttributeName];
+  }
+  else 
+  {
+    [mutableAttributes setObject:[[ColorSet mircColours] objectAtIndex:fg] forKey:NSForegroundColorAttributeName];
+  }
+  
+#if 0
+  //TODO
+  if (bg < 0 || bg > 15)
+    [attributes removeObjectForKey:NSBackgroundColorAttributeName];
+  else
+    [attributes setObject:[bg_colors objectAtIndex:bg] forKey:NSBackgroundColorAttributeName];
+#endif
+  
+  /* Handle flags */ //TODO
+  if (flags & GUI_PRINT_FLAG_REVERSE) 
+  {
+    
+  }
+  if (flags & GUI_PRINT_FLAG_BOLD) 
+  {
+    
+  }
+  if (flags & GUI_PRINT_FLAG_UNDERLINE) 
+  {
+    
+  }
+  if (flags & GUI_PRINT_FLAG_BLINK) 
+  {
+    /* Ignore */
+  } 
+  if (flags & GUI_PRINT_FLAG_NEWLINE) 
+  {
+    NSLog(@"GUI_PRINT_FLAG_NEWLINE for text \'%@\'", text);
+    [buffer appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
+  }
+  if (flags & GUI_PRINT_FLAG_INDENT_FUNC) 
+  {
+    NSLog(@"GUI_PRINT_FLAG_INDENT_FUNC for text \'%@\'", text);
+  }
+  if (flags & GUI_PRINT_FLAG_INDENT) 
+  {
+    //NSLog(@"GUI_PRINT_FLAG_INDENT for text \'%@\'", text);
+  }
+  if (flags & GUI_PRINT_FLAG_CLRTOEOL) 
+  {
+    NSLog(@"GUI_PRINT_FLAG_CLRTOEOL for text \'%@\'", text);
+  }
+  
+  NSAttributedString *tmp = [[NSAttributedString alloc] initWithString:text attributes:mutableAttributes];
+  [buffer appendAttributedString:tmp];
+  [tmp release];
+  
+  return buffer;
+}
 
 - (void)detectURLs:(NSColor*)linkColor
 {

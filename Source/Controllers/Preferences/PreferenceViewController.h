@@ -36,6 +36,7 @@
   IBOutlet NSWindow *coloursPreferencesTab;
   IBOutlet NSWindow *networksPreferencesTab;
   IBOutlet NSWindow *serversPreferencesTab;
+  IBOutlet NSWindow *themePreferencesTab;
   
   /* Irssi Settings Object Controller */
   IBOutlet NSObjectController *irssiObjectController;
@@ -44,7 +45,6 @@
 	/* Themes tab */
 	IBOutlet NSTextView *previewTextView;
 	IBOutlet NSTableView *themeTableView;
-	NSMutableArray *availibleThemes;
 	NSTimer *previewTimer;
 	
 	/* Key bindings tab */
@@ -116,6 +116,12 @@
   /* Servers tab */
   IBOutlet NSArrayController *serversArrayController;
   
+  /* Themes tab */
+  IBOutlet NSTextView *themePreviewTextView;
+  IBOutlet NSArrayController *themesArrayController;
+  NSMutableArray *availableThemes;
+  NSMutableAttributedString *themeRenderLineBuffer;
+  
 	AppController *appController;
   EventController *eventController;
 	NSString **shortcutCommands;
@@ -144,7 +150,7 @@
 - (void)windowWillClose:(NSNotification *)aNotification;
 
 - (IBAction)updateThemeList:(id)sender;
-- (void)findAvailibleThemes;
+- (void)findAvailableThemes;
 - (void)registerDistributedObject;
 - (void)connectToThemePreviewDaemon;
 - (void)selectCurrentTheme;
@@ -183,6 +189,15 @@
 - (IBAction)addServerAction:(id)sender;
 - (IBAction)deleteServerAction:(id)sender;
 
+#pragma mark Themes Preference Panel
+
+- (void)findAvailableThemes;
+- (IBAction)previewTheme:(id)sender;
+- (void)renderPreviewTheme:(NSString*)themeName;
+
+- (void)printTextCallback:(char*)text foreground:(int)fg background:(int)bg flags:(int)flags;
+- (void)printTextFinishedCallback;
+
 #pragma mark Window
 
 - (NSWindow*)window;
@@ -195,3 +210,9 @@
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;
 
 @end
+
+#pragma mark Internal C Functions
+
+static void _preferences_printformat(const char* module, TEXT_DEST_REC* dest, int formatnum, ...);
+void _preferences_bridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *text, TEXT_DEST_REC *dest_rect);
+void _preferences_bridge_print_text_finished(WINDOW_REC *wind);

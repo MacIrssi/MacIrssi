@@ -206,4 +206,19 @@
   }
 }
 
+- (NSString*)theme
+{
+  return [NSString stringWithCString:settings_get_str("theme")];
+}
+
+- (void)setTheme:(NSString*)theme
+{
+  char *irssiCString = [IrssiBridge irssiCStringWithString:theme];
+  if (strcmp(irssiCString, settings_get_str("theme")) != 0)
+  {
+    settings_set_str("theme", irssiCString);
+    themes_reload();
+  }  
+}
+
 @end

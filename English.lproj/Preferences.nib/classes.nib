@@ -31,6 +31,8 @@
 				<string>id</string>
 				<key>deleteServerAction</key>
 				<string>id</string>
+				<key>previewTheme</key>
+				<string>id</string>
 				<key>revertColorsToDefaults</key>
 				<string>id</string>
 				<key>saveChanges</key>
@@ -178,10 +180,16 @@
 				<string>NSPopUpButton</string>
 				<key>textEncodingPopUpButton</key>
 				<string>NSPopUpButton</string>
+				<key>themePreferencesTab</key>
+				<string>NSWindow</string>
 				<key>themePreviewDaemon</key>
 				<string>id</string>
+				<key>themePreviewTextView</key>
+				<string>NSTextView</string>
 				<key>themeTableView</key>
 				<string>NSTableView</string>
+				<key>themesArrayController</key>
+				<string>NSArrayController</string>
 			</dict>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>

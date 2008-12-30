@@ -82,7 +82,6 @@ extern char **argv;
 	NSImage *currentIcon;
 	int hilightChannels;
 	NSString **shortcutCommands;
-	NSRunLoop *mainRunLoop;
 	CoverView *coverView;
 	
 	GSList *sleepList;
