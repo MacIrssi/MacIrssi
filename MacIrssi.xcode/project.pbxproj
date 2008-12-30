@@ -229,6 +229,8 @@
 		C91F0B170F06E3C900763699 /* MISplitView.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F0B150F06E3C900763699 /* MISplitView.h */; };
 		C91F0B180F06E3C900763699 /* MISplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F0B160F06E3C900763699 /* MISplitView.m */; };
 		C91F131E0F0A63F300763699 /* Themes.png in Resources */ = {isa = PBXBuildFile; fileRef = C91F131D0F0A63F300763699 /* Themes.png */; };
+		C91F139E0F0A743800763699 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F139D0F0A743800763699 /* Sparkle.framework */; };
+		C91F13A50F0A748600763699 /* Sparkle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C91F139D0F0A743800763699 /* Sparkle.framework */; };
 		C922B4140E23BCE1000AA7BE /* Beep 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */; };
 		C922B4150E23BCE1000AA7BE /* Beep 2.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */; };
 		C922B4160E23BCE1000AA7BE /* Bell 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */; };
@@ -402,8 +404,6 @@
 		C9EBACAB0EA100D400025466 /* ServerBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBACA90EA100D400025466 /* ServerBridgeController.h */; };
 		C9EBACAC0EA100D400025466 /* ServerBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBACAA0EA100D400025466 /* ServerBridgeController.m */; };
 		C9EBACE50EA1055F00025466 /* Servers.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBACE40EA1055F00025466 /* Servers.png */; };
-		C9F435120E573D330001D6D6 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F435110E573D330001D6D6 /* Sparkle.framework */; };
-		C9F435330E574A8F0001D6D6 /* Sparkle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C9F435110E573D330001D6D6 /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -437,11 +437,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C91F13A50F0A748600763699 /* Sparkle.framework in Copy Libraries */,
 				C2CC3BF90C0B7B48001C0DDD /* libglib-2.0.0.dylib in Copy Libraries */,
 				C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in Copy Libraries */,
 				C2CC3BFB0C0B7B5B001C0DDD /* libiconv.2.dylib in Copy Libraries */,
 				C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in Copy Libraries */,
-				C9F435330E574A8F0001D6D6 /* Sparkle.framework in Copy Libraries */,
 			);
 			name = "Copy Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1528,6 +1528,7 @@
 		C91F0B150F06E3C900763699 /* MISplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISplitView.h; sourceTree = "<group>"; };
 		C91F0B160F06E3C900763699 /* MISplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISplitView.m; sourceTree = "<group>"; };
 		C91F131D0F0A63F300763699 /* Themes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Themes.png; sourceTree = "<group>"; };
+		C91F139D0F0A743800763699 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 1.aiff"; sourceTree = "<group>"; };
 		C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 2.aiff"; sourceTree = "<group>"; };
 		C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Bell 1.aiff"; sourceTree = "<group>"; };
@@ -1701,7 +1702,6 @@
 		C9EBACA90EA100D400025466 /* ServerBridgeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerBridgeController.h; sourceTree = "<group>"; };
 		C9EBACAA0EA100D400025466 /* ServerBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerBridgeController.m; sourceTree = "<group>"; };
 		C9EBACE40EA1055F00025466 /* Servers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Servers.png; sourceTree = "<group>"; };
-		C9F435110E573D330001D6D6 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1735,7 +1735,7 @@
 				C229C73D0C1AA7B900D7CCD0 /* libssl.dylib in Frameworks */,
 				C229C7400C1AA82900D7CCD0 /* libcrypto.dylib in Frameworks */,
 				C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */,
-				C9F435120E573D330001D6D6 /* Sparkle.framework in Frameworks */,
+				C91F139E0F0A743800763699 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1759,7 +1759,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C9F435110E573D330001D6D6 /* Sparkle.framework */,
+				C91F139D0F0A743800763699 /* Sparkle.framework */,
 				C9667E020E3790FD00014B02 /* SystemConfiguration.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
@@ -3481,12 +3481,14 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -3581,12 +3583,14 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -3676,12 +3680,14 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
