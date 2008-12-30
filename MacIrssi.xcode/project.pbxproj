@@ -1614,8 +1614,8 @@
 		C9432BFD0EA16540005237E3 /* removeWidget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeWidget.png; sourceTree = "<group>"; };
 		C9432C230EA1673E005237E3 /* ChannelBridgeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelBridgeController.h; sourceTree = "<group>"; };
 		C9432C240EA1673E005237E3 /* ChannelBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelBridgeController.m; sourceTree = "<group>"; };
-		C947E1DA0E1E871F0001380E /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventController.h; sourceTree = "<group>"; };
-		C947E1DB0E1E871F0001380E /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventController.m; sourceTree = "<group>"; };
+		C947E1DA0E1E871F0001380E /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventController.h; path = Controllers/EventController.h; sourceTree = "<group>"; };
+		C947E1DB0E1E871F0001380E /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventController.m; path = Controllers/EventController.m; sourceTree = "<group>"; };
 		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MacIrssi-Alert.png"; path = "../MacIrssi-Alert.png"; sourceTree = "<group>"; };
 		C9553A9E0E24C17200626859 /* activityNewImportant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityNewImportant.png; sourceTree = "<group>"; };
 		C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectivityMonitor.h; sourceTree = "<group>"; };
@@ -1841,32 +1841,8 @@
 				B322DD9205EF9A5C00E640C2 /* Irssi Bridge */,
 				B322DD9E05EF9A9100E640C2 /* Controllers */,
 				C91F0B130F06E3AA00763699 /* Custom Views */,
-				C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */,
-				C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */,
-				B322DDB505EF9AE600E640C2 /* ColorSet.h */,
-				B322DDB605EF9AE600E640C2 /* ColorSet.m */,
-				B322DDB705EF9AE600E640C2 /* CustomTableView.h */,
-				B322DDB805EF9AE600E640C2 /* CustomTableView.m */,
-				B322DDB905EF9AE600E640C2 /* CustomWindow.h */,
-				B322DDBA05EF9AE600E640C2 /* CustomWindow.m */,
-				C25491760681A35900C43D63 /* CustomTextView.h */,
-				C25491770681A35900C43D63 /* CustomTextView.m */,
-				C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */,
-				C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */,
-				B322DDBD05EF9AE600E640C2 /* History.h */,
-				B322DDBE05EF9AE600E640C2 /* History.m */,
-				B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */,
-				B3241ACA06286AF7000B4624 /* NSAttributedStringAdditions.m */,
-				C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */,
-				C2D1679006E3E16C000EC6F9 /* ChannelBar.m */,
-				C200D025073FC03700B850B1 /* ChannelBarCell.h */,
-				C200D026073FC03700B850B1 /* ChannelBarCell.m */,
-				C2E05FE60740E35600A4950D /* CoverView.h */,
-				C2E05FE70740E35600A4950D /* CoverView.m */,
-				C2C2C0F7074B822700396F82 /* MarkedScroller.h */,
-				C2C2C0F8074B822700396F82 /* MarkedScroller.m */,
-				C2A5697908D0D74100788905 /* TextEncodings.h */,
-				C2A5697A08D0D74100788905 /* TextEncodings.m */,
+				C91F13360F0A6EF600763699 /* Non-view Classes */,
+				C91F134B0F0A702800763699 /* Additions */,
 			);
 			name = Classes;
 			path = Source;
@@ -2968,8 +2944,48 @@
 			children = (
 				C91F0B150F06E3C900763699 /* MISplitView.h */,
 				C91F0B160F06E3C900763699 /* MISplitView.m */,
+				B322DDB705EF9AE600E640C2 /* CustomTableView.h */,
+				B322DDB805EF9AE600E640C2 /* CustomTableView.m */,
+				B322DDB905EF9AE600E640C2 /* CustomWindow.h */,
+				B322DDBA05EF9AE600E640C2 /* CustomWindow.m */,
+				C25491760681A35900C43D63 /* CustomTextView.h */,
+				C25491770681A35900C43D63 /* CustomTextView.m */,
+				C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */,
+				C2D1679006E3E16C000EC6F9 /* ChannelBar.m */,
+				C200D025073FC03700B850B1 /* ChannelBarCell.h */,
+				C200D026073FC03700B850B1 /* ChannelBarCell.m */,
+				C2E05FE60740E35600A4950D /* CoverView.h */,
+				C2E05FE70740E35600A4950D /* CoverView.m */,
+				C2C2C0F7074B822700396F82 /* MarkedScroller.h */,
+				C2C2C0F8074B822700396F82 /* MarkedScroller.m */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		C91F13360F0A6EF600763699 /* Non-view Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */,
+				C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */,
+				B322DDB505EF9AE600E640C2 /* ColorSet.h */,
+				B322DDB605EF9AE600E640C2 /* ColorSet.m */,
+				C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */,
+				C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */,
+				B322DDBD05EF9AE600E640C2 /* History.h */,
+				B322DDBE05EF9AE600E640C2 /* History.m */,
+				C2A5697908D0D74100788905 /* TextEncodings.h */,
+				C2A5697A08D0D74100788905 /* TextEncodings.m */,
+			);
+			path = "Non-view Classes";
+			sourceTree = "<group>";
+		};
+		C91F134B0F0A702800763699 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */,
+				B3241ACA06286AF7000B4624 /* NSAttributedStringAdditions.m */,
+			);
+			path = Additions;
 			sourceTree = "<group>";
 		};
 		C922B3D90E23BAE6000AA7BE /* Sounds */ = {
