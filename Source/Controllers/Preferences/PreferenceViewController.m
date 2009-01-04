@@ -150,7 +150,7 @@
 
   [self findAvailableThemes];
   [themesArrayController setSelectedObjects:[NSArray arrayWithObjects:[preferenceObjectController theme], nil]];
-  [self previewTheme:[preferenceObjectController theme]];
+  [self previewTheme:self];
   
   [preferenceWindow makeKeyAndOrderFront:self];
   [preferenceWindow center];
@@ -612,7 +612,26 @@
 
 - (IBAction)previewTheme:(id)sender
 {
-  NSString *theme = [[themesArrayController selectedObjects] objectAtIndex:0];
+  // Erugh, so if the theme doesn't exist then bad array index stuff happens. This really only happens if
+  // the user has "default" as the theme (we don't provide a default.theme) but could happen if someone
+  // runs /set theme without a valid theme.
+  
+  // If all else fails, we'll preview the first object in the index.
+  NSArray *themeObjects = [themesArrayController selectedObjects];
+  if ([themeObjects count] == 0)
+  {
+    // Paranoid here, check if we have any themes. If not, best just not bother.
+    if ([[themesArrayController arrangedObjects] count] == 0)
+    {
+      NSLog(@"previewTheme: theme controller's arrangedObjects was empty, this isn't good");
+      return;
+    }
+    
+    [themesArrayController setSelectionIndex:0];
+    themeObjects = [themesArrayController selectedObjects];
+  }
+  
+  NSString *theme = [themeObjects objectAtIndex:0];
   [self renderPreviewTheme:theme];
   [preferenceObjectController setTheme:theme];
 }
