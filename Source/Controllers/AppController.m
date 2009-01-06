@@ -40,6 +40,9 @@
 #import "SRKeyCodeTransformer.h"
 #import "ShortcutBridgeController.h"
 
+// For iChooons
+#import "iTunes.h"
+
 #import "chatnets.h"
 #import "irc.h"
 #import "irc-chatnets.h"
@@ -191,6 +194,32 @@ char **argv;
     /* Test if clear command (special case) */
     if ([[commands objectAtIndex:i] isEqualToString:@"/clear"]) {
       [currentChannelController clearTextView];
+      continue;
+    }
+    
+    /* Test for iTunes command */
+    if ([[[commands objectAtIndex:i] lowercaseString] isEqualToString:@"/itunes"])
+    {
+      iTunes *it = [[[iTunes alloc] init] autorelease];
+      NSString *nowPlaying;
+      
+      if ([it isRunning] && [it isPlaying])
+      {
+        nowPlaying = [NSString stringWithFormat:@"/me is listening to %@ by %@ from %@.", [it currentTitle], [it currentArtist], [it currentAlbum]];
+      }
+      else if ([it isRunning] && ![it isPlaying])
+      {
+        nowPlaying = @"/me is listening to silence!";
+      }
+      else
+      {
+        nowPlaying = @"/me typed /itunes when it wasn't even open. Doh!";
+      }
+
+      char *tmp = [IrssiBridge irssiCStringWithString:nowPlaying encoding:[currentChannelController textEncoding]];
+      signal_emit("send command", 3, tmp, rec->active_server, rec->active);
+      free(tmp);
+      
       continue;
     }
     
@@ -1299,6 +1328,8 @@ char **argv;
   UKCrashReporterCheckForCrash();
   
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+  
+  [[iTunes alloc] init];
 
   setRefToAppController(self);
   highlightAttributes = [[NSMutableDictionary alloc] init];
