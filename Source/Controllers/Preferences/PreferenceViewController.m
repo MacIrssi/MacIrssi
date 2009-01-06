@@ -61,16 +61,16 @@
     [irssiObjectController setContent:preferenceObjectController];
     [networksArrayController setContent:[preferenceObjectController chatnetArray]];
     [serversArrayController setContent:[preferenceObjectController serverArray]];
+    [shortcutsArrayController setContent:[preferenceObjectController shortcutArray]];
     
-    int i;
+    // Shortcuts tableview needs a doubleAction
+    [shortcutsTableView setDoubleAction:@selector(editShortcutAction:)];
+    [shortcutsTableView setTarget:self];
+    
+    // We need to setup the shortcut recorder properly
+    [shortcutRecorderControl setDelegate:self];
     
     colorSet = colors;
-    shortcutCommands = malloc(12 * sizeof(NSString *));
-    for (i = 0; i < 12; i++)
-    {
-      shortcutCommands[i] = nil;
-    }
-    
     availableThemes = [[NSMutableArray alloc] init];
     appController = controller;
     eventController = [appController eventController];
@@ -716,6 +716,129 @@
   [themeRenderLineBuffer appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
 }
 
+#pragma mark Shortcuts Preference Panel
+
+- (IBAction)addShortcutAction:(id)sender
+{
+  [self showShortcutRecorderPanel:self controller:nil];
+}
+
+- (IBAction)deleteShortcutAction:(id)sender
+{
+  if ([[shortcutsArrayController selectedObjects] count] > 0)
+  {
+    ShortcutBridgeController *controller = [[shortcutsArrayController selectedObjects] objectAtIndex:0];
+    [preferenceObjectController deleteShortcutWithKeyCode:[controller keyCode] flags:[controller flags]];
+    [shortcutsArrayController setContent:[preferenceObjectController shortcutArray]];
+  }
+}
+
+- (IBAction)editShortcutAction:(id)sender
+{
+  if ([shortcutsTableView clickedColumn] == 0)
+  {
+    // Someone actually double-clicked the command bit, we need to send an edit there instead.
+    [shortcutsTableView editColumn:[shortcutsTableView clickedColumn] row:[shortcutsTableView clickedRow] withEvent:nil select:YES];
+    return;
+  }
+  
+  if ([[shortcutsArrayController selectedObjects] count] > 0)
+  {
+    [self showShortcutRecorderPanel:self controller:[[shortcutsArrayController selectedObjects] objectAtIndex:0]];
+  }
+}
+
+#pragma mark Shortcut Recorder Panel
+
+- (void)showShortcutRecorderPanel:(id)sender controller:(ShortcutBridgeController*)controller
+{
+  if (controller)
+  {
+    [shortcutRecorderControl setKeyCombo:SRMakeKeyCombo([controller keyCode], [controller flags])];
+  }
+  else
+  {
+    // Clear the shortcut control.
+    [shortcutRecorderControl setKeyCombo:SRMakeKeyCombo(-1, 0)];
+  }
+  
+  [NSApp beginSheet:shortcutRecorderWindow
+     modalForWindow:[self window]
+      modalDelegate:self
+     didEndSelector:@selector(shortcutRecorderPanelDidEnd:returnCode:contextInfo:)
+        contextInfo:controller];
+}
+
+- (void)shortcutRecorderPanelDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+  [sheet orderOut:self];
+  
+  if (returnCode == NSOKButton)
+  {
+    // No context info + returnOK means we've created a new 'un
+    if (!contextInfo)
+    {
+      KeyCombo keyCombo = [shortcutRecorderControl keyCombo];
+      [preferenceObjectController addShortcutWithKeyCode:keyCombo.code flags:keyCombo.flags];
+    }
+    else
+    {
+      // Context + OK means we've edited.
+      ShortcutBridgeController *controller = contextInfo;
+      KeyCombo keyCombo = [shortcutRecorderControl keyCombo];
+      [controller setFlags:keyCombo.flags];
+      [controller setKeyCode:keyCombo.code];
+    }
+    [shortcutsArrayController setContent:[preferenceObjectController shortcutArray]];
+  }
+}
+
+- (IBAction)shortcutRecorderPanelOKAction:(id)sender
+{
+  [NSApp endSheet:shortcutRecorderWindow returnCode:NSOKButton];
+}
+
+- (IBAction)shortcutRecorderPanelCancelAction:(id)sender
+{
+  [NSApp endSheet:shortcutRecorderWindow returnCode:NSCancelButton];
+}
+
+- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(signed short)keyCode andFlagsTaken:(unsigned int)flags reason:(NSString **)aReason
+{
+  switch (keyCode)
+  {
+    case kSRKeysF1:
+    case kSRKeysF2:
+    case kSRKeysF3:
+    case kSRKeysF4:
+    case kSRKeysF5:
+    case kSRKeysF6:
+    case kSRKeysF7:
+    case kSRKeysF8:
+    case kSRKeysF9:
+    case kSRKeysF10:
+    case kSRKeysF11:
+    case kSRKeysF12:
+    case kSRKeysF13:
+    case kSRKeysF14:
+    case kSRKeysF15:
+    case kSRKeysF16:
+    case kSRKeysF17:
+    case kSRKeysF18:
+    case kSRKeysF19:
+      return NO;
+    default:
+    {
+      BOOL error = !(flags & NSCommandKeyMask);
+      if (error)
+      {
+        *aReason = @"shortcut keys must contain the Command key.";
+      }
+      return error;
+    }
+  }
+}
+
 #pragma mark Window
 
 - (NSWindow*)window
@@ -726,7 +849,7 @@
 #pragma mark Toolbar Delegates
 
 // Called from toolbar pushes
-- (IBAction)changeViewFromToolbar:(id)sender
+- (IBAction)changeViewFromToolbar:(id)sender 
 {
   NSToolbarItem *toolbarItem = (NSToolbarItem*)sender;
   if ([[toolbarItem itemIdentifier] isEqualToString:@"General"])
@@ -753,11 +876,15 @@
   {
     [self switchPreferenceWindowTo:themePreferencesTab animate:YES];
   }
+  else if ([[toolbarItem itemIdentifier] isEqualToString:@"Shortcuts"])
+  {
+    [self switchPreferenceWindowTo:shortcutsPreferencesTab animate:YES];
+  }
 }
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
-  return [NSArray arrayWithObjects:@"General", @"Notifications", @"Colours", @"Networks", @"Servers", @"Themes", nil];
+  return [NSArray arrayWithObjects:@"General", @"Notifications", @"Colours", @"Networks", @"Servers", @"Themes", @"Shortcuts", nil];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
@@ -815,6 +942,13 @@
     [toolbarItem setAction:@selector(changeViewFromToolbar:)];
     [toolbarItem setTarget:self];
   }
+  else if ([itemIdentifier isEqualToString:@"Shortcuts"])
+  {
+    [toolbarItem setLabel:@"Shortcuts"];
+    [toolbarItem setImage:[NSImage imageNamed:@"Keyboard"]];
+    [toolbarItem setAction:@selector(changeViewFromToolbar:)];
+    [toolbarItem setTarget:self];
+  }
   
   return [toolbarItem autorelease];
 }
@@ -824,56 +958,6 @@
 - (IBAction)saveChanges:(id)sender
 {
   NSLog(@"saveChanges: should never been here really");
-  
-	/*************************
-   * Identification setting *
-   **************************/
-	char *tmp = [IrssiBridge irssiCStringWithString:[defaultNickField stringValue]];
-	if (strcmp(tmp, settings_get_str("nick")) != 0)
-		settings_set_str("nick", tmp);
-	
-	free(tmp);
-	tmp = [IrssiBridge irssiCStringWithString:[defaultAltNickField stringValue]];
-	if (strcmp(tmp, settings_get_str("alternate_nick")) != 0)
-		settings_set_str("alternate_nick", tmp);
-	
-	free(tmp);
-	tmp = [IrssiBridge irssiCStringWithString:[defaultUsernameField stringValue]];
-	if (strcmp(tmp, settings_get_str("user_name")) != 0)
-		settings_set_str("user_name", tmp);
-  
-	free(tmp);
-	tmp = [IrssiBridge irssiCStringWithString:[defaultRealnameField stringValue]];
-	if (strcmp(tmp, settings_get_str("real_name")) != 0)
-		settings_set_str("real_name", tmp);
-	
-	free(tmp);
-		
-	/************************
-   * Key bindings settings *
-   ************************/
-	int i;
-	for (i = 0; i < 12; i++)
-		if (shortcutCommands[i])
-			[shortcutCommands[i] release];
-	
-//	shortcutCommands[0] = [[NSString alloc] initWithString:[F1Field stringValue]];
-//	shortcutCommands[1] = [[NSString alloc] initWithString:[F2Field stringValue]];
-//	shortcutCommands[2] = [[NSString alloc] initWithString:[F3Field stringValue]];
-//	shortcutCommands[3] = [[NSString alloc] initWithString:[F4Field stringValue]];
-//	shortcutCommands[4] = [[NSString alloc] initWithString:[F5Field stringValue]];
-//	shortcutCommands[5] = [[NSString alloc] initWithString:[F6Field stringValue]];
-//	shortcutCommands[6] = [[NSString alloc] initWithString:[F7Field stringValue]];
-//	shortcutCommands[7] = [[NSString alloc] initWithString:[F8Field stringValue]];
-//	shortcutCommands[8] = [[NSString alloc] initWithString:[F9Field stringValue]];
-//	shortcutCommands[9] = [[NSString alloc] initWithString:[F10Field stringValue]];
-//	shortcutCommands[10] = [[NSString alloc] initWithString:[F11Field stringValue]];
-//	shortcutCommands[11] = [[NSString alloc] initWithString:[F12Field stringValue]];
-	
-	for (i = 0; i < 12; i++)
-		[[NSUserDefaults standardUserDefaults] setObject:shortcutCommands[i] forKey:[NSString stringWithFormat:@"shortcut%d", i+1]];
-	
-	[appController setShortcutCommands:shortcutCommands];
 		
 	/****************
    * Text encoding *

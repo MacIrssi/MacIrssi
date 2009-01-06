@@ -96,7 +96,6 @@ extern char **argv;
 
 - (void)useHorizontalChannelBar:(BOOL)b;
 - (void)useVerticalChannelBar:(BOOL)b;
-- (void)setShortcutCommands:(NSString **)commands;
 - (void)irssiQuit;
 - (void)setChannelNavigationShortcuts:(int)direction;
 
@@ -115,9 +114,14 @@ extern char **argv;
 - (IBAction)showPreferencePanel:(id)sender;
 - (IBAction)showAbout:(id)sender;
 //- (IBAction)paste:(id)sender;
-- (IBAction)performShortcut:(id)sender;
 - (IBAction)makeSearchFieldFirstResponder:(id)sender;
 - (IBAction)editCurrentChannel:(id)sender;
+
+#pragma mark Shortcuts
+
+- (void)setShortcutCommands;
+- (IBAction)performShortcut:(id)sender;
+- (void)checkAndConvertOldShortcuts;
 
 - (IBAction)debugAction1:(id)sender;
 - (IBAction)debugAction2:(id)sender;

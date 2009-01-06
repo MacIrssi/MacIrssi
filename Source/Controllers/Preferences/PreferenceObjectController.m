@@ -23,6 +23,7 @@
   {
     chatnetArray = [[NSMutableArray alloc] init];
     serverArray = [[NSMutableArray alloc] init];
+    shortcutArray = [[ShortcutBridgeController shortcutsFromDefaults] retain];
     
     // Load in the chatnets into IrcnetBridgeControllers and add them to the array
     GSList *tmp, *next;
@@ -49,6 +50,7 @@
 
 - (void)dealloc
 {
+  [shortcutArray release];
   [serverArray release];
   [chatnetArray release];
   [super dealloc];
@@ -62,6 +64,11 @@
 - (NSMutableArray*)serverArray
 {
   return serverArray;
+}
+
+- (NSMutableArray*)shortcutArray
+{
+  return shortcutArray;
 }
 
 - (IrcnetBridgeController*)addChatnetWithName:(NSString*)string
@@ -148,6 +155,38 @@
   [self willChangeValueForKey:@"serverArray"];
   [serverArray removeObject:controller];
   [self didChangeValueForKey:@"serverArray"];
+}
+
+- (ShortcutBridgeController*)addShortcutWithKeyCode:(int)keyCode flags:(int)flags
+{
+  ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] init] autorelease];
+  
+  [controller setKeyCode:keyCode];
+  [controller setFlags:flags];
+  
+  [self willChangeValueForKey:@"shortcutArray"];
+  [shortcutArray addObject:controller];
+  [self didChangeValueForKey:@"shortcutArray"];
+  
+  return controller;
+}
+
+- (void)deleteShortcutWithKeyCode:(int)keyCode flags:(int)flags
+{
+  NSEnumerator *enumerator = [shortcutArray objectEnumerator];
+  ShortcutBridgeController *controller;
+  
+  while (controller = [enumerator nextObject])
+  {
+    if (([controller keyCode] == keyCode) && ([controller flags] == flags))
+    {
+      // kk, this is cheating but WTH
+      [controller _invalidateOld];
+      [self willChangeValueForKey:@"shortcutArray"];
+      [shortcutArray removeObject:controller];
+      [self didChangeValueForKey:@"shortcutArray"];
+    }
+  }
 }
 
 #pragma mark Irssi Settings KVC/KVO Proxies

@@ -35,6 +35,11 @@
 #import "ConnectivityMonitor.h"
 #import "IrssiBridge.h"
 
+// For shortcuts
+#import "SRCommon.h"
+#import "SRKeyCodeTransformer.h"
+#import "ShortcutBridgeController.h"
+
 #import "chatnets.h"
 #import "irc.h"
 #import "irc-chatnets.h"
@@ -94,35 +99,6 @@ char **argv;
 {
   [currentChannelController makeSearchFieldFirstResponder];
 }
-
-//-------------------------------------------------------------------
-// performShortcut:
-// Performes the command that is bound to the selected menu item 
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)performShortcut:(id)sender
-{
-  if (!shortcutCommands)
-    return;
-  
-  WINDOW_REC *rec = [currentChannelController windowRec];
-  NSArray *commands = [shortcutCommands[[sender tag]] componentsSeparatedByString:@";"];
-  NSEnumerator *enumerator = [commands objectEnumerator];
-  NSString *command;
-  char *tmp, *tmp2;
-  
-  while (command = [enumerator nextObject]) {
-    tmp2 = tmp = [IrssiBridge irssiCStringWithString:command];
-    
-    /* Skip whitespaces */
-    while (*tmp2 == ' ')
-      tmp2++;
-    signal_emit("send command", 3, tmp2, rec->active_server, rec->active);
-    free(tmp);
-  }
-}
-
 
 //-------------------------------------------------------------------
 // showFontPanel:
@@ -367,6 +343,124 @@ char **argv;
   [[ConnectivityMonitor sharedMonitor] workspaceDidWake:nil];
 }
 
+#pragma mark Shortcuts
+
+//-------------------------------------------------------------------
+// setShortcutCommands
+// Set up the shortcuts menu.
+//-------------------------------------------------------------------
+- (void)setShortcutCommands
+{
+  // Ngg, retarded NSMenu has no removeAllItems
+  while ([shortcutsMenu numberOfItems] > 0)
+  {
+    [shortcutsMenu removeItemAtIndex:0];
+  }
+  
+  // Right, if we've no shortcuts, then display a non-clickable menu item. Else...
+  NSArray *shortcuts = [[NSUserDefaults standardUserDefaults] valueForKey:@"shortcutDict"];
+  if ([shortcuts count] > 0)
+  {
+    NSEnumerator *shortcutEnumerator = [shortcuts objectEnumerator];
+    NSDictionary *shortcut;
+    
+    while (shortcut = [shortcutEnumerator nextObject])
+    {
+      ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] initWithDictionary:shortcut] autorelease];
+      
+      NSString *equivKey = (([controller flags] & NSShiftKeyMask) | SRIsSpecialKey([controller keyCode])) ? SRStringForKeyCode([controller keyCode]) : [SRStringForKeyCode([controller keyCode]) lowercaseString];
+      if (SRFunctionKeyToString([controller keyCode]))
+      {
+        equivKey = SRFunctionKeyToString([controller keyCode]);
+      }
+      
+      NSString *title = [controller command];
+      if ([title length] > 15)
+      {
+        title = [NSString stringWithFormat:@"%@...", [title stringByPaddingToLength:15 withString:@"" startingAtIndex:0]];
+      }
+      
+      NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:title action:@selector(performShortcut:) keyEquivalent:equivKey] autorelease];
+      
+      [item setKeyEquivalentModifierMask:[controller flags]];
+      [item setTarget:self];
+      [item setTag:[controller keyCode]];
+      [shortcutsMenu addItem:item];
+    }
+  }
+  else
+  {
+    [shortcutsMenu addItemWithTitle:@"Empty" action:nil keyEquivalent:@""];
+  }
+}
+
+//-------------------------------------------------------------------
+// performShortcut:
+// Performes the command that is bound to the selected menu item 
+//
+// "sender" - A menu item
+//-------------------------------------------------------------------
+- (IBAction)performShortcut:(id)sender
+{
+  NSMenuItem *item = sender;
+  unichar letter = [[item keyEquivalent] characterAtIndex:0];
+  NSString *key = SRStringForCocoaModifierFlagsAndKeyCode([item keyEquivalentModifierMask] | ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:letter] ? NSShiftKeyMask : 0), [item tag]);
+  
+  NSDictionary *dict = [[[NSUserDefaults standardUserDefaults] valueForKey:@"shortcutDict"] valueForKey:key];
+  ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] initWithDictionary:dict] autorelease];
+  
+  WINDOW_REC *rec = [currentChannelController windowRec];
+  NSArray *commands = [[controller command] componentsSeparatedByString:@";"];
+  NSEnumerator *enumerator = [commands objectEnumerator];
+  NSString *command;
+  char *tmp, *tmp2;
+  
+  while (command = [enumerator nextObject]) {
+    tmp2 = tmp = [IrssiBridge irssiCStringWithString:command];
+    
+    /* Skip whitespaces */
+    while (*tmp2 == ' ')
+      tmp2++;
+    signal_emit("send command", 3, tmp2, rec->active_server, rec->active);
+    free(tmp);
+  }
+}
+
+- (void)checkAndConvertOldShortcuts
+{
+  // We need to iterate through the old F1-F12 shortcuts and convert them to our own
+  int i;
+  BOOL performedConversion = NO;
+  
+  for (i = 1; i < 13; i++)
+  {
+    NSString *key = [NSString stringWithFormat:@"shortcut%d", i];
+    NSString *value = [[NSUserDefaults standardUserDefaults] valueForKey:key];
+    
+    if (value && [value isNotEqualTo:@""])
+    {
+      SRKeyCodeTransformer *transformer = [[[SRKeyCodeTransformer alloc] init] autorelease];
+      ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] init] autorelease];
+      
+      [controller setCommand:value];
+      [controller setFlags:0];
+      [controller setKeyCode:[[transformer reverseTransformedValue:[NSString stringWithFormat:@"F%d", i]] intValue]];
+      
+      performedConversion = YES;
+    }
+    // Bin the old one
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+  }
+  
+  if (performedConversion)
+  {
+    [[NSAlert alertWithMessageText:@"Shortcut Conversion"
+                     defaultButton:@"OK"
+                   alternateButton:nil
+                       otherButton:nil 
+         informativeTextWithFormat:@"Your old shortcuts have been converted to the new shortcut system. You should be able to find them in the Shortcuts menu."] runModal];
+  }
+}
 
 #pragma mark Indirect receivers of irssi signals
 //-------------------------------------------------------------------
@@ -772,39 +866,6 @@ char **argv;
   [errorTextField setStringValue:description];
   [NSApp beginSheet:errorWindow modalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
 }
-
-
-//-------------------------------------------------------------------
-// setShortcutCommands:
-// Set up the shortcuts menu.
-//
-// "commands" - An array of commands
-//-------------------------------------------------------------------
-- (void)setShortcutCommands:(NSString **)commands
-{
-  if (!commands)
-    return;
-  
-  shortcutCommands = commands;
-  
-  NSMenuItem *menuItem;
-  int i;
-  
-  for (i = 0; i < 12; i++) {
-    menuItem = (NSMenuItem *)[shortcutsMenu itemAtIndex:i];
-    if (!commands[i] || [commands[i] length] == 0) {
-      [menuItem setTitle:@"Nothing"];
-      [menuItem setTarget:nil];
-      [menuItem setAction:nil];
-    }
-    else {
-      [menuItem setTitle:commands[i]];
-      [menuItem setTarget:self];
-      [menuItem setAction:@selector(performShortcut:)];
-    }
-  }
-}
-
 
 //-------------------------------------------------------------------
 // currentWindowRec
@@ -1262,6 +1323,7 @@ char **argv;
   /* Register defaults */
   NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];
   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                        [NSDictionary dictionary], @"shortcutDict",
                         [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"channelFont",
                         [NSNumber numberWithInt:kCFStringEncodingISOLatin1], @"defaultTextEncoding",
                         [NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
@@ -1296,29 +1358,10 @@ char **argv;
     [self useHorizontalChannelBar:FALSE];
     [self setChannelNavigationShortcuts:0];
   }
-  
-  int i;
-  NSString *keyArray[12];
-  NSString *valueArray[12];
-  for (i = 0; i < 12; i++) {
-    keyArray[i] = [NSString stringWithFormat:@"shortcut%d", i+1];
-    valueArray[i] = @"";
-  }
-  
-  NSDictionary *shortcuts = [NSDictionary dictionaryWithObjects:(id *)valueArray forKeys:(id *)keyArray count:12];
-  [defaults registerDefaults:shortcuts];
-  shortcutCommands = malloc(12 * sizeof(NSString *));
-  
-  NSMenuItem *menuItem;
-  for (i = 0; i < 12; i++) {
-    shortcutCommands[i] = [[defaults objectForKey:[NSString stringWithFormat:@"shortcut%d", i+1]] retain];
-    menuItem = [[shortcutsMenu itemArray] objectAtIndex:i];
-    if ([shortcutCommands[i] length] > 0) {
-      [menuItem setTitle:shortcutCommands[i]];
-      [menuItem setTarget:self];
-      [menuItem setAction:@selector(performShortcut:)];
-    }
-  }
+
+  // Convert any shortcuts from the old system and set the menu up
+  [self checkAndConvertOldShortcuts];
+  [self setShortcutCommands];
   
   currentIcon = defaultIcon = [[NSApp applicationIconImage] copy];
   iconOnPriv = [[NSImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/MacIrssi-Alert.png"]];
@@ -1342,6 +1385,7 @@ char **argv;
   
   [nc addObserver:self selector:@selector(inputTextFieldColorChanged:) name:@"inputTextFieldColorChanged" object:nil];
   [nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
+  [nc addObserver:self selector:@selector(setShortcutCommands) name:@"shortcutChanged" object:nil];
   
   /* Set up colors */
   [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
@@ -1358,6 +1402,7 @@ char **argv;
   
   /* Init theme dirs */
   const char *tmp;
+  int i;
   
   NSArray *dirs = [self themeLocations];
   num_theme_dirs = [dirs count];
