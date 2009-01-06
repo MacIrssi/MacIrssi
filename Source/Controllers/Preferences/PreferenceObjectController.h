@@ -11,14 +11,17 @@
 #import "IrcnetBridgeController.h"
 #import "ChannelBridgeController.h"
 #import "ServerBridgeController.h"
+#import "ShortcutBridgeController.h"
 
 @interface PreferenceObjectController : NSObject {
   NSMutableArray *chatnetArray;
   NSMutableArray *serverArray;
+  NSMutableArray *shortcutArray;
 }
 
 - (NSMutableArray*)chatnetArray;
 - (NSMutableArray*)serverArray;
+- (NSMutableArray*)shortcutArray;
 
 - (IrcnetBridgeController*)addChatnetWithName:(NSString*)string;
 - (void)deleteChatnetWithIndex:(int)index;
@@ -28,6 +31,9 @@
 
 - (ServerBridgeController*)addServerWithAddress:(NSString*)name port:(int)port;
 - (void)deleteServerWithIndex:(int)index;
+
+- (ShortcutBridgeController*)addShortcutWithKeyCode:(int)keyCode flags:(int)flags;
+- (void)deleteShortcutWithKeyCode:(int)keyCode flags:(int)flags;
 
 - (NSString*)nick;
 - (void)setNick:(NSString*)nick;

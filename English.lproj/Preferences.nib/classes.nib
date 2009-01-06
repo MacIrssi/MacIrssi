@@ -5,6 +5,19 @@
 	<key>IBClasses</key>
 	<array>
 		<dict>
+			<key>CLASS</key>
+			<string>SRRecorderControl</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>delegate</key>
+				<string>id</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSControl</string>
+		</dict>
+		<dict>
 			<key>ACTIONS</key>
 			<dict>
 				<key>addChannelAction</key>
@@ -12,6 +25,8 @@
 				<key>addNetworkAction</key>
 				<string>id</string>
 				<key>addServerAction</key>
+				<string>id</string>
+				<key>addShortcutAction</key>
 				<string>id</string>
 				<key>buttonChange</key>
 				<string>id</string>
@@ -31,11 +46,19 @@
 				<string>id</string>
 				<key>deleteServerAction</key>
 				<string>id</string>
+				<key>deleteShortcutAction</key>
+				<string>id</string>
+				<key>editShortcutAction</key>
+				<string>id</string>
 				<key>previewTheme</key>
 				<string>id</string>
 				<key>revertColorsToDefaults</key>
 				<string>id</string>
 				<key>saveChanges</key>
+				<string>id</string>
+				<key>shortcutRecorderPanelCancelAction</key>
+				<string>id</string>
+				<key>shortcutRecorderPanelOKAction</key>
 				<string>id</string>
 				<key>showChannelPanel</key>
 				<string>id</string>
@@ -46,8 +69,6 @@
 				<key>soundListPopUp</key>
 				<string>id</string>
 				<key>switchChannelBar</key>
-				<string>id</string>
-				<key>updateThemeList</key>
 				<string>id</string>
 			</dict>
 			<key>CLASS</key>
@@ -83,6 +104,8 @@
 				<key>addChannelButton</key>
 				<string>NSButton</string>
 				<key>addNetworkButton</key>
+				<string>NSButton</string>
+				<key>addShortcutButton</key>
 				<string>NSButton</string>
 				<key>askQuitCheckBox</key>
 				<string>NSButton</string>
@@ -130,6 +153,8 @@
 				<string>NSButton</string>
 				<key>deleteNetworkButton</key>
 				<string>NSButton</string>
+				<key>deleteShortcutButton</key>
+				<string>NSButton</string>
 				<key>generalPreferencesTab</key>
 				<string>NSWindow</string>
 				<key>growlEventBackgroundButton</key>
@@ -170,24 +195,28 @@
 				<string>NSWindow</string>
 				<key>preferencesWindowView</key>
 				<string>NSBox</string>
-				<key>previewTextView</key>
-				<string>NSTextView</string>
 				<key>serversArrayController</key>
 				<string>NSArrayController</string>
 				<key>serversPreferencesTab</key>
 				<string>NSWindow</string>
+				<key>shortcutRecorderControl</key>
+				<string>SRRecorderControl</string>
+				<key>shortcutRecorderWindow</key>
+				<string>NSWindow</string>
+				<key>shortcutsArrayController</key>
+				<string>NSArrayController</string>
+				<key>shortcutsPreferencesTab</key>
+				<string>NSWindow</string>
+				<key>shortcutsTableView</key>
+				<string>NSTableView</string>
 				<key>soundListPopUpButton</key>
 				<string>NSPopUpButton</string>
 				<key>textEncodingPopUpButton</key>
 				<string>NSPopUpButton</string>
 				<key>themePreferencesTab</key>
 				<string>NSWindow</string>
-				<key>themePreviewDaemon</key>
-				<string>id</string>
 				<key>themePreviewTextView</key>
 				<string>NSTextView</string>
-				<key>themeTableView</key>
-				<string>NSTableView</string>
 				<key>themesArrayController</key>
 				<string>NSArrayController</string>
 			</dict>

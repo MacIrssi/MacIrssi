@@ -231,6 +231,23 @@
 		C91F131E0F0A63F300763699 /* Themes.png in Resources */ = {isa = PBXBuildFile; fileRef = C91F131D0F0A63F300763699 /* Themes.png */; };
 		C91F139E0F0A743800763699 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F139D0F0A743800763699 /* Sparkle.framework */; };
 		C91F13A50F0A748600763699 /* Sparkle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C91F139D0F0A743800763699 /* Sparkle.framework */; };
+		C91F13D40F0BE95F00763699 /* Keyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = C91F13D30F0BE95F00763699 /* Keyboard.png */; };
+		C91F15220F110A8600763699 /* CTGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F15160F110A8600763699 /* CTGradient.h */; };
+		C91F15230F110A8600763699 /* CTGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F15170F110A8600763699 /* CTGradient.m */; };
+		C91F15240F110A8600763699 /* SRCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F15180F110A8600763699 /* SRCommon.h */; };
+		C91F15250F110A8600763699 /* SRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F15190F110A8600763699 /* SRCommon.m */; };
+		C91F15260F110A8600763699 /* SRKeyCodeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F151A0F110A8600763699 /* SRKeyCodeTransformer.h */; };
+		C91F15270F110A8600763699 /* SRKeyCodeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F151B0F110A8600763699 /* SRKeyCodeTransformer.m */; };
+		C91F15280F110A8600763699 /* SRRecorderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F151C0F110A8600763699 /* SRRecorderCell.h */; };
+		C91F15290F110A8600763699 /* SRRecorderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F151D0F110A8600763699 /* SRRecorderCell.m */; };
+		C91F152A0F110A8600763699 /* SRRecorderControl.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F151E0F110A8600763699 /* SRRecorderControl.h */; };
+		C91F152B0F110A8600763699 /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F151F0F110A8600763699 /* SRRecorderControl.m */; };
+		C91F152C0F110A8600763699 /* SRValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F15200F110A8600763699 /* SRValidator.h */; };
+		C91F152D0F110A8600763699 /* SRValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F15210F110A8600763699 /* SRValidator.m */; };
+		C91F15320F110AFC00763699 /* ShortcutRecorder.strings in Resources */ = {isa = PBXBuildFile; fileRef = C91F15300F110AFC00763699 /* ShortcutRecorder.strings */; };
+		C91F15580F110B6500763699 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F15570F110B6500763699 /* Carbon.framework */; };
+		C91F168B0F12937B00763699 /* ShortcutBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F16890F12937B00763699 /* ShortcutBridgeController.h */; };
+		C91F168C0F12937B00763699 /* ShortcutBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F168A0F12937B00763699 /* ShortcutBridgeController.m */; };
 		C922B4140E23BCE1000AA7BE /* Beep 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */; };
 		C922B4150E23BCE1000AA7BE /* Beep 2.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */; };
 		C922B4160E23BCE1000AA7BE /* Bell 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */; };
@@ -1529,6 +1546,24 @@
 		C91F0B160F06E3C900763699 /* MISplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISplitView.m; sourceTree = "<group>"; };
 		C91F131D0F0A63F300763699 /* Themes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Themes.png; sourceTree = "<group>"; };
 		C91F139D0F0A743800763699 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		C91F13D30F0BE95F00763699 /* Keyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Keyboard.png; sourceTree = "<group>"; };
+		C91F14690F10EE9900763699 /* ExceptionHandling.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExceptionHandling.framework; path = System/Library/Frameworks/ExceptionHandling.framework; sourceTree = SDKROOT; };
+		C91F15160F110A8600763699 /* CTGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTGradient.h; sourceTree = "<group>"; };
+		C91F15170F110A8600763699 /* CTGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTGradient.m; sourceTree = "<group>"; };
+		C91F15180F110A8600763699 /* SRCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRCommon.h; sourceTree = "<group>"; };
+		C91F15190F110A8600763699 /* SRCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRCommon.m; sourceTree = "<group>"; };
+		C91F151A0F110A8600763699 /* SRKeyCodeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRKeyCodeTransformer.h; sourceTree = "<group>"; };
+		C91F151B0F110A8600763699 /* SRKeyCodeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRKeyCodeTransformer.m; sourceTree = "<group>"; };
+		C91F151C0F110A8600763699 /* SRRecorderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRecorderCell.h; sourceTree = "<group>"; };
+		C91F151D0F110A8600763699 /* SRRecorderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRecorderCell.m; sourceTree = "<group>"; };
+		C91F151E0F110A8600763699 /* SRRecorderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRecorderControl.h; sourceTree = "<group>"; };
+		C91F151F0F110A8600763699 /* SRRecorderControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRecorderControl.m; sourceTree = "<group>"; };
+		C91F15200F110A8600763699 /* SRValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRValidator.h; sourceTree = "<group>"; };
+		C91F15210F110A8600763699 /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRValidator.m; sourceTree = "<group>"; };
+		C91F15310F110AFC00763699 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		C91F15570F110B6500763699 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		C91F16890F12937B00763699 /* ShortcutBridgeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutBridgeController.h; sourceTree = "<group>"; };
+		C91F168A0F12937B00763699 /* ShortcutBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutBridgeController.m; sourceTree = "<group>"; };
 		C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 1.aiff"; sourceTree = "<group>"; };
 		C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 2.aiff"; sourceTree = "<group>"; };
 		C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Bell 1.aiff"; sourceTree = "<group>"; };
@@ -1736,6 +1771,7 @@
 				C229C7400C1AA82900D7CCD0 /* libcrypto.dylib in Frameworks */,
 				C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */,
 				C91F139E0F0A743800763699 /* Sparkle.framework in Frameworks */,
+				C91F15580F110B6500763699 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1759,6 +1795,9 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C91F14690F10EE9900763699 /* ExceptionHandling.framework */,
+				C91F15570F110B6500763699 /* Carbon.framework */,
+				C91026760E5C665B00E041F7 /* AddressBook.framework */,
 				C91F139D0F0A743800763699 /* Sparkle.framework */,
 				C9667E020E3790FD00014B02 /* SystemConfiguration.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
@@ -1822,6 +1861,7 @@
 				C922B4300E23BD34000AA7BE /* sound.png */,
 				C9553A9E0E24C17200626859 /* activityNewImportant.png */,
 				C910265B0E5C654800E041F7 /* UKCrashReporter.strings */,
+				C91F15300F110AFC00763699 /* ShortcutRecorder.strings */,
 				C26FC77608C4780300CFD1B3 /* MacPAD.url */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -1835,7 +1875,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C91026760E5C665B00E041F7 /* AddressBook.framework */,
 				C229C73F0C1AA82900D7CCD0 /* libcrypto.dylib */,
 				C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */,
 				C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */,
@@ -2810,6 +2849,7 @@
 		C91F0B130F06E3AA00763699 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				C91F150E0F110A5400763699 /* Shortcut Recorder */,
 				C91F0B150F06E3C900763699 /* MISplitView.h */,
 				C91F0B160F06E3C900763699 /* MISplitView.m */,
 				B322DDB705EF9AE600E640C2 /* CustomTableView.h */,
@@ -2856,6 +2896,25 @@
 			path = Additions;
 			sourceTree = "<group>";
 		};
+		C91F150E0F110A5400763699 /* Shortcut Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				C91F15160F110A8600763699 /* CTGradient.h */,
+				C91F15170F110A8600763699 /* CTGradient.m */,
+				C91F15180F110A8600763699 /* SRCommon.h */,
+				C91F15190F110A8600763699 /* SRCommon.m */,
+				C91F151A0F110A8600763699 /* SRKeyCodeTransformer.h */,
+				C91F151B0F110A8600763699 /* SRKeyCodeTransformer.m */,
+				C91F151C0F110A8600763699 /* SRRecorderCell.h */,
+				C91F151D0F110A8600763699 /* SRRecorderCell.m */,
+				C91F151E0F110A8600763699 /* SRRecorderControl.h */,
+				C91F151F0F110A8600763699 /* SRRecorderControl.m */,
+				C91F15200F110A8600763699 /* SRValidator.h */,
+				C91F15210F110A8600763699 /* SRValidator.m */,
+			);
+			path = "Shortcut Recorder";
+			sourceTree = "<group>";
+		};
 		C922B3D90E23BAE6000AA7BE /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -2892,6 +2951,7 @@
 				C9EBAB100EA0A7D200025466 /* Networks.png */,
 				C9EBACE40EA1055F00025466 /* Servers.png */,
 				C91F131D0F0A63F300763699 /* Themes.png */,
+				C91F13D30F0BE95F00763699 /* Keyboard.png */,
 				C9EBAC150EA0BCEC00025466 /* addSquareWidgetPressed.png */,
 				C9EBAC160EA0BCEC00025466 /* addSquareWidget.png */,
 				C9EBAC110EA0BCE000025466 /* deleteWidgetPressed.png */,
@@ -3048,6 +3108,8 @@
 				C9EBACAA0EA100D400025466 /* ServerBridgeController.m */,
 				C9432C230EA1673E005237E3 /* ChannelBridgeController.h */,
 				C9432C240EA1673E005237E3 /* ChannelBridgeController.m */,
+				C91F16890F12937B00763699 /* ShortcutBridgeController.h */,
+				C91F168A0F12937B00763699 /* ShortcutBridgeController.m */,
 			);
 			name = Preferences;
 			path = Controllers/Preferences;
@@ -3089,6 +3151,13 @@
 				C9432C250EA1673E005237E3 /* ChannelBridgeController.h in Headers */,
 				C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */,
 				C91F0B170F06E3C900763699 /* MISplitView.h in Headers */,
+				C91F15220F110A8600763699 /* CTGradient.h in Headers */,
+				C91F15240F110A8600763699 /* SRCommon.h in Headers */,
+				C91F15260F110A8600763699 /* SRKeyCodeTransformer.h in Headers */,
+				C91F15280F110A8600763699 /* SRRecorderCell.h in Headers */,
+				C91F152A0F110A8600763699 /* SRRecorderControl.h in Headers */,
+				C91F152C0F110A8600763699 /* SRValidator.h in Headers */,
+				C91F168B0F12937B00763699 /* ShortcutBridgeController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3221,6 +3290,8 @@
 				C9432C000EA16540005237E3 /* removeWidgetSelected.png in Resources */,
 				C9432C010EA16540005237E3 /* removeWidget.png in Resources */,
 				C91F131E0F0A63F300763699 /* Themes.png in Resources */,
+				C91F13D40F0BE95F00763699 /* Keyboard.png in Resources */,
+				C91F15320F110AFC00763699 /* ShortcutRecorder.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3317,6 +3388,13 @@
 				C9432C260EA1673E005237E3 /* ChannelBridgeController.m in Sources */,
 				C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */,
 				C91F0B180F06E3C900763699 /* MISplitView.m in Sources */,
+				C91F15230F110A8600763699 /* CTGradient.m in Sources */,
+				C91F15250F110A8600763699 /* SRCommon.m in Sources */,
+				C91F15270F110A8600763699 /* SRKeyCodeTransformer.m in Sources */,
+				C91F15290F110A8600763699 /* SRRecorderCell.m in Sources */,
+				C91F152B0F110A8600763699 /* SRRecorderControl.m in Sources */,
+				C91F152D0F110A8600763699 /* SRValidator.m in Sources */,
+				C91F168C0F12937B00763699 /* ShortcutBridgeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3403,6 +3481,14 @@
 				B3836F8605F6A1FD002D734A /* Global - windows */,
 			);
 			name = gui.h;
+			sourceTree = "<group>";
+		};
+		C91F15300F110AFC00763699 /* ShortcutRecorder.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C91F15310F110AFC00763699 /* English */,
+			);
+			name = ShortcutRecorder.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

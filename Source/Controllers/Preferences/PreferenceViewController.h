@@ -19,7 +19,11 @@
 
 #import "AppController.h"
 #import "EventController.h"
+
 #import "PreferenceObjectController.h"
+#import "ShortcutBridgeController.h"
+
+#import "SRRecorderControl.h"
 
 @interface PreferenceViewController : NSObject
 {
@@ -36,6 +40,7 @@
   IBOutlet NSWindow *networksPreferencesTab;
   IBOutlet NSWindow *serversPreferencesTab;
   IBOutlet NSWindow *themePreferencesTab;
+  IBOutlet NSWindow *shortcutsPreferencesTab;
   
   /* Irssi Settings Object Controller */
   IBOutlet NSObjectController *irssiObjectController;
@@ -116,9 +121,17 @@
   NSMutableArray *availableThemes;
   NSMutableAttributedString *themeRenderLineBuffer;
   
+  /* Shortcuts tab */
+  IBOutlet NSWindow *shortcutRecorderWindow;
+  IBOutlet SRRecorderControl *shortcutRecorderControl;
+  
+  IBOutlet NSArrayController *shortcutsArrayController;
+  IBOutlet NSTableView *shortcutsTableView;
+  IBOutlet NSButton *addShortcutButton;
+  IBOutlet NSButton *deleteShortcutButton;
+  
 	AppController *appController;
   EventController *eventController;
-	NSString **shortcutCommands;
 	NSString *oldAddress;
 	ColorSet *colorSet;
 	bool colorChanged;
@@ -180,6 +193,22 @@
 
 - (void)printTextCallback:(char*)text foreground:(int)fg background:(int)bg flags:(int)flags;
 - (void)printTextFinishedCallback;
+
+#pragma mark Shortcuts Preference Panel
+
+- (IBAction)addShortcutAction:(id)sender;
+- (IBAction)deleteShortcutAction:(id)sender;
+- (IBAction)editShortcutAction:(id)sender;
+
+#pragma mark Shortcut Recorder Panel
+
+- (void)showShortcutRecorderPanel:(id)sender controller:(ShortcutBridgeController*)controller;
+- (void)shortcutRecorderPanelDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+
+- (IBAction)shortcutRecorderPanelOKAction:(id)sender;
+- (IBAction)shortcutRecorderPanelCancelAction:(id)sender;
+
+- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(signed short)keyCode andFlagsTaken:(unsigned int)flags reason:(NSString **)aReason;
 
 #pragma mark Window
 
