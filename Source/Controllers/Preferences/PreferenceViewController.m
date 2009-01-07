@@ -641,6 +641,10 @@
   WINDOW_REC windowRec;
   TEXT_DEST_REC dest;
   
+  // Perl gets uber upset if the windowRec isn't cleared out on allocation,
+  // normally we'd g_new0 it, but as I've allocated it above, we need to clear it out.
+  memset(&windowRec, 1, sizeof(WINDOW_REC));
+  
   /* So the basic plan here is to:
       1.  Create a fake "window", its actually just a variable at the top of this function
       2.  Unlike normal traffic, we can buffer up all the lines in one string till the end
@@ -695,7 +699,7 @@
   [[themePreviewTextView textStorage] appendAttributedString:themeRenderLineBuffer];
   [themeRenderLineBuffer release];
 
-  signal_remove("gui print text", (SIGNAL_FUNC)(SIGNAL_FUNC)_preferences_bridge_print_text);
+  signal_remove("gui print text", (SIGNAL_FUNC)_preferences_bridge_print_text);
   signal_remove("gui print text finished", (SIGNAL_FUNC)_preferences_bridge_print_text_finished);
   
   free(windowRec.hilight_color);
