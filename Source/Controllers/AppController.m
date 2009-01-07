@@ -43,6 +43,9 @@
 // For iChooons
 #import "iTunes.h"
 
+// For encodings
+#import "TextEncodings.h"
+
 #import "chatnets.h"
 #import "irc.h"
 #import "irc-chatnets.h"
@@ -176,6 +179,7 @@ char **argv;
     return;
   
   WINDOW_REC *rec = [currentChannelController windowRec];
+  CFStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
   [[currentChannelController commandHistory] addCommand:cmd];
   
   NSArray *commands = [self splitCommand:cmd];
@@ -216,7 +220,7 @@ char **argv;
         nowPlaying = @"/me typed /itunes when it wasn't even open. Doh!";
       }
 
-      char *tmp = [IrssiBridge irssiCStringWithString:nowPlaying encoding:[currentChannelController textEncoding]];
+      char *tmp = [IrssiBridge irssiCStringWithString:nowPlaying encoding:enc];
       signal_emit("send command", 3, tmp, rec->active_server, rec->active);
       free(tmp);
       
@@ -224,8 +228,7 @@ char **argv;
     }
     
     /* Else normal command */
-    CFStringEncoding currentEncoding = [currentChannelController textEncoding];
-    char *tmp = [IrssiBridge irssiCStringWithString:[commands objectAtIndex:i] encoding:currentEncoding];
+    char *tmp = [IrssiBridge irssiCStringWithString:[commands objectAtIndex:i] encoding:enc];
     signal_emit("send command", 3, tmp, rec->active_server, rec->active);
     free(tmp);
   }
@@ -1356,7 +1359,6 @@ char **argv;
   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                         [NSDictionary dictionary], @"shortcutDict",
                         [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"channelFont",
-                        [NSNumber numberWithInt:kCFStringEncodingISOLatin1], @"defaultTextEncoding",
                         [NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
                         [NSNumber numberWithBool:TRUE], @"askQuit",
                         [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
@@ -1364,7 +1366,7 @@ char **argv;
                         [EventController defaults], @"eventDefaults",
                         [NSNumber numberWithBool:YES], @"channelInTitle",
                         nil];
-  
+    
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults registerDefaults:dict];
   

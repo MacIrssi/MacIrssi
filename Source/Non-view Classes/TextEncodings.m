@@ -1,63 +1,107 @@
-NSString *textEncodings[] = {
-	@"Unicode (UTF16)",
-	@"Unicode (UTF8)",
-	@"Western (Mac OS Roman)",
-	@"Japanese (Mac OS)",
-	@"Tradidional Chinese (Mac OS)",
-	@"Korean (Mac OS)",
-	@"Arabic (Mac OS)",
-	@"Hebrew (Mac OS)",
-	@"Greek (Mac OS)",
-	@"Cyrillic (Mac OS)",
-	@"Simplified Chinese (Mac OS)",
-	@"Central European (Mac OS)",
-	@"Turkish (Mac OS)",
-	@"Icelandic (Mac OS)",
-	@"Western (ISO Latin 1) [default]",
-	@"Central European (ISO Latin 2)",
-	@"Western (ISO Latin 3)",
-	@"Central European (ISO Latin 4)",
-	@"Cyrillic (ISO 8859-5)",
-	@"Greek (ISO 8859-7)",
-	@"Turkish (ISO Latin 5)",
-	@"Latin-US (DOS)",
-	@"Western (Windows Latin 1)",
-	@"Central European (Windows Latin 2)",
-	@"Japanese (EUC)",
-	@"Japanese (ISO 2022-JP)",
-	@"Japanese (Shift JIS)",
-	@"Western (NextStep)",
-	@"Non-lossy ASCII"
-};
+//
+//  TextEncodings.m
+//  MacIrssi
+//
+//  Created by Matt Wright on 05/01/2009.
+//  Copyright 2009 Matt Wright Consulting. All rights reserved.
+//
 
-int textEncodingTable[] = {
-	kCFStringEncodingUnicode,
-	kCFStringEncodingUTF8,
-	kCFStringEncodingMacRoman,
-	kCFStringEncodingMacJapanese,
-	kCFStringEncodingMacChineseTrad,
-	kCFStringEncodingMacKorean,
-	kCFStringEncodingMacArabic,
-    kCFStringEncodingMacHebrew,
-    kCFStringEncodingMacGreek,
-    kCFStringEncodingMacCyrillic,
-	kCFStringEncodingMacChineseSimp,
-	kCFStringEncodingMacCentralEurRoman,
-	kCFStringEncodingMacTurkish,
-	kCFStringEncodingMacIcelandic,
-	kCFStringEncodingISOLatin1,
-	kCFStringEncodingISOLatin2,
-	kCFStringEncodingISOLatin3,
-	kCFStringEncodingISOLatin4,
-	kCFStringEncodingISOLatinCyrillic,
-	kCFStringEncodingISOLatinGreek,
-	kCFStringEncodingISOLatin5,
-	kCFStringEncodingDOSLatinUS,
-	kCFStringEncodingWindowsLatin1,
-	kCFStringEncodingWindowsLatin2,
-	kCFStringEncodingEUC_JP,
-	kCFStringEncodingISO_2022_JP,
-	kCFStringEncodingShiftJIS,
-	kCFStringEncodingNextStepLatin,
-	kCFStringEncodingNonLossyASCII
-};
+#import "TextEncodings.h"
+
+#import "IrssiBridge.h"
+#import "settings.h"
+#import "common.h"
+
+@implementation MITextEncoding
+
++ (NSArray*)encodings
+{
+  return [NSArray arrayWithObjects:
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingUnicode],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingUTF8],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacRoman],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacJapanese],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacChineseTrad],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacKorean],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacArabic],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacHebrew],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacGreek],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacCyrillic],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacChineseSimp],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacCentralEurRoman],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacTurkish],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingMacIcelandic],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingISOLatin1],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingISOLatin2],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingISOLatin3],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingISOLatin4],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingISOLatinCyrillic],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingISOLatinGreek],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingISOLatin5],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingDOSLatinUS],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingWindowsLatin1],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingWindowsLatin2],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingEUC_JP],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingISO_2022_JP],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingShiftJIS],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingNextStepLatin],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingNonLossyASCII],
+          [MITextEncoding textEncodingWithEncoding:kCFStringEncodingASCII],
+          nil];
+}
+
++ (MITextEncoding*)textEncodingWithEncoding:(NSStringEncoding)encoding
+{
+  return [[[MITextEncoding alloc] initWithEncoding:encoding] autorelease];
+}
+
+
++ (MITextEncoding*)irssiEncoding;
+{
+  return [[[MITextEncoding alloc] initWithIANAString:[NSString stringWithCString:settings_get_str("term_charset") encoding:NSASCIIStringEncoding]] autorelease];
+}
+
++ (void)setIrssiEncoding:(MITextEncoding*)enc;
+{
+  char *irssiCString = [IrssiBridge irssiCStringWithString:[[enc IANAString] lowercaseString]];
+  if (strcmp(irssiCString, settings_get_str("term_charset")) != 0)
+  {
+    settings_set_str("term_charset", irssiCString);
+    signal_emit("setup changed", 0);
+  }
+}
+          
+- (id)initWithEncoding:(NSStringEncoding)encoding
+{
+  if (self = [super init])
+  {
+    enc = encoding;
+  }
+  return self;
+}
+
+- (id)initWithIANAString:(NSString*)string
+{
+  if (self = [super init])
+  {
+    enc = (NSStringEncoding)CFStringConvertIANACharSetNameToEncoding((CFStringRef)string);
+  }
+  return self;
+}
+
+- (NSStringEncoding)encoding
+{
+  return enc;
+}
+
+- (NSString*)IANAString
+{
+  return (NSString*)CFStringConvertEncodingToIANACharSetName((CFStringEncoding)enc);
+}
+
+- (NSString*)description
+{
+  return (NSString*)CFStringGetNameOfEncoding((CFStringEncoding)enc);
+}
+
+@end

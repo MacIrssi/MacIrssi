@@ -181,12 +181,6 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   if ([[sender title] isEqual:@"Save"])
     useFloater = ([floaterCheckBox state] == NSOnState);
   
-  int selectedEncodingIndex = [textEncodingPopUpButton indexOfSelectedItem];
-  if (selectedEncodingIndex < 0 || selectedEncodingIndex >= NUM_TEXT_ENCODINGS)
-    NSLog(@"selectedEncodingIndex out of bounds!");
-  else
-    [self setTextEncoding:textEncodingTable[selectedEncodingIndex]];
-  
   /* Remove sheet */
   [topicWindow orderOut:sender];
   [NSApp endSheet:topicWindow returnCode:1];
@@ -391,9 +385,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   [onlyOpsCanChangeTopicCheckBox setState:([tmp rangeOfString:@"t"].location == NSNotFound) ? NSOffState : NSOnState];
   [maxUsersTextField setIntValue:limit];
   [keyTextField setStringValue:key ? key : @""];
-  
-  [self updateTextEncodingPopUpButton];
-  
+    
   /* Bring up sheet */
   [NSApp beginSheet:topicWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
 }
@@ -737,7 +729,8 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)printText:(char *)text forground:(int)fg background:(int)bg flags:(int)flags
 {
-  NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, textEncoding, kCFAllocatorNull);
+  CFStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
+  NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, enc, kCFAllocatorNull);
   line = [line attributedStringByAppendingString:decodedString foreground:fg background:bg flags:flags attributes:textAttributes];
   [decodedString release];
 }
@@ -1150,7 +1143,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [mainTextScrollView setFrame:frame];
   [mainTextScrollView setNeedsDisplay:TRUE];
   [topicTextField setAllowsEditingTextAttributes:TRUE];
-  [self initTextEncodingPopUpButton];
 }
 
 //-------------------------------------------------------------------
@@ -1173,7 +1165,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   windowRec = rec;
   isChannel = FALSE;
   useFloater = FALSE;
-  textEncoding = [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultTextEncoding"];
 
   line = [[NSMutableAttributedString alloc] init];
   oldSearchMatchRange = NSMakeRange(0,0);
@@ -1213,22 +1204,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 }
 
 #pragma mark Instance variables
-
-/**
- * Sets the text encoding for this channel. Reloads all text in main text view with
- * the new encoding.
- * @param encoding The encoding to use
- */
-- (void)setTextEncoding:(CFStringEncoding)encoding
-{
-  textEncoding = encoding;
-  // TODO reinterpret existing text
-}
-
-- (CFStringEncoding)textEncoding
-{
-  return textEncoding;
-}
 
 /* If it is an actual irc channel */
 - (BOOL)isChannel { return isChannel; }
@@ -1343,35 +1318,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 }
 
 #pragma mark Private methods
-/**
- * Updates text encoding popup button with current settings.
- */
-- (void)updateTextEncodingPopUpButton
-{
-  /* Reverse lookup of user readable name by using linear search */
-  int i;
-  for (i = 0; i < NUM_TEXT_ENCODINGS; i++) {
-    if (textEncodingTable[i] == textEncoding) {
-      [textEncodingPopUpButton selectItemAtIndex:i];
-      return;
-    }
-  }
-  
-  NSLog(@"Reverse lookup of default text encoding failed!");
-}
-
-/**
- * Inserts all text encodings into the text encoding popup button
- */
-- (void)initTextEncodingPopUpButton
-{
-  int i;
-  
-  [textEncodingPopUpButton removeAllItems];
-  
-  for (i = 0; i < NUM_TEXT_ENCODINGS; i++)
-    [textEncodingPopUpButton addItemWithTitle:textEncodings[i]];
-}
 
 /**
  * Mark and move to current search iterator index
@@ -1469,7 +1415,8 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [topicAttributes release];
 #endif
 
-  NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:strip_codes(str) encoding:textEncoding] attributes:topicAttributes];
+  CFStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
+  NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:strip_codes(str) encoding:enc] attributes:topicAttributes];
   [attributedTopic detectURLs:[NSColor blueColor]];
   
   return [attributedTopic autorelease];

@@ -30,8 +30,6 @@
 				<string>id</string>
 				<key>buttonChange</key>
 				<string>id</string>
-				<key>cancelChanges</key>
-				<string>id</string>
 				<key>changeColor</key>
 				<string>id</string>
 				<key>channetPanelCancelAction</key>
@@ -50,11 +48,11 @@
 				<string>id</string>
 				<key>editShortcutAction</key>
 				<string>id</string>
+				<key>encodingPopup</key>
+				<string>id</string>
 				<key>previewTheme</key>
 				<string>id</string>
 				<key>revertColorsToDefaults</key>
-				<string>id</string>
-				<key>saveChanges</key>
 				<string>id</string>
 				<key>shortcutRecorderPanelCancelAction</key>
 				<string>id</string>
@@ -225,14 +223,6 @@
 		</dict>
 		<dict>
 			<key>CLASS</key>
-			<string>FirstResponder</string>
-			<key>LANGUAGE</key>
-			<string>ObjC</string>
-			<key>SUPERCLASS</key>
-			<string>NSObject</string>
-		</dict>
-		<dict>
-			<key>CLASS</key>
 			<string>NSObject</string>
 			<key>LANGUAGE</key>
 			<string>ObjC</string>
@@ -252,6 +242,14 @@
 				<key>delegate</key>
 				<string>id</string>
 			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSObject</string>
 		</dict>

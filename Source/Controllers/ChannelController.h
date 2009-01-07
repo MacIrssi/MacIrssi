@@ -104,7 +104,6 @@ enum nickContextMenuTags {
   IBOutlet NSButton *saveButton;
   IBOutlet NSButton *cancelButton;
   IBOutlet NSButton *floaterCheckBox;
-  IBOutlet NSPopUpButton *textEncodingPopUpButton;
   
   /* Reason window */
   IBOutlet NSWindow *reasonWindow;
@@ -148,7 +147,6 @@ enum nickContextMenuTags {
   bool useFloater;
   bool isChannel;
   bool scrollState;
-  CFStringEncoding textEncoding;
   NSMutableAttributedString *line;
   int searchIteratorIndex;
   NSRange oldSearchMatchRange;
@@ -205,9 +203,6 @@ enum nickContextMenuTags {
 - (int)findNickLinear:(NICK_REC *)nick;
 - (int)findInsertionPositionForNick:(NICK_REC *)nick;
 - (NSAttributedString *)parseTopic:(char *)str;
-- (void)initTextEncodingPopUpButton;
-- (void)updateTextEncodingPopUpButton;
-- (CFStringEncoding)textEncoding;
 
 /* GUI actions */
 - (IBAction)raiseTopicWindow:(id)sender;
@@ -237,7 +232,6 @@ enum nickContextMenuTags {
 - (void)searchForString:(NSString *)string;
 
 - (void)nickListRowDoubleClicked:(id)sender;
-- (void)setTextEncoding:(CFStringEncoding)encoding;
 
 /* Text Field delegate */
 - (void)controlTextDidChange:(NSNotification *)aNotification;

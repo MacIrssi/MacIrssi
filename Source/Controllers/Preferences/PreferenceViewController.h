@@ -145,8 +145,6 @@
 - (IBAction)switchChannelBar:(id)sender;
 - (IBAction)changeColor:(id)sender;
 - (IBAction)revertColorsToDefaults:(id)sender;
-- (IBAction)saveChanges:(id)sender;
-- (IBAction)cancelChanges:(id)sender;
 - (IBAction)buttonChange:(id)sender;
 - (IBAction)chatEventPopup:(id)sender;
 - (IBAction)soundListPopUp:(id)sender;
@@ -155,8 +153,13 @@
 - (void)windowDidLoad;
 - (void)windowWillClose:(NSNotification *)aNotification;
 
+#pragma mark Text Encodings
+
 - (void)updateTextEncodingPopUpButton;
 - (void)initTextEncodingPopUpButton;
+- (IBAction)encodingPopup:(id)sender;
+
+#pragma mark Notifications
 
 - (void)initChatEventsPopUpButton;
 - (void)updateChatEventsPopUpButton;
