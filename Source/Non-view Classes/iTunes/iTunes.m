@@ -16,7 +16,6 @@
   if (self = [super init])
   {
     iTunesGlue = [[ITApplication alloc] initWithBundleID:@"com.apple.iTunes"];
-    NSLog(@"%@", [[[iTunesGlue playerState] get] send]);
   }
   return self;
 }
