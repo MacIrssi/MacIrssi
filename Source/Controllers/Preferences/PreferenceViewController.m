@@ -272,12 +272,17 @@
  */
 - (void)initTextEncodingPopUpButton
 {
-	int i;
-	
-	[textEncodingPopUpButton removeAllItems];
-	
-	for (i = 0; i < NUM_TEXT_ENCODINGS; i++)
-		[textEncodingPopUpButton addItemWithTitle:textEncodings[i]];
+  [textEncodingPopUpButton removeAllItems];
+  
+  NSArray *encodings = [MITextEncoding encodings];
+  NSEnumerator *encodingsEnumerator = [encodings objectEnumerator];
+  MITextEncoding *enc;
+  
+  while (enc = [encodingsEnumerator nextObject])
+  {
+    [textEncodingPopUpButton addItemWithTitle:[enc description]];
+    [[textEncodingPopUpButton lastItem] setTag:[enc encoding]];
+  }
 }
 
 /**
@@ -285,19 +290,15 @@
  */
 - (void)updateTextEncodingPopUpButton
 {
-	CFStringEncoding textEncoding = [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultTextEncoding"];
-	
-	/* Reverse lookup of user readable name by using linear search */
-	int i;
-	for (i = 0; i < NUM_TEXT_ENCODINGS; i++) {
-		if (textEncodingTable[i] == textEncoding) {
-			[textEncodingPopUpButton selectItemAtIndex:i];
-			[textEncodingPopUpButton setNeedsDisplay:TRUE];
-			return;
-		}
-	}
-	
-	NSLog(@"Reverse lookup of default text encoding failed!");
+  CFStringEncoding textEncoding = [[MITextEncoding irssiEncoding] encoding];
+  [textEncodingPopUpButton selectItemWithTag:textEncoding];
+  [textEncodingPopUpButton setNeedsDisplay:YES];
+}
+
+- (IBAction)encodingPopup:(id)sender
+{
+  MITextEncoding *enc = [MITextEncoding textEncodingWithEncoding:[textEncodingPopUpButton selectedTag]];
+  [MITextEncoding setIrssiEncoding:enc];
 }
 
 #pragma mark Chat Notifications
@@ -955,35 +956,6 @@
   }
   
   return [toolbarItem autorelease];
-}
-
-#pragma mark Deprecated
-
-- (IBAction)saveChanges:(id)sender
-{
-  NSLog(@"saveChanges: should never been here really");
-		
-	/****************
-   * Text encoding *
-   ****************/
-	int selectedEncodingIndex = [textEncodingPopUpButton indexOfSelectedItem];
-	if (selectedEncodingIndex < 0 || selectedEncodingIndex >= NUM_TEXT_ENCODINGS)
-		NSLog(@"selectedEncodingIndex out of bounds!");
-	else
-		[[NSUserDefaults standardUserDefaults] setInteger:textEncodingTable[selectedEncodingIndex] forKey:@"defaultTextEncoding"];
-  
-  [eventController commitChanges];
-  
-}
-
-//-------------------------------------------------------------------
-// cancelChanges:
-// Cancel the changes made in preference panel (only need to fix
-// colors)
-//-------------------------------------------------------------------
-- (IBAction)cancelChanges:(id)sender
-{
-  [eventController cancelChanges];
 }
 
 @end

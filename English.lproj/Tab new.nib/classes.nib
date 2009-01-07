@@ -13,6 +13,12 @@
 			<string>NSTableView</string>
 		</dict>
 		<dict>
+			<key>CLASS</key>
+			<string>NSObject</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+		</dict>
+		<dict>
 			<key>ACTIONS</key>
 			<dict>
 				<key>endReasonWindow</key>
@@ -79,7 +85,7 @@
 				<key>secretCheckBox</key>
 				<string>NSButton</string>
 				<key>splitView</key>
-				<string>NSSplitView</string>
+				<string>MISplitView</string>
 				<key>textEncodingPopUpButton</key>
 				<string>NSPopUpButton</string>
 				<key>topicByTextField</key>
@@ -113,6 +119,14 @@
 			<string>ObjC</string>
 			<key>SUPERCLASS</key>
 			<string>NSTextView</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>MISplitView</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSSplitView</string>
 		</dict>
 	</array>
 	<key>IBVersion</key>
