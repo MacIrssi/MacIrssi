@@ -1332,8 +1332,6 @@ char **argv;
   
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   
-  [[iTunes alloc] init];
-
   setRefToAppController(self);
   highlightAttributes = [[NSMutableDictionary alloc] init];
   
