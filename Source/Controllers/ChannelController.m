@@ -97,89 +97,95 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 - (IBAction)endTopicWindow:(id)sender
 {
   /* Check if changes has been made */
-  if ([[sender title] isEqual:@"Save"] && ownnick->op) {
-    if ([[topicEditableTextField stringValue] isEqual:[topicTextField stringValue]] == FALSE) {
+  if ([[sender title] isEqual:@"Save"])
+  {
+    // This doesn't require Ops at all
+    useFloater = ([floaterCheckBox state] == NSOnState);
+
+    // This only requires Ops if +t, otherwise all is well.
+    if ((ownnick->op || ([onlyOpsCanChangeTopicCheckBox state] == NSOffState)) &&
+        ([[topicEditableTextField stringValue] isEqual:[topicTextField stringValue]] == FALSE)) 
+    {
       NSString *cmd = [NSString stringWithFormat:@"/topic %@", [topicEditableTextField stringValue]];
       char *tmp = [IrssiBridge irssiCStringWithString:cmd];
       signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
       free(tmp);
     }
     
-    /* mode-parser */
-    if (modeChanged) {
-      NSMutableString *removeMode = [[NSMutableString alloc] initWithFormat:@"/mode %@ -", name];
-      NSMutableString *addMode = [[NSMutableString alloc] initWithString:@"+"];
-      
-      /* invite */
-      if ([inviteCheckBox state] == NSOnState)
-        [addMode appendString:@"i"];
-      else
-        [removeMode appendString:@"i"];
-      
-      /* moderated */
-      if ([moderatedCheckBox state] == NSOnState)
-        [addMode appendString:@"m"];
-      else
-        [removeMode appendString:@"m"];
-      
-      /* private */
-      if ([privateCheckBox state] == NSOnState)
-        [addMode appendString:@"p"];
-      else
-        [removeMode appendString:@"p"];
-      
-      /* secret */
-      if ([secretCheckBox state] == NSOnState)
-        [addMode appendString:@"s"];
-      else
-        [removeMode appendString:@"s"];
-      
-      /* no external messages */
-      if ([noExternalMessagesCheckBox state] == NSOnState)
-        [addMode appendString:@"n"];
-      else
-        [removeMode appendString:@"n"];
-      
-      /* only ops can change topic */
-      if ([onlyOpsCanChangeTopicCheckBox state] == NSOnState)
-        [addMode appendString:@"t"];
-      else
-        [removeMode appendString:@"t"];
-      
-      /* limit */
-      if ([maxUsersTextField intValue] != 0)
-        [addMode appendFormat:@"l %d ", [maxUsersTextField intValue]];
-      else
-        [removeMode appendString:@"l"];
-      
-      /* key (special treatment) */
-      if ([[keyTextField stringValue] isEqual:@""] && ([mode rangeOfString:@"k"].location != NSNotFound))
-        [removeMode appendString:@"k"];
-      else if (![[keyTextField stringValue] isEqual:key]) {
-        if ([mode rangeOfString:@"k"].location != NSNotFound) {
-          /* Remove old key */
-          NSString *removeKey = [NSString stringWithFormat:@"/mode %@ -k", name];
-          char *tmp = [IrssiBridge irssiCStringWithString:removeKey];
-          signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
-          free(tmp);
+    if (ownnick->op)
+    {
+      /* mode-parser */
+      if (modeChanged) {
+        NSMutableString *removeMode = [[NSMutableString alloc] initWithFormat:@"/mode %@ -", name];
+        NSMutableString *addMode = [[NSMutableString alloc] initWithString:@"+"];
+        
+        /* invite */
+        if ([inviteCheckBox state] == NSOnState)
+          [addMode appendString:@"i"];
+        else
+          [removeMode appendString:@"i"];
+        
+        /* moderated */
+        if ([moderatedCheckBox state] == NSOnState)
+          [addMode appendString:@"m"];
+        else
+          [removeMode appendString:@"m"];
+        
+        /* private */
+        if ([privateCheckBox state] == NSOnState)
+          [addMode appendString:@"p"];
+        else
+          [removeMode appendString:@"p"];
+        
+        /* secret */
+        if ([secretCheckBox state] == NSOnState)
+          [addMode appendString:@"s"];
+        else
+          [removeMode appendString:@"s"];
+        
+        /* no external messages */
+        if ([noExternalMessagesCheckBox state] == NSOnState)
+          [addMode appendString:@"n"];
+        else
+          [removeMode appendString:@"n"];
+        
+        /* only ops can change topic */
+        if ([onlyOpsCanChangeTopicCheckBox state] == NSOnState)
+          [addMode appendString:@"t"];
+        else
+          [removeMode appendString:@"t"];
+        
+        /* limit */
+        if ([maxUsersTextField intValue] != 0)
+          [addMode appendFormat:@"l %d ", [maxUsersTextField intValue]];
+        else
+          [removeMode appendString:@"l"];
+        
+        /* key (special treatment) */
+        if ([[keyTextField stringValue] isEqual:@""] && ([mode rangeOfString:@"k"].location != NSNotFound))
+          [removeMode appendString:@"k"];
+        else if (![[keyTextField stringValue] isEqual:key]) {
+          if ([mode rangeOfString:@"k"].location != NSNotFound) {
+            /* Remove old key */
+            NSString *removeKey = [NSString stringWithFormat:@"/mode %@ -k", name];
+            char *tmp = [IrssiBridge irssiCStringWithString:removeKey];
+            signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
+            free(tmp);
+          }
+          [addMode appendFormat:@"+k %@", [keyTextField stringValue]];
         }
-        [addMode appendFormat:@"+k %@", [keyTextField stringValue]];
+        
+        [removeMode appendString:addMode];
+        NSLog(removeMode);
+        char *tmp2 = [IrssiBridge irssiCStringWithString:removeMode];
+        signal_emit("send command", 3, tmp2, windowRec->active_server, windowRec->active);
+        free(tmp2);
+        [addMode release];
+        [removeMode release];
+        modeChanged = FALSE;
       }
-      
-      [removeMode appendString:addMode];
-      NSLog(removeMode);
-      char *tmp2 = [IrssiBridge irssiCStringWithString:removeMode];
-      signal_emit("send command", 3, tmp2, windowRec->active_server, windowRec->active);
-      free(tmp2);
-      [addMode release];
-      [removeMode release];
-      modeChanged = FALSE;
     }
   }
-  
-  /* Settings not requiring op status */
-  if ([[sender title] isEqual:@"Save"])
-    useFloater = ([floaterCheckBox state] == NSOnState);
   
   /* Remove sheet */
   [topicWindow orderOut:sender];
@@ -335,6 +341,16 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (IBAction)raiseTopicWindow:(id)sender
 {
+  /* mode-parser */
+  NSString *tmp = [[mode componentsSeparatedByString:@" "] objectAtIndex:0]; // Don't include the key
+  [inviteCheckBox setState:([tmp rangeOfString:@"i"].location == NSNotFound) ? NSOffState : NSOnState];
+  [moderatedCheckBox setState:([tmp rangeOfString:@"m"].location == NSNotFound) ? NSOffState : NSOnState];
+  [privateCheckBox setState:([tmp rangeOfString:@"p"].location == NSNotFound) ? NSOffState : NSOnState];
+  [secretCheckBox setState:([tmp rangeOfString:@"s"].location == NSNotFound) ? NSOffState : NSOnState];
+  [noExternalMessagesCheckBox setState:([tmp rangeOfString:@"n"].location == NSNotFound) ? NSOffState : NSOnState];
+  [onlyOpsCanChangeTopicCheckBox setState:([tmp rangeOfString:@"t"].location == NSNotFound) ? NSOffState : NSOnState];
+  [maxUsersTextField setIntValue:limit];
+  [keyTextField setStringValue:key ? key : @""];
   
   /* If op, allow editing, else disallow */
   if (ownnick->op) {
@@ -350,7 +366,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
     //[saveButton setEnabled:TRUE];
   }
   else {
-    [topicEditableTextField setEditable:FALSE];
+    [topicEditableTextField setEditable:![onlyOpsCanChangeTopicCheckBox state]];
     [inviteCheckBox setEnabled:FALSE];
     [moderatedCheckBox setEnabled:FALSE];
     [privateCheckBox setEnabled:FALSE];
@@ -375,17 +391,6 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   [maxUsersTextField setIntValue:limit];
   [floaterCheckBox setState:(useFloater ? NSOnState : NSOffState)];
   
-  /* mode-parser */
-  NSString *tmp = [[mode componentsSeparatedByString:@" "] objectAtIndex:0]; // Don't include the key
-  [inviteCheckBox setState:([tmp rangeOfString:@"i"].location == NSNotFound) ? NSOffState : NSOnState];
-  [moderatedCheckBox setState:([tmp rangeOfString:@"m"].location == NSNotFound) ? NSOffState : NSOnState];
-  [privateCheckBox setState:([tmp rangeOfString:@"p"].location == NSNotFound) ? NSOffState : NSOnState];
-  [secretCheckBox setState:([tmp rangeOfString:@"s"].location == NSNotFound) ? NSOffState : NSOnState];
-  [noExternalMessagesCheckBox setState:([tmp rangeOfString:@"n"].location == NSNotFound) ? NSOffState : NSOnState];
-  [onlyOpsCanChangeTopicCheckBox setState:([tmp rangeOfString:@"t"].location == NSNotFound) ? NSOffState : NSOnState];
-  [maxUsersTextField setIntValue:limit];
-  [keyTextField setStringValue:key ? key : @""];
-    
   /* Bring up sheet */
   [NSApp beginSheet:topicWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
 }
