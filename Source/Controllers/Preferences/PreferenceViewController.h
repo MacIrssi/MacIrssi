@@ -46,20 +46,6 @@
   IBOutlet NSObjectController *irssiObjectController;
   PreferenceObjectController *preferenceObjectController;
 	
-	/* Key bindings tab */
-	IBOutlet NSTextField *F1Field;
-	IBOutlet NSTextField *F2Field;
-	IBOutlet NSTextField *F3Field;
-	IBOutlet NSTextField *F4Field;
-	IBOutlet NSTextField *F5Field;
-	IBOutlet NSTextField *F6Field;
-	IBOutlet NSTextField *F7Field;
-	IBOutlet NSTextField *F8Field;
-	IBOutlet NSTextField *F9Field;
-	IBOutlet NSTextField *F10Field;
-	IBOutlet NSTextField *F11Field;
-	IBOutlet NSTextField *F12Field;
-	
 	/* Colors tab */
   IBOutlet NSColorWell *channelBGColorWell;
   IBOutlet NSColorWell *channelFGColorWell;
