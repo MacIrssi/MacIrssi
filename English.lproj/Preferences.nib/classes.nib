@@ -75,30 +75,6 @@
 			<string>ObjC</string>
 			<key>OUTLETS</key>
 			<dict>
-				<key>F10Field</key>
-				<string>NSTextField</string>
-				<key>F11Field</key>
-				<string>NSTextField</string>
-				<key>F12Field</key>
-				<string>NSTextField</string>
-				<key>F1Field</key>
-				<string>NSTextField</string>
-				<key>F2Field</key>
-				<string>NSTextField</string>
-				<key>F3Field</key>
-				<string>NSTextField</string>
-				<key>F4Field</key>
-				<string>NSTextField</string>
-				<key>F5Field</key>
-				<string>NSTextField</string>
-				<key>F6Field</key>
-				<string>NSTextField</string>
-				<key>F7Field</key>
-				<string>NSTextField</string>
-				<key>F8Field</key>
-				<string>NSTextField</string>
-				<key>F9Field</key>
-				<string>NSTextField</string>
 				<key>addChannelButton</key>
 				<string>NSButton</string>
 				<key>addNetworkButton</key>
@@ -167,6 +143,8 @@
 				<string>NSColorWell</string>
 				<key>irssiObjectController</key>
 				<string>NSObjectController</string>
+				<key>mainWindowFontField</key>
+				<string>NSTextField</string>
 				<key>networksArrayController</key>
 				<string>NSArrayController</string>
 				<key>networksPreferencesTab</key>
