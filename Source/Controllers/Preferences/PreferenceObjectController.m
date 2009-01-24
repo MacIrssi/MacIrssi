@@ -135,6 +135,7 @@
   SERVER_SETUP_REC *rec = g_new0(SERVER_SETUP_REC, 1);
   rec->address = g_strdup([IrssiBridge irssiCStringWithString:name]);
   rec->port = port;
+  rec->chat_type = chat_protocol_get_default()->id;
   server_setup_add(rec);
   
   ServerBridgeController *serverController = [[[ServerBridgeController alloc] initWithServerSetupRec:rec] autorelease];
