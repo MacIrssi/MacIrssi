@@ -104,6 +104,7 @@
   /* Themes tab */
   IBOutlet NSTextView *themePreviewTextView;
   IBOutlet NSArrayController *themesArrayController;
+  IBOutlet NSTextField *mainWindowFontField;
   NSMutableArray *availableThemes;
   NSMutableAttributedString *themeRenderLineBuffer;
   

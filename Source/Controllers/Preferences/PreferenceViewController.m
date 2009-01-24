@@ -144,10 +144,15 @@
   [self switchPreferenceWindowTo:generalPreferencesTab animate:NO];
   [preferencesToolbar setSelectedItemIdentifier:@"General"];
 	
+  /* General */
 	[self updateTextEncodingPopUpButton];
+  
+  /* Notifications */
   [self updateSoundListPopUpButton];
   [self updateChatEventsPopUpButton];
 
+  /* Themes */
+  [self updateMainWindowFontLabel];
   [self findAvailableThemes];
   [themesArrayController setSelectedObjects:[NSArray arrayWithObjects:[preferenceObjectController theme], nil]];
   [self previewTheme:self];
@@ -578,6 +583,19 @@
 
 #pragma mark Themes Preference Panel
 
+- (void)updateMainWindowFontLabel
+{
+  NSFont *mainWindowFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
+  
+  NSMutableParagraphStyle *para = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+  [para setMinimumLineHeight:14.0];
+  
+  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:mainWindowFont, NSFontAttributeName, para, NSParagraphStyleAttributeName, nil];
+  NSAttributedString *str = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@, %.1f pt.", [mainWindowFont displayName], [mainWindowFont pointSize]] attributes:dict] autorelease];
+  
+  [mainWindowFontField setAttributedStringValue:str];
+}
+
 - (void)findAvailableThemes
 {
   [availableThemes release];
@@ -889,7 +907,7 @@
 
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar
 {
-  return [NSArray arrayWithObjects:@"General", @"Notifications", @"Colours", @"Networks", @"Servers", @"Themes", @"Shortcuts", nil];
+  return [NSArray arrayWithObjects:@"General", @"Themes", @"Notifications", @"Colours", @"Networks", @"Servers", @"Shortcuts", nil];
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar
@@ -942,7 +960,7 @@
   }
   else if ([itemIdentifier isEqualToString:@"Themes"])
   {
-    [toolbarItem setLabel:@"Themes"];
+    [toolbarItem setLabel:@"Appearance"];
     [toolbarItem setImage:[NSImage imageNamed:@"Themes"]];
     [toolbarItem setAction:@selector(changeViewFromToolbar:)];
     [toolbarItem setTarget:self];
