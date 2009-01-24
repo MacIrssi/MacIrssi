@@ -23,12 +23,9 @@
 
 /* Begin PBXBuildFile section */
 		8D1107280486CEB800E47090 /* MacIrssi_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */; };
-		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		B322DD8F05EF9A3200E640C2 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = B322DD8B05EF9A3200E640C2 /* Preferences.nib */; };
-		B322DD9005EF9A3200E640C2 /* Tab new.nib in Resources */ = {isa = PBXBuildFile; fileRef = B322DD8D05EF9A3200E640C2 /* Tab new.nib */; };
 		B322DD9A05EF9A7100E640C2 /* irssi.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DD9505EF9A7100E640C2 /* irssi.h */; };
 		B322DD9B05EF9A7100E640C2 /* irssi.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DD9605EF9A7100E640C2 /* irssi.m */; };
 		B322DD9C05EF9A7100E640C2 /* printd.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DD9705EF9A7100E640C2 /* printd.h */; };
@@ -226,6 +223,9 @@
 		C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */ = {isa = PBXBuildFile; fileRef = C91026600E5C654800E041F7 /* UKCrashReporter.nib */; };
 		C91026690E5C654800E041F7 /* UKNibOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = C91026610E5C654800E041F7 /* UKNibOwner.m */; };
 		C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91026760E5C665B00E041F7 /* AddressBook.framework */; };
+		C911226E0F2B235E006C4BD0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C911226C0F2B235E006C4BD0 /* MainMenu.xib */; };
+		C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122860F2B2431006C4BD0 /* Preferences.xib */; };
+		C911228B0F2B2431006C4BD0 /* Tab new.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122880F2B2431006C4BD0 /* Tab new.xib */; };
 		C91F0B170F06E3C900763699 /* MISplitView.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F0B150F06E3C900763699 /* MISplitView.h */; };
 		C91F0B180F06E3C900763699 /* MISplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F0B160F06E3C900763699 /* MISplitView.m */; };
 		C91F131E0F0A63F300763699 /* Themes.png in Resources */ = {isa = PBXBuildFile; fileRef = C91F131D0F0A63F300763699 /* Themes.png */; };
@@ -805,7 +805,6 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacIrssi_Prefix.pch; sourceTree = "<group>"; };
@@ -935,8 +934,6 @@
 		B322DD0A05EF98E200E640C2 /* window */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = window; sourceTree = "<group>"; };
 		B322DD0B05EF98E200E640C2 /* wjoin */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = wjoin; sourceTree = "<group>"; };
 		B322DD0C05EF98E200E640C2 /* wquery */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = wquery; sourceTree = "<group>"; };
-		B322DD8C05EF9A3200E640C2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
-		B322DD8E05EF9A3200E640C2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = "English.lproj/Tab new.nib"; sourceTree = "<group>"; };
 		B322DD9505EF9A7100E640C2 /* irssi.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = irssi.h; sourceTree = "<group>"; };
 		B322DD9605EF9A7100E640C2 /* irssi.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = irssi.m; sourceTree = "<group>"; };
 		B322DD9705EF9A7100E640C2 /* printd.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = printd.h; sourceTree = "<group>"; };
@@ -1571,6 +1568,9 @@
 		C91026600E5C654800E041F7 /* UKCrashReporter.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = UKCrashReporter.nib; sourceTree = "<group>"; };
 		C91026610E5C654800E041F7 /* UKNibOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKNibOwner.m; sourceTree = "<group>"; };
 		C91026760E5C665B00E041F7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
+		C911226D0F2B235E006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		C91122870F2B2431006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
+		C91122890F2B2431006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = "English.lproj/Tab new.xib"; sourceTree = "<group>"; };
 		C91F0B150F06E3C900763699 /* MISplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISplitView.h; sourceTree = "<group>"; };
 		C91F0B160F06E3C900763699 /* MISplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISplitView.m; sourceTree = "<group>"; };
 		C91F131D0F0A63F300763699 /* Themes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Themes.png; sourceTree = "<group>"; };
@@ -1923,9 +1923,9 @@
 				C26FC77608C4780300CFD1B3 /* MacPAD.url */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
-				B322DD8B05EF9A3200E640C2 /* Preferences.nib */,
-				B322DD8D05EF9A3200E640C2 /* Tab new.nib */,
+				C911226C0F2B235E006C4BD0 /* MainMenu.xib */,
+				C91122860F2B2431006C4BD0 /* Preferences.xib */,
+				C91122880F2B2431006C4BD0 /* Tab new.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -3379,10 +3379,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				B322DD8F05EF9A3200E640C2 /* Preferences.nib in Resources */,
-				B322DD9005EF9A3200E640C2 /* Tab new.nib in Resources */,
 				C26FC77708C4780300CFD1B3 /* MacPAD.url in Resources */,
 				C26FC9BD08C4E56300CFD1B3 /* MacIrssi.icns in Resources */,
 				C224D19508C5A6FC00E66C62 /* Macirssi-dot.png in Resources */,
@@ -3407,6 +3404,9 @@
 				C91F131E0F0A63F300763699 /* Themes.png in Resources */,
 				C91F13D40F0BE95F00763699 /* Keyboard.png in Resources */,
 				C91F15320F110AFC00763699 /* ShortcutRecorder.strings in Resources */,
+				C911226E0F2B235E006C4BD0 /* MainMenu.xib in Resources */,
+				C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */,
+				C911228B0F2B2431006C4BD0 /* Tab new.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3553,30 +3553,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				29B97319FDCFA39411CA2CEA /* English */,
-			);
-			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
-		B322DD8B05EF9A3200E640C2 /* Preferences.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B322DD8C05EF9A3200E640C2 /* English */,
-			);
-			name = Preferences.nib;
-			sourceTree = SOURCE_ROOT;
-		};
-		B322DD8D05EF9A3200E640C2 /* Tab new.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B322DD8E05EF9A3200E640C2 /* English */,
-			);
-			name = "Tab new.nib";
-			sourceTree = SOURCE_ROOT;
-		};
 		B3836F2805F6A1FD002D734A /* fe.c */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3607,6 +3583,30 @@
 				B3836F8605F6A1FD002D734A /* Global - windows */,
 			);
 			name = gui.h;
+			sourceTree = "<group>";
+		};
+		C911226C0F2B235E006C4BD0 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C911226D0F2B235E006C4BD0 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		C91122860F2B2431006C4BD0 /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C91122870F2B2431006C4BD0 /* English */,
+			);
+			name = Preferences.xib;
+			sourceTree = "<group>";
+		};
+		C91122880F2B2431006C4BD0 /* Tab new.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C91122890F2B2431006C4BD0 /* English */,
+			);
+			name = "Tab new.xib";
 			sourceTree = "<group>";
 		};
 		C91F15300F110AFC00763699 /* ShortcutRecorder.strings */ = {
