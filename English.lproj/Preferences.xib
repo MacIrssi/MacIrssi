@@ -8,6 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="1005"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -44,7 +45,7 @@
 				<string key="NSWindowContentMaxSize">{569, 1000}</string>
 				<string key="NSWindowContentMinSize">{569, 0}</string>
 				<object class="NSView" key="NSWindowView" id="1002079688">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -523,6 +524,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{568, 313}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{569, 22}</string>
@@ -531,7 +533,7 @@
 			<object class="NSWindowTemplate" id="625988152">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 165}, {510, 345}}</string>
+				<string key="NSWindowRect">{{600, 457}, {510, 345}}</string>
 				<int key="NSWTFlags">603979776</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -1702,7 +1704,7 @@ b24gZWRpdGluZyB0aGVtZXMuA</string>
 			<object class="NSWindowTemplate" id="638655922">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, -49}, {568, 559}}</string>
+				<string key="NSWindowRect">{{187, 148}, {568, 559}}</string>
 				<int key="NSWTFlags">603979776</int>
 				<string key="NSWindowTitle">Preferences: Networks</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -2240,6 +2242,7 @@ L2hlbHAgbmV0d29yayBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 							<reference key="NSHScroller" ref="901423991"/>
 							<reference key="NSContentView" ref="970071318"/>
 							<reference key="NSHeaderClipView" ref="135423970"/>
+							<reference key="NSCornerView" ref="640369969"/>
 							<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 						</object>
 						<object class="NSButton" id="144734706">
@@ -2348,7 +2351,7 @@ L2hlbHAgbmV0d29yayBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 										<object class="NSTableView" id="934855470">
 											<reference key="NSNextResponder" ref="1045908270"/>
 											<int key="NSvFlags">4352</int>
-											<string key="NSFrameSize">{576, 133}</string>
+											<string key="NSFrameSize">{563, 133}</string>
 											<reference key="NSSuperview" ref="1045908270"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
@@ -2388,7 +2391,7 @@ L2hlbHAgbmV0d29yayBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 													<reference key="NSTableView" ref="934855470"/>
 												</object>
 												<object class="NSTableColumn" id="461656908">
-													<double key="NSWidth">1.680000e+02</double>
+													<double key="NSWidth">1.550000e+02</double>
 													<double key="NSMinWidth">1.000000e+01</double>
 													<double key="NSMaxWidth">3.402823e+38</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
@@ -2424,7 +2427,7 @@ L2hlbHAgbmV0d29yayBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 											<reference key="NSBackgroundColor" ref="382441848"/>
 											<reference key="NSGridColor" ref="545570256"/>
 											<double key="NSRowHeight">1.700000e+01</double>
-											<int key="NSTvFlags">-698351616</int>
+											<int key="NSTvFlags">-700448768</int>
 											<int key="NSColumnAutoresizingStyle">4</int>
 											<int key="NSDraggingSourceMaskForLocal">15</int>
 											<int key="NSDraggingSourceMaskForNonLocal">0</int>
@@ -2452,7 +2455,6 @@ L2hlbHAgbmV0d29yayBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 									<int key="NSvFlags">256</int>
 									<string key="NSFrame">{{-100, -100}, {564, 15}}</string>
 									<reference key="NSSuperview" ref="527175554"/>
-									<bool key="NSEnabled">YES</bool>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="527175554"/>
 									<string key="NSAction">_doScroller:</string>
@@ -2462,7 +2464,7 @@ L2hlbHAgbmV0d29yayBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 							<string key="NSFrame">{{1, 199}, {565, 135}}</string>
 							<reference key="NSSuperview" ref="742211570"/>
 							<reference key="NSNextKeyView" ref="1045908270"/>
-							<int key="NSsFlags">658</int>
+							<int key="NSsFlags">530</int>
 							<reference key="NSVScroller" ref="1034358764"/>
 							<reference key="NSHScroller" ref="222988707"/>
 							<reference key="NSContentView" ref="1045908270"/>
@@ -3164,8 +3166,8 @@ ZWxwIHNlcnZlciBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 												<nil key="NSDefaultParagraphStyle"/>
 											</object>
 											<int key="NSTVFlags">6</int>
-											<string key="NSMaxSize">{639, 1e+07}</string>
-											<string key="NSMinize">{108, 52}</string>
+											<string key="NSMaxSize">{1122, 1e+07}</string>
+											<string key="NSMinize">{108, 0}</string>
 											<nil key="NSDelegate"/>
 										</object>
 									</object>
@@ -3736,7 +3738,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<object class="NSWindowTemplate" id="345563011">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, 8}, {567, 502}}</string>
+				<string key="NSWindowRect">{{153, 136}, {567, 502}}</string>
 				<int key="NSWTFlags">603979776</int>
 				<string key="NSWindowTitle">Preferences: Shortcuts</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -3896,6 +3898,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference key="NSHScroller" ref="898535361"/>
 							<reference key="NSContentView" ref="885758385"/>
 							<reference key="NSHeaderClipView" ref="524364922"/>
+							<reference key="NSCornerView" ref="985174984"/>
 							<bytes key="NSScrollAmts">QSAAAEEgAABBiAAAQYgAAA</bytes>
 						</object>
 						<object class="NSButton" id="62286503">
@@ -4299,14 +4302,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<reference key="destination" ref="625988152"/>
 					</object>
 					<int key="connectionID">1093</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">window</string>
-						<reference key="source" ref="1040778840"/>
-						<reference key="destination" ref="625988152"/>
-					</object>
-					<int key="connectionID">1094</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -5039,54 +5034,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<int key="connectionID">1774</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">nextKeyView</string>
-						<reference key="source" ref="460188351"/>
-						<reference key="destination" ref="653864586"/>
-					</object>
-					<int key="connectionID">1775</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">nextKeyView</string>
-						<reference key="source" ref="653864586"/>
-						<reference key="destination" ref="1030507926"/>
-					</object>
-					<int key="connectionID">1776</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">nextKeyView</string>
-						<reference key="source" ref="1030507926"/>
-						<reference key="destination" ref="21269256"/>
-					</object>
-					<int key="connectionID">1777</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">nextKeyView</string>
-						<reference key="source" ref="978865461"/>
-						<reference key="destination" ref="92698417"/>
-					</object>
-					<int key="connectionID">1778</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">nextKeyView</string>
-						<reference key="source" ref="92698417"/>
-						<reference key="destination" ref="815240539"/>
-					</object>
-					<int key="connectionID">1779</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">nextKeyView</string>
-						<reference key="source" ref="686336129"/>
-						<reference key="destination" ref="460188351"/>
-					</object>
-					<int key="connectionID">1780</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.channelInTitle</string>
 						<reference key="source" ref="668305518"/>
@@ -5593,6 +5540,222 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<reference key="destination" ref="386143830"/>
 					</object>
 					<int key="connectionID">2468</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="686336129"/>
+						<reference key="destination" ref="479577816"/>
+					</object>
+					<int key="connectionID">2579</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="479577816"/>
+						<reference key="destination" ref="186522144"/>
+					</object>
+					<int key="connectionID">2580</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="186522144"/>
+						<reference key="destination" ref="460188351"/>
+					</object>
+					<int key="connectionID">2581</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="460188351"/>
+						<reference key="destination" ref="653864586"/>
+					</object>
+					<int key="connectionID">2582</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="653864586"/>
+						<reference key="destination" ref="1030507926"/>
+					</object>
+					<int key="connectionID">2584</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="1030507926"/>
+						<reference key="destination" ref="21269256"/>
+					</object>
+					<int key="connectionID">2585</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="978865461"/>
+						<reference key="destination" ref="144734706"/>
+					</object>
+					<int key="connectionID">2586</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="144734706"/>
+						<reference key="destination" ref="527584712"/>
+					</object>
+					<int key="connectionID">2587</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="527584712"/>
+						<reference key="destination" ref="92698417"/>
+					</object>
+					<int key="connectionID">2588</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="92698417"/>
+						<reference key="destination" ref="815240539"/>
+					</object>
+					<int key="connectionID">2589</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="527175554"/>
+						<reference key="destination" ref="1022109281"/>
+					</object>
+					<int key="connectionID">2590</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="1022109281"/>
+						<reference key="destination" ref="874612190"/>
+					</object>
+					<int key="connectionID">2591</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="874612190"/>
+						<reference key="destination" ref="694929459"/>
+					</object>
+					<int key="connectionID">2592</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="694929459"/>
+						<reference key="destination" ref="669522871"/>
+					</object>
+					<int key="connectionID">2593</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="669522871"/>
+						<reference key="destination" ref="586674231"/>
+					</object>
+					<int key="connectionID">2594</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="586674231"/>
+						<reference key="destination" ref="722039893"/>
+					</object>
+					<int key="connectionID">2595</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="722039893"/>
+						<reference key="destination" ref="934855470"/>
+					</object>
+					<int key="connectionID">2596</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="858504060"/>
+						<reference key="destination" ref="495750833"/>
+					</object>
+					<int key="connectionID">2597</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="495750833"/>
+						<reference key="destination" ref="123662048"/>
+					</object>
+					<int key="connectionID">2598</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="123662048"/>
+						<reference key="destination" ref="320408075"/>
+					</object>
+					<int key="connectionID">2599</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="320408075"/>
+						<reference key="destination" ref="668305518"/>
+					</object>
+					<int key="connectionID">2600</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="668305518"/>
+						<reference key="destination" ref="902005603"/>
+					</object>
+					<int key="connectionID">2601</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="902005603"/>
+						<reference key="destination" ref="616497414"/>
+					</object>
+					<int key="connectionID">2603</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="616497414"/>
+						<reference key="destination" ref="238108499"/>
+					</object>
+					<int key="connectionID">2604</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="238108499"/>
+						<reference key="destination" ref="643969215"/>
+					</object>
+					<int key="connectionID">2605</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="643969215"/>
+						<reference key="destination" ref="948046568"/>
+					</object>
+					<int key="connectionID">2606</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nextKeyView</string>
+						<reference key="source" ref="948046568"/>
+						<reference key="destination" ref="858504060"/>
+					</object>
+					<int key="connectionID">2607</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -7874,6 +8037,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>-3.ImportedFromIB2</string>
 					<string>10.IBPluginDependency</string>
 					<string>10.ImportedFromIB2</string>
+					<string>1005.IBEditorWindowLastContentRect</string>
+					<string>1005.IBWindowTemplateEditedContentRect</string>
 					<string>1005.ImportedFromIB2</string>
 					<string>1005.windowTemplate.hasMaxSize</string>
 					<string>1005.windowTemplate.hasMinSize</string>
@@ -7881,6 +8046,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>1005.windowTemplate.minSize</string>
 					<string>1006.IBPluginDependency</string>
 					<string>1006.ImportedFromIB2</string>
+					<string>1007.IBEditorWindowLastContentRect</string>
+					<string>1007.IBWindowTemplateEditedContentRect</string>
 					<string>1007.ImportedFromIB2</string>
 					<string>1008.IBPluginDependency</string>
 					<string>1008.ImportedFromIB2</string>
@@ -7888,6 +8055,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>11.ImportedFromIB2</string>
 					<string>1108.IBPluginDependency</string>
 					<string>1108.ImportedFromIB2</string>
+					<string>1195.IBEditorWindowLastContentRect</string>
+					<string>1195.IBWindowTemplateEditedContentRect</string>
 					<string>1195.ImportedFromIB2</string>
 					<string>1196.IBPluginDependency</string>
 					<string>1196.ImportedFromIB2</string>
@@ -7968,6 +8137,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>1456.ImportedFromIB2</string>
 					<string>1462.IBPluginDependency</string>
 					<string>1462.ImportedFromIB2</string>
+					<string>1465.IBEditorWindowLastContentRect</string>
+					<string>1465.IBWindowTemplateEditedContentRect</string>
 					<string>1465.ImportedFromIB2</string>
 					<string>1465.windowTemplate.hasMinSize</string>
 					<string>1465.windowTemplate.minSize</string>
@@ -8011,6 +8182,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>1522.ImportedFromIB2</string>
 					<string>1524.IBPluginDependency</string>
 					<string>1524.ImportedFromIB2</string>
+					<string>1530.IBEditorWindowLastContentRect</string>
+					<string>1530.IBWindowTemplateEditedContentRect</string>
 					<string>1530.ImportedFromIB2</string>
 					<string>1530.windowTemplate.hasMaxSize</string>
 					<string>1530.windowTemplate.hasMinSize</string>
@@ -8210,19 +8383,126 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>2462.ImportedFromIB2</string>
 					<string>2466.IBPluginDependency</string>
 					<string>2466.ImportedFromIB2</string>
+					<string>2472.IBPluginDependency</string>
+					<string>2473.IBPluginDependency</string>
+					<string>2474.IBPluginDependency</string>
+					<string>2475.IBPluginDependency</string>
+					<string>2476.IBPluginDependency</string>
+					<string>2477.IBPluginDependency</string>
+					<string>2478.IBPluginDependency</string>
+					<string>2479.IBPluginDependency</string>
+					<string>2480.IBPluginDependency</string>
+					<string>2481.IBPluginDependency</string>
+					<string>2482.IBPluginDependency</string>
+					<string>2483.IBPluginDependency</string>
+					<string>2484.IBPluginDependency</string>
+					<string>2485.IBPluginDependency</string>
+					<string>2486.IBPluginDependency</string>
+					<string>2487.IBPluginDependency</string>
+					<string>2488.IBPluginDependency</string>
+					<string>2489.IBPluginDependency</string>
+					<string>2490.IBPluginDependency</string>
+					<string>2491.IBPluginDependency</string>
+					<string>2492.IBPluginDependency</string>
+					<string>2493.IBPluginDependency</string>
+					<string>2494.IBPluginDependency</string>
+					<string>2495.IBPluginDependency</string>
+					<string>2496.IBPluginDependency</string>
+					<string>2497.IBPluginDependency</string>
+					<string>2498.IBPluginDependency</string>
+					<string>2499.IBPluginDependency</string>
 					<string>25.IBPluginDependency</string>
 					<string>25.ImportedFromIB2</string>
+					<string>2500.IBPluginDependency</string>
+					<string>2501.IBPluginDependency</string>
+					<string>2502.IBPluginDependency</string>
+					<string>2503.IBPluginDependency</string>
+					<string>2504.IBPluginDependency</string>
+					<string>2505.IBPluginDependency</string>
+					<string>2506.IBPluginDependency</string>
+					<string>2507.IBPluginDependency</string>
+					<string>2508.IBPluginDependency</string>
+					<string>2509.IBPluginDependency</string>
+					<string>2510.IBPluginDependency</string>
+					<string>2511.IBPluginDependency</string>
+					<string>2512.IBPluginDependency</string>
+					<string>2513.IBPluginDependency</string>
+					<string>2514.IBPluginDependency</string>
+					<string>2515.IBPluginDependency</string>
+					<string>2516.IBPluginDependency</string>
+					<string>2517.IBPluginDependency</string>
+					<string>2518.IBPluginDependency</string>
+					<string>2519.IBPluginDependency</string>
+					<string>2520.IBPluginDependency</string>
+					<string>2521.IBPluginDependency</string>
+					<string>2522.IBPluginDependency</string>
+					<string>2523.IBPluginDependency</string>
+					<string>2524.IBPluginDependency</string>
+					<string>2525.IBPluginDependency</string>
+					<string>2526.IBPluginDependency</string>
+					<string>2527.IBPluginDependency</string>
+					<string>2528.IBPluginDependency</string>
+					<string>2529.IBPluginDependency</string>
+					<string>2530.IBPluginDependency</string>
+					<string>2531.IBPluginDependency</string>
+					<string>2532.IBPluginDependency</string>
+					<string>2533.IBPluginDependency</string>
+					<string>2534.IBPluginDependency</string>
+					<string>2535.IBPluginDependency</string>
+					<string>2536.IBPluginDependency</string>
+					<string>2537.IBPluginDependency</string>
+					<string>2538.IBPluginDependency</string>
+					<string>2539.IBPluginDependency</string>
+					<string>2540.IBPluginDependency</string>
+					<string>2541.IBPluginDependency</string>
+					<string>2542.IBPluginDependency</string>
+					<string>2543.IBPluginDependency</string>
+					<string>2544.IBPluginDependency</string>
+					<string>2545.IBPluginDependency</string>
+					<string>2546.IBPluginDependency</string>
+					<string>2547.IBPluginDependency</string>
+					<string>2548.IBPluginDependency</string>
+					<string>2549.IBPluginDependency</string>
+					<string>2550.IBPluginDependency</string>
+					<string>2551.IBPluginDependency</string>
+					<string>2552.IBPluginDependency</string>
+					<string>2553.IBPluginDependency</string>
+					<string>2554.IBPluginDependency</string>
+					<string>2555.IBPluginDependency</string>
+					<string>2556.IBPluginDependency</string>
+					<string>2557.IBPluginDependency</string>
+					<string>2558.IBPluginDependency</string>
+					<string>2559.IBPluginDependency</string>
+					<string>2560.IBPluginDependency</string>
+					<string>2561.IBPluginDependency</string>
+					<string>2562.IBPluginDependency</string>
+					<string>2563.IBPluginDependency</string>
+					<string>2564.IBPluginDependency</string>
+					<string>2565.IBPluginDependency</string>
+					<string>2566.IBPluginDependency</string>
+					<string>2567.IBPluginDependency</string>
 					<string>2567.IBShouldRemoveOnLegacySave</string>
+					<string>2568.IBPluginDependency</string>
 					<string>2568.IBShouldRemoveOnLegacySave</string>
+					<string>2569.IBPluginDependency</string>
 					<string>2569.IBShouldRemoveOnLegacySave</string>
+					<string>2570.IBPluginDependency</string>
 					<string>2570.IBShouldRemoveOnLegacySave</string>
+					<string>2571.IBPluginDependency</string>
 					<string>2571.IBShouldRemoveOnLegacySave</string>
+					<string>2572.IBPluginDependency</string>
 					<string>2572.IBShouldRemoveOnLegacySave</string>
+					<string>2573.IBPluginDependency</string>
 					<string>2573.IBShouldRemoveOnLegacySave</string>
+					<string>2574.IBPluginDependency</string>
 					<string>2574.IBShouldRemoveOnLegacySave</string>
+					<string>2575.IBPluginDependency</string>
 					<string>2575.IBShouldRemoveOnLegacySave</string>
+					<string>2576.IBPluginDependency</string>
 					<string>2576.IBShouldRemoveOnLegacySave</string>
+					<string>2577.IBPluginDependency</string>
 					<string>2577.IBShouldRemoveOnLegacySave</string>
+					<string>2578.IBPluginDependency</string>
 					<string>2578.IBShouldRemoveOnLegacySave</string>
 					<string>26.IBPluginDependency</string>
 					<string>26.ImportedFromIB2</string>
@@ -8287,6 +8567,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>{{42, 786}, {568, 313}}</string>
+					<string>{{42, 786}, {568, 313}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<reference ref="5"/>
@@ -8294,6 +8576,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>{569, 0}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>{{30, 781}, {510, 345}}</string>
+					<string>{{30, 781}, {510, 345}}</string>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
@@ -8301,18 +8585,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
-					<reference ref="5"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="5"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="5"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="5"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="5"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<reference ref="5"/>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{63, 853}, {568, 223}}</string>
+					<string>{{63, 853}, {568, 223}}</string>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
@@ -8348,6 +8622,18 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<reference ref="5"/>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
@@ -8381,6 +8667,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>{{133, 573}, {568, 559}}</string>
+					<string>{{133, 573}, {568, 559}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<string>{568, 0}</string>
@@ -8424,6 +8712,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>{{21, 787}, {567, 335}}</string>
+					<string>{{21, 787}, {567, 335}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<reference ref="5"/>
@@ -8624,18 +8914,125 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
@@ -8713,16 +9110,38 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2578</int>
+			<int key="maxID">2607</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
 					<string key="className">FirstResponder</string>
+					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Source/Custom Views/Shortcut Recorder/SRRecorderCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="623276529">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Source/Custom Views/Shortcut Recorder/SRRecorderControl.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Source/Custom Views/Shortcut Recorder/SRValidator.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -8922,6 +9341,14 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Source/Controllers/Preferences/PreferenceViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PreferenceViewController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
 					</object>
@@ -8933,6 +9360,11 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NS.key.0">delegate</string>
 						<string key="NS.object.0">id</string>
 					</object>
+					<reference key="sourceIdentifier" ref="623276529"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SRRecorderControl</string>
+					<string key="superclassName">NSControl</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
