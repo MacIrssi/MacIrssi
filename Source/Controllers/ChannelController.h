@@ -132,6 +132,7 @@ enum nickContextMenuTags {
   WINDOW_REC *windowRec;
   BOOL modeChanged;
   NSFont *channelFont;
+  NSFont *nickListFont;
   
   NSColor *searchColor;
   NSColor *currentSearchMatchColor;
@@ -214,6 +215,7 @@ enum nickContextMenuTags {
 - (IBAction)performSearch:(id)sender;
 
 - (void)setFont:(NSFont *)font;
+- (void)setNicklistFont:(NSFont*)font;
 - (float)yPositionInTextView:(NSRange)r;
 - (void)makeSearchFieldFirstResponder;
 

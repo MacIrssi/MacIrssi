@@ -105,6 +105,7 @@
   IBOutlet NSTextView *themePreviewTextView;
   IBOutlet NSArrayController *themesArrayController;
   IBOutlet NSTextField *mainWindowFontField;
+  IBOutlet NSTextField *nickListFontField;
   NSMutableArray *availableThemes;
   NSMutableAttributedString *themeRenderLineBuffer;
   
@@ -129,7 +130,6 @@
 - (float)toolbarHeightForWindow:(NSWindow*)window;
 - (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate;
 
-- (IBAction)switchChannelBar:(id)sender;
 - (IBAction)changeColor:(id)sender;
 - (IBAction)revertColorsToDefaults:(id)sender;
 - (IBAction)buttonChange:(id)sender;
@@ -175,7 +175,13 @@
 - (IBAction)addServerAction:(id)sender;
 - (IBAction)deleteServerAction:(id)sender;
 
-#pragma mark Themes Preference Panel
+#pragma mark Appearance Preference Panel
+
+- (void)updateMainWindowFontLabel;
+- (void)updateNickFontLabel;
+
+- (IBAction)changeMainWindowFont:(id)sender;
+- (IBAction)changeNickFont:(id)sender;
 
 - (void)findAvailableThemes;
 - (IBAction)previewTheme:(id)sender;
@@ -183,6 +189,8 @@
 
 - (void)printTextCallback:(char*)text foreground:(int)fg background:(int)bg flags:(int)flags;
 - (void)printTextFinishedCallback;
+
+- (IBAction)switchChannelBarOrientation:(id)sender;
 
 #pragma mark Shortcuts Preference Panel
 

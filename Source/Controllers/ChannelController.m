@@ -916,13 +916,19 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
   [textAttributes setObject:font forKey:NSFontAttributeName];
   [textStorage addAttribute:NSFontAttributeName value:font range:range];
-  
-  // Nick list uses the current font anyway but it'll need poking to reload
-  NSSize textSize = [@"" sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil]];
-  [nickTableView setRowHeight:textSize.height];
-  [nickTableView reloadData];
 }
 
+- (void)setNicklistFont:(NSFont*)font
+{
+  [font retain];
+  [nickListFont release];
+  nickListFont = font;
+  
+  // Nick list uses the current font anyway but it'll need poking to reload
+  NSSize textSize = [@"" sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:nickListFont, NSFontAttributeName, nil]];
+  [nickTableView setRowHeight:textSize.height];
+  [nickTableView reloadData];  
+}
 
 //-------------------------------------------------------------------
 // validateMenuItem:
@@ -958,7 +964,11 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [nickTableView setBackgroundColor:[ColorSet nickListBackgroundColor]];
   
   /* Set up fonts and attributes */
-  [self setFont:[appController channelFont]];
+  NSFont *chanFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
+  NSFont *nickFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"nickListFont"]];
+  
+  [self setFont:chanFont];
+  [self setNicklistFont:nickFont];
   
   textAttributes = [[NSMutableDictionary alloc] init];
   topicAttributes = [[NSMutableDictionary alloc] init];
@@ -970,7 +980,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [topicEditableTextField setFont:channelFont];
   [maxUsersTextField setFont:channelFont];
   [keyTextField setFont:channelFont];
-  
 }
 
 
@@ -1031,7 +1040,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   }
   
   [nickAttributes setObject:color forKey:NSForegroundColorAttributeName];
-  [nickAttributes setObject:channelFont forKey:NSFontAttributeName];
+  [nickAttributes setObject:nickListFont forKey:NSFontAttributeName];
   return [[[NSAttributedString alloc] initWithString:[NSString stringWithCString:nick->nick] attributes:nickAttributes] autorelease];
 }
 

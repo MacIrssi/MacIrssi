@@ -73,7 +73,6 @@ extern char **argv;
 	NSMutableDictionary *highlightAttributes;
 	NSString *queryObject;
 	BOOL timeToQuit;
-	NSFont *channelFont;
 	NSMutableArray *networks;
 	bool quitting;
 	bool sleeping;
@@ -92,7 +91,8 @@ extern char **argv;
 - (void)historyUp;
 - (void)historyDown;
 
-- (NSFont *)channelFont;
+- (void)changeMainWindowFont:(NSFont*)font;
+- (void)changeNicklistFont:(NSFont*)font;
 
 - (void)useHorizontalChannelBar:(BOOL)b;
 - (void)useVerticalChannelBar:(BOOL)b;

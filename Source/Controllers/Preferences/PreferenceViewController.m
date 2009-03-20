@@ -32,7 +32,12 @@
 #include "themes.h"
 #import "TextEncodings.h"
 
-	
+@interface NSFontManager (StupidHeaderFixes)
+
+- (void)setTarget:(id)target;
+
+@end
+
 @implementation PreferenceViewController
 
 //-------------------------------------------------------------------
@@ -153,6 +158,7 @@
 
   /* Themes */
   [self updateMainWindowFontLabel];
+  [self updateNickFontLabel];
   [self findAvailableThemes];
   [themesArrayController setSelectedObjects:[NSArray arrayWithObjects:[preferenceObjectController theme], nil]];
   [self previewTheme:self];
@@ -212,22 +218,6 @@
 }
 
 #pragma mark Channel Bar
-
-- (IBAction)switchChannelBar:(id)sender
-{
-	if ([sender selectedTag] == 0) {
-		[appController useHorizontalChannelBar:TRUE];
-		[appController useVerticalChannelBar:FALSE];
-    [appController setChannelNavigationShortcuts:1];
-	}
-	else {
-		[appController useHorizontalChannelBar:FALSE];
-		[appController useVerticalChannelBar:TRUE];
-    [appController setChannelNavigationShortcuts:0];
-	}
-	
-	[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedTag] forKey:@"channelBarOrientation"]; //TODO
-}
 
 //-------------------------------------------------------------------
 // revertColorsToDefaults:
@@ -581,19 +571,89 @@
   [serversArrayController setContent:[preferenceObjectController serverArray]];
 }
 
-#pragma mark Themes Preference Panel
+#pragma mark Appearance Preference Panel
 
 - (void)updateMainWindowFontLabel
 {
   NSFont *mainWindowFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
+
+  NSMutableParagraphStyle *paraStyle = [[[NSMutableParagraphStyle alloc] init] autorelease];
+  [paraStyle setMinimumLineHeight:15.0];
+
+  float displaySize = [mainWindowFont pointSize] < 12.0 ? [mainWindowFont pointSize] : [NSFont smallSystemFontSize];
+  NSFont *displayFont = [NSFont fontWithName:[mainWindowFont displayName] size:displaySize];
   
-  NSMutableParagraphStyle *para = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-  [para setMinimumLineHeight:14.0];
-  
-  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:mainWindowFont, NSFontAttributeName, para, NSParagraphStyleAttributeName, nil];
+  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:displayFont, NSFontAttributeName, paraStyle, NSParagraphStyleAttributeName, nil];
   NSAttributedString *str = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@, %.1f pt.", [mainWindowFont displayName], [mainWindowFont pointSize]] attributes:dict] autorelease];
   
   [mainWindowFontField setAttributedStringValue:str];
+}
+
+- (void)updateNickFontLabel
+{
+  NSFont *nickListFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"nickListFont"]];
+  
+  NSMutableParagraphStyle *paraStyle = [[[NSMutableParagraphStyle alloc] init] autorelease];
+  [paraStyle setMinimumLineHeight:15.0];
+  
+  float displaySize = [nickListFont pointSize] < 12.0 ? [nickListFont pointSize] : [NSFont smallSystemFontSize];
+  NSFont *displayFont = [NSFont fontWithName:[nickListFont displayName] size:displaySize];
+  
+  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:displayFont, NSFontAttributeName, paraStyle, NSParagraphStyleAttributeName, nil];
+  NSAttributedString *str = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@, %.1f pt.", [nickListFont displayName], [nickListFont pointSize]] attributes:dict] autorelease];
+  
+  [nickListFontField setAttributedStringValue:str];
+}
+
+- (IBAction)changeMainWindowFont:(id)sender
+{
+  NSFontManager *sharedFontManager = [NSFontManager sharedFontManager];
+  NSFont *mainWindowFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
+  
+  [sharedFontManager setSelectedFont:mainWindowFont isMultiple:NO];
+  [sharedFontManager setTarget:self];
+  [sharedFontManager setAction:@selector(newMainWindowFontFromFontManager:)];
+  
+  [[sharedFontManager fontPanel:YES] orderFrontRegardless];
+}
+
+- (IBAction)changeNickFont:(id)sender
+{
+  NSFontManager *sharedFontManager = [NSFontManager sharedFontManager];
+  NSFont *mainWindowFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"nickListFont"]];
+  
+  [sharedFontManager setSelectedFont:mainWindowFont isMultiple:NO];
+  [sharedFontManager setTarget:self];
+  [sharedFontManager setAction:@selector(newNicklistFontFromFontManager:)];
+  
+  [[sharedFontManager fontPanel:YES] orderFrontRegardless];
+}
+
+- (void)newMainWindowFontFromFontManager:(id)sender
+{
+  NSFontManager *fontManager = sender;
+  NSFont *currentFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
+  NSFont *newFont = [fontManager convertFont:currentFont];
+  
+  [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:newFont] forKey:@"channelFont"];
+  
+  // Certain things need to happen when we get this message
+  [self updateMainWindowFontLabel];
+  [self previewTheme:self];
+  [appController changeMainWindowFont:newFont];
+}
+
+- (void)newNicklistFontFromFontManager:(id)sender
+{
+  NSFontManager *fontManager = sender;
+  NSFont *currentFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"nickListFont"]];
+  NSFont *newFont = [fontManager convertFont:currentFont];
+  
+  [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:newFont] forKey:@"nickListFont"];
+  
+  // Certain things need to happen when we get this message
+  [self updateNickFontLabel];
+  [appController changeNicklistFont:newFont];
 }
 
 - (void)findAvailableThemes
@@ -739,6 +799,26 @@
   [themeRenderLineBuffer appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
 }
 
+- (IBAction)switchChannelBarOrientation:(id)sender
+{
+  NSLog(@"%@, %d", sender, [sender selectedRow]);
+  switch ([sender selectedRow])
+  {
+    // Horizontal
+    case 0:
+      [appController useHorizontalChannelBar:YES];
+      [appController useVerticalChannelBar:NO];
+      [appController setChannelNavigationShortcuts:1];
+      break;
+    // Vertical
+    case 1:
+      [appController useHorizontalChannelBar:FALSE];
+      [appController useVerticalChannelBar:TRUE];
+      [appController setChannelNavigationShortcuts:0];
+      break;
+  }
+	[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedRow] forKey:@"channelBarOrientation"]; //TODO
+}
 #pragma mark Shortcuts Preference Panel
 
 - (IBAction)addShortcutAction:(id)sender
