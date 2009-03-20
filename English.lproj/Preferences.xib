@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1005"/>
+			<integer value="2156"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -45,7 +45,7 @@
 				<string key="NSWindowContentMaxSize">{569, 1000}</string>
 				<string key="NSWindowContentMinSize">{569, 0}</string>
 				<object class="NSView" key="NSWindowView" id="1002079688">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -524,7 +524,6 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{568, 313}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{569, 22}</string>
@@ -1698,6 +1697,7 @@ b24gZWRpdGluZyB0aGVtZXMuA</string>
 					<string>channelListForegroundColors.0</string>
 					<string>channelListForegroundColors.1</string>
 					<string>channelListForegroundColors</string>
+					<string>channelBarOrientation</string>
 				</object>
 				<bool key="NSAppliesImmediately">YES</bool>
 			</object>
@@ -2884,7 +2884,7 @@ ZWxwIHNlcnZlciBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 				<string key="NSWindowContentMaxSize">{568, 1000}</string>
 				<string key="NSWindowContentMinSize">{568, 0}</string>
 				<object class="NSView" key="NSWindowView" id="285064778">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3355,14 +3355,14 @@ ZWxwIHNlcnZlciBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 						<object class="NSTextField" id="386143830">
 							<reference key="NSNextResponder" ref="285064778"/>
 							<int key="NSvFlags">256</int>
-							<string key="NSFrame">{{141, 133}, {311, 17}}</string>
+							<string key="NSFrame">{{141, 134}, {311, 14}}</string>
 							<reference key="NSSuperview" ref="285064778"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="138869207">
 								<int key="NSCellFlags">68288064</int>
-								<int key="NSCellFlags2">272630784</int>
+								<int key="NSCellFlags2">272761856</int>
 								<string key="NSContents">Label</string>
-								<reference key="NSSupport" ref="424159527"/>
+								<reference key="NSSupport" ref="26"/>
 								<reference key="NSControlView" ref="386143830"/>
 								<reference key="NSBackgroundColor" ref="754292733"/>
 								<reference key="NSTextColor" ref="791296409"/>
@@ -3371,7 +3371,7 @@ ZWxwIHNlcnZlciBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 						<object class="NSButton" id="1033340487">
 							<reference key="NSNextResponder" ref="285064778"/>
 							<int key="NSvFlags">256</int>
-							<string key="NSFrame">{{452, 126}, {96, 28}}</string>
+							<string key="NSFrame">{{452, 125}, {96, 28}}</string>
 							<reference key="NSSuperview" ref="285064778"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="170231370">
@@ -3407,14 +3407,14 @@ ZWxwIHNlcnZlciBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 						<object class="NSTextField" id="615955717">
 							<reference key="NSNextResponder" ref="285064778"/>
 							<int key="NSvFlags">256</int>
-							<string key="NSFrame">{{141, 108}, {311, 17}}</string>
+							<string key="NSFrame">{{141, 109}, {311, 14}}</string>
 							<reference key="NSSuperview" ref="285064778"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="64350787">
 								<int key="NSCellFlags">68288064</int>
-								<int key="NSCellFlags2">272630784</int>
+								<int key="NSCellFlags2">272761856</int>
 								<string key="NSContents">Label</string>
-								<reference key="NSSupport" ref="424159527"/>
+								<reference key="NSSupport" ref="26"/>
 								<reference key="NSControlView" ref="615955717"/>
 								<reference key="NSBackgroundColor" ref="754292733"/>
 								<reference key="NSTextColor" ref="791296409"/>
@@ -3423,7 +3423,7 @@ ZWxwIHNlcnZlciBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 						<object class="NSButton" id="843401226">
 							<reference key="NSNextResponder" ref="285064778"/>
 							<int key="NSvFlags">256</int>
-							<string key="NSFrame">{{452, 101}, {96, 28}}</string>
+							<string key="NSFrame">{{452, 100}, {96, 28}}</string>
 							<reference key="NSSuperview" ref="285064778"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="277119364">
@@ -3715,6 +3715,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						</object>
 					</object>
 					<string key="NSFrameSize">{565, 395}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{568, 22}</string>
@@ -5757,6 +5758,54 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<int key="connectionID">2607</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">nickListFontField</string>
+						<reference key="source" ref="1040778840"/>
+						<reference key="destination" ref="615955717"/>
+					</object>
+					<int key="connectionID">2608</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeMainWindowFont:</string>
+						<reference key="source" ref="1040778840"/>
+						<reference key="destination" ref="1033340487"/>
+					</object>
+					<int key="connectionID">2609</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeNickFont:</string>
+						<reference key="source" ref="1040778840"/>
+						<reference key="destination" ref="843401226"/>
+					</object>
+					<int key="connectionID">2610</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">switchChannelBarOrientation:</string>
+						<reference key="source" ref="1040778840"/>
+						<reference key="destination" ref="358642702"/>
+					</object>
+					<int key="connectionID">2611</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedIndex: values.channelBarOrientation</string>
+						<reference key="source" ref="358642702"/>
+						<reference key="destination" ref="487938246"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="358642702"/>
+							<reference key="NSDestination" ref="487938246"/>
+							<string key="NSLabel">selectedIndex: values.channelBarOrientation</string>
+							<string key="NSBinding">selectedIndex</string>
+							<string key="NSKeyPath">values.channelBarOrientation</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2612</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -7043,16 +7092,16 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference ref="250299377"/>
 							<reference ref="596549987"/>
 							<reference ref="637298725"/>
-							<reference ref="386143830"/>
-							<reference ref="1033340487"/>
 							<reference ref="503597885"/>
-							<reference ref="615955717"/>
 							<reference ref="843401226"/>
 							<reference ref="69346599"/>
 							<reference ref="358642702"/>
 							<reference ref="502441235"/>
 							<reference ref="515391772"/>
 							<reference ref="505060491"/>
+							<reference ref="386143830"/>
+							<reference ref="615955717"/>
+							<reference ref="1033340487"/>
 						</object>
 						<reference key="parent" ref="929064442"/>
 					</object>
@@ -8290,6 +8339,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<string>2002.ImportedFromIB2</string>
 					<string>2004.IBPluginDependency</string>
 					<string>2004.ImportedFromIB2</string>
+					<string>2155.IBEditorWindowLastContentRect</string>
+					<string>2155.IBWindowTemplateEditedContentRect</string>
 					<string>2155.ImportedFromIB2</string>
 					<string>2155.windowTemplate.hasMaxSize</string>
 					<string>2155.windowTemplate.hasMinSize</string>
@@ -8820,6 +8871,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="5"/>
+					<string>{{347, 451}, {565, 395}}</string>
+					<string>{{347, 451}, {565, 395}}</string>
 					<reference ref="5"/>
 					<reference ref="5"/>
 					<reference ref="5"/>
@@ -9110,7 +9163,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2607</int>
+			<int key="maxID">2612</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -9164,6 +9217,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>addShortcutAction:</string>
 							<string>buttonChange:</string>
 							<string>changeColor:</string>
+							<string>changeMainWindowFont:</string>
+							<string>changeNickFont:</string>
 							<string>channetPanelCancelAction:</string>
 							<string>channetPanelOKAction:</string>
 							<string>chatEventPopup:</string>
@@ -9181,10 +9236,12 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>showNetworkPanel:</string>
 							<string>showWindow:</string>
 							<string>soundListPopUp:</string>
-							<string>switchChannelBar:</string>
+							<string>switchChannelBarOrientation:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -9258,6 +9315,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>nickListFGOpColorWell</string>
 							<string>nickListFGServerOpColorWell</string>
 							<string>nickListFGVoiceColorWell</string>
+							<string>nickListFontField</string>
 							<string>notificationsPreferencesTab</string>
 							<string>playSoundBackgroundButton</string>
 							<string>playSoundButton</string>
@@ -9321,6 +9379,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>NSColorWell</string>
 							<string>NSColorWell</string>
 							<string>NSColorWell</string>
+							<string>NSTextField</string>
 							<string>NSWindow</string>
 							<string>NSButton</string>
 							<string>NSButton</string>

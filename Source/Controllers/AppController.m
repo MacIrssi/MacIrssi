@@ -60,6 +60,12 @@ static GMainLoop *main_loop;
 int argc;
 char **argv;
 
+@interface NSFontManager (StupidHeaderFixes)
+
+- (void)setTarget:(id)target;
+
+@end
+
 @implementation AppController
 
 #pragma mark IBAction methods
@@ -114,6 +120,10 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)showFontPanel:(id)sender
 {
+  NSFont *channelFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
+  
+  [[NSFontManager sharedFontManager] setAction:@selector(specialFontChange:)];
+  [[NSFontManager sharedFontManager] setTarget:self];
   [[NSFontManager sharedFontManager] orderFrontFontPanel:sender];
   [[NSFontManager sharedFontManager] setSelectedFont:channelFont isMultiple:FALSE];
 }
@@ -978,18 +988,36 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)specialFontChange:(id)sender
 {
-  NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
-  NSTabViewItem *tmp;
-  channelFont = [sender convertFont:channelFont];
-  
-  /* Iterate through all channels */
-  while (tmp = [enumerator nextObject])
-    [[tmp identifier] setFont:channelFont];
+  NSFont *channelFont = [sender convertFont:channelFont];
+  [self changeMainWindowFont:channelFont];
   
   /* Save change in user defaults */
   [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:channelFont] forKey:@"channelFont"];
 }
 
+- (void)changeMainWindowFont:(NSFont*)font
+{  
+  NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
+  NSTabViewItem *tmp;
+  
+  /* Iterate through all channels */
+  while (tmp = [enumerator nextObject])
+  {
+    [[tmp identifier] setFont:font];
+  }
+}
+
+- (void)changeNicklistFont:(NSFont*)font
+{
+  NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
+  NSTabViewItem *tmp;
+  
+  /* Iterate through all channels */
+  while (tmp = [enumerator nextObject])
+  {
+    [[tmp identifier] setNicklistFont:font];
+  }  
+}
 
 //-------------------------------------------------------------------
 // irssiQuit
@@ -1344,6 +1372,7 @@ char **argv;
     NSLog(@"Can't set path!");
   }
   
+  // All font changes go somewhere global, we need a handler to sort that out.
   [[NSFontManager sharedFontManager] setAction:@selector(specialFontChange:)];
   
   // Doesn't look like you can set this in IB
@@ -1357,6 +1386,7 @@ char **argv;
   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                         [NSDictionary dictionary], @"shortcutDict",
                         [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"channelFont",
+                        [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"nickListFont",
                         [NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
                         [NSNumber numberWithBool:TRUE], @"askQuit",
                         [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
@@ -1375,8 +1405,6 @@ char **argv;
   // box appearing when sparkle tries to update the application.
   [[SUUpdater sharedUpdater] setDelegate:self];
   
-  /* Read settings */
-  channelFont = [[NSUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"channelFont"]] retain];
   int channelBarOrientation = [defaults integerForKey:@"channelBarOrientation"];
   
   if (channelBarOrientation == 0) {
@@ -1402,10 +1430,6 @@ char **argv;
   }
   
   [defaults registerDefaults:[NSDictionary dictionaryWithObject:@"Get MacIrssi - http://www.sysctl.co.uk/projects/macirssi/ " forKey:@"defaultQuitMessage"]];
-  if (!channelFont)
-  {
-    channelFont = [NSFont fontWithName:@"Monaco" size:9.0];
-  }
   
   /* Delete first tab */
   [tabView removeTabViewItem:[tabView tabViewItemAtIndex:0]];
@@ -1471,12 +1495,5 @@ char **argv;
   // Get rid of the shit old run loop thread and schedule the glib runloop on the NSRunLoop
   [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];
 }
-
-
-#pragma mark Instance variables
-//-------------------------------------------------------------------
-// The current channel font.
-//-------------------------------------------------------------------
-- (NSFont *)channelFont { return channelFont; }
 
 @end
