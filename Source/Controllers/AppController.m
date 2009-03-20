@@ -21,7 +21,7 @@
 // Main application controller
 //*****************************************************************
 
-#import "GrowlApplicationBridge.h"
+#import <Growl/GrowlApplicationBridge.h>
 
 #import "AppController.h"
 #import "ChannelController.h"
