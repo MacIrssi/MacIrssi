@@ -27,7 +27,6 @@
 #import "IrssiBridge.h"
 #import "ColorSet.h"
 #import "NSAttributedStringAdditions.h"
-#import "GrowlApplicationBridge.h"
 #import "TextEncodings.h"
 
 extern int currentDataLevel;

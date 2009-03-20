@@ -9,7 +9,7 @@
 #import "EventController.h"
 #import "ChannelController.h"
 
-#import "GrowlApplicationBridge.h"
+#import <Growl/GrowlApplicationBridge.h>
 
 @implementation EventController
 
