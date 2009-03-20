@@ -22,6 +22,7 @@
 #import "fe-common-core.h"
 #import "commands.h"
 #import "printtext.h"
+#import "irssi-version.h"
 
 #include <signal.h>
 #include <locale.h>
@@ -302,6 +303,22 @@ static void perl_cmd_override(const char *data, SERVER_REC *server, void *item)
   signal_stop();
 }
 
+static void version_cmd_overwrite(const char *data, SERVER_REC *server, void *item)
+{
+	char time[10];
+	
+	g_return_if_fail(data != NULL);
+	
+	if (*data == '\0') {
+		
+		g_snprintf(time, sizeof(time), "%04d", IRSSI_VERSION_TIME);
+		printtext(NULL, NULL, MSGLEVEL_CLIENTNOTICE,
+				  "Client: MacIrssi 0.8.5.8 (Core:"PACKAGE_TARNAME" " PACKAGE_VERSION" %d %s)",
+				  IRSSI_VERSION_DATE, time);
+	}
+	signal_stop();
+}
+
 int irssi_main(int argc, char **argv)
 {
 	static struct poptOption options[] = {
@@ -359,7 +376,13 @@ int irssi_main(int argc, char **argv)
   {
     command_bind_first("script", NULL, (SIGNAL_FUNC)perl_cmd_override);
   }
-  
+	
+  // Version Overwrite
+  command_bind_first("version", NULL, (SIGNAL_FUNC)version_cmd_overwrite);
+  SETTINGS_REC *rec = settings_get_record("ctcp_version_reply");
+  g_free(rec->default_value.v_string);
+  rec->default_value.v_string = g_strdup("MacIrssi 0.8.5.8 (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")");
+	
 	/* Does the same as g_main_run(main_loop), except we
 	   can call our dirty-checker after each iteration */
   return 0;
