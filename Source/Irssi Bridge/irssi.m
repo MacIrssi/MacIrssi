@@ -24,6 +24,8 @@
 #import "printtext.h"
 #import "irssi-version.h"
 
+#include "irssi.h"
+
 #include <signal.h>
 #include <locale.h>
 
@@ -171,6 +173,20 @@ static void textui_finish_init(void)
 #endif
 
 	fe_common_core_finish_init();
+	
+#if GLIB_CHECK_VERSION(2,6,0)
+	g_log_set_default_handler((GLogFunc) nslog_glog_func, NULL);
+#else
+	g_log_set_handler(G_LOG_DOMAIN,
+					  (GLogLevelFlags) (G_LOG_LEVEL_CRITICAL |
+										G_LOG_LEVEL_WARNING),
+					  (GLogFunc) nslog_glog_func, NULL);
+	g_log_set_handler("GLib",
+					  (GLogLevelFlags) (G_LOG_LEVEL_CRITICAL |
+										G_LOG_LEVEL_WARNING),
+					  (GLogFunc) nslog_glog_func, NULL); /* send glib errors to the same place */
+#endif
+	
 	signal_emit("irssi init finished", 0);
 }
 
@@ -387,4 +403,20 @@ int irssi_main(int argc, char **argv)
 	/* Does the same as g_main_run(main_loop), except we
 	   can call our dirty-checker after each iteration */
   return 0;
+}
+
+#pragma mark GLib glog
+void nslog_glog_func(const char *log_domain, GLogLevelFlags log_level, const char *message)
+{
+	switch (log_level) {
+		case G_LOG_LEVEL_WARNING:
+			NSLog(@"GLog warning: %s", message);
+			break;
+		case G_LOG_LEVEL_CRITICAL:
+			NSLog(@"GLog critical: %s", message);
+			break;
+		default:
+			NSLog(@"GLog error: %s", message);
+			break;
+	}
 }
