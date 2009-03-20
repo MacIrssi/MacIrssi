@@ -327,8 +327,9 @@ static void sig_disconnected(IRC_SERVER_REC *server)
 void ctcp_init(void)
 {
 	ctcp_cmds = NULL;
-
-	settings_add_str("misc", "ctcp_version_reply", "MacIrssi "MACIRSSI_VERSION" (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")");
+	
+	settings_add_str("misc", "ctcp_version_reply",
+										 PACKAGE_TARNAME" v$J - running on $sysname $sysarch");
 	settings_add_str("misc", "ctcp_userinfo_reply", "$Y");
 	settings_add_int("flood", "max_ctcp_queue", 5);
 

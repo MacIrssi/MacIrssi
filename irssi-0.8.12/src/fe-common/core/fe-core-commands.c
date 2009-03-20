@@ -100,13 +100,14 @@ static void cmd_echo(const char *data, void *server, WI_ITEM_REC *item)
 static void cmd_version(char *data)
 {
 	char time[10];
-
+	
 	g_return_if_fail(data != NULL);
-
+	
 	if (*data == '\0') {
-                g_snprintf(time, sizeof(time), "%04d", IRSSI_VERSION_TIME);
+		g_snprintf(time, sizeof(time), "%04d", IRSSI_VERSION_TIME);
 		printtext(NULL, NULL, MSGLEVEL_CLIENTNOTICE,
-              "Client: MacIrssi "MACIRSSI_VERSION" (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")");
+				  "Client: "PACKAGE_TARNAME" " PACKAGE_VERSION" (%d %s)",
+				  IRSSI_VERSION_DATE, time);
 	}
 }
 
