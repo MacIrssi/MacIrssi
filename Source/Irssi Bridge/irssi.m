@@ -409,8 +409,8 @@ int irssi_main(int argc, char **argv)
   {
     command_bind_first("script", NULL, (SIGNAL_FUNC)perl_cmd_override);
   }
-	
-  // Version Overwrite
+  
+	// Version Overwrite
   command_bind_first("version", NULL, (SIGNAL_FUNC)version_cmd_overwrite);
   SETTINGS_REC *rec = settings_get_record("ctcp_version_reply");
   g_free(rec->default_value.v_string);
@@ -418,5 +418,23 @@ int irssi_main(int argc, char **argv)
 	
 	/* Does the same as g_main_run(main_loop), except we
 	   can call our dirty-checker after each iteration */
+  return 0;
+}
+
+int irssi_exit()
+{
+  long systemVersion;
+  Gestalt(gestaltSystemVersion, &systemVersion);
+  
+  int majorVersion, minorVerson;
+  majorVersion = (((systemVersion & 0xF000) >> 12) * 10) + ((systemVersion & 0x0F00) >> 8);
+  minorVerson = ((systemVersion & 0x00F0) >> 4);
+  
+  if ( majorVersion == 10 && minorVerson == 4 )
+  {
+    command_unbind("script", (SIGNAL_FUNC)perl_cmd_override);
+  }
+  command_unbind("version", (SIGNAL_FUNC)version_cmd_overwrite);
+  
   return 0;
 }
