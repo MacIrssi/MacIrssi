@@ -110,6 +110,22 @@ static void textui_init(void)
 	//signal_add_last("gui exit", (SIGNAL_FUNC) sig_exit);
 }
 
+#pragma mark GLib glog
+void nslog_glog_func(const char *log_domain, GLogLevelFlags log_level, const char *message)
+{
+	switch (log_level) {
+		case G_LOG_LEVEL_WARNING:
+			NSLog(@"GLog warning: %s", message);
+			break;
+		case G_LOG_LEVEL_CRITICAL:
+			NSLog(@"GLog critical: %s", message);
+			break;
+		default:
+			NSLog(@"GLog error: %s", message);
+			break;
+	}
+}
+
 static void textui_finish_init(void)
 {
 	//quitting = FALSE;
@@ -403,20 +419,4 @@ int irssi_main(int argc, char **argv)
 	/* Does the same as g_main_run(main_loop), except we
 	   can call our dirty-checker after each iteration */
   return 0;
-}
-
-#pragma mark GLib glog
-void nslog_glog_func(const char *log_domain, GLogLevelFlags log_level, const char *message)
-{
-	switch (log_level) {
-		case G_LOG_LEVEL_WARNING:
-			NSLog(@"GLog warning: %s", message);
-			break;
-		case G_LOG_LEVEL_CRITICAL:
-			NSLog(@"GLog critical: %s", message);
-			break;
-		default:
-			NSLog(@"GLog error: %s", message);
-			break;
-	}
 }
