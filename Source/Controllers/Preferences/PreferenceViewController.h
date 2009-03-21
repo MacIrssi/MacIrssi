@@ -191,6 +191,7 @@
 - (void)printTextFinishedCallback;
 
 - (IBAction)switchChannelBarOrientation:(id)sender;
+- (IBAction)showHideNicklist:(id)sender;
 
 #pragma mark Shortcuts Preference Panel
 

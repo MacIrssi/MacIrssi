@@ -819,6 +819,12 @@
   }
 	[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedRow] forKey:@"channelBarOrientation"]; //TODO
 }
+
+- (IBAction)showHideNicklist:(id)sender
+{
+  [appController setNicklistHidden:![[NSUserDefaults standardUserDefaults] boolForKey:@"showNicklist"]];
+}
+
 #pragma mark Shortcuts Preference Panel
 
 - (IBAction)addShortcutAction:(id)sender
