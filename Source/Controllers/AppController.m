@@ -988,7 +988,7 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)specialFontChange:(id)sender
 {
-  NSFont *channelFont = [sender convertFont:channelFont];
+  NSFont *channelFont = [(NSFontManager*)sender convertFont:[NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"channelFont"]]];
   [self changeMainWindowFont:channelFont];
   
   /* Save change in user defaults */
