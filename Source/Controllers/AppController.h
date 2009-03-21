@@ -94,6 +94,8 @@ extern char **argv;
 - (void)changeMainWindowFont:(NSFont*)font;
 - (void)changeNicklistFont:(NSFont*)font;
 
+- (void)setNicklistHidden:(BOOL)flag;
+
 - (void)useHorizontalChannelBar:(BOOL)b;
 - (void)useVerticalChannelBar:(BOOL)b;
 - (void)irssiQuit;

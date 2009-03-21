@@ -193,6 +193,7 @@ enum nickContextMenuTags {
 - (NSTextView *)mainTextView;
 
 /* Nicklist */
+- (void)setNicklistHidden:(BOOL)flag;
 - (void)addNickRec:(NICK_REC *)nick;
 - (void)removeNickRec:(NICK_REC *)nick;
 - (void)changeNickForNickRec:(NICK_REC *)rec fromNick:(char *)oldNick;

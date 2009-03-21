@@ -1698,6 +1698,7 @@ b24gZWRpdGluZyB0aGVtZXMuA</string>
 					<string>channelListForegroundColors.1</string>
 					<string>channelListForegroundColors</string>
 					<string>channelBarOrientation</string>
+					<string>showNicklist</string>
 				</object>
 				<bool key="NSAppliesImmediately">YES</bool>
 			</object>
@@ -5806,6 +5807,30 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<int key="connectionID">2612</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.showNicklist</string>
+						<reference key="source" ref="505060491"/>
+						<reference key="destination" ref="487938246"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="505060491"/>
+							<reference key="NSDestination" ref="487938246"/>
+							<string key="NSLabel">value: values.showNicklist</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.showNicklist</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">2613</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showHideNicklist:</string>
+						<reference key="source" ref="1040778840"/>
+						<reference key="destination" ref="505060491"/>
+					</object>
+					<int key="connectionID">2614</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -9163,7 +9188,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">2612</int>
+			<int key="maxID">2614</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -9233,6 +9258,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string>shortcutRecorderPanelCancelAction:</string>
 							<string>shortcutRecorderPanelOKAction:</string>
 							<string>showChannelPanel:</string>
+							<string>showHideNicklist:</string>
 							<string>showNetworkPanel:</string>
 							<string>showWindow:</string>
 							<string>soundListPopUp:</string>
@@ -9240,6 +9266,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

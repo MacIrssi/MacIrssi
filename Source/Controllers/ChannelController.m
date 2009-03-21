@@ -536,8 +536,42 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   
   [wholeView addSubview:splitView];
   [splitView setNeedsDisplay:TRUE];
+  
+  if (![[NSUserDefaults standardUserDefaults] boolForKey:@"showNicklist"])
+  {
+    [self setNicklistHidden:YES];
+  }
 }
 
+- (void)setNicklistHidden:(BOOL)flag
+{
+  // Don't have a nick list otherwise.
+  if ([self isChannel])
+  {
+    if (![nickTableScrollView isHidden] && flag)
+    {
+      // We're showing atm and we want to be hidden, go with that.
+      [nickTableScrollView retain];
+      [nickTableScrollView removeFromSuperview];
+      
+      [nickTableScrollView setHidden:YES];
+      [wholeView addSubview:nickTableScrollView];
+      
+      [nickTableScrollView release];
+    }
+    else if ([nickTableScrollView isHidden] && !flag)
+    {
+      [nickTableScrollView retain];
+      [nickTableScrollView removeFromSuperview];
+      
+      [nickTableScrollView setHidden:NO];
+      [splitView addSubview:nickTableScrollView];
+      [splitView restoreLayoutUsingName:@"MainNickSplit"];
+      
+      [nickTableScrollView release];
+    }
+  }
+}
 
 //-------------------------------------------------------------------
 // changeServerOpForNickRec:
@@ -1118,8 +1152,16 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 - (void)splitViewDidResizeSubviews:(NSNotification *)aNotification
 {
   [splitView saveLayoutUsingName:@"MainNickSplit"];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"ChannelControllerSplitViewDidResize" object:self];
 }
 
+- (void)channelControllerSplitViewDidResize:(NSNotification*)notification
+{
+  if ([[notification object] isNotEqualTo:self])
+  {
+    [splitView restoreLayoutUsingName:@"MainNickSplit"];
+  }
+}
 
 #pragma mark [De]Initializers
 //-------------------------------------------------------------------
@@ -1132,6 +1174,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   [nc addObserver:self selector:@selector(channelColorChanged:) name:@"channelColorChanged" object:nil];
   [nc addObserver:self selector:@selector(nickListColorChanged:) name:@"nickListColorChanged" object:nil];
+  [nc addObserver:self selector:@selector(channelControllerSplitViewDidResize:) name:@"ChannelControllerSplitViewDidResize" object:nil];
 
   /* Set up context-menus */
   [nickTableView setMenu:nickViewMenu];
@@ -1144,7 +1187,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   textStorage = [mainTextView textStorage];
   searchRanges = [[NSMutableArray alloc] init];
   commandHistory = [[History alloc] initWithCapacity:150];
-
+  
   [self saveScrollState];
   [nickTableView setTarget:self];
   [nickTableView setDoubleAction:@selector(nickListRowDoubleClicked:)];

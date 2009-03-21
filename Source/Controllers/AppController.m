@@ -1019,6 +1019,18 @@ char **argv;
   }  
 }
 
+- (void)setNicklistHidden:(BOOL)flag
+{
+  NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
+  NSTabViewItem *tmp;
+  
+  /* Iterate through all channels */
+  while (tmp = [enumerator nextObject])
+  {
+    [[tmp identifier] setNicklistHidden:flag];
+  }
+}
+
 //-------------------------------------------------------------------
 // irssiQuit
 // Set a flag for termination.
@@ -1387,6 +1399,7 @@ char **argv;
                         [NSDictionary dictionary], @"shortcutDict",
                         [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"channelFont",
                         [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"nickListFont",
+                        [NSNumber numberWithBool:TRUE], @"showNicklist",
                         [NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
                         [NSNumber numberWithBool:TRUE], @"askQuit",
                         [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
