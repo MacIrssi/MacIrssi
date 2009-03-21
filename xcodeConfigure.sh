@@ -25,7 +25,9 @@ fi
 
 [ -e config.xcode ] && rm config.xcode
 
-CFLAGS="$CFLAGS -DMACIRSSI_VERSION=\\\"$VERSION\\\""
+CFLAGS="$CFLAGS -I$SRCROOT/Frameworks/MILibs/build/Release/include -DMACIRSSI_VERSION=\\\"$VERSION\\\""
+LDFLAGS="$LDFLAGS -L$SRCROOT/Frameworks/MILibs/build/Release/lib"
+PKG_CONFIG_PATH="$SRCROOT/Frameworks/MILibs/build/Release/lib/pkgconfig"
 ./configure $@
 CONF_EXIT=$?
 
