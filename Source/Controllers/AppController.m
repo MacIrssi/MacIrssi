@@ -1232,7 +1232,8 @@ char **argv;
   }
   
   g_main_destroy(main_loop);
-  textui_deinit();  
+  irssi_exit();
+  textui_deinit();
 }
 
 
