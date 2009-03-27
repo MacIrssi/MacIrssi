@@ -106,9 +106,12 @@ static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 
     NSLog(@"GUI_PRINT_FLAG_CLRTOEOL for text \'%@\'", text);
   }
   
-  NSAttributedString *tmp = [[NSAttributedString alloc] initWithString:text attributes:mutableAttributes];
-  [buffer appendAttributedString:tmp];
-  [tmp release];
+  if (text)
+  {
+    NSAttributedString *tmp = [[NSAttributedString alloc] initWithString:text attributes:mutableAttributes];
+    [buffer appendAttributedString:tmp];
+    [tmp release];
+  }
   
   return buffer;
 }
