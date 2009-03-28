@@ -1186,7 +1186,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [mainTextScrollView setVerticalScroller:scroller];
   textStorage = [mainTextView textStorage];
   searchRanges = [[NSMutableArray alloc] init];
-  commandHistory = [[History alloc] init];
   
   [self saveScrollState];
   [nickTableView setTarget:self];
@@ -1305,10 +1304,8 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 
 //-------------------------------------------------------------------
-// Command history
+// Partial command (for changing window)
 //-------------------------------------------------------------------
-- (History *)commandHistory { return commandHistory; }
-
 - (NSString *)partialCommand { return partialCommand; }
 
 - (void)setPartialCommand:(NSString*)cmd

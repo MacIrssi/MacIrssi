@@ -17,7 +17,6 @@
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 #import <time.h>
-#import "History.h"
 #import "common.h"
 #import "signals.h"
 #import "channels.h"
@@ -153,7 +152,6 @@ enum nickContextMenuTags {
   NSRange oldSearchMatchRange;
   //int currentDataLevel;
   
-  History *commandHistory;
   NSString *partialCommand;
   
   int waitingEvents;
@@ -178,7 +176,6 @@ enum nickContextMenuTags {
 - (NSString *)name;
 - (void)setName:(NSString *)newName;
 
-- (History *)commandHistory;
 - (NSString *)partialCommand;
 - (void)setPartialCommand:(NSString*)cmd;
 

@@ -30,7 +30,6 @@
 #import "AppcastVersionComparator.h"
 #import "CustomWindow.h"
 #import "CustomTableView.h"
-#import "History.h"
 #import "ColorSet.h"
 #import "ConnectivityMonitor.h"
 #import "IrssiBridge.h"
@@ -51,6 +50,7 @@
 #import "irc-chatnets.h"
 #import "irc-servers-setup.h"
 #import "fe-common-core.h"
+#import "command-history.h"
 
 #define PASTE_WARNING_THRESHOLD 4
 
@@ -183,15 +183,15 @@ char **argv;
 - (IBAction)sendCommand:(id)sender
 {
   int i;
-  NSString *cmd = [NSString stringWithString:[sender string]];
-  History *history = ([[NSUserDefaults standardUserDefaults] boolForKey:@"globalHistory"] ? globalHistory : [currentChannelController commandHistory]);
-  
+  NSString *cmd = [NSString stringWithString:[sender string]];  
   if ([cmd length] == 0)
     return;
   
   WINDOW_REC *rec = [currentChannelController windowRec];
   CFStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
-  [history addCommand:cmd];
+  //[history addCommand:cmd];
+  command_history_add(command_history_current(rec), [IrssiBridge irssiCStringWithString:cmd]);
+  command_history_clear_pos(rec);
   
   NSArray *commands = [self splitCommand:cmd];
   
@@ -950,14 +950,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)historyUp
 {
-  History *history = ([[NSUserDefaults standardUserDefaults] boolForKey:@"globalHistory"] ? globalHistory : [currentChannelController commandHistory]);
-  NSString *command = [inputTextField string];
-  [history addCommand:([command isEqualToString:@""] ? nil : command)];
-  if ([history commandBefore:command])
-  {
-    [inputTextField setString:[history commandBefore:command]];
-    [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
-  }
+  [inputTextField setString:[IrssiBridge stringWithIrssiCString:(char*)command_history_prev([currentChannelController windowRec], [IrssiBridge irssiCStringWithString:[inputTextField string]])]];
+  [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
 }
 
 
@@ -969,13 +963,8 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)historyDown
 {
-  if (![[inputTextField string] isEqual:@""])
-  {
-    History *history = ([[NSUserDefaults standardUserDefaults] boolForKey:@"globalHistory"] ? globalHistory : [currentChannelController commandHistory]);
-    NSString *command = [history commandAfter:[inputTextField string]];
-    [inputTextField setString:(command ? command : @"")];
-    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
-  }
+  [inputTextField setString:[IrssiBridge stringWithIrssiCString:(char*)command_history_next([currentChannelController windowRec], [IrssiBridge irssiCStringWithString:[inputTextField string]])]];
+  [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
 }
 
 
@@ -1393,9 +1382,6 @@ char **argv;
   // Setup the event controller
   eventController = [[EventController alloc] init];
   
-  // We keep a Global history, if the user wants global history all shit goes in here.
-  globalHistory = [[History alloc] init];
-  
   /* Register defaults */
   NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];
   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1409,7 +1395,6 @@ char **argv;
                         [NSNumber numberWithInt:0], @"channelBarOrientation",
                         [EventController defaults], @"eventDefaults",
                         [NSNumber numberWithBool:YES], @"channelInTitle",
-                        [NSNumber numberWithBool:NO], @"globalHistory",
                         nil];
     
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

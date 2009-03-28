@@ -19,7 +19,6 @@
 #import "Growl/Growl.h"
 #import "ChannelBar.h"
 #import "CoverView.h"
-#import "History.h"
 
 #import <unistd.h>
 #import "glib.h"
@@ -39,7 +38,6 @@
 
 @class ChannelController;
 @class EventController;
-@class History;
 @class CustomTableView;
 @class ColorSet;
 @class myNetwork;
@@ -71,7 +69,6 @@ extern char **argv;
 	
 	ChannelController *currentChannelController;
 	EventController *eventController;
-  History *globalHistory;
   
 	NSMutableDictionary *highlightAttributes;
 	NSString *queryObject;

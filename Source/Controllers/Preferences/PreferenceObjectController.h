@@ -50,4 +50,7 @@
 - (NSString*)theme;
 - (void)setTheme:(NSString*)theme;
 
+- (BOOL)windowHistory;
+- (void)setWindowHistory:(BOOL)flag;
+
 @end
