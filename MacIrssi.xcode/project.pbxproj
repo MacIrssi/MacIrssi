@@ -52,8 +52,6 @@
 		B322DDCA05EF9AE600E640C2 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDB805EF9AE600E640C2 /* CustomTableView.m */; };
 		B322DDCB05EF9AE600E640C2 /* CustomWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DDB905EF9AE600E640C2 /* CustomWindow.h */; };
 		B322DDCC05EF9AE600E640C2 /* CustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDBA05EF9AE600E640C2 /* CustomWindow.m */; };
-		B322DDCF05EF9AE600E640C2 /* History.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DDBD05EF9AE600E640C2 /* History.h */; };
-		B322DDD005EF9AE600E640C2 /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDBE05EF9AE600E640C2 /* History.m */; };
 		B3241ACC06286AF7000B4624 /* NSAttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3241ACA06286AF7000B4624 /* NSAttributedStringAdditions.m */; };
 		B3241ACD06286AF7000B4624 /* NSAttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */; };
 		B3D0B8A605F637DB0067FD52 /* IrssiBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D0B8A405F637DB0067FD52 /* IrssiBridge.h */; };
@@ -966,8 +964,6 @@
 		B322DDB805EF9AE600E640C2 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
 		B322DDB905EF9AE600E640C2 /* CustomWindow.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CustomWindow.h; sourceTree = "<group>"; };
 		B322DDBA05EF9AE600E640C2 /* CustomWindow.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CustomWindow.m; sourceTree = "<group>"; };
-		B322DDBD05EF9AE600E640C2 /* History.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
-		B322DDBE05EF9AE600E640C2 /* History.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
 		B3241ACA06286AF7000B4624 /* NSAttributedStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringAdditions.m; sourceTree = "<group>"; };
 		B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringAdditions.h; sourceTree = "<group>"; };
 		B32A9E5F05F0B14800DB2595 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
@@ -2963,8 +2959,6 @@
 				B322DDB605EF9AE600E640C2 /* ColorSet.m */,
 				C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */,
 				C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */,
-				B322DDBD05EF9AE600E640C2 /* History.h */,
-				B322DDBE05EF9AE600E640C2 /* History.m */,
 				C2A5697908D0D74100788905 /* TextEncodings.h */,
 				C2A5697A08D0D74100788905 /* TextEncodings.m */,
 			);
@@ -3255,7 +3249,6 @@
 				B322DDC705EF9AE600E640C2 /* ColorSet.h in Headers */,
 				B322DDC905EF9AE600E640C2 /* CustomTableView.h in Headers */,
 				B322DDCB05EF9AE600E640C2 /* CustomWindow.h in Headers */,
-				B322DDCF05EF9AE600E640C2 /* History.h in Headers */,
 				B3D0B8A605F637DB0067FD52 /* IrssiBridge.h in Headers */,
 				B3241ACD06286AF7000B4624 /* NSAttributedStringAdditions.h in Headers */,
 				C25491780681A35900C43D63 /* CustomTextView.h in Headers */,
@@ -3513,7 +3506,6 @@
 				B322DDC805EF9AE600E640C2 /* ColorSet.m in Sources */,
 				B322DDCA05EF9AE600E640C2 /* CustomTableView.m in Sources */,
 				B322DDCC05EF9AE600E640C2 /* CustomWindow.m in Sources */,
-				B322DDD005EF9AE600E640C2 /* History.m in Sources */,
 				B3D0B8A705F637DB0067FD52 /* IrssiBridge.m in Sources */,
 				B3241ACC06286AF7000B4624 /* NSAttributedStringAdditions.m in Sources */,
 				C25491790681A35900C43D63 /* CustomTextView.m in Sources */,

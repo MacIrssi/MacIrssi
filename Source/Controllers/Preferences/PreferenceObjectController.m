@@ -261,4 +261,15 @@
   }  
 }
 
+- (BOOL)windowHistory
+{
+  return settings_get_bool("window_history");
+}
+
+- (void)setWindowHistory:(BOOL)flag
+{
+  settings_set_bool("window_history", flag);
+  signal_emit("setup changed", 0);
+}
+
 @end
