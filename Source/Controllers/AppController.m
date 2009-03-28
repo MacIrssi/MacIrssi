@@ -184,13 +184,14 @@ char **argv;
 {
   int i;
   NSString *cmd = [NSString stringWithString:[sender string]];
+  History *history = ([[NSUserDefaults standardUserDefaults] boolForKey:@"globalHistory"] ? globalHistory : [currentChannelController commandHistory]);
   
   if ([cmd length] == 0)
     return;
   
   WINDOW_REC *rec = [currentChannelController windowRec];
   CFStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
-  [[currentChannelController commandHistory] addCommand:cmd];
+  [history addCommand:cmd];
   
   NSArray *commands = [self splitCommand:cmd];
   
@@ -948,21 +949,15 @@ char **argv;
 // Returns: The length of the history-command
 //-------------------------------------------------------------------
 - (void)historyUp
-{ 
-  /* If we are at the front of the command history we save the current command temporarly in the history if the user wants to return to it */
-  NSString *currentCommand = [inputTextField string];
-  if ([[currentChannelController commandHistory] iteratorAtFront] && ![currentCommand isEqualToString:@""])
+{
+  History *history = ([[NSUserDefaults standardUserDefaults] boolForKey:@"globalHistory"] ? globalHistory : [currentChannelController commandHistory]);
+  NSString *command = [inputTextField string];
+  [history addCommand:([command isEqualToString:@""] ? nil : command)];
+  if ([history commandBefore:command])
   {
-    [[currentChannelController commandHistory] setTemporaryCommand:currentCommand];
+    [inputTextField setString:[history commandBefore:command]];
+    [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
   }
-  
-  NSString *command = [[currentChannelController commandHistory] previousCommand];
-  
-  if (!command)
-    return;
-  
-  [inputTextField setString:command];
-  [(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
 }
 
 
@@ -974,9 +969,13 @@ char **argv;
 //-------------------------------------------------------------------
 - (void)historyDown
 {
-  NSString *command = [[currentChannelController commandHistory] nextCommand];
-  [inputTextField setString:command ? command : @""];
-  [(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
+  if (![[inputTextField string] isEqual:@""])
+  {
+    History *history = ([[NSUserDefaults standardUserDefaults] boolForKey:@"globalHistory"] ? globalHistory : [currentChannelController commandHistory]);
+    NSString *command = [history commandAfter:[inputTextField string]];
+    [inputTextField setString:(command ? command : @"")];
+    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([command length], 0)];
+  }
 }
 
 
@@ -1394,6 +1393,9 @@ char **argv;
   // Setup the event controller
   eventController = [[EventController alloc] init];
   
+  // We keep a Global history, if the user wants global history all shit goes in here.
+  globalHistory = [[History alloc] init];
+  
   /* Register defaults */
   NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];
   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -1407,6 +1409,7 @@ char **argv;
                         [NSNumber numberWithInt:0], @"channelBarOrientation",
                         [EventController defaults], @"eventDefaults",
                         [NSNumber numberWithBool:YES], @"channelInTitle",
+                        [NSNumber numberWithBool:NO], @"globalHistory",
                         nil];
     
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

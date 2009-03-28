@@ -23,31 +23,16 @@
 #import <Foundation/Foundation.h>
 
 @interface History : NSObject {
-	NSString **commands;
-	int size;
-	int maxSize;
-	int back;
-	int front; 
-	int indexIterator;
-	BOOL hasTemporaryCommand;
+  NSMutableArray *commandHistory;
+  int index;
 }
 
-- (NSString *)previousCommand;
-- (NSString *)nextCommand;
-- (void)addCommand:(NSString *)command;
-- (void)setTemporaryCommand:(NSString *)command;
-- (id)initWithCapacity:(int)c;
+- (id)init;
 - (void)dealloc;
-- (BOOL)isEmpty;
-- (BOOL)iteratorAtFront;
 
-/* PRIVATE */
-- (void)addCommand:(NSString *)command isTemporary:(BOOL)isTemp;
-- (BOOL)indexIteratorIsValid;
-- (NSString *)popCommand;
-- (BOOL)pushCommand:(NSString *)command;
-- (BOOL)hasTemporaryCommand;
-- (void)setHasTemporaryCommand:(BOOL)flag;
-- (void)resetIterator;
+- (NSString*)commandBefore:(NSString*)string;
+- (NSString*)commandAfter:(NSString*)string;
+
+- (void)addCommand:(NSString*)string;
 
 @end

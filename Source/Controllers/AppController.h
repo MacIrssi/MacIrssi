@@ -19,6 +19,7 @@
 #import "Growl/Growl.h"
 #import "ChannelBar.h"
 #import "CoverView.h"
+#import "History.h"
 
 #import <unistd.h>
 #import "glib.h"
@@ -70,6 +71,8 @@ extern char **argv;
 	
 	ChannelController *currentChannelController;
 	EventController *eventController;
+  History *globalHistory;
+  
 	NSMutableDictionary *highlightAttributes;
 	NSString *queryObject;
 	BOOL timeToQuit;
