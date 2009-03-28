@@ -66,6 +66,8 @@ char **argv;
 
 @end
 
+static PreferenceViewController *_sharedPrefsWindowController = nil;
+
 @implementation AppController
 
 #pragma mark IBAction methods
@@ -358,8 +360,10 @@ char **argv;
 //-------------------------------------------------------------------
 - (IBAction)showPreferencePanel:(id)sender
 {
-  PreferenceViewController *preferenceController = [[PreferenceViewController alloc] initWithColorSet:nil appController:self]; 
-  [preferenceController showWindow:self];
+	if (!_sharedPrefsWindowController) {
+        _sharedPrefsWindowController = [[PreferenceViewController alloc] initWithColorSet:nil appController:self];
+    }
+	[_sharedPrefsWindowController showWindow:self];
 }
 
 - (IBAction)showAbout:(id)sender
