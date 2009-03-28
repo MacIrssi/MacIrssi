@@ -1463,7 +1463,6 @@ char **argv;
   [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
   [inputTextField setBackgroundColor:[ColorSet inputTextBackgroundColor]];
   [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
-  //[((NSTextView *)inputTextField) setInsertionPointColor:[NSColor whiteColor]]; //TODO: preference
   
   /* Init Growl */
   [GrowlApplicationBridge setGrowlDelegate:self];
