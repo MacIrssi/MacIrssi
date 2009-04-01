@@ -757,146 +757,100 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);      
 }
 
-- (void)useHorizontalChannelBar:(BOOL)b
+- (void)channelBarOrientationDidChange:(NSNotification*)notification
 {
-  if (b && [channelBar isHidden]) {
-    NSRect frame = [tabView frame];
-    frame.size.height -= 21;
-    [tabView setFrame:frame];
-    [tabView setNeedsDisplay:TRUE];
-    
-    [channelBar setHidden:FALSE];
-    [channelBar setNeedsDisplay:TRUE];
-  }
-  else if (!b && ![channelBar isHidden]) {
-    NSRect frame = [tabView frame];
-    frame.size.height += 21;
-    [tabView setFrame:frame];
-    [tabView setNeedsDisplay:TRUE];
-    [channelBar setHidden:TRUE];
-  }
+  // Right, we don't post anything useful with the notification but we need to re-read the config var and
+  // possibly re-orientate.
   
-}
+  // Remove everything from the content view. All the important shit is retained.
+  [channelTableScrollView removeFromSuperview];
+  [channelTableSplitView removeFromSuperview];
+  [channelBar removeFromSuperview];
+  [tabView removeFromSuperview];
+  [inputTextFieldBox removeFromSuperview];
 
-- (void)useVerticalChannelBar:(BOOL)b
-{
-  
-  if (b && [channelTableView isHidden]) {
-    
-    NSRect frame = [tabView frame];
-    
-    /* Resize tab view */
-    frame.size.width -= 160;
-    frame.origin.x += 160;
-    
-    [tabView retain];
-    [tabView removeFromSuperview];
-    [tabView setFrame:frame];
-    [[mainWindow contentView] addSubview:tabView];
-    [tabView release];
-    [tabView setNeedsDisplay:TRUE];
-    
-    /* Resize channel bar */  
-    frame = [channelBar frame];
-    frame.size.width -= 160;
-    frame.origin.x += 160;
-    
-    [channelBar retain];
-    [channelBar removeFromSuperview];
-    [channelBar setFrame:frame];
-    [[mainWindow contentView] addSubview:channelBar];
-    [channelBar release];
-    [channelBar setNeedsDisplay:TRUE];
-    
-    /* Resize input field */  
-    frame = [box frame];
-    frame.size.width -= 160;
-    frame.origin.x += 160;
-    
-    [box retain];
-    [box removeFromSuperview];
-    [box setFrame:frame];
-    [[mainWindow contentView] addSubview:box];
-    [box release];
-    [box setNeedsDisplay:TRUE];
-    [inputTextField setNeedsDisplay:TRUE];
-    
-    [coverView removeFromSuperview];  
-    [channelTableView setHidden:FALSE];
-    [channelTableView setNeedsDisplay:TRUE];
-  }
-  else if (!b && ![channelTableView isHidden]) {
-    
-    [channelTableView setHidden:TRUE];
-    NSRect frame = [tabView frame];
-    
-    /* Resize tab view */
-    frame.size.width += 160;
-    frame.origin.x -= 160;
-    
-    [tabView retain];
-    [tabView removeFromSuperview];
-    [tabView setFrame:frame];
-    [[mainWindow contentView] addSubview:tabView];
-    [tabView release];
-    [tabView setNeedsDisplay:TRUE];
-    
-    /* Resize channel bar */  
-    frame = [channelBar frame];
-    frame.size.width += 160;
-    frame.origin.x -= 160;
-    
-    [channelBar retain];
-    [channelBar removeFromSuperview];
-    [channelBar setFrame:frame];
-    [[mainWindow contentView] addSubview:channelBar];
-    [channelBar release];
-    [channelBar setNeedsDisplay:TRUE];
-    
-    /* Resize input field */
-    frame = [channelTableView frame];
-    frame.size.width += 1;
-    frame.size.height -= [tabView frame].size.height + [channelBar frame].size.height;
-    
-    coverView = [[CoverView alloc] initWithFrame:frame];
-    [[mainWindow contentView] addSubview:coverView];
-    [coverView setNeedsDisplay:TRUE];
-    [coverView release];
-    
-    frame = [box frame];
-    frame.size.width += 160;
-    frame.origin.x -= 160;
-    
-    [box retain];
-    [box removeFromSuperview];
-    [box setFrame:frame];
-    [[mainWindow contentView] addSubview:box];
-    [box release];
-    [box setNeedsDisplay:TRUE];
-    [inputTextField setNeedsDisplay:TRUE];
-    
-  }
-}
+  switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"])
+  {
+    case MIChannelBarHorizontalOrientation:
+    {
+      // So, horitonzal operation. We want the channelBar and tabView.
+      NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
+      NSRect inputBoxFrame = NSMakeRect(5.0, 5.0, [[mainWindow contentView] frame].size.width - 10.0, [inputTextFieldBox frame].size.height);
+      NSRect tabViewFrame = NSMakeRect(0.0, 
+                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
+                                       [[mainWindow contentView] frame].size.width, 
+                                       channelBarFrame.origin.y - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
+      
+      [[mainWindow contentView] addSubview:channelBar];
+      [channelBar setFrame:channelBarFrame];
+      [channelBar setNeedsDisplay:YES];
+      
+      [[mainWindow contentView] addSubview:tabView];
+      [tabView setFrame:tabViewFrame];
+      [tabView setNeedsDisplay:YES];
+      
+      [[mainWindow contentView] addSubview:inputTextFieldBox];
+      [inputTextFieldBox setFrame:inputBoxFrame];
+      [inputTextFieldBox setNeedsDisplay:YES];
+      
+      // Lets setup the keypresses so that they match the orientation
+      NSMenuItem *leftItem = [channelMenu itemWithTitle:@"Previous"];
+      NSMenuItem *rightItem = [channelMenu itemWithTitle:@"Next"];
+      
+      unichar leftKeyCode = 0xf702, rightKeyCode = 0xf703;
+      [leftItem setKeyEquivalent:[NSString stringWithCharacters:&leftKeyCode length:sizeof(leftKeyCode)]];
+      [rightItem setKeyEquivalent:[NSString stringWithCharacters:&rightKeyCode length:sizeof(rightKeyCode)]];
+      
+      break;
+    }
+    case MIChannelBarVerticalOrientation:
+    {
+      // Ok, for vertical channel bars, put the tableView in a split view and go from there
+      NSRect channelTableSplitViewFrame = [[mainWindow contentView] frame];
+      channelTableSplitView = [[MISplitView alloc] initWithFrame:channelTableSplitViewFrame];
+      [channelTableSplitView setVertical:YES];
+      [channelTableSplitView setDelegate:self];
+      
+      [[mainWindow contentView] addSubview:channelTableSplitView];
+      [channelTableSplitView setFrame:channelTableSplitViewFrame];
+      [channelTableSplitView setNeedsDisplay:YES];
 
-- (void)setChannelNavigationShortcuts:(int)direction
-{
-  if (direction == 0) // up/down
-  {
-    NSMenuItem *upItem = [channelMenu itemWithTitle:@"Previous"];
-    NSMenuItem *downItem = [channelMenu itemWithTitle:@"Next"];
-    unichar keyCode = 0xf700; // up
-    [upItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
-    keyCode = 0xf701;
-    [downItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
-  }
-  else
-  {
-    NSMenuItem *leftItem = [channelMenu itemWithTitle:@"Previous"];
-    NSMenuItem *rightItem = [channelMenu itemWithTitle:@"Next"];
-    unichar keyCode = 0xf702; // left;
-    [leftItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
-    keyCode= 0xf703; // right
-    [rightItem setKeyEquivalent:[NSString stringWithCharacters:&keyCode length:sizeof(keyCode)]];
+      NSRect channelTableFrame = NSMakeRect(0, 0, 120.0, channelTableSplitViewFrame.size.height);
+      [channelTableSplitView addSubview:channelTableScrollView];
+      [channelTableScrollView setFrame:channelTableFrame];
+      [channelTableScrollView setNeedsDisplay:YES];
+      
+      NSRect containerTableFrame = NSMakeRect(channelTableFrame.size.width, 0.0, channelTableSplitViewFrame.size.width - channelTableFrame.size.width, channelTableSplitViewFrame.size.height);
+      NSView *containerView = [[NSView alloc] initWithFrame:containerTableFrame];
+      [channelTableSplitView addSubview:containerView];
+      
+      NSRect inputBoxFrame = NSMakeRect(0.0, 5.0, containerTableFrame.size.width - 5.0, [inputTextFieldBox frame].size.height);
+      // A wee hack
+      NSRect tabViewFrame = NSMakeRect(-5.0,
+                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
+                                       containerTableFrame.size.width + 5.0,
+                                       containerTableFrame.size.height - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
+      
+      [containerView addSubview:tabView];
+      [tabView setFrame:tabViewFrame];
+      [tabView setNeedsDisplay:YES];
+      
+      [containerView addSubview:inputTextFieldBox];
+      [inputTextFieldBox setFrame:inputBoxFrame];
+      [inputTextFieldBox setNeedsDisplay:YES];
+      
+      [channelTableSplitView restoreLayoutUsingName:@"ChannelTableViewSplit"];
+      
+      // Lets setup the keypresses so that they match the orientation
+      NSMenuItem *upItem = [channelMenu itemWithTitle:@"Previous"];
+      NSMenuItem *downItem = [channelMenu itemWithTitle:@"Next"];
+      
+      unichar upKeyCode = 0xf700, downKeyCode = 0xf701;
+      [upItem setKeyEquivalent:[NSString stringWithCharacters:&upKeyCode length:sizeof(upKeyCode)]];
+      [downItem setKeyEquivalent:[NSString stringWithCharacters:&downKeyCode length:sizeof(downKeyCode)]];
+      
+      break;
+    }
   }
 }
 
@@ -1102,6 +1056,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   return YES;
 }
 
+#pragma mark SplitView Delegates
+
+- (void)splitViewDidResizeSubviews:(NSNotification *)aNotification
+{
+  [(MISplitView*)[aNotification object] saveLayoutUsingName:@"ChannelTableViewSplit"];
+}
+
 #pragma mark Growl Delegates
 
 /**
@@ -1285,6 +1246,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [channelBar setNeedsDisplay:TRUE];  
 }
 
+#pragma mark Channel TableView Datasource
 
 //-------------------------------------------------------------------
 // numberOfRowsInTableView
@@ -1298,7 +1260,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   return [tabView numberOfTabViewItems];
 }
-
 
 //-------------------------------------------------------------------
 // tableView:objectValueForTableColumn:row:
@@ -1411,18 +1372,17 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   // box appearing when sparkle tries to update the application.
   [[SUUpdater sharedUpdater] setDelegate:self];
   
-  int channelBarOrientation = [defaults integerForKey:@"channelBarOrientation"];
+  // Keep hold of the UI elements we give a damn about
+  [inputTextFieldBox retain];
+  [tabView retain];
+  [channelTableScrollView retain];
+  [channelBar retain];
   
-  if (channelBarOrientation == 0) {
-    [self useHorizontalChannelBar:TRUE];
-    [self useVerticalChannelBar:FALSE];
-    [self setChannelNavigationShortcuts:1];
-  }
-  else {
-    [self useVerticalChannelBar:TRUE];
-    [self useHorizontalChannelBar:FALSE];
-    [self setChannelNavigationShortcuts:0];
-  }
+  // Fire the orientation notification to save us repeating code.
+  [self channelBarOrientationDidChange:nil];
+  
+  // Hook up the observer
+  [nc addObserver:self selector:@selector(channelBarOrientationDidChange:) name:@"channelBarOrientationDidChange" object:nil];
 
   // Convert any shortcuts from the old system and set the menu up
   [self checkAndConvertOldShortcuts];

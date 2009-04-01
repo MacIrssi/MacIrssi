@@ -801,23 +801,8 @@
 
 - (IBAction)switchChannelBarOrientation:(id)sender
 {
-  NSLog(@"%@, %d", sender, [sender selectedRow]);
-  switch ([sender selectedRow])
-  {
-    // Horizontal
-    case 0:
-      [appController useHorizontalChannelBar:YES];
-      [appController useVerticalChannelBar:NO];
-      [appController setChannelNavigationShortcuts:1];
-      break;
-    // Vertical
-    case 1:
-      [appController useHorizontalChannelBar:FALSE];
-      [appController useVerticalChannelBar:TRUE];
-      [appController setChannelNavigationShortcuts:0];
-      break;
-  }
-	[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedRow] forKey:@"channelBarOrientation"]; //TODO
+	[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedRow] forKey:@"channelBarOrientation"];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"channelBarOrientationDidChange" object:self];
 }
 
 - (IBAction)showHideNicklist:(id)sender

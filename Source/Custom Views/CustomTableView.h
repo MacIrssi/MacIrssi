@@ -24,6 +24,9 @@
 
 @interface CustomTableView : NSTableView
 {
+
 }
+
 - (void)rightMouseDown:(NSEvent *)theEvent;
+
 @end
