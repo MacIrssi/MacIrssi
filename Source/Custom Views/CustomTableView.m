@@ -46,4 +46,5 @@
 	/* Continue with right-click to bring up context-menu */
 	[super rightMouseDown:theEvent];
 }
+
 @end

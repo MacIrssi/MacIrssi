@@ -18,6 +18,7 @@
 #import "UKCrashReporter.h"
 #import "Growl/Growl.h"
 #import "ChannelBar.h"
+#import "MISplitView.h"
 #import "CoverView.h"
 
 #import <unistd.h>
@@ -45,11 +46,20 @@
 extern int argc;
 extern char **argv;
 
+#define MIChannelBarHorizontalOrientation 0
+#define MIChannelBarVerticalOrientation   1
+
 @interface AppController : NSObject <GrowlApplicationBridgeDelegate> {
 	IBOutlet NSWindow *mainWindow;
 	IBOutlet NSTabView *tabView;
+  
+  IBOutlet NSScrollView *channelTableScrollView;
 	IBOutlet CustomTableView *channelTableView;
+  MISplitView *channelTableSplitView;
+  
+  IBOutlet NSBox *inputTextFieldBox;
 	IBOutlet NSTextView *inputTextField;
+  
 	IBOutlet NSMenu *channelMenu;
 	IBOutlet NSMenu *shortcutsMenu;
 	IBOutlet NSMenuItem *editCurrentChannelMenuItem;
@@ -60,7 +70,6 @@ extern char **argv;
 	IBOutlet NSWindow *errorWindow;
 	IBOutlet NSTextField *errorTextField;
 	IBOutlet ChannelBar *channelBar;
-	IBOutlet id box;
 	IBOutlet SUUpdater *updateChecker;
 	
 	IBOutlet NSWindow *aboutBox;
@@ -96,10 +105,9 @@ extern char **argv;
 
 - (void)setNicklistHidden:(BOOL)flag;
 
-- (void)useHorizontalChannelBar:(BOOL)b;
-- (void)useVerticalChannelBar:(BOOL)b;
+- (void)channelBarOrientationDidChange:(NSNotification*)notification;
+
 - (void)irssiQuit;
-- (void)setChannelNavigationShortcuts:(int)direction;
 
 - (IBAction)findNext:(id)sender;
 - (IBAction)findPrevious:(id)sender;
