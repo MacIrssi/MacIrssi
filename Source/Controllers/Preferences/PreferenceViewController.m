@@ -232,32 +232,6 @@
 	[nc postNotificationName:@"inputTextFieldColorChanged" object:nil];
 }
 
-
-
-- (IBAction)buttonChange:(id)sender
-{
-  if (sender != self && sender != chatEventPopUpButton) // we didn't trigger our own update
-  {
-    NSString *event = [eventController eventCodeForName:[[chatEventPopUpButton selectedItem] title]];
-    [eventController setBoolForEvent:event alert:@"playSound" value:[playSoundButton state]];
-    
-    [eventController setBoolForEvent:event alert:@"playSoundBackground" value:[playSoundBackgroundButton state]];
-    [eventController setBoolForEvent:event alert:@"bounceIcon" value:[bounceIconButton state]];
-    [eventController setBoolForEvent:event alert:@"bounceIconUntilFront" value:[bounceIconUntilFrontButton state]];
-    [eventController setBoolForEvent:event alert:@"growlEvent" value:[growlEventButton state]];
-    [eventController setBoolForEvent:event alert:@"growlEventBackground" value:[growlEventBackgroundButton state]];
-    [eventController setBoolForEvent:event alert:@"growlEventUntilFront" value:[growlEventUntilFrontButton state]];
-  }
-  
-  [soundListPopUpButton setEnabled:[playSoundButton state]];
-  [playSoundBackgroundButton setEnabled:[playSoundButton state]];
-  
-  [bounceIconUntilFrontButton setEnabled:[bounceIconButton state]];
-  
-  [growlEventBackgroundButton setEnabled:[growlEventButton state]];
-  [growlEventUntilFrontButton setEnabled:[growlEventButton state]];
-}
-
 #pragma mark Text Encodings
 
 /**
@@ -374,7 +348,7 @@
   [growlEventBackgroundButton setState:[eventController boolForEvent:eventCode alert:@"growlEventBackground"]];
   [growlEventUntilFrontButton setState:[eventController boolForEvent:eventCode alert:@"growlEventUntilFront"]];
   
-  [self buttonChange:sender];
+  [self notificationButtonChanged:sender];
 }
 
 - (IBAction)soundListPopUp:(id)sender
@@ -391,6 +365,34 @@
   [selectedSound play];
   
   [eventController setStringForEvent:event alert:@"playSoundSound" value:[[soundListPopUpButton selectedItem] title]];
+  
+  [eventController commitChanges];
+}
+
+- (IBAction)notificationButtonChanged:(id)sender
+{
+  if (sender != self && sender != chatEventPopUpButton) // we didn't trigger our own update
+  {
+    NSString *event = [eventController eventCodeForName:[[chatEventPopUpButton selectedItem] title]];
+    [eventController setBoolForEvent:event alert:@"playSound" value:[playSoundButton state]];
+    
+    [eventController setBoolForEvent:event alert:@"playSoundBackground" value:[playSoundBackgroundButton state]];
+    [eventController setBoolForEvent:event alert:@"bounceIcon" value:[bounceIconButton state]];
+    [eventController setBoolForEvent:event alert:@"bounceIconUntilFront" value:[bounceIconUntilFrontButton state]];
+    [eventController setBoolForEvent:event alert:@"growlEvent" value:[growlEventButton state]];
+    [eventController setBoolForEvent:event alert:@"growlEventBackground" value:[growlEventBackgroundButton state]];
+    [eventController setBoolForEvent:event alert:@"growlEventUntilFront" value:[growlEventUntilFrontButton state]];
+  }
+  
+  [soundListPopUpButton setEnabled:[playSoundButton state]];
+  [playSoundBackgroundButton setEnabled:[playSoundButton state]];
+  
+  [bounceIconUntilFrontButton setEnabled:[bounceIconButton state]];
+  
+  [growlEventBackgroundButton setEnabled:[growlEventButton state]];
+  [growlEventUntilFrontButton setEnabled:[growlEventButton state]];
+  
+  [eventController commitChanges];
 }
 
 #pragma mark Colour Functions
