@@ -555,7 +555,7 @@
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{600, 457}, {510, 345}}</string>
-				<int key="NSWTFlags">603979776</int>
+				<int key="NSWTFlags">1677721600</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
@@ -2461,6 +2461,7 @@ L2hlbHAgbmV0d29yayBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 									</object>
 									<string key="NSFrame">{{1, 1}, {563, 133}}</string>
 									<reference key="NSSuperview" ref="527175554"/>
+									<reference key="NSNextKeyView" ref="934855470"/>
 									<reference key="NSDocView" ref="934855470"/>
 									<reference key="NSBGColor" ref="518326556"/>
 									<int key="NScvFlags">4</int>
@@ -2487,6 +2488,7 @@ L2hlbHAgbmV0d29yayBpbiB0aGUgSXJzc2kgd2luZG93Lg</string>
 							</object>
 							<string key="NSFrame">{{1, 199}, {565, 135}}</string>
 							<reference key="NSSuperview" ref="742211570"/>
+							<reference key="NSNextKeyView" ref="1045908270"/>
 							<int key="NSsFlags">530</int>
 							<reference key="NSVScroller" ref="1034358764"/>
 							<reference key="NSHScroller" ref="222988707"/>

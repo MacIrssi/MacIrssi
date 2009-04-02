@@ -177,8 +177,6 @@
   {
     [[NSColorPanel sharedColorPanel] close];
   }
-
-  [self release];
 }
 
 //-------------------------------------------------------------------
