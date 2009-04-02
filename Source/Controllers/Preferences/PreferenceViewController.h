@@ -132,9 +132,6 @@
 
 - (IBAction)changeColor:(id)sender;
 - (IBAction)revertColorsToDefaults:(id)sender;
-- (IBAction)buttonChange:(id)sender;
-- (IBAction)chatEventPopup:(id)sender;
-- (IBAction)soundListPopUp:(id)sender;
 
 - (void)showWindow:(id)sender;
 - (void)windowDidLoad;
@@ -153,6 +150,10 @@
 
 - (void)initSoundListPopUpButton;
 - (void)updateSoundListPopUpButton;
+
+- (IBAction)chatEventPopup:(id)sender;
+- (IBAction)soundListPopUp:(id)sender;
+- (IBAction)notificationButtonChanged:(id)sender;
 
 #pragma mark Network Preference Panel
 
