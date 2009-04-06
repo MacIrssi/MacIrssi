@@ -1,4 +1,4 @@
-About modules:
+About modules: 
 if they have a dydl suffix then 'ln -s mymodule.dydl mymodule.so'
 
 Edited irssi files:
