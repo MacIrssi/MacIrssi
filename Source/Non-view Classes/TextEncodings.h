@@ -8,7 +8,7 @@
 
 @interface MITextEncoding : NSObject
 {
-  NSStringEncoding enc;
+  CFStringEncoding enc;
 }
 
 + (NSArray*)encodings;
@@ -20,6 +20,7 @@
 - (id)initWithEncoding:(NSStringEncoding)encoding;
 - (id)initWithIANAString:(NSString*)string;
 
+- (CFStringEncoding)CFStringEncoding;
 - (NSStringEncoding)encoding;
 - (NSString*)IANAString;
 

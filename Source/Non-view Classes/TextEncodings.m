@@ -55,7 +55,6 @@
   return [[[MITextEncoding alloc] initWithEncoding:encoding] autorelease];
 }
 
-
 + (MITextEncoding*)irssiEncoding;
 {
   return [[[MITextEncoding alloc] initWithIANAString:[NSString stringWithCString:settings_get_str("term_charset") encoding:NSASCIIStringEncoding]] autorelease];
@@ -89,19 +88,24 @@
   return self;
 }
 
-- (NSStringEncoding)encoding
+- (CFStringEncoding)CFStringEncoding
 {
   return enc;
 }
 
+- (NSStringEncoding)encoding
+{
+  return CFStringConvertEncodingToNSStringEncoding(enc);
+}
+
 - (NSString*)IANAString
 {
-  return (NSString*)CFStringConvertEncodingToIANACharSetName((CFStringEncoding)enc);
+  return (NSString*)CFStringConvertEncodingToIANACharSetName(enc);
 }
 
 - (NSString*)description
 {
-  return (NSString*)CFStringGetNameOfEncoding((CFStringEncoding)enc);
+  return (NSString*)CFStringGetNameOfEncoding(enc);
 }
 
 @end
