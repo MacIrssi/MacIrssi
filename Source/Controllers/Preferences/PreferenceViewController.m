@@ -32,6 +32,9 @@
 #include "themes.h"
 #import "TextEncodings.h"
 
+#import "AIMenuAdditions.h"
+#import "NSString+Additions.h"
+
 @interface NSFontManager (StupidHeaderFixes)
 
 - (void)setTarget:(id)target;
@@ -83,6 +86,7 @@
     [themePreviewTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
     
     [self initTextEncodingPopUpButton];
+    [self initTabShortcutPopUpButton];
     [self initChatEventsPopUpButton];
     [self initSoundListPopUpButton];
     
@@ -151,6 +155,7 @@
 	
   /* General */
 	[self updateTextEncodingPopUpButton];
+  [self updateTabShortcutPopUpButton];
   
   /* Notifications */
   [self updateSoundListPopUpButton];
@@ -266,6 +271,58 @@
 {
   MITextEncoding *enc = [MITextEncoding textEncodingWithEncoding:[textEncodingPopUpButton selectedTag]];
   [MITextEncoding setIrssiEncoding:enc];
+}
+
+#pragma mark Tab Shortcuts
+
+- (void)initTabShortcutPopUpButton
+{
+  [tabShortcutPopUpButton removeAllItems];
+  
+  
+  NSString *upLeftArrow = ( [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"] == MIChannelBarHorizontalOrientation ) ? SRChar(KeyboardLeftArrowGlyph) : SRChar(KeyboardUpArrowGlyph);
+  NSString *downRightArrow = ( [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"] == MIChannelBarHorizontalOrientation ) ? SRChar(KeyboardRightArrowGlyph) : SRChar(KeyboardDownArrowGlyph);
+  
+  // Arrows, so Apple+left/right (or up/down, all the arrow based ones will switch if you change orientation)
+  NSMenu *menu = [[[NSMenu allocWithZone:[NSMenu menuZone]] init] autorelease];;
+  [menu addItemWithTitle:[NSString stringWithFormat:@"Arrows (%@%@ and %@%@)", SRChar(KeyboardCommandGlyph), upLeftArrow, SRChar(KeyboardCommandGlyph), downRightArrow]
+                  target:nil
+                  action:nil 
+           keyEquivalent:@""
+                     tag:TabShortcutArrows];
+  [menu addItemWithTitle:[NSString stringWithFormat:@"Shift-Arrows (%@%@%@ and %@%@%@)", SRChar(KeyboardShiftGlyph), SRChar(KeyboardCommandGlyph), upLeftArrow, SRChar(KeyboardShiftGlyph), SRChar(KeyboardCommandGlyph), downRightArrow]
+                  target:nil
+                  action:nil
+           keyEquivalent:@""
+                     tag:TabShortcutShiftArrows];
+  [menu addItemWithTitle:[NSString stringWithFormat:@"Option-Arrows (%@%@%@ and %@%@%@)", SRChar(KeyboardOptionGlyph), SRChar(KeyboardCommandGlyph), upLeftArrow, SRChar(KeyboardOptionGlyph), SRChar(KeyboardCommandGlyph), downRightArrow]
+                  target:nil
+                  action:nil
+           keyEquivalent:@"" 
+                     tag:TabShortcutOptionArrows];
+  [menu addItemWithTitle:[NSString stringWithFormat:@"Brackets (%@%@ and %@%@)", SRChar(KeyboardCommandGlyph), @"[", SRChar(KeyboardCommandGlyph), @"]"]
+                  target:nil
+                  action:nil
+           keyEquivalent:@"" 
+                     tag:TabShortcutBrackets];
+  [menu addItemWithTitle:[NSString stringWithFormat:@"Curly-Bracers (%@%@ and %@%@)", SRChar(KeyboardCommandGlyph), @"{", SRChar(KeyboardCommandGlyph), @"}"]
+                  target:nil
+                  action:nil
+           keyEquivalent:@"" 
+                     tag:TabShortcutBraces];
+  
+  [tabShortcutPopUpButton setMenu:menu];
+}
+
+- (void)updateTabShortcutPopUpButton
+{
+  [tabShortcutPopUpButton selectItemWithTag:[[NSUserDefaults standardUserDefaults] integerForKey:@"tabShortcuts"]];
+}
+
+- (IBAction)tabShortcutPopUpAction:(id)sender
+{
+  [[NSUserDefaults standardUserDefaults] setInteger:[tabShortcutPopUpButton selectedTag] forKey:@"tabShortcuts"];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"channelBarOrientationDidChange" object:self];
 }
 
 #pragma mark Chat Notifications
@@ -803,6 +860,10 @@
 {
 	[[NSUserDefaults standardUserDefaults] setInteger:[sender selectedRow] forKey:@"channelBarOrientation"];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"channelBarOrientationDidChange" object:self];
+  
+  // Re-init the shortcut control. They need to know when the up/down changes to left/right etc.
+  [self initTabShortcutPopUpButton];
+  [self updateTabShortcutPopUpButton];
 }
 
 - (IBAction)showHideNicklist:(id)sender

@@ -34,6 +34,8 @@
 #import "ConnectivityMonitor.h"
 #import "IrssiBridge.h"
 
+#import "NSString+Additions.h"
+
 // For shortcuts
 #import "SRCommon.h"
 #import "SRKeyCodeTransformer.h"
@@ -769,7 +771,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabView removeFromSuperview];
   [inputTextFieldBox removeFromSuperview];
 
-  switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"])
+  int orientation = [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"];
+
+  switch (orientation)
   {
     case MIChannelBarHorizontalOrientation:
     {
@@ -792,15 +796,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       [[mainWindow contentView] addSubview:inputTextFieldBox];
       [inputTextFieldBox setFrame:inputBoxFrame];
       [inputTextFieldBox setNeedsDisplay:YES];
-      
-      // Lets setup the keypresses so that they match the orientation
-      NSMenuItem *leftItem = [channelMenu itemWithTitle:@"Previous"];
-      NSMenuItem *rightItem = [channelMenu itemWithTitle:@"Next"];
-      
-      unichar leftKeyCode = 0xf702, rightKeyCode = 0xf703;
-      [leftItem setKeyEquivalent:[NSString stringWithCharacters:&leftKeyCode length:sizeof(leftKeyCode)]];
-      [rightItem setKeyEquivalent:[NSString stringWithCharacters:&rightKeyCode length:sizeof(rightKeyCode)]];
-      
       break;
     }
     case MIChannelBarVerticalOrientation:
@@ -839,18 +834,50 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       [inputTextFieldBox setFrame:inputBoxFrame];
       [inputTextFieldBox setNeedsDisplay:YES];
       
-      [channelTableSplitView restoreLayoutUsingName:@"ChannelTableViewSplit"];
-      
-      // Lets setup the keypresses so that they match the orientation
-      NSMenuItem *upItem = [channelMenu itemWithTitle:@"Previous"];
-      NSMenuItem *downItem = [channelMenu itemWithTitle:@"Next"];
-      
-      unichar upKeyCode = 0xf700, downKeyCode = 0xf701;
-      [upItem setKeyEquivalent:[NSString stringWithCharacters:&upKeyCode length:sizeof(upKeyCode)]];
-      [downItem setKeyEquivalent:[NSString stringWithCharacters:&downKeyCode length:sizeof(downKeyCode)]];
-      
+      [channelTableSplitView restoreLayoutUsingName:@"ChannelTableViewSplit"];      
       break;
     }
+  }
+  
+  // We'll do the shortcuts here now instead. We've got several choices that the user can pick for their,
+  // left/right keystrokes. So lets set it up.
+  NSMenuItem *previousMenuItem = [channelMenu itemWithTitle:@"Previous"];
+  NSMenuItem *nextMenuItem = [channelMenu itemWithTitle:@"Next"];
+  
+  switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"tabShortcuts"])
+  {
+    case TabShortcutArrows:
+      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      break;
+    case TabShortcutShiftArrows:
+      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSShiftKeyMask];
+      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSShiftKeyMask];
+      break;
+    case TabShortcutOptionArrows:
+      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
+      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
+      break;
+    case TabShortcutBrackets:
+      [previousMenuItem setKeyEquivalent:@"["];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      [nextMenuItem setKeyEquivalent:@"]"];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      break;
+    case TabShortcutBraces:
+      [previousMenuItem setKeyEquivalent:@"{"];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      [nextMenuItem setKeyEquivalent:@"}"];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      break;
+    default:
+      NSLog(@"channelBarOrientationDidChange: Uh, what? Invalid tabShortcuts value.");
   }
 }
 
@@ -1358,6 +1385,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
                         [NSNumber numberWithBool:TRUE], @"askQuit",
                         [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
                         [NSNumber numberWithInt:0], @"channelBarOrientation",
+                        [NSNumber numberWithInt:TabShortcutArrows], @"tabShortcuts",
                         [EventController defaults], @"eventDefaults",
                         [NSDictionary dictionary], @"eventSilences",
                         [NSNumber numberWithBool:YES], @"channelInTitle",
