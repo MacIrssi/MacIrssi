@@ -111,6 +111,15 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
       free(tmp);
     }
     
+    /* do channel silence */
+    NSString *squelchTag = [NSString stringWithFormat:@"%@ - %@", [IrssiBridge stringWithIrssiCString:channel->server->tag], name];
+    if ([silenceCheckBox state] || ([[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:squelchTag]))
+    {
+      NSDictionary *silences = [[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] mutableCopy];
+      [silences setValue:[NSNumber numberWithBool:[silenceCheckBox state]] forKey:squelchTag];
+      [[NSUserDefaults standardUserDefaults] setValue:silences forKey:@"eventSilences"];
+    }
+    
     if (ownnick->op)
     {
       /* mode-parser */
@@ -483,7 +492,6 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
   key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
   
-  
   /* Copy rest of the values */
   topic_time = rec->topic_time;
   ownnick = rec->ownnick;
@@ -498,6 +506,10 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   kicked = (BOOL)rec->kicked;
   session_rejoin = (BOOL)rec->session_rejoin;
   destroying = (BOOL)rec->destroying;
+  
+  /* Go and see if we're supposed to silence this channel */
+  NSString *squelchTag = [NSString stringWithFormat:@"%@ - %@", [IrssiBridge stringWithIrssiCString:channel->server->tag], name];
+  [silenceCheckBox setState:[[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:squelchTag] boolValue]];  
   
   /* Update GUI */
   [tabViewItem setLabel:name];

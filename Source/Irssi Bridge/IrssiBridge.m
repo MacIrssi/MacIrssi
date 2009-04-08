@@ -85,6 +85,9 @@ void textui_deinit(void);
 AppController *appController;
 ChannelController *windowController;
 
+// Nasty nasty define, but it makes things look prettier
+#define CHANNEL_SILENCE_NSSTRING(server, channel) [NSString stringWithFormat:@"%@ - %@", [IrssiBridge stringWithIrssiCString:(char*)server->tag], [IrssiBridge stringWithIrssiCString:(char*)channel]]
+
 void irssibridge_server_setup_read(IRC_SERVER_SETUP_REC *rec, CONFIG_NODE *node)
 {	
 	//printf("Value: %s\n", rec->chatnet);
@@ -105,49 +108,53 @@ void irssibridge_nick_mode_changed(CHANNEL_REC *channel, NICK_REC *nick, char *s
   ChannelController *windowController = wind->gui_data;
   [windowController setMode:mode type:type forNickRec:nick];
   
-  NSString *message = @"";
-  NSString *event = @"";
-  
-  switch (*mode)
+  if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(channel->server, channel->name)] ||
+      ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(channel->server, channel->name)] boolValue])
   {
-    case '@':
-      if (*type == '+')
-      {
-        message = [NSString stringWithFormat:@"%s was promoted to operator in %s by %s.", nick->nick, channel->name, setby];
-        event = @"IRSSI_ROOM_OP";
-      }
-      else
-      {
-        message = [NSString stringWithFormat:@"%s was demoted from operator in %s by %s.", nick->nick, channel->name, setby];
-        event = @"IRSSI_ROOM_DEOP";
-      }
-      break;
+    NSString *message = @"";
+    NSString *event = @"";
+    
+    switch (*mode)
+    {
+      case '@':
+        if (*type == '+')
+        {
+          message = [NSString stringWithFormat:@"%s was promoted to operator in %s by %s.", nick->nick, channel->name, setby];
+          event = @"IRSSI_ROOM_OP";
+        }
+        else
+        {
+          message = [NSString stringWithFormat:@"%s was demoted from operator in %s by %s.", nick->nick, channel->name, setby];
+          event = @"IRSSI_ROOM_DEOP";
+        }
+        break;
       case '%':
-      if (*type == '+')
-      {
-        message = [NSString stringWithFormat:@"%s was promoted to half-operator in %s by %s.", nick->nick, channel->name, setby];
-        event = @"IRSSI_ROOM_HALFOP";
-      }
-      else
-      {
-        message = [NSString stringWithFormat:@"%s was demoted from half-operator in %s by %s.", nick->nick, channel->name, setby];
-        event = @"IRSSI_ROOM_DEHALFOP";
-      }      
-      break;
+        if (*type == '+')
+        {
+          message = [NSString stringWithFormat:@"%s was promoted to half-operator in %s by %s.", nick->nick, channel->name, setby];
+          event = @"IRSSI_ROOM_HALFOP";
+        }
+        else
+        {
+          message = [NSString stringWithFormat:@"%s was demoted from half-operator in %s by %s.", nick->nick, channel->name, setby];
+          event = @"IRSSI_ROOM_DEHALFOP";
+        }      
+        break;
       case '+':
-      if (*type == '+')
-      {
-        message = [NSString stringWithFormat:@"%s was given voice in %s by %s.", nick->nick, channel->name, setby];
-        event = @"IRSSI_ROOM_VOICE";
-      }
-      else
-      {
-        message = [NSString stringWithFormat:@"%s was de-voiced in %s by %s.", nick->nick, channel->name, setby];
-        event = @"IRSSI_ROOM_DEVOICE";
-      }      
-      break;
-  }
-  [[NSNotificationCenter defaultCenter] postNotificationName:event object:windowController userInfo:[NSDictionary dictionaryWithObject:message forKey:@"Description"]];
+        if (*type == '+')
+        {
+          message = [NSString stringWithFormat:@"%s was given voice in %s by %s.", nick->nick, channel->name, setby];
+          event = @"IRSSI_ROOM_VOICE";
+        }
+        else
+        {
+          message = [NSString stringWithFormat:@"%s was de-voiced in %s by %s.", nick->nick, channel->name, setby];
+          event = @"IRSSI_ROOM_DEVOICE";
+        }      
+        break;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:event object:windowController userInfo:[NSDictionary dictionaryWithObject:message forKey:@"Description"]];
+  }  
 }
 
 void irssibridge_user_mode_changed(SERVER_REC *server, char *old)
@@ -353,20 +360,28 @@ void irssibridge_message_join(SERVER_REC *server, const char *channel, const cha
 {
 	NSLog(@"[Join event] channel:%s nick:%s\n", channel, nick);
   
-  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s joined the chat room %s.", nick, channel], @"Description", 
-                        [NSString stringWithFormat:@"%s", server->tag], @"Server", 
-                        [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_JOIN" object:nil userInfo:info];
+  if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] ||
+      ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] boolValue])
+  {
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s joined the chat room %s.", nick, channel], @"Description", 
+                          [NSString stringWithFormat:@"%s", server->tag], @"Server", 
+                          [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_JOIN" object:nil userInfo:info];
+  }
 }
 
 void irssibridge_message_part(SERVER_REC *server, const char *channel, const char *nick, const char *address, const char *reason)
 {
 	NSLog(@"[Part event] channel:%s nick:%s\n", channel, nick);
   
-  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s has left the chat room %s.", nick, channel], @"Description", 
-                        [NSString stringWithFormat:@"%s", server->tag], @"Server",
-                        [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_PART" object:nil userInfo:info];
+  if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] ||
+      ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] boolValue])
+  {
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s has left the chat room %s.", nick, channel], @"Description", 
+                      [NSString stringWithFormat:@"%s", server->tag], @"Server",
+                      [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_PART" object:nil userInfo:info];
+  }
 }
 
 void irssibridge_message_quit(SERVER_REC *server, const char *nick, const char *address, const char *reason)
@@ -378,10 +393,14 @@ void irssibridge_message_kick(SERVER_REC *server, const char *channel, const cha
 {
 	NSLog(@"[Kick event] channel:%s nick:%s\n", channel, nick);
   
-  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s was kicked from %s by %s.", nick, channel, kicker], @"Description",
-                        [NSString stringWithFormat:@"%s", server->tag], @"Server",
-                        [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_KICK" object:nil userInfo:info];
+  if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] ||
+      ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] boolValue])
+  {
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s was kicked from %s by %s.", nick, channel, kicker], @"Description",
+                          [NSString stringWithFormat:@"%s", server->tag], @"Server",
+                          [NSString stringWithFormat:@"%s", channel], @"Channel", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_KICK" object:nil userInfo:info];
+  }
 }
 
 void irssibridge_message_notice(SERVER_REC *server, const char *msg, const char *nick, const char *address, const char *target)
@@ -429,26 +448,28 @@ void irssibridge_message_channel(SERVER_REC *server, char *msg, char *nick, char
   }
   WINDOW_REC *window = window_item_window((WI_ITEM_REC*)channel);
   ChannelController *controller = (ChannelController*)window->gui_data;
-  
-  NSLog(@"Got controller for %s: %@", target, controller);
-  
+    
   [controller setWaitingEvents:[controller waitingEvents]+1];
   [controller setLastEventOwner:[IrssiBridge stringWithIrssiCString:nick]];
   
-  NSString *eventDescription;
-  
-  if ([controller waitingEvents] == 1)
+  if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel->name)] ||
+      ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel->name)] boolValue])
   {
-    eventDescription = [NSString stringWithFormat:@"%@ has a message waiting from %@.", [controller name], [controller lastEventOwner]];
-  }
-  else
-  {
-    eventDescription = [NSString stringWithFormat:@"%@ has %d messages waiting. Last from %@.", [controller name], [controller waitingEvents], [controller lastEventOwner]];
-  }
-  
-  NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:eventDescription, @"Description", 
-												[NSString stringWithFormat:@"Activity in %@", [controller name]], @"Title", 
-												[NSNumber numberWithBool:YES], @"Coalesce",
-												nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_ACTIVITY" object:controller userInfo:info];
+    NSString *eventDescription;
+    
+    if ([controller waitingEvents] == 1)
+    {
+      eventDescription = [NSString stringWithFormat:@"%@ has a message waiting from %@.", [controller name], [controller lastEventOwner]];
+    }
+    else
+    {
+      eventDescription = [NSString stringWithFormat:@"%@ has %d messages waiting. Last from %@.", [controller name], [controller waitingEvents], [controller lastEventOwner]];
+    }
+    
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:eventDescription, @"Description", 
+                          [NSString stringWithFormat:@"Activity in %@", [controller name]], @"Title", 
+                          [NSNumber numberWithBool:YES], @"Coalesce",
+                          nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_ACTIVITY" object:controller userInfo:info];
+  }  
 }
