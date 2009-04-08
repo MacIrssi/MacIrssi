@@ -24,6 +24,7 @@
 #import "servers.h"
 #import "signals.h"
 #import "IrssiBridge.h"
+#import "TextEncodings.h"
 
 char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 
@@ -159,7 +160,7 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 			if (!new_s)
 				return TRUE;
 				
-				NSString *decodedString = [[NSString alloc] initWithData:[NSData dataWithBytesNoCopy:new_s length:strlen(new_s) freeWhenDone:FALSE] encoding:NSISOLatin1StringEncoding];
+			NSString *decodedString = [[IrssiBridge stringWithIrssiCString:new_s] retain];
 			
 			[(NSTextView *)[self firstResponder] setString:decodedString];
 			[decodedString release];
