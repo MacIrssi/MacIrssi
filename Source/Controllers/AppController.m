@@ -1359,6 +1359,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
                         [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
                         [NSNumber numberWithInt:0], @"channelBarOrientation",
                         [EventController defaults], @"eventDefaults",
+                        [NSDictionary dictionary], @"eventSilences",
                         [NSNumber numberWithBool:YES], @"channelInTitle",
                         nil];
     

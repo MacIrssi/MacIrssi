@@ -103,6 +103,7 @@ enum nickContextMenuTags {
   IBOutlet NSButton *saveButton;
   IBOutlet NSButton *cancelButton;
   IBOutlet NSButton *floaterCheckBox;
+  IBOutlet NSButton *silenceCheckBox;
   
   /* Reason window */
   IBOutlet NSWindow *reasonWindow;
