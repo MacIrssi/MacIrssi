@@ -321,6 +321,10 @@
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
 		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
 		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
+		C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */; };
+		C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */; };
+		C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */; };
+		C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBAA780EA0A3F000025466 /* accept in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C9EBA9800EA0A3C700025466 /* accept */; };
@@ -1670,6 +1674,10 @@
 		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
 		C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppcastVersionComparator.h; sourceTree = "<group>"; };
 		C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppcastVersionComparator.m; sourceTree = "<group>"; };
+		C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMenuAdditions.h; sourceTree = "<group>"; };
+		C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIMenuAdditions.m; sourceTree = "<group>"; };
+		C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBA9800EA0A3C700025466 /* accept */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = accept; sourceTree = "<group>"; };
@@ -2968,8 +2976,12 @@
 		C91F134B0F0A702800763699 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
+				C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */,
+				C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */,
 				B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */,
 				B3241ACA06286AF7000B4624 /* NSAttributedStringAdditions.m */,
+				C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */,
+				C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -3290,6 +3302,8 @@
 				C91F19400F1400D500763699 /* ITReferenceGlue.h in Headers */,
 				C91F19420F1400D500763699 /* ITReferenceRendererGlue.h in Headers */,
 				C91F194E0F14025D00763699 /* iTunes.h in Headers */,
+				C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */,
+				C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3543,6 +3557,8 @@
 				C91F19410F1400D500763699 /* ITReferenceGlue.m in Sources */,
 				C91F19430F1400D500763699 /* ITReferenceRendererGlue.m in Sources */,
 				C91F194F0F14025D00763699 /* iTunes.m in Sources */,
+				C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */,
+				C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

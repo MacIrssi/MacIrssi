@@ -25,6 +25,15 @@
 
 #import "SRRecorderControl.h"
 
+enum
+{
+  TabShortcutArrows,
+  TabShortcutShiftArrows,
+  TabShortcutOptionArrows,
+  TabShortcutBrackets,
+  TabShortcutBraces
+};
+
 @interface PreferenceViewController : NSObject
 {
 	IBOutlet NSWindow *preferenceWindow;
@@ -72,6 +81,7 @@
 
 	IBOutlet NSButton *askQuitCheckBox;
 	IBOutlet NSPopUpButton *textEncodingPopUpButton;
+  IBOutlet NSPopUpButton *tabShortcutPopUpButton;
   
   /* Notifications tab */
   IBOutlet NSPopUpButton *chatEventPopUpButton;
@@ -142,6 +152,12 @@
 - (void)updateTextEncodingPopUpButton;
 - (void)initTextEncodingPopUpButton;
 - (IBAction)encodingPopup:(id)sender;
+
+#pragma mark Tab Shortcuts
+
+- (void)initTabShortcutPopUpButton;
+- (void)updateTabShortcutPopUpButton;
+- (IBAction)tabShortcutPopUpAction:(id)sender;
 
 #pragma mark Notifications
 
