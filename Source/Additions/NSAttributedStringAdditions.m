@@ -158,8 +158,9 @@ NSURL* findURL(NSString* string)
 {
   NSRange		theRange;
   
-  // We can't assume they're gonna be NSURL compatible urls. So escape them first.
-  string = [string stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  // We can't assume they're gonna be NSURL compatible urls. So escape them first. If they are escaped, remove them first
+  // so we don't end up double escaping.
+  string = [[string stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
   // Look for ://
   theRange = [string rangeOfString:@"://"];
   
