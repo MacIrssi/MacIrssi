@@ -77,13 +77,16 @@ void	UKCrashReporterCheckForCrash()
 				NSString*			currentReport = [separateReports count] > 0 ? [separateReports objectAtIndex: [separateReports count] -1] : @"*** Couldn't read Report ***";	// 1 since report 0 is empty (file has a delimiter at the top).
 				unsigned			numCores = UKCountCores();
 				NSString*			numCPUsString = (numCores == 1) ? @"" : [NSString stringWithFormat: @"%dx ",numCores];
+        NSData*       irssiConfigData = [NSData dataWithContentsOfFile:[@"~/.irssi/config" stringByExpandingTildeInPath]];
+        NSString*     irssiConfig = (irssiConfigData != nil) ? [[[NSString alloc] initWithData:irssiConfigData encoding:NSASCIIStringEncoding] autorelease] : @"";
 				
 				// Create a string containing Mac and CPU info, crash log and prefs:
 				currentReport = [NSString stringWithFormat:
-									@"Model: %@\nCPU Speed: %@%.2f GHz\n%@\n\nPreferences:\n%@",
+									@"Model: %@\nCPU Speed: %@%.2f GHz\n%@\n\nPreferences:\n%@\n,Irssi .config:\n%@",
 									UKMachineName(), numCPUsString, ((float)UKClockSpeed()) / 1000.0f,
 									currentReport,
-									[[NSUserDefaults standardUserDefaults] persistentDomainForName: [[NSBundle mainBundle] bundleIdentifier]]];
+									[[NSUserDefaults standardUserDefaults] persistentDomainForName: [[NSBundle mainBundle] bundleIdentifier]],
+                  irssiConfig];
 				
 				// Now show a crash reporter window so the user can edit the info to send:
 				[[UKCrashReporter alloc] initWithLogString: currentReport];
