@@ -30,7 +30,7 @@
 @class ChannelController;
 
 @interface IrssiBridge : NSObject {}
-+ (char *)irssiCStringWithString:(NSString *)string encoding:(CFStringEncoding)encoding;
++ (char *)irssiCStringWithString:(NSString *)string encoding:(NSStringEncoding)encoding;
 + (char *)irssiCStringWithString:(NSString *)string;
 + (NSString *)stringWithIrssiCString:(char *)string;
 + (NSString *)stringWithIrssiCStringNoCopy:(char *)string;

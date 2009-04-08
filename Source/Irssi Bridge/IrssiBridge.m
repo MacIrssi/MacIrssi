@@ -8,6 +8,7 @@
 #import "IrssiBridge.h"
 #import "AppController.h"
 #import "ChannelController.h"
+#import "TextEncodings.h"
 
 //#define	G_LOG_DOMAIN "MacIrssi"
 #define printf(...)
@@ -26,9 +27,9 @@
 // Returns: A C-string representation of the string, which the sender
 // is responsible to release.
 //-------------------------------------------------------------------
-+ (char *)irssiCStringWithString:(NSString *)string encoding:(CFStringEncoding)encoding
++ (char *)irssiCStringWithString:(NSString *)string encoding:(NSStringEncoding)encoding
 {
-	NSData *data = [string dataUsingEncoding:CFStringConvertEncodingToNSStringEncoding(encoding) allowLossyConversion:TRUE];
+	NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:NO];
 	
 	int length = [data length];
 	char *str = malloc(length + 1);
@@ -43,7 +44,7 @@
 /* Wrapper TODO: this should never be used (fix callers of this method) */
 + (char *)irssiCStringWithString:(NSString *)string
 {
-	return [self irssiCStringWithString:string encoding:kCFStringEncodingISOLatin1];
+	return [self irssiCStringWithString:string encoding:[[MITextEncoding irssiEncoding] encoding]];
 }
 
 //-------------------------------------------------------------------
@@ -59,7 +60,7 @@
 	if (!string)
 		return @"";
 	
-	return [(NSString *)CFStringCreateWithCString(NULL, string, kCFStringEncodingISOLatin1) autorelease];
+  return [NSString stringWithCString:string encoding:[[MITextEncoding irssiEncoding] encoding]];
 }
 
 //-------------------------------------------------------------------

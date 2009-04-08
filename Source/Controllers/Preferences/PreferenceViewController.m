@@ -262,7 +262,7 @@
  */
 - (void)updateTextEncodingPopUpButton
 {
-  CFStringEncoding textEncoding = [[MITextEncoding irssiEncoding] encoding];
+  NSStringEncoding textEncoding = [[MITextEncoding irssiEncoding] encoding];
   [textEncodingPopUpButton selectItemWithTag:textEncoding];
   [textEncodingPopUpButton setNeedsDisplay:YES];
 }

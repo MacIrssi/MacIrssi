@@ -779,7 +779,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)printText:(char *)text forground:(int)fg background:(int)bg flags:(int)flags
 {
-  CFStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
+  CFStringEncoding enc = [[MITextEncoding irssiEncoding] CFStringEncoding];
   NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, enc, kCFAllocatorNull);
   line = [line attributedStringByAppendingString:decodedString foreground:fg background:bg flags:flags attributes:textAttributes];
   [decodedString release];
@@ -1480,7 +1480,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [topicAttributes release];
 #endif
 
-  CFStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
+  CFStringEncoding enc = CFStringConvertNSStringEncodingToEncoding([[MITextEncoding irssiEncoding] encoding]);
   NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[IrssiBridge stringWithIrssiCStringNoCopy:strip_codes(str) encoding:enc] attributes:topicAttributes];
   [attributedTopic detectURLs:[NSColor blueColor]];
   
