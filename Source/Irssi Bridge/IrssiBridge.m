@@ -171,11 +171,13 @@ void irssibridge_away_mode_changed(SERVER_REC *server)
 void irssibridge_server_disconnected(SERVER_REC *server)
 {
 	NSLog(@"Server disconnected");
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"irssiServerChangedNotification" object:nil];
 }
 
 void irssibridge_server_connected(SERVER_REC *server)
 {
 	NSLog(@"Server connected");
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"irssiServerChangedNotification" object:nil];
 }
 
 void irssibridge_event_connected(void)
