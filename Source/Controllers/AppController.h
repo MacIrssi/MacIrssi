@@ -62,6 +62,7 @@ extern char **argv;
   
 	IBOutlet NSMenu *channelMenu;
 	IBOutlet NSMenu *shortcutsMenu;
+  IBOutlet NSMenu *serversMenu;
 	IBOutlet NSMenuItem *editCurrentChannelMenuItem;
 	IBOutlet NSMenuItem *findNextMenuItem;
 	IBOutlet NSMenuItem *findPreviousMenuItem;

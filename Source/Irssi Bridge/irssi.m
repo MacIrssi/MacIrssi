@@ -132,7 +132,7 @@ static void textui_finish_init(void)
   signal_add("server setup read", (SIGNAL_FUNC) irssibridge_server_setup_read);
 
   signal_add("server disconnected", (SIGNAL_FUNC) irssibridge_server_disconnected);
-  //signal_add("server connected", (SIGNAL_FUNC) irssibridge_server_connected);
+  signal_add("server connected", (SIGNAL_FUNC) irssibridge_server_connected);
   signal_add("gui print text", (SIGNAL_FUNC) irssibridge_print_text);
   signal_add("gui print text finished", (SIGNAL_FUNC) irssibridge_print_text_finished);
 
@@ -223,7 +223,7 @@ void textui_deinit(void)
 
   /* Whooohaa */
   signal_remove("server disconnected", (SIGNAL_FUNC) irssibridge_server_disconnected);
-  //signal_remove("server connected", (SIGNAL_FUNC) irssibridge_server_connected);
+  signal_remove("server connected", (SIGNAL_FUNC) irssibridge_server_connected);
   signal_remove("gui print text", (SIGNAL_FUNC) irssibridge_print_text);
   signal_remove("gui print text finished", (SIGNAL_FUNC) irssibridge_print_text_finished);
 

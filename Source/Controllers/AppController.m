@@ -34,6 +34,7 @@
 #import "ConnectivityMonitor.h"
 #import "IrssiBridge.h"
 
+#import "AIMenuAdditions.h"
 #import "NSString+Additions.h"
 
 // For shortcuts
@@ -926,6 +927,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
 }
 
+#pragma mark History
 
 //-------------------------------------------------------------------
 // historyUp
@@ -1013,6 +1015,75 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   quitting = TRUE;
 }
 
+#pragma mark Server Change Notifications
+
+- (void)irssiServerChangedNotification:(NSNotification*)notification
+{
+  // Remove all the servers from the menu
+  while ([[serversMenu itemArray] count] > 1)
+  {
+    [serversMenu removeItemAtIndex:1];
+  }
+  
+  if (servers)
+  {
+    // servers is NULL if we're not connected to anything, so if its not null we can
+    // create a menu item
+    [serversMenu addItem:[NSMenuItem separatorItem]];
+  }
+  
+  // Server window is always the first one in the tabView list
+  WINDOW_REC *serverWindowRec = [(ChannelController *)[[tabView tabViewItemAtIndex:0] identifier] windowRec];
+  // "active" server is the active server from the server window, or the "connect" server (if the last thing you did was
+  // a connect that hasn't finished, active_server is NULL and connect_server has a pointer to a SERVER_REC*
+  SERVER_REC *activeServerRec = (serverWindowRec->active_server ? serverWindowRec->active_server : serverWindowRec->connect_server);
+  
+  // Iterate the servers, count them as we're going too
+  GSList *tmp, *next;
+  int count = 1;
+  for (tmp = servers; tmp != NULL; tmp = next)
+  {
+    SERVER_REC *server = tmp->data;
+    
+    // If we have a connrec, don't think we ever won't but its better than crashing on a null pointer.
+    if (server->connrec)
+    {
+      // Not all servers have chatnets but we need to make a stupid string with padding, so do it first.
+      NSString *chatnet = (server->connrec->chatnet ? [NSString stringWithFormat:@" [%s]", server->connrec->chatnet] : @"");
+      NSString *title = [NSString stringWithFormat:@"%s%@", 
+                         server->connrec->address, 
+                         chatnet];
+      [serversMenu addItemWithTitle:title
+                             target:self
+                             action:@selector(changeIrssiServerConsole:)
+                      keyEquivalent:@""
+                                tag:*(int*)&server];
+      if (count < 10)
+      {
+        // Not sure Command+Option+10 works too well ;). We could check here if we're gonna collide with a user
+        // shortcut but maybe some other time.
+        [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalent:[NSString stringWithFormat:@"%d", count++]];
+        [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
+      }
+      [[serversMenu itemWithTag:*(int*)&server] setState:(activeServerRec == server)];
+    }
+    next = tmp->next;
+  }
+}
+
+- (void)changeIrssiServerConsole:(id)sender
+{
+  ChannelController *c = (ChannelController *)[[tabView tabViewItemAtIndex:0] identifier];
+  SERVER_REC *server = (void*)[sender tag];
+  WINDOW_REC *window = [c windowRec];
+  
+  // The official signal way checks to see if you're looking at this window when you do it,
+  // I'd rather not restrict the user that way so I'm calling w_c_s directly. Also, poke
+  // irssiServerChangedNotification: to force the menu to regenerate with a new selected
+  // server.
+  window_change_server(window, server);
+  [self irssiServerChangedNotification:nil];
+}
 
 #pragma mark Private methods
 /**
@@ -1436,6 +1507,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [nc addObserver:self selector:@selector(inputTextFieldColorChanged:) name:@"inputTextFieldColorChanged" object:nil];
   [nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
   [nc addObserver:self selector:@selector(setShortcutCommands) name:@"shortcutChanged" object:nil];
+  [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:@"irssiServerChangedNotification" object:nil];
   
   /* Set up colors */
   [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
