@@ -216,8 +216,6 @@
 		C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2D1679106E3E16C000EC6F9 /* ChannelBar.h in Headers */ = {isa = PBXBuildFile; fileRef = C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */; };
 		C2D1679206E3E16C000EC6F9 /* ChannelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D1679006E3E16C000EC6F9 /* ChannelBar.m */; };
-		C2E05FE80740E35600A4950D /* CoverView.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E05FE60740E35600A4950D /* CoverView.h */; };
-		C2E05FE90740E35600A4950D /* CoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E05FE70740E35600A4950D /* CoverView.m */; };
 		C91024360E58976B00E041F7 /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
 		C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265A0E5C654800E041F7 /* UKCrashReporter.h */; };
 		C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
@@ -1571,8 +1569,6 @@
 		C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DynaLoader.a; path = "/System/Library/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a"; sourceTree = "<absolute>"; };
 		C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ChannelBar.h; sourceTree = "<group>"; };
 		C2D1679006E3E16C000EC6F9 /* ChannelBar.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ChannelBar.m; sourceTree = "<group>"; };
-		C2E05FE60740E35600A4950D /* CoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoverView.h; sourceTree = "<group>"; };
-		C2E05FE70740E35600A4950D /* CoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverView.m; sourceTree = "<group>"; };
 		C910265A0E5C654800E041F7 /* UKCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKCrashReporter.h; sourceTree = "<group>"; };
 		C910265B0E5C654800E041F7 /* UKCrashReporter.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = UKCrashReporter.strings; path = UKCrashReporter/UKCrashReporter.strings; sourceTree = "<group>"; };
 		C910265C0E5C654800E041F7 /* UKSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKSystemInfo.h; sourceTree = "<group>"; };
@@ -2949,8 +2945,6 @@
 				C2D1679006E3E16C000EC6F9 /* ChannelBar.m */,
 				C200D025073FC03700B850B1 /* ChannelBarCell.h */,
 				C200D026073FC03700B850B1 /* ChannelBarCell.m */,
-				C2E05FE60740E35600A4950D /* CoverView.h */,
-				C2E05FE70740E35600A4950D /* CoverView.m */,
 				C2C2C0F7074B822700396F82 /* MarkedScroller.h */,
 				C2C2C0F8074B822700396F82 /* MarkedScroller.m */,
 			);
@@ -3266,7 +3260,6 @@
 				C25491780681A35900C43D63 /* CustomTextView.h in Headers */,
 				C2D1679106E3E16C000EC6F9 /* ChannelBar.h in Headers */,
 				C200D027073FC03700B850B1 /* ChannelBarCell.h in Headers */,
-				C2E05FE80740E35600A4950D /* CoverView.h in Headers */,
 				C2C2C0F9074B822700396F82 /* MarkedScroller.h in Headers */,
 				C2A5697B08D0D74100788905 /* TextEncodings.h in Headers */,
 				C947E1DC0E1E871F0001380E /* EventController.h in Headers */,
@@ -3525,7 +3518,6 @@
 				C25491790681A35900C43D63 /* CustomTextView.m in Sources */,
 				C2D1679206E3E16C000EC6F9 /* ChannelBar.m in Sources */,
 				C200D028073FC03700B850B1 /* ChannelBarCell.m in Sources */,
-				C2E05FE90740E35600A4950D /* CoverView.m in Sources */,
 				C2C2C0FA074B822700396F82 /* MarkedScroller.m in Sources */,
 				C2A5697C08D0D74100788905 /* TextEncodings.m in Sources */,
 				C947E1DD0E1E871F0001380E /* EventController.m in Sources */,
