@@ -21,7 +21,6 @@
 #import "Growl/Growl.h"
 #import "ChannelBar.h"
 #import "MISplitView.h"
-#import "CoverView.h"
 
 #import <unistd.h>
 #import "glib.h"
@@ -93,7 +92,6 @@ extern char **argv;
 	NSImage *currentIcon;
 	int hilightChannels;
 	NSString **shortcutCommands;
-	CoverView *coverView;
 	
 	GSList *sleepList;
   BOOL isRestartingForUpdate;
