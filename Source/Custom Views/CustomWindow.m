@@ -106,7 +106,8 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 	unsigned int flags = [theEvent modifierFlags];
 	
 	/* If some page-scrolling key -> make current channel text view first responder */
-	if (uchar == NSHomeFunctionKey || uchar == NSEndFunctionKey || uchar == NSPageUpFunctionKey || uchar == NSPageDownFunctionKey) {
+	if (([[NSUserDefaults standardUserDefaults] boolForKey:@"homeEndGoesToTextView"] && (uchar == NSHomeFunctionKey || uchar == NSEndFunctionKey)) ||
+      uchar == NSPageUpFunctionKey || uchar == NSPageDownFunctionKey) {
 		[self makeFirstResponder:currentChannelTextView];
 	}
 	else
