@@ -1455,6 +1455,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
                         [EventController defaults], @"eventDefaults",
                         [NSDictionary dictionary], @"eventSilences",
                         [NSNumber numberWithBool:YES], @"channelInTitle",
+                        [NSNumber numberWithBool:YES], @"homeEndGoesToTextView",
                         nil];
     
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
