@@ -27,6 +27,8 @@
 #import "common.h"
 #import "formats.h"
 
+#import <GoogleToolboxForMac/GTMRegex.h>
+
 static NSURL* findURL(NSString* string);
 
 /* From gui-printtext.c */
