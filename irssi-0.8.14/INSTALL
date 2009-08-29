@@ -1,0 +1,122 @@
+
+ Irssi installation instructions
+ -------------------------------
+
+To compile irssi you need:
+
+- glib-2.6 or greater
+- pkg-config
+- openssl (for ssl support)
+- perl-5.6 or greater (for perl support)
+
+For most people, this should work just fine:
+
+ ./configure
+ make
+ su
+ make install     (not _really_ required except for perl support)
+
+configure options
+
+  --prefix
+
+  Specifies the path where irssi will be installed.
+  YES, you can install irssi WITHOUT ROOT permissions
+  by using --prefix=/home/dir
+
+  --with-proxy
+
+  Build the irssi proxy (see startup-HOWTO).
+
+  --disable-ipv6
+
+  Disable IPv6 support.
+
+  --disable-ssl
+
+  Disable SSL support.
+
+  --with-perl=[yes|no|module]
+
+  Enable Perl support
+  yes    enable builtin (default)
+  no     disable
+  module enable as module
+
+  --with-perl-lib=[site|vendor|DIR]
+
+  Specify installation dir for Perl libraries
+  site   install in dir for site-specific modules (default)
+  vendor install in dir for vendor-specific modules
+  DIR    install in DIR
+
+  --with-socks
+
+  Build with socks library
+
+  --with-bot
+
+  Build irssi-bot
+
+  --without-textui
+
+  Build without text frontend
+
+If ncurses is installed in a non-standard path you can specify it with
+--with-ncurses=/path. If anything else is in non-standard path, you can just
+give the paths in CPPFLAGS and LIBS environment variable, eg.:
+
+  CPPFLAGS=-I/opt/openssl/include LDFLAGS=-L/opt/openssl/lib ./configure
+
+Irssi doesn't really need curses anymore, by default it uses
+terminfo/termcap directly. The functions for using terminfo/termcap
+however are usually only in curses library, some systems use libtermcap
+as well. If you want to use only curses calls for some reason, use
+--without-terminfo.
+
+
+ Perl problems
+ -------------
+
+Perl support generates most of the problems. There's quite a many
+things that can go wrong:
+
+ - Compiling fails if you compile irssi with GCC in a system that has
+   perl compiled with some other C compiler. Very common problem with
+   non-Linux/BSD systems. You'll need to edit src/perl/*/Makefile files
+   and remove the parameters that gcc doesn't like. Mostly you'll just
+   need to keep the -I and -D parameters and add -fPIC.
+ - If there's any weird crashing at startup, you might have older irssi's
+   perl libraries installed somewhere, and you should remove those.
+ - Dynamic libraries don't want to work with some systems, so if your
+   system complains about some missing symbol in Irssi.so file, configure
+   irssi with --with-perl-staticlib option (NOT same as --with-perl=static).
+ - If configure complains that it doesn't find some perl stuff, you're
+   probably missing libperl.so or libperl.a. In debian, you'll need to do
+   apt-get install libperl-dev
+
+You can verify that the perl module is loaded and working with "/LOAD"
+command. It should print something like:
+
+Module               Type    Submodules
+...
+perl                 static  core fe
+
+
+ System specific notes
+ ---------------------
+
+ Cygwin
+
+Getting perl scripting to work needs a few things:
+
+ - configure with --with-perl-staticlib
+
+ - libperl.dll is required in linking and running irssi, it's normally
+   located somewhere around /usr/lib/perl5/5.6.1/cygwin/CORE/libperl5_6_1.dll
+   copy it to eg. /usr/bin/libperl.dll
+
+ - -DUSEIMPORTLIB is needed to be defined while compiling src/perl directory.
+   It doesn't hurt to be defined everywhere, so configure irssi with:
+
+     CFLAGS='-DUSEIMPORTLIB' ./configure --with-perl-staticlib

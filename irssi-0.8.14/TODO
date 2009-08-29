@@ -1,0 +1,679 @@
+19:36 [IRCNet] [muzzy] more bugs in irssi, apparently the new version:  foo splits out,
+      	       	       bar joins, bar changes his nick to foo, foo splits again ->
+		       Glib warning "is already in split list (how?)" .. :)
+22:51 [IRCNet] [zhafte] irssi bugs if you put ACT to the right, or maybe it is my terminal?
+22:52 [IRCNet] [zhafte] the numbers tend to go on top of eachother
+ 
+02:46 <@fuchs> cras, /server foonet.foo.xy and (recognizing it doesn't connect 
+               fast enough), and so doing /server barnet.foo.xy (both in the 
+               same chatnet) makes irssi joining the net but not rejoining the 
+               channels
+
+
+21:55 <@L> 17:04.11 <L> /eval /last quit;/clear;/sb goto 10:00;/last -clear;/sb end
+21:55 <@L> 17:04.27 <L> wait after it scrolls and press page up :)
+21:55 <@L> 17:04.48 <L> oh, you can make Irssi behave correctly with /clear
+           again
+
+20:45 < Juerd> 19:44 -!- Irssi: critical file channels.c: line 122 
+               (channel_find): assertion
+20:45 < Juerd>           `name != NULL' failed.
+20:45 < Juerd> this happens three times
+20:46 < Juerd> and it happens in a _query_
+20:47 <@Juerd> cras: for some reason irssi doesn't know this happens in a 
+               query, and displays "< Juerd:> foo" in the status window
+04.06.2002 08:54 #irssi: <@Garion> cras: i've seen it several times now - a 
+                                   line of 79 or 80 chars (my win is 80 wide) 
+                                   which has an empty line below it, and that 
+                                   line is not refreshed when I switch to the 
+                                   window with that line in it, thus keeping 1 
+                                   line from the old window in the current 
+                                   window. Very confusing
+
+16:39 <@Qrczak> cras: I'm not sure how exactly to reproduce it but it happens 
+                often. When I jump to the window with a query using Alt-a 
+                (after the other person said something), and close the window 
+                (being brought to the last used window), and don't switch 
+                windows, and then that person says something again, I'm brought 
+                to the new query window automatically (that's of course bad).
+
+ - import libsoup GnuTLS driver
+   http://svn.gnome.org/viewvc/libsoup/trunk/libsoup/soup-gnutls.c?view=log
+ - lastlog, ignore, hilight and sb levelclear take a list of levels
+   argument in different ways, a uniform way would be better.
+ - /exec - -out cat file does not send the whole file
+ - %n%_ won't show at lastlog..
+ - use_status_window, use_msgs_window should work instantly..
+ - /set show_server_tags or something to always show (combine with hide_server_tagsin ?)..
+ - /SBAR topic placement bottom won't work??..
+ - /op * complaining could be better than "not a good idea"..
+ - how did tab completion complete your own nick..?
+ - /win hide could work even though there are sticky things in that window..
+ - /window server -sticky windows doesn't always realize when a server connects?..
+ - tab completion doesn't work properly if I add utf8 things?..
+ - utf8-texts tend to bug in statusbar (prompt)..
+ - if /set reuse_unused_windows off, and the window seems to be empty,
+   and there would be only one of them it could still be used (?)..
+ - /foreach server /disconnect $tag n8 does not work
+ - /whowas server nick does not work
+ - /msg nick@server or nick%host is fully treated as nickname (log, query)
+ - max_whois won't stay with reconnects?
+ - separate format for privmsg/notice massmessages (anything non-yournick)
+ - set TOS field for all connections (DCC especially)
+ - "show statusbar in empty windows" flag?
+ - statusbar_item_redraw() should just set the size as dirty and calculate
+   it only when really needed.
+ - possible to cache sbar_item->size when nothing else has changed in sbar? 
+   ie. mostly when redrawing.
+ - /msg @#chan<tab>
+ - /SB GOTO -<days> <ts>
+ - /query -immortal so autoclose_query wouldn't touch them
+ - autoclose_query is also closing (and finishing) dcc chats (bug #59 ?)
+ - write about %[-s] etc. to default.theme
+ - away handling is a bit buggy. you do /away;/away reason, irssi remembers
+   the away reason only until it receives "you're no longer away" from the
+   first command.. setting it back to away has then lost the reason.
+ - nick_ nick- _nick nick2 nick3 ...
+ - /SAVE -all?
+ - /STATUSBAR xx ENABLE|DISABLE recreates all statusbars which is a bit
+   annoying because some scripts want to do it and input line is cleared
+   because of this..
+ - /SET disconnect_timeout - default 2min, 0 = immediately
+ - reconnecting messages are a bit confusing. it prints "removed reconnection"
+   to the server which it's connecting to next.. maybe the whole reconnecting
+   thing should work so that the record stays there until it's connected
+   successfully.
+ - /set beep_msg_level hilight won't work if I have /hilight -word
+ - /hilight -priority is broken
+ - move /SET hilight_*color to theme
+ - /ignore, /hilight and /lastlog could complain immediately if used
+   regexp is broken. /hilight list could show also if it's broken like
+   /ignore does.
+
+ - /UPGRADE:
+    - support DCCs
+    - rewrite to work by fork()ing a new process and transfer file handles
+      with unix sockets. this would allow the scrollback buffers to be
+      transferred with them as well.
+    - current window layout needs to transferred
+    - reconnections aren't transferred(?)
+
+ - Logging:
+    - /LOG OPEN -targets *!*cras@*.fi
+    - /SET autolog -> /LOG OPEN -targets * (internally, at least)
+    - /LOG OPEN shouldn't really open the file until first line is 
+      written in it
+    - autoclosing logs doesn't work too well. Problems are:
+	- after certain inactivity private message logs should be closed
+	- but DCC chats shouldn't be closed until the chat itself is closed
+	   - which we can't know really currently, since they don't need
+	     to be in queries
+	- channels should be closed when they're left (they are now, but)
+	   - /WINDOW CLOSE shouldn't close it immediately, since we'll still
+	     receive at least the PART message
+    - so, log items should know more about what they are exactly, and when
+      they should be closed. private messages could have the same timeout
+      as now, time_t closetime field updated every time msg is received.
+      channels could do the same when receiving "window item destroy" signal,
+      except with a small timeout. DCC chats are more problematic...
+    - support for mirc/ansi color logging
+    - people want to show ignored stuff in logs.. how?
+    - private messages could show mirc-style "Session Ident: nick (host)"
+      which would update when nick's host changes. Then you wouldn't need to
+      print the host before each msg.
+    - support for logging channel messages from specific people
+
+ - Awaylogs:
+    - either fully support logging only in servers you're away, or change the
+      awaylog to open immediately after /AWAY command, not based on any
+      away replies from server. Maybe the later would be better, since you
+      would want to set yourself away when connections to all servers were
+      disconnected at the time.. Maybe /AWAY should update status in
+      reconnection records as well?..
+    - /SET awaylog_auto_delete, after setting yourself unaway
+    - support for using strftime() formats (and $tag etc). only problem with
+      this is that all the different awaylogs would need to be tracked and
+      /CATed when setting yourself unaway
+    - /AWAYLOG could show the current awaylog and optionally reset it
+    - The channel name should be optional there
+    - after /upgrade when being away the awaylog is not being written to.
+
+ - Window item placing:
+    - !channel vs. !12345channel. it's layout saved with full name, but joined
+      with either one
+    - when dcc chat is accepted and query exists from the same nick, replace
+      the query window with the dcc chat window.
+    - closed DCC chats should add temporary window bind to the dcc chat so
+      future chats for same nick would use the same window
+
+ - DCC
+    - /DCC SEND wildcard support
+    - /DCC GET -4 / -6 with autodetection
+    - When we receive a DCC SEND request, irssi could warn if the file
+      already exists
+    - show estimated time left and kB/s in /DCC list.
+    - implement requesting files with DCC GET from remote client for dcc file
+      servers. good for people behind firewalls. Does this feature exist
+      in other clients, or should I create DCC REQUEST? Same for DCC CHAT..
+      Maybe it could be just that the port was specified as 0, so the other
+      side would know that it needs to be the one to do listening.
+    - /SET dcc_autoresume ON, and sending the same file again while it's
+      already being downloaded doesn't work too well.. Even autorename doesn't
+      work.
+    - With fast DCC SENDs (90kB/s, FreeBSD) typing get laggy (really?)
+    - /DCC CLOSE #, /DCC would print the IDs
+    - /SET dcc_use_proxy to use IRC proxy for DCC connects as well
+    - support for special vars in /SET dcc_download_path, so $N could be used
+    - No way to autoclose dcc chat windows which have been closed by another
+      side.
+
+ - Generic chat commands:
+    - /MSG /CTCP /ACTION =dcc_chat,#channel
+    - /ACTION -ircnet with good tab support like in /MSG
+    - -nick -channel parameters to /ACTION
+    - /MSG a,b,#c,#d - it should print the message to #c and #d channel
+      windows and show only "a,b" as target when printing it to msg window..
+      Or if autoquery is set, it should print them to those windows. Hmm.
+      maybe some multipeople query support? :) /query nick1,nick2 and sending
+      text there would send it to both. Seems to work already but receiving
+      messages from either nick1 or nick2 don't go to that window..
+    - /BAN: setting of what netmask to use for banning with IPv6 addresses
+
+ - Netsplits
+    - BUG: said "+1 more", while the /SETs to control that were set properly,
+      with one guy it only said that +1 more..
+    - BUG: netsplit quit isn't printed if quit -> join -> quit -> join
+      happens fast (really?)
+    - maybe the "+x more" should be configured in theme file instead in
+      future with the embedded scripting.. At least I'd want to print all
+      the splitted nicks in log files.
+    - per-window listing of splitted servers, it looks very stupid when
+      you see 4 lines of servers splitting in each window but only a few
+      nicks after them.
+    - per-window listing of splitted nicks, so the split messages isn't shown
+      multiple times for each channel with possibly same nicks
+    - /NETSPLIT <server>|<#channel>|<nick wildcard>
+    - SERVERMODE +ov nick nick is shown instead of just Netjoin @nick because
+      code is stupid. fixed in irssi-rewrite..
+    - show in query windows
+
+ - Crashes:
+    - <dg> i've managed to reproduce the bug, if i make three split windows (/window show 3..5), then set the windows to not be sticky  and go to one of the windows, then alt+number to another window then go back the other window the display prints two windows in the same window
+    - the old irssi's /upgrades to the new, before it changed to /set autolog_path
+      $1 and crashed?..
+    - active_mainwin was somehow NULL and crashed.. /window kill did it,
+      probably something to do with window_close() switching to the same
+      hidden window inside the split window, which I was about to kill
+      anyways because it wasn't sticky..
+
+ - Scripts:
+    - print whois in active window
+    - some script to handle ctcp floods, like doing /IGNORE * CTCPS when it 
+      happens.
+    - move into scripts:
+       - /SET timestamp_timeout
+       - /MSG completion list should be modifiable from scripts
+          - script to remove nick from list after /IGNORE nick
+       - nick completion list should be modifyable afterwards:
+          - /SET completion_nicks_lowercase (remove from irssi)
+          - /SET completion_nicks_capitalize
+          - /SET completion_nicks_strip (keep only alphanumeric chars)
+    - irchat-like JOIN/PART/QUIT combiner (QUIT: nick1, nick2, nick3), would
+      require the line replacing work properly which it doesn't..
+
+ - Irssi proxy:
+    - doesn't propagate your own nickchanges to other clients
+    - list sessions, kill them
+    - /set irssi_proxy_ips <allow connections only from specified IPs>
+
+ - Misc IRC related things:
+    - support for mode +q in dancer - also same as +b %xxx modes..
+    - /BAN -ip, -time [<time>] (/ALIAS knockout?)
+    - /KICKBAN to support same options than /BAN (would /ALIAS kickban work?)
+    - ban list prints "x seconds ago" .. should be x days, mins, hours, ..
+
+ - Windows:
+     - /WINDOW SIZE -sticky, so f.e. /WINDOW BALANCE wouldn't affect it.
+     - Check that /LAYOUT SAVE works properly with all the different /SETs,
+       like reuse_unsued_windows, windows_auto_renumber and autoclose_windows.
+       What should it do if some channel is /PARTed with autoclose_windows 
+       set?..
+     - /LAYOUT SAVE  should ask if we want to save those window items that
+       are "bound sticky" but of which server is currently not connected.
+     - /WINDOW scrollback_lines /WINDOW scrollback_hours
+     - Optionally always start the lines from bottom of the screen when 
+       screen is empty (how would scrolling work?)
+     - Vertically split windows
+     - /SET use_msgs_window and /SET use_status_window should take effect
+       immediately
+     - /WINDOW notify_level - would specify what window activity will be
+       shown for the window
+     - Some sort of autobalancing for split windows after terminal resize,
+       maybe with window-specific options that "this window is n lines",
+       "this is at least n% of available space", etc.
+
+ - Keyboard handling:
+    - Some kind of state support for it, so it would be possible to make
+      support for vi keys easily.
+    - Editor-like (or bash-like) line editor - it would wrap to next line
+      instead of scrolling.
+    - When pasting text, irssi could send some signal that sends the pasted
+      lines in GList which signal handlers could modify.
+        - Already existing / at start of line handler should use this
+        - Automatically remove empty space at the start/end of lines,
+	  from start of line it would work so that if each line begins with
+	  4 spaces but some more, it would only remove those 4 spaces from
+	  each so pasting code wouldn't mess up indents etc.
+	- Skip all autoreplaces and completions, so that f.e. tabs are
+	  printed as-is (a few /BINDs would do this but...)
+	- Should empty lines be pasted too? Maybe optionally
+    - /BIND -askkey command
+    - /BIND -delete should be saved in config
+    - ^W (and some others) don't update cut buffer.
+    - default binds: M-d, M-y
+    - /PASSWORD command that asks you to type the password to entry line and
+      would hide it with asterisks, good if people spy on you :)
+    - ^R-like history search
+    - Key to execute the command, but not place it in history
+    - Key to remove active entry from command history
+    - Optionally save command history between restarts
+    - clear_history
+
+ - Notify list:
+    - showing who's online and who's offline doesn't work properly.
+    - adding/removing people in notify list don't show in /NOTIFY immediately
+    - when someone in notify list joins, should it be placed to start of
+      /MSG completion list?
+    - /NOTIFY -away and -idle: support for wildcards in nicks (requires of
+      course that we're in same channel as nick)
+    - Automatically add queried nicks to notify list temporarily .. display
+      the notifys for the nick in the query window
+    - /NOTIFY -once - notify only once when the user comes to IRC, forget
+      this after it.
+    - /NOTIFY -comment xxx - add a comment to notify. print the comment when
+      user comes to irc.
+    - "Should we check people in notify list when you're away" option
+    - use /WATCH instead of /ISON in servers that support it
+    - Show when the nick was last seen
+
+ - Ignores:
+    - /IGNORE <nick> -> use hostmasking (related to channel syncing problem,
+      see "bigger code changes") with support for -type and /SET ignore_type
+    - /IGNORE -strip -pattern away * actions ..
+    - can't have multiple ignore -patterns with same nick
+    - /ignore -activity .. would ignore it just in window activity list,
+      not hide the text.
+    - The nick cache stuff just made it slower. Remove it or figure out how
+      it could be faster.
+    - combined ignore/hilight thingy, see hilights
+
+ - Hilights:
+    - /HILIGHT list doesn't print several options. Maybe some generic
+      function which could be used for printing those options for all these
+      /IRCNET, /SERVER ADD, etc. commands.
+    - /HILIGHT -mask <mask> <word>: not possible use both.
+    - case sensitive hilight checking.
+    - ignore coloring in the words it matches, so eg. /hilight foo would
+      match to f^Bo^Bo
+    - BUG: it STILL sometimes creates hilight activity while there's no
+      hilights, around mode changes (haven't heard for a while though,
+      maybe it is anyway fixed? :)
+    - change the colors of both the nick and the matched word.
+    - /SET hide_text_style still breaks /HILIGHT -words
+    - even if hilight_color is "", %n is printed after hilighted text.
+    - /hilight -actcolor %M -color %w -regexp -level publics
+               -channels #channel1,#channel2 .*
+      removes the bold from /me actions of other users
+    - people want to hilight their own nicks everywhere, eg. /HILIGHT $N
+    - automatic nick hilighting at beginning of line should be optional,
+      like some people would want -word hilighting in it..
+    - exceptions
+    - Merged ignores/hilights thingy and maybe even something others ..
+      some first-match-wins table where you could easily add/move stuff.
+
+ - Scrollback:
+    - Optionally show a "bookmark" (line mark actually, a line full of '-'
+      chars) in a window. It would be displayed at the position where you
+      were when the window was active last time. /MARK command to force
+      updating it to bottom of screen in active window.
+    - /SCROLLBACK REDRAW doesn't do anything to non-format lines (should
+      redraw timestamp, etc.)
+    - /LAST -since <timestamp>
+    - /LAST : use /SET timestamp_format
+    - /LAST -allwindows would check the lastlog from all open windows
+
+ - Formats / themes:
+    - scripting for formats (see the themes.txt), and make the default.theme
+      so that you REALLY don't need to touch /FORMATs, unless you want to
+      change english texts (eg. joins/parts/quits etc. are fully configurable
+      in theme file)
+    - Possibility to modify abstracts and replaces in themes from irssi.
+      (or maybe not, just makes it more difficult)
+    - Document the different formats briefly :)
+    - /FORMATs don't have styling anymore, so translation to different
+      languages should be possible with still the ability to use different
+      themes easily. /SET formats <filename> could change the file where
+      to read all /FORMATs, but formats in theme file would override them.
+    - terminfo/termcap supports changing palette. add support for themes
+      as well to specify it.
+    - hilight formats. pubaction_hilight would be nice, but so would many
+      others as well. something generic for all these would be nice .. would
+      it be possible to do this in theme side with scripting without a
+      format for each different thing?
+
+ - Server commands:
+    - Optionally wait for a while (0.5-1sec) before sending the message to
+      server, if arrow up key is pressed abort it. Also remove the line from
+      screen and put some notice about it being not sent.
+    - If we receive "cannot send to channel" from server or "you're not 
+      chanop" events, remove the privmsgs/notices or modes/kicks/etc. from
+      send queue automatically. Useful for aborting things when you get
+      kicked after pasting lots of text or deopped after doing /OP * or
+      something ;) .. use /SERVER PURGE <target> for this..
+    - Split PRIVMSGs and NOTICEs automatically to multiple commands if
+      their length exceeds the 512 bytes (or it should be shorter actually
+      so server won't split it when it adds your nick+host mask)
+    - Fix the flood protection to be aware of max. input buffer, which is
+      1024 bytes by default (/STATS d, CF). Now irssi may excess flood when
+      sending lots of lines longer than ~200 chars.
+    - IRCNET: Flood protection doesn't count the extra penalty for MODEs
+      and KICKs, also extra penalty should be given in messages (all
+      commands?) for each 100 chars.
+
+ - Text buffer:
+    - support for printing ALL characters in text buffer, including ^B, ^C,
+      etc. etc. so we could selectively decide what mirc colors to translate
+      and what not. Like, we would want to show (or hide) it in normal
+      messages, but we would want to show it as-is in user's ident and
+      ban lists. This should fix /HILIGHT -word as well.
+    - EPIC-like /SET mangle_inbound, maybe mangle_outbound?
+    - %> should work in normal text lines
+    - support for iso-2022-jp? does anyone even want this? ;) it works with
+      esc$B..encoded text...esc(B - encoded text is in 7bit chars, not sure
+    - fix the textbuffer code so that typofix.pl actually works
+    - if you're in beginning of scrollback when lines are being removed,
+      the screen is messed up (?). Also, after /SB END the --more-- is
+      still there and you can't get rid of it (couldn't reproduce)
+    - does /SB REFRESH work? Make it update the lines lazily, only when
+      needed so it would be fast.
+    - Make /SET HOLD_MODE
+    - /CAT should pause on every screenful of text, this should be some kind
+      of printtext_multiline_paused() function which would use some callback
+      to ask for new text.
+    - when scrolling, using pgup/down. it would be neat if the last/first
+      overlapping line in the newly redrawn buffer would be colorized for a
+      second or two, indicating where to continue reading
+
+ - Statusbar
+    - finish the support for multiple statusbar groups, and add
+      /WINDOW STATUSBAR command.
+    - finish the support for multiple input lines and a way to switch
+      between them, so eg. each split window could have it's own input line.
+    - padding char so instead of just spaces you could have ------
+    - hide the whole statusbar if none of it's items use any space
+      (visible = "auto")
+    - /SBAR # PLACEMENT top|bottom sometimes messes up the screen a bit,
+      ^L helps though
+    - /STATUSBAR prompt DISABLE hangs irssi because there's no input line.
+      Add some check to not allow this.
+    - /STATUSBAR could list also disabled bars
+    - command to list all available statusbar items
+
+ - Server connecting:
+    - More verbose connecting
+        - show if we're using IPv4 or IPv6
+	- show hostname we're using
+	- show the proxy settings we're using
+    - Reconnecting shouldn't try to remember all those settings, especially
+      /SET real_name xx + /RECONNECT should work.
+    - DNS problems may cause removal of i-line, irssi shouldn't stop
+      trying to reconnect the server if it happens.. Maybe it never should
+      stop reconnecting to servers that are in config.
+    - Remember the previous IP while reconnecting, if DNS lookup fails use
+      it. Some DNS servers return "host not found" when their internet
+      connection is broken and irssi stops reconnecting..
+    - /RECONNECT <servertag> - If <servertag> belongs to some IRC network,
+      reconnect to next server in that ircnet, otherwise just reconnect
+      to the server.
+    - /SERVER <number> would connect to n'th server in list. Show the
+      numbers with /SERVER LIST
+    - /CONNECT <ircnet> could remove existing ircnet connection from
+      reconnect queue if it exists (only if there's only one?). Also if
+      we're already connected to the ircnet it could complain about it
+      and -yes would force it.
+    - connect() may be stuck forever, timeout it after a few minutes.
+    - Raise the reconnect time every time you get disconnected, so if your
+      network goes up/down all the time, we'd see you join/part channels
+      more and more often instead of flooding all the time.
+    - Better support for round robin addresses (eg. irc.openprojects.org)
+    - /CONNECT -raw? A bit like telnet/nc host.
+
+ - Tab completion:
+    - Command parameter completion doesn't work properly when -options 
+      are used.
+    - Possibility to complete -option parameters? Like -ircnet <tab>, also
+      /MSG -servertag<tab> and /LAST -level<tab> should work. All of these
+      require some command definition changes..
+    - bash-style (or whatever it should be called) tab-completion
+    - key for reverse completion
+    - /MSG <tab> completion shouldn't include queried nick there (optional)
+    - File completion could guess when it's wanted, word beginning with /
+      (not at start of line of course, unless / isn't in cmdchars)
+      or ~/ or ./
+    - filename completion doesn't work properly if path has spaces
+    - /FORMAT xx <tab>
+    - don't add useless completions to list. eg /RUN nick<tab> shouldn't 
+      work
+    - Priorities to completions. And at least command completion could use
+      it so it'd put last the commands that require chanops/ircops.
+      Requires support in command_bind().
+    - /DCC commands could complete nicks (/dcc close, /dcc get, ..)
+    - check the TODO about nick completion scripts..
+
+ - Modules:
+    - Figure out module vs. plugin wording, what is what ;)
+    - API for plugins which would be guaranteed not to change
+      (at least too much/too often :)
+    - "chat protocol modules" - they could be loaded at startup so they'd be
+      equal to IRC protocol (autoconnecting servers would work etc.)
+    - on-demand autoload modules (f.e. by /command or maybe some signal)
+    - Try to make them create only .so files instead of .a and all..
+    - dependencies for modules? double /[un]load prints a bit stupid text
+
+ - perl scripting:
+    - /LOAD [-script | -module], /UNLOAD script
+    - Possibility to modify entry line somehow
+    - Add structures: MODULE_REC, THEME_REC, KEYINFO_REC, 
+      CHAT_PROTOCOL_REC, etc.
+    - signal_emit() - if emitting unknown signal, it could automatically
+      save the types of sent parameters so another perl script could
+      signal_add() it
+    - Irssi::keyboard_entry_redirect()
+    - Irssi::format_get_text()
+    - Irssi::signal_remove() could accept hashes
+    - /command parameter parser so it'd be easier to handle -options etc.
+    - Try to get the Makefiles generated so that compiling with GCC would
+      always work even if the perl wasn't compiled with GCC..
+    - Irssi::Timeout_add() and input_add()'s data option could be optional
+      and maybe allow multiple parameters
+
+ - Bigger code changes:
+    - Restructure code tree so that non-IRC chat protocols would be in
+      same places than IRC protocol. Something like:
+        - src/irc (like now)
+	- src/irc/fe-common, src/irc/fe-text
+      SILC could then make symlinks to src/silc to whereever the SILC
+      module was unpacked. Make it possible to build SILC support built-in.
+    - /SETs have now boolean/number/string types. Add more:
+        - Time: Allow to use s|m|h|d to specify the time, default to
+          seconds. When sending reply to user, use the time formatting too,
+          not just x seconds or minutes. "10d 5s" should also work.
+	- Level: Like "all -msgs -public". Complain about unknown strings.
+	- size: 5M, 5k, ..
+    - Reading configuration file should be changed somehow .. at least add
+      some helper functions for reading lists since comments inside them
+      now crash irssi. Also if setting wasn't expected type can cause
+      crashes so add proper error checkings everywhere. And is_node_list()
+      etc. should be in uppercase..
+    - Channel syncing is evil. Make it optional, and use /USERHOST when
+      needed if host isn't known. /BAN at least should do this, and while
+      at it, we could make /IGNORE as well to ignore based on mask. Also,
+      if /USERHOST doesn't find anything, use /WHOWAS info.
+    - Irssi saves some setting strings to static const char * variables in
+      several places.. this works pretty well usually, except when /RELOADing
+      config and some "setup changed" signal handler goes and calls some
+      function that still uses the old saved string which points to free'd
+      memory.. this should somehow be fixed failsafe. maybe just g_strdup()
+      them everywhere or figure out something better..
+    - Better priority specifying for signals, probably should add
+      int priority without limited range.
+    - fix server redirections to handle remote events correctly: very unlikely,
+      but its possible that replies to two remote whoises are received exactly
+      at the same time overlapping each others
+
+ - Commands:
+    - try to get the 0.9 command parser to work..
+    - user definable parameter definitions and how they're handled, like
+      cmsg <target> <colorized-msg> - then there'd be some function called to
+      colorize the third parameter. same for tab completion.
+    - support for multiple subcommands in the command parser, like
+      /window name foo level msgs.
+    - A way to disable some command entirely? eg. not show in completion
+      list or /HELP or anywhere..
+
+ - extra spaces after commands don't always work, eg /wii  nick, /help  xx
+ - hide channel key in statusbar. This would require a $cmode_nokey or
+   something..
+ - fe-none doesn't compile with --with-perl-staticlib because it doesn't find
+   the ui/textui stuff..
+ - we should probably print timestamp even if level contains MSGLEVEL_NEVER,
+   as long as it's not the only level.. Except when /CATing awaylog we don't
+   want to do that.
+ - If /SET print_active_channel is ON, actions still don't show the channel
+ - nick's user/host can't be printed for public messages
+ - /HELP <alias> should work
+ - /CLEAR -all should clear the window activities as well, leaving hilights
+ - support :: properly in IPv6 masks
+ - when you get disconnected, print your quit message to all channel windows
+ - possibility to print rawlog in window
+ - should $10 work (in special vars)?
+ - /VER should be alias
+ - /MODE #channel b should resync the banlist, and /QUOTE NAMES #channel
+   should resync the nicklist (irssi/ircd bugs).
+ - #include support to config file
+ - make detaching work
+ - with solaris, /EXECs don't die when irssi does (tail -f ...)
+ - /EXEC -interactive: print the commands you send
+ - handle /JOINs with server redirections so they get aborted if we're not
+   seing a JOIN for a while.
+ - make sure the config file is never lost, write it to some temp file first
+   and after then move it over real config file.
+ - you could configure which events (whois, notify, etc.) to show in what
+   windows (all, current, status, msgs)
+ - /SET -reset?
+ - printnickmsg() which would print nick changes and quit messages. And
+   export that function to perl so kills.pl could print kills with it too.
+ - regexp host masks
+ - automatically switch to status window when using commands that always
+   print their output to status window, like /whois.
+ - automatic whowas if whois wasn't found should be moved to fe-common.
+   it could also print something like "nick $0 not in IRC, but this user
+   WAS in IRC:"
+ - Add command for changing automatic replaces and completions
+   (/autoreplace, /complete ?) .. could these be scripts? ..
+ - commands to move channels and servers in the config list, to set the
+   join/connect order of them.
+ - All those options to /WHO and /LIST commands that EPIC has
+ - Use different formats for /WHO #channel? There's no need to show the
+   channel in every line then (NOTE: /WHO #chan1,#chan2 should have two
+   headers)
+ - nick/channel lists at right side of the text version of irssi. Ctrl-N
+   for example could hide/show them. add mouse support for it.
+
+ - try profiling the code with /cat filewith10000lines
+ - /SERVER ADD -ircnet foonet bar 6000 pass1,
+   /SERVER ADD -ircnet barnet bar 6000 pass2
+   dircproxy identifies ircnets based on password
+ - $@0 always returns 4 (?)
+
+
+*** GTK UI
+
+ - %| doesn't work with irssi text widget
+ - some problems when using multiple windows with focus being all the time in
+   one of the windows and it can't be changed to different window?! Probably
+   has something to do with click to focus.
+ - split windows are buggy, destroying them doesn't really work well..
+ - mirc ctcp togglemenuitem isn't updated right
+
+*** Big things
+
+ - some sort of address book? our own irssi ctcp to ask for other irssi users
+   for their information (of course not without asking (except optionally))..
+   could be nice also to automatically update it, keep track of all seen
+   users gathered when joining channels, whois, who, etc. commands.
+   automatically updating information could be host masks, nicks, ips, seen in
+   channels, operator in channels, .. user specified checks like last topic or
+   mode changes or even msgs to you/some channel/with some keyword. great for
+   spying people ;) maybe even useful sometimes..
+
+   .. but what database would be best for this?
+
+ - GTK (non-GNOME) version: icons to toolbars, accelerators to menus
+ - Windows style MDI windows are possible with GtkFixed .. Some people would
+   like this.. too much job for me, it would need building the MDI windows
+   ourself (title bar, borders, resizing, etc.)
+
+ - online help, documentation, ...
+ - plugins:
+     - scheme, tcl, python scripting? eggdrop/epic compatible scripting?
+     - IRC bot, eggdrop is too old, needs a replacement ;) (started, aborted)
+     - Multiplayer games! :) Chess, tic-tac-toe, othello, battleship, tetris,
+       etc. Existing games should probably be used .. though there doesn't
+       seem to be any of these (except tetris) for gnome right now..
+     - audio / video chat :)
+
+*** Needs rethinking ..
+
+ * Notify list GUI
+ - _one_ popup dialog could open which lists all nicks in notifylist, maybe
+   sorted by arrival time, display the dates, latest joined could be with
+   different color? etc.
+ - nick-specific options:
+    - pop up the dialog
+    - run some command (like /exec as soon as I get that done :)
+
+ * common api for statusbar handling
+ - it should work just as well in text mode and gui, colors could be done
+   with the normal % formats. GUI just ignores the colors..
+ - display number of ops, voices, normals and ircops in statusbar
+
+ * API for creating/modifying menus and toolbar, especially from plugins
+ - at least one configurable menu ("usermenu"), or maybe make the whole
+   menubar user configurable
+
+
+*** ..in GTK UI .. just some things to remember if i'll rewrite it again.
+
+ - itext:
+     - save/find text
+     - text selection draws the entire selection every time you move the
+       mouse...
+     - if some other window has got much text, switching to it first time
+       takes some time..?
+ - editor in setup for ~/.irssi/startup
+ - dcc floods could pop up lots of dialogs..
+ - gui help
+ - change signal handling in gui-gnome so that the actual drawing and
+   functionality are in different signals, so that plugin could change the
+   whole look and feel of irssi.
+ - currently irssi sends USERHOST commands every now and then to find out
+   who are away and who are not.. optionally it could instead just watch if
+   someone hasn't written anything to channel in n minutes and mark it "away"
+   to nicklist.
+ - check new irssi versions with http rather than with irssibot..
+ - gnome statubar:
+    - clock?
+    - dcc transfer meter (gtk progressbar)
+ - dcc send: allow selection of multiple files to send (also for dnd from
+   gmc!) Allow dropping files to anywhere in irssi.

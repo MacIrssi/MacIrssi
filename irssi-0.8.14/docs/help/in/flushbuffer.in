@@ -1,0 +1,6 @@
+
+@SYNTAX:flushbuffer@
+
+If either write_buffer_timeout or write_buffer_size have been set an immediate
+write of the buffers is forced.
+

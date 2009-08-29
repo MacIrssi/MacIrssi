@@ -31,6 +31,8 @@
 
 #include "printd.h"
 
+#define IRSSI_GUI_AQUA 6
+
 #ifdef HAVE_STATIC_PERL
 void perl_core_init(void);
 void perl_core_deinit(void);
@@ -354,10 +356,9 @@ static void version_cmd_overwrite(const char *data, SERVER_REC *server, void *it
 
 int irssi_main(int argc, char **argv)
 {
-	static struct poptOption options[] = {
-		{ "dummy", 'd', POPT_ARG_NONE, &dummy, 0, "Use the dummy terminal mode", NULL },
-		{ NULL, '\0', 0, NULL }
-	};
+  GOptionEntry options[] = {
+    { NULL }
+  };
 
 	dummy = FALSE;
 	//quitting = FALSE;
@@ -405,7 +406,7 @@ int irssi_main(int argc, char **argv)
   minorVerson = ((systemVersion & 0x00F0) >> 4);
   
   // FIXME: We never unregister this
-  if ( majorVersion == 10 && minorVerson == 4 )
+  if (!( majorVersion == 10 && minorVerson == 6 ))
   {
     command_bind_first("script", NULL, (SIGNAL_FUNC)perl_cmd_override);
   }

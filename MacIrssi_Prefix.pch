@@ -3,6 +3,6 @@
 //
 
 #ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-	#import "config.h"
+  #import <Cocoa/Cocoa.h>
+  #import "irssi-config.h"
 #endif
