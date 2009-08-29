@@ -156,7 +156,9 @@ NSURL* findURL(NSString* string)
   
   // We can't assume they're gonna be NSURL compatible urls. So escape them first. If they are escaped, remove them first
   // so we don't end up double escaping.
-  string = [[string stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  string = [string stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  string = CFURLCreateStringByAddingPercentEscapes(NULL, string, CFSTR("#"), NULL, kCFStringEncodingUTF8);
+  NSLog(@"%@", string);
   // Look for ://
   theRange = [string rangeOfString:@"://"];
   
