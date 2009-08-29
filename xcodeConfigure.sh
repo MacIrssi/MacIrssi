@@ -28,7 +28,8 @@ fi
 CFLAGS="$CFLAGS -I$SRCROOT/Frameworks/MILibs/build/Release/include -DMACIRSSI_VERSION=\\\"$VERSION\\\""
 LDFLAGS="$LDFLAGS -L$SRCROOT/Frameworks/MILibs/build/Release/lib"
 PKG_CONFIG_PATH="$SRCROOT/Frameworks/MILibs/build/Release/lib/pkgconfig"
-./configure $@
+PATH="$PATH:$SRCROOT/Frameworks/MILibs/pkg-config-0.23"
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH ./configure $@
 CONF_EXIT=$?
 
 if [ "$CONF_EXIT" -eq "0" ]; then

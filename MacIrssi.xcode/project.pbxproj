@@ -209,8 +209,6 @@
 		C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
 		C2CC3B180C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2CC3B350C0A058D001C0DDD /* libfe_perl_static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */; };
-		C2CC3B560C0B42BD001C0DDD /* libperl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B550C0B42BD001C0DDD /* libperl.dylib */; };
-		C2CC3B5C0C0B43C7001C0DDD /* DynaLoader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */; };
 		C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
 		C2CC3BFB0C0B7B5B001C0DDD /* libiconv.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
 		C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
@@ -1565,7 +1563,7 @@
 		C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = /usr/lib/libiconv.2.dylib; sourceTree = "<absolute>"; };
 		C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libintl.8.0.2.dylib; path = MILibs/build/Release/lib/libintl.8.0.2.dylib; sourceTree = "<group>"; };
 		C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_perl_static.a; path = "irssi-0.8.12/src/perl/.libs/libfe_perl_static.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3B550C0B42BD001C0DDD /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = /System/Library/Perl/lib/5.8/libperl.dylib; sourceTree = "<absolute>"; };
+		C2CC3B550C0B42BD001C0DDD /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = /System/Library/Perl/lib/5.10/libperl.dylib; sourceTree = "<absolute>"; };
 		C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DynaLoader.a; path = "/System/Library/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a"; sourceTree = "<absolute>"; };
 		C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ChannelBar.h; sourceTree = "<group>"; };
 		C2D1679006E3E16C000EC6F9 /* ChannelBar.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ChannelBar.m; sourceTree = "<group>"; };
@@ -1836,8 +1834,6 @@
 				C2CC3B180C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */,
 				C2CC3B350C0A058D001C0DDD /* libfe_perl_static.a in Frameworks */,
 				C925E7720E5A2D550041921B /* libperl_core_static.a in Frameworks */,
-				C2CC3B560C0B42BD001C0DDD /* libperl.dylib in Frameworks */,
-				C2CC3B5C0C0B43C7001C0DDD /* DynaLoader.a in Frameworks */,
 				C2A9B10C0C1187BC002A9848 /* Growl-WithInstaller.framework in Frameworks */,
 				C229C73D0C1AA7B900D7CCD0 /* libssl.dylib in Frameworks */,
 				C229C7400C1AA82900D7CCD0 /* libcrypto.dylib in Frameworks */,
@@ -3483,7 +3479,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /usr/bin/perl;
-			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git-show-ref --hash --abbrev HEAD`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\ndie \"$0: No Git revision found\" unless $version;\n \nchomp($version);\n\nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>NSGitRevision<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
+			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git show-ref --hash --abbrev HEAD`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\ndie \"$0: No Git revision found\" unless $version;\n \nchomp($version);\n\nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>NSGitRevision<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
 		};
 		C9EC9F250E363AEB00445345 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3740,22 +3736,24 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework/**",
-					"/usr/local/include/glib-2.0",
-					"/usr/local/lib/glib-2.0/include",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"irssi-0.8.12/src",
 					"irssi-0.8.12",
 					"Source\n/**",
 				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$SRCROOT/Frameworks/MILibs/build/Release/lib\"/**";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$SRCROOT/Frameworks/MILibs/build/Release/include\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				IRSSI_PATH = "$(SRCROOT)/irssi-0.8.12";
 				LIBRARY_SEARCH_PATHS = (
-					"/System/Library/Perl/5.8.8/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_3)",
@@ -3793,8 +3791,15 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(IRSSI_PATH)/src/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
-				OTHER_CFLAGS = "-DMACIRSSI_DEBUG";
+				OTHER_CFLAGS = (
+					"-DMACIRSSI_DEBUG",
+					"-L/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
+				);
 				OTHER_LDFLAGS = (
+					"-lperl",
+					"-ldl",
+					"-lm",
+					"-lc",
 					"-lssl",
 					"-lcrypto",
 					"-bind_at_load",
@@ -3837,21 +3842,23 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework/**",
-					"/usr/local/include/glib-2.0",
-					"/usr/local/lib/glib-2.0/include",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"irssi-0.8.12/src",
 					"irssi-0.8.12",
 					"Source\n/**",
 				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$SRCROOT/Frameworks/MILibs/build/Release/lib\"/**";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$SRCROOT/Frameworks/MILibs/build/Release/include\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
-					"/System/Library/Perl/5.8.8/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_3)",
@@ -3877,8 +3884,8 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/notifylist\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"/usr/local/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.8\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.10\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.10.0\"/**";
 				LIBRARY_SEARCH_PATHS_QUOTED_17 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/flood\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/core\"";
@@ -3930,17 +3937,20 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework/**",
-					"/usr/local/include/glib-2.0",
-					"/usr/local/lib/glib-2.0/include",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"irssi-0.8.12/src",
 					"irssi-0.8.12",
 					"Source\n/**",
 				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$SRCROOT/Frameworks/MILibs/build/Release/lib\"/**";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$SRCROOT/Frameworks/MILibs/build/Release/include\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -4116,6 +4126,7 @@
 			buildSettings = {
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
 				ACTION = $ACTION;
+				CC = "gcc-4.0";
 				CFLAGS = "-I/usr/local/include -g -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
