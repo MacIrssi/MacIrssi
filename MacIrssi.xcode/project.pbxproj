@@ -574,6 +574,8 @@
 		C9EBACAB0EA100D400025466 /* ServerBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBACA90EA100D400025466 /* ServerBridgeController.h */; };
 		C9EBACAC0EA100D400025466 /* ServerBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBACAA0EA100D400025466 /* ServerBridgeController.m */; };
 		C9EBACE50EA1055F00025466 /* Servers.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBACE40EA1055F00025466 /* Servers.png */; };
+		C9FBBC3F1049A5A700FE4ACD /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
+		C9FBBC8F1049A5BC00FE4ACD /* GoogleToolboxForMac.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -616,6 +618,7 @@
 			files = (
 				C91F19800F1405FE00763699 /* Appscript.framework in Copy Libraries */,
 				C91F13A50F0A748600763699 /* Sparkle.framework in Copy Libraries */,
+				C9FBBC8F1049A5BC00FE4ACD /* GoogleToolboxForMac.framework in Copy Libraries */,
 				C91793920F74447C005241A4 /* libglib-2.0.0.dylib in Copy Libraries */,
 				C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in Copy Libraries */,
 				C2CC3BFB0C0B7B5B001C0DDD /* libiconv.2.dylib in Copy Libraries */,
@@ -1745,6 +1748,7 @@
 		C9EBACA90EA100D400025466 /* ServerBridgeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerBridgeController.h; sourceTree = "<group>"; };
 		C9EBACAA0EA100D400025466 /* ServerBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerBridgeController.m; sourceTree = "<group>"; };
 		C9EBACE40EA1055F00025466 /* Servers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Servers.png; sourceTree = "<group>"; };
+		C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1778,6 +1782,7 @@
 				C91F15580F110B6500763699 /* Carbon.framework in Frameworks */,
 				C91F19520F1404B900763699 /* Appscript.framework in Frameworks */,
 				C91793850F744140005241A4 /* libglib-2.0.0.dylib in Frameworks */,
+				C9FBBC3F1049A5A700FE4ACD /* GoogleToolboxForMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1813,6 +1818,7 @@
 				C91F139D0F0A743800763699 /* Sparkle.framework */,
 				C9667E020E3790FD00014B02 /* SystemConfiguration.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -3540,7 +3546,12 @@
 				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -3638,7 +3649,10 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
@@ -3646,6 +3660,8 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -3743,7 +3759,10 @@
 		C209D3AB08BF5CE6009C9E21 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
@@ -3751,6 +3770,8 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
