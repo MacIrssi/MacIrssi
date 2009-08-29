@@ -93,10 +93,6 @@ static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 
     NSLog(@"GUI_PRINT_FLAG_NEWLINE for text \'%@\'", text);
     [buffer appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
   }
-  if (flags & GUI_PRINT_FLAG_INDENT_FUNC) 
-  {
-    NSLog(@"GUI_PRINT_FLAG_INDENT_FUNC for text \'%@\'", text);
-  }
   if (flags & GUI_PRINT_FLAG_INDENT) 
   {
     //NSLog(@"GUI_PRINT_FLAG_INDENT for text \'%@\'", text);

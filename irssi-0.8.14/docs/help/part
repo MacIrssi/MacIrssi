@@ -1,0 +1,7 @@
+
+PART %|[<channels>] [<message>]
+
+Parts from the current or specified channel. Depending on your settings, closes the corresponding window, too.
+
+See also: JOIN
+

@@ -1,0 +1,40 @@
+TYPEMAP
+Irssi::Irc::Server		T_IrssiObj
+Irssi::Irc::Connect		T_IrssiObj
+Irssi::Irc::Channel		T_IrssiObj
+Irssi::Irc::Query		T_IrssiObj
+Irssi::Irc::Nick		T_IrssiObj
+
+Irssi::Irc::Ban			T_PlainObj
+Irssi::Irc::Dcc  		T_DccObj
+Irssi::Irc::Dcc::Chat  		T_DccObj
+Irssi::Irc::Dcc::Get   		T_DccObj
+Irssi::Irc::Dcc::Send  		T_DccObj
+Irssi::Irc::Netsplit		T_PlainObj
+Irssi::Irc::Netsplitserver	T_PlainObj
+Irssi::Irc::Netsplitchannel	T_PlainObj
+Irssi::Irc::Notifylist		T_PlainObj
+Irssi::Irc::Client		T_IrssiObj
+
+INPUT
+
+T_IrssiObj
+	$var = irssi_ref_object($arg)
+
+T_DccObj
+	$var = irssi_ref_object($arg)
+
+T_PlainObj
+	$var = irssi_ref_object($arg)
+
+OUTPUT
+
+T_IrssiObj
+	$arg = iobject_bless((SERVER_REC *)$var);
+
+T_DccObj
+	$arg = simple_iobject_bless((DCC_REC *)$var);
+
+T_PlainObj
+	$arg = plain_bless($var, \"$type\");
+

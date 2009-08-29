@@ -1,0 +1,20 @@
+
+@SYNTAX:scrollback@
+
+/SCROLLBACK, or the default alias /SB:
+
+/SB LEVELCLEAR
+   - Remove lines with level matching one of those
+     specified in the comma-separated list <level>.
+/SB CLEAR
+   - Clear screen, free all memory used by texts in window.
+/SB HOME
+   - Jump to start of the buffer.
+/SB END
+   - Jump to end of the buffer.
+/SB GOTO [[-|+]line#|time]
+   - Jump to specified line or timestamp.
+     time format is [dd[.mm] | -<days ago>] hh:mi[:ss].
+
+See also: SET SCROLL
+

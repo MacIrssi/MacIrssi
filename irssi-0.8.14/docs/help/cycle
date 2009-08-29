@@ -1,0 +1,7 @@
+
+CYCLE %|[<channel>] [<message>]
+
+Cycles (leaves and joins) the current channel or the specified channel.
+
+See also: JOIN, PART
+
