@@ -28,10 +28,12 @@
 + (void)setIrssiEncoding:(MITextEncoding*)enc;
 
 - (id)initWithEncoding:(NSStringEncoding)encoding;
+- (id)initWithCFStringEncoding:(CFStringEncoding)encoding;
 - (id)initWithIANAString:(NSString*)string;
 
 - (CFStringEncoding)CFStringEncoding;
 - (NSStringEncoding)encoding;
 - (NSString*)IANAString;
+- (NSString*)name;
 
 @end

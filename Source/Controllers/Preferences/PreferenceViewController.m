@@ -254,8 +254,9 @@
   
   while (enc = [encodingsEnumerator nextObject])
   {
-    [textEncodingPopUpButton addItemWithTitle:[enc description]];
-    [[textEncodingPopUpButton lastItem] setTag:[enc encoding]];
+    NSMenuItem *item = [[textEncodingPopUpButton menu] addItemWithTitle:[enc name] action:nil keyEquivalent:@""];
+    [item setRepresentedObject:enc];
+    [item setTag:[enc CFStringEncoding]];
   }
 }
 
@@ -264,14 +265,15 @@
  */
 - (void)updateTextEncodingPopUpButton
 {
-  NSStringEncoding textEncoding = [[MITextEncoding irssiEncoding] encoding];
+  NSStringEncoding textEncoding = [[MITextEncoding irssiEncoding] CFStringEncoding];
   [textEncodingPopUpButton selectItemWithTag:textEncoding];
   [textEncodingPopUpButton setNeedsDisplay:YES];
 }
 
 - (IBAction)encodingPopup:(id)sender
 {
-  MITextEncoding *enc = [MITextEncoding textEncodingWithEncoding:[textEncodingPopUpButton selectedTag]];
+  NSMenuItem *selectedItem = [textEncodingPopUpButton selectedItem];
+  MITextEncoding *enc = [selectedItem representedObject];
   [MITextEncoding setIrssiEncoding:enc];
 }
 
