@@ -554,11 +554,7 @@
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
 		C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C97A36D00E5DCB0F007D1191 /* General.tiff */; };
 		C97A37220E5DCFED007D1191 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
-		C97F846A1049BEA500B5ECC6 /* UTURLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = C97F84681049BEA500B5ECC6 /* UTURLRegex.h */; };
-		C97F84791049BFD300B5ECC6 /* UTURLRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C97F84691049BEA500B5ECC6 /* UTURLRegex.m */; };
 		C98777080F74F67300591183 /* MacIrssi.pub in Resources */ = {isa = PBXBuildFile; fileRef = C98777070F74F67300591183 /* MacIrssi.pub */; };
-		C98E5ADC104A05BF0004C8F0 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */; };
-		C98E5AE1104A05CA0004C8F0 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
 		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
 		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
@@ -1732,9 +1728,6 @@
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		C97A36D00E5DCB0F007D1191 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
 		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
-		C97F84681049BEA500B5ECC6 /* UTURLRegex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UTURLRegex.h; sourceTree = "<group>"; };
-		C97F84691049BEA500B5ECC6 /* UTURLRegex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UTURLRegex.m; sourceTree = "<group>"; };
-		C97F84711049BFB400B5ECC6 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97F84721049BFB400B5ECC6 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		C98777070F74F67300591183 /* MacIrssi.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacIrssi.pub; sourceTree = "<group>"; };
 		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
@@ -1794,14 +1787,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C97F846E1049BFB400B5ECC6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C98E5AE1104A05CA0004C8F0 /* GoogleToolboxForMac.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1852,7 +1837,6 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* MacIrssi.app */,
-				C97F84711049BFB400B5ECC6 /* Unit Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1862,7 +1846,6 @@
 			children = (
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
-				C97F84661049BE8400B5ECC6 /* Unit Tests */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -2974,15 +2957,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		C97F84661049BE8400B5ECC6 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
-				C97F84681049BEA500B5ECC6 /* UTURLRegex.h */,
-				C97F84691049BEA500B5ECC6 /* UTURLRegex.m */,
-			);
-			path = "Unit Tests";
-			sourceTree = "<group>";
-		};
 		C9EBAB650EA0AF3000025466 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -3061,7 +3035,6 @@
 				C91F194E0F14025D00763699 /* iTunes.h in Headers */,
 				C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */,
 				C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */,
-				C97F846A1049BEA500B5ECC6 /* UTURLRegex.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3142,24 +3115,6 @@
 			productReference = 8D1107320486CEB800E47090 /* MacIrssi.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C97F84701049BFB400B5ECC6 /* Unit Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C97F84761049BFB600B5ECC6 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
-			buildPhases = (
-				C97F846C1049BFB400B5ECC6 /* Resources */,
-				C97F846D1049BFB400B5ECC6 /* Sources */,
-				C97F846E1049BFB400B5ECC6 /* Frameworks */,
-				C97F846F1049BFB400B5ECC6 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Unit Tests";
-			productName = "Unit Tests";
-			productReference = C97F84711049BFB400B5ECC6 /* Unit Tests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -3184,7 +3139,6 @@
 				C224D32708C651E000E66C62 /* Fake IRC Server */,
 				C9EC9F1E0E363AE000445345 /* Packages */,
 				C91793250F743FCE005241A4 /* Build MILibs */,
-				C97F84701049BFB400B5ECC6 /* Unit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -3345,13 +3299,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C97F846C1049BFB400B5ECC6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -3382,19 +3329,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# copies perl libraries\n\nPERLPATH=\"irssi-0.8.14/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p $DSTPATH\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p $DSTPATH\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nexit 0";
-		};
-		C97F846F1049BFB400B5ECC6 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		C9EC9EE30E36386C00445345 /* Update Git version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3476,15 +3410,6 @@
 				C91F194F0F14025D00763699 /* iTunes.m in Sources */,
 				C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */,
 				C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C97F846D1049BFB400B5ECC6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C98E5ADC104A05BF0004C8F0 /* NSString+Additions.m in Sources */,
-				C97F84791049BFD300B5ECC6 /* UTURLRegex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4040,99 +3965,6 @@
 			};
 			name = Default;
 		};
-		C97F84731049BFB600B5ECC6 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks\"";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_VERSION = 4.0;
-				INFOPLIST_FILE = "Unit Tests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "Unit Tests";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Development;
-		};
-		C97F84741049BFB600B5ECC6 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks\"";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_VERSION = 4.0;
-				INFOPLIST_FILE = "Unit Tests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "Unit Tests";
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		C97F84751049BFB600B5ECC6 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks\"";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_VERSION = 4.0;
-				INFOPLIST_FILE = "Unit Tests-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = "Unit Tests";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Default;
-		};
 		C98F778E0E36500900CF2AAF /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4256,16 +4088,6 @@
 				C91793260F743FCF005241A4 /* Development */,
 				C91793270F743FCF005241A4 /* Deployment */,
 				C91793280F743FCF005241A4 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		C97F84761049BFB600B5ECC6 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C97F84731049BFB600B5ECC6 /* Development */,
-				C97F84741049BFB600B5ECC6 /* Deployment */,
-				C97F84751049BFB600B5ECC6 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
