@@ -22,5 +22,6 @@
 @interface NSString (Additions)
 
 + (NSString*)stringWithUnicodeCharacter:(unichar)character;
+- (NSArray*)arrayOfURLsDetectedInString;
 
 @end
