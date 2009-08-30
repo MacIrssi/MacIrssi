@@ -27,9 +27,7 @@
 #import "common.h"
 #import "formats.h"
 
-#import <GoogleToolboxForMac/GTMRegex.h>
-
-static NSURL* findURL(NSString* string);
+#import "NSString+Additions.h"
 
 /* From gui-printtext.c */
 static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
@@ -116,99 +114,22 @@ static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 
 
 - (void)detectURLs:(NSColor*)linkColor
 {
-  NSScanner*					scanner;
-  NSRange						scanRange;
-  NSString*					scanString;
-  NSCharacterSet*				whitespaceSet;
-  NSURL*						foundURL;
-  NSDictionary*				linkAttr;
+  NSArray *urls = [[self string] arrayOfURLsDetectedInString];
   
-  // Create our scanner and supporting delimiting character set
-  scanner = [NSScanner scannerWithString:[self string]];
-  whitespaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-  
-  // Start Scan
-  while( ![scanner isAtEnd] )
+  int i = 0;
+  for (i=0; i < [urls count]; i++)
   {
-    // Pull out a token delimited by whitespace or new line
-    [scanner scanUpToCharactersFromSet:whitespaceSet intoString:&scanString];
-    scanRange.length = [scanString length];
-    scanRange.location = [scanner scanLocation] - scanRange.length;
+    NSString *link = [urls objectAtIndex:i];
     
-    // If we find a url modify the string attributes
-    if(( foundURL = findURL(scanString) ))
-    {
-      // Apply underline style and link color
-      linkAttr = [NSDictionary dictionaryWithObjectsAndKeys:
-                  foundURL, NSLinkAttributeName,
-                  [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
-                  linkColor, NSForegroundColorAttributeName, 
-                  NULL ];
-      [self addAttributes:linkAttr range:scanRange];
-    }
+    NSRange range = [[self string] rangeOfString:link];
+    
+    NSDictionary *linkAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    link, NSLinkAttributeName,
+                                    [NSNumber numberWithInt:NSSingleUnderlineStyle], NSUnderlineStyleAttributeName,
+                                    linkColor, NSForegroundColorAttributeName,
+                                    nil];
+    [self addAttributes:linkAttributes range:range];
   }
 }
 
 @end
-
-
-NSURL* findURL(NSString* string)
-{
-  NSRange		theRange;
-  
-  // We can't assume they're gonna be NSURL compatible urls. So escape them first. If they are escaped, remove them first
-  // so we don't end up double escaping.
-  string = [string stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  string = CFURLCreateStringByAddingPercentEscapes(NULL, string, CFSTR("#"), NULL, kCFStringEncodingUTF8);
-  NSLog(@"%@", string);
-  // Look for ://
-  theRange = [string rangeOfString:@"://"];
-  
-  if( theRange.location != NSNotFound && theRange.length != 0 )
-  {
-    return [NSURL URLWithString:string];
-  }
-  
-  // Look for www. at start
-  if( [string hasPrefix:@"www."] )
-  {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", string]];
-  }
-  
-  // Look for ftp. at start
-  if( [string hasPrefix:@"ftp."] )
-  {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"ftp://%@", string]];
-  }
-  
-	// Look for mailto: at start
-  if( [string hasPrefix:@"mailto:"] )
-  {
-    return [NSURL URLWithString:string];
-  }
-  
-#if 0
-  // Look for gopher. at start
-  if( [string hasPrefix:@"gopher."] )
-  {
-    return [NSURL URLWithString:[NSString stringWithFormat:@"gopher://%@", string]];
-  }
-  
-  // Look for nap: at start
-  if( [string hasPrefix:@"nap:"] )
-  {
-    return [NSURL URLWithString:string];
-  }
-#endif   
-	
-#if 0
-	/* DISABLED - IRC who-entries get f**ked up (Nils Hjelte) */
-  // Look for @ - minimum of a@a.a
-  theRange = [string rangeOfString:@"@"];
-  if( theRange.location != NSNotFound && theRange.length != 0
-     && theRange.location > 0 && theRange.location < [string length] - 3 
-     && [string rangeOfString:@"." options:0 range:NSMakeRange(theRange.location+1, [string length] - theRange.location-1)].location != NSNotFound)        return [NSURL URLWithString:[NSString stringWithFormat:@"mailto:%@",string]];
-#endif
-	
-  return nil;
-}

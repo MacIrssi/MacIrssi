@@ -557,6 +557,8 @@
 		C97F846A1049BEA500B5ECC6 /* UTURLRegex.h in Headers */ = {isa = PBXBuildFile; fileRef = C97F84681049BEA500B5ECC6 /* UTURLRegex.h */; };
 		C97F84791049BFD300B5ECC6 /* UTURLRegex.m in Sources */ = {isa = PBXBuildFile; fileRef = C97F84691049BEA500B5ECC6 /* UTURLRegex.m */; };
 		C98777080F74F67300591183 /* MacIrssi.pub in Resources */ = {isa = PBXBuildFile; fileRef = C98777070F74F67300591183 /* MacIrssi.pub */; };
+		C98E5ADC104A05BF0004C8F0 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */; };
+		C98E5AE1104A05CA0004C8F0 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
 		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
 		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
@@ -1796,6 +1798,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C98E5AE1104A05CA0004C8F0 /* GoogleToolboxForMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3480,6 +3483,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C98E5ADC104A05BF0004C8F0 /* NSString+Additions.m in Sources */,
 				C97F84791049BFD300B5ECC6 /* UTURLRegex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4041,7 +4045,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -4070,7 +4078,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -4096,7 +4108,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
