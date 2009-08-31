@@ -116,6 +116,7 @@ static GModule *module_open(const char *name, int *found)
 	else {
 		/* first try from home dir */
 		str = g_strdup_printf("%s/modules", get_irssi_dir());
+    
 		path = g_module_build_path(str, name);
 		g_free(str);
 
@@ -128,7 +129,8 @@ static GModule *module_open(const char *name, int *found)
 
 		/* module not found from home dir, try global module dir */
 		g_free(path);
-		path = g_module_build_path(MODULEDIR, name);
+    // MacIrssi, /usr/local/lib/foo isn't good on OSX
+		path = g_module_build_path("Contents/Resources", name);
 	}
 
 	*found = stat(path, &statbuf) == 0;
@@ -383,7 +385,7 @@ int module_load(const char *path, char **prefixes)
 void module_file_unload(MODULE_FILE_REC *file)
 {
 	MODULE_REC *root;
-
+  
         root = file->root;
 	root->files = g_slist_remove(root->files, file);
 
