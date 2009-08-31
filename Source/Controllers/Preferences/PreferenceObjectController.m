@@ -150,7 +150,7 @@
   
   ServerBridgeController *serverController = [[[ServerBridgeController alloc] initWithServerSetupRec:rec] autorelease];
   [self willChangeValueForKey:@"serverArray"];
-  [serverArray addObject:serverController];
+  [serverArray insertObject:serverController atIndex:0];
   [self didChangeValueForKey:@"serverArray"];
   
   return serverController;

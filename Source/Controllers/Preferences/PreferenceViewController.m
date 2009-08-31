@@ -625,7 +625,6 @@
     [networksArrayController setContent:[preferenceObjectController chatnetArray]];
     [networksArrayController setSelectedObjects:[NSArray arrayWithObject:ircController]];
   }
-  
 }
 
 - (IBAction)channetPanelOKAction:(id)sender
@@ -642,8 +641,9 @@
 
 - (IBAction)addServerAction:(id)sender
 {
-  [preferenceObjectController addServerWithAddress:@"irc.example.com" port:6667];
+  ServerBridgeController *controller = [preferenceObjectController addServerWithAddress:@"irc.example.com" port:6667];
   [serversArrayController setContent:[preferenceObjectController serverArray]];
+  [serversArrayController setSelectedObjects:[NSArray arrayWithObject:controller]];
 }
 
 - (IBAction)deleteServerAction:(id)sender
