@@ -143,6 +143,7 @@ extern char **argv;
 - (void)newTabWithWindowRec:(WINDOW_REC *)wind;
 - (void)windowChanged:(WINDOW_REC *)wind withOldWind:(WINDOW_REC *)oldwind;
 - (void)refnumChanged:(WINDOW_REC *)wind old:(int)old;
+- (void)windowNameChanged:(WINDOW_REC*)wind;
 - (void)removeTabWithWindowRec:(WINDOW_REC *)wind;
 - (void)queryCreated:(QUERY_REC *)qr automatically:(int)automatic;
 - (void)inputTextFieldColorChanged:(NSNotification *)note;

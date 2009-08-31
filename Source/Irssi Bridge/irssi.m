@@ -144,7 +144,7 @@ static void textui_finish_init(void)
   signal_add("window changed automatic", (SIGNAL_FUNC) irssibridge_window_changed_automatic);
   signal_add("window server changed", (SIGNAL_FUNC) irssibridge_window_server_changed);
   signal_add("window refnum changed", (SIGNAL_FUNC) irssibridge_window_refnum_changed);
-  //signal_add("window name changed", (SIGNAL_FUNC) irssibridge_window_name_changed);
+  signal_add("window name changed", (SIGNAL_FUNC) irssibridge_window_name_changed);
   //signal_add("window history changed", (SIGNAL_FUNC) irssibridge_window_history_changed);
   //signal_add("window level changed", (SIGNAL_FUNC) irssibridge_window_level_changed);
 
@@ -235,7 +235,7 @@ void textui_deinit(void)
   signal_remove("window changed automatic", (SIGNAL_FUNC) irssibridge_window_changed_automatic);
   signal_remove("window server changed", (SIGNAL_FUNC) irssibridge_window_server_changed);
   signal_remove("window refnum changed", (SIGNAL_FUNC) irssibridge_window_refnum_changed);
-  //signal_add("window name changed", (SIGNAL_FUNC) irssibridge_window_name_changed);
+  signal_remove("window name changed", (SIGNAL_FUNC) irssibridge_window_name_changed);
   //signal_add("window history changed", (SIGNAL_FUNC) irssibridge_window_history_changed);
   //signal_add("window level changed", (SIGNAL_FUNC) irssibridge_window_level_changed);
 
