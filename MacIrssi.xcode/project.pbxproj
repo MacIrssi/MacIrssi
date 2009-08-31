@@ -18,16 +18,16 @@
 			name = "Build MILibs";
 			productName = "Build MILibs";
 		};
-		C9EC9F1E0E363AE000445345 /* Packages */ = {
+		C9EC9F1E0E363AE000445345 /* Packages (Snow Leopard) */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */;
+			buildConfigurationList = C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages (Snow Leopard)" */;
 			buildPhases = (
 				C9EC9F250E363AEB00445345 /* ShellScript */,
 			);
 			dependencies = (
 				C9EC9F230E363AE500445345 /* PBXTargetDependency */,
 			);
-			name = Packages;
+			name = "Packages (Snow Leopard)";
 			productName = Packages;
 		};
 /* End PBXAggregateTarget section */
@@ -4155,10 +4155,10 @@
 				8D1107260486CEB800E47090 /* MacIrssi (Snow Leopard) */,
 				C98F778D0E36500900CF2AAF /* Irssi Configure (Snow Leopard) */,
 				B32A9E9005F0F99C00DB2595 /* Irssi Build (Snow Leopard) */,
+				C9EC9F1E0E363AE000445345 /* Packages (Snow Leopard) */,
 				C98E5CC0104BE5460004C8F0 /* MacIrssi (Leopard+Tiger) */,
 				C98E5F00104BE72E0004C8F0 /* Irssi Configure (Leopard) */,
 				C98E5F05104BE72E0004C8F0 /* Irssi Build (Leopard) */,
-				C9EC9F1E0E363AE000445345 /* Packages */,
 				C91793250F743FCE005241A4 /* Build MILibs */,
 			);
 		};
@@ -4573,7 +4573,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "VERSION=`pl < $PRODUCT_SETTINGS_PATH | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\\s+=\\s+\"(.*?)\"/); }'`\nDATE=`date \"+%d%m%y-%H%M\"`\n\nDMG_NAME=\"$PROJECT-$VERSION-$CONFIGURATION-$DATE.dmg\"\nAPP_NAME=\"MacIrssi.app\"\n\nfunction git_clean() {\n  git-status | fgrep 'working directory clean' 2>&1 > /dev/null\n  if [ $? -eq 1 ]; then\n    git-status | fgrep 'but untracked files present' 2>&1 > /dev/null\n  fi\n}\n\ngit_clean\nif [[ $? != 0 ]]; then\n\techo \"error: git repository is not clean\"\n\texit 1\nfi\n\nCOMPILED_GIT_VERSION=`pl < $BUILT_PRODUCTS_DIR/$APP_NAME/Contents/Info.plist | perl -ne 'while (<STDIN>) { print $1 if /NSGitRevision\\s+=\\s+(.*?);/ }'`\nREAL_GIT_VERSION=`git-show-ref --hash --abbrev HEAD`\n\nif [ \"x$COMPILED_GIT_VERSION\" != \"x$REAL_GIT_VERSION\" ]; then\n\techo \"error: binary was built with revision $COMPILED_GIT_VERSION but repository is at $REAL_GIT_VERSION\"\n\texit 1\nfi\n\nmkdir \"$TEMP_DIR/dmg\"\ncd \"$TEMP_DIR/dmg\"\necho \"Making DMG build dir ($DMG_NAME)...\"\nrm -rf \"$PROJECT\"\nmkdir \"$PROJECT\"\necho \"Copying Product...\"\ncp -rf \"$TARGET_BUILD_DIR/$APP_NAME\" \"$PROJECT/$APP_NAME\"\necho \"Creating DMG...\"\nhdiutil create -quiet -ov -srcfolder \"$PROJECT\" \"$DMG_NAME\"\necho \"Removing old dmgs from products dir...\"\nrm -f \"$BUILT_PRODUCTS_DIR\"/*.dmg\necho \"Moving to products dir...\"\nmv -f \"$DMG_NAME\" \"$BUILT_PRODUCTS_DIR\"";
+			shellScript = "VERSION=`pl < $PRODUCT_SETTINGS_PATH | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\\s+=\\s+\"(.*?)\"/); }'`\nDATE=`date \"+%d%m%y-%H%M\"`\n\nDMG_NAME=\"$PROJECT-$VERSION-$CONFIGURATION-$DATE.dmg\"\nAPP_NAME=\"MacIrssi.app\"\n\nfunction git_clean() {\n  git- tatus | fgrep 'working directory clean' 2>&1 > /dev/null\n  if [ $? -eq 1 ]; then\n    git status | fgrep 'but untracked files present' 2>&1 > /dev/null\n  fi\n}\n\ngit_clean\nif [[ $? != 0 ]]; then\n\techo \"error: git repository is not clean\"\n\texit 1\nfi\n\nCOMPILED_GIT_VERSION=`pl < $BUILT_PRODUCTS_DIR/$APP_NAME/Contents/Info.plist | perl -ne 'while (<STDIN>) { print $1 if /NSGitRevision\\s+=\\s+(.*?);/ }'`\nREAL_GIT_VERSION=`git-show-ref --hash --abbrev HEAD`\n\nif [ \"x$COMPILED_GIT_VERSION\" != \"x$REAL_GIT_VERSION\" ]; then\n\techo \"error: binary was built with revision $COMPILED_GIT_VERSION but repository is at $REAL_GIT_VERSION\"\n\texit 1\nfi\n\nmkdir \"$TEMP_DIR/dmg\"\ncd \"$TEMP_DIR/dmg\"\necho \"Making DMG build dir ($DMG_NAME)...\"\nrm -rf \"$PROJECT\"\nmkdir \"$PROJECT\"\necho \"Copying Product...\"\ncp -Rf \"$TARGET_BUILD_DIR/$APP_NAME\" \"$PROJECT/$APP_NAME\"\necho \"Creating DMG...\"\nhdiutil create -quiet -ov -srcfolder \"$PROJECT\" \"$DMG_NAME\"\necho \"Removing old dmgs from products dir...\"\nrm -f \"$BUILT_PRODUCTS_DIR\"/*.dmg\necho \"Moving to products dir...\"\nmv -f \"$DMG_NAME\" \"$BUILT_PRODUCTS_DIR\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -5776,7 +5776,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */ = {
+		C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages (Snow Leopard)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9EC9F1F0E363AE000445345 /* Development */,
