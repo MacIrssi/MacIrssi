@@ -71,7 +71,8 @@
     [cell removeFromSuperview];
     [channelBarCells removeObject:cell];
     
-    [channelBarCells insertObject:cell atIndex:toRefNum-1];
+    int index = ((toRefNum-1) < [channelBarCells count]) ? toRefNum - 1 : [channelBarCells count] - 1;
+    [channelBarCells insertObject:cell atIndex:index];
     [self addSubview:cell];
     
     [cell release];
