@@ -227,105 +227,115 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //
 // "sender" - The context menu item
 //-------------------------------------------------------------------
+#define EMITMULTI(command)  signal_emit("send command", 3, [[NSString stringWithFormat:command, [coalesedNicks componentsJoinedByString:@" "]] cStringUsingEncoding:NSUTF8StringEncoding], windowRec->active_server, windowRec->active)
+#define EMITSINGLE(command) { \
+  NSEnumerator *nicksEnum = [coalesedNicks objectEnumerator]; \
+  while (nick = [nicksEnum nextObject]) \
+  { \
+    signal_emit("send command", 3, [[NSString stringWithFormat:command, nick] cStringUsingEncoding:NSUTF8StringEncoding], windowRec->active_server, windowRec->active); \
+  } \
+}
+
 - (IBAction)nickViewMenuClicked:(id)sender
 {
   NSIndexSet *indexSet = [nickTableView selectedRowIndexes];
   unsigned int row = [indexSet firstIndex];
   
-  while (row != NSNotFound) {
-    
-    NSString *nick = [NSString stringWithCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick];
-    NSString *command;
-    NSString *host;
-    
-    switch ([sender tag]) {
-      case Query:
-        command = [NSString stringWithFormat:@"/query %@", nick];
-        break;
-      case Whois:
-        command = [NSString stringWithFormat:@"/whois %@", nick];
-        break;
-      case Who:
-        command = [NSString stringWithFormat:@"/who %@", nick];
-        break;
-        /* Control */
-      case Ignore:
-        /* todo */
-        return;
-      case Op:
-        command = [NSString stringWithFormat:@"/op %@", nick];
-        break;
-      case Deop:
-        command = [NSString stringWithFormat:@"/deop %@", nick];
-        break;
-      case Voice:
-        command = [NSString stringWithFormat:@"/voice %@", nick];
-        break;
-      case Devoice:
-        command = [NSString stringWithFormat:@"/devoice %@", nick];
-        break;
-      case Kick:
-        commandWithReason = [[NSMutableString alloc] initWithFormat:@"/kick %@ ", nick];
-        [NSApp beginSheet:reasonWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
-        return;
-      case Ban:
-        command = [NSString stringWithFormat:@"/ban %@", nick];
-        break;
-      case KickBan:
-        commandWithReason = [[NSMutableString alloc] initWithFormat:@"/kickban %@ ", nick];
-        [NSApp beginSheet:reasonWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
-        return;
-        /* CTCP */
-      case Ping:
-        command = [NSString stringWithFormat:@"/ctcp %@ ping", nick];
-        break;
-      case Finger:
-        command = [NSString stringWithFormat:@"/ctcp %@ finger", nick];
-        break;
-      case Version:
-        command = [NSString stringWithFormat:@"/ctcp %@ version", nick];
-        break;
-      case Time:
-        command = [NSString stringWithFormat:@"/ctcp %@ time", nick];
-        break;
-      case Userinfo:
-        command = [NSString stringWithFormat:@"/ctcp %@ userinfo", nick];
-        break;
-      case Clientinfo:
-        command = [NSString stringWithFormat:@"/ctcp %@ clientinfo", nick];
-        break;
-        /* DCC */
-      case Send:
-        /* todo */
-        return;
-      case Chat:
-        /* todo */
-        return;
-      case List:
-        command = [NSString stringWithFormat:@"/msg %@ xdcc list", nick];
-        break;
-      case CopyIP:
-        host = [IrssiBridge stringWithIrssiCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->host];
-        NSArray *tmp = [host componentsSeparatedByString:@"@"];
-        
-        if ([tmp count] < 2)
-          command = [NSString stringWithFormat:@"/echo Error: Couldn't copy IP address!"];
-        else {
-          [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
-          [[NSPasteboard generalPasteboard] setString:[tmp lastObject] forType:NSStringPboardType];
-          return;
-        }
-          break;
-      default:
-        NSLog(@"Error: Unknown menu item.");
-        return;
-    }
+  NSMutableArray *coalesedNicks = [NSMutableArray array];
   
-    //printf("Menu: %s\n", [command lossyCString]);
-    signal_emit("send command", 3, [command cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
+  // some commands can be coalesed, so get all the nicks first
+  while (row != NSNotFound)
+  {
+    [coalesedNicks addObject:[NSString stringWithCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick]];
     row = [indexSet indexGreaterThanIndex:row];
   }
   
+  NSString *nick;
+  NSString *command;
+  NSString *host;
+    
+  switch ([sender tag]) {
+    case Query:
+      EMITSINGLE(@"/query %@");
+      break;
+    case Whois:
+      EMITSINGLE(@"/whois %@");
+      break;
+    case Who:
+      EMITSINGLE(@"/who %@");
+      break;
+    /* Control */
+    case Ignore:
+      /* todo */
+      return;
+    case Op:
+      EMITMULTI(@"/op %@");
+      break;
+    case Deop:
+      EMITMULTI(@"/deop %@");
+      break;
+    case Voice:
+      EMITMULTI(@"/voice %@");
+      break;
+    case Devoice:
+      EMITMULTI(@"/devoice %@");
+      break;
+    case Kick:
+      commandWithReason = [[NSMutableString alloc] initWithFormat:@"/kick %@ ", [coalesedNicks objectAtIndex:0]];
+      [NSApp beginSheet:reasonWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
+      return;
+    case Ban:
+      EMITMULTI(@"/ban %@");
+      break;
+    case KickBan:
+      commandWithReason = [[NSMutableString alloc] initWithFormat:@"/kickban %@ ", [coalesedNicks objectAtIndex:0]];
+      [NSApp beginSheet:reasonWindow modalForWindow:[wholeView window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
+      return;
+    /* CTCP */
+    case Ping:
+      EMITSINGLE(@"/ctcp %@ ping");
+      break;
+    case Finger:
+      EMITSINGLE(@"/ctcp %@ finger");
+      break;
+    case Version:
+      EMITSINGLE(@"/ctcp %@ version");
+      break;
+    case Time:
+      EMITSINGLE(@"/ctcp %@ time");
+      break;
+    case Userinfo:
+      EMITSINGLE(@"/ctcp %@ userinfo");
+      break;
+    case Clientinfo:
+      EMITSINGLE(@"/ctcp %@ clientinfo");
+      break;
+      /* DCC */
+    case Send:
+      /* todo */
+      return;
+    case Chat:
+      /* todo */
+      return;
+    case List:
+      command = [NSString stringWithFormat:@"/msg %@ xdcc list", nick];
+      break;
+    case CopyIP:
+      host = [IrssiBridge stringWithIrssiCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->host];
+      NSArray *tmp = [host componentsSeparatedByString:@"@"];
+      
+      if ([tmp count] < 2)
+        command = [NSString stringWithFormat:@"/echo Error: Couldn't copy IP address!"];
+      else {
+        [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
+        [[NSPasteboard generalPasteboard] setString:[tmp lastObject] forType:NSStringPboardType];
+        return;
+      }
+        break;
+    default:
+      NSLog(@"Error: Unknown menu item.");
+      return;
+  }
 }
 
 //-------------------------------------------------------------------
