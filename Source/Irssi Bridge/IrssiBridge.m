@@ -183,19 +183,16 @@ void irssibridge_away_mode_changed(SERVER_REC *server)
 
 void irssibridge_server_disconnected(SERVER_REC *server)
 {
-	NSLog(@"Server disconnected");
   [[NSNotificationCenter defaultCenter] postNotificationName:@"irssiServerChangedNotification" object:nil];
 }
 
 void irssibridge_server_connected(SERVER_REC *server)
 {
-	NSLog(@"Server connected");
   [[NSNotificationCenter defaultCenter] postNotificationName:@"irssiServerChangedNotification" object:nil];
 }
 
 void irssibridge_event_connected(void)
 {
-  NSLog(@"Event connected");
   [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_SERVER_CONNECTED" object:nil];
 }
 
@@ -219,8 +216,6 @@ void irssibridge_channel_wholist(CHANNEL_REC *channel)
 
 void irssibridge_channel_destroyed(CHANNEL_REC *channel)
 {
-	NSLog(@"destroyed channel %p",[NSThread currentThread]);
-  
 	WINDOW_REC *wind = window_item_window((WI_ITEM_REC *) channel);
 	
 	if (wind) {
@@ -258,12 +253,10 @@ void irssibridge_window_refnum_changed(WINDOW_REC *wind, int old) {
 	[appController refnumChanged:wind old:old];
 }
 
-void irssibridge_window_destroyed(WINDOW_REC *wind) {
-	NSLog(@"destroyed window %p",[NSThread currentThread]);
-  
+void irssibridge_window_destroyed(WINDOW_REC *wind) 
+{
 	[(ChannelController *)(wind->gui_data) clearNickView];
   [appController removeTabWithWindowRec:wind];
-  
 }
 
 void irssibridge_window_item_new(WINDOW_REC *wind, WI_ITEM_REC *wir) {
@@ -295,11 +288,13 @@ void irssibridge_window_server_changed(WINDOW_REC *wind, SERVER_REC *serv) {
 	[appController setServer:[NSString stringWithCString:serv->tag]];
 }
 
-void irssibridge_window_level_changed(WINDOW_REC *wind) {
-	printf("irssibridge_window_level_changed\n");
+void irssibridge_window_level_changed(WINDOW_REC *wind) 
+{
+
 }
 
-void irssibridge_window_activity(WINDOW_REC *wind, int old_level) {
+void irssibridge_window_activity(WINDOW_REC *wind, int old_level) 
+{
 	[appController windowActivity:wind oldLevel:old_level];
 }
 
@@ -314,7 +309,6 @@ void irssibridge_gui_exit(void) {
 
 void irssibridge_nicklist_new(CHANNEL_REC *channel, NICK_REC *nick)
 {
-	NSLog(@"irssibridge_nicklist_new: %s", nick->nick);
 	WINDOW_REC *wind;
 	/* Only use after initial names list is recieved */
 	if (!channel->names_got)
@@ -325,8 +319,6 @@ void irssibridge_nicklist_new(CHANNEL_REC *channel, NICK_REC *nick)
 
 void irssibridge_nicklist_remove(CHANNEL_REC *channel, NICK_REC *nick)
 {
-	NSLog(@"irssibridge_nicklist_remove: %s", nick->nick);
-  
 	WINDOW_REC *wind;
 	if (channel->destroying)
 		return;
@@ -336,8 +328,6 @@ void irssibridge_nicklist_remove(CHANNEL_REC *channel, NICK_REC *nick)
 
 void irssibridge_nicklist_changed(CHANNEL_REC *channel, NICK_REC *nick, char *old_nick)
 {
-	NSLog(@"irssibridge_nicklist_changed");
-  
 	WINDOW_REC *wind;
 	wind = window_item_window((WI_ITEM_REC *) channel);
 	[(ChannelController *)(wind->gui_data) changeNickForNickRec:nick fromNick:old_nick];
@@ -348,9 +338,6 @@ void irssibridge_nicklist_host_changed(CHANNEL_REC *channel, NICK_REC *nick)
 	/* Only use after initial names list is recieved */
 	if (!channel->wholist)
 		return;
-	
-	printf("[nicklist host changed] nick:%s\n", nick->nick);
-  
 }
 
 void irssibridge_nicklist_gone_changed(CHANNEL_REC *channel, NICK_REC *nick)
@@ -358,9 +345,6 @@ void irssibridge_nicklist_gone_changed(CHANNEL_REC *channel, NICK_REC *nick)
 	/* Only use after initial names list is recieved */
 	if (!channel->wholist)
 		return;
-	
-	printf("[nicklist gone changed] nick:%s\n", nick->nick);
-  
 }
 
 void irssibridge_nicklist_serverop_changed(CHANNEL_REC *channel, NICK_REC *nick)
@@ -374,8 +358,6 @@ void irssibridge_nicklist_serverop_changed(CHANNEL_REC *channel, NICK_REC *nick)
 
 void irssibridge_message_join(SERVER_REC *server, const char *channel, const char *nick, const char *address)
 {
-	NSLog(@"[Join event] channel:%s nick:%s\n", channel, nick);
-  
   if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] ||
       ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] boolValue])
   {
@@ -388,8 +370,6 @@ void irssibridge_message_join(SERVER_REC *server, const char *channel, const cha
 
 void irssibridge_message_part(SERVER_REC *server, const char *channel, const char *nick, const char *address, const char *reason)
 {
-	NSLog(@"[Part event] channel:%s nick:%s\n", channel, nick);
-  
   if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] ||
       ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] boolValue])
   {
@@ -402,13 +382,11 @@ void irssibridge_message_part(SERVER_REC *server, const char *channel, const cha
 
 void irssibridge_message_quit(SERVER_REC *server, const char *nick, const char *address, const char *reason)
 {
-	NSLog(@"[Quit event] nick:%s\n", nick);
+
 }
 
 void irssibridge_message_kick(SERVER_REC *server, const char *channel, const char *nick, const char *kicker, const char *address, const char *reason)
 {
-	NSLog(@"[Kick event] channel:%s nick:%s\n", channel, nick);
-  
   if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] ||
       ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel)] boolValue])
   {
@@ -421,16 +399,12 @@ void irssibridge_message_kick(SERVER_REC *server, const char *channel, const cha
 
 void irssibridge_message_notice(SERVER_REC *server, const char *msg, const char *nick, const char *address, const char *target)
 {
-  NSLog(@"[Notice event] nick: %s target: %s msg: %s", nick, target, msg);
-  
   NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%s", msg], @"Description", [NSString stringWithFormat:@"Notice message from %s.", nick], @"Title", nil];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_NOTICE" object:nil userInfo:info];
 }
 
 void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char *address)
 {
-  NSLog(@"[Private event] nick: %s msg: %s", nick, msg);
-  
   QUERY_REC *rec = query_find(server, nick);
   
   // existing PM
@@ -454,7 +428,6 @@ void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char
 
 void irssibridge_message_channel(SERVER_REC *server, char *msg, char *nick, char *address, char *target)
 {
-  NSLog(@"[Public event] nick: %s target: %s address: %s msg: %s", nick, target, address, msg);
   // find the channel
   CHANNEL_REC *channel = channel_find(server, target);
   if (!channel)
