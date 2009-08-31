@@ -39,7 +39,9 @@
 		return;
 
 	if (![indexSet containsIndex:row])
-		[self selectRow:row byExtendingSelection:FALSE];
+  {
+    [self selectRowIndexes:[NSIndexSet indexSetWithIndex:row] byExtendingSelection:FALSE];
+  }
 	
 	/* Continue with right-click to bring up context-menu */
 	[super rightMouseDown:theEvent];

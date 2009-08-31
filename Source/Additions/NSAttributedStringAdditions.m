@@ -74,15 +74,18 @@ static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 
   /* Handle flags */ //TODO
   if (flags & GUI_PRINT_FLAG_REVERSE) 
   {
-    
+    NSLog(@"GUI_PRINT_FLAG_REVERSE");
   }
   if (flags & GUI_PRINT_FLAG_BOLD) 
   {
-    
+    // convert the font into bold
+    NSFont *font = [mutableAttributes objectForKey:NSFontAttributeName];
+    NSFont *newFont = [[NSFontManager sharedFontManager] convertFont:font toHaveTrait:NSBoldFontMask];
+    [mutableAttributes setObject:newFont forKey:NSFontAttributeName];
   }
   if (flags & GUI_PRINT_FLAG_UNDERLINE) 
   {
-    
+    [mutableAttributes setObject:[NSNumber numberWithInt:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
   }
   if (flags & GUI_PRINT_FLAG_BLINK) 
   {

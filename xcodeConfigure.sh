@@ -15,7 +15,7 @@ fi
 VERSION=`pl < ../Info.plist | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\s+=\s+"(.*?)"/); }'`
 
 if [[ ( -e config.xcode ) && ( -e Makefile ) && "$CONFIGURATION" != "" ]]; then
-  if grep -q "$CONFIGURATION" config.xcode; then
+  if grep -q "$CONFIGURATION-$TARGET_NAME" config.xcode; then
 		exit 0
   fi 
 fi
@@ -35,7 +35,7 @@ CONF_EXIT=$?
 if [ "$CONF_EXIT" -eq "0" ]; then
   echo "warning: successful ./configure executed, cleaning irssi build tree."
   make clean
-  echo $CONFIGURATION > config.xcode
+  echo "$CONFIGURATION-$TARGET_NAME" > config.xcode
 fi
 exit $CONF_EXIT
 
