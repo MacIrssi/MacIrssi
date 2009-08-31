@@ -62,17 +62,18 @@ static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 
   {
     [mutableAttributes setObject:[[ColorSet mircColours] objectAtIndex:fg] forKey:NSForegroundColorAttributeName];
   }
-  
-#if 0
-  //TODO
+
   if (bg < 0 || bg > 15)
-    [attributes removeObjectForKey:NSBackgroundColorAttributeName];
+  {
+    [mutableAttributes removeObjectForKey:NSBackgroundColorAttributeName];
+  }
   else
-    [attributes setObject:[bg_colors objectAtIndex:bg] forKey:NSBackgroundColorAttributeName];
-#endif
-  
+  {
+    [mutableAttributes setObject:[[ColorSet mircColours] objectAtIndex:bg] forKey:NSBackgroundColorAttributeName];
+  }
+
   /* Handle flags */ //TODO
-  if (flags & GUI_PRINT_FLAG_REVERSE) 
+  if (flags & GUI_PRINT_FLAG_REVERSE)
   {
     NSLog(@"GUI_PRINT_FLAG_REVERSE");
   }
@@ -93,7 +94,6 @@ static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 
   } 
   if (flags & GUI_PRINT_FLAG_NEWLINE) 
   {
-    NSLog(@"GUI_PRINT_FLAG_NEWLINE for text \'%@\'", text);
     [buffer appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
   }
   if (flags & GUI_PRINT_FLAG_INDENT) 
