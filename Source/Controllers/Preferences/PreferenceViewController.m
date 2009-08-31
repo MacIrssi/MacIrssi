@@ -80,6 +80,13 @@
     // We need to setup the shortcut recorder properly
     [shortcutRecorderControl setDelegate:self];
     
+    // defaults for appearances
+    [themePreviewTextView setContinuousSpellCheckingEnabled:NO];
+    [mainWindowFontField setShowFontFace:YES];
+    [mainWindowFontField setShowPointSize:YES];
+    [nickListFontField setShowFontFace:YES];
+    [nickListFontField setShowPointSize:YES];
+    
     colorSet = colors;
     availableThemes = [[NSMutableArray alloc] init];
     appController = controller;
@@ -637,33 +644,13 @@
 - (void)updateMainWindowFontLabel
 {
   NSFont *mainWindowFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
-
-  NSMutableParagraphStyle *paraStyle = [[[NSMutableParagraphStyle alloc] init] autorelease];
-  [paraStyle setMinimumLineHeight:15.0];
-
-  float displaySize = [mainWindowFont pointSize] < 12.0 ? [mainWindowFont pointSize] : [NSFont smallSystemFontSize];
-  NSFont *displayFont = [NSFont fontWithName:[mainWindowFont displayName] size:displaySize];
-  
-  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:displayFont, NSFontAttributeName, paraStyle, NSParagraphStyleAttributeName, nil];
-  NSAttributedString *str = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@, %.1f pt.", [mainWindowFont displayName], [mainWindowFont pointSize]] attributes:dict] autorelease];
-  
-  [mainWindowFontField setAttributedStringValue:str];
+  [mainWindowFontField setFont:mainWindowFont];
 }
 
 - (void)updateNickFontLabel
 {
   NSFont *nickListFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"nickListFont"]];
-  
-  NSMutableParagraphStyle *paraStyle = [[[NSMutableParagraphStyle alloc] init] autorelease];
-  [paraStyle setMinimumLineHeight:15.0];
-  
-  float displaySize = [nickListFont pointSize] < 12.0 ? [nickListFont pointSize] : [NSFont smallSystemFontSize];
-  NSFont *displayFont = [NSFont fontWithName:[nickListFont displayName] size:displaySize];
-  
-  NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:displayFont, NSFontAttributeName, paraStyle, NSParagraphStyleAttributeName, nil];
-  NSAttributedString *str = [[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@, %.1f pt.", [nickListFont displayName], [nickListFont pointSize]] attributes:dict] autorelease];
-  
-  [nickListFontField setAttributedStringValue:str];
+  [nickListFontField setFont:nickListFont];
 }
 
 - (IBAction)changeMainWindowFont:(id)sender
@@ -690,31 +677,19 @@
   [[sharedFontManager fontPanel:YES] orderFrontRegardless];
 }
 
-- (void)newMainWindowFontFromFontManager:(id)sender
+- (void)fontPreviewField:(JVFontPreviewField *)field didChangeToFont:(NSFont *)font
 {
-  NSFontManager *fontManager = sender;
-  NSFont *currentFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
-  NSFont *newFont = [fontManager convertFont:currentFont];
-  
-  [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:newFont] forKey:@"channelFont"];
-  
-  // Certain things need to happen when we get this message
-  [self updateMainWindowFontLabel];
-  [self previewTheme:self];
-  [appController changeMainWindowFont:newFont];
-}
-
-- (void)newNicklistFontFromFontManager:(id)sender
-{
-  NSFontManager *fontManager = sender;
-  NSFont *currentFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"nickListFont"]];
-  NSFont *newFont = [fontManager convertFont:currentFont];
-  
-  [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:newFont] forKey:@"nickListFont"];
-  
-  // Certain things need to happen when we get this message
-  [self updateNickFontLabel];
-  [appController changeNicklistFont:newFont];
+  if ([field isEqualTo:mainWindowFontField])
+  {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:font] forKey:@"channelFont"];
+    [self previewTheme:self];
+    [appController changeMainWindowFont:font];
+  }
+  else if ([field isEqualTo:nickListFontField])
+  {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:font] forKey:@"nickListFont"];
+    [appController changeNicklistFont:font];
+  }
 }
 
 - (void)findAvailableThemes

@@ -555,6 +555,550 @@
 		C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C97A36D00E5DCB0F007D1191 /* General.tiff */; };
 		C97A37220E5DCFED007D1191 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
 		C98777080F74F67300591183 /* MacIrssi.pub in Resources */ = {isa = PBXBuildFile; fileRef = C98777070F74F67300591183 /* MacIrssi.pub */; };
+		C98E5CC6104BE5460004C8F0 /* MacIrssi_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */; };
+		C98E5CC7104BE5460004C8F0 /* irssi.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DD9505EF9A7100E640C2 /* irssi.h */; };
+		C98E5CC8104BE5460004C8F0 /* printd.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DD9705EF9A7100E640C2 /* printd.h */; };
+		C98E5CC9104BE5460004C8F0 /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DD9F05EF9AB300E640C2 /* AppController.h */; };
+		C98E5CCA104BE5460004C8F0 /* ChannelController.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DDA205EF9AB300E640C2 /* ChannelController.h */; };
+		C98E5CCB104BE5460004C8F0 /* PreferenceViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DDA705EF9AB300E640C2 /* PreferenceViewController.h */; };
+		C98E5CCC104BE5460004C8F0 /* ColorSet.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DDB505EF9AE600E640C2 /* ColorSet.h */; };
+		C98E5CCD104BE5460004C8F0 /* CustomTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DDB705EF9AE600E640C2 /* CustomTableView.h */; };
+		C98E5CCE104BE5460004C8F0 /* CustomWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DDB905EF9AE600E640C2 /* CustomWindow.h */; };
+		C98E5CCF104BE5460004C8F0 /* IrssiBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = B3D0B8A405F637DB0067FD52 /* IrssiBridge.h */; };
+		C98E5CD0104BE5460004C8F0 /* NSAttributedStringAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */; };
+		C98E5CD1104BE5460004C8F0 /* CustomTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C25491760681A35900C43D63 /* CustomTextView.h */; };
+		C98E5CD2104BE5460004C8F0 /* ChannelBar.h in Headers */ = {isa = PBXBuildFile; fileRef = C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */; };
+		C98E5CD3104BE5460004C8F0 /* ChannelBarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C200D025073FC03700B850B1 /* ChannelBarCell.h */; };
+		C98E5CD4104BE5460004C8F0 /* MarkedScroller.h in Headers */ = {isa = PBXBuildFile; fileRef = C2C2C0F7074B822700396F82 /* MarkedScroller.h */; };
+		C98E5CD5104BE5460004C8F0 /* TextEncodings.h in Headers */ = {isa = PBXBuildFile; fileRef = C2A5697908D0D74100788905 /* TextEncodings.h */; };
+		C98E5CD6104BE5460004C8F0 /* EventController.h in Headers */ = {isa = PBXBuildFile; fileRef = C947E1DA0E1E871F0001380E /* EventController.h */; };
+		C98E5CD7104BE5460004C8F0 /* ConnectivityMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */; };
+		C98E5CD8104BE5460004C8F0 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265A0E5C654800E041F7 /* UKCrashReporter.h */; };
+		C98E5CD9104BE5460004C8F0 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265C0E5C654800E041F7 /* UKSystemInfo.h */; };
+		C98E5CDA104BE5460004C8F0 /* UKNibOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265E0E5C654800E041F7 /* UKNibOwner.h */; };
+		C98E5CDB104BE5460004C8F0 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
+		C98E5CDC104BE5460004C8F0 /* IrcnetBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBAB6E0EA0AF7600025466 /* IrcnetBridgeController.h */; };
+		C98E5CDD104BE5460004C8F0 /* ServerBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBACA90EA100D400025466 /* ServerBridgeController.h */; };
+		C98E5CDE104BE5460004C8F0 /* ChannelBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9432C230EA1673E005237E3 /* ChannelBridgeController.h */; };
+		C98E5CDF104BE5460004C8F0 /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
+		C98E5CE0104BE5460004C8F0 /* MISplitView.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F0B150F06E3C900763699 /* MISplitView.h */; };
+		C98E5CE1104BE5460004C8F0 /* CTGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F15160F110A8600763699 /* CTGradient.h */; };
+		C98E5CE2104BE5460004C8F0 /* SRCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F15180F110A8600763699 /* SRCommon.h */; };
+		C98E5CE3104BE5460004C8F0 /* SRKeyCodeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F151A0F110A8600763699 /* SRKeyCodeTransformer.h */; };
+		C98E5CE4104BE5460004C8F0 /* SRRecorderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F151C0F110A8600763699 /* SRRecorderCell.h */; };
+		C98E5CE5104BE5460004C8F0 /* SRRecorderControl.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F151E0F110A8600763699 /* SRRecorderControl.h */; };
+		C98E5CE6104BE5460004C8F0 /* SRValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F15200F110A8600763699 /* SRValidator.h */; };
+		C98E5CE7104BE5460004C8F0 /* ShortcutBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F16890F12937B00763699 /* ShortcutBridgeController.h */; };
+		C98E5CE8104BE5460004C8F0 /* ASDefaultAEMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19120F1400D500763699 /* ASDefaultAEMConstants.h */; };
+		C98E5CE9104BE5460004C8F0 /* ASDefaultApplicationGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19130F1400D500763699 /* ASDefaultApplicationGlue.h */; };
+		C98E5CEA104BE5460004C8F0 /* ASDefaultCommandGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19150F1400D500763699 /* ASDefaultCommandGlue.h */; };
+		C98E5CEB104BE5460004C8F0 /* ASDefaultConstantGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19170F1400D500763699 /* ASDefaultConstantGlue.h */; };
+		C98E5CEC104BE5460004C8F0 /* ASDefaultGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19190F1400D500763699 /* ASDefaultGlue.h */; };
+		C98E5CED104BE5460004C8F0 /* ASDefaultReferenceGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F191A0F1400D500763699 /* ASDefaultReferenceGlue.h */; };
+		C98E5CEE104BE5460004C8F0 /* ASDefaultReferenceRendererGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F191C0F1400D500763699 /* ASDefaultReferenceRendererGlue.h */; };
+		C98E5CEF104BE5460004C8F0 /* ITAEMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F191E0F1400D500763699 /* ITAEMConstants.h */; };
+		C98E5CF0104BE5460004C8F0 /* ITApplicationGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F191F0F1400D500763699 /* ITApplicationGlue.h */; };
+		C98E5CF1104BE5460004C8F0 /* ITCommandGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19210F1400D500763699 /* ITCommandGlue.h */; };
+		C98E5CF2104BE5460004C8F0 /* ITConstantGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19230F1400D500763699 /* ITConstantGlue.h */; };
+		C98E5CF3104BE5460004C8F0 /* ITGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19250F1400D500763699 /* ITGlue.h */; };
+		C98E5CF4104BE5460004C8F0 /* ITReferenceGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19260F1400D500763699 /* ITReferenceGlue.h */; };
+		C98E5CF5104BE5460004C8F0 /* ITReferenceRendererGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19280F1400D500763699 /* ITReferenceRendererGlue.h */; };
+		C98E5CF6104BE5460004C8F0 /* iTunes.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F194C0F14025D00763699 /* iTunes.h */; };
+		C98E5CF7104BE5460004C8F0 /* AIMenuAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */; };
+		C98E5CF8104BE5460004C8F0 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */; };
+		C98E5CFA104BE5460004C8F0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		C98E5CFB104BE5460004C8F0 /* MacIrssi.icns in Resources */ = {isa = PBXBuildFile; fileRef = C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */; };
+		C98E5CFC104BE5460004C8F0 /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = C922B4300E23BD34000AA7BE /* sound.png */; };
+		C98E5CFD104BE5460004C8F0 /* activityNewImportant.png in Resources */ = {isa = PBXBuildFile; fileRef = C9553A9E0E24C17200626859 /* activityNewImportant.png */; };
+		C98E5CFE104BE5460004C8F0 /* MacIrssi-Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = C9550D140E29A97400658372 /* MacIrssi-Alert.png */; };
+		C98E5CFF104BE5460004C8F0 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
+		C98E5D00104BE5460004C8F0 /* UKCrashReporter.nib in Resources */ = {isa = PBXBuildFile; fileRef = C91026600E5C654800E041F7 /* UKCrashReporter.nib */; };
+		C98E5D01104BE5460004C8F0 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C97A36D00E5DCB0F007D1191 /* General.tiff */; };
+		C98E5D02104BE5460004C8F0 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
+		C98E5D03104BE5460004C8F0 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
+		C98E5D04104BE5460004C8F0 /* Networks.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAB100EA0A7D200025466 /* Networks.png */; };
+		C98E5D05104BE5460004C8F0 /* deleteWidgetPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAC110EA0BCE000025466 /* deleteWidgetPressed.png */; };
+		C98E5D06104BE5460004C8F0 /* deleteWidget.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAC120EA0BCE000025466 /* deleteWidget.png */; };
+		C98E5D07104BE5460004C8F0 /* addSquareWidgetPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAC150EA0BCEC00025466 /* addSquareWidgetPressed.png */; };
+		C98E5D08104BE5460004C8F0 /* addSquareWidget.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAC160EA0BCEC00025466 /* addSquareWidget.png */; };
+		C98E5D09104BE5460004C8F0 /* Servers.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBACE40EA1055F00025466 /* Servers.png */; };
+		C98E5D0A104BE5460004C8F0 /* addWidgetSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C9432BFA0EA16540005237E3 /* addWidgetSelected.png */; };
+		C98E5D0B104BE5460004C8F0 /* addWidget.png in Resources */ = {isa = PBXBuildFile; fileRef = C9432BFB0EA16540005237E3 /* addWidget.png */; };
+		C98E5D0C104BE5460004C8F0 /* removeWidgetSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = C9432BFC0EA16540005237E3 /* removeWidgetSelected.png */; };
+		C98E5D0D104BE5460004C8F0 /* removeWidget.png in Resources */ = {isa = PBXBuildFile; fileRef = C9432BFD0EA16540005237E3 /* removeWidget.png */; };
+		C98E5D0E104BE5460004C8F0 /* Themes.png in Resources */ = {isa = PBXBuildFile; fileRef = C91F131D0F0A63F300763699 /* Themes.png */; };
+		C98E5D0F104BE5460004C8F0 /* Keyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = C91F13D30F0BE95F00763699 /* Keyboard.png */; };
+		C98E5D10104BE5460004C8F0 /* ShortcutRecorder.strings in Resources */ = {isa = PBXBuildFile; fileRef = C91F15300F110AFC00763699 /* ShortcutRecorder.strings */; };
+		C98E5D11104BE5460004C8F0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C911226C0F2B235E006C4BD0 /* MainMenu.xib */; };
+		C98E5D12104BE5460004C8F0 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122860F2B2431006C4BD0 /* Preferences.xib */; };
+		C98E5D13104BE5460004C8F0 /* Tab new.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122880F2B2431006C4BD0 /* Tab new.xib */; };
+		C98E5D14104BE5460004C8F0 /* MacIrssi.pub in Resources */ = {isa = PBXBuildFile; fileRef = C98777070F74F67300591183 /* MacIrssi.pub */; };
+		C98E5D15104BE5460004C8F0 /* accept in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9D61049859E00BB1C61 /* accept */; };
+		C98E5D16104BE5460004C8F0 /* action in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9D71049859E00BB1C61 /* action */; };
+		C98E5D17104BE5460004C8F0 /* admin in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9D81049859E00BB1C61 /* admin */; };
+		C98E5D18104BE5460004C8F0 /* alias in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9D91049859E00BB1C61 /* alias */; };
+		C98E5D19104BE5460004C8F0 /* away in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DA1049859E00BB1C61 /* away */; };
+		C98E5D1A104BE5460004C8F0 /* ban in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DB1049859E00BB1C61 /* ban */; };
+		C98E5D1B104BE5460004C8F0 /* beep in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DC1049859E00BB1C61 /* beep */; };
+		C98E5D1C104BE5460004C8F0 /* bind in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DD1049859E00BB1C61 /* bind */; };
+		C98E5D1D104BE5460004C8F0 /* cat in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DE1049859E00BB1C61 /* cat */; };
+		C98E5D1E104BE5460004C8F0 /* cd in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DF1049859E00BB1C61 /* cd */; };
+		C98E5D1F104BE5460004C8F0 /* channel in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E01049859E00BB1C61 /* channel */; };
+		C98E5D20104BE5460004C8F0 /* clear in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E11049859E00BB1C61 /* clear */; };
+		C98E5D21104BE5460004C8F0 /* completion in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E21049859E00BB1C61 /* completion */; };
+		C98E5D22104BE5460004C8F0 /* connect in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E31049859E00BB1C61 /* connect */; };
+		C98E5D23104BE5460004C8F0 /* ctcp in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E41049859E00BB1C61 /* ctcp */; };
+		C98E5D24104BE5460004C8F0 /* cycle in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E51049859E00BB1C61 /* cycle */; };
+		C98E5D25104BE5460004C8F0 /* dcc in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E61049859E00BB1C61 /* dcc */; };
+		C98E5D26104BE5460004C8F0 /* dehilight in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E71049859E00BB1C61 /* dehilight */; };
+		C98E5D27104BE5460004C8F0 /* deop in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E81049859E00BB1C61 /* deop */; };
+		C98E5D28104BE5460004C8F0 /* devoice in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E91049859E00BB1C61 /* devoice */; };
+		C98E5D29104BE5460004C8F0 /* die in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EA1049859E00BB1C61 /* die */; };
+		C98E5D2A104BE5460004C8F0 /* disconnect in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EB1049859E00BB1C61 /* disconnect */; };
+		C98E5D2B104BE5460004C8F0 /* echo in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EC1049859E00BB1C61 /* echo */; };
+		C98E5D2C104BE5460004C8F0 /* eval in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9ED1049859E00BB1C61 /* eval */; };
+		C98E5D2D104BE5460004C8F0 /* exec in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EE1049859E00BB1C61 /* exec */; };
+		C98E5D2E104BE5460004C8F0 /* flushbuffer in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EF1049859E00BB1C61 /* flushbuffer */; };
+		C98E5D2F104BE5460004C8F0 /* format in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F01049859E00BB1C61 /* format */; };
+		C98E5D30104BE5460004C8F0 /* hash in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F11049859E00BB1C61 /* hash */; };
+		C98E5D31104BE5460004C8F0 /* help in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F21049859E00BB1C61 /* help */; };
+		C98E5D32104BE5460004C8F0 /* hilight in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F31049859E00BB1C61 /* hilight */; };
+		C98E5D33104BE5460004C8F0 /* ignore in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F41049859E00BB1C61 /* ignore */; };
+		C98E5D34104BE5460004C8F0 /* info in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA731049859F00BB1C61 /* info */; };
+		C98E5D35104BE5460004C8F0 /* invite in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA741049859F00BB1C61 /* invite */; };
+		C98E5D36104BE5460004C8F0 /* invitelist in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA751049859F00BB1C61 /* invitelist */; };
+		C98E5D37104BE5460004C8F0 /* ircnet in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA761049859F00BB1C61 /* ircnet */; };
+		C98E5D38104BE5460004C8F0 /* ison in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA771049859F00BB1C61 /* ison */; };
+		C98E5D39104BE5460004C8F0 /* join in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA781049859F00BB1C61 /* join */; };
+		C98E5D3A104BE5460004C8F0 /* kick in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA791049859F00BB1C61 /* kick */; };
+		C98E5D3B104BE5460004C8F0 /* kickban in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7A1049859F00BB1C61 /* kickban */; };
+		C98E5D3C104BE5460004C8F0 /* kill in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7B1049859F00BB1C61 /* kill */; };
+		C98E5D3D104BE5460004C8F0 /* knock in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7C1049859F00BB1C61 /* knock */; };
+		C98E5D3E104BE5460004C8F0 /* knockout in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7D1049859F00BB1C61 /* knockout */; };
+		C98E5D3F104BE5460004C8F0 /* lastlog in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7E1049859F00BB1C61 /* lastlog */; };
+		C98E5D40104BE5460004C8F0 /* layout in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7F1049859F00BB1C61 /* layout */; };
+		C98E5D41104BE5460004C8F0 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA801049859F00BB1C61 /* levels */; };
+		C98E5D42104BE5460004C8F0 /* links in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA811049859F00BB1C61 /* links */; };
+		C98E5D43104BE5460004C8F0 /* list in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA821049859F00BB1C61 /* list */; };
+		C98E5D44104BE5460004C8F0 /* load in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA831049859F00BB1C61 /* load */; };
+		C98E5D45104BE5460004C8F0 /* log in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA841049859F00BB1C61 /* log */; };
+		C98E5D46104BE5460004C8F0 /* lusers in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA851049859F00BB1C61 /* lusers */; };
+		C98E5D47104BE5460004C8F0 /* map in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8A1049859F00BB1C61 /* map */; };
+		C98E5D48104BE5460004C8F0 /* me in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8B1049859F00BB1C61 /* me */; };
+		C98E5D49104BE5460004C8F0 /* mircdcc in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8C1049859F00BB1C61 /* mircdcc */; };
+		C98E5D4A104BE5460004C8F0 /* mode in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8D1049859F00BB1C61 /* mode */; };
+		C98E5D4B104BE5460004C8F0 /* motd in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8E1049859F00BB1C61 /* motd */; };
+		C98E5D4C104BE5460004C8F0 /* msg in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8F1049859F00BB1C61 /* msg */; };
+		C98E5D4D104BE5460004C8F0 /* names in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA901049859F00BB1C61 /* names */; };
+		C98E5D4E104BE5460004C8F0 /* nctcp in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA911049859F00BB1C61 /* nctcp */; };
+		C98E5D4F104BE5460004C8F0 /* netsplit in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA921049859F00BB1C61 /* netsplit */; };
+		C98E5D50104BE5460004C8F0 /* network in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA931049859F00BB1C61 /* network */; };
+		C98E5D51104BE5460004C8F0 /* nick in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA941049859F00BB1C61 /* nick */; };
+		C98E5D52104BE5460004C8F0 /* note in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA951049859F00BB1C61 /* note */; };
+		C98E5D53104BE5460004C8F0 /* notice in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA961049859F00BB1C61 /* notice */; };
+		C98E5D54104BE5460004C8F0 /* notify in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA971049859F00BB1C61 /* notify */; };
+		C98E5D55104BE5460004C8F0 /* op in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA981049859F00BB1C61 /* op */; };
+		C98E5D56104BE5460004C8F0 /* oper in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA991049859F00BB1C61 /* oper */; };
+		C98E5D57104BE5460004C8F0 /* part in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9A1049859F00BB1C61 /* part */; };
+		C98E5D58104BE5460004C8F0 /* ping in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9B1049859F00BB1C61 /* ping */; };
+		C98E5D59104BE5460004C8F0 /* query in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9C1049859F00BB1C61 /* query */; };
+		C98E5D5A104BE5460004C8F0 /* quit in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9D1049859F00BB1C61 /* quit */; };
+		C98E5D5B104BE5460004C8F0 /* quote in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9E1049859F00BB1C61 /* quote */; };
+		C98E5D5C104BE5460004C8F0 /* rawlog in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9F1049859F00BB1C61 /* rawlog */; };
+		C98E5D5D104BE5460004C8F0 /* recode in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA01049859F00BB1C61 /* recode */; };
+		C98E5D5E104BE5460004C8F0 /* reconnect in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA11049859F00BB1C61 /* reconnect */; };
+		C98E5D5F104BE5460004C8F0 /* rehash in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA21049859F00BB1C61 /* rehash */; };
+		C98E5D60104BE5460004C8F0 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA31049859F00BB1C61 /* reload */; };
+		C98E5D61104BE5460004C8F0 /* restart in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA41049859F00BB1C61 /* restart */; };
+		C98E5D62104BE5460004C8F0 /* rmreconns in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA51049859F00BB1C61 /* rmreconns */; };
+		C98E5D63104BE5460004C8F0 /* rmrejoins in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA61049859F00BB1C61 /* rmrejoins */; };
+		C98E5D64104BE5460004C8F0 /* rping in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA71049859F00BB1C61 /* rping */; };
+		C98E5D65104BE5460004C8F0 /* save in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA81049859F00BB1C61 /* save */; };
+		C98E5D66104BE5460004C8F0 /* say in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA91049859F00BB1C61 /* say */; };
+		C98E5D67104BE5460004C8F0 /* sconnect in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAA1049859F00BB1C61 /* sconnect */; };
+		C98E5D68104BE5460004C8F0 /* script in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAB1049859F00BB1C61 /* script */; };
+		C98E5D69104BE5460004C8F0 /* scrollback in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAC1049859F00BB1C61 /* scrollback */; };
+		C98E5D6A104BE5460004C8F0 /* server in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAD1049859F00BB1C61 /* server */; };
+		C98E5D6B104BE5460004C8F0 /* servlist in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAE1049859F00BB1C61 /* servlist */; };
+		C98E5D6C104BE5460004C8F0 /* set in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAF1049859F00BB1C61 /* set */; };
+		C98E5D6D104BE5460004C8F0 /* silence in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB01049859F00BB1C61 /* silence */; };
+		C98E5D6E104BE5460004C8F0 /* squery in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB11049859F00BB1C61 /* squery */; };
+		C98E5D6F104BE5460004C8F0 /* squit in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB21049859F00BB1C61 /* squit */; };
+		C98E5D70104BE5460004C8F0 /* stats in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB31049859F00BB1C61 /* stats */; };
+		C98E5D71104BE5460004C8F0 /* statusbar in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB41049859F00BB1C61 /* statusbar */; };
+		C98E5D72104BE5460004C8F0 /* time in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB51049859F00BB1C61 /* time */; };
+		C98E5D73104BE5460004C8F0 /* toggle in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB61049859F00BB1C61 /* toggle */; };
+		C98E5D74104BE5460004C8F0 /* topic in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB71049859F00BB1C61 /* topic */; };
+		C98E5D75104BE5460004C8F0 /* trace in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB81049859F00BB1C61 /* trace */; };
+		C98E5D76104BE5460004C8F0 /* ts in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB91049859F00BB1C61 /* ts */; };
+		C98E5D77104BE5460004C8F0 /* unalias in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABA1049859F00BB1C61 /* unalias */; };
+		C98E5D78104BE5460004C8F0 /* unban in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABB1049859F00BB1C61 /* unban */; };
+		C98E5D79104BE5460004C8F0 /* unignore in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABC1049859F00BB1C61 /* unignore */; };
+		C98E5D7A104BE5460004C8F0 /* unload in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABD1049859F00BB1C61 /* unload */; };
+		C98E5D7B104BE5460004C8F0 /* unnotify in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABE1049859F00BB1C61 /* unnotify */; };
+		C98E5D7C104BE5460004C8F0 /* unquery in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABF1049859F00BB1C61 /* unquery */; };
+		C98E5D7D104BE5460004C8F0 /* unsilence in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC01049859F00BB1C61 /* unsilence */; };
+		C98E5D7E104BE5460004C8F0 /* upgrade in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC11049859F00BB1C61 /* upgrade */; };
+		C98E5D7F104BE5460004C8F0 /* uping in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC21049859F00BB1C61 /* uping */; };
+		C98E5D80104BE5460004C8F0 /* userhost in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC31049859F00BB1C61 /* userhost */; };
+		C98E5D81104BE5460004C8F0 /* ver in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC41049859F00BB1C61 /* ver */; };
+		C98E5D82104BE5460004C8F0 /* version in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC51049859F00BB1C61 /* version */; };
+		C98E5D83104BE5460004C8F0 /* voice in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC61049859F00BB1C61 /* voice */; };
+		C98E5D84104BE5460004C8F0 /* wait in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC71049859F00BB1C61 /* wait */; };
+		C98E5D85104BE5460004C8F0 /* wall in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC81049859F00BB1C61 /* wall */; };
+		C98E5D86104BE5460004C8F0 /* wallops in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC91049859F00BB1C61 /* wallops */; };
+		C98E5D87104BE5460004C8F0 /* watch in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACA1049859F00BB1C61 /* watch */; };
+		C98E5D88104BE5460004C8F0 /* who in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACB1049859F00BB1C61 /* who */; };
+		C98E5D89104BE5460004C8F0 /* whois in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACC1049859F00BB1C61 /* whois */; };
+		C98E5D8A104BE5460004C8F0 /* whowas in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACD1049859F00BB1C61 /* whowas */; };
+		C98E5D8B104BE5460004C8F0 /* window in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACE1049859F00BB1C61 /* window */; };
+		C98E5D8C104BE5460004C8F0 /* wjoin in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACF1049859F00BB1C61 /* wjoin */; };
+		C98E5D8D104BE5460004C8F0 /* wquery in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAD01049859F00BB1C61 /* wquery */; };
+		C98E5D8F104BE5460004C8F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		C98E5D90104BE5460004C8F0 /* irssi.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DD9605EF9A7100E640C2 /* irssi.m */; };
+		C98E5D91104BE5460004C8F0 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDA005EF9AB300E640C2 /* AppController.m */; };
+		C98E5D92104BE5460004C8F0 /* ChannelController.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDA405EF9AB300E640C2 /* ChannelController.m */; };
+		C98E5D93104BE5460004C8F0 /* PreferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDA805EF9AB300E640C2 /* PreferenceViewController.m */; };
+		C98E5D94104BE5460004C8F0 /* ColorSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDB605EF9AE600E640C2 /* ColorSet.m */; };
+		C98E5D95104BE5460004C8F0 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDB805EF9AE600E640C2 /* CustomTableView.m */; };
+		C98E5D96104BE5460004C8F0 /* CustomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DDBA05EF9AE600E640C2 /* CustomWindow.m */; };
+		C98E5D97104BE5460004C8F0 /* IrssiBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */; };
+		C98E5D98104BE5460004C8F0 /* NSAttributedStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B3241ACA06286AF7000B4624 /* NSAttributedStringAdditions.m */; };
+		C98E5D99104BE5460004C8F0 /* CustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25491770681A35900C43D63 /* CustomTextView.m */; };
+		C98E5D9A104BE5460004C8F0 /* ChannelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D1679006E3E16C000EC6F9 /* ChannelBar.m */; };
+		C98E5D9B104BE5460004C8F0 /* ChannelBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C200D026073FC03700B850B1 /* ChannelBarCell.m */; };
+		C98E5D9C104BE5460004C8F0 /* MarkedScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2C0F8074B822700396F82 /* MarkedScroller.m */; };
+		C98E5D9D104BE5460004C8F0 /* TextEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A5697A08D0D74100788905 /* TextEncodings.m */; };
+		C98E5D9E104BE5460004C8F0 /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947E1DB0E1E871F0001380E /* EventController.m */; };
+		C98E5D9F104BE5460004C8F0 /* ConnectivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */; };
+		C98E5DA0104BE5460004C8F0 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265D0E5C654800E041F7 /* UKCrashReporter.m */; };
+		C98E5DA1104BE5460004C8F0 /* UKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265F0E5C654800E041F7 /* UKSystemInfo.m */; };
+		C98E5DA2104BE5460004C8F0 /* UKNibOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = C91026610E5C654800E041F7 /* UKNibOwner.m */; };
+		C98E5DA3104BE5460004C8F0 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
+		C98E5DA4104BE5460004C8F0 /* IrcnetBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBAB6F0EA0AF7600025466 /* IrcnetBridgeController.m */; };
+		C98E5DA5104BE5460004C8F0 /* ServerBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBACAA0EA100D400025466 /* ServerBridgeController.m */; };
+		C98E5DA6104BE5460004C8F0 /* ChannelBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9432C240EA1673E005237E3 /* ChannelBridgeController.m */; };
+		C98E5DA7104BE5460004C8F0 /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
+		C98E5DA8104BE5460004C8F0 /* MISplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F0B160F06E3C900763699 /* MISplitView.m */; };
+		C98E5DA9104BE5460004C8F0 /* CTGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F15170F110A8600763699 /* CTGradient.m */; };
+		C98E5DAA104BE5460004C8F0 /* SRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F15190F110A8600763699 /* SRCommon.m */; };
+		C98E5DAB104BE5460004C8F0 /* SRKeyCodeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F151B0F110A8600763699 /* SRKeyCodeTransformer.m */; };
+		C98E5DAC104BE5460004C8F0 /* SRRecorderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F151D0F110A8600763699 /* SRRecorderCell.m */; };
+		C98E5DAD104BE5460004C8F0 /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F151F0F110A8600763699 /* SRRecorderControl.m */; };
+		C98E5DAE104BE5460004C8F0 /* SRValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F15210F110A8600763699 /* SRValidator.m */; };
+		C98E5DAF104BE5460004C8F0 /* ShortcutBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F168A0F12937B00763699 /* ShortcutBridgeController.m */; };
+		C98E5DB0104BE5460004C8F0 /* ASDefaultApplicationGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19140F1400D500763699 /* ASDefaultApplicationGlue.m */; };
+		C98E5DB1104BE5460004C8F0 /* ASDefaultCommandGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19160F1400D500763699 /* ASDefaultCommandGlue.m */; };
+		C98E5DB2104BE5460004C8F0 /* ASDefaultConstantGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19180F1400D500763699 /* ASDefaultConstantGlue.m */; };
+		C98E5DB3104BE5460004C8F0 /* ASDefaultReferenceGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F191B0F1400D500763699 /* ASDefaultReferenceGlue.m */; };
+		C98E5DB4104BE5460004C8F0 /* ASDefaultReferenceRendererGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F191D0F1400D500763699 /* ASDefaultReferenceRendererGlue.m */; };
+		C98E5DB5104BE5460004C8F0 /* ITApplicationGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19200F1400D500763699 /* ITApplicationGlue.m */; };
+		C98E5DB6104BE5460004C8F0 /* ITCommandGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19220F1400D500763699 /* ITCommandGlue.m */; };
+		C98E5DB7104BE5460004C8F0 /* ITConstantGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19240F1400D500763699 /* ITConstantGlue.m */; };
+		C98E5DB8104BE5460004C8F0 /* ITReferenceGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19270F1400D500763699 /* ITReferenceGlue.m */; };
+		C98E5DB9104BE5460004C8F0 /* ITReferenceRendererGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19290F1400D500763699 /* ITReferenceRendererGlue.m */; };
+		C98E5DBA104BE5460004C8F0 /* iTunes.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F194D0F14025D00763699 /* iTunes.m */; };
+		C98E5DBB104BE5460004C8F0 /* AIMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */; };
+		C98E5DBC104BE5460004C8F0 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */; };
+		C98E5DBE104BE5460004C8F0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C98E5DBF104BE5460004C8F0 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91026760E5C665B00E041F7 /* AddressBook.framework */; };
+		C98E5DC0104BE5460004C8F0 /* libfe_common_irc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */; };
+		C98E5DC1104BE5460004C8F0 /* libcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF50C09EEAF001C0DDD /* libcore.a */; };
+		C98E5DC2104BE5460004C8F0 /* libirc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE90C09EE42001C0DDD /* libirc.a */; };
+		C98E5DC3104BE5460004C8F0 /* libirc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */; };
+		C98E5DC4104BE5460004C8F0 /* libirc_flood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */; };
+		C98E5DC5104BE5460004C8F0 /* libirc_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */; };
+		C98E5DC6104BE5460004C8F0 /* libfe_common_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */; };
+		C98E5DC7104BE5460004C8F0 /* libirssi_config.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */; };
+		C98E5DC8104BE5460004C8F0 /* libirc_dcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */; };
+		C98E5DC9104BE5460004C8F0 /* libfe_irc_dcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */; };
+		C98E5DCA104BE5460004C8F0 /* libfe_irc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */; };
+		C98E5DCB104BE5460004C8F0 /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
+		C98E5DCC104BE5460004C8F0 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
+		C98E5DCD104BE5460004C8F0 /* libintl.8.0.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
+		C98E5DD0104BE5460004C8F0 /* Growl-WithInstaller.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */; };
+		C98E5DD1104BE5460004C8F0 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C229C73C0C1AA7B900D7CCD0 /* libssl.dylib */; };
+		C98E5DD2104BE5460004C8F0 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C229C73F0C1AA82900D7CCD0 /* libcrypto.dylib */; };
+		C98E5DD3104BE5460004C8F0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
+		C98E5DD4104BE5460004C8F0 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F139D0F0A743800763699 /* Sparkle.framework */; };
+		C98E5DD5104BE5460004C8F0 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F15570F110B6500763699 /* Carbon.framework */; };
+		C98E5DD6104BE5460004C8F0 /* Appscript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F19510F1404B900763699 /* Appscript.framework */; };
+		C98E5DD7104BE5460004C8F0 /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C91793840F744140005241A4 /* libglib-2.0.0.dylib */; };
+		C98E5DD8104BE5460004C8F0 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
+		C98E5DDA104BE5460004C8F0 /* Appscript.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C91F19510F1404B900763699 /* Appscript.framework */; };
+		C98E5DDB104BE5460004C8F0 /* Sparkle.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C91F139D0F0A743800763699 /* Sparkle.framework */; };
+		C98E5DDC104BE5460004C8F0 /* GoogleToolboxForMac.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
+		C98E5DDD104BE5460004C8F0 /* libglib-2.0.0.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C91793840F744140005241A4 /* libglib-2.0.0.dylib */; };
+		C98E5DDE104BE5460004C8F0 /* libgmodule-2.0.0.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
+		C98E5DDF104BE5460004C8F0 /* libiconv.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
+		C98E5DE0104BE5460004C8F0 /* libintl.8.0.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
+		C98E5DE2104BE5460004C8F0 /* accept in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9D61049859E00BB1C61 /* accept */; };
+		C98E5DE3104BE5460004C8F0 /* action in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9D71049859E00BB1C61 /* action */; };
+		C98E5DE4104BE5460004C8F0 /* admin in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9D81049859E00BB1C61 /* admin */; };
+		C98E5DE5104BE5460004C8F0 /* alias in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9D91049859E00BB1C61 /* alias */; };
+		C98E5DE6104BE5460004C8F0 /* away in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9DA1049859E00BB1C61 /* away */; };
+		C98E5DE7104BE5460004C8F0 /* ban in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9DB1049859E00BB1C61 /* ban */; };
+		C98E5DE8104BE5460004C8F0 /* beep in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9DC1049859E00BB1C61 /* beep */; };
+		C98E5DE9104BE5460004C8F0 /* bind in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9DD1049859E00BB1C61 /* bind */; };
+		C98E5DEA104BE5460004C8F0 /* cat in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9DE1049859E00BB1C61 /* cat */; };
+		C98E5DEB104BE5460004C8F0 /* cd in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9DF1049859E00BB1C61 /* cd */; };
+		C98E5DEC104BE5460004C8F0 /* channel in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E01049859E00BB1C61 /* channel */; };
+		C98E5DED104BE5460004C8F0 /* clear in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E11049859E00BB1C61 /* clear */; };
+		C98E5DEE104BE5460004C8F0 /* completion in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E21049859E00BB1C61 /* completion */; };
+		C98E5DEF104BE5460004C8F0 /* connect in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E31049859E00BB1C61 /* connect */; };
+		C98E5DF0104BE5460004C8F0 /* ctcp in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E41049859E00BB1C61 /* ctcp */; };
+		C98E5DF1104BE5460004C8F0 /* cycle in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E51049859E00BB1C61 /* cycle */; };
+		C98E5DF2104BE5460004C8F0 /* dcc in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E61049859E00BB1C61 /* dcc */; };
+		C98E5DF3104BE5460004C8F0 /* dehilight in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E71049859E00BB1C61 /* dehilight */; };
+		C98E5DF4104BE5460004C8F0 /* deop in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E81049859E00BB1C61 /* deop */; };
+		C98E5DF5104BE5460004C8F0 /* devoice in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9E91049859E00BB1C61 /* devoice */; };
+		C98E5DF6104BE5460004C8F0 /* die in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9EA1049859E00BB1C61 /* die */; };
+		C98E5DF7104BE5460004C8F0 /* disconnect in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9EB1049859E00BB1C61 /* disconnect */; };
+		C98E5DF8104BE5460004C8F0 /* echo in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9EC1049859E00BB1C61 /* echo */; };
+		C98E5DF9104BE5460004C8F0 /* eval in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9ED1049859E00BB1C61 /* eval */; };
+		C98E5DFA104BE5460004C8F0 /* exec in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9EE1049859E00BB1C61 /* exec */; };
+		C98E5DFB104BE5460004C8F0 /* flushbuffer in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9EF1049859E00BB1C61 /* flushbuffer */; };
+		C98E5DFC104BE5460004C8F0 /* format in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9F01049859E00BB1C61 /* format */; };
+		C98E5DFD104BE5460004C8F0 /* hash in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9F11049859E00BB1C61 /* hash */; };
+		C98E5DFE104BE5460004C8F0 /* help in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9F21049859E00BB1C61 /* help */; };
+		C98E5DFF104BE5460004C8F0 /* hilight in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9F31049859E00BB1C61 /* hilight */; };
+		C98E5E00104BE5460004C8F0 /* ignore in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9F41049859E00BB1C61 /* ignore */; };
+		C98E5E01104BE5460004C8F0 /* info in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA731049859F00BB1C61 /* info */; };
+		C98E5E02104BE5460004C8F0 /* invite in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA741049859F00BB1C61 /* invite */; };
+		C98E5E03104BE5460004C8F0 /* invitelist in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA751049859F00BB1C61 /* invitelist */; };
+		C98E5E04104BE5460004C8F0 /* ircnet in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA761049859F00BB1C61 /* ircnet */; };
+		C98E5E05104BE5460004C8F0 /* ison in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA771049859F00BB1C61 /* ison */; };
+		C98E5E06104BE5460004C8F0 /* join in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA781049859F00BB1C61 /* join */; };
+		C98E5E07104BE5460004C8F0 /* kick in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA791049859F00BB1C61 /* kick */; };
+		C98E5E08104BE5460004C8F0 /* kickban in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA7A1049859F00BB1C61 /* kickban */; };
+		C98E5E09104BE5460004C8F0 /* kill in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA7B1049859F00BB1C61 /* kill */; };
+		C98E5E0A104BE5460004C8F0 /* knock in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA7C1049859F00BB1C61 /* knock */; };
+		C98E5E0B104BE5460004C8F0 /* knockout in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA7D1049859F00BB1C61 /* knockout */; };
+		C98E5E0C104BE5460004C8F0 /* lastlog in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA7E1049859F00BB1C61 /* lastlog */; };
+		C98E5E0D104BE5460004C8F0 /* layout in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA7F1049859F00BB1C61 /* layout */; };
+		C98E5E0E104BE5460004C8F0 /* levels in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA801049859F00BB1C61 /* levels */; };
+		C98E5E0F104BE5460004C8F0 /* links in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA811049859F00BB1C61 /* links */; };
+		C98E5E10104BE5460004C8F0 /* list in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA821049859F00BB1C61 /* list */; };
+		C98E5E11104BE5460004C8F0 /* load in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA831049859F00BB1C61 /* load */; };
+		C98E5E12104BE5460004C8F0 /* log in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA841049859F00BB1C61 /* log */; };
+		C98E5E13104BE5460004C8F0 /* lusers in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA851049859F00BB1C61 /* lusers */; };
+		C98E5E14104BE5460004C8F0 /* map in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA8A1049859F00BB1C61 /* map */; };
+		C98E5E15104BE5460004C8F0 /* me in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA8B1049859F00BB1C61 /* me */; };
+		C98E5E16104BE5460004C8F0 /* mircdcc in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA8C1049859F00BB1C61 /* mircdcc */; };
+		C98E5E17104BE5460004C8F0 /* mode in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA8D1049859F00BB1C61 /* mode */; };
+		C98E5E18104BE5460004C8F0 /* motd in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA8E1049859F00BB1C61 /* motd */; };
+		C98E5E19104BE5460004C8F0 /* msg in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA8F1049859F00BB1C61 /* msg */; };
+		C98E5E1A104BE5460004C8F0 /* names in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA901049859F00BB1C61 /* names */; };
+		C98E5E1B104BE5460004C8F0 /* nctcp in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA911049859F00BB1C61 /* nctcp */; };
+		C98E5E1C104BE5460004C8F0 /* netsplit in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA921049859F00BB1C61 /* netsplit */; };
+		C98E5E1D104BE5460004C8F0 /* network in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA931049859F00BB1C61 /* network */; };
+		C98E5E1E104BE5460004C8F0 /* nick in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA941049859F00BB1C61 /* nick */; };
+		C98E5E1F104BE5460004C8F0 /* note in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA951049859F00BB1C61 /* note */; };
+		C98E5E20104BE5460004C8F0 /* notice in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA961049859F00BB1C61 /* notice */; };
+		C98E5E21104BE5460004C8F0 /* notify in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA971049859F00BB1C61 /* notify */; };
+		C98E5E22104BE5460004C8F0 /* op in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA981049859F00BB1C61 /* op */; };
+		C98E5E23104BE5460004C8F0 /* oper in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA991049859F00BB1C61 /* oper */; };
+		C98E5E24104BE5460004C8F0 /* part in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA9A1049859F00BB1C61 /* part */; };
+		C98E5E25104BE5460004C8F0 /* ping in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA9B1049859F00BB1C61 /* ping */; };
+		C98E5E26104BE5460004C8F0 /* query in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA9C1049859F00BB1C61 /* query */; };
+		C98E5E27104BE5460004C8F0 /* quit in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA9D1049859F00BB1C61 /* quit */; };
+		C98E5E28104BE5460004C8F0 /* quote in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA9E1049859F00BB1C61 /* quote */; };
+		C98E5E29104BE5460004C8F0 /* rawlog in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEA9F1049859F00BB1C61 /* rawlog */; };
+		C98E5E2A104BE5460004C8F0 /* recode in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA01049859F00BB1C61 /* recode */; };
+		C98E5E2B104BE5460004C8F0 /* reconnect in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA11049859F00BB1C61 /* reconnect */; };
+		C98E5E2C104BE5460004C8F0 /* rehash in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA21049859F00BB1C61 /* rehash */; };
+		C98E5E2D104BE5460004C8F0 /* reload in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA31049859F00BB1C61 /* reload */; };
+		C98E5E2E104BE5460004C8F0 /* restart in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA41049859F00BB1C61 /* restart */; };
+		C98E5E2F104BE5460004C8F0 /* rmreconns in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA51049859F00BB1C61 /* rmreconns */; };
+		C98E5E30104BE5460004C8F0 /* rmrejoins in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA61049859F00BB1C61 /* rmrejoins */; };
+		C98E5E31104BE5460004C8F0 /* rping in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA71049859F00BB1C61 /* rping */; };
+		C98E5E32104BE5460004C8F0 /* save in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA81049859F00BB1C61 /* save */; };
+		C98E5E33104BE5460004C8F0 /* say in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAA91049859F00BB1C61 /* say */; };
+		C98E5E34104BE5460004C8F0 /* sconnect in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAAA1049859F00BB1C61 /* sconnect */; };
+		C98E5E35104BE5460004C8F0 /* script in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAAB1049859F00BB1C61 /* script */; };
+		C98E5E36104BE5460004C8F0 /* scrollback in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAAC1049859F00BB1C61 /* scrollback */; };
+		C98E5E37104BE5460004C8F0 /* server in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAAD1049859F00BB1C61 /* server */; };
+		C98E5E38104BE5460004C8F0 /* servlist in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAAE1049859F00BB1C61 /* servlist */; };
+		C98E5E39104BE5460004C8F0 /* set in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAAF1049859F00BB1C61 /* set */; };
+		C98E5E3A104BE5460004C8F0 /* silence in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB01049859F00BB1C61 /* silence */; };
+		C98E5E3B104BE5460004C8F0 /* squery in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB11049859F00BB1C61 /* squery */; };
+		C98E5E3C104BE5460004C8F0 /* squit in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB21049859F00BB1C61 /* squit */; };
+		C98E5E3D104BE5460004C8F0 /* stats in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB31049859F00BB1C61 /* stats */; };
+		C98E5E3E104BE5460004C8F0 /* statusbar in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB41049859F00BB1C61 /* statusbar */; };
+		C98E5E3F104BE5460004C8F0 /* time in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB51049859F00BB1C61 /* time */; };
+		C98E5E40104BE5460004C8F0 /* toggle in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB61049859F00BB1C61 /* toggle */; };
+		C98E5E41104BE5460004C8F0 /* topic in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB71049859F00BB1C61 /* topic */; };
+		C98E5E42104BE5460004C8F0 /* trace in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB81049859F00BB1C61 /* trace */; };
+		C98E5E43104BE5460004C8F0 /* ts in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAB91049859F00BB1C61 /* ts */; };
+		C98E5E44104BE5460004C8F0 /* unalias in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEABA1049859F00BB1C61 /* unalias */; };
+		C98E5E45104BE5460004C8F0 /* unban in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEABB1049859F00BB1C61 /* unban */; };
+		C98E5E46104BE5460004C8F0 /* unignore in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEABC1049859F00BB1C61 /* unignore */; };
+		C98E5E47104BE5460004C8F0 /* unload in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEABD1049859F00BB1C61 /* unload */; };
+		C98E5E48104BE5460004C8F0 /* unnotify in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEABE1049859F00BB1C61 /* unnotify */; };
+		C98E5E49104BE5460004C8F0 /* unquery in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEABF1049859F00BB1C61 /* unquery */; };
+		C98E5E4A104BE5460004C8F0 /* unsilence in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC01049859F00BB1C61 /* unsilence */; };
+		C98E5E4B104BE5460004C8F0 /* upgrade in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC11049859F00BB1C61 /* upgrade */; };
+		C98E5E4C104BE5460004C8F0 /* uping in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC21049859F00BB1C61 /* uping */; };
+		C98E5E4D104BE5460004C8F0 /* userhost in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC31049859F00BB1C61 /* userhost */; };
+		C98E5E4E104BE5460004C8F0 /* ver in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC41049859F00BB1C61 /* ver */; };
+		C98E5E4F104BE5460004C8F0 /* version in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC51049859F00BB1C61 /* version */; };
+		C98E5E50104BE5460004C8F0 /* voice in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC61049859F00BB1C61 /* voice */; };
+		C98E5E51104BE5460004C8F0 /* wait in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC71049859F00BB1C61 /* wait */; };
+		C98E5E52104BE5460004C8F0 /* wall in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC81049859F00BB1C61 /* wall */; };
+		C98E5E53104BE5460004C8F0 /* wallops in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAC91049859F00BB1C61 /* wallops */; };
+		C98E5E54104BE5460004C8F0 /* watch in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEACA1049859F00BB1C61 /* watch */; };
+		C98E5E55104BE5460004C8F0 /* who in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEACB1049859F00BB1C61 /* who */; };
+		C98E5E56104BE5460004C8F0 /* whois in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEACC1049859F00BB1C61 /* whois */; };
+		C98E5E57104BE5460004C8F0 /* whowas in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEACD1049859F00BB1C61 /* whowas */; };
+		C98E5E58104BE5460004C8F0 /* window in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEACE1049859F00BB1C61 /* window */; };
+		C98E5E59104BE5460004C8F0 /* wjoin in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEACF1049859F00BB1C61 /* wjoin */; };
+		C98E5E5A104BE5460004C8F0 /* wquery in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FEAD01049859F00BB1C61 /* wquery */; };
+		C98E5E5D104BE5460004C8F0 /* Growl-WithInstaller.framework in Copy Growl Framework */ = {isa = PBXBuildFile; fileRef = C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */; };
+		C98E5E5F104BE5460004C8F0 /* agon.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA6F08C8978D000C624E /* agon.theme */; };
+		C98E5E60104BE5460004C8F0 /* ash.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7008C8978D000C624E /* ash.theme */; };
+		C98E5E61104BE5460004C8F0 /* asyura.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7108C8978D000C624E /* asyura.theme */; };
+		C98E5E62104BE5460004C8F0 /* bestican.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7208C8978D000C624E /* bestican.theme */; };
+		C98E5E63104BE5460004C8F0 /* BitchX.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7308C8978D000C624E /* BitchX.theme */; };
+		C98E5E64104BE5460004C8F0 /* bluu.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7408C8978D000C624E /* bluu.theme */; };
+		C98E5E65104BE5460004C8F0 /* bork.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7508C8978D000C624E /* bork.theme */; };
+		C98E5E66104BE5460004C8F0 /* cananal.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7608C8978D000C624E /* cananal.theme */; };
+		C98E5E67104BE5460004C8F0 /* chaves.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7708C8978D000C624E /* chaves.theme */; };
+		C98E5E68104BE5460004C8F0 /* chill.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7808C8978D000C624E /* chill.theme */; };
+		C98E5E69104BE5460004C8F0 /* clean.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7908C8978D000C624E /* clean.theme */; };
+		C98E5E6A104BE5460004C8F0 /* crap.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7A08C8978D000C624E /* crap.theme */; };
+		C98E5E6B104BE5460004C8F0 /* cross.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7B08C8978D000C624E /* cross.theme */; };
+		C98E5E6C104BE5460004C8F0 /* cyanic.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7C08C8978D000C624E /* cyanic.theme */; };
+		C98E5E6D104BE5460004C8F0 /* darksystem.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7D08C8978D000C624E /* darksystem.theme */; };
+		C98E5E6E104BE5460004C8F0 /* daywalker.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7E08C8978D000C624E /* daywalker.theme */; };
+		C98E5E6F104BE5460004C8F0 /* defacto.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7F08C8978D000C624E /* defacto.theme */; };
+		C98E5E70104BE5460004C8F0 /* ea1.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8008C8978D000C624E /* ea1.theme */; };
+		C98E5E71104BE5460004C8F0 /* easyeye.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8108C8978D000C624E /* easyeye.theme */; };
+		C98E5E72104BE5460004C8F0 /* ectobar.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8208C8978D000C624E /* ectobar.theme */; };
+		C98E5E73104BE5460004C8F0 /* ekh.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8308C8978D000C624E /* ekh.theme */; };
+		C98E5E74104BE5460004C8F0 /* en.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8408C8978D000C624E /* en.theme */; };
+		C98E5E75104BE5460004C8F0 /* Entereq.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8508C8978D000C624E /* Entereq.theme */; };
+		C98E5E76104BE5460004C8F0 /* eon.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8608C8978D000C624E /* eon.theme */; };
+		C98E5E77104BE5460004C8F0 /* epic.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8708C8978D000C624E /* epic.theme */; };
+		C98E5E78104BE5460004C8F0 /* evilkat.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8808C8978D000C624E /* evilkat.theme */; };
+		C98E5E79104BE5460004C8F0 /* evolution.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8908C8978D000C624E /* evolution.theme */; };
+		C98E5E7A104BE5460004C8F0 /* fluxmod.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8A08C8978D000C624E /* fluxmod.theme */; };
+		C98E5E7B104BE5460004C8F0 /* foo.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8B08C8978D000C624E /* foo.theme */; };
+		C98E5E7C104BE5460004C8F0 /* foxmask.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8C08C8978D000C624E /* foxmask.theme */; };
+		C98E5E7D104BE5460004C8F0 /* garden.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8D08C8978D000C624E /* garden.theme */; };
+		C98E5E7E104BE5460004C8F0 /* generane.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8E08C8978D000C624E /* generane.theme */; };
+		C98E5E7F104BE5460004C8F0 /* gothic.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA8F08C8978D000C624E /* gothic.theme */; };
+		C98E5E80104BE5460004C8F0 /* green.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9008C8978D000C624E /* green.theme */; };
+		C98E5E81104BE5460004C8F0 /* greenish.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9108C8978D000C624E /* greenish.theme */; };
+		C98E5E82104BE5460004C8F0 /* greenSCPleo.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9208C8978D000C624E /* greenSCPleo.theme */; };
+		C98E5E83104BE5460004C8F0 /* hagge.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9308C8978D000C624E /* hagge.theme */; };
+		C98E5E84104BE5460004C8F0 /* Havoc1.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9408C8978D000C624E /* Havoc1.theme */; };
+		C98E5E85104BE5460004C8F0 /* hellfire.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9508C8978D000C624E /* hellfire.theme */; };
+		C98E5E86104BE5460004C8F0 /* hnsk.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9608C8978D000C624E /* hnsk.theme */; };
+		C98E5E87104BE5460004C8F0 /* huara.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9708C8978D000C624E /* huara.theme */; };
+		C98E5E88104BE5460004C8F0 /* hukka.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9808C8978D000C624E /* hukka.theme */; };
+		C98E5E89104BE5460004C8F0 /* hv.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9908C8978D000C624E /* hv.theme */; };
+		C98E5E8A104BE5460004C8F0 /* IamCyan.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9A08C8978D000C624E /* IamCyan.theme */; };
+		C98E5E8B104BE5460004C8F0 /* industrial.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9B08C8978D000C624E /* industrial.theme */; };
+		C98E5E8C104BE5460004C8F0 /* ion.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9C08C8978D000C624E /* ion.theme */; };
+		C98E5E8D104BE5460004C8F0 /* ion_mod.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9D08C8978D000C624E /* ion_mod.theme */; };
+		C98E5E8E104BE5460004C8F0 /* ipx.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9E08C8978D000C624E /* ipx.theme */; };
+		C98E5E8F104BE5460004C8F0 /* jokx.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA9F08C8978D000C624E /* jokx.theme */; };
+		C98E5E90104BE5460004C8F0 /* jsuvanto.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA008C8978D000C624E /* jsuvanto.theme */; };
+		C98E5E91104BE5460004C8F0 /* kaer-2.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA108C8978D000C624E /* kaer-2.theme */; };
+		C98E5E92104BE5460004C8F0 /* kaer.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA208C8978D000C624E /* kaer.theme */; };
+		C98E5E93104BE5460004C8F0 /* koivula.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA308C8978D000C624E /* koivula.theme */; };
+		C98E5E94104BE5460004C8F0 /* kompakt.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA408C8978D000C624E /* kompakt.theme */; };
+		C98E5E95104BE5460004C8F0 /* ksiadz.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA508C8978D000C624E /* ksiadz.theme */; };
+		C98E5E96104BE5460004C8F0 /* kurja.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA608C8978D000C624E /* kurja.theme */; };
+		C98E5E97104BE5460004C8F0 /* laaama-2.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA708C8978D000C624E /* laaama-2.theme */; };
+		C98E5E98104BE5460004C8F0 /* laaama.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA808C8978D000C624E /* laaama.theme */; };
+		C98E5E99104BE5460004C8F0 /* lemac-pl.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAA908C8978D000C624E /* lemac-pl.theme */; };
+		C98E5E9A104BE5460004C8F0 /* lemac.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAAA08C8978D000C624E /* lemac.theme */; };
+		C98E5E9B104BE5460004C8F0 /* lemmu.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAAB08C8978D000C624E /* lemmu.theme */; };
+		C98E5E9C104BE5460004C8F0 /* lesscolors.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAAC08C8978D000C624E /* lesscolors.theme */; };
+		C98E5E9D104BE5460004C8F0 /* lilah.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAAD08C8978D000C624E /* lilah.theme */; };
+		C98E5E9E104BE5460004C8F0 /* lime.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAAE08C8978D000C624E /* lime.theme */; };
+		C98E5E9F104BE5460004C8F0 /* litE.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAAF08C8978D000C624E /* litE.theme */; };
+		C98E5EA0104BE5460004C8F0 /* liten.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB008C8978D000C624E /* liten.theme */; };
+		C98E5EA1104BE5460004C8F0 /* lyynx.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB108C8978D000C624E /* lyynx.theme */; };
+		C98E5EA2104BE5460004C8F0 /* madcow.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB208C8978D000C624E /* madcow.theme */; };
+		C98E5EA3104BE5460004C8F0 /* madeye.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB308C8978D000C624E /* madeye.theme */; };
+		C98E5EA4104BE5460004C8F0 /* magick.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB408C8978D000C624E /* magick.theme */; };
+		C98E5EA5104BE5460004C8F0 /* mazii.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB508C8978D000C624E /* mazii.theme */; };
+		C98E5EA6104BE5460004C8F0 /* mika.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB608C8978D000C624E /* mika.theme */; };
+		C98E5EA7104BE5460004C8F0 /* mine.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB708C8978D000C624E /* mine.theme */; };
+		C98E5EA8104BE5460004C8F0 /* mirkk32.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB808C8978D000C624E /* mirkk32.theme */; };
+		C98E5EA9104BE5460004C8F0 /* misso.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAB908C8978D000C624E /* misso.theme */; };
+		C98E5EAA104BE5460004C8F0 /* mosh.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FABA08C8978D000C624E /* mosh.theme */; };
+		C98E5EAB104BE5460004C8F0 /* mrooveq.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FABB08C8978D000C624E /* mrooveq.theme */; };
+		C98E5EAC104BE5460004C8F0 /* mutru.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FABC08C8978D000C624E /* mutru.theme */; };
+		C98E5EAD104BE5460004C8F0 /* naula.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FABD08C8978D000C624E /* naula.theme */; };
+		C98E5EAE104BE5460004C8F0 /* netzdamon.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FABE08C8978D000C624E /* netzdamon.theme */; };
+		C98E5EAF104BE5460004C8F0 /* neutralorange.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FABF08C8978D000C624E /* neutralorange.theme */; };
+		C98E5EB0104BE5460004C8F0 /* nigga.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC008C8978D000C624E /* nigga.theme */; };
+		C98E5EB1104BE5460004C8F0 /* ocean.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC108C8978D000C624E /* ocean.theme */; };
+		C98E5EB2104BE5460004C8F0 /* osbxwannabe.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC208C8978D000C624E /* osbxwannabe.theme */; };
+		C98E5EB3104BE5460004C8F0 /* oxynox.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC308C8978D000C624E /* oxynox.theme */; };
+		C98E5EB4104BE5460004C8F0 /* pasce.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC408C8978D000C624E /* pasce.theme */; };
+		C98E5EB5104BE5460004C8F0 /* pgreen.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC508C8978D000C624E /* pgreen.theme */; };
+		C98E5EB6104BE5460004C8F0 /* pikkuh.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC608C8978D000C624E /* pikkuh.theme */; };
+		C98E5EB7104BE5460004C8F0 /* qlth.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC708C8978D000C624E /* qlth.theme */; };
+		C98E5EB8104BE5460004C8F0 /* quubba.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC808C8978D000C624E /* quubba.theme */; };
+		C98E5EB9104BE5460004C8F0 /* quux.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAC908C8978D000C624E /* quux.theme */; };
+		C98E5EBA104BE5460004C8F0 /* r00t.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FACA08C8978D000C624E /* r00t.theme */; };
+		C98E5EBB104BE5460004C8F0 /* relaxed.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FACB08C8978D000C624E /* relaxed.theme */; };
+		C98E5EBC104BE5460004C8F0 /* rettoscopia.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FACC08C8978D000C624E /* rettoscopia.theme */; };
+		C98E5EBD104BE5460004C8F0 /* roses.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FACD08C8978D000C624E /* roses.theme */; };
+		C98E5EBE104BE5460004C8F0 /* salsa.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FACE08C8978D000C624E /* salsa.theme */; };
+		C98E5EBF104BE5460004C8F0 /* screwer.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FACF08C8978D000C624E /* screwer.theme */; };
+		C98E5EC0104BE5460004C8F0 /* sfc1337.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD008C8978D000C624E /* sfc1337.theme */; };
+		C98E5EC1104BE5460004C8F0 /* sfcblue.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD108C8978D000C624E /* sfcblue.theme */; };
+		C98E5EC2104BE5460004C8F0 /* shrike.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD208C8978D000C624E /* shrike.theme */; };
+		C98E5EC3104BE5460004C8F0 /* shruuf.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD308C8978D000C624E /* shruuf.theme */; };
+		C98E5EC4104BE5460004C8F0 /* simple.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD408C8978D000C624E /* simple.theme */; };
+		C98E5EC5104BE5460004C8F0 /* simpleii.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD508C8978D000C624E /* simpleii.theme */; };
+		C98E5EC6104BE5460004C8F0 /* skan.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD608C8978D000C624E /* skan.theme */; };
+		C98E5EC7104BE5460004C8F0 /* skeita.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD708C8978D000C624E /* skeita.theme */; };
+		C98E5EC8104BE5460004C8F0 /* ski.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD808C8978D000C624E /* ski.theme */; };
+		C98E5EC9104BE5460004C8F0 /* splitfire.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAD908C8978D000C624E /* splitfire.theme */; };
+		C98E5ECA104BE5460004C8F0 /* spot.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FADA08C8978D000C624E /* spot.theme */; };
+		C98E5ECB104BE5460004C8F0 /* sputnik.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FADB08C8978D000C624E /* sputnik.theme */; };
+		C98E5ECC104BE5460004C8F0 /* stevee.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FADC08C8978D000C624E /* stevee.theme */; };
+		C98E5ECD104BE5460004C8F0 /* stx.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FADD08C8978D000C624E /* stx.theme */; };
+		C98E5ECE104BE5460004C8F0 /* sux.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FADE08C8978D000C624E /* sux.theme */; };
+		C98E5ECF104BE5460004C8F0 /* swift.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FADF08C8978D000C624E /* swift.theme */; };
+		C98E5ED0104BE5460004C8F0 /* tanke.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE008C8978D000C624E /* tanke.theme */; };
+		C98E5ED1104BE5460004C8F0 /* telix.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE108C8978D000C624E /* telix.theme */; };
+		C98E5ED2104BE5460004C8F0 /* thirdeye.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE208C8978D000C624E /* thirdeye.theme */; };
+		C98E5ED3104BE5460004C8F0 /* tinylajs.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE308C8978D000C624E /* tinylajs.theme */; };
+		C98E5ED4104BE5460004C8F0 /* trax.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE408C8978D000C624E /* trax.theme */; };
+		C98E5ED5104BE5460004C8F0 /* void.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE508C8978D000C624E /* void.theme */; };
+		C98E5ED6104BE5460004C8F0 /* vt510+xterm.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE608C8978D000C624E /* vt510+xterm.theme */; };
+		C98E5ED7104BE5460004C8F0 /* white.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE708C8978D000C624E /* white.theme */; };
+		C98E5ED8104BE5460004C8F0 /* whitespace.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE808C8978D000C624E /* whitespace.theme */; };
+		C98E5ED9104BE5460004C8F0 /* xmas.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAE908C8978D000C624E /* xmas.theme */; };
+		C98E5EDA104BE5460004C8F0 /* zhafte.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAEA08C8978D000C624E /* zhafte.theme */; };
+		C98E5EDB104BE5460004C8F0 /* zng.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAEB08C8978D000C624E /* zng.theme */; };
+		C98E5EDD104BE5460004C8F0 /* Beep 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */; };
+		C98E5EDE104BE5460004C8F0 /* Beep 2.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */; };
+		C98E5EDF104BE5460004C8F0 /* Bell 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */; };
+		C98E5EE0104BE5460004C8F0 /* Bell 2.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DE0E23BB1D000AA7BE /* Bell 2.aiff */; };
+		C98E5EE1104BE5460004C8F0 /* Clap.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DF0E23BB1D000AA7BE /* Clap.aiff */; };
+		C98E5EE2104BE5460004C8F0 /* Cymbal.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E00E23BB1D000AA7BE /* Cymbal.aiff */; };
+		C98E5EE3104BE5460004C8F0 /* DJ Scratch.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E10E23BB1D000AA7BE /* DJ Scratch.aiff */; };
+		C98E5EE4104BE5460004C8F0 /* Electronic Signal.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E20E23BB1D000AA7BE /* Electronic Signal.aiff */; };
+		C98E5EE5104BE5460004C8F0 /* Explosion.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E30E23BB1D000AA7BE /* Explosion.aiff */; };
+		C98E5EE6104BE5460004C8F0 /* Kick.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E40E23BB1D000AA7BE /* Kick.aiff */; };
+		C98E5EE7104BE5460004C8F0 /* Laser.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E50E23BB1D000AA7BE /* Laser.aiff */; };
+		C98E5EE8104BE5460004C8F0 /* Pop.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E60E23BB1D000AA7BE /* Pop.aiff */; };
+		C98E5EE9104BE5460004C8F0 /* Rattle.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E70E23BB1D000AA7BE /* Rattle.aiff */; };
+		C98E5EEA104BE5460004C8F0 /* Sonar Beep.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E80E23BB1D000AA7BE /* Sonar Beep.aiff */; };
+		C98E5EEB104BE5460004C8F0 /* Stoof.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3E90E23BB1D000AA7BE /* Stoof.aiff */; };
+		C98E5EEC104BE5460004C8F0 /* Switch.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3EA0E23BB1D000AA7BE /* Switch.aiff */; };
+		C98E5EED104BE5460004C8F0 /* Whip.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3EB0E23BB1D000AA7BE /* Whip.aiff */; };
+		C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */ = {isa = PBXBuildFile; fileRef = C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */; };
+		C98E5F47104BF3830004C8F0 /* JVFontPreviewField.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */; };
+		C98E5FDC104BFB6F0004C8F0 /* JVFontPreviewField.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */; };
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
 		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
 		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
@@ -592,6 +1136,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = A81581480F73F18000862AEC;
 			remoteInfo = "\"Install\" glib";
+		};
+		C98E5F0C104BE7730004C8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C98E5F05104BE72E0004C8F0 /* Irssi Build (Leopard) */;
+			remoteInfo = "Irssi Build (Leopard)";
+		};
+		C98E5F0E104BE7A20004C8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C98E5F00104BE72E0004C8F0 /* Irssi Configure (Leopard) */;
+			remoteInfo = "Irssi Configure (Leopard)";
 		};
 		C98F77D00E3651DC00CF2AAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -931,6 +1489,327 @@
 			name = "Copy Alert Sounds";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C98E5DD9104BE5460004C8F0 /* Copy Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C98E5DDA104BE5460004C8F0 /* Appscript.framework in Copy Libraries */,
+				C98E5DDB104BE5460004C8F0 /* Sparkle.framework in Copy Libraries */,
+				C98E5DDC104BE5460004C8F0 /* GoogleToolboxForMac.framework in Copy Libraries */,
+				C98E5DDD104BE5460004C8F0 /* libglib-2.0.0.dylib in Copy Libraries */,
+				C98E5DDE104BE5460004C8F0 /* libgmodule-2.0.0.dylib in Copy Libraries */,
+				C98E5DDF104BE5460004C8F0 /* libiconv.2.dylib in Copy Libraries */,
+				C98E5DE0104BE5460004C8F0 /* libintl.8.0.2.dylib in Copy Libraries */,
+			);
+			name = "Copy Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C98E5DE1104BE5460004C8F0 /* Copy Helpfiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = helpfiles;
+			dstSubfolderSpec = 7;
+			files = (
+				C98E5DE2104BE5460004C8F0 /* accept in Copy Helpfiles */,
+				C98E5DE3104BE5460004C8F0 /* action in Copy Helpfiles */,
+				C98E5DE4104BE5460004C8F0 /* admin in Copy Helpfiles */,
+				C98E5DE5104BE5460004C8F0 /* alias in Copy Helpfiles */,
+				C98E5DE6104BE5460004C8F0 /* away in Copy Helpfiles */,
+				C98E5DE7104BE5460004C8F0 /* ban in Copy Helpfiles */,
+				C98E5DE8104BE5460004C8F0 /* beep in Copy Helpfiles */,
+				C98E5DE9104BE5460004C8F0 /* bind in Copy Helpfiles */,
+				C98E5DEA104BE5460004C8F0 /* cat in Copy Helpfiles */,
+				C98E5DEB104BE5460004C8F0 /* cd in Copy Helpfiles */,
+				C98E5DEC104BE5460004C8F0 /* channel in Copy Helpfiles */,
+				C98E5DED104BE5460004C8F0 /* clear in Copy Helpfiles */,
+				C98E5DEE104BE5460004C8F0 /* completion in Copy Helpfiles */,
+				C98E5DEF104BE5460004C8F0 /* connect in Copy Helpfiles */,
+				C98E5DF0104BE5460004C8F0 /* ctcp in Copy Helpfiles */,
+				C98E5DF1104BE5460004C8F0 /* cycle in Copy Helpfiles */,
+				C98E5DF2104BE5460004C8F0 /* dcc in Copy Helpfiles */,
+				C98E5DF3104BE5460004C8F0 /* dehilight in Copy Helpfiles */,
+				C98E5DF4104BE5460004C8F0 /* deop in Copy Helpfiles */,
+				C98E5DF5104BE5460004C8F0 /* devoice in Copy Helpfiles */,
+				C98E5DF6104BE5460004C8F0 /* die in Copy Helpfiles */,
+				C98E5DF7104BE5460004C8F0 /* disconnect in Copy Helpfiles */,
+				C98E5DF8104BE5460004C8F0 /* echo in Copy Helpfiles */,
+				C98E5DF9104BE5460004C8F0 /* eval in Copy Helpfiles */,
+				C98E5DFA104BE5460004C8F0 /* exec in Copy Helpfiles */,
+				C98E5DFB104BE5460004C8F0 /* flushbuffer in Copy Helpfiles */,
+				C98E5DFC104BE5460004C8F0 /* format in Copy Helpfiles */,
+				C98E5DFD104BE5460004C8F0 /* hash in Copy Helpfiles */,
+				C98E5DFE104BE5460004C8F0 /* help in Copy Helpfiles */,
+				C98E5DFF104BE5460004C8F0 /* hilight in Copy Helpfiles */,
+				C98E5E00104BE5460004C8F0 /* ignore in Copy Helpfiles */,
+				C98E5E01104BE5460004C8F0 /* info in Copy Helpfiles */,
+				C98E5E02104BE5460004C8F0 /* invite in Copy Helpfiles */,
+				C98E5E03104BE5460004C8F0 /* invitelist in Copy Helpfiles */,
+				C98E5E04104BE5460004C8F0 /* ircnet in Copy Helpfiles */,
+				C98E5E05104BE5460004C8F0 /* ison in Copy Helpfiles */,
+				C98E5E06104BE5460004C8F0 /* join in Copy Helpfiles */,
+				C98E5E07104BE5460004C8F0 /* kick in Copy Helpfiles */,
+				C98E5E08104BE5460004C8F0 /* kickban in Copy Helpfiles */,
+				C98E5E09104BE5460004C8F0 /* kill in Copy Helpfiles */,
+				C98E5E0A104BE5460004C8F0 /* knock in Copy Helpfiles */,
+				C98E5E0B104BE5460004C8F0 /* knockout in Copy Helpfiles */,
+				C98E5E0C104BE5460004C8F0 /* lastlog in Copy Helpfiles */,
+				C98E5E0D104BE5460004C8F0 /* layout in Copy Helpfiles */,
+				C98E5E0E104BE5460004C8F0 /* levels in Copy Helpfiles */,
+				C98E5E0F104BE5460004C8F0 /* links in Copy Helpfiles */,
+				C98E5E10104BE5460004C8F0 /* list in Copy Helpfiles */,
+				C98E5E11104BE5460004C8F0 /* load in Copy Helpfiles */,
+				C98E5E12104BE5460004C8F0 /* log in Copy Helpfiles */,
+				C98E5E13104BE5460004C8F0 /* lusers in Copy Helpfiles */,
+				C98E5E14104BE5460004C8F0 /* map in Copy Helpfiles */,
+				C98E5E15104BE5460004C8F0 /* me in Copy Helpfiles */,
+				C98E5E16104BE5460004C8F0 /* mircdcc in Copy Helpfiles */,
+				C98E5E17104BE5460004C8F0 /* mode in Copy Helpfiles */,
+				C98E5E18104BE5460004C8F0 /* motd in Copy Helpfiles */,
+				C98E5E19104BE5460004C8F0 /* msg in Copy Helpfiles */,
+				C98E5E1A104BE5460004C8F0 /* names in Copy Helpfiles */,
+				C98E5E1B104BE5460004C8F0 /* nctcp in Copy Helpfiles */,
+				C98E5E1C104BE5460004C8F0 /* netsplit in Copy Helpfiles */,
+				C98E5E1D104BE5460004C8F0 /* network in Copy Helpfiles */,
+				C98E5E1E104BE5460004C8F0 /* nick in Copy Helpfiles */,
+				C98E5E1F104BE5460004C8F0 /* note in Copy Helpfiles */,
+				C98E5E20104BE5460004C8F0 /* notice in Copy Helpfiles */,
+				C98E5E21104BE5460004C8F0 /* notify in Copy Helpfiles */,
+				C98E5E22104BE5460004C8F0 /* op in Copy Helpfiles */,
+				C98E5E23104BE5460004C8F0 /* oper in Copy Helpfiles */,
+				C98E5E24104BE5460004C8F0 /* part in Copy Helpfiles */,
+				C98E5E25104BE5460004C8F0 /* ping in Copy Helpfiles */,
+				C98E5E26104BE5460004C8F0 /* query in Copy Helpfiles */,
+				C98E5E27104BE5460004C8F0 /* quit in Copy Helpfiles */,
+				C98E5E28104BE5460004C8F0 /* quote in Copy Helpfiles */,
+				C98E5E29104BE5460004C8F0 /* rawlog in Copy Helpfiles */,
+				C98E5E2A104BE5460004C8F0 /* recode in Copy Helpfiles */,
+				C98E5E2B104BE5460004C8F0 /* reconnect in Copy Helpfiles */,
+				C98E5E2C104BE5460004C8F0 /* rehash in Copy Helpfiles */,
+				C98E5E2D104BE5460004C8F0 /* reload in Copy Helpfiles */,
+				C98E5E2E104BE5460004C8F0 /* restart in Copy Helpfiles */,
+				C98E5E2F104BE5460004C8F0 /* rmreconns in Copy Helpfiles */,
+				C98E5E30104BE5460004C8F0 /* rmrejoins in Copy Helpfiles */,
+				C98E5E31104BE5460004C8F0 /* rping in Copy Helpfiles */,
+				C98E5E32104BE5460004C8F0 /* save in Copy Helpfiles */,
+				C98E5E33104BE5460004C8F0 /* say in Copy Helpfiles */,
+				C98E5E34104BE5460004C8F0 /* sconnect in Copy Helpfiles */,
+				C98E5E35104BE5460004C8F0 /* script in Copy Helpfiles */,
+				C98E5E36104BE5460004C8F0 /* scrollback in Copy Helpfiles */,
+				C98E5E37104BE5460004C8F0 /* server in Copy Helpfiles */,
+				C98E5E38104BE5460004C8F0 /* servlist in Copy Helpfiles */,
+				C98E5E39104BE5460004C8F0 /* set in Copy Helpfiles */,
+				C98E5E3A104BE5460004C8F0 /* silence in Copy Helpfiles */,
+				C98E5E3B104BE5460004C8F0 /* squery in Copy Helpfiles */,
+				C98E5E3C104BE5460004C8F0 /* squit in Copy Helpfiles */,
+				C98E5E3D104BE5460004C8F0 /* stats in Copy Helpfiles */,
+				C98E5E3E104BE5460004C8F0 /* statusbar in Copy Helpfiles */,
+				C98E5E3F104BE5460004C8F0 /* time in Copy Helpfiles */,
+				C98E5E40104BE5460004C8F0 /* toggle in Copy Helpfiles */,
+				C98E5E41104BE5460004C8F0 /* topic in Copy Helpfiles */,
+				C98E5E42104BE5460004C8F0 /* trace in Copy Helpfiles */,
+				C98E5E43104BE5460004C8F0 /* ts in Copy Helpfiles */,
+				C98E5E44104BE5460004C8F0 /* unalias in Copy Helpfiles */,
+				C98E5E45104BE5460004C8F0 /* unban in Copy Helpfiles */,
+				C98E5E46104BE5460004C8F0 /* unignore in Copy Helpfiles */,
+				C98E5E47104BE5460004C8F0 /* unload in Copy Helpfiles */,
+				C98E5E48104BE5460004C8F0 /* unnotify in Copy Helpfiles */,
+				C98E5E49104BE5460004C8F0 /* unquery in Copy Helpfiles */,
+				C98E5E4A104BE5460004C8F0 /* unsilence in Copy Helpfiles */,
+				C98E5E4B104BE5460004C8F0 /* upgrade in Copy Helpfiles */,
+				C98E5E4C104BE5460004C8F0 /* uping in Copy Helpfiles */,
+				C98E5E4D104BE5460004C8F0 /* userhost in Copy Helpfiles */,
+				C98E5E4E104BE5460004C8F0 /* ver in Copy Helpfiles */,
+				C98E5E4F104BE5460004C8F0 /* version in Copy Helpfiles */,
+				C98E5E50104BE5460004C8F0 /* voice in Copy Helpfiles */,
+				C98E5E51104BE5460004C8F0 /* wait in Copy Helpfiles */,
+				C98E5E52104BE5460004C8F0 /* wall in Copy Helpfiles */,
+				C98E5E53104BE5460004C8F0 /* wallops in Copy Helpfiles */,
+				C98E5E54104BE5460004C8F0 /* watch in Copy Helpfiles */,
+				C98E5E55104BE5460004C8F0 /* who in Copy Helpfiles */,
+				C98E5E56104BE5460004C8F0 /* whois in Copy Helpfiles */,
+				C98E5E57104BE5460004C8F0 /* whowas in Copy Helpfiles */,
+				C98E5E58104BE5460004C8F0 /* window in Copy Helpfiles */,
+				C98E5E59104BE5460004C8F0 /* wjoin in Copy Helpfiles */,
+				C98E5E5A104BE5460004C8F0 /* wquery in Copy Helpfiles */,
+			);
+			name = "Copy Helpfiles";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C98E5E5C104BE5460004C8F0 /* Copy Growl Framework */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C98E5E5D104BE5460004C8F0 /* Growl-WithInstaller.framework in Copy Growl Framework */,
+			);
+			name = "Copy Growl Framework";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C98E5E5E104BE5460004C8F0 /* Copy Themes */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Themes;
+			dstSubfolderSpec = 7;
+			files = (
+				C98E5E5F104BE5460004C8F0 /* agon.theme in Copy Themes */,
+				C98E5E60104BE5460004C8F0 /* ash.theme in Copy Themes */,
+				C98E5E61104BE5460004C8F0 /* asyura.theme in Copy Themes */,
+				C98E5E62104BE5460004C8F0 /* bestican.theme in Copy Themes */,
+				C98E5E63104BE5460004C8F0 /* BitchX.theme in Copy Themes */,
+				C98E5E64104BE5460004C8F0 /* bluu.theme in Copy Themes */,
+				C98E5E65104BE5460004C8F0 /* bork.theme in Copy Themes */,
+				C98E5E66104BE5460004C8F0 /* cananal.theme in Copy Themes */,
+				C98E5E67104BE5460004C8F0 /* chaves.theme in Copy Themes */,
+				C98E5E68104BE5460004C8F0 /* chill.theme in Copy Themes */,
+				C98E5E69104BE5460004C8F0 /* clean.theme in Copy Themes */,
+				C98E5E6A104BE5460004C8F0 /* crap.theme in Copy Themes */,
+				C98E5E6B104BE5460004C8F0 /* cross.theme in Copy Themes */,
+				C98E5E6C104BE5460004C8F0 /* cyanic.theme in Copy Themes */,
+				C98E5E6D104BE5460004C8F0 /* darksystem.theme in Copy Themes */,
+				C98E5E6E104BE5460004C8F0 /* daywalker.theme in Copy Themes */,
+				C98E5E6F104BE5460004C8F0 /* defacto.theme in Copy Themes */,
+				C98E5E70104BE5460004C8F0 /* ea1.theme in Copy Themes */,
+				C98E5E71104BE5460004C8F0 /* easyeye.theme in Copy Themes */,
+				C98E5E72104BE5460004C8F0 /* ectobar.theme in Copy Themes */,
+				C98E5E73104BE5460004C8F0 /* ekh.theme in Copy Themes */,
+				C98E5E74104BE5460004C8F0 /* en.theme in Copy Themes */,
+				C98E5E75104BE5460004C8F0 /* Entereq.theme in Copy Themes */,
+				C98E5E76104BE5460004C8F0 /* eon.theme in Copy Themes */,
+				C98E5E77104BE5460004C8F0 /* epic.theme in Copy Themes */,
+				C98E5E78104BE5460004C8F0 /* evilkat.theme in Copy Themes */,
+				C98E5E79104BE5460004C8F0 /* evolution.theme in Copy Themes */,
+				C98E5E7A104BE5460004C8F0 /* fluxmod.theme in Copy Themes */,
+				C98E5E7B104BE5460004C8F0 /* foo.theme in Copy Themes */,
+				C98E5E7C104BE5460004C8F0 /* foxmask.theme in Copy Themes */,
+				C98E5E7D104BE5460004C8F0 /* garden.theme in Copy Themes */,
+				C98E5E7E104BE5460004C8F0 /* generane.theme in Copy Themes */,
+				C98E5E7F104BE5460004C8F0 /* gothic.theme in Copy Themes */,
+				C98E5E80104BE5460004C8F0 /* green.theme in Copy Themes */,
+				C98E5E81104BE5460004C8F0 /* greenish.theme in Copy Themes */,
+				C98E5E82104BE5460004C8F0 /* greenSCPleo.theme in Copy Themes */,
+				C98E5E83104BE5460004C8F0 /* hagge.theme in Copy Themes */,
+				C98E5E84104BE5460004C8F0 /* Havoc1.theme in Copy Themes */,
+				C98E5E85104BE5460004C8F0 /* hellfire.theme in Copy Themes */,
+				C98E5E86104BE5460004C8F0 /* hnsk.theme in Copy Themes */,
+				C98E5E87104BE5460004C8F0 /* huara.theme in Copy Themes */,
+				C98E5E88104BE5460004C8F0 /* hukka.theme in Copy Themes */,
+				C98E5E89104BE5460004C8F0 /* hv.theme in Copy Themes */,
+				C98E5E8A104BE5460004C8F0 /* IamCyan.theme in Copy Themes */,
+				C98E5E8B104BE5460004C8F0 /* industrial.theme in Copy Themes */,
+				C98E5E8C104BE5460004C8F0 /* ion.theme in Copy Themes */,
+				C98E5E8D104BE5460004C8F0 /* ion_mod.theme in Copy Themes */,
+				C98E5E8E104BE5460004C8F0 /* ipx.theme in Copy Themes */,
+				C98E5E8F104BE5460004C8F0 /* jokx.theme in Copy Themes */,
+				C98E5E90104BE5460004C8F0 /* jsuvanto.theme in Copy Themes */,
+				C98E5E91104BE5460004C8F0 /* kaer-2.theme in Copy Themes */,
+				C98E5E92104BE5460004C8F0 /* kaer.theme in Copy Themes */,
+				C98E5E93104BE5460004C8F0 /* koivula.theme in Copy Themes */,
+				C98E5E94104BE5460004C8F0 /* kompakt.theme in Copy Themes */,
+				C98E5E95104BE5460004C8F0 /* ksiadz.theme in Copy Themes */,
+				C98E5E96104BE5460004C8F0 /* kurja.theme in Copy Themes */,
+				C98E5E97104BE5460004C8F0 /* laaama-2.theme in Copy Themes */,
+				C98E5E98104BE5460004C8F0 /* laaama.theme in Copy Themes */,
+				C98E5E99104BE5460004C8F0 /* lemac-pl.theme in Copy Themes */,
+				C98E5E9A104BE5460004C8F0 /* lemac.theme in Copy Themes */,
+				C98E5E9B104BE5460004C8F0 /* lemmu.theme in Copy Themes */,
+				C98E5E9C104BE5460004C8F0 /* lesscolors.theme in Copy Themes */,
+				C98E5E9D104BE5460004C8F0 /* lilah.theme in Copy Themes */,
+				C98E5E9E104BE5460004C8F0 /* lime.theme in Copy Themes */,
+				C98E5E9F104BE5460004C8F0 /* litE.theme in Copy Themes */,
+				C98E5EA0104BE5460004C8F0 /* liten.theme in Copy Themes */,
+				C98E5EA1104BE5460004C8F0 /* lyynx.theme in Copy Themes */,
+				C98E5EA2104BE5460004C8F0 /* madcow.theme in Copy Themes */,
+				C98E5EA3104BE5460004C8F0 /* madeye.theme in Copy Themes */,
+				C98E5EA4104BE5460004C8F0 /* magick.theme in Copy Themes */,
+				C98E5EA5104BE5460004C8F0 /* mazii.theme in Copy Themes */,
+				C98E5EA6104BE5460004C8F0 /* mika.theme in Copy Themes */,
+				C98E5EA7104BE5460004C8F0 /* mine.theme in Copy Themes */,
+				C98E5EA8104BE5460004C8F0 /* mirkk32.theme in Copy Themes */,
+				C98E5EA9104BE5460004C8F0 /* misso.theme in Copy Themes */,
+				C98E5EAA104BE5460004C8F0 /* mosh.theme in Copy Themes */,
+				C98E5EAB104BE5460004C8F0 /* mrooveq.theme in Copy Themes */,
+				C98E5EAC104BE5460004C8F0 /* mutru.theme in Copy Themes */,
+				C98E5EAD104BE5460004C8F0 /* naula.theme in Copy Themes */,
+				C98E5EAE104BE5460004C8F0 /* netzdamon.theme in Copy Themes */,
+				C98E5EAF104BE5460004C8F0 /* neutralorange.theme in Copy Themes */,
+				C98E5EB0104BE5460004C8F0 /* nigga.theme in Copy Themes */,
+				C98E5EB1104BE5460004C8F0 /* ocean.theme in Copy Themes */,
+				C98E5EB2104BE5460004C8F0 /* osbxwannabe.theme in Copy Themes */,
+				C98E5EB3104BE5460004C8F0 /* oxynox.theme in Copy Themes */,
+				C98E5EB4104BE5460004C8F0 /* pasce.theme in Copy Themes */,
+				C98E5EB5104BE5460004C8F0 /* pgreen.theme in Copy Themes */,
+				C98E5EB6104BE5460004C8F0 /* pikkuh.theme in Copy Themes */,
+				C98E5EB7104BE5460004C8F0 /* qlth.theme in Copy Themes */,
+				C98E5EB8104BE5460004C8F0 /* quubba.theme in Copy Themes */,
+				C98E5EB9104BE5460004C8F0 /* quux.theme in Copy Themes */,
+				C98E5EBA104BE5460004C8F0 /* r00t.theme in Copy Themes */,
+				C98E5EBB104BE5460004C8F0 /* relaxed.theme in Copy Themes */,
+				C98E5EBC104BE5460004C8F0 /* rettoscopia.theme in Copy Themes */,
+				C98E5EBD104BE5460004C8F0 /* roses.theme in Copy Themes */,
+				C98E5EBE104BE5460004C8F0 /* salsa.theme in Copy Themes */,
+				C98E5EBF104BE5460004C8F0 /* screwer.theme in Copy Themes */,
+				C98E5EC0104BE5460004C8F0 /* sfc1337.theme in Copy Themes */,
+				C98E5EC1104BE5460004C8F0 /* sfcblue.theme in Copy Themes */,
+				C98E5EC2104BE5460004C8F0 /* shrike.theme in Copy Themes */,
+				C98E5EC3104BE5460004C8F0 /* shruuf.theme in Copy Themes */,
+				C98E5EC4104BE5460004C8F0 /* simple.theme in Copy Themes */,
+				C98E5EC5104BE5460004C8F0 /* simpleii.theme in Copy Themes */,
+				C98E5EC6104BE5460004C8F0 /* skan.theme in Copy Themes */,
+				C98E5EC7104BE5460004C8F0 /* skeita.theme in Copy Themes */,
+				C98E5EC8104BE5460004C8F0 /* ski.theme in Copy Themes */,
+				C98E5EC9104BE5460004C8F0 /* splitfire.theme in Copy Themes */,
+				C98E5ECA104BE5460004C8F0 /* spot.theme in Copy Themes */,
+				C98E5ECB104BE5460004C8F0 /* sputnik.theme in Copy Themes */,
+				C98E5ECC104BE5460004C8F0 /* stevee.theme in Copy Themes */,
+				C98E5ECD104BE5460004C8F0 /* stx.theme in Copy Themes */,
+				C98E5ECE104BE5460004C8F0 /* sux.theme in Copy Themes */,
+				C98E5ECF104BE5460004C8F0 /* swift.theme in Copy Themes */,
+				C98E5ED0104BE5460004C8F0 /* tanke.theme in Copy Themes */,
+				C98E5ED1104BE5460004C8F0 /* telix.theme in Copy Themes */,
+				C98E5ED2104BE5460004C8F0 /* thirdeye.theme in Copy Themes */,
+				C98E5ED3104BE5460004C8F0 /* tinylajs.theme in Copy Themes */,
+				C98E5ED4104BE5460004C8F0 /* trax.theme in Copy Themes */,
+				C98E5ED5104BE5460004C8F0 /* void.theme in Copy Themes */,
+				C98E5ED6104BE5460004C8F0 /* vt510+xterm.theme in Copy Themes */,
+				C98E5ED7104BE5460004C8F0 /* white.theme in Copy Themes */,
+				C98E5ED8104BE5460004C8F0 /* whitespace.theme in Copy Themes */,
+				C98E5ED9104BE5460004C8F0 /* xmas.theme in Copy Themes */,
+				C98E5EDA104BE5460004C8F0 /* zhafte.theme in Copy Themes */,
+				C98E5EDB104BE5460004C8F0 /* zng.theme in Copy Themes */,
+			);
+			name = "Copy Themes";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C98E5EDC104BE5460004C8F0 /* Copy Alert Sounds */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Sounds;
+			dstSubfolderSpec = 7;
+			files = (
+				C98E5EDD104BE5460004C8F0 /* Beep 1.aiff in Copy Alert Sounds */,
+				C98E5EDE104BE5460004C8F0 /* Beep 2.aiff in Copy Alert Sounds */,
+				C98E5EDF104BE5460004C8F0 /* Bell 1.aiff in Copy Alert Sounds */,
+				C98E5EE0104BE5460004C8F0 /* Bell 2.aiff in Copy Alert Sounds */,
+				C98E5EE1104BE5460004C8F0 /* Clap.aiff in Copy Alert Sounds */,
+				C98E5EE2104BE5460004C8F0 /* Cymbal.aiff in Copy Alert Sounds */,
+				C98E5EE3104BE5460004C8F0 /* DJ Scratch.aiff in Copy Alert Sounds */,
+				C98E5EE4104BE5460004C8F0 /* Electronic Signal.aiff in Copy Alert Sounds */,
+				C98E5EE5104BE5460004C8F0 /* Explosion.aiff in Copy Alert Sounds */,
+				C98E5EE6104BE5460004C8F0 /* Kick.aiff in Copy Alert Sounds */,
+				C98E5EE7104BE5460004C8F0 /* Laser.aiff in Copy Alert Sounds */,
+				C98E5EE8104BE5460004C8F0 /* Pop.aiff in Copy Alert Sounds */,
+				C98E5EE9104BE5460004C8F0 /* Rattle.aiff in Copy Alert Sounds */,
+				C98E5EEA104BE5460004C8F0 /* Sonar Beep.aiff in Copy Alert Sounds */,
+				C98E5EEB104BE5460004C8F0 /* Stoof.aiff in Copy Alert Sounds */,
+				C98E5EEC104BE5460004C8F0 /* Switch.aiff in Copy Alert Sounds */,
+				C98E5EED104BE5460004C8F0 /* Whip.aiff in Copy Alert Sounds */,
+			);
+			name = "Copy Alert Sounds";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -1104,22 +1983,22 @@
 		C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Growl-WithInstaller.framework"; sourceTree = "<group>"; };
 		C2C2C0F7074B822700396F82 /* MarkedScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkedScroller.h; sourceTree = "<group>"; };
 		C2C2C0F8074B822700396F82 /* MarkedScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkedScroller.m; sourceTree = "<group>"; };
-		C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_notifylist.a; path = "irssi-0.8.12/src/irc/notifylist/libirc_notifylist.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_flood.a; path = "irssi-0.8.12/src/irc/flood/libirc_flood.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_core.a; path = "irssi-0.8.12/src/irc/core/libirc_core.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_common_irc.a; path = "irssi-0.8.12/src/fe-common/irc/libfe_common_irc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_common_core.a; path = "irssi-0.8.12/src/fe-common/core/libfe_common_core.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_notifylist.a; path = "irssi-0.8.14/src/irc/notifylist/libirc_notifylist.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_flood.a; path = "irssi-0.8.14/src/irc/flood/libirc_flood.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_core.a; path = "irssi-0.8.14/src/irc/core/libirc_core.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_common_irc.a; path = "irssi-0.8.14/src/fe-common/irc/libfe_common_irc.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_common_core.a; path = "irssi-0.8.14/src/fe-common/core/libfe_common_core.a"; sourceTree = SOURCE_ROOT; };
 		C2CC3AE60C09EE36001C0DDD /* libpopt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpopt.a; path = "../irssi-0.8.12/src/lib-popt/libpopt.a"; sourceTree = "<group>"; };
-		C2CC3AE90C09EE42001C0DDD /* libirc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc.a; path = "irssi-0.8.12/src/irc/libirc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirssi_config.a; path = "irssi-0.8.12/src/lib-config/libirssi_config.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_dcc.a; path = "irssi-0.8.12/src/irc/dcc/libirc_dcc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_dcc.a; path = "irssi-0.8.12/src/fe-common/irc/dcc/libfe_irc_dcc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AF50C09EEAF001C0DDD /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "irssi-0.8.12/src/core/libcore.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_notifylist.a; path = "irssi-0.8.12/src/fe-common/irc/notifylist/libfe_irc_notifylist.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AE90C09EE42001C0DDD /* libirc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc.a; path = "irssi-0.8.14/src/irc/libirc.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirssi_config.a; path = "irssi-0.8.14/src/lib-config/libirssi_config.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_dcc.a; path = "irssi-0.8.14/src/irc/dcc/libirc_dcc.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_dcc.a; path = "irssi-0.8.14/src/fe-common/irc/dcc/libfe_irc_dcc.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AF50C09EEAF001C0DDD /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "irssi-0.8.14/src/core/libcore.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_notifylist.a; path = "irssi-0.8.14/src/fe-common/irc/notifylist/libfe_irc_notifylist.a"; sourceTree = SOURCE_ROOT; };
 		C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgmodule-2.0.0.dylib"; path = "MILibs/build/Release/lib/libgmodule-2.0.0.dylib"; sourceTree = "<group>"; };
 		C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = /usr/lib/libiconv.2.dylib; sourceTree = "<absolute>"; };
 		C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libintl.8.0.2.dylib; path = MILibs/build/Release/lib/libintl.8.0.2.dylib; sourceTree = "<group>"; };
-		C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_perl_static.a; path = "irssi-0.8.12/src/perl/.libs/libfe_perl_static.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_perl_static.a; path = "irssi-0.8.14/src/perl/.libs/libfe_perl_static.a"; sourceTree = SOURCE_ROOT; };
 		C2CC3B550C0B42BD001C0DDD /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = /System/Library/Perl/lib/5.10/libperl.dylib; sourceTree = "<absolute>"; };
 		C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DynaLoader.a; path = "/System/Library/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a"; sourceTree = "<absolute>"; };
 		C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ChannelBar.h; sourceTree = "<group>"; };
@@ -1205,7 +2084,7 @@
 		C922B3EA0E23BB1D000AA7BE /* Switch.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Switch.aiff; sourceTree = "<group>"; };
 		C922B3EB0E23BB1D000AA7BE /* Whip.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Whip.aiff; sourceTree = "<group>"; };
 		C922B4300E23BD34000AA7BE /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound.png; sourceTree = "<group>"; };
-		C925E7710E5A2D550041921B /* libperl_core_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libperl_core_static.a; path = "irssi-0.8.12/src/perl/.libs/libperl_core_static.a"; sourceTree = SOURCE_ROOT; };
+		C925E7710E5A2D550041921B /* libperl_core_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libperl_core_static.a; path = "irssi-0.8.14/src/perl/.libs/libperl_core_static.a"; sourceTree = SOURCE_ROOT; };
 		C93FE639104976DA00BB1C61 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		C93FE63B104976DA00BB1C61 /* args.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = args.c; sourceTree = "<group>"; };
 		C93FE63C104976DA00BB1C61 /* args.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = args.h; sourceTree = "<group>"; };
@@ -1730,6 +2609,9 @@
 		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
 		C97F84721049BFB400B5ECC6 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		C98777070F74F67300591183 /* MacIrssi.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacIrssi.pub; sourceTree = "<group>"; };
+		C98E5EF4104BE5460004C8F0 /* MacIrssi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacIrssi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFontPreviewField.h; sourceTree = "<group>"; };
+		C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFontPreviewField.m; sourceTree = "<group>"; };
 		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
 		C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppcastVersionComparator.h; sourceTree = "<group>"; };
 		C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppcastVersionComparator.m; sourceTree = "<group>"; };
@@ -1787,6 +2669,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C98E5DBD104BE5460004C8F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C98E5DBE104BE5460004C8F0 /* Cocoa.framework in Frameworks */,
+				C98E5DBF104BE5460004C8F0 /* AddressBook.framework in Frameworks */,
+				C98E5DC0104BE5460004C8F0 /* libfe_common_irc.a in Frameworks */,
+				C98E5DC1104BE5460004C8F0 /* libcore.a in Frameworks */,
+				C98E5DC2104BE5460004C8F0 /* libirc.a in Frameworks */,
+				C98E5DC3104BE5460004C8F0 /* libirc_notifylist.a in Frameworks */,
+				C98E5DC4104BE5460004C8F0 /* libirc_flood.a in Frameworks */,
+				C98E5DC5104BE5460004C8F0 /* libirc_core.a in Frameworks */,
+				C98E5DC6104BE5460004C8F0 /* libfe_common_core.a in Frameworks */,
+				C98E5DC7104BE5460004C8F0 /* libirssi_config.a in Frameworks */,
+				C98E5DC8104BE5460004C8F0 /* libirc_dcc.a in Frameworks */,
+				C98E5DC9104BE5460004C8F0 /* libfe_irc_dcc.a in Frameworks */,
+				C98E5DCA104BE5460004C8F0 /* libfe_irc_notifylist.a in Frameworks */,
+				C98E5DCB104BE5460004C8F0 /* libgmodule-2.0.0.dylib in Frameworks */,
+				C98E5DCC104BE5460004C8F0 /* libiconv.2.dylib in Frameworks */,
+				C98E5DCD104BE5460004C8F0 /* libintl.8.0.2.dylib in Frameworks */,
+				C98E5DD0104BE5460004C8F0 /* Growl-WithInstaller.framework in Frameworks */,
+				C98E5DD1104BE5460004C8F0 /* libssl.dylib in Frameworks */,
+				C98E5DD2104BE5460004C8F0 /* libcrypto.dylib in Frameworks */,
+				C98E5DD3104BE5460004C8F0 /* SystemConfiguration.framework in Frameworks */,
+				C98E5DD4104BE5460004C8F0 /* Sparkle.framework in Frameworks */,
+				C98E5DD5104BE5460004C8F0 /* Carbon.framework in Frameworks */,
+				C98E5DD6104BE5460004C8F0 /* Appscript.framework in Frameworks */,
+				C98E5DD7104BE5460004C8F0 /* libglib-2.0.0.dylib in Frameworks */,
+				C98E5DD8104BE5460004C8F0 /* GoogleToolboxForMac.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1837,6 +2751,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* MacIrssi.app */,
+				C98E5EF4104BE5460004C8F0 /* MacIrssi.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2119,6 +3034,8 @@
 			isa = PBXGroup;
 			children = (
 				C91F150E0F110A5400763699 /* Shortcut Recorder */,
+				C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */,
+				C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */,
 				C91F0B150F06E3C900763699 /* MISplitView.h */,
 				C91F0B160F06E3C900763699 /* MISplitView.m */,
 				B322DDB705EF9AE600E640C2 /* CustomTableView.h */,
@@ -3035,60 +3952,134 @@
 				C91F194E0F14025D00763699 /* iTunes.h in Headers */,
 				C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */,
 				C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */,
+				C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C98E5CC5104BE5460004C8F0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C98E5CC6104BE5460004C8F0 /* MacIrssi_Prefix.pch in Headers */,
+				C98E5CC7104BE5460004C8F0 /* irssi.h in Headers */,
+				C98E5CC8104BE5460004C8F0 /* printd.h in Headers */,
+				C98E5CC9104BE5460004C8F0 /* AppController.h in Headers */,
+				C98E5CCA104BE5460004C8F0 /* ChannelController.h in Headers */,
+				C98E5CCB104BE5460004C8F0 /* PreferenceViewController.h in Headers */,
+				C98E5CCC104BE5460004C8F0 /* ColorSet.h in Headers */,
+				C98E5CCD104BE5460004C8F0 /* CustomTableView.h in Headers */,
+				C98E5CCE104BE5460004C8F0 /* CustomWindow.h in Headers */,
+				C98E5CCF104BE5460004C8F0 /* IrssiBridge.h in Headers */,
+				C98E5CD0104BE5460004C8F0 /* NSAttributedStringAdditions.h in Headers */,
+				C98E5CD1104BE5460004C8F0 /* CustomTextView.h in Headers */,
+				C98E5CD2104BE5460004C8F0 /* ChannelBar.h in Headers */,
+				C98E5CD3104BE5460004C8F0 /* ChannelBarCell.h in Headers */,
+				C98E5CD4104BE5460004C8F0 /* MarkedScroller.h in Headers */,
+				C98E5CD5104BE5460004C8F0 /* TextEncodings.h in Headers */,
+				C98E5CD6104BE5460004C8F0 /* EventController.h in Headers */,
+				C98E5CD7104BE5460004C8F0 /* ConnectivityMonitor.h in Headers */,
+				C98E5CD8104BE5460004C8F0 /* UKCrashReporter.h in Headers */,
+				C98E5CD9104BE5460004C8F0 /* UKSystemInfo.h in Headers */,
+				C98E5CDA104BE5460004C8F0 /* UKNibOwner.h in Headers */,
+				C98E5CDB104BE5460004C8F0 /* PreferenceObjectController.h in Headers */,
+				C98E5CDC104BE5460004C8F0 /* IrcnetBridgeController.h in Headers */,
+				C98E5CDD104BE5460004C8F0 /* ServerBridgeController.h in Headers */,
+				C98E5CDE104BE5460004C8F0 /* ChannelBridgeController.h in Headers */,
+				C98E5CDF104BE5460004C8F0 /* AppcastVersionComparator.h in Headers */,
+				C98E5CE0104BE5460004C8F0 /* MISplitView.h in Headers */,
+				C98E5CE1104BE5460004C8F0 /* CTGradient.h in Headers */,
+				C98E5CE2104BE5460004C8F0 /* SRCommon.h in Headers */,
+				C98E5CE3104BE5460004C8F0 /* SRKeyCodeTransformer.h in Headers */,
+				C98E5CE4104BE5460004C8F0 /* SRRecorderCell.h in Headers */,
+				C98E5CE5104BE5460004C8F0 /* SRRecorderControl.h in Headers */,
+				C98E5CE6104BE5460004C8F0 /* SRValidator.h in Headers */,
+				C98E5CE7104BE5460004C8F0 /* ShortcutBridgeController.h in Headers */,
+				C98E5CE8104BE5460004C8F0 /* ASDefaultAEMConstants.h in Headers */,
+				C98E5CE9104BE5460004C8F0 /* ASDefaultApplicationGlue.h in Headers */,
+				C98E5CEA104BE5460004C8F0 /* ASDefaultCommandGlue.h in Headers */,
+				C98E5CEB104BE5460004C8F0 /* ASDefaultConstantGlue.h in Headers */,
+				C98E5CEC104BE5460004C8F0 /* ASDefaultGlue.h in Headers */,
+				C98E5CED104BE5460004C8F0 /* ASDefaultReferenceGlue.h in Headers */,
+				C98E5CEE104BE5460004C8F0 /* ASDefaultReferenceRendererGlue.h in Headers */,
+				C98E5CEF104BE5460004C8F0 /* ITAEMConstants.h in Headers */,
+				C98E5CF0104BE5460004C8F0 /* ITApplicationGlue.h in Headers */,
+				C98E5CF1104BE5460004C8F0 /* ITCommandGlue.h in Headers */,
+				C98E5CF2104BE5460004C8F0 /* ITConstantGlue.h in Headers */,
+				C98E5CF3104BE5460004C8F0 /* ITGlue.h in Headers */,
+				C98E5CF4104BE5460004C8F0 /* ITReferenceGlue.h in Headers */,
+				C98E5CF5104BE5460004C8F0 /* ITReferenceRendererGlue.h in Headers */,
+				C98E5CF6104BE5460004C8F0 /* iTunes.h in Headers */,
+				C98E5CF7104BE5460004C8F0 /* AIMenuAdditions.h in Headers */,
+				C98E5CF8104BE5460004C8F0 /* NSString+Additions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXLegacyTarget section */
-		B32A9E9005F0F99C00DB2595 /* irssi */ = {
+		B32A9E9005F0F99C00DB2595 /* Irssi Build (Snow Leopard) */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = "-j5 $(ACTION)";
-			buildConfigurationList = C209D3A408BF5CE6009C9E21 /* Build configuration list for PBXLegacyTarget "irssi" */;
+			buildConfigurationList = C209D3A408BF5CE6009C9E21 /* Build configuration list for PBXLegacyTarget "Irssi Build (Snow Leopard)" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "irssi-0.8.14";
 			dependencies = (
 			);
-			name = irssi;
+			name = "Irssi Build (Snow Leopard)";
 			passBuildSettingsInEnvironment = 1;
 			productName = irssi;
 		};
-		C224D32708C651E000E66C62 /* Fake IRC Server */ = {
+		C98E5F00104BE72E0004C8F0 /* Irssi Configure (Leopard) */ = {
 			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION)";
-			buildConfigurationList = C224D32808C651FF00E66C62 /* Build configuration list for PBXLegacyTarget "Fake IRC Server" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "ThemePreviewDaemon/Fake IRC Server";
-			dependencies = (
-			);
-			name = "Fake IRC Server";
-			passBuildSettingsInEnvironment = 1;
-			productName = "Fake IRC Server";
-		};
-		C98F778D0E36500900CF2AAF /* Irssi Configure */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "--with-modules --with-proxy --enable-ipv6 --enable-ssl --without-textui --with-perl=yes --disable-dependency-tracking";
-			buildConfigurationList = C98F77960E36501500CF2AAF /* Build configuration list for PBXLegacyTarget "Irssi Configure" */;
+			buildArgumentsString = "--with-modules --with-proxy --enable-ipv6 --enable-ssl --without-textui --with-perl=no --disable-dependency-tracking";
+			buildConfigurationList = C98E5F01104BE72E0004C8F0 /* Build configuration list for PBXLegacyTarget "Irssi Configure (Leopard)" */;
 			buildPhases = (
 			);
 			buildToolPath = ../xcodeConfigure.sh;
 			buildWorkingDirectory = "irssi-0.8.14";
 			dependencies = (
 			);
-			name = "Irssi Configure";
+			name = "Irssi Configure (Leopard)";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Irssi Configure";
+		};
+		C98E5F05104BE72E0004C8F0 /* Irssi Build (Leopard) */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-j5 $(ACTION)";
+			buildConfigurationList = C98E5F06104BE72E0004C8F0 /* Build configuration list for PBXLegacyTarget "Irssi Build (Leopard)" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "irssi-0.8.14";
+			dependencies = (
+				C98E5F0F104BE7A20004C8F0 /* PBXTargetDependency */,
+			);
+			name = "Irssi Build (Leopard)";
+			passBuildSettingsInEnvironment = 1;
+			productName = irssi;
+		};
+		C98F778D0E36500900CF2AAF /* Irssi Configure (Snow Leopard) */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "--with-modules --with-proxy --enable-ipv6 --enable-ssl --without-textui --with-perl=yes --disable-dependency-tracking";
+			buildConfigurationList = C98F77960E36501500CF2AAF /* Build configuration list for PBXLegacyTarget "Irssi Configure (Snow Leopard)" */;
+			buildPhases = (
+			);
+			buildToolPath = ../xcodeConfigure.sh;
+			buildWorkingDirectory = "irssi-0.8.14";
+			dependencies = (
+			);
+			name = "Irssi Configure (Snow Leopard)";
 			passBuildSettingsInEnvironment = 1;
 			productName = "Irssi Configure";
 		};
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* MacIrssi */ = {
+		8D1107260486CEB800E47090 /* MacIrssi (Snow Leopard) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C209D3A808BF5CE6009C9E21 /* Build configuration list for PBXNativeTarget "MacIrssi" */;
+			buildConfigurationList = C209D3A808BF5CE6009C9E21 /* Build configuration list for PBXNativeTarget "MacIrssi (Snow Leopard)" */;
 			buildPhases = (
 				8D1107270486CEB800E47090 /* Headers */,
 				8D1107290486CEB800E47090 /* Resources */,
@@ -3109,10 +4100,38 @@
 				C98F77D10E3651DC00CF2AAF /* PBXTargetDependency */,
 				B32A9E9805F0FB4B00DB2595 /* PBXTargetDependency */,
 			);
-			name = MacIrssi;
+			name = "MacIrssi (Snow Leopard)";
 			productInstallPath = "$(HOME)/Applications";
 			productName = MacIrssi;
 			productReference = 8D1107320486CEB800E47090 /* MacIrssi.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C98E5CC0104BE5460004C8F0 /* MacIrssi (Leopard+Tiger) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C98E5EF0104BE5460004C8F0 /* Build configuration list for PBXNativeTarget "MacIrssi (Leopard+Tiger)" */;
+			buildPhases = (
+				C98E5CC5104BE5460004C8F0 /* Headers */,
+				C98E5CF9104BE5460004C8F0 /* Resources */,
+				C98E5D8E104BE5460004C8F0 /* Sources */,
+				C98E5DBD104BE5460004C8F0 /* Frameworks */,
+				C98E5DD9104BE5460004C8F0 /* Copy Libraries */,
+				C98E5DE1104BE5460004C8F0 /* Copy Helpfiles */,
+				C98E5E5B104BE5460004C8F0 /* Library Paths Fix */,
+				C98E5E5C104BE5460004C8F0 /* Copy Growl Framework */,
+				C98E5E5E104BE5460004C8F0 /* Copy Themes */,
+				C98E5EDC104BE5460004C8F0 /* Copy Alert Sounds */,
+				C98E5EEE104BE5460004C8F0 /* Copy Perl modules */,
+				C98E5EEF104BE5460004C8F0 /* Update Git version */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C98E5F0D104BE7730004C8F0 /* PBXTargetDependency */,
+			);
+			name = "MacIrssi (Leopard+Tiger)";
+			productInstallPath = "$(HOME)/Applications";
+			productName = MacIrssi;
+			productReference = C98E5EF4104BE5460004C8F0 /* MacIrssi.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -3133,10 +4152,12 @@
 			);
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* MacIrssi */,
-				C98F778D0E36500900CF2AAF /* Irssi Configure */,
-				B32A9E9005F0F99C00DB2595 /* irssi */,
-				C224D32708C651E000E66C62 /* Fake IRC Server */,
+				8D1107260486CEB800E47090 /* MacIrssi (Snow Leopard) */,
+				C98F778D0E36500900CF2AAF /* Irssi Configure (Snow Leopard) */,
+				B32A9E9005F0F99C00DB2595 /* Irssi Build (Snow Leopard) */,
+				C98E5CC0104BE5460004C8F0 /* MacIrssi (Leopard+Tiger) */,
+				C98E5F00104BE72E0004C8F0 /* Irssi Configure (Leopard) */,
+				C98E5F05104BE72E0004C8F0 /* Irssi Build (Leopard) */,
 				C9EC9F1E0E363AE000445345 /* Packages */,
 				C91793250F743FCE005241A4 /* Build MILibs */,
 			);
@@ -3299,6 +4320,161 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C98E5CF9104BE5460004C8F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C98E5CFA104BE5460004C8F0 /* InfoPlist.strings in Resources */,
+				C98E5CFB104BE5460004C8F0 /* MacIrssi.icns in Resources */,
+				C98E5CFC104BE5460004C8F0 /* sound.png in Resources */,
+				C98E5CFD104BE5460004C8F0 /* activityNewImportant.png in Resources */,
+				C98E5CFE104BE5460004C8F0 /* MacIrssi-Alert.png in Resources */,
+				C98E5CFF104BE5460004C8F0 /* UKCrashReporter.strings in Resources */,
+				C98E5D00104BE5460004C8F0 /* UKCrashReporter.nib in Resources */,
+				C98E5D01104BE5460004C8F0 /* General.tiff in Resources */,
+				C98E5D02104BE5460004C8F0 /* Notifications.png in Resources */,
+				C98E5D03104BE5460004C8F0 /* Colours.tiff in Resources */,
+				C98E5D04104BE5460004C8F0 /* Networks.png in Resources */,
+				C98E5D05104BE5460004C8F0 /* deleteWidgetPressed.png in Resources */,
+				C98E5D06104BE5460004C8F0 /* deleteWidget.png in Resources */,
+				C98E5D07104BE5460004C8F0 /* addSquareWidgetPressed.png in Resources */,
+				C98E5D08104BE5460004C8F0 /* addSquareWidget.png in Resources */,
+				C98E5D09104BE5460004C8F0 /* Servers.png in Resources */,
+				C98E5D0A104BE5460004C8F0 /* addWidgetSelected.png in Resources */,
+				C98E5D0B104BE5460004C8F0 /* addWidget.png in Resources */,
+				C98E5D0C104BE5460004C8F0 /* removeWidgetSelected.png in Resources */,
+				C98E5D0D104BE5460004C8F0 /* removeWidget.png in Resources */,
+				C98E5D0E104BE5460004C8F0 /* Themes.png in Resources */,
+				C98E5D0F104BE5460004C8F0 /* Keyboard.png in Resources */,
+				C98E5D10104BE5460004C8F0 /* ShortcutRecorder.strings in Resources */,
+				C98E5D11104BE5460004C8F0 /* MainMenu.xib in Resources */,
+				C98E5D12104BE5460004C8F0 /* Preferences.xib in Resources */,
+				C98E5D13104BE5460004C8F0 /* Tab new.xib in Resources */,
+				C98E5D14104BE5460004C8F0 /* MacIrssi.pub in Resources */,
+				C98E5D15104BE5460004C8F0 /* accept in Resources */,
+				C98E5D16104BE5460004C8F0 /* action in Resources */,
+				C98E5D17104BE5460004C8F0 /* admin in Resources */,
+				C98E5D18104BE5460004C8F0 /* alias in Resources */,
+				C98E5D19104BE5460004C8F0 /* away in Resources */,
+				C98E5D1A104BE5460004C8F0 /* ban in Resources */,
+				C98E5D1B104BE5460004C8F0 /* beep in Resources */,
+				C98E5D1C104BE5460004C8F0 /* bind in Resources */,
+				C98E5D1D104BE5460004C8F0 /* cat in Resources */,
+				C98E5D1E104BE5460004C8F0 /* cd in Resources */,
+				C98E5D1F104BE5460004C8F0 /* channel in Resources */,
+				C98E5D20104BE5460004C8F0 /* clear in Resources */,
+				C98E5D21104BE5460004C8F0 /* completion in Resources */,
+				C98E5D22104BE5460004C8F0 /* connect in Resources */,
+				C98E5D23104BE5460004C8F0 /* ctcp in Resources */,
+				C98E5D24104BE5460004C8F0 /* cycle in Resources */,
+				C98E5D25104BE5460004C8F0 /* dcc in Resources */,
+				C98E5D26104BE5460004C8F0 /* dehilight in Resources */,
+				C98E5D27104BE5460004C8F0 /* deop in Resources */,
+				C98E5D28104BE5460004C8F0 /* devoice in Resources */,
+				C98E5D29104BE5460004C8F0 /* die in Resources */,
+				C98E5D2A104BE5460004C8F0 /* disconnect in Resources */,
+				C98E5D2B104BE5460004C8F0 /* echo in Resources */,
+				C98E5D2C104BE5460004C8F0 /* eval in Resources */,
+				C98E5D2D104BE5460004C8F0 /* exec in Resources */,
+				C98E5D2E104BE5460004C8F0 /* flushbuffer in Resources */,
+				C98E5D2F104BE5460004C8F0 /* format in Resources */,
+				C98E5D30104BE5460004C8F0 /* hash in Resources */,
+				C98E5D31104BE5460004C8F0 /* help in Resources */,
+				C98E5D32104BE5460004C8F0 /* hilight in Resources */,
+				C98E5D33104BE5460004C8F0 /* ignore in Resources */,
+				C98E5D34104BE5460004C8F0 /* info in Resources */,
+				C98E5D35104BE5460004C8F0 /* invite in Resources */,
+				C98E5D36104BE5460004C8F0 /* invitelist in Resources */,
+				C98E5D37104BE5460004C8F0 /* ircnet in Resources */,
+				C98E5D38104BE5460004C8F0 /* ison in Resources */,
+				C98E5D39104BE5460004C8F0 /* join in Resources */,
+				C98E5D3A104BE5460004C8F0 /* kick in Resources */,
+				C98E5D3B104BE5460004C8F0 /* kickban in Resources */,
+				C98E5D3C104BE5460004C8F0 /* kill in Resources */,
+				C98E5D3D104BE5460004C8F0 /* knock in Resources */,
+				C98E5D3E104BE5460004C8F0 /* knockout in Resources */,
+				C98E5D3F104BE5460004C8F0 /* lastlog in Resources */,
+				C98E5D40104BE5460004C8F0 /* layout in Resources */,
+				C98E5D41104BE5460004C8F0 /* levels in Resources */,
+				C98E5D42104BE5460004C8F0 /* links in Resources */,
+				C98E5D43104BE5460004C8F0 /* list in Resources */,
+				C98E5D44104BE5460004C8F0 /* load in Resources */,
+				C98E5D45104BE5460004C8F0 /* log in Resources */,
+				C98E5D46104BE5460004C8F0 /* lusers in Resources */,
+				C98E5D47104BE5460004C8F0 /* map in Resources */,
+				C98E5D48104BE5460004C8F0 /* me in Resources */,
+				C98E5D49104BE5460004C8F0 /* mircdcc in Resources */,
+				C98E5D4A104BE5460004C8F0 /* mode in Resources */,
+				C98E5D4B104BE5460004C8F0 /* motd in Resources */,
+				C98E5D4C104BE5460004C8F0 /* msg in Resources */,
+				C98E5D4D104BE5460004C8F0 /* names in Resources */,
+				C98E5D4E104BE5460004C8F0 /* nctcp in Resources */,
+				C98E5D4F104BE5460004C8F0 /* netsplit in Resources */,
+				C98E5D50104BE5460004C8F0 /* network in Resources */,
+				C98E5D51104BE5460004C8F0 /* nick in Resources */,
+				C98E5D52104BE5460004C8F0 /* note in Resources */,
+				C98E5D53104BE5460004C8F0 /* notice in Resources */,
+				C98E5D54104BE5460004C8F0 /* notify in Resources */,
+				C98E5D55104BE5460004C8F0 /* op in Resources */,
+				C98E5D56104BE5460004C8F0 /* oper in Resources */,
+				C98E5D57104BE5460004C8F0 /* part in Resources */,
+				C98E5D58104BE5460004C8F0 /* ping in Resources */,
+				C98E5D59104BE5460004C8F0 /* query in Resources */,
+				C98E5D5A104BE5460004C8F0 /* quit in Resources */,
+				C98E5D5B104BE5460004C8F0 /* quote in Resources */,
+				C98E5D5C104BE5460004C8F0 /* rawlog in Resources */,
+				C98E5D5D104BE5460004C8F0 /* recode in Resources */,
+				C98E5D5E104BE5460004C8F0 /* reconnect in Resources */,
+				C98E5D5F104BE5460004C8F0 /* rehash in Resources */,
+				C98E5D60104BE5460004C8F0 /* reload in Resources */,
+				C98E5D61104BE5460004C8F0 /* restart in Resources */,
+				C98E5D62104BE5460004C8F0 /* rmreconns in Resources */,
+				C98E5D63104BE5460004C8F0 /* rmrejoins in Resources */,
+				C98E5D64104BE5460004C8F0 /* rping in Resources */,
+				C98E5D65104BE5460004C8F0 /* save in Resources */,
+				C98E5D66104BE5460004C8F0 /* say in Resources */,
+				C98E5D67104BE5460004C8F0 /* sconnect in Resources */,
+				C98E5D68104BE5460004C8F0 /* script in Resources */,
+				C98E5D69104BE5460004C8F0 /* scrollback in Resources */,
+				C98E5D6A104BE5460004C8F0 /* server in Resources */,
+				C98E5D6B104BE5460004C8F0 /* servlist in Resources */,
+				C98E5D6C104BE5460004C8F0 /* set in Resources */,
+				C98E5D6D104BE5460004C8F0 /* silence in Resources */,
+				C98E5D6E104BE5460004C8F0 /* squery in Resources */,
+				C98E5D6F104BE5460004C8F0 /* squit in Resources */,
+				C98E5D70104BE5460004C8F0 /* stats in Resources */,
+				C98E5D71104BE5460004C8F0 /* statusbar in Resources */,
+				C98E5D72104BE5460004C8F0 /* time in Resources */,
+				C98E5D73104BE5460004C8F0 /* toggle in Resources */,
+				C98E5D74104BE5460004C8F0 /* topic in Resources */,
+				C98E5D75104BE5460004C8F0 /* trace in Resources */,
+				C98E5D76104BE5460004C8F0 /* ts in Resources */,
+				C98E5D77104BE5460004C8F0 /* unalias in Resources */,
+				C98E5D78104BE5460004C8F0 /* unban in Resources */,
+				C98E5D79104BE5460004C8F0 /* unignore in Resources */,
+				C98E5D7A104BE5460004C8F0 /* unload in Resources */,
+				C98E5D7B104BE5460004C8F0 /* unnotify in Resources */,
+				C98E5D7C104BE5460004C8F0 /* unquery in Resources */,
+				C98E5D7D104BE5460004C8F0 /* unsilence in Resources */,
+				C98E5D7E104BE5460004C8F0 /* upgrade in Resources */,
+				C98E5D7F104BE5460004C8F0 /* uping in Resources */,
+				C98E5D80104BE5460004C8F0 /* userhost in Resources */,
+				C98E5D81104BE5460004C8F0 /* ver in Resources */,
+				C98E5D82104BE5460004C8F0 /* version in Resources */,
+				C98E5D83104BE5460004C8F0 /* voice in Resources */,
+				C98E5D84104BE5460004C8F0 /* wait in Resources */,
+				C98E5D85104BE5460004C8F0 /* wall in Resources */,
+				C98E5D86104BE5460004C8F0 /* wallops in Resources */,
+				C98E5D87104BE5460004C8F0 /* watch in Resources */,
+				C98E5D88104BE5460004C8F0 /* who in Resources */,
+				C98E5D89104BE5460004C8F0 /* whois in Resources */,
+				C98E5D8A104BE5460004C8F0 /* whowas in Resources */,
+				C98E5D8B104BE5460004C8F0 /* window in Resources */,
+				C98E5D8C104BE5460004C8F0 /* wjoin in Resources */,
+				C98E5D8D104BE5460004C8F0 /* wquery in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -3328,7 +4504,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# copies perl libraries\n\nPERLPATH=\"irssi-0.8.14/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p $DSTPATH\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p $DSTPATH\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nexit 0";
+			shellScript = "# copies perl libraries\n\nPERLPATH=\"irssi-0.8.14/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p \"$DSTPATH\"\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p \"$DSTPATH\"\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nexit 0";
+		};
+		C98E5E5B104BE5460004C8F0 /* Library Paths Fix */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Library Paths Fix";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./lib_path_fix.sh;
+		};
+		C98E5EEE104BE5460004C8F0 /* Copy Perl modules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Perl modules";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# copies perl libraries\n\nPERLPATH=\"irssi-0.8.14/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p \"$DSTPATH\"\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p \"$DSTPATH\"\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nexit 0";
+		};
+		C98E5EEF104BE5460004C8F0 /* Update Git version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Git version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/perl;
+			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git show-ref --hash --abbrev HEAD`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\ndie \"$0: No Git revision found\" unless $version;\n \nchomp($version);\n\nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>NSGitRevision<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
 		};
 		C9EC9EE30E36386C00445345 /* Update Git version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3410,6 +4628,61 @@
 				C91F194F0F14025D00763699 /* iTunes.m in Sources */,
 				C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */,
 				C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */,
+				C98E5F47104BF3830004C8F0 /* JVFontPreviewField.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C98E5D8E104BE5460004C8F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C98E5D8F104BE5460004C8F0 /* main.m in Sources */,
+				C98E5D90104BE5460004C8F0 /* irssi.m in Sources */,
+				C98E5D91104BE5460004C8F0 /* AppController.m in Sources */,
+				C98E5D92104BE5460004C8F0 /* ChannelController.m in Sources */,
+				C98E5D93104BE5460004C8F0 /* PreferenceViewController.m in Sources */,
+				C98E5D94104BE5460004C8F0 /* ColorSet.m in Sources */,
+				C98E5D95104BE5460004C8F0 /* CustomTableView.m in Sources */,
+				C98E5D96104BE5460004C8F0 /* CustomWindow.m in Sources */,
+				C98E5D97104BE5460004C8F0 /* IrssiBridge.m in Sources */,
+				C98E5D98104BE5460004C8F0 /* NSAttributedStringAdditions.m in Sources */,
+				C98E5D99104BE5460004C8F0 /* CustomTextView.m in Sources */,
+				C98E5D9A104BE5460004C8F0 /* ChannelBar.m in Sources */,
+				C98E5D9B104BE5460004C8F0 /* ChannelBarCell.m in Sources */,
+				C98E5D9C104BE5460004C8F0 /* MarkedScroller.m in Sources */,
+				C98E5D9D104BE5460004C8F0 /* TextEncodings.m in Sources */,
+				C98E5D9E104BE5460004C8F0 /* EventController.m in Sources */,
+				C98E5D9F104BE5460004C8F0 /* ConnectivityMonitor.m in Sources */,
+				C98E5DA0104BE5460004C8F0 /* UKCrashReporter.m in Sources */,
+				C98E5DA1104BE5460004C8F0 /* UKSystemInfo.m in Sources */,
+				C98E5DA2104BE5460004C8F0 /* UKNibOwner.m in Sources */,
+				C98E5DA3104BE5460004C8F0 /* PreferenceObjectController.m in Sources */,
+				C98E5DA4104BE5460004C8F0 /* IrcnetBridgeController.m in Sources */,
+				C98E5DA5104BE5460004C8F0 /* ServerBridgeController.m in Sources */,
+				C98E5DA6104BE5460004C8F0 /* ChannelBridgeController.m in Sources */,
+				C98E5DA7104BE5460004C8F0 /* AppcastVersionComparator.m in Sources */,
+				C98E5DA8104BE5460004C8F0 /* MISplitView.m in Sources */,
+				C98E5DA9104BE5460004C8F0 /* CTGradient.m in Sources */,
+				C98E5DAA104BE5460004C8F0 /* SRCommon.m in Sources */,
+				C98E5DAB104BE5460004C8F0 /* SRKeyCodeTransformer.m in Sources */,
+				C98E5DAC104BE5460004C8F0 /* SRRecorderCell.m in Sources */,
+				C98E5DAD104BE5460004C8F0 /* SRRecorderControl.m in Sources */,
+				C98E5DAE104BE5460004C8F0 /* SRValidator.m in Sources */,
+				C98E5DAF104BE5460004C8F0 /* ShortcutBridgeController.m in Sources */,
+				C98E5DB0104BE5460004C8F0 /* ASDefaultApplicationGlue.m in Sources */,
+				C98E5DB1104BE5460004C8F0 /* ASDefaultCommandGlue.m in Sources */,
+				C98E5DB2104BE5460004C8F0 /* ASDefaultConstantGlue.m in Sources */,
+				C98E5DB3104BE5460004C8F0 /* ASDefaultReferenceGlue.m in Sources */,
+				C98E5DB4104BE5460004C8F0 /* ASDefaultReferenceRendererGlue.m in Sources */,
+				C98E5DB5104BE5460004C8F0 /* ITApplicationGlue.m in Sources */,
+				C98E5DB6104BE5460004C8F0 /* ITCommandGlue.m in Sources */,
+				C98E5DB7104BE5460004C8F0 /* ITConstantGlue.m in Sources */,
+				C98E5DB8104BE5460004C8F0 /* ITReferenceGlue.m in Sources */,
+				C98E5DB9104BE5460004C8F0 /* ITReferenceRendererGlue.m in Sources */,
+				C98E5DBA104BE5460004C8F0 /* iTunes.m in Sources */,
+				C98E5DBB104BE5460004C8F0 /* AIMenuAdditions.m in Sources */,
+				C98E5DBC104BE5460004C8F0 /* NSString+Additions.m in Sources */,
+				C98E5FDC104BFB6F0004C8F0 /* JVFontPreviewField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3418,7 +4691,7 @@
 /* Begin PBXTargetDependency section */
 		B32A9E9805F0FB4B00DB2595 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B32A9E9005F0F99C00DB2595 /* irssi */;
+			target = B32A9E9005F0F99C00DB2595 /* Irssi Build (Snow Leopard) */;
 			targetProxy = B32A9E9705F0FB4B00DB2595 /* PBXContainerItemProxy */;
 		};
 		C917932A0F743FD3005241A4 /* PBXTargetDependency */ = {
@@ -3426,14 +4699,24 @@
 			name = "\"Install\" glib";
 			targetProxy = C91793290F743FD3005241A4 /* PBXContainerItemProxy */;
 		};
+		C98E5F0D104BE7730004C8F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C98E5F05104BE72E0004C8F0 /* Irssi Build (Leopard) */;
+			targetProxy = C98E5F0C104BE7730004C8F0 /* PBXContainerItemProxy */;
+		};
+		C98E5F0F104BE7A20004C8F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C98E5F00104BE72E0004C8F0 /* Irssi Configure (Leopard) */;
+			targetProxy = C98E5F0E104BE7A20004C8F0 /* PBXContainerItemProxy */;
+		};
 		C98F77D10E3651DC00CF2AAF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C98F778D0E36500900CF2AAF /* Irssi Configure */;
+			target = C98F778D0E36500900CF2AAF /* Irssi Configure (Snow Leopard) */;
 			targetProxy = C98F77D00E3651DC00CF2AAF /* PBXContainerItemProxy */;
 		};
 		C9EC9F230E363AE500445345 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D1107260486CEB800E47090 /* MacIrssi */;
+			target = 8D1107260486CEB800E47090 /* MacIrssi (Snow Leopard) */;
 			targetProxy = C9EC9F220E363AE500445345 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -3546,6 +4829,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
@@ -3647,6 +4932,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
@@ -3755,6 +5042,8 @@
 		C209D3AB08BF5CE6009C9E21 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
 				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
@@ -3882,61 +5171,6 @@
 			};
 			name = Default;
 		};
-		C224D32908C651FF00E66C62 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "Fake IRC Server";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Development;
-		};
-		C224D32A08C651FF00E66C62 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "Fake IRC Server";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Deployment;
-		};
-		C224D32B08C651FF00E66C62 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = "Fake IRC Server";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
-			name = Default;
-		};
 		C91793260F743FCF005241A4 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3962,6 +5196,426 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "Build MILibs";
+			};
+			name = Default;
+		};
+		C98E5EF1104BE5460004C8F0 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/Frameworks\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"Frameworks/*.framework/**",
+					"irssi-0.8.14/src",
+					"irssi-0.8.14",
+					"Source\n/**",
+				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_16)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/flood\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/irssi-0.8.14/src/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy/.libs\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_16 = "\"$(SRCROOT)/irssi-0.8.14/src/lib-config\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi-0.8.14/src/perl/.libs\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$SRCROOT/irssi-0.8.14\"/**";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi-0.8.14/src/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/core\"";
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-fno-strict-aliasing",
+					"-DMACIRSSI_DEBUG",
+				);
+				OTHER_LDFLAGS = (
+					"-ldl",
+					"-lm",
+					"-lc",
+					"-lssl",
+					"-lcrypto",
+					"-bind_at_load",
+					"-multiply_defined",
+					suppress,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MacIrssi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Development;
+		};
+		C98E5EF2104BE5460004C8F0 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Frameworks\"";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = "";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = (
+					"Frameworks/*.framework/**",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"irssi-0.8.12/src",
+					"irssi-0.8.12",
+					"Source\n/**",
+				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$SRCROOT/Frameworks/MILibs/build/Release/lib\"/**";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$SRCROOT/Frameworks/MILibs/build/Release/include\"/**";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_10 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_11 = "\"$(SRCROOT)/irssi-0.8.12/src/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"/usr/local/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.10\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.10.0\"/**";
+				LIBRARY_SEARCH_PATHS_QUOTED_17 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/flood\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_4 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_5 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_6 = "\"$(SRCROOT)/irssi-0.8.12/src/lib-popt\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(SRCROOT)/irssi-0.8.12/src/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(SRCROOT)/irssi-0.8.12/src/lib-config\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/irssi-0.8.14/src/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy/.libs\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/irssi-0.8.14/src/lib-config\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi-0.8.14/src/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/flood\"";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lssl",
+					"-lcrypto",
+					"-bind_at_load",
+					"-multiply_defined",
+					suppress,
+					"-headerpad_max_install_names",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = MacIrssi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		C98E5EF3104BE5460004C8F0 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)\"/**";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Frameworks\"";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = "";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = 4.0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = (
+					"Frameworks/*.framework/**",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"irssi-0.8.12/src",
+					"irssi-0.8.12",
+					"Source\n/**",
+				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$SRCROOT/Frameworks/MILibs/build/Release/lib\"/**";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$SRCROOT/Frameworks/MILibs/build/Release/include\"/**";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_10 = "\"$(SRCROOT)/irssi-0.8.11/src/fe-common/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_11 = "\"$(SRCROOT)/irssi-0.8.11/src/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(SRCROOT)/irssi-0.8.11/src/fe-common/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"$(SRCROOT)/glib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(SRCROOT)/irssi-0.8.11/src/perl/.libs\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.8\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_17 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/flood\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_4 = "\"$(SRCROOT)/irssi-0.8.11/src/fe-common/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_5 = "\"$(SRCROOT)/irssi-0.8.11/src/fe-common/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_6 = "\"$(SRCROOT)/irssi-0.8.11/src/lib-popt\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(SRCROOT)/irssi-0.8.11/src/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(SRCROOT)/irssi-0.8.11/src/lib-config\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/irssi-0.8.14/src/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy/.libs\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/irssi-0.8.14/src/lib-config\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi-0.8.14/src/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/flood\"";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-lssl",
+					"-lcrypto",
+					"-bind_at_load",
+					"-multiply_defined",
+					suppress,
+				);
+				PRODUCT_NAME = MacIrssi;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		C98E5F02104BE72E0004C8F0 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
+				ACTION = $ACTION;
+				CC = "gcc-4.0";
+				CFLAGS = "-I/usr/local/include -g -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LDFLAGS = "-L/usr/local/lib -g -arch ppc -arch i386";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PKG_CONFIG_PATH = /usr/local/lib/pkgconfig;
+				PRODUCT_NAME = "Irssi Configure";
+			};
+			name = Development;
+		};
+		C98E5F03104BE72E0004C8F0 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
+				ACTION = $ACTION;
+				CFLAGS = "-I/usr/local/include -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				LDFLAGS = "-L/usr/local/lib -arch ppc -arch i386";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				PKG_CONFIG_PATH = /usr/local/lib/pkgconfig;
+				PRODUCT_NAME = "Irssi Configure";
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		C98E5F04104BE72E0004C8F0 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Irssi Configure";
+			};
+			name = Default;
+		};
+		C98E5F07104BE72E0004C8F0 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "\U0001";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = irssi;
+				SECTORDER_FLAGS = "\U0001";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Development;
+		};
+		C98E5F08104BE72E0004C8F0 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = irssi;
+				SECTORDER_FLAGS = "\U0001";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		C98E5F09104BE72E0004C8F0 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = irssi;
+				SECTORDER_FLAGS = "\U0001";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
 			};
 			name = Default;
 		};
@@ -4042,7 +5696,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C209D3A408BF5CE6009C9E21 /* Build configuration list for PBXLegacyTarget "irssi" */ = {
+		C209D3A408BF5CE6009C9E21 /* Build configuration list for PBXLegacyTarget "Irssi Build (Snow Leopard)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C209D3A508BF5CE6009C9E21 /* Development */,
@@ -4052,7 +5706,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		C209D3A808BF5CE6009C9E21 /* Build configuration list for PBXNativeTarget "MacIrssi" */ = {
+		C209D3A808BF5CE6009C9E21 /* Build configuration list for PBXNativeTarget "MacIrssi (Snow Leopard)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C209D3A908BF5CE6009C9E21 /* Development */,
@@ -4072,16 +5726,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		C224D32808C651FF00E66C62 /* Build configuration list for PBXLegacyTarget "Fake IRC Server" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C224D32908C651FF00E66C62 /* Development */,
-				C224D32A08C651FF00E66C62 /* Deployment */,
-				C224D32B08C651FF00E66C62 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
 		C917932C0F743FFE005241A4 /* Build configuration list for PBXAggregateTarget "Build MILibs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -4092,7 +5736,37 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		C98F77960E36501500CF2AAF /* Build configuration list for PBXLegacyTarget "Irssi Configure" */ = {
+		C98E5EF0104BE5460004C8F0 /* Build configuration list for PBXNativeTarget "MacIrssi (Leopard+Tiger)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C98E5EF1104BE5460004C8F0 /* Development */,
+				C98E5EF2104BE5460004C8F0 /* Deployment */,
+				C98E5EF3104BE5460004C8F0 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		C98E5F01104BE72E0004C8F0 /* Build configuration list for PBXLegacyTarget "Irssi Configure (Leopard)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C98E5F02104BE72E0004C8F0 /* Development */,
+				C98E5F03104BE72E0004C8F0 /* Deployment */,
+				C98E5F04104BE72E0004C8F0 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		C98E5F06104BE72E0004C8F0 /* Build configuration list for PBXLegacyTarget "Irssi Build (Leopard)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C98E5F07104BE72E0004C8F0 /* Development */,
+				C98E5F08104BE72E0004C8F0 /* Deployment */,
+				C98E5F09104BE72E0004C8F0 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		C98F77960E36501500CF2AAF /* Build configuration list for PBXLegacyTarget "Irssi Configure (Snow Leopard)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C98F778E0E36500900CF2AAF /* Development */,

@@ -26,6 +26,7 @@
 #import "ShortcutBridgeController.h"
 
 #import "SRRecorderControl.h"
+#import "JVFontPreviewField.h"
 
 enum
 {
@@ -116,8 +117,8 @@ enum
   /* Themes tab */
   IBOutlet NSTextView *themePreviewTextView;
   IBOutlet NSArrayController *themesArrayController;
-  IBOutlet NSTextField *mainWindowFontField;
-  IBOutlet NSTextField *nickListFontField;
+  IBOutlet JVFontPreviewField *mainWindowFontField;
+  IBOutlet JVFontPreviewField *nickListFontField;
   NSMutableArray *availableThemes;
   NSMutableAttributedString *themeRenderLineBuffer;
   

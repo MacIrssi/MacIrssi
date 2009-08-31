@@ -651,7 +651,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [(CustomWindow *)[tabView window] setCurrentChannelTextView:textView];
   [tabView selectTabViewItem:tmp];
   [channelBar selectCellWithWindowRec:wind];
-  [channelTableView selectRow:[tabView indexOfTabViewItem:tmp] byExtendingSelection:FALSE];
+  [channelTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[tabView indexOfTabViewItem:tmp]] byExtendingSelection:FALSE];
   [currentChannelController setWaitingEvents:0];
 
   // Update the window title

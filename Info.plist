@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SUPublicDSAKeyFile</key>
-	<string>MacIrssi.pub</string>
-	<key>SUEnableSystemProfiling</key>
-	<string>YES</string>
-	<key>SUFeedURL</key>
-	<string>http://www.sysctl.co.uk/projects/macirssi/feed.php</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -30,6 +24,12 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUEnableSystemProfiling</key>
+	<string>YES</string>
+	<key>SUFeedURL</key>
+	<string>http://www.sysctl.co.uk/projects/macirssi/feed.php</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>MacIrssi.pub</string>
 	<key>SmartCrashReports_CompanyName</key>
 	<string>Matt Wright</string>
 	<key>SmartCrashReports_EmailTicket</key>
