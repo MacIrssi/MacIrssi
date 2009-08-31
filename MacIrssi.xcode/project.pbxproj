@@ -18,16 +18,17 @@
 			name = "Build MILibs";
 			productName = "Build MILibs";
 		};
-		C9EC9F1E0E363AE000445345 /* Packages (Snow Leopard) */ = {
+		C9EC9F1E0E363AE000445345 /* Packages */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages (Snow Leopard)" */;
+			buildConfigurationList = C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */;
 			buildPhases = (
 				C9EC9F250E363AEB00445345 /* ShellScript */,
 			);
 			dependencies = (
 				C9EC9F230E363AE500445345 /* PBXTargetDependency */,
+				C98E6016104C024A0004C8F0 /* PBXTargetDependency */,
 			);
-			name = "Packages (Snow Leopard)";
+			name = Packages;
 			productName = Packages;
 		};
 /* End PBXAggregateTarget section */
@@ -1150,6 +1151,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = C98E5F00104BE72E0004C8F0 /* Irssi Configure (Leopard) */;
 			remoteInfo = "Irssi Configure (Leopard)";
+		};
+		C98E6015104C024A0004C8F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C98E5CC0104BE5460004C8F0 /* MacIrssi (Leopard+Tiger) */;
+			remoteInfo = "MacIrssi (Leopard+Tiger)";
 		};
 		C98F77D00E3651DC00CF2AAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -4155,10 +4163,10 @@
 				8D1107260486CEB800E47090 /* MacIrssi (Snow Leopard) */,
 				C98F778D0E36500900CF2AAF /* Irssi Configure (Snow Leopard) */,
 				B32A9E9005F0F99C00DB2595 /* Irssi Build (Snow Leopard) */,
-				C9EC9F1E0E363AE000445345 /* Packages (Snow Leopard) */,
 				C98E5CC0104BE5460004C8F0 /* MacIrssi (Leopard+Tiger) */,
 				C98E5F00104BE72E0004C8F0 /* Irssi Configure (Leopard) */,
 				C98E5F05104BE72E0004C8F0 /* Irssi Build (Leopard) */,
+				C9EC9F1E0E363AE000445345 /* Packages */,
 				C91793250F743FCE005241A4 /* Build MILibs */,
 			);
 		};
@@ -4573,7 +4581,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "VERSION=`pl < $PRODUCT_SETTINGS_PATH | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\\s+=\\s+\"(.*?)\"/); }'`\nDATE=`date \"+%d%m%y-%H%M\"`\n\nDMG_NAME=\"$PROJECT-$VERSION-$CONFIGURATION-$DATE.dmg\"\nAPP_NAME=\"MacIrssi.app\"\n\nfunction git_clean() {\n  git- tatus | fgrep 'working directory clean' 2>&1 > /dev/null\n  if [ $? -eq 1 ]; then\n    git status | fgrep 'but untracked files present' 2>&1 > /dev/null\n  fi\n}\n\ngit_clean\nif [[ $? != 0 ]]; then\n\techo \"error: git repository is not clean\"\n\texit 1\nfi\n\nCOMPILED_GIT_VERSION=`pl < $BUILT_PRODUCTS_DIR/$APP_NAME/Contents/Info.plist | perl -ne 'while (<STDIN>) { print $1 if /NSGitRevision\\s+=\\s+(.*?);/ }'`\nREAL_GIT_VERSION=`git-show-ref --hash --abbrev HEAD`\n\nif [ \"x$COMPILED_GIT_VERSION\" != \"x$REAL_GIT_VERSION\" ]; then\n\techo \"error: binary was built with revision $COMPILED_GIT_VERSION but repository is at $REAL_GIT_VERSION\"\n\texit 1\nfi\n\nmkdir \"$TEMP_DIR/dmg\"\ncd \"$TEMP_DIR/dmg\"\necho \"Making DMG build dir ($DMG_NAME)...\"\nrm -rf \"$PROJECT\"\nmkdir \"$PROJECT\"\necho \"Copying Product...\"\ncp -Rf \"$TARGET_BUILD_DIR/$APP_NAME\" \"$PROJECT/$APP_NAME\"\necho \"Creating DMG...\"\nhdiutil create -quiet -ov -srcfolder \"$PROJECT\" \"$DMG_NAME\"\necho \"Removing old dmgs from products dir...\"\nrm -f \"$BUILT_PRODUCTS_DIR\"/*.dmg\necho \"Moving to products dir...\"\nmv -f \"$DMG_NAME\" \"$BUILT_PRODUCTS_DIR\"";
+			shellScript = "VERSION=`pl < $PRODUCT_SETTINGS_PATH | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\\s+=\\s+\"(.*?)\"/); }'`\nDATE=`date \"+%d%m%y-%H%M\"`\n\nDMG_NAME=\"$PROJECT-$VERSION-$CONFIGURATION-$DATE.dmg\"\nAPP_NAME=\"MacIrssi.app\"\n\nfunction git_clean() {\n  git status | fgrep 'working directory clean' 2>&1 > /dev/null\n  if [ $? -eq 1 ]; then\n    git status | fgrep 'but untracked files present' 2>&1 > /dev/null\n  fi\n}\n\ngit_clean\nif [[ $? != 0 ]]; then\n\techo \"error: git repository is not clean\"\n\texit 1\nfi\n\nmkdir -p \"$TEMP_DIR/dmg\"\n\nfor app in $BUILD_ROOT/*/MacIrssi.app; do\n\tDIR=`dirname \"$app\"`\n\n\tCOMPILED_GIT_VERSION=`pl < \"$app/Contents/Info.plist\" | perl -ne 'while (<STDIN>) { print $1 if /NSGitRevision\\s+=\\s+(.*?);/ }'`\n\n\tREAL_GIT_VERSION=`git show-ref --hash --abbrev HEAD`\n\n\tif [ \"x$COMPILED_GIT_VERSION\" != \"x$REAL_GIT_VERSION\" ]; then\n\t\techo \"error: binary was built with revision $COMPILED_GIT_VERSION but repository is at $REAL_GIT_VERSION\"\n\t\texit 1\n\tfi\n\n\techo \"Packaging $app...\"\n\tcd \"$TEMP_DIR/dmg\"\n\t\n\techo \"Making DMG build dir ($DMG_NAME)...\"\n\trm -rf \"$PROJECT\"\n\tmkdir \"$PROJECT\"\n\t\n\techo \"Copying Product...\"\n\tcp -Rf \"$app\" \"$PROJECT/$APP_NAME\"\n\t\n\techo \"Creating DMG...\"\n\thdiutil create -quiet -ov -srcfolder \"$PROJECT\" \"$DMG_NAME\"\n\t\n\techo \"Removing old dmgs from products dir...\"\n\trm -f \"$DIR\"/*.dmg\n\t\n\techo \"Moving to products dir...\"\n\tmv -f \"$DMG_NAME\" \"$DIR\"\ndone\n\nexit 0";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4708,6 +4716,11 @@
 			isa = PBXTargetDependency;
 			target = C98E5F00104BE72E0004C8F0 /* Irssi Configure (Leopard) */;
 			targetProxy = C98E5F0E104BE7A20004C8F0 /* PBXContainerItemProxy */;
+		};
+		C98E6016104C024A0004C8F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C98E5CC0104BE5460004C8F0 /* MacIrssi (Leopard+Tiger) */;
+			targetProxy = C98E6015104C024A0004C8F0 /* PBXContainerItemProxy */;
 		};
 		C98F77D10E3651DC00CF2AAF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5776,7 +5789,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages (Snow Leopard)" */ = {
+		C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9EC9F1F0E363AE000445345 /* Development */,
