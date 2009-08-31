@@ -1264,6 +1264,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   NSString *quitMessage = (isRestartingForUpdate) ? @"Be right back. Restarting after update." : [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"];
   BOOL askQuit = (isRestartingForUpdate) ? NO : [[NSUserDefaults standardUserDefaults] boolForKey:@"askQuit"];
   
+  // Save out some useful shit
+  [[NSUserDefaults standardUserDefaults] setBool:[inputTextField isContinuousSpellCheckingEnabled] forKey:@"inputTextEntrySpellCheck"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  
+  // And this
+  signal_emit("command save", 1, "");
+
   /* Else, check if we should bring up quit sheet */
   if (askQuit) {
     [reasonTextField setStringValue:quitMessage];
@@ -1464,7 +1471,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
                         [NSArchiver archivedDataWithRootObject:defaultChannelFont], @"nickListFont",
                         [NSNumber numberWithBool:TRUE], @"showNicklist",
                         [NSNumber numberWithBool:TRUE], @"useFloaterOnPriv",
-                        [NSNumber numberWithBool:TRUE], @"askQuit",
+                        [NSNumber numberWithBool:NO], @"askQuit",
                         [NSNumber numberWithBool:FALSE], @"bounceIconOnPriv",
                         [NSNumber numberWithInt:0], @"channelBarOrientation",
                         [NSNumber numberWithInt:TabShortcutArrows], @"tabShortcuts",
@@ -1472,6 +1479,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
                         [NSDictionary dictionary], @"eventSilences",
                         [NSNumber numberWithBool:YES], @"channelInTitle",
                         [NSNumber numberWithBool:YES], @"homeEndGoesToTextView",
+                        [NSNumber numberWithBool:YES], @"inputTextEntrySpellCheck",
                         nil];
     
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -1524,6 +1532,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   /* Set up colors */
   [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
   [inputTextField setBackgroundColor:[ColorSet inputTextBackgroundColor]];
+  [inputTextField setContinuousSpellCheckingEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:@"inputTextEntrySpellCheck"]];
   [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
   
   /* Init Growl */
