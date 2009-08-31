@@ -422,8 +422,11 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 - (void)nickListRowDoubleClicked:(id)sender
 {
   int row = [nickTableView selectedRow];
-  NSString *command = [NSString stringWithFormat:@"/query %s", ((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick];
-  signal_emit("send command", 3, [command cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
+  if (row > -1)
+  {
+    NSString *command = [NSString stringWithFormat:@"/query %s", ((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick];
+    signal_emit("send command", 3, [command cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
+  }
 }
 
 
