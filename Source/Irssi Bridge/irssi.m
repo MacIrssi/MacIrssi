@@ -416,6 +416,7 @@ int irssi_main(int argc, char **argv)
   SETTINGS_REC *rec = settings_get_record("ctcp_version_reply");
   g_free(rec->default_value.v_string);
   rec->default_value.v_string = g_strdup([[NSString stringWithFormat:@"MacIrssi %@ (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]] cStringUsingEncoding:NSASCIIStringEncoding]);
+  signal_emit("command alias", 1, [[NSString stringWithFormat:@"sv say MacIrssi %@ (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION") - http://www.sysctl.co.uk/projects/macirssi/", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]] cStringUsingEncoding:NSASCIIStringEncoding]);
 	
 	/* Does the same as g_main_run(main_loop), except we
 	   can call our dirty-checker after each iteration */
