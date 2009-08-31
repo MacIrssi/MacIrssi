@@ -267,8 +267,9 @@ void irssibridge_window_item_changed(WINDOW_REC *wind, WI_ITEM_REC *wir) {
 	printf("irssibridge_window_item_changed\n");
 }
 
-void irssibridge_window_name_changed(WINDOW_REC *wind) {
-	printf("irssibridge_window_name_changed\n");
+void irssibridge_window_name_changed(WINDOW_REC *wind)
+{
+  [appController windowNameChanged:wind];
 }
 
 void irssibridge_channel_topic_changed(CHANNEL_REC * chan) {

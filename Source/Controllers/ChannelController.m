@@ -499,7 +499,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   [self sortNicks];
   
   /* Make NSString objects from (char *) */
-  name = rec->name ? [[NSString alloc] initWithData:[NSData dataWithBytesNoCopy:rec->name length:strlen(rec->name) freeWhenDone:FALSE] encoding:NSISOLatin1StringEncoding] : @"";
+  name = rec->name ? [[IrssiBridge stringWithIrssiCString:rec->name] retain] : @"";
   topic_by = [[NSString alloc] initWithCString:rec->topic_by ? rec->topic_by : ""];
   mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
   key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
