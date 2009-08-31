@@ -747,10 +747,16 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   NSTabViewItem *tmp = [(ChannelController *)(rec->gui_data) tabViewItem];
   int index = [tabView indexOfTabViewItem:tmp];
+  
   NSString *channelName = [(ChannelController *)(rec->gui_data) name];
+  
   [[channelMenu itemAtIndex:index+8] setTitle:channelName];
   [channelTableView reloadData];
   [channelBar setNeedsDisplay:TRUE];
+  
+  // Update the window title, just in case the channel that just joined was showing "joining..." in the title bar
+  NSString *titleString = ([[NSUserDefaults standardUserDefaults] boolForKey:@"channelInTitle"]) ? [NSString stringWithFormat:@"MacIrssi - %@", [currentChannelController name]] : @"MacIrssi";
+  [mainWindow setTitle:titleString];  
 }
 
 
