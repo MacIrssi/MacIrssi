@@ -3590,13 +3590,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/notifylist\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/core\"";
 				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
-				OTHER_CFLAGS = (
-					"-fno-common",
-					"-DPERL_DARWIN",
-					"-fno-strict-aliasing",
-					"-DMACIRSSI_DEBUG",
-					"-L/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
-				);
+				OTHER_CFLAGS = "-DMACIRSSI_DEBUG";
 				OTHER_LDFLAGS = (
 					"-ldl",
 					"-lm",
@@ -3700,13 +3694,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/core\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/flood\"";
-				OTHER_CFLAGS = (
-					"-fno-common",
-					"-DPERL_DARWIN",
-					"-fno-strict-aliasing",
-					"-DMACIRSSI_DEBUG",
-					"-L/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
-				);
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ldl",
 					"-lm",
