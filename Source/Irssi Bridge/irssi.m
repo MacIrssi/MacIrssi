@@ -184,7 +184,7 @@ static void textui_finish_init(void)
   signal_add("event connected", (SIGNAL_FUNC) irssibridge_event_connected);
 
   module_register("core", "fe-aqua");
-
+  
 #ifdef HAVE_STATIC_PERL
 	perl_core_init();
 	fe_perl_init();
@@ -212,11 +212,13 @@ void textui_deinit(void)
 {
 	signal(SIGINT, SIG_DFL);
 	while (modules != NULL)
+  {
 		module_unload(modules->data);
+  }
 
 #ifdef HAVE_STATIC_PERL
-        perl_core_deinit();
-        fe_perl_deinit();
+  perl_core_deinit();
+  fe_perl_deinit();
 #endif
 
   //signal_remove("gui exit", (SIGNAL_FUNC) sig_exit);
@@ -408,9 +410,14 @@ int irssi_main(int argc, char **argv)
   // FIXME: We never unregister this
   if (!( majorVersion == 10 && minorVerson == 6 ))
   {
+    printtext(NULL, NULL, MSGLEVEL_CLIENTERROR, "Not loading perl modules, perl is only supported on Mac OS X 10.6 (Snow Leopard).");
     command_bind_first("script", NULL, (SIGNAL_FUNC)perl_cmd_override);
   }
-  
+  else {
+    // if we're on the platform we built on. Try loading the perl libraries.
+    signal_emit("command load", 1, "perl");
+  }
+
 	// Version Overwrite
   command_bind_first("version", NULL, (SIGNAL_FUNC)version_cmd_overwrite);
   SETTINGS_REC *rec = settings_get_record("ctcp_version_reply");
@@ -432,7 +439,7 @@ int irssi_exit()
   majorVersion = (((systemVersion & 0xF000) >> 12) * 10) + ((systemVersion & 0x0F00) >> 8);
   minorVerson = ((systemVersion & 0x00F0) >> 4);
   
-  if ( majorVersion == 10 && minorVerson == 4 )
+  if (!( majorVersion == 10 && minorVerson == 6 ))
   {
     command_unbind("script", (SIGNAL_FUNC)perl_cmd_override);
   }

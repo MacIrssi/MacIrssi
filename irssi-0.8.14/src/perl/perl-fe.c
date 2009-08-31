@@ -276,5 +276,5 @@ void fe_perl_deinit(void)
 	signal_remove("complete command script load", (SIGNAL_FUNC) sig_complete_load);
 	signal_remove("complete command script unload", (SIGNAL_FUNC) sig_complete_unload);
 
-        perl_core_print_script_error(TRUE);
+  //perl_core_print_script_error(TRUE);
 }
