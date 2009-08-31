@@ -684,6 +684,16 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (void)refnumChanged:(WINDOW_REC *)wind old:(int)old
 {
   [channelBar moveChannel:wind fromRefNum:old toRefNum:wind->refnum];
+  
+  NSTabViewItem *item = [(ChannelController*)(wind->gui_data) tabViewItem];
+  
+  [item retain]; // keep hold while we move it
+  [tabView removeTabViewItem:item];
+  [tabView insertTabViewItem:item atIndex:(wind->refnum-1)];
+  [tabView selectTabViewItem:[currentChannelController tabViewItem]];
+  
+  [channelTableView reloadData];
+  [channelTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[tabView indexOfTabViewItem:[currentChannelController tabViewItem]]] byExtendingSelection:NO];
 }
 
 
