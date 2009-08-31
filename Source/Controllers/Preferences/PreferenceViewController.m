@@ -158,6 +158,19 @@
   
 	colorChanged = FALSE;
   
+  // Allocate a preference proxy controller and assign it to the bindings controllers
+  if (preferenceObjectController)
+  {
+    [preferenceObjectController release];
+    preferenceObjectController = nil;
+  }
+  
+  preferenceObjectController = [[PreferenceObjectController alloc] init];
+  [irssiObjectController setContent:preferenceObjectController];
+  [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+  [serversArrayController setContent:[preferenceObjectController serverArray]];
+  [shortcutsArrayController setContent:[preferenceObjectController shortcutArray]];
+  
   /* By default open the general tab and resize the window around it */
   [self switchPreferenceWindowTo:generalPreferencesTab animate:NO];
   [preferencesToolbar setSelectedItemIdentifier:@"General"];
