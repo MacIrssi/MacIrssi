@@ -40,11 +40,11 @@
                           "|" // allows either IP or domain 
                           "([0-9a-zA-Z_!~*'-]+\\.)*" // tertiary domain(s)- www. 
                           "([0-9a-zA-Z][0-9a-zA-Z-]{0,61})?[0-9a-zA-Z]\\." // second level domain 
-                          "[a-z]{2,6})" // first level domain- .com or .museum 
+                          "[a-zA-Z]{2,6})" // first level domain- .com or .museum 
                         ")|("
                           "([0-9a-zA-Z_!~*'-]+\\.)+" // tertiary domain(s)- www. 
                           "([0-9a-zA-Z][0-9a-zA-Z-]{0,61})?[0-9a-zA-Z]\\." // second level domain 
-                          "[a-z]{2,6}" // first level domain- .com or .museum 
+                          "[a-zA-Z]{2,6}" // first level domain- .com or .museum 
                         "))"
                         "(:[0-9]{1,4})?" // port number- :80 
                         "((/?)|" // a slash isn't required if there is no file name 
