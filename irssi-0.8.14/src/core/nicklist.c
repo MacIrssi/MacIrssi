@@ -363,7 +363,24 @@ int nicklist_compare(NICK_REC *p1, NICK_REC *p2, const char *nick_prefix)
 
 	if (p1 == NULL) return -1;
 	if (p2 == NULL) return 1;
-
+  
+  if (p1->serverop || p2->serverop)
+  {
+    if (p1->serverop && p2->serverop)
+    {
+      return g_strcasecmp(p1->nick, p2->nick);
+    }
+    
+    if (!p1->serverop)
+    {
+      return 1;
+    }
+    if (!p2->serverop)
+    {
+      return -1;
+    }
+  }
+  
 	if (p1->prefixes[0] == p2->prefixes[0])
 		return g_strcasecmp(p1->nick, p2->nick);
 
