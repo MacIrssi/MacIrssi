@@ -1043,7 +1043,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)irssiQuit
 {
-  quitting = TRUE;
+  if (!quitting)
+  {
+    // make sure we don't double ask for quit
+    quitting = YES;
+    // we prolly want to terminate too
+    [NSApp performSelector:@selector(terminate:) withObject:self afterDelay:0.0];
+  }
 }
 
 #pragma mark Server Change Notifications
