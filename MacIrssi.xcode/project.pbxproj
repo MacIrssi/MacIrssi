@@ -208,7 +208,6 @@
 		C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
 		C2CC3B180C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
-		C2CC3BFB0C0B7B5B001C0DDD /* libiconv.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
 		C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2D1679106E3E16C000EC6F9 /* ChannelBar.h in Headers */ = {isa = PBXBuildFile; fileRef = C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */; };
 		C2D1679206E3E16C000EC6F9 /* ChannelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D1679006E3E16C000EC6F9 /* ChannelBar.m */; };
@@ -621,7 +620,6 @@
 				C9FBBC8F1049A5BC00FE4ACD /* GoogleToolboxForMac.framework in Copy Libraries */,
 				C91793920F74447C005241A4 /* libglib-2.0.0.dylib in Copy Libraries */,
 				C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in Copy Libraries */,
-				C2CC3BFB0C0B7B5B001C0DDD /* libiconv.2.dylib in Copy Libraries */,
 				C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in Copy Libraries */,
 			);
 			name = "Copy Libraries";
