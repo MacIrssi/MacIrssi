@@ -605,8 +605,14 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   /* Update up channel menu */
   int channelCount = [tabView numberOfTabViewItems];
-  NSString *keyEquivalent = (channelCount < 10) ? [[NSNumber numberWithInt:channelCount] stringValue] : @"";
-  NSMenuItem *newMenuItem = [[NSMenuItem alloc] initWithTitle:label action:@selector(gotoChannel:) keyEquivalent:keyEquivalent];
+  NSMenuItem *newMenuItem = [[NSMenuItem alloc] initWithTitle:label action:@selector(gotoChannel:) keyEquivalent:@""];
+
+  if (channelCount <= 10)
+  {
+    [newMenuItem setKeyEquivalent:[[NSNumber numberWithInt:(channelCount % 10)] stringValue]];
+    [newMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+  }
+  
   [newMenuItem setTarget:self];
   [channelMenu addItem:newMenuItem];
   [newMenuItem release];
@@ -1095,11 +1101,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
                              action:@selector(changeIrssiServerConsole:)
                       keyEquivalent:@""
                                 tag:*(int*)&server];
-      if (count < 10)
+      if (count <= 10)
       {
         // Not sure Command+Option+10 works too well ;). We could check here if we're gonna collide with a user
         // shortcut but maybe some other time.
-        [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalent:[NSString stringWithFormat:@"%d", count++]];
+        [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalent:[NSString stringWithFormat:@"%d", (count++) % 10]];
         [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
       }
       [[serversMenu itemWithTag:*(int*)&server] setState:(activeServerRec == server)];
