@@ -76,9 +76,6 @@ static void sig_hilight_text(TEXT_DEST_REC *dest, const char *msg)
 	WI_ITEM_REC *item;
 	int data_level;
 
-	if (dest->window == active_win || (dest->level & hide_level))
-		return;
-
 	if (dest->level & hilight_level) {
 		data_level = DATA_LEVEL_HILIGHT+dest->hilight_priority;
 	} else {
@@ -87,6 +84,9 @@ static void sig_hilight_text(TEXT_DEST_REC *dest, const char *msg)
 	}
 
   currentDataLevel = data_level;
+	if (dest->window == active_win || (dest->level & hide_level))
+		return;
+
 	if (hide_targets != NULL && (dest->level & MSGLEVEL_HILIGHT) == 0 && dest->target != NULL) {
 		/* check for both target and tag/target */
 		if (strarray_find_dest(hide_targets, dest))
