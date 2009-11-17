@@ -556,7 +556,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   NSString *tmp = [NSString stringWithFormat:@"Console [%@]", serverName];
   [[channelMenu itemAtIndex:8] setTitle:tmp];
-  ChannelController *c = (ChannelController *)[[tabView tabViewItemAtIndex:0] identifier];
+  ChannelController *c = (ChannelController *)[[[tabView tabViewItemAtIndex:0] identifier] content];
   [c setName:tmp];
   [channelTableView reloadData];
   [channelBar setNeedsDisplay:TRUE];
@@ -572,7 +572,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   ChannelController *owner = [[ChannelController alloc] initWithWindowRec:wind];
   
-  NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:owner];
+  NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:[owner objectController]];
   
   if (![NSBundle loadNibNamed:@"Tab new.nib" owner:owner]) {
     [owner release];
@@ -598,7 +598,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   else
     label = @"joining...";
   
-  [(ChannelController *)[tabViewItem identifier] setName:label];
+  //[(ChannelController *)[tabViewItem identifier] setName:label];
+  [owner setName:label];
   [tabViewItem setView:[owner view]];
   [tabView addTabViewItem:tabViewItem];
   [channelBar addChannel:wind];
@@ -809,23 +810,42 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabView removeFromSuperview];
   [inputTextFieldBox removeFromSuperview];
 
-  int orientation = [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"];
+  int orientation = MIChannelMask([[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"]);
+  int style = MIChannelStyleMask([[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"]);
 
   switch (orientation)
   {
     case MIChannelBarHorizontalOrientation:
     {
-      // So, horitonzal operation. We want the channelBar and tabView.
-      NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
+      NSRect channelBarFrame;
+      
+      // two courses of action here, either we're using the old crap channel bar. or the new PSM one.
+      if (style == MIChannelBarStyleOld)
+      {
+        // So, horitonzal operation. We want the channelBar and tabView.
+        channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
+     
+        [[mainWindow contentView] addSubview:channelBar];
+        [channelBar setFrame:channelBarFrame];
+        [channelBar setNeedsDisplay:YES];
+      }
+      else
+      {
+        // So, horitonzal operation. We want the channelBar and tabView.
+        channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, 22.0);
+        
+        [[mainWindow contentView] addSubview:newChannelBar];
+        [newChannelBar setStyleNamed:@"Aqua"];
+        [newChannelBar setFrame:channelBarFrame];
+        [newChannelBar setNeedsDisplay:YES];
+      }
+      
       NSRect inputBoxFrame = NSMakeRect(5.0, 5.0, [[mainWindow contentView] frame].size.width - 10.0, [inputTextFieldBox frame].size.height);
       NSRect tabViewFrame = NSMakeRect(0.0, 
                                        inputBoxFrame.origin.y + inputBoxFrame.size.height, 
                                        [[mainWindow contentView] frame].size.width, 
                                        channelBarFrame.origin.y - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
       
-      [[mainWindow contentView] addSubview:channelBar];
-      [channelBar setFrame:channelBarFrame];
-      [channelBar setNeedsDisplay:YES];
       
       [[mainWindow contentView] addSubview:tabView];
       [tabView setFrame:tabViewFrame];
@@ -1015,7 +1035,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   /* Iterate through all channels */
   while (tmp = [enumerator nextObject])
   {
-    [[tmp identifier] setFont:font];
+    [[[tmp identifier] content] setFont:font];
   }
 }
 
@@ -1027,7 +1047,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   /* Iterate through all channels */
   while (tmp = [enumerator nextObject])
   {
-    [[tmp identifier] setNicklistFont:font];
+    [[[tmp identifier] content] setNicklistFont:font];
   }  
 }
 
@@ -1039,7 +1059,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   /* Iterate through all channels */
   while (tmp = [enumerator nextObject])
   {
-    [[tmp identifier] setNicklistHidden:flag];
+    [[[tmp identifier] content] setNicklistHidden:flag];
   }
 }
 
@@ -1076,7 +1096,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
   
   // Server window is always the first one in the tabView list
-  WINDOW_REC *serverWindowRec = [(ChannelController *)[[tabView tabViewItemAtIndex:0] identifier] windowRec];
+  WINDOW_REC *serverWindowRec = [(ChannelController *)[[[tabView tabViewItemAtIndex:0] identifier] content] windowRec];
   // "active" server is the active server from the server window, or the "connect" server (if the last thing you did was
   // a connect that hasn't finished, active_server is NULL and connect_server has a pointer to a SERVER_REC*
   SERVER_REC *activeServerRec = (serverWindowRec->active_server ? serverWindowRec->active_server : serverWindowRec->connect_server);
@@ -1116,7 +1136,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)changeIrssiServerConsole:(id)sender
 {
-  ChannelController *c = (ChannelController *)[[tabView tabViewItemAtIndex:0] identifier];
+  ChannelController *c = (ChannelController *)[[[tabView tabViewItemAtIndex:0] identifier] content];
   SERVER_REC *server = (void*)[sender tag];
   WINDOW_REC *window = [c windowRec];
   
@@ -1327,7 +1347,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
   ChannelController *tmp;
   
-  while (tmp = [[enumerator nextObject] identifier])
+  while (tmp = [[[enumerator nextObject] identifier] content])
   {
     [tmp clearNickView];
   }
@@ -1422,7 +1442,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
   NSTabViewItem *item = [tabView tabViewItemAtIndex:rowIndex];
-  WINDOW_REC *tmp = [[item identifier] windowRec];
+  WINDOW_REC *tmp = [[[item identifier] content] windowRec];
   
   [highlightAttributes setObject:[ColorSet colorForKey:[[ColorSet channelListForegroundKeys] objectAtIndex:tmp->data_level]] forKey:NSForegroundColorAttributeName];
   return [[[NSAttributedString alloc] initWithString:[item label] attributes:highlightAttributes] autorelease]; 
@@ -1529,6 +1549,15 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabView retain];
   [channelTableScrollView retain];
   [channelBar retain];
+  
+  // and create the ones that don't exist
+  newChannelBar = [[PSMTabBarControl alloc] initWithFrame:[channelBar frame]];
+  [newChannelBar setAutoresizingMask:NSViewMinYMargin|NSViewWidthSizable];
+  [newChannelBar setDelegate:self];
+  [newChannelBar setStyleNamed:@"Metal"];
+  // and hijack the tabview
+  [newChannelBar setTabView:tabView];
+  [tabView setDelegate:newChannelBar];
   
   // Fire the orientation notification to save us repeating code.
   [self channelBarOrientationDidChange:nil];

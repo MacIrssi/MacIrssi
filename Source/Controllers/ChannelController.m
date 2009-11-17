@@ -1244,6 +1244,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   windowRec = rec;
   isChannel = FALSE;
   useFloater = FALSE;
+  
+  objectController = nil;
+  [self setObjectController:[[NSObjectController alloc] initWithContent:self]];
 
   line = [[NSMutableAttributedString alloc] init];
   oldSearchMatchRange = NSMakeRange(0,0);
@@ -1392,6 +1395,18 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [name release];
   name = [newName retain];
   [tabViewItem setLabel:name];
+}
+
+/* Object Controller */
+- (id)objectController
+{
+  return objectController;
+}
+
+- (void)setObjectController:(id)anObjectController
+{
+  [objectController autorelease];
+  objectController = [anObjectController retain];
 }
 
 #pragma mark Private methods

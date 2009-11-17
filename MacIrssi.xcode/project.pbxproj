@@ -574,6 +574,7 @@
 		C9EBACAB0EA100D400025466 /* ServerBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBACA90EA100D400025466 /* ServerBridgeController.h */; };
 		C9EBACAC0EA100D400025466 /* ServerBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBACAA0EA100D400025466 /* ServerBridgeController.m */; };
 		C9EBACE50EA1055F00025466 /* Servers.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBACE40EA1055F00025466 /* Servers.png */; };
+		C9F652A310B1F44200511566 /* PSMTabBarControl.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C96378AD10B1D5F40099DECF /* PSMTabBarControl.framework */; };
 		C9FBBC3F1049A5A700FE4ACD /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
 		C9FBBC8F1049A5BC00FE4ACD /* GoogleToolboxForMac.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
 /* End PBXBuildFile section */
@@ -619,6 +620,7 @@
 				C91F19800F1405FE00763699 /* Appscript.framework in Copy Libraries */,
 				C91F13A50F0A748600763699 /* Sparkle.framework in Copy Libraries */,
 				C9FBBC8F1049A5BC00FE4ACD /* GoogleToolboxForMac.framework in Copy Libraries */,
+				C9F652A310B1F44200511566 /* PSMTabBarControl.framework in Copy Libraries */,
 				C91793920F74447C005241A4 /* libglib-2.0.0.dylib in Copy Libraries */,
 				C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in Copy Libraries */,
 				C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in Copy Libraries */,

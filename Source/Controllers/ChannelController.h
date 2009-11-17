@@ -124,6 +124,9 @@ enum nickContextMenuTags {
   IBOutlet NSMenu *nickViewMenu;
   IBOutlet NSMenu *mainTextViewMenu;
   
+  /* Object Controller */
+  NSObjectController *objectController;
+  
   IBOutlet NSSearchField *searchField;
   MarkedScroller *scroller;
   NSTabViewItem *tabViewItem;
@@ -191,6 +194,10 @@ enum nickContextMenuTags {
 - (void)setTabViewItem:(NSTabViewItem *)newTabViewItem colors:(ColorSet *)colors appController:(AppController *)ref;
 - (NSTabViewItem *)tabViewItem;
 - (NSTextView *)mainTextView;
+
+/* Object Controller */
+- (id)objectController;
+- (void)setObjectController:(id)objectController;
 
 /* Nicklist */
 - (void)setNicklistHidden:(BOOL)flag;

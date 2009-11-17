@@ -16,6 +16,8 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <PSMTabBarControl/PSMTabBarControl.h>
+
 #import <Cocoa/Cocoa.h>
 #import "UKCrashReporter.h"
 #import "Growl/Growl.h"
@@ -47,8 +49,11 @@
 extern int argc;
 extern char **argv;
 
-#define MIChannelBarHorizontalOrientation 0
-#define MIChannelBarVerticalOrientation   1
+#define MIChannelBarHorizontalOrientation     0
+#define MIChannelBarVerticalOrientation       1
+#define MIChannelMask(x)                      (x & 0x7f)
+#define MIChannelBarStyleOld                  1<<7
+#define MIChannelStyleMask(x)                 (x & 0x80)
 
 @interface AppController : NSObject <GrowlApplicationBridgeDelegate> {
 	IBOutlet NSWindow *mainWindow;
@@ -72,6 +77,7 @@ extern char **argv;
 	IBOutlet NSWindow *errorWindow;
 	IBOutlet NSTextField *errorTextField;
 	IBOutlet ChannelBar *channelBar;
+  IBOutlet PSMTabBarControl *newChannelBar;
 	IBOutlet SUUpdater *updateChecker;
 	
 	IBOutlet NSWindow *aboutBox;
