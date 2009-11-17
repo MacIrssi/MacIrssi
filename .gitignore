@@ -6,4 +6,11 @@
 *.lo
 *~
 .DS_Store
+*.xcode/*.mode*
+*.xcode/*.pbxuser
+*.xcode/*.perspectivev3
 irssi-0.8.14/**/Makefile
+irssi-*/src/perl/**/*.c
+irssi-*/src/perl/**/*.PL
+irssi-*/src/perl/**/*.bs
+irssi-*/src/perl/**/*blib
