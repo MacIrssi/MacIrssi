@@ -1,3 +1,3 @@
 [submodule "Frameworks/MILibs"]
 	path = Frameworks/MILibs
-	url = git://git.sysctl.co.uk/git/MILibs.git
+	url = git@github.com:daagaak/MILibs.git
