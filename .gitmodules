@@ -1,3 +1,6 @@
 [submodule "Frameworks/MILibs"]
 	path = Frameworks/MILibs
 	url = git@github.com:daagaak/MILibs.git
+[submodule "Frameworks/PSMTabBarControl"]
+	path = Frameworks/PSMTabBarControl
+	url = git://github.com/daagaak/PSMTabBarControl.git
