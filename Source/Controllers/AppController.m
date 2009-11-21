@@ -545,6 +545,14 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   // Pick up the object count of the window and bump it
   ChannelController *cc = wind->gui_data;
+  
+  // If we don't actually have a channel controller, it'll be the hook interface from
+  // the preview window. If so, just eject.
+  if (![cc isKindOfClass:[ChannelController class]])
+  {
+    return;
+  }
+  
   int currentMessageCount = [cc objectCount];
   if (wind->data_level == 0)
   {

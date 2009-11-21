@@ -574,6 +574,8 @@
 		C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */; };
 		C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */; };
 		C9B9972A10B8119B0093A1BB /* alert.png in Resources */ = {isa = PBXBuildFile; fileRef = C9B9972910B8119B0093A1BB /* alert.png */; };
+		C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */; };
+		C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBAB110EA0A7D200025466 /* Networks.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAB100EA0A7D200025466 /* Networks.png */; };
@@ -1800,6 +1802,8 @@
 		C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		C9B9972910B8119B0093A1BB /* alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert.png; sourceTree = "<group>"; };
+		C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIUnresponsiveButton.h; sourceTree = "<group>"; };
+		C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIUnresponsiveButton.m; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBAB100EA0A7D200025466 /* Networks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Networks.png; sourceTree = "<group>"; };
@@ -2199,6 +2203,8 @@
 				C200D026073FC03700B850B1 /* ChannelBarCell.m */,
 				C2C2C0F7074B822700396F82 /* MarkedScroller.h */,
 				C2C2C0F8074B822700396F82 /* MarkedScroller.m */,
+				C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */,
+				C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3113,6 +3119,7 @@
 				C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */,
 				C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */,
 				C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */,
+				C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3505,6 +3512,7 @@
 				C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */,
 				C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */,
 				C98E5F47104BF3830004C8F0 /* JVFontPreviewField.m in Sources */,
+				C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
