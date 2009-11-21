@@ -531,7 +531,17 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old
 {
-  if (wind->data_level > 2 && old <= 2) {
+  // Pick up the object count of the window and bump it
+  ChannelController *cc = wind->gui_data;
+  
+  // If we don't actually have a channel controller, it'll be the hook interface from
+  // the preview window. If so, just eject.
+  if (![cc isKindOfClass:[ChannelController class]])
+  {
+    return;
+  }
+  
+  if (wind->data_level > 2 && old <= 2) {    
     /* Notify user by changing icon */
     hilightChannels++;
     [self setIcon:iconOnPriv];
