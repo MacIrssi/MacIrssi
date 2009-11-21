@@ -1032,11 +1032,16 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   nickAttributes = [[NSMutableDictionary alloc] init];
   
   [textAttributes setObject:channelFont forKey:NSFontAttributeName];
-  [topicAttributes setObject:[NSFont fontWithName:@"Monaco" size:9.0] forKey:NSFontAttributeName];
   [topicTextField setFont:channelFont];
   [topicEditableTextField setFont:channelFont];
   [maxUsersTextField setFont:channelFont];
   [keyTextField setFont:channelFont];
+  
+  NSMutableParagraphStyle *style = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
+  [style setAlignment:NSCenterTextAlignment];
+  [topicAttributes setObject:style forKey:NSParagraphStyleAttributeName];
+  [topicAttributes setObject:[NSFont fontWithName:@"Monaco" size:9.0] forKey:NSFontAttributeName];
+  [topicTextField setStringValue:@"(no title)"];
 }
 
 
