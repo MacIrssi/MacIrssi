@@ -866,7 +866,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
         // So, horitonzal operation. We want the channelBar and tabView.
         channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, 22.0);
         
+        // the channel bar assumes you run awakefromnib
         [[mainWindow contentView] addSubview:newChannelBar];
+        [newChannelBar awakeFromNib];
+        
         [newChannelBar setStyleNamed:@"Aqua"];
         [newChannelBar setFrame:channelBarFrame];
         [newChannelBar setNeedsDisplay:YES];
