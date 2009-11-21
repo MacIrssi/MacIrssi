@@ -507,6 +507,17 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
 }
 
+#pragma mark Tab View
+
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+  if (![currentChannelController isEqual:[[tabViewItem identifier] content]])
+  {
+    ChannelController *cc = [[tabViewItem identifier] content];
+    window_set_active([cc windowRec]);
+  }
+}
+
 #pragma mark Indirect receivers of irssi signals
 //-------------------------------------------------------------------
 // highlightChanged:
@@ -517,7 +528,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (void)highlightChanged:(WINDOW_REC*)wind
 {
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];
+  [channelBar setNeedsDisplay:YES];
+  [newChannelBar setNeedsDisplay:YES];
 }
 
 
@@ -531,7 +543,27 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old
 {
-  if (wind->data_level > 2 && old <= 2) {
+  // Pick up the object count of the window and bump it
+  ChannelController *cc = wind->gui_data;
+  int currentMessageCount = [cc objectCount];
+  if (wind->data_level == 0)
+  {
+    [cc setObjectCount:0];
+    [cc setIcon:nil];
+  }
+  else if (wind->data_level > 1)
+  {
+    currentMessageCount++;
+    [cc setObjectCount:currentMessageCount];
+  }
+  
+  // check to see if we're highlighted ourselves. if so, show ze icon
+  if (wind->data_level > 2)
+  {
+    [cc setIcon:[NSImage imageNamed:@"alert"]];
+  }
+  
+  if (wind->data_level > 2 && old <= 2) {    
     /* Notify user by changing icon */
     hilightChannels++;
     [self setIcon:iconOnPriv];

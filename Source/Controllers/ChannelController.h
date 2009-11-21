@@ -127,6 +127,7 @@ enum nickContextMenuTags {
   /* Object Controller */
   NSObjectController *objectController;
   int objectCount;
+  NSImage *icon;
   
   IBOutlet NSSearchField *searchField;
   MarkedScroller *scroller;
@@ -201,6 +202,8 @@ enum nickContextMenuTags {
 - (void)setObjectController:(id)objectController;
 - (int)objectCount;
 - (void)setObjectCount:(int)objectCount;
+- (NSImage*)icon;
+- (void)setIcon:(NSImage*)icon;
 
 /* Nicklist */
 - (void)setNicklistHidden:(BOOL)flag;

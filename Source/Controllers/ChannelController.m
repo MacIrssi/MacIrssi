@@ -1244,6 +1244,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   windowRec = rec;
   isChannel = FALSE;
   useFloater = FALSE;
+  icon = nil;
   
   objectController = nil;
   [self setObjectController:[[NSObjectController alloc] initWithContent:self]];
@@ -1421,6 +1422,22 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
     [self willChangeValueForKey:@"objectCount"];
     objectCount = anObjectCount;
     [self didChangeValueForKey:@"objectCount"];
+  }
+}
+
+- (NSImage*)icon
+{
+  return icon;
+}
+
+- (void)setIcon:(NSImage*)newIcon
+{
+  if (![icon isEqual:newIcon])
+  {
+    [self willChangeValueForKey:@"icon"];
+    [icon autorelease];
+    icon = [newIcon retain];
+    [self didChangeValueForKey:@"icon"];
   }
 }
 
