@@ -558,7 +558,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       for (;;)
       {
         int refnum = window_refnum_prev(window->refnum, FALSE);
-        if ((refnum == -1) || (refnum < from))
+        if ((refnum == -1) || (refnum < to))
         {
           break;
         }
@@ -779,16 +779,33 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 // refnumChanged:
 //-------------------------------------------------------------------
+int windowRefnumComparator(id a, id b, void* ctx)
+{
+  ChannelController *ctlA = [[(NSTabViewItem*)a identifier] content];
+  ChannelController *ctlB = [[(NSTabViewItem*)b identifier] content];
+  
+  return ([ctlA windowRec]->refnum > [ctlB windowRec]->refnum);
+}
+
 - (void)refnumChanged:(WINDOW_REC *)wind old:(int)old
 {
   [channelBar moveChannel:wind fromRefNum:old toRefNum:wind->refnum];
   
-  NSTabViewItem *item = [(ChannelController*)(wind->gui_data) tabViewItem];
+  // We can't be sure that moving around will work in the tabview. Copy it so they don't get released.
+  NSArray *sortedItems = [[[tabView tabViewItems] sortedArrayUsingFunction:windowRefnumComparator context:nil] copy];
   
-  [item retain]; // keep hold while we move it
-  [tabView removeTabViewItem:item];
-  [tabView insertTabViewItem:item atIndex:(wind->refnum-1)];
-  [tabView selectTabViewItem:[currentChannelController tabViewItem]];
+  // burn through each item, remove it and append it to the end
+  NSTabViewItem *item;
+  NSEnumerator *enumerator = [sortedItems objectEnumerator];
+  
+  while (item = [enumerator nextObject])
+  {
+    [tabView removeTabViewItem:item];
+    [tabView addTabViewItem:item];
+  }
+  
+  // we're done with the sorted list now
+  [sortedItems release];
   
   [channelTableView reloadData];
   [channelTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[tabView indexOfTabViewItem:[currentChannelController tabViewItem]]] byExtendingSelection:NO];
