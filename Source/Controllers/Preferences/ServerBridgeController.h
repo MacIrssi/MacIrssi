@@ -42,4 +42,7 @@
 - (BOOL)autoconnect;
 - (void)setAutoconnect:(BOOL)flag;
 
+- (BOOL)useSSL;
+- (void)setUseSSL:(BOOL)flag;
+
 @end
