@@ -518,6 +518,18 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
 }
 
+- (BOOL)tabView:(NSTabView *)aTabView shouldCloseTabViewItem:(NSTabViewItem *)tabViewItem;
+{
+  ChannelController *cc = [[tabViewItem identifier] content];
+  WINDOW_REC *rec = [cc windowRec];
+  NSString *windowNumber = [NSString stringWithFormat:@"%d", rec->refnum];
+  
+  signal_emit("command window close", 3, [IrssiBridge irssiCStringWithString:windowNumber], rec->active_server, rec->active);
+  
+  // don't actually close the window, it'll get closed and cleaned by the callback
+  return NO;
+}
+
 #pragma mark Indirect receivers of irssi signals
 //-------------------------------------------------------------------
 // highlightChanged:
@@ -647,6 +659,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   /* Update up channel menu */
   int channelCount = [tabView numberOfTabViewItems];
   NSMenuItem *newMenuItem = [[NSMenuItem alloc] initWithTitle:label action:@selector(gotoChannel:) keyEquivalent:@""];
+  [newMenuItem setRepresentedObject:owner];
 
   if (channelCount <= 10)
   {
@@ -773,10 +786,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)removeTabWithWindowRec:(WINDOW_REC *)wind
 {
-  NSTabViewItem *tmp = [(ChannelController *)(wind->gui_data) tabViewItem];
+  ChannelController *cc = wind->gui_data;
+  NSTabViewItem *tmp = [cc tabViewItem];
   
   /* Fix channel menu */
-  int i, index = [tabView indexOfTabViewItem:tmp] + 8;
+  int i, index = [channelMenu indexOfItemWithRepresentedObject:cc];
   [channelMenu removeItemAtIndex:index];
   for (i = index; i < 10+7 && i < [channelMenu numberOfItems]; i++)
     [[channelMenu itemAtIndex:i] setKeyEquivalent:[[NSNumber numberWithInt:i-7] stringValue]];
