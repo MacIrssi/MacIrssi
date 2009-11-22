@@ -530,6 +530,44 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   return NO;
 }
 
+- (void)tabView:(NSTabView *)aTabView didMoveTabViewItem:(NSTabViewItem *)tabViewItem fromIndex:(int)fromIndex toIndex:(int)toIndex
+{
+  // We're going to have to do the legwork here. The window moves that exist are based on working with the activewin
+  // This isn't going to be the case everytime.
+  int to = toIndex + 1;
+  int from = fromIndex + 1;
+  
+  WINDOW_REC *window = window_find_refnum(from);
+  if (window != NULL)
+  {
+    // We've found the window we're going to move to, we're going to need to move that one to the 
+    if (to > from)
+    {
+      for (;;)
+      {
+        int refnum = window_refnum_next(window->refnum, FALSE);
+        if ((refnum == -1) || (refnum > to))
+        {
+          break;
+        }
+        window_set_refnum(window, refnum);
+      }
+    }
+    else
+    {
+      for (;;)
+      {
+        int refnum = window_refnum_prev(window->refnum, FALSE);
+        if ((refnum == -1) || (refnum < from))
+        {
+          break;
+        }
+        window_set_refnum(window, refnum);
+      }
+    }
+  }
+}
+
 #pragma mark Indirect receivers of irssi signals
 //-------------------------------------------------------------------
 // highlightChanged:
