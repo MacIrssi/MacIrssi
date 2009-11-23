@@ -578,7 +578,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (void)highlightChanged:(WINDOW_REC*)wind
 {
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:YES];
   [newChannelBar setNeedsDisplay:YES];
 }
 
@@ -649,7 +648,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   ChannelController *c = (ChannelController *)[[[tabView tabViewItemAtIndex:0] identifier] content];
   [c setName:tmp];
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];
 }
 
 //-------------------------------------------------------------------
@@ -692,7 +690,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [owner setName:label];
   [tabViewItem setView:[owner view]];
   [tabView addTabViewItem:tabViewItem];
-  [channelBar addChannel:wind];
   
   /* Update up channel menu */
   int channelCount = [tabView numberOfTabViewItems];
@@ -711,7 +708,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [owner release];
   [tabViewItem release];
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];
 }
 
 
@@ -748,7 +744,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   NSTabViewItem *tmp = [currentChannelController tabViewItem];
   [(CustomWindow *)[tabView window] setCurrentChannelTextView:textView];
   [tabView selectTabViewItem:tmp];
-  [channelBar selectCellWithWindowRec:wind];
   [channelTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[tabView indexOfTabViewItem:tmp]] byExtendingSelection:FALSE];
   [currentChannelController setWaitingEvents:0];
 
@@ -789,8 +784,6 @@ int windowRefnumComparator(id a, id b, void* ctx)
 
 - (void)refnumChanged:(WINDOW_REC *)wind old:(int)old
 {
-  [channelBar moveChannel:wind fromRefNum:old toRefNum:wind->refnum];
-  
   // We can't be sure that moving around will work in the tabview. Copy it so they don't get released.
   NSArray *sortedItems = [[[tabView tabViewItems] sortedArrayUsingFunction:windowRefnumComparator context:nil] copy];
   
@@ -825,7 +818,6 @@ int windowRefnumComparator(id a, id b, void* ctx)
   
   [[channelMenu itemAtIndex:index+8] setTitle:[controller name]];
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];
   
   // Update the window title, just in case the channel that just joined was showing "joining..." in the title bar
   NSString *titleString = ([[NSUserDefaults standardUserDefaults] boolForKey:@"channelInTitle"]) ? [NSString stringWithFormat:@"MacIrssi - %@", [currentChannelController name]] : @"MacIrssi";
@@ -851,11 +843,9 @@ int windowRefnumComparator(id a, id b, void* ctx)
     [[channelMenu itemAtIndex:i] setKeyEquivalent:[[NSNumber numberWithInt:i-7] stringValue]];
   
   
-  [channelBar removeChannel:wind];
   [tabView removeTabViewItem:tmp];
   
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];
 }
 
 
@@ -888,7 +878,6 @@ int windowRefnumComparator(id a, id b, void* ctx)
   
   [[channelMenu itemAtIndex:index+8] setTitle:channelName];
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];
   
   // Update the window title, just in case the channel that just joined was showing "joining..." in the title bar
   NSString *titleString = ([[NSUserDefaults standardUserDefaults] boolForKey:@"channelInTitle"]) ? [NSString stringWithFormat:@"MacIrssi - %@", [currentChannelController name]] : @"MacIrssi";
@@ -915,42 +904,26 @@ int windowRefnumComparator(id a, id b, void* ctx)
   // Remove everything from the content view. All the important shit is retained.
   [channelTableScrollView removeFromSuperview];
   [channelTableSplitView removeFromSuperview];
-  [channelBar removeFromSuperview];
+  [newChannelBar removeFromSuperview];
   [tabView removeFromSuperview];
   [inputTextFieldBox removeFromSuperview];
 
   int orientation = MIChannelMask([[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"]);
-  int style = MIChannelStyleMask([[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"]);
 
   switch (orientation)
   {
     case MIChannelBarHorizontalOrientation:
     {
-      NSRect channelBarFrame;
+      // So, horitonzal operation. We want the channelBar and tabView.
+      NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [newChannelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, 22.0);
       
-      // two courses of action here, either we're using the old crap channel bar. or the new PSM one.
-      if (style == MIChannelBarStyleOld)
-      {
-        // So, horitonzal operation. We want the channelBar and tabView.
-        channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
-     
-        [[mainWindow contentView] addSubview:channelBar];
-        [channelBar setFrame:channelBarFrame];
-        [channelBar setNeedsDisplay:YES];
-      }
-      else
-      {
-        // So, horitonzal operation. We want the channelBar and tabView.
-        channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, 22.0);
-        
-        // the channel bar assumes you run awakefromnib
-        [[mainWindow contentView] addSubview:newChannelBar];
-        [newChannelBar awakeFromNib];
-        
-        [newChannelBar setStyleNamed:@"Aqua"];
-        [newChannelBar setFrame:channelBarFrame];
-        [newChannelBar setNeedsDisplay:YES];
-      }
+      // the channel bar assumes you run awakefromnib
+      [[mainWindow contentView] addSubview:newChannelBar];
+      [newChannelBar awakeFromNib];
+      
+      [newChannelBar setStyleNamed:@"Aqua"];
+      [newChannelBar setFrame:channelBarFrame];
+      [newChannelBar setNeedsDisplay:YES];
       
       NSRect inputBoxFrame = NSMakeRect(5.0, 5.0, [[mainWindow contentView] frame].size.width - 10.0, [inputTextFieldBox frame].size.height);
       NSRect tabViewFrame = NSMakeRect(0.0, 
@@ -1489,9 +1462,7 @@ int windowRefnumComparator(id a, id b, void* ctx)
    must revert icon to normal */
   if (hilightChannels == 0)
     [self setIcon:defaultIcon];
-  
-  [channelBar setNeedsDisplay:YES];
-  
+    
   [currentChannelController setWaitingEvents:0];
 }
 
@@ -1523,7 +1494,6 @@ int windowRefnumComparator(id a, id b, void* ctx)
 {
   [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];  
 }
 
 #pragma mark Channel TableView Datasource
@@ -1660,10 +1630,9 @@ int windowRefnumComparator(id a, id b, void* ctx)
   [inputTextFieldBox retain];
   [tabView retain];
   [channelTableScrollView retain];
-  [channelBar retain];
+  [newChannelBar retain];
   
   // and create the ones that don't exist
-  newChannelBar = [[PSMTabBarControl alloc] initWithFrame:[channelBar frame]];
   [newChannelBar setAutoresizingMask:NSViewMinYMargin|NSViewWidthSizable];
   [newChannelBar setDelegate:self];
   [newChannelBar setStyleNamed:@"Metal"];

@@ -76,7 +76,6 @@ extern char **argv;
 	IBOutlet NSTextField *reasonTextField;
 	IBOutlet NSWindow *errorWindow;
 	IBOutlet NSTextField *errorTextField;
-	IBOutlet ChannelBar *channelBar;
   IBOutlet PSMTabBarControl *newChannelBar;
 	IBOutlet SUUpdater *updateChecker;
 	
