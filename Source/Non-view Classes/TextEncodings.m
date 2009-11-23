@@ -72,7 +72,7 @@
 
 + (void)setIrssiEncoding:(MITextEncoding*)enc;
 {
-  char *irssiCString = [IrssiBridge irssiCStringWithString:[[enc IANAString] lowercaseString]];
+  char *irssiCString = [IrssiBridge irssiCStringWithString:[[enc IANAString] lowercaseString] encoding:NSASCIIStringEncoding];
   if (strcmp(irssiCString, settings_get_str("term_charset")) != 0)
   {
     settings_set_str("term_charset", irssiCString);
