@@ -791,11 +791,18 @@ int windowRefnumComparator(id a, id b, void* ctx)
   NSTabViewItem *item;
   NSEnumerator *enumerator = [sortedItems objectEnumerator];
   
+  // annoyingly, doing this will trigger the "new window selected" signal because the tabView will
+  // fire. So remember what active window we were on and go back to it afterwards
+  ChannelController *activeController = [[[tabView selectedTabViewItem] identifier] content];
+  
   while (item = [enumerator nextObject])
   {
     [tabView removeTabViewItem:item];
     [tabView addTabViewItem:item];
   }
+  
+  // reselect the correct item
+  [tabView selectTabViewItem:[activeController tabViewItem]];
   
   // we're done with the sorted list now
   [sortedItems release];
