@@ -1642,7 +1642,7 @@ int windowRefnumComparator(id a, id b, void* ctx)
   // and create the ones that don't exist
   [newChannelBar setAutoresizingMask:NSViewMinYMargin|NSViewWidthSizable];
   [newChannelBar setDelegate:self];
-  [newChannelBar setStyleNamed:@"Metal"];
+  [newChannelBar setSizeCellsToFit:YES];
   // and hijack the tabview
   [newChannelBar setTabView:tabView];
   [tabView setDelegate:newChannelBar];
