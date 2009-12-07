@@ -1401,7 +1401,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];  
+  [channelBar setNeedsDisplay:YES];
+}
+
+// Changing the background colour affects the channel bar
+- (void)channelBackgroundColorChanged:(NSNotification*)note
+{
+  [channelBar setNeedsDisplay:YES];
 }
 
 #pragma mark Channel TableView Datasource
@@ -1570,6 +1576,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
   [nc addObserver:self selector:@selector(setShortcutCommands) name:@"shortcutChanged" object:nil];
   [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:@"irssiServerChangedNotification" object:nil];
+  [nc addObserver:self selector:@selector(channelBackgroundColorChanged:) name:@"channelColorChanged" object:nil];
   
   /* Set up colors */
   [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
