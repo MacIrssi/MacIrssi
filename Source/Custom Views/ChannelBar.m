@@ -193,7 +193,7 @@
 {
 	[self fitCells];
 	
-	[[ColorSet channelListBackgroundColor] set];
+	[[ColorSet channelBackgroundColor] set];
 	NSRectFillUsingOperation([self bounds], NSCompositeCopy);	
 
 	NSEnumerator *enumerator = [channelBarCells objectEnumerator];
