@@ -79,4 +79,15 @@
   server_setup_add(rec);
 }
 
+- (BOOL)useSSL
+{
+  return rec->use_ssl;
+}
+
+- (void)setUseSSL:(BOOL)flag
+{
+  rec->use_ssl = flag;
+  server_setup_add(rec);
+}
+
 @end
