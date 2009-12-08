@@ -57,6 +57,7 @@ extern char **argv;
   IBOutlet NSScrollView *channelTableScrollView;
 	IBOutlet CustomTableView *channelTableView;
   MISplitView *channelTableSplitView;
+  IBOutlet NSSplitView *tabViewTextEntrySplitView;
   
   IBOutlet NSBox *inputTextFieldBox;
 	IBOutlet NSTextView *inputTextField;
