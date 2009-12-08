@@ -816,8 +816,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [channelTableScrollView removeFromSuperview];
   [channelTableSplitView removeFromSuperview];
   [channelBar removeFromSuperview];
-  [tabView removeFromSuperview];
-  [inputTextFieldBox removeFromSuperview];
+  [tabViewTextEntrySplitView removeFromSuperview];
+  //[tabView removeFromSuperview];
+  //[inputTextFieldBox removeFromSuperview];
 
   int orientation = [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"];
 
@@ -827,23 +828,29 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     {
       // So, horitonzal operation. We want the channelBar and tabView.
       NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
-      NSRect inputBoxFrame = NSMakeRect(5.0, 5.0, [[mainWindow contentView] frame].size.width - 10.0, [inputTextFieldBox frame].size.height);
-      NSRect tabViewFrame = NSMakeRect(0.0, 
-                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
-                                       [[mainWindow contentView] frame].size.width, 
-                                       channelBarFrame.origin.y - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
+      NSRect splitViewFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width, channelBarFrame.origin.y);
+      NSRect inputBoxFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width + 0.0, [inputTextFieldBox frame].size.height);
+//      NSRect tabViewFrame = NSMakeRect(0.0,
+//                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
+//                                       [[mainWindow contentView] frame].size.width, 
+//                                       channelBarFrame.origin.y - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
       
       [[mainWindow contentView] addSubview:channelBar];
       [channelBar setFrame:channelBarFrame];
       [channelBar setNeedsDisplay:YES];
       
-      [[mainWindow contentView] addSubview:tabView];
-      [tabView setFrame:tabViewFrame];
-      [tabView setNeedsDisplay:YES];
+      [[mainWindow contentView] addSubview:tabViewTextEntrySplitView];
+      [tabViewTextEntrySplitView setFrame:splitViewFrame];
+      [tabViewTextEntrySplitView setNeedsDisplay:YES];
+      [tabViewTextEntrySplitView adjustSubviews];
       
-      [[mainWindow contentView] addSubview:inputTextFieldBox];
-      [inputTextFieldBox setFrame:inputBoxFrame];
-      [inputTextFieldBox setNeedsDisplay:YES];
+//      [[mainWindow contentView] addSubview:tabView];
+//      [tabView setFrame:tabViewFrame];
+//      [tabView setNeedsDisplay:YES];
+//      
+//      [[mainWindow contentView] addSubview:inputTextFieldBox];
+//      [inputTextFieldBox setFrame:inputBoxFrame];
+//      [inputTextFieldBox setNeedsDisplay:YES];
       break;
     }
     case MIChannelBarVerticalOrientation:
@@ -1545,6 +1552,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabView retain];
   [channelTableScrollView retain];
   [channelBar retain];
+  [tabViewTextEntrySplitView retain];
   
   // Fire the orientation notification to save us repeating code.
   [self channelBarOrientationDidChange:nil];
