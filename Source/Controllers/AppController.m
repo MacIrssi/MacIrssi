@@ -829,7 +829,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       // So, horitonzal operation. We want the channelBar and tabView.
       NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
       NSRect splitViewFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width, channelBarFrame.origin.y);
-      NSRect inputBoxFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width + 0.0, [inputTextFieldBox frame].size.height);
+//      NSRect inputBoxFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width + 0.0, [inputTextFieldBox frame].size.height);
 //      NSRect tabViewFrame = NSMakeRect(0.0,
 //                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
 //                                       [[mainWindow contentView] frame].size.width, 
@@ -843,6 +843,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       [tabViewTextEntrySplitView setFrame:splitViewFrame];
       [tabViewTextEntrySplitView setNeedsDisplay:YES];
       [tabViewTextEntrySplitView adjustSubviews];
+      
+      // Now adjust the views internally
+      NSRect inputBoxFrame = [inputTextFieldBox frame];
+      inputBoxFrame.size.height = [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height + 6.0;
+      [inputTextFieldBox setFrame:inputBoxFrame];
       
 //      [[mainWindow contentView] addSubview:tabView];
 //      [tabView setFrame:tabViewFrame];
@@ -1218,7 +1223,39 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)splitViewDidResizeSubviews:(NSNotification *)aNotification
 {
-  [(MISplitView*)[aNotification object] saveLayoutUsingName:@"ChannelTableViewSplit"];
+  if ([[aNotification object] isEqual:channelTableSplitView])
+  {
+    [(MISplitView*)[aNotification object] saveLayoutUsingName:@"ChannelTableViewSplit"];
+  }
+  else if ([[aNotification object] isEqual:tabViewTextEntrySplitView])
+  {
+    ChannelController *c = [[tabView selectedTabViewItem] identifier];
+    if ([c isKindOfClass:[ChannelController class]])
+    {
+      NSScrollView *view = (NSScrollView*)[[[c mainTextView] superview] superview];
+
+      NSPoint newScrollPoint;
+      if ([[view documentView] isFlipped])
+      {
+        newScrollPoint = NSMakePoint(0.0, NSMaxY([[view documentView] frame]));
+      }
+      else
+      {
+        newScrollPoint = NSMakePoint(0.0, 0.0);
+      }
+      [[view documentView] scrollPoint:newScrollPoint];
+    }
+  }
+}
+
+- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
+{
+  if ([sender isEqual:tabViewTextEntrySplitView])
+  {
+    // max position for the split view should be the text field contents + 6 + the divider size
+    return ([sender frame].size.height - [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height - 6.0);
+  }
+  return 0.0;
 }
 
 #pragma mark Growl Delegates
@@ -1552,7 +1589,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabView retain];
   [channelTableScrollView retain];
   [channelBar retain];
+
+  // Split View to hold the main window contents.
   [tabViewTextEntrySplitView retain];
+  [tabViewTextEntrySplitView setDelegate:self];
+  [tabViewTextEntrySplitView setDividerThickness:2.0f];
+  [tabViewTextEntrySplitView setDrawLowerBorder:YES];
+  [tabViewTextEntrySplitView adjustSubviews];
   
   // Fire the orientation notification to save us repeating code.
   [self channelBarOrientationDidChange:nil];
