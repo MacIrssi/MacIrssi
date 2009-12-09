@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">732</string>
+		<string key="IBDocument.InterfaceBuilderVersion">740</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">732</string>
+			<string key="NS.object.0">740</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -66,7 +66,7 @@
 								<string key="NSColorName">controlColor</string>
 								<object class="NSColor" key="NSColor" id="701014604">
 									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC42NjY2NjY2ODY1AA</bytes>
+									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
 							</object>
 							<object class="NSColor" key="NSTextColor" id="429295525">
@@ -130,7 +130,7 @@
 												<string>NeXT TIFF v4.0 pasteboard type</string>
 											</object>
 										</object>
-										<string key="NSFrameSize">{588, 16}</string>
+										<string key="NSFrameSize">{588, 19}</string>
 										<reference key="NSSuperview" ref="1049517775"/>
 										<object class="NSTextContainer" key="NSTextContainer" id="84513865">
 											<object class="NSLayoutManager" key="NSLayoutManager">
@@ -207,12 +207,12 @@
 											<nil key="NSDefaultParagraphStyle"/>
 										</object>
 										<int key="NSTVFlags">6</int>
-										<string key="NSMaxSize">{1181, 1e+07}</string>
+										<string key="NSMaxSize">{1193, 1e+07}</string>
 										<string key="NSMinize">{582, 0}</string>
 										<nil key="NSDelegate"/>
 									</object>
 								</object>
-								<string key="NSFrame">{{1, 1}, {588, 311}}</string>
+								<string key="NSFrame">{{1, 1}, {588, 316}}</string>
 								<reference key="NSSuperview" ref="372714796"/>
 								<reference key="NSNextKeyView" ref="853734515"/>
 								<reference key="NSDocView" ref="853734515"/>
@@ -226,7 +226,7 @@
 							<object class="NSScroller" id="512650051">
 								<reference key="NSNextResponder" ref="372714796"/>
 								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{589, 1}, {15, 311}}</string>
+								<string key="NSFrame">{{589, 1}, {15, 316}}</string>
 								<reference key="NSSuperview" ref="372714796"/>
 								<reference key="NSTarget" ref="372714796"/>
 								<string key="NSAction">_doScroller:</string>
@@ -244,7 +244,7 @@
 								<double key="NSPercent">0.94565218687057495</double>
 							</object>
 						</object>
-						<string key="NSFrame">{{-1, 5}, {605, 313}}</string>
+						<string key="NSFrame">{{-1, 0}, {605, 318}}</string>
 						<reference key="NSSuperview" ref="156812425"/>
 						<reference key="NSNextKeyView" ref="1049517775"/>
 						<int key="NSsFlags">18</int>
@@ -265,7 +265,7 @@
 									<object class="NSTableView" id="580366718">
 										<reference key="NSNextResponder" ref="267836568"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrameSize">{106, 310}</string>
+										<string key="NSFrameSize">{106, 316}</string>
 										<reference key="NSSuperview" ref="267836568"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="_NSCornerView" key="NSCornerView">
@@ -338,7 +338,7 @@
 										<int key="NSTableViewDraggingDestinationStyle">0</int>
 									</object>
 								</object>
-								<string key="NSFrame">{{1, 1}, {106, 310}}</string>
+								<string key="NSFrame">{{1, 1}, {106, 316}}</string>
 								<reference key="NSSuperview" ref="459544604"/>
 								<reference key="NSNextKeyView" ref="580366718"/>
 								<reference key="NSDocView" ref="580366718"/>
@@ -351,7 +351,7 @@
 							<object class="NSScroller" id="321228676">
 								<reference key="NSNextResponder" ref="459544604"/>
 								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{107, 1}, {11, 304}}</string>
+								<string key="NSFrame">{{107, 1}, {11, 302}}</string>
 								<reference key="NSSuperview" ref="459544604"/>
 								<int key="NSsFlags">256</int>
 								<reference key="NSTarget" ref="459544604"/>
@@ -369,7 +369,7 @@
 								<double key="NSPercent">0.99047619104385376</double>
 							</object>
 						</object>
-						<string key="NSFrame">{{612, 6}, {119, 312}}</string>
+						<string key="NSFrame">{{612, 0}, {119, 318}}</string>
 						<reference key="NSSuperview" ref="156812425"/>
 						<reference key="NSNextKeyView" ref="267836568"/>
 						<int key="NSsFlags">18</int>
@@ -645,7 +645,7 @@
 				<object class="NSMutableString" key="NSViewClass">
 					<characters key="NS.bytes">View</characters>
 				</object>
-				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<string key="NSWindowContentMinSize">{213, 107}</string>
 				<object class="NSView" key="NSWindowView" id="486472381">
 					<reference key="NSNextResponder"/>
@@ -1088,7 +1088,7 @@
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{213, 129}</string>
-				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
 			<object class="NSWindowTemplate" id="754433763">
 				<int key="NSWindowStyleMask">7</int>
@@ -1100,7 +1100,7 @@
 				<object class="NSMutableString" key="NSViewClass">
 					<characters key="NS.bytes">View</characters>
 				</object>
-				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<string key="NSWindowContentMinSize">{213, 50}</string>
 				<object class="NSView" key="NSWindowView" id="91992699">
 					<nil key="NSNextResponder"/>
@@ -1145,7 +1145,7 @@
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
 				<string key="NSMinSize">{213, 72}</string>
-				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
+				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
