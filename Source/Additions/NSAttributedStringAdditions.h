@@ -23,6 +23,13 @@
 
 #import <Foundation/Foundation.h>
 
+@interface NSAttributedString (Additions)
++ (float)stringHeightForAttributes:(NSDictionary *)attributes;
++ (NSAttributedString *)stringWithString:(NSString *)inString;
+- (float)heightWithWidth:(float)width;
+@end
+
+
 @interface NSMutableAttributedString (Additions)
 
 - (NSMutableAttributedString*)attributedStringByAppendingString:(NSString*)text foreground:(int)fg background:(int)bg flags:(int)flags attributes:(NSDictionary*)attributes;

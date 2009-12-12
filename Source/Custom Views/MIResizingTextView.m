@@ -7,6 +7,7 @@
 //
 
 #import "MIResizingTextView.h"
+#import "NSAttributedStringAdditions.h"
 
 @interface MIResizingTextView ()
 - (void)_init;
@@ -71,9 +72,7 @@
     }
     else
     {
-      //NSAttributedString *string = [[[NSAttributedString alloc] initWithString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()" attributes:attributes] autorelease];
-      //textHeight = [string heightWithWidth:1e7];
-      textHeight = 15.0;
+      textHeight = [NSAttributedString stringHeightForAttributes:[self typingAttributes]];
     }
     
     if (_desiredSizeCache.width == 0)
