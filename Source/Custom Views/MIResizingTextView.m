@@ -22,6 +22,7 @@
   resizing = NO;
   
   // Notifications
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:NSTextDidChangeNotification object:self];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(frameDidChange:) name:NSViewFrameDidChangeNotification object:self];
 }
 
@@ -49,6 +50,12 @@
   return self;
 }
 
+- (void)textDidChange:(NSNotification *)notification
+{
+  //Reset cache and resize
+  [self _resetCacheAndPostSizeChanged];	
+}
+
 #pragma mark Resizing
 
 // These resizing functions are pretty much nabbed from Adium's source. Sorry.
@@ -64,8 +71,9 @@
     }
     else
     {
-      NSAttributedString *string = [[[NSAttributedString alloc] initWithString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()" attributes:attributes] autorelease];
-      textHeight = [string heightWithWidth:1e7];
+      //NSAttributedString *string = [[[NSAttributedString alloc] initWithString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()" attributes:attributes] autorelease];
+      //textHeight = [string heightWithWidth:1e7];
+      textHeight = 15.0;
     }
     
     if (_desiredSizeCache.width == 0)

@@ -1262,7 +1262,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)resizingTextViewUpdated:(NSNotification*)notification
 {
-  NSLog(@"%@", notification);
+  // Need to resize the two views.
+  NSRect textViewRect = NSMakeRect(0, 0, [inputTextField frame].size.width, [inputTextField desiredSize].height);
+  NSRect tabViewRect = NSMakeRect(0, 0, [tabView frame].size.width, [tabViewTextEntrySplitView frame].size.height - textViewRect.size.height - [tabViewTextEntrySplitView dividerThickness]);
+  
+  [inputTextFieldBox setFrame:textViewRect];
+  [tabView setFrame:tabViewRect];
+  [tabViewTextEntrySplitView adjustSubviews];
 }
 
 #pragma mark Growl Delegates
