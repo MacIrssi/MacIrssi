@@ -35,6 +35,8 @@
 //  thickness = [super dividerThickness];
 }
 
+#pragma mark Pre-10.5 layout support
+
 - (void)saveLayoutUsingName:(NSString*)name
 {
   // So we'll save the layouts of the subviews, just iterate the subviews of the view and turn them into
@@ -69,6 +71,8 @@
   }
   [self adjustSubviews];
 }
+
+#pragma mark Non-standard Divider support
 
 - (void)setDividerThickness:(float)newThickness
 {

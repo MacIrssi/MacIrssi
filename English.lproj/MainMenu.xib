@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="797"/>
+			<integer value="758"/>
 			<integer value="169"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -1622,7 +1622,7 @@
 										<bytes key="NSRGB">MSAxIDEgMAA</bytes>
 									</object>
 									<object class="NSCursor" key="NSCursor">
-										<string key="NSHotSpot">{1, -1}</string>
+										<string key="NSHotSpot">{4, 4}</string>
 										<int key="NSCursorType">0</int>
 									</object>
 									<int key="NScvFlags">2</int>
@@ -3202,6 +3202,7 @@
 					<string>717.ImportedFromIB2</string>
 					<string>758.IBPluginDependency</string>
 					<string>758.ImportedFromIB2</string>
+					<string>761.CustomClassName</string>
 					<string>761.IBPluginDependency</string>
 					<string>761.ImportedFromIB2</string>
 					<string>769.IBPluginDependency</string>
@@ -3435,6 +3436,7 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
+					<string>MIResizingTextView</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3587,7 +3589,7 @@
 							<string>NSMenu</string>
 							<string>NSMenu</string>
 							<string>NSTabView</string>
-							<string>NSSplitView</string>
+							<string>MISplitView</string>
 							<string>SUUpdater</string>
 						</object>
 					</object>
@@ -3705,6 +3707,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MIResizingTextView</string>
+					<string key="superclassName">NSTextView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Source/Custom Views/MIResizingTextView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

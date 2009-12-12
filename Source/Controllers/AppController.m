@@ -1258,6 +1258,19 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   return 0.0;
 }
 
+#pragma mark MIResizingTextView Notifications
+
+- (void)resizingTextViewUpdated:(NSNotification*)notification
+{
+  // Need to resize the two views.
+  NSRect textViewRect = NSMakeRect(0, 0, [inputTextField frame].size.width, [inputTextField desiredSize].height);
+  NSRect tabViewRect = NSMakeRect(0, 0, [tabView frame].size.width, [tabViewTextEntrySplitView frame].size.height - textViewRect.size.height - [tabViewTextEntrySplitView dividerThickness]);
+  
+  [inputTextFieldBox setFrame:textViewRect];
+  [tabView setFrame:tabViewRect];
+  [tabViewTextEntrySplitView adjustSubviews];
+}
+
 #pragma mark Growl Delegates
 
 /**
@@ -1597,6 +1610,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabViewTextEntrySplitView setDrawLowerBorder:YES];
   [tabViewTextEntrySplitView adjustSubviews];
   
+  // Setup the sidebar frame change notifications
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizingTextViewUpdated:) name:MIViewDesiredSizeDidChangeNotification object:inputTextField];
+  
   // Fire the orientation notification to save us repeating code.
   [self channelBarOrientationDidChange:nil];
   
@@ -1628,7 +1644,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [nc addObserver:self selector:@selector(setShortcutCommands) name:@"shortcutChanged" object:nil];
   [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:@"irssiServerChangedNotification" object:nil];
   [nc addObserver:self selector:@selector(channelBackgroundColorChanged:) name:@"channelColorChanged" object:nil];
-  
+    
   /* Set up colors */
   [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
   [inputTextField setBackgroundColor:[ColorSet inputTextBackgroundColor]];

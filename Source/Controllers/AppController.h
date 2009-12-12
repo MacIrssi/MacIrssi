@@ -21,6 +21,7 @@
 #import "Growl/Growl.h"
 #import "ChannelBar.h"
 #import "MISplitView.h"
+#import "MIResizingTextView.h"
 
 #import <unistd.h>
 #import "glib.h"
@@ -60,7 +61,7 @@ extern char **argv;
   IBOutlet MISplitView *tabViewTextEntrySplitView;
   
   IBOutlet NSBox *inputTextFieldBox;
-	IBOutlet NSTextView *inputTextField;
+	IBOutlet MIResizingTextView *inputTextField;
   
 	IBOutlet NSMenu *channelMenu;
 	IBOutlet NSMenu *shortcutsMenu;
