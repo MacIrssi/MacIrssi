@@ -18,5 +18,6 @@
 
 - (NSSize)desiredSize;
 - (void)frameDidChange:(NSNotification*)notification;
+- (void)_resetCacheAndPostSizeChanged;
 
 @end
