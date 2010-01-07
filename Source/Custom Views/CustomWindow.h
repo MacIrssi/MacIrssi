@@ -20,10 +20,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AppController.h"
+#import "MIResizingTextView.h"
 
 @interface CustomWindow : NSWindow
 {
-	IBOutlet NSTextView *inputTextField;
+	IBOutlet MIResizingTextView *inputTextField;
 	IBOutlet NSSearchField *searchField;
 	IBOutlet AppController *controller;
 	NSTextView *currentChannelTextView;
