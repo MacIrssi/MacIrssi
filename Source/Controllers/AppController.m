@@ -1084,56 +1084,89 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)irssiServerChangedNotification:(NSNotification*)notification
 {
+	[self updateServerMenu];
+}
+
+- (void)updateServerMenu
+{
   // Remove all the servers from the menu
   while ([[serversMenu itemArray] count] > 1)
   {
     [serversMenu removeItemAtIndex:1];
   }
   
-  if (servers)
-  {
-    // servers is NULL if we're not connected to anything, so if its not null we can
-    // create a menu item
-    [serversMenu addItem:[NSMenuItem separatorItem]];
-  }
-  
-  // Server window is always the first one in the tabView list
-  WINDOW_REC *serverWindowRec = [(ChannelController *)[[tabView tabViewItemAtIndex:0] identifier] windowRec];
-  // "active" server is the active server from the server window, or the "connect" server (if the last thing you did was
-  // a connect that hasn't finished, active_server is NULL and connect_server has a pointer to a SERVER_REC*
-  SERVER_REC *activeServerRec = (serverWindowRec->active_server ? serverWindowRec->active_server : serverWindowRec->connect_server);
-  
-  // Iterate the servers, count them as we're going too
-  GSList *tmp, *next;
-  int count = 1;
-  for (tmp = servers; tmp != NULL; tmp = next)
-  {
-    SERVER_REC *server = tmp->data;
-    
-    // If we have a connrec, don't think we ever won't but its better than crashing on a null pointer.
-    if (server->connrec)
-    {
-      // Not all servers have chatnets but we need to make a stupid string with padding, so do it first.
-      NSString *chatnet = (server->connrec->chatnet ? [NSString stringWithFormat:@" [%s]", server->connrec->chatnet] : @"");
-      NSString *title = [NSString stringWithFormat:@"%s%@", 
-                         server->connrec->address, 
-                         chatnet];
-      [serversMenu addItemWithTitle:title
-                             target:self
-                             action:@selector(changeIrssiServerConsole:)
-                      keyEquivalent:@""
-                                tag:*(int*)&server];
-      if (count <= 10)
-      {
-        // Not sure Command+Option+10 works too well ;). We could check here if we're gonna collide with a user
-        // shortcut but maybe some other time.
-        [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalent:[NSString stringWithFormat:@"%d", (count++) % 10]];
-        [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
-      }
-      [[serversMenu itemWithTag:*(int*)&server] setState:(activeServerRec == server)];
-    }
-    next = tmp->next;
-  }
+	// Bit nasty but better to keep it separated. Tis a big beast now.
+	NSMenu *activeServersMenu = [self buildActiveServersMenu];
+	
+	// Now the inactive servers
+	NSMenu *inactiveServersMenu = [self buildInactiveServersMenu];
+	
+	if (activeServersMenu)
+	{
+		[serversMenu addItem:[NSMenuItem separatorItem]];
+		[serversMenu appendItemsFromMenu:activeServersMenu];
+	}
+	
+	if (inactiveServersMenu)
+	{
+		[serversMenu addItem:[NSMenuItem separatorItem]];
+		[serversMenu appendItemsFromMenu:inactiveServersMenu];
+	}
+}
+	
+- (NSMenu*)buildActiveServersMenu
+{
+	NSMenu *menu = nil;
+	
+	if (servers)
+	{
+		// If we've got servers, build a menu.
+		menu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
+		
+		// Server window is always the first one in the tabView list
+		WINDOW_REC *serverWindowRec = [(ChannelController *)[[tabView tabViewItemAtIndex:0] identifier] windowRec];
+		// "active" server is the active server from the server window, or the "connect" server (if the last thing you did was
+		// a connect that hasn't finished, active_server is NULL and connect_server has a pointer to a SERVER_REC*
+		SERVER_REC *activeServerRec = (serverWindowRec->active_server ? serverWindowRec->active_server : serverWindowRec->connect_server);
+		
+		// Iterate the servers, count them as we're going too
+		GSList *tmp, *next;
+		int count = 1;
+		for (tmp = servers; tmp != NULL; tmp = next)
+		{
+			SERVER_REC *server = tmp->data;
+			
+			// If we have a connrec, don't think we ever won't but its better than crashing on a null pointer.
+			if (server->connrec)
+			{
+				// Not all servers have chatnets but we need to make a stupid string with padding, so do it first.
+				NSString *chatnet = (server->connrec->chatnet ? [NSString stringWithFormat:@" [%s]", server->connrec->chatnet] : @"");
+				NSString *title = [NSString stringWithFormat:@"%s%@", 
+													 server->connrec->address, 
+													 chatnet];
+				[menu addItemWithTitle:title
+												target:self
+												action:@selector(changeIrssiServerConsole:)
+								 keyEquivalent:@""
+													 tag:*(int*)&server];
+				if (count <= 10)
+				{
+					// Not sure Command+Option+10 works too well ;). We could check here if we're gonna collide with a user
+					// shortcut but maybe some other time.
+					[[menu itemWithTag:*(int*)&server] setKeyEquivalent:[NSString stringWithFormat:@"%d", (count++) % 10]];
+					[[menu itemWithTag:*(int*)&server] setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
+				}
+				[[menu itemWithTag:*(int*)&server] setState:(activeServerRec == server)];
+			}
+			next = tmp->next;
+		}
+	}
+	return menu;
+}
+
+- (NSMenu*)buildInactiveServersMenu
+{
+	return nil;
 }
 
 - (void)changeIrssiServerConsole:(id)sender

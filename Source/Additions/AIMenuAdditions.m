@@ -209,4 +209,18 @@
 	[alternateItem release];
 }
 
+- (void)appendItemsFromMenu:(NSMenu*)menu
+{
+	NSEnumerator *enumerator = [[menu itemArray] objectEnumerator];
+	NSMenuItem *item = nil;
+	
+	while (item = [enumerator nextObject])
+	{
+		[item retain];
+		[menu removeItem:item];
+		[self addItem:item];
+		[item release];
+	}
+}
+
 @end
