@@ -36,6 +36,9 @@
 //Find the first enabled menu item
 - (NSMenuItem *)firstEnabledMenuItem;
 
+// Append the contents of a menu to another menu
+- (void)appendItemsFromMenu:(NSMenu*)menu;
+
 @end
 
 @interface NSMenuItem (ItemCreationAdditions)
