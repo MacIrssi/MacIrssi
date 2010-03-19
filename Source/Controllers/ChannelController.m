@@ -318,7 +318,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
       /* todo */
       return;
     case List:
-      command = [NSString stringWithFormat:@"/msg %@ xdcc list", nick];
+      EMITSINGLE(@"/msg %@ xdcc list");
       break;
     case CopyIP:
       host = [IrssiBridge stringWithIrssiCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->host];
