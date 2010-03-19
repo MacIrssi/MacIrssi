@@ -12,7 +12,21 @@ if [ "x$ACTION" == "xclean" ]; then
   exit 0
 fi
 
-VERSION=`pl < ../Info.plist | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\s+=\s+"(.*?)"/); }'`
+if [ ! -e "$BUILD_ROOT"/irssi-build ]; then
+	mkdir -p "$BUILD_ROOT"/irssi-build
+	for i in `find * -print`; do
+		if [ -d $i ]; then
+			mkdir -p "$BUILD_ROOT/irssi-build/$i"
+		else
+			ln -s "`pwd`/$i" "$BUILD_ROOT/irssi-build/$i"
+		fi
+	done
+fi
+
+# move to the real build directory
+cd "$BUILD_ROOT"/irssi-build
+
+VERSION=`pl < $PROJECT_DIR/Info.plist | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\s+=\s+"(.*?)"/); }'`
 
 if [[ ( -e config.xcode ) && ( -e Makefile ) && "$CONFIGURATION" != "" ]]; then
   if grep -q "$CONFIGURATION-$TARGET_NAME" config.xcode; then
@@ -30,7 +44,7 @@ make distclean
 CFLAGS="$CFLAGS -I$SRCROOT/Frameworks/MILibs/build/Release/include -DMACIRSSI_VERSION=\\\"$VERSION\\\""
 LDFLAGS="$LDFLAGS -L$SRCROOT/Frameworks/MILibs/build/Release/lib"
 PKG_CONFIG_PATH="$SRCROOT/Frameworks/MILibs/build/Release/lib/pkgconfig"
-PATH="$PATH:$SRCROOT/Frameworks/MILibs/pkg-config-0.23"
+PATH="$PATH:$SRCROOT/Frameworks/MILibs/build/pkg-config-build"
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH ./configure $@
 CONF_EXIT=$?
 

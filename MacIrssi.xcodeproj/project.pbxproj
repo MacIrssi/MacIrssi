@@ -33,6 +33,18 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		24A9832211532E7C002B823B /* libcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A9825311532AAB002B823B /* libcore.a */; };
+		24A9832311532E7C002B823B /* libirc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE90C09EE42001C0DDD /* libirc.a */; };
+		24A9832411532E7C002B823B /* libirc_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */; };
+		24A9832511532E7C002B823B /* libfe_common_irc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */; };
+		24A9832611532E7C002B823B /* libirc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */; };
+		24A9832711532E7C002B823B /* libirc_flood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */; };
+		24A9832811532E7C002B823B /* libfe_common_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */; };
+		24A9832911532E7C002B823B /* libirssi_config.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */; };
+		24A9832A11532E7C002B823B /* libirc_dcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */; };
+		24A9832B11532E7C002B823B /* libfe_irc_dcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */; };
+		24A9832C11532E7C002B823B /* libfe_irc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */; };
+		24A98348115331AA002B823B /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
 		8D1107280486CEB800E47090 /* MacIrssi_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -194,24 +206,12 @@
 		C2A9B1250C118BC2002A9848 /* Growl-WithInstaller.framework in Copy Growl Framework */ = {isa = PBXBuildFile; fileRef = C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */; };
 		C2C2C0F9074B822700396F82 /* MarkedScroller.h in Headers */ = {isa = PBXBuildFile; fileRef = C2C2C0F7074B822700396F82 /* MarkedScroller.h */; };
 		C2C2C0FA074B822700396F82 /* MarkedScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = C2C2C0F8074B822700396F82 /* MarkedScroller.m */; };
-		C2CC3AD60C09EDBB001C0DDD /* libirc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */; };
-		C2CC3ADB0C09EDD5001C0DDD /* libirc_flood.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */; };
-		C2CC3ADE0C09EDFA001C0DDD /* libirc_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */; };
-		C2CC3AE10C09EE1B001C0DDD /* libfe_common_irc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */; };
-		C2CC3AE40C09EE28001C0DDD /* libfe_common_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */; };
-		C2CC3AEA0C09EE42001C0DDD /* libirc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AE90C09EE42001C0DDD /* libirc.a */; };
-		C2CC3AED0C09EE75001C0DDD /* libirssi_config.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */; };
-		C2CC3AF00C09EE89001C0DDD /* libirc_dcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */; };
-		C2CC3AF30C09EEA1001C0DDD /* libfe_irc_dcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */; };
-		C2CC3AF60C09EEAF001C0DDD /* libcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF50C09EEAF001C0DDD /* libcore.a */; };
-		C2CC3AF90C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */; };
 		C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
 		C2CC3B180C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2CC3BFA0C0B7B50001C0DDD /* libgmodule-2.0.0.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
 		C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2D1679106E3E16C000EC6F9 /* ChannelBar.h in Headers */ = {isa = PBXBuildFile; fileRef = C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */; };
 		C2D1679206E3E16C000EC6F9 /* ChannelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D1679006E3E16C000EC6F9 /* ChannelBar.m */; };
-		C91024360E58976B00E041F7 /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
 		C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265A0E5C654800E041F7 /* UKCrashReporter.h */; };
 		C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
 		C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265C0E5C654800E041F7 /* UKSystemInfo.h */; };
@@ -938,6 +938,8 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		24A981C3115313B5002B823B /* xcodeConfigure.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = xcodeConfigure.sh; sourceTree = "<group>"; };
+		24A9825311532AAB002B823B /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "build/irssi-build/src/core/libcore.a"; sourceTree = SOURCE_ROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -1106,22 +1108,20 @@
 		C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Growl-WithInstaller.framework"; sourceTree = "<group>"; };
 		C2C2C0F7074B822700396F82 /* MarkedScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkedScroller.h; sourceTree = "<group>"; };
 		C2C2C0F8074B822700396F82 /* MarkedScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkedScroller.m; sourceTree = "<group>"; };
-		C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_notifylist.a; path = "irssi-0.8.14/src/irc/notifylist/libirc_notifylist.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_flood.a; path = "irssi-0.8.14/src/irc/flood/libirc_flood.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_core.a; path = "irssi-0.8.14/src/irc/core/libirc_core.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_common_irc.a; path = "irssi-0.8.14/src/fe-common/irc/libfe_common_irc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_common_core.a; path = "irssi-0.8.14/src/fe-common/core/libfe_common_core.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AE60C09EE36001C0DDD /* libpopt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpopt.a; path = "../irssi-0.8.12/src/lib-popt/libpopt.a"; sourceTree = "<group>"; };
-		C2CC3AE90C09EE42001C0DDD /* libirc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc.a; path = "irssi-0.8.14/src/irc/libirc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirssi_config.a; path = "irssi-0.8.14/src/lib-config/libirssi_config.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_dcc.a; path = "irssi-0.8.14/src/irc/dcc/libirc_dcc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_dcc.a; path = "irssi-0.8.14/src/fe-common/irc/dcc/libfe_irc_dcc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AF50C09EEAF001C0DDD /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "irssi-0.8.14/src/core/libcore.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_notifylist.a; path = "irssi-0.8.14/src/fe-common/irc/notifylist/libfe_irc_notifylist.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_notifylist.a; path = "build/irssi-build/src/irc/notifylist/libirc_notifylist.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_flood.a; path = "build/irssi-build/src/irc/flood/libirc_flood.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_core.a; path = "build/irssi-build/src/irc/core/libirc_core.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */ = {isa = PBXFileReference; explicitFileType = file; name = libfe_common_irc.a; path = "build/irssi-build/src/fe-common/irc/libfe_common_irc.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_common_core.a; path = "build/irssi-build/src/fe-common/core/libfe_common_core.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AE90C09EE42001C0DDD /* libirc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc.a; path = "build/irssi-build/src/irc/libirc.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirssi_config.a; path = "build/irssi-build/src/lib-config/libirssi_config.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_dcc.a; path = "build/irssi-build/src/irc/dcc/libirc_dcc.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_dcc.a; path = "build/irssi-build/src/fe-common/irc/dcc/libfe_irc_dcc.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_notifylist.a; path = "build/irssi-build/src/fe-common/irc/notifylist/libfe_irc_notifylist.a"; sourceTree = SOURCE_ROOT; };
 		C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgmodule-2.0.0.dylib"; path = "MILibs/build/Release/lib/libgmodule-2.0.0.dylib"; sourceTree = "<group>"; };
 		C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = /usr/lib/libiconv.2.dylib; sourceTree = "<absolute>"; };
 		C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libintl.8.0.2.dylib; path = MILibs/build/Release/lib/libintl.8.0.2.dylib; sourceTree = "<group>"; };
-		C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_perl_static.a; path = "irssi-0.8.14/src/perl/.libs/libfe_perl_static.a"; sourceTree = SOURCE_ROOT; };
+		C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_perl_static.a; path = "build/irssi-build/libfe_perl_static.a"; sourceTree = SOURCE_ROOT; };
 		C2CC3B550C0B42BD001C0DDD /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = /System/Library/Perl/lib/5.10/libperl.dylib; sourceTree = "<absolute>"; };
 		C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DynaLoader.a; path = "/System/Library/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a"; sourceTree = "<absolute>"; };
 		C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ChannelBar.h; sourceTree = "<group>"; };
@@ -1207,7 +1207,7 @@
 		C922B3EA0E23BB1D000AA7BE /* Switch.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Switch.aiff; sourceTree = "<group>"; };
 		C922B3EB0E23BB1D000AA7BE /* Whip.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Whip.aiff; sourceTree = "<group>"; };
 		C922B4300E23BD34000AA7BE /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound.png; sourceTree = "<group>"; };
-		C925E7710E5A2D550041921B /* libperl_core_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libperl_core_static.a; path = "irssi-0.8.14/src/perl/.libs/libperl_core_static.a"; sourceTree = SOURCE_ROOT; };
+		C925E7710E5A2D550041921B /* libperl_core_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libperl_core_static.a; path = "build/irssi-build/libperl_core_static.a"; sourceTree = SOURCE_ROOT; };
 		C93FE639104976DA00BB1C61 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		C93FE63B104976DA00BB1C61 /* args.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = args.c; sourceTree = "<group>"; };
 		C93FE63C104976DA00BB1C61 /* args.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = args.h; sourceTree = "<group>"; };
@@ -1765,22 +1765,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91793850F744140005241A4 /* libglib-2.0.0.dylib in Frameworks */,
+				24A98348115331AA002B823B /* libgmodule-2.0.0.dylib in Frameworks */,
+				C2CC3B180C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */,
+				24A9832211532E7C002B823B /* libcore.a in Frameworks */,
+				24A9832311532E7C002B823B /* libirc.a in Frameworks */,
+				24A9832411532E7C002B823B /* libirc_core.a in Frameworks */,
+				24A9832511532E7C002B823B /* libfe_common_irc.a in Frameworks */,
+				24A9832611532E7C002B823B /* libirc_notifylist.a in Frameworks */,
+				24A9832711532E7C002B823B /* libirc_flood.a in Frameworks */,
+				24A9832811532E7C002B823B /* libfe_common_core.a in Frameworks */,
+				24A9832911532E7C002B823B /* libirssi_config.a in Frameworks */,
+				24A9832A11532E7C002B823B /* libirc_dcc.a in Frameworks */,
+				24A9832B11532E7C002B823B /* libfe_irc_dcc.a in Frameworks */,
+				24A9832C11532E7C002B823B /* libfe_irc_notifylist.a in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */,
-				C2CC3AE10C09EE1B001C0DDD /* libfe_common_irc.a in Frameworks */,
-				C2CC3AF60C09EEAF001C0DDD /* libcore.a in Frameworks */,
-				C2CC3AEA0C09EE42001C0DDD /* libirc.a in Frameworks */,
-				C2CC3AD60C09EDBB001C0DDD /* libirc_notifylist.a in Frameworks */,
-				C2CC3ADB0C09EDD5001C0DDD /* libirc_flood.a in Frameworks */,
-				C2CC3ADE0C09EDFA001C0DDD /* libirc_core.a in Frameworks */,
-				C2CC3AE40C09EE28001C0DDD /* libfe_common_core.a in Frameworks */,
-				C2CC3AED0C09EE75001C0DDD /* libirssi_config.a in Frameworks */,
-				C2CC3AF00C09EE89001C0DDD /* libirc_dcc.a in Frameworks */,
-				C2CC3AF30C09EEA1001C0DDD /* libfe_irc_dcc.a in Frameworks */,
-				C2CC3AF90C09EEC0001C0DDD /* libfe_irc_notifylist.a in Frameworks */,
-				C91024360E58976B00E041F7 /* libgmodule-2.0.0.dylib in Frameworks */,
 				C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */,
-				C2CC3B180C09F404001C0DDD /* libintl.8.0.2.dylib in Frameworks */,
 				C2A9B10C0C1187BC002A9848 /* Growl-WithInstaller.framework in Frameworks */,
 				C229C73D0C1AA7B900D7CCD0 /* libssl.dylib in Frameworks */,
 				C229C7400C1AA82900D7CCD0 /* libcrypto.dylib in Frameworks */,
@@ -1788,7 +1789,6 @@
 				C91F139E0F0A743800763699 /* Sparkle.framework in Frameworks */,
 				C91F15580F110B6500763699 /* Carbon.framework in Frameworks */,
 				C91F19520F1404B900763699 /* Appscript.framework in Frameworks */,
-				C91793850F744140005241A4 /* libglib-2.0.0.dylib in Frameworks */,
 				C9FBBC3F1049A5A700FE4ACD /* GoogleToolboxForMac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1871,6 +1871,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				24A981C3115313B5002B823B /* xcodeConfigure.sh */,
 				32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -1912,14 +1913,13 @@
 		B322D6DF05EF900200E640C2 /* irssi */ = {
 			isa = PBXGroup;
 			children = (
-				C2CC3AF50C09EEAF001C0DDD /* libcore.a */,
+				24A9825311532AAB002B823B /* libcore.a */,
 				C2CC3AE90C09EE42001C0DDD /* libirc.a */,
 				C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */,
 				C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */,
 				C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */,
 				C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */,
 				C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */,
-				C2CC3AE60C09EE36001C0DDD /* libpopt.a */,
 				C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */,
 				C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */,
 				C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */,
@@ -3063,7 +3063,7 @@
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "irssi-0.8.14";
+			buildWorkingDirectory = "build/irssi-build";
 			dependencies = (
 			);
 			name = "Irssi Build";
@@ -3328,7 +3328,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# copies perl libraries\n\nPERLPATH=\"irssi-0.8.14/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p \"$DSTPATH\"\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nfor s in $SUBDIRS; do\n\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\tmkdir -p \"$DSTPATH\"\n\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\ndone\n\nfor lib in `find $PERLPATH -name *.so -print | grep -v dSYM`; do\n\tcp \"$lib\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/\"\ndone\n\nexit 0";
+			shellScript = "# copies perl libraries\n\nPERLPATH=\"build/irssi-build/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tif [ -d $s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor s in $SUBDIRS; do\n\tif [ -d $s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor lib in `find $PERLPATH -name *.so -print | grep -v dSYM`; do\n\tcp \"$lib\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/\"\ndone\n\nexit 0";
 		};
 		C9EC9EE30E36386C00445345 /* Update Git version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3554,8 +3554,6 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"/**";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -3571,38 +3569,41 @@
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"Frameworks/*.framework",
-					"irssi-0.8.14/**",
+					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
+					"$(BUILD_ROOT)/irssi-build/**",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/**",
 				);
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17)",
-					"irssi-0.8.14/src/perl/.libs/**",
-					"irssi-0.8.14/src/**",
 					"/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/flood\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/irssi-0.8.14/src/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_16 = "\"$(SRCROOT)/irssi-0.8.14/src/lib-config\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi-0.8.14/src/perl/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$SRCROOT/irssi-0.8.14\"/**";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi-0.8.14/src/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/irssi-build/src/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/build/irssi-build/src/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/build/irssi-build/src/irc/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/build/irssi-build/src/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/build/irssi-build/src/irc/flood\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/build/irssi-build/src/lib-config\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/build/irssi-build/src/irc/dcc\"";
 				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH)";
 				OTHER_CFLAGS = "-DMACIRSSI_DEBUG";
 				OTHER_LDFLAGS = (
@@ -3637,15 +3638,6 @@
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)\"/**";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -3660,54 +3652,41 @@
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 					"Frameworks/*.framework",
-					"irssi-0.8.14/**",
+					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
+					"$(BUILD_ROOT)/irssi-build/**",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/**",
 				);
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$SRCROOT/Frameworks/MILibs/build/Release/lib\"/**";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$SRCROOT/Frameworks/MILibs/build/Release/include\"/**";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
-					"irssi-0.8.14/src/perl/.libs/**",
-					"irssi-0.8.14/src/**",
 					"/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_10 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_11 = "\"$(SRCROOT)/irssi-0.8.12/src/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"/usr/local/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.10\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.10.0\"/**";
-				LIBRARY_SEARCH_PATHS_QUOTED_17 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/flood\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_4 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_5 = "\"$(SRCROOT)/irssi-0.8.12/src/fe-common/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_6 = "\"$(SRCROOT)/irssi-0.8.12/src/lib-popt\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(SRCROOT)/irssi-0.8.12/src/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(SRCROOT)/irssi-0.8.12/src/lib-config\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(SRCROOT)/irssi-0.8.12/src/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/irssi-0.8.14/src/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/irssi-0.8.14/src/lib-config\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi-0.8.14/src/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/flood\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/irssi-build/src/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/build/irssi-build/src/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/build/irssi-build/src/irc/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/build/irssi-build/src/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/build/irssi-build/src/irc/flood\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/build/irssi-build/src/lib-config\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/build/irssi-build/src/irc/dcc\"";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-ldl",
@@ -3735,18 +3714,11 @@
 		C209D3AB08BF5CE6009C9E21 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"/Volumes/Growl-SDK/Frameworks\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)\"";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)\"/**";
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -3760,54 +3732,41 @@
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
 					"Frameworks/*.framework",
-					"irssi-0.8.14/**",
+					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
+					"$(BUILD_ROOT)/irssi-build/**",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/**",
 				);
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$SRCROOT/Frameworks/MILibs/build/Release/lib\"/**";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$SRCROOT/Frameworks/MILibs/build/Release/include\"/**";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15)",
-					"irssi-0.8.14/src/perl/.libs/**",
-					"irssi-0.8.14/src/**",
 					"/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_10 = "\"$(SRCROOT)/irssi-0.8.11/src/fe-common/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_11 = "\"$(SRCROOT)/irssi-0.8.11/src/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_12 = "\"$(SRCROOT)/irssi-0.8.11/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_13 = "\"$(SRCROOT)/glib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_14 = "\"$(SRCROOT)/irssi-0.8.11/src/perl/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_15 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/lib/5.8\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_16 = "\"$(SYSTEM_LIBRARY_DIR)/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_17 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/flood\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_4 = "\"$(SRCROOT)/irssi-0.8.11/src/fe-common/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_5 = "\"$(SRCROOT)/irssi-0.8.11/src/fe-common/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_6 = "\"$(SRCROOT)/irssi-0.8.11/src/lib-popt\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_7 = "\"$(SRCROOT)/irssi-0.8.11/src/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_8 = "\"$(SRCROOT)/irssi-0.8.11/src/lib-config\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_9 = "\"$(SRCROOT)/irssi-0.8.11/src/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/irssi-0.8.12/src/perl/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/irssi-0.8.14/src/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy/.libs\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/proxy\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_14 = "\"$(SRCROOT)/irssi-0.8.14/src/lib-config\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_15 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release\"/**";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi-0.8.14/src/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/irssi-0.8.14/src/fe-common/irc/notifylist\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/core\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/dcc\"";
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/irssi-0.8.14/src/irc/flood\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/irssi-build/src/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/dcc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/build/irssi-build/src/irc\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/build/irssi-build/src/irc/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/build/irssi-build/src/irc/notifylist\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/build/irssi-build/src/irc/flood\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/core\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/build/irssi-build/src/lib-config\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/build/irssi-build/src/irc/dcc\"";
 				OTHER_CFLAGS = (
 					"-fno-common",
 					"-DPERL_DARWIN",
