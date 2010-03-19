@@ -139,6 +139,13 @@ extern char **argv;
 - (IBAction)debugAction1:(id)sender;
 - (IBAction)debugAction2:(id)sender;
 
+#pragma mark Server Change Notifications
+
+- (void)irssiServerChangedNotification:(NSNotification*)notification;
+- (void)updateServerMenu;
+- (NSMenu*)buildActiveServersMenu;
+- (NSMenu*)buildInactiveServersMenu;
+
 - (void)highlightChanged:(WINDOW_REC *)wind;
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old;
 - (void)setServer:(NSString *)serverName;
