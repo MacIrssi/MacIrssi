@@ -3554,10 +3554,10 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/include/glib-2.0",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/lib/glib-2.0/include",
 					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
-					"$(BUILD_ROOT)/irssi-build/**",
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/**",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -3637,10 +3637,10 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/include/glib-2.0",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/lib/glib-2.0/include",
 					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
-					"$(BUILD_ROOT)/irssi-build/**",
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/**",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -3717,10 +3717,10 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/include/glib-2.0",
+					"$(SRCROOT)/Frameworks/MILibs/build/Release/lib/glib-2.0/include",
 					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
-					"$(BUILD_ROOT)/irssi-build/**",
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/**",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -3840,12 +3840,12 @@
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
 				ACTION = $ACTION;
 				CC = "gcc-4.0";
-				CFLAGS = "-I/usr/local/include -g -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
+				CFLAGS = "-I/usr/local/include -g -arch ppc -arch i386 -isysroot $SDKROOT";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				LDFLAGS = "-L/usr/local/lib -g -arch ppc -arch i386";
-				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PKG_CONFIG_PATH = /usr/local/lib/pkgconfig;
 				PRODUCT_NAME = "Irssi Configure";
 			};
