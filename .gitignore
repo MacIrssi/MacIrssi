@@ -4,6 +4,17 @@
 # exclude patterns (uncomment them if you want to use them):
 *.[oa]
 *.lo
+*.la
 *~
+build/
 .DS_Store
-irssi-0.8.14/**/Makefile
+*.xcode/*.mode*
+*.xcode/*.pbxuser
+*.xcode/*.perspectivev3
+irssi-*/src/perl/**/*.c
+irssi-*/src/perl/**/*.PL
+irssi-*/src/perl/**/*.bs
+irssi-*/src/perl/**/*blib
+irssi-*/Makefile
+irssi-*/**/Makefile
+irssi-*/config*
