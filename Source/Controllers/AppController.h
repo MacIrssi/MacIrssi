@@ -21,6 +21,7 @@
 #import "Growl/Growl.h"
 #import "ChannelBar.h"
 #import "MISplitView.h"
+#import "MIResizingTextView.h"
 
 #import <unistd.h>
 #import "glib.h"
@@ -57,9 +58,10 @@ extern char **argv;
   IBOutlet NSScrollView *channelTableScrollView;
 	IBOutlet CustomTableView *channelTableView;
   MISplitView *channelTableSplitView;
+  IBOutlet MISplitView *tabViewTextEntrySplitView;
   
   IBOutlet NSBox *inputTextFieldBox;
-	IBOutlet NSTextView *inputTextField;
+	IBOutlet MIResizingTextView *inputTextField;
   
 	IBOutlet NSMenu *channelMenu;
 	IBOutlet NSMenu *shortcutsMenu;
@@ -136,6 +138,13 @@ extern char **argv;
 
 - (IBAction)debugAction1:(id)sender;
 - (IBAction)debugAction2:(id)sender;
+
+#pragma mark Server Change Notifications
+
+- (void)irssiServerChangedNotification:(NSNotification*)notification;
+- (void)updateServerMenu;
+- (NSMenu*)buildActiveServersMenu;
+- (NSMenu*)buildInactiveServersMenu;
 
 - (void)highlightChanged:(WINDOW_REC *)wind;
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old;

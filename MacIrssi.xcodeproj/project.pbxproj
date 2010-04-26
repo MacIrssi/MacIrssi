@@ -551,6 +551,8 @@
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
 		C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C97A36D00E5DCB0F007D1191 /* General.tiff */; };
 		C97A37220E5DCFED007D1191 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
+		C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9854DCB10D035B5004163C1 /* MIResizingTextView.h */; };
+		C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9854DCC10D035B5004163C1 /* MIResizingTextView.m */; };
 		C98777080F74F67300591183 /* MacIrssi.pub in Resources */ = {isa = PBXBuildFile; fileRef = C98777070F74F67300591183 /* MacIrssi.pub */; };
 		C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */ = {isa = PBXBuildFile; fileRef = C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */; };
 		C98E5F47104BF3830004C8F0 /* JVFontPreviewField.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */; };
@@ -561,6 +563,8 @@
 		C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */; };
 		C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */; };
 		C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */; };
+		C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */; };
+		C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBAB110EA0A7D200025466 /* Networks.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAB100EA0A7D200025466 /* Networks.png */; };
@@ -1727,6 +1731,8 @@
 		C97A36D00E5DCB0F007D1191 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
 		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
 		C97F84721049BFB400B5ECC6 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
+		C9854DCB10D035B5004163C1 /* MIResizingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIResizingTextView.h; sourceTree = "<group>"; };
+		C9854DCC10D035B5004163C1 /* MIResizingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIResizingTextView.m; sourceTree = "<group>"; };
 		C98777070F74F67300591183 /* MacIrssi.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacIrssi.pub; sourceTree = "<group>"; };
 		C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFontPreviewField.h; sourceTree = "<group>"; };
 		C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFontPreviewField.m; sourceTree = "<group>"; };
@@ -1737,6 +1743,8 @@
 		C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIMenuAdditions.m; sourceTree = "<group>"; };
 		C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIUnresponsiveButton.h; sourceTree = "<group>"; };
+		C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIUnresponsiveButton.m; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBAB100EA0A7D200025466 /* Networks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Networks.png; sourceTree = "<group>"; };
@@ -2133,6 +2141,10 @@
 				C200D026073FC03700B850B1 /* ChannelBarCell.m */,
 				C2C2C0F7074B822700396F82 /* MarkedScroller.h */,
 				C2C2C0F8074B822700396F82 /* MarkedScroller.m */,
+				C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */,
+				C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */,
+				C9854DCB10D035B5004163C1 /* MIResizingTextView.h */,
+				C9854DCC10D035B5004163C1 /* MIResizingTextView.m */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3036,6 +3048,8 @@
 				C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */,
 				C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */,
 				C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */,
+				C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */,
+				C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3397,6 +3411,8 @@
 				C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */,
 				C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */,
 				C98E5F47104BF3830004C8F0 /* JVFontPreviewField.m in Sources */,
+				C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */,
+				C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

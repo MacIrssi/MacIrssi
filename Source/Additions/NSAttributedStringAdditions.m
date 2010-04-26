@@ -32,6 +32,47 @@
 /* From gui-printtext.c */
 static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
+@implementation NSAttributedString (Additions)
+
+#define FONT_HEIGHT_STRING		@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()"
++ (float)stringHeightForAttributes:(NSDictionary *)attributes
+{
+	NSAttributedString	*string = [[[NSAttributedString alloc] initWithString:FONT_HEIGHT_STRING
+                                                                attributes:attributes] autorelease];
+	return [string heightWithWidth:1e7];
+}
+
++ (NSAttributedString *)stringWithString:(NSString *)inString
+{
+	return [[[NSAttributedString alloc] initWithString:inString] autorelease];
+}
+
+- (float)heightWithWidth:(float)width
+{	
+  //Setup the layout manager and text container
+  NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:self];
+  NSTextContainer *textContainer = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(width, 1e7)];
+  NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+  
+  //Configure
+  [textContainer setLineFragmentPadding:0.0];
+  [layoutManager addTextContainer:textContainer];
+  [textStorage addLayoutManager:layoutManager];
+  
+  //Force the layout manager to layout its text
+  (void)[layoutManager glyphRangeForTextContainer:textContainer];
+  
+	float height = [layoutManager usedRectForTextContainer:textContainer].size.height;
+  
+	[textStorage release];
+	[textContainer release];
+	[layoutManager release];
+	
+  return height;
+}
+
+@end
+
 @implementation NSMutableAttributedString (Additions)
 
 - (NSMutableAttributedString*)attributedStringByAppendingString:(NSString*)text foreground:(int)fg background:(int)bg flags:(int)flags attributes:(NSDictionary*)attributes;

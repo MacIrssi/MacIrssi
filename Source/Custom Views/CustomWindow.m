@@ -174,6 +174,7 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
         break;
       }
       [controller sendCommand:inputTextField];
+      [inputTextField _resetCacheAndPostSizeChanged];
       return TRUE;
       
 		case 0x1b:

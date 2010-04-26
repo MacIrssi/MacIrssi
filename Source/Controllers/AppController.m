@@ -531,7 +531,17 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old
 {
-  if (wind->data_level > 2 && old <= 2) {
+  // Pick up the object count of the window and bump it
+  ChannelController *cc = wind->gui_data;
+  
+  // If we don't actually have a channel controller, it'll be the hook interface from
+  // the preview window. If so, just eject.
+  if (![cc isKindOfClass:[ChannelController class]])
+  {
+    return;
+  }
+  
+  if (wind->data_level > 2 && old <= 2) {    
     /* Notify user by changing icon */
     hilightChannels++;
     [self setIcon:iconOnPriv];
@@ -806,8 +816,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [channelTableScrollView removeFromSuperview];
   [channelTableSplitView removeFromSuperview];
   [channelBar removeFromSuperview];
-  [tabView removeFromSuperview];
-  [inputTextFieldBox removeFromSuperview];
+  [tabViewTextEntrySplitView removeFromSuperview];
+  //[tabView removeFromSuperview];
+  //[inputTextFieldBox removeFromSuperview];
 
   int orientation = [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"];
 
@@ -817,23 +828,34 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     {
       // So, horitonzal operation. We want the channelBar and tabView.
       NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
-      NSRect inputBoxFrame = NSMakeRect(5.0, 5.0, [[mainWindow contentView] frame].size.width - 10.0, [inputTextFieldBox frame].size.height);
-      NSRect tabViewFrame = NSMakeRect(0.0, 
-                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
-                                       [[mainWindow contentView] frame].size.width, 
-                                       channelBarFrame.origin.y - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
+      NSRect splitViewFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width, channelBarFrame.origin.y);
+//      NSRect inputBoxFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width + 0.0, [inputTextFieldBox frame].size.height);
+//      NSRect tabViewFrame = NSMakeRect(0.0,
+//                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
+//                                       [[mainWindow contentView] frame].size.width, 
+//                                       channelBarFrame.origin.y - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
       
       [[mainWindow contentView] addSubview:channelBar];
       [channelBar setFrame:channelBarFrame];
       [channelBar setNeedsDisplay:YES];
       
-      [[mainWindow contentView] addSubview:tabView];
-      [tabView setFrame:tabViewFrame];
-      [tabView setNeedsDisplay:YES];
+      [[mainWindow contentView] addSubview:tabViewTextEntrySplitView];
+      [tabViewTextEntrySplitView setFrame:splitViewFrame];
+      [tabViewTextEntrySplitView setNeedsDisplay:YES];
+      [tabViewTextEntrySplitView adjustSubviews];
       
-      [[mainWindow contentView] addSubview:inputTextFieldBox];
+      // Now adjust the views internally
+      NSRect inputBoxFrame = [inputTextFieldBox frame];
+      inputBoxFrame.size.height = [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height + 6.0;
       [inputTextFieldBox setFrame:inputBoxFrame];
-      [inputTextFieldBox setNeedsDisplay:YES];
+      
+//      [[mainWindow contentView] addSubview:tabView];
+//      [tabView setFrame:tabViewFrame];
+//      [tabView setNeedsDisplay:YES];
+//      
+//      [[mainWindow contentView] addSubview:inputTextFieldBox];
+//      [inputTextFieldBox setFrame:inputBoxFrame];
+//      [inputTextFieldBox setNeedsDisplay:YES];
       break;
     }
     case MIChannelBarVerticalOrientation:
@@ -1062,56 +1084,89 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)irssiServerChangedNotification:(NSNotification*)notification
 {
+	[self updateServerMenu];
+}
+
+- (void)updateServerMenu
+{
   // Remove all the servers from the menu
   while ([[serversMenu itemArray] count] > 1)
   {
     [serversMenu removeItemAtIndex:1];
   }
   
-  if (servers)
-  {
-    // servers is NULL if we're not connected to anything, so if its not null we can
-    // create a menu item
-    [serversMenu addItem:[NSMenuItem separatorItem]];
-  }
-  
-  // Server window is always the first one in the tabView list
-  WINDOW_REC *serverWindowRec = [(ChannelController *)[[tabView tabViewItemAtIndex:0] identifier] windowRec];
-  // "active" server is the active server from the server window, or the "connect" server (if the last thing you did was
-  // a connect that hasn't finished, active_server is NULL and connect_server has a pointer to a SERVER_REC*
-  SERVER_REC *activeServerRec = (serverWindowRec->active_server ? serverWindowRec->active_server : serverWindowRec->connect_server);
-  
-  // Iterate the servers, count them as we're going too
-  GSList *tmp, *next;
-  int count = 1;
-  for (tmp = servers; tmp != NULL; tmp = next)
-  {
-    SERVER_REC *server = tmp->data;
-    
-    // If we have a connrec, don't think we ever won't but its better than crashing on a null pointer.
-    if (server->connrec)
-    {
-      // Not all servers have chatnets but we need to make a stupid string with padding, so do it first.
-      NSString *chatnet = (server->connrec->chatnet ? [NSString stringWithFormat:@" [%s]", server->connrec->chatnet] : @"");
-      NSString *title = [NSString stringWithFormat:@"%s%@", 
-                         server->connrec->address, 
-                         chatnet];
-      [serversMenu addItemWithTitle:title
-                             target:self
-                             action:@selector(changeIrssiServerConsole:)
-                      keyEquivalent:@""
-                                tag:*(int*)&server];
-      if (count <= 10)
-      {
-        // Not sure Command+Option+10 works too well ;). We could check here if we're gonna collide with a user
-        // shortcut but maybe some other time.
-        [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalent:[NSString stringWithFormat:@"%d", (count++) % 10]];
-        [[serversMenu itemWithTag:*(int*)&server] setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
-      }
-      [[serversMenu itemWithTag:*(int*)&server] setState:(activeServerRec == server)];
-    }
-    next = tmp->next;
-  }
+	// Bit nasty but better to keep it separated. Tis a big beast now.
+	NSMenu *activeServersMenu = [self buildActiveServersMenu];
+	
+	// Now the inactive servers
+	NSMenu *inactiveServersMenu = [self buildInactiveServersMenu];
+	
+	if (activeServersMenu)
+	{
+		[serversMenu addItem:[NSMenuItem separatorItem]];
+		[serversMenu appendItemsFromMenu:activeServersMenu];
+	}
+	
+	if (inactiveServersMenu)
+	{
+		[serversMenu addItem:[NSMenuItem separatorItem]];
+		[serversMenu appendItemsFromMenu:inactiveServersMenu];
+	}
+}
+	
+- (NSMenu*)buildActiveServersMenu
+{
+	NSMenu *menu = nil;
+	
+	if (servers)
+	{
+		// If we've got servers, build a menu.
+		menu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
+		
+		// Server window is always the first one in the tabView list
+		WINDOW_REC *serverWindowRec = [(ChannelController *)[[tabView tabViewItemAtIndex:0] identifier] windowRec];
+		// "active" server is the active server from the server window, or the "connect" server (if the last thing you did was
+		// a connect that hasn't finished, active_server is NULL and connect_server has a pointer to a SERVER_REC*
+		SERVER_REC *activeServerRec = (serverWindowRec->active_server ? serverWindowRec->active_server : serverWindowRec->connect_server);
+		
+		// Iterate the servers, count them as we're going too
+		GSList *tmp, *next;
+		int count = 1;
+		for (tmp = servers; tmp != NULL; tmp = next)
+		{
+			SERVER_REC *server = tmp->data;
+			
+			// If we have a connrec, don't think we ever won't but its better than crashing on a null pointer.
+			if (server->connrec)
+			{
+				// Not all servers have chatnets but we need to make a stupid string with padding, so do it first.
+				NSString *chatnet = (server->connrec->chatnet ? [NSString stringWithFormat:@" [%s]", server->connrec->chatnet] : @"");
+				NSString *title = [NSString stringWithFormat:@"%s%@", 
+													 server->connrec->address, 
+													 chatnet];
+				[menu addItemWithTitle:title
+												target:self
+												action:@selector(changeIrssiServerConsole:)
+								 keyEquivalent:@""
+													 tag:*(int*)&server];
+				if (count <= 10)
+				{
+					// Not sure Command+Option+10 works too well ;). We could check here if we're gonna collide with a user
+					// shortcut but maybe some other time.
+					[[menu itemWithTag:*(int*)&server] setKeyEquivalent:[NSString stringWithFormat:@"%d", (count++) % 10]];
+					[[menu itemWithTag:*(int*)&server] setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
+				}
+				[[menu itemWithTag:*(int*)&server] setState:(activeServerRec == server)];
+			}
+			next = tmp->next;
+		}
+	}
+	return menu;
+}
+
+- (NSMenu*)buildInactiveServersMenu
+{
+	return nil;
 }
 
 - (void)changeIrssiServerConsole:(id)sender
@@ -1201,7 +1256,62 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)splitViewDidResizeSubviews:(NSNotification *)aNotification
 {
-  [(MISplitView*)[aNotification object] saveLayoutUsingName:@"ChannelTableViewSplit"];
+  if ([[aNotification object] isEqual:channelTableSplitView])
+  {
+    [(MISplitView*)[aNotification object] saveLayoutUsingName:@"ChannelTableViewSplit"];
+  }
+  else if ([[aNotification object] isEqual:tabViewTextEntrySplitView])
+  {
+    ChannelController *c = [[tabView selectedTabViewItem] identifier];
+    if ([c isKindOfClass:[ChannelController class]])
+    {
+      NSScrollView *view = (NSScrollView*)[[[c mainTextView] superview] superview];
+
+      NSPoint newScrollPoint;
+      if ([[view documentView] isFlipped])
+      {
+        newScrollPoint = NSMakePoint(0.0, NSMaxY([[view documentView] frame]));
+      }
+      else
+      {
+        newScrollPoint = NSMakePoint(0.0, 0.0);
+      }
+      [[view documentView] scrollPoint:newScrollPoint];
+    }
+  }
+}
+
+- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
+{
+  if ([sender isEqual:tabViewTextEntrySplitView])
+  {
+    // max position for the split view should be the text field contents + 6 + the divider size
+    return ([sender frame].size.height - [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height - 6.0);
+  }
+  return 0.0;
+}
+
+#pragma mark MIResizingTextView Notifications
+
+- (void)resizingTextViewUpdated:(NSNotification*)notification
+{
+  // Need to resize the two views.
+  NSRect textViewRect = NSMakeRect(0, 0, [inputTextField frame].size.width, [inputTextField desiredSize].height);
+  NSRect tabViewRect = NSMakeRect(0, 0, [tabView frame].size.width, [tabViewTextEntrySplitView frame].size.height - textViewRect.size.height - [tabViewTextEntrySplitView dividerThickness]);
+  
+  [inputTextFieldBox setFrame:textViewRect];
+  [tabView setFrame:tabViewRect];
+  [tabViewTextEntrySplitView adjustSubviews];
+  
+  // Scroll the view to the bottom
+  ChannelController *c = [[tabView selectedTabViewItem] identifier];
+  if ([c isKindOfClass:[ChannelController class]])
+  {
+    NSScrollView *view = (NSScrollView*)[[[c mainTextView] superview] superview];
+    
+    NSPoint newScrollPoint = [[view documentView] isFlipped] ? NSMakePoint(0.0, NSMaxY([[view documentView] frame])) : NSZeroPoint;
+    [[view documentView] scrollPoint:newScrollPoint];
+  }
 }
 
 #pragma mark Growl Delegates
@@ -1391,7 +1501,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
   [channelTableView reloadData];
-  [channelBar setNeedsDisplay:TRUE];  
+  [channelBar setNeedsDisplay:YES];
+}
+
+// Changing the background colour affects the channel bar
+- (void)channelBackgroundColorChanged:(NSNotification*)note
+{
+  [channelBar setNeedsDisplay:YES];
 }
 
 #pragma mark Channel TableView Datasource
@@ -1529,6 +1645,16 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabView retain];
   [channelTableScrollView retain];
   [channelBar retain];
+
+  // Split View to hold the main window contents.
+  [tabViewTextEntrySplitView retain];
+  [tabViewTextEntrySplitView setDelegate:self];
+  [tabViewTextEntrySplitView setDividerThickness:2.0f];
+  [tabViewTextEntrySplitView setDrawLowerBorder:YES];
+  [tabViewTextEntrySplitView adjustSubviews];
+  
+  // Setup the sidebar frame change notifications
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resizingTextViewUpdated:) name:MIViewDesiredSizeDidChangeNotification object:inputTextField];
   
   // Fire the orientation notification to save us repeating code.
   [self channelBarOrientationDidChange:nil];
@@ -1560,7 +1686,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
   [nc addObserver:self selector:@selector(setShortcutCommands) name:@"shortcutChanged" object:nil];
   [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:@"irssiServerChangedNotification" object:nil];
-  
+  [nc addObserver:self selector:@selector(channelBackgroundColorChanged:) name:@"channelColorChanged" object:nil];
+    
   /* Set up colors */
   [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
   [inputTextField setBackgroundColor:[ColorSet inputTextBackgroundColor]];

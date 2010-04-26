@@ -18,12 +18,18 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface MISplitView : NSSplitView {
-
+  float thickness;
+  BOOL drawLowerBorder;
 }
 
 - (void)saveLayoutUsingName:(NSString*)name;
 - (void)restoreLayoutUsingName:(NSString*)name;
+
+- (void)setDividerThickness:(float)thickness;
+- (float)dividerThickness;
+
+- (void)setDrawLowerBorder:(BOOL)flag;
+- (BOOL)drawLowerBorder;
 
 @end

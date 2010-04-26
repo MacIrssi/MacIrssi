@@ -21,6 +21,22 @@
 
 @implementation MISplitView
 
+- (id)initWithFrame:(NSRect)frameRect
+{
+  if (self = [super initWithFrame:frameRect])
+  {
+    thickness = [super dividerThickness];
+  }
+  return self;
+}
+
+- (void)awakeFromNib
+{
+//  thickness = [super dividerThickness];
+}
+
+#pragma mark Pre-10.5 layout support
+
 - (void)saveLayoutUsingName:(NSString*)name
 {
   // So we'll save the layouts of the subviews, just iterate the subviews of the view and turn them into
@@ -54,6 +70,53 @@
     }
   }
   [self adjustSubviews];
+}
+
+#pragma mark Non-standard Divider support
+
+- (void)setDividerThickness:(float)newThickness
+{
+  thickness = newThickness;
+  [self adjustSubviews];
+  [self setNeedsDisplay:YES];
+}
+
+- (float)dividerThickness
+{
+  return thickness;
+}
+
+- (void)setDrawLowerBorder:(BOOL)flag
+{
+  drawLowerBorder = flag;
+  [self adjustSubviews];
+  [self setNeedsDisplay:YES];
+}
+
+- (BOOL)drawLowerBorder
+{
+  return drawLowerBorder;
+}
+
+- (void)drawDividerInRect:(NSRect)aRect
+{ 
+  if (thickness > 4.0)
+  {
+    [super drawDividerInRect:aRect];
+  }
+  
+  if (drawLowerBorder)
+  {
+    // Gah can't work out how to draw a line
+    NSRect line = NSMakeRect(aRect.origin.x, aRect.origin.y, aRect.size.width, 1);
+    if ([self isFlipped])
+    {
+      line.origin.y += aRect.size.height;
+    }
+    
+    [[NSColor grayColor] set];
+    NSRectFill(line);
+  }
 }
 
 @end

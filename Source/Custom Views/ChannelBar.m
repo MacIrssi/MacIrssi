@@ -48,6 +48,7 @@
 	
 	[channelBarCells addObject:cell];
 	[self addSubview:cell];
+  [cell setNeedsDisplay:YES];
 	[cell release];
 }
 
@@ -109,6 +110,7 @@
 	[oldName release];
 }
 #endif
+
 - (void)removeChannel:(WINDOW_REC *)rec
 {
 	int i;
@@ -157,15 +159,15 @@
 
 		rect.size.width = [cell stringWidth] - removePart + [ChannelBarCell borderWidth]*2;
 		[cell setFrame:rect];
-		[cell setNeedsDisplay:TRUE];
+		[cell setNeedsDisplay:YES];
 		rect.origin.x += rect.size.width + 3;
 	}
 }
 
 - (void)selectCell:(ChannelBarCell *)cell
 {
-	[activeCell setActive:FALSE];
-	[cell setActive:TRUE];
+	[activeCell setActive:NO];
+	[cell setActive:YES];
 	[cell retain];
 	[activeCell release];
 	activeCell = cell;
@@ -195,13 +197,6 @@
 	
 	[[ColorSet channelListBackgroundColor] set];
 	NSRectFillUsingOperation([self bounds], NSCompositeCopy);	
-
-	NSEnumerator *enumerator = [channelBarCells objectEnumerator];
-	ChannelBarCell *cell;
-
-	//NSLog(@"Drawing %d cells in thread %p", [channelBarCells count], [NSThread currentThread]);
-	while (cell = (ChannelBarCell *)[enumerator nextObject])
-		[cell setNeedsDisplay:TRUE];
 }
 
 @end
