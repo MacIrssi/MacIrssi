@@ -3746,7 +3746,7 @@
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
 				ACTION = $ACTION;
 				CC = "gcc-4.0";
-				CFLAGS = "-I/usr/local/include -arch ppc -arch i386 -isysroot /Developer/SDKs/MacOSX10.4u.sdk";
+				CFLAGS = "-I/usr/local/include -arch ppc -arch i386 -isysroot $SDKROOT";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = NO;
