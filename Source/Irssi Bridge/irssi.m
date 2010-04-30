@@ -334,12 +334,6 @@ static void check_files(void)
 	}
 }
 
-static void perl_cmd_override(const char *data, SERVER_REC *server, void *item)
-{
-  printtext(NULL, NULL, MSGLEVEL_CLIENTERROR, "Perl scripts are only supported on this platform while running Mac OS X 10.6.");
-  signal_stop();
-}
-
 static void version_cmd_overwrite(const char *data, SERVER_REC *server, void *item)
 {
 	char time[10];
