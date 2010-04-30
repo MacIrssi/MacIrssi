@@ -2988,6 +2988,7 @@
 				C237874108C25AE000D73190 /* Copy Growl Framework */,
 				C232FB6E08C897DA000C624E /* Copy Themes */,
 				C922B4290E23BCE4000AA7BE /* Copy Alert Sounds */,
+				C913404D118A9D690001F09D /* Compile Perl modules */,
 				C91025090E59C2A200E041F7 /* Copy Perl modules */,
 				C9EC9EE30E36386C00445345 /* Update Git version */,
 			);
@@ -3094,7 +3095,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# copies perl libraries\n\nPERLPATH=\"build/irssi-build/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tif [ -d $s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor s in $SUBDIRS; do\n\tif [ -d $s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor lib in `find $PERLPATH -name *.so -print | grep -v dSYM`; do\n\tcp \"$lib\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/\"\ndone\n\nexit 0";
+			shellScript = "# copies perl libraries\nexit 0\n\nPERLPATH=\"build/irssi-build/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tif [ -d $s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor s in $SUBDIRS; do\n\tif [ -d $s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor lib in `find $PERLPATH -name *.so -print | grep -v dSYM`; do\n\tcp \"$lib\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/\"\ndone\n\nexit 0";
+		};
+		C913404D118A9D690001F09D /* Compile Perl modules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Perl modules";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PERLLIB=\"/System/Library/Perl\"\n\n# enumerate over each directory in this directory, if they subsequently have a \n# darwin-thread-multi-2level/CORE/libperl.dylib file then build a copy of the\n# perl libraries against them and copy them to the app bundle\n\n# obtained by running perl -MExtUtils::Embed -e ldopts\nGLIB_LDFLAGS=\"-L$SRCROOT/Frameworks/MILibs/build/Release/lib -lgmodule-2.0 -lglib-2.0 -lintl -liconv -lssl -lcrypto\"\nLDFLAGS=\"-Wl,-undefined,dynamic_lookup -arch i386 -arch ppc -fstack-protector -lperl -dl -lm -lutil -lc\"\n\nDSTROOT=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Perl\"\n[ ! -d $DSTROOT ] && mkdir -p $DSTROOT\n\nP=\"$BUILD_ROOT/irssi-build/src/perl/.libs/\"\nPERL_CORE=\"$P/perl-core.o $P/perl-common.o $P/perl-signals.o $P/perl-sources.o\"\nFE_PERL=\"$P/module-formats.o $P/perl-fe.o\"\n\n# right, iterate the libs\nfor lib in $PERLLIB/*; do\n\tV=`basename $lib`\n\t[[ $V == \"5.8.1\" ]] && continue\n\n\tif [ -e $lib/darwin-thread-multi-2level/CORE/libperl.dylib ]; then\n\t\tgcc-4.0 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libperl_core.$V.dylib $PERL_CORE\n\t\tgcc-4.0 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libfe_perl.$V.dylib $FE_PERL\n\tfi\ndone\n";
 		};
 		C9EC9EE30E36386C00445345 /* Update Git version */ = {
 			isa = PBXShellScriptBuildPhase;
