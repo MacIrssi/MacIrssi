@@ -224,6 +224,17 @@
 		C911226E0F2B235E006C4BD0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C911226C0F2B235E006C4BD0 /* MainMenu.xib */; };
 		C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122860F2B2431006C4BD0 /* Preferences.xib */; };
 		C911228B0F2B2431006C4BD0 /* Tab new.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122880F2B2431006C4BD0 /* Tab new.xib */; };
+		C9134153118AB44E0001F09D /* autoop.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913412C118AB4000001F09D /* autoop.pl */; };
+		C9134154118AB44E0001F09D /* autorejoin.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913412D118AB4000001F09D /* autorejoin.pl */; };
+		C9134155118AB44E0001F09D /* buf.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913412E118AB4000001F09D /* buf.pl */; };
+		C9134156118AB44E0001F09D /* dns.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913412F118AB4000001F09D /* dns.pl */; };
+		C9134157118AB44E0001F09D /* kills.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C9134135118AB4000001F09D /* kills.pl */; };
+		C9134158118AB44E0001F09D /* mail.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C9134136118AB4000001F09D /* mail.pl */; };
+		C9134159118AB44E0001F09D /* mlock.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C9134138118AB4000001F09D /* mlock.pl */; };
+		C913415A118AB44E0001F09D /* quitmsg.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C9134139118AB4000001F09D /* quitmsg.pl */; };
+		C913415B118AB44E0001F09D /* sb_search.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913413A118AB4000001F09D /* sb_search.pl */; };
+		C913415C118AB44E0001F09D /* scriptassist.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913413B118AB4000001F09D /* scriptassist.pl */; };
+		C913415D118AB44E0001F09D /* splitlong.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913413C118AB4000001F09D /* splitlong.pl */; };
 		C91793850F744140005241A4 /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C91793840F744140005241A4 /* libglib-2.0.0.dylib */; };
 		C91793920F74447C005241A4 /* libglib-2.0.0.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C91793840F744140005241A4 /* libglib-2.0.0.dylib */; };
 		C91F0B170F06E3C900763699 /* MISplitView.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F0B150F06E3C900763699 /* MISplitView.h */; };
@@ -792,6 +803,27 @@
 			name = "Copy Growl Framework";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C913415E118AB45C0001F09D /* Copy Scripts */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Scripts;
+			dstSubfolderSpec = 7;
+			files = (
+				C9134153118AB44E0001F09D /* autoop.pl in Copy Scripts */,
+				C9134154118AB44E0001F09D /* autorejoin.pl in Copy Scripts */,
+				C9134155118AB44E0001F09D /* buf.pl in Copy Scripts */,
+				C9134156118AB44E0001F09D /* dns.pl in Copy Scripts */,
+				C9134157118AB44E0001F09D /* kills.pl in Copy Scripts */,
+				C9134158118AB44E0001F09D /* mail.pl in Copy Scripts */,
+				C9134159118AB44E0001F09D /* mlock.pl in Copy Scripts */,
+				C913415A118AB44E0001F09D /* quitmsg.pl in Copy Scripts */,
+				C913415B118AB44E0001F09D /* sb_search.pl in Copy Scripts */,
+				C913415C118AB44E0001F09D /* scriptassist.pl in Copy Scripts */,
+				C913415D118AB44E0001F09D /* splitlong.pl in Copy Scripts */,
+			);
+			name = "Copy Scripts";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C922B4290E23BCE4000AA7BE /* Copy Alert Sounds */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1024,6 +1056,23 @@
 		C911226D0F2B235E006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C91122870F2B2431006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
 		C91122890F2B2431006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = "English.lproj/Tab new.xib"; sourceTree = "<group>"; };
+		C913412C118AB4000001F09D /* autoop.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = autoop.pl; sourceTree = "<group>"; };
+		C913412D118AB4000001F09D /* autorejoin.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = autorejoin.pl; sourceTree = "<group>"; };
+		C913412E118AB4000001F09D /* buf.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = buf.pl; sourceTree = "<group>"; };
+		C913412F118AB4000001F09D /* dns.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = dns.pl; sourceTree = "<group>"; };
+		C9134131118AB4000001F09D /* command.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = command.pl; sourceTree = "<group>"; };
+		C9134132118AB4000001F09D /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		C9134133118AB4000001F09D /* msg-event.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = "msg-event.pl"; sourceTree = "<group>"; };
+		C9134134118AB4000001F09D /* redirect.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = redirect.pl; sourceTree = "<group>"; };
+		C9134135118AB4000001F09D /* kills.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = kills.pl; sourceTree = "<group>"; };
+		C9134136118AB4000001F09D /* mail.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = mail.pl; sourceTree = "<group>"; };
+		C9134137118AB4000001F09D /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		C9134138118AB4000001F09D /* mlock.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = mlock.pl; sourceTree = "<group>"; };
+		C9134139118AB4000001F09D /* quitmsg.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = quitmsg.pl; sourceTree = "<group>"; };
+		C913413A118AB4000001F09D /* sb_search.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = sb_search.pl; sourceTree = "<group>"; };
+		C913413B118AB4000001F09D /* scriptassist.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = scriptassist.pl; sourceTree = "<group>"; };
+		C913413C118AB4000001F09D /* splitlong.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = splitlong.pl; sourceTree = "<group>"; };
+		C913413D118AB4000001F09D /* usercount.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = usercount.pl; sourceTree = "<group>"; };
 		C91792C90F743801005241A4 /* MILibs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MILibs.xcodeproj; path = MILibs/MILibs.xcodeproj; sourceTree = "<group>"; };
 		C91793840F744140005241A4 /* libglib-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libglib-2.0.0.dylib"; path = "MILibs/build/Release/lib/libglib-2.0.0.dylib"; sourceTree = "<group>"; };
 		C91F0B150F06E3C900763699 /* MISplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISplitView.h; sourceTree = "<group>"; };
@@ -1417,7 +1466,6 @@
 		C93FE788104976DB00BB1C61 /* set.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = set.c; sourceTree = "<group>"; };
 		C93FE789104976DB00BB1C61 /* write.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = write.c; sourceTree = "<group>"; };
 		C93FE78A104976DB00BB1C61 /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
-		C93FE78B104976DB00BB1C61 /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
 		C93FE78E104976DB00BB1C61 /* Channel.xs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Channel.xs; sourceTree = "<group>"; };
 		C93FE78F104976DB00BB1C61 /* Core.xs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Core.xs; sourceTree = "<group>"; };
 		C93FE790104976DB00BB1C61 /* Expando.xs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Expando.xs; sourceTree = "<group>"; };
@@ -1741,8 +1789,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				C93FE638104976DA00BB1C61 /* src */,
-				C93FE9D51049859E00BB1C61 /* help */,
+				C913412A118AB3E50001F09D /* irssi */,
 				B32A9E5F05F0B14800DB2595 /* COPYING */,
 				B32A9E6105F0B18C00DB2595 /* README */,
 				B32A9E6305F0C69800DB2595 /* HISTORY */,
@@ -2000,6 +2047,49 @@
 			path = ../UKCrashReporter;
 			sourceTree = "<group>";
 		};
+		C913412A118AB3E50001F09D /* irssi */ = {
+			isa = PBXGroup;
+			children = (
+				C913412B118AB4000001F09D /* scripts */,
+				C93FE638104976DA00BB1C61 /* src */,
+				C93FE9D51049859E00BB1C61 /* help */,
+			);
+			name = irssi;
+			sourceTree = "<group>";
+		};
+		C913412B118AB4000001F09D /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				C913412C118AB4000001F09D /* autoop.pl */,
+				C913412D118AB4000001F09D /* autorejoin.pl */,
+				C913412E118AB4000001F09D /* buf.pl */,
+				C913412F118AB4000001F09D /* dns.pl */,
+				C9134130118AB4000001F09D /* examples */,
+				C9134135118AB4000001F09D /* kills.pl */,
+				C9134136118AB4000001F09D /* mail.pl */,
+				C9134137118AB4000001F09D /* Makefile.am */,
+				C9134138118AB4000001F09D /* mlock.pl */,
+				C9134139118AB4000001F09D /* quitmsg.pl */,
+				C913413A118AB4000001F09D /* sb_search.pl */,
+				C913413B118AB4000001F09D /* scriptassist.pl */,
+				C913413C118AB4000001F09D /* splitlong.pl */,
+				C913413D118AB4000001F09D /* usercount.pl */,
+			);
+			name = scripts;
+			path = irssi/scripts;
+			sourceTree = "<group>";
+		};
+		C9134130118AB4000001F09D /* examples */ = {
+			isa = PBXGroup;
+			children = (
+				C9134131118AB4000001F09D /* command.pl */,
+				C9134132118AB4000001F09D /* Makefile.am */,
+				C9134133118AB4000001F09D /* msg-event.pl */,
+				C9134134118AB4000001F09D /* redirect.pl */,
+			);
+			path = examples;
+			sourceTree = "<group>";
+		};
 		C91792CA0F743801005241A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -2159,7 +2249,6 @@
 				C93FE721104976DB00BB1C61 /* irc */,
 				C93FE781104976DB00BB1C61 /* lib-config */,
 				C93FE78A104976DB00BB1C61 /* Makefile.am */,
-				C93FE78B104976DB00BB1C61 /* Makefile.in */,
 				C93FE78C104976DB00BB1C61 /* perl */,
 			);
 			name = src;
@@ -2984,10 +3073,12 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				B322D70305EF930400E640C2 /* Copy Libraries */,
 				B322DA1F05EF97EF00E640C2 /* Copy Helpfiles */,
+				C913415E118AB45C0001F09D /* Copy Scripts */,
 				C2FC9ED0081C09FD009B9A06 /* Library Paths Fix */,
 				C237874108C25AE000D73190 /* Copy Growl Framework */,
 				C232FB6E08C897DA000C624E /* Copy Themes */,
 				C922B4290E23BCE4000AA7BE /* Copy Alert Sounds */,
+				C913404D118A9D690001F09D /* Compile Perl modules */,
 				C91025090E59C2A200E041F7 /* Copy Perl modules */,
 				C9EC9EE30E36386C00445345 /* Update Git version */,
 			);
@@ -3094,7 +3185,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# copies perl libraries\n\nPERLPATH=\"build/irssi-build/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tif [ -d $s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor s in $SUBDIRS; do\n\tif [ -d $s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor lib in `find $PERLPATH -name *.so -print | grep -v dSYM`; do\n\tcp \"$lib\" \"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/\"\ndone\n\nexit 0";
+			shellScript = "# copies perl libraries\n\nPERLPATH=\"build/irssi-build/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tif [ -d $PERLPATH/$s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor s in $SUBDIRS; do\n\tif [ -d $PERLPATH/$s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nexit 0";
+		};
+		C913404D118A9D690001F09D /* Compile Perl modules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Compile Perl modules";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PERLLIB=\"/System/Library/Perl\"\n\n# enumerate over each directory in this directory, if they subsequently have a \n# darwin-thread-multi-2level/CORE/libperl.dylib file then build a copy of the\n# perl libraries against them and copy them to the app bundle\n\n# obtained by running perl -MExtUtils::Embed -e ldopts\nGLIB_LDFLAGS=\"-L$SRCROOT/Frameworks/MILibs/build/Release/lib -lgmodule-2.0 -lglib-2.0 -lintl -liconv -lssl -lcrypto\"\nLDFLAGS=\"-Wl,-undefined,dynamic_lookup -arch i386 -arch ppc -fstack-protector -lperl -dl -lm -lutil -lc\"\n\nDSTROOT=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Perl\"\n[ ! -d $DSTROOT ] && mkdir -p $DSTROOT\n\nP=\"$BUILD_ROOT/irssi-build/src/perl/.libs/\"\nPERL_CORE=\"$P/perl-core.o $P/perl-common.o $P/perl-signals.o $P/perl-sources.o\"\nFE_PERL=\"$P/module-formats.o $P/perl-fe.o\"\n\n# right, iterate the libs\nfor lib in $PERLLIB/*; do\n\tV=`basename $lib`\n\t[[ $V == \"5.8.1\" ]] && continue\n\n\tif [ -e $lib/darwin-thread-multi-2level/CORE/libperl.dylib ]; then\n\t\tgcc-4.0 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libperl_core.$V.dylib $PERL_CORE\n\t\tgcc-4.0 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libfe_perl.$V.dylib $FE_PERL\n\tfi\ndone\n";
 		};
 		C9EC9EE30E36386C00445345 /* Update Git version */ = {
 			isa = PBXShellScriptBuildPhase;

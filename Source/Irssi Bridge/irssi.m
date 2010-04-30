@@ -28,6 +28,7 @@
 
 #include <signal.h>
 #include <locale.h>
+#include <dlfcn.h>
 
 #include "printd.h"
 
@@ -333,12 +334,6 @@ static void check_files(void)
 	}
 }
 
-static void perl_cmd_override(const char *data, SERVER_REC *server, void *item)
-{
-  printtext(NULL, NULL, MSGLEVEL_CLIENTERROR, "Perl scripts are only supported on this platform while running Mac OS X 10.6.");
-  signal_stop();
-}
-
 static void version_cmd_overwrite(const char *data, SERVER_REC *server, void *item)
 {
 	char time[10];
@@ -407,16 +402,7 @@ int irssi_main(int argc, char **argv)
   majorVersion = (((systemVersion & 0xF000) >> 12) * 10) + ((systemVersion & 0x0F00) >> 8);
   minorVerson = ((systemVersion & 0x00F0) >> 4);
   
-  // FIXME: We never unregister this
-  if (!( majorVersion == 10 && minorVerson == 6 ))
-  {
-    printtext(NULL, NULL, MSGLEVEL_CLIENTERROR, "Not loading perl modules, perl is only supported on Mac OS X 10.6 (Snow Leopard).");
-    command_bind_first("script", NULL, (SIGNAL_FUNC)perl_cmd_override);
-  }
-  else {
-    // if we're on the platform we built on. Try loading the perl libraries.
-    signal_emit("command load", 1, "perl");
-  }
+  signal_emit("command load", 1, "perl");
 
 	// Version Overwrite
   command_bind_first("version", NULL, (SIGNAL_FUNC)version_cmd_overwrite);
@@ -430,20 +416,49 @@ int irssi_main(int argc, char **argv)
   return 0;
 }
 
+char* macirssi_find_module(char *module)
+{
+	// I'm taking a leap of faith here that the /System/Library/Perl/lib directory contains
+	// working versions and that if they're specified as major, minor and no third revision
+	// then that means they're binary compatible across increments.
+
+	// All of the perl dylibs we've built link against /S/L/P/l with the exception of the
+	// Panther one, I think, which I'm going to exclude from the shipping binary anyway. So,
+	// we can litmus test each library by dlopening it and seeing if it sticks.
+	
+	if (!strcmp(module, "perl_core") || !strcmp(module, "fe_perl"))
+	{
+		for (NSString *dylib in [[NSBundle mainBundle] pathsForResourcesOfType:@"dylib" inDirectory:@"Perl"])
+		{
+			// Check to see if this is a libmodule.foo.dylib
+			if ([dylib length] < strlen(module)+3)
+			{
+				continue;
+			}
+			
+			NSString *stem = [[dylib lastPathComponent] substringWithRange:NSMakeRange(3, strlen(module))];
+			if (!strcmp([stem UTF8String], module))
+			{
+				void *handle = dlopen([dylib UTF8String], 0);
+				if (handle)
+				{
+					// We've managed to load, rejoice!
+					dlclose(handle);
+					
+					// We need to copy the C string version of the path out to a pointer
+					// we can malloc and hand off back to the irssi core.
+					char *ret = strdup([dylib UTF8String]);
+					return ret;
+				}
+			}
+		}		
+	}
+	
+  return NULL;
+}
+
 int irssi_exit()
 {
-  long systemVersion;
-  Gestalt(gestaltSystemVersion, &systemVersion);
-  
-  int majorVersion, minorVerson;
-  majorVersion = (((systemVersion & 0xF000) >> 12) * 10) + ((systemVersion & 0x0F00) >> 8);
-  minorVerson = ((systemVersion & 0x00F0) >> 4);
-  
-  if (!( majorVersion == 10 && minorVerson == 6 ))
-  {
-    command_unbind("script", (SIGNAL_FUNC)perl_cmd_override);
-  }
   command_unbind("version", (SIGNAL_FUNC)version_cmd_overwrite);
-  
   return 0;
 }
