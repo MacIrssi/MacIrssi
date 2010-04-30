@@ -294,127 +294,6 @@
 		C922B4230E23BCE1000AA7BE /* Switch.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3EA0E23BB1D000AA7BE /* Switch.aiff */; };
 		C922B4240E23BCE1000AA7BE /* Whip.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3EB0E23BB1D000AA7BE /* Whip.aiff */; };
 		C922B4310E23BD34000AA7BE /* sound.png in Resources */ = {isa = PBXBuildFile; fileRef = C922B4300E23BD34000AA7BE /* sound.png */; };
-		C93FEAD11049859F00BB1C61 /* accept in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9D61049859E00BB1C61 /* accept */; };
-		C93FEAD21049859F00BB1C61 /* action in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9D71049859E00BB1C61 /* action */; };
-		C93FEAD31049859F00BB1C61 /* admin in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9D81049859E00BB1C61 /* admin */; };
-		C93FEAD41049859F00BB1C61 /* alias in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9D91049859E00BB1C61 /* alias */; };
-		C93FEAD51049859F00BB1C61 /* away in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DA1049859E00BB1C61 /* away */; };
-		C93FEAD61049859F00BB1C61 /* ban in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DB1049859E00BB1C61 /* ban */; };
-		C93FEAD71049859F00BB1C61 /* beep in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DC1049859E00BB1C61 /* beep */; };
-		C93FEAD81049859F00BB1C61 /* bind in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DD1049859E00BB1C61 /* bind */; };
-		C93FEAD91049859F00BB1C61 /* cat in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DE1049859E00BB1C61 /* cat */; };
-		C93FEADA1049859F00BB1C61 /* cd in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9DF1049859E00BB1C61 /* cd */; };
-		C93FEADB1049859F00BB1C61 /* channel in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E01049859E00BB1C61 /* channel */; };
-		C93FEADC1049859F00BB1C61 /* clear in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E11049859E00BB1C61 /* clear */; };
-		C93FEADD1049859F00BB1C61 /* completion in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E21049859E00BB1C61 /* completion */; };
-		C93FEADE1049859F00BB1C61 /* connect in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E31049859E00BB1C61 /* connect */; };
-		C93FEADF1049859F00BB1C61 /* ctcp in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E41049859E00BB1C61 /* ctcp */; };
-		C93FEAE01049859F00BB1C61 /* cycle in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E51049859E00BB1C61 /* cycle */; };
-		C93FEAE11049859F00BB1C61 /* dcc in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E61049859E00BB1C61 /* dcc */; };
-		C93FEAE21049859F00BB1C61 /* dehilight in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E71049859E00BB1C61 /* dehilight */; };
-		C93FEAE31049859F00BB1C61 /* deop in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E81049859E00BB1C61 /* deop */; };
-		C93FEAE41049859F00BB1C61 /* devoice in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9E91049859E00BB1C61 /* devoice */; };
-		C93FEAE51049859F00BB1C61 /* die in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EA1049859E00BB1C61 /* die */; };
-		C93FEAE61049859F00BB1C61 /* disconnect in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EB1049859E00BB1C61 /* disconnect */; };
-		C93FEAE71049859F00BB1C61 /* echo in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EC1049859E00BB1C61 /* echo */; };
-		C93FEAE81049859F00BB1C61 /* eval in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9ED1049859E00BB1C61 /* eval */; };
-		C93FEAE91049859F00BB1C61 /* exec in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EE1049859E00BB1C61 /* exec */; };
-		C93FEAEA1049859F00BB1C61 /* flushbuffer in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9EF1049859E00BB1C61 /* flushbuffer */; };
-		C93FEAEB1049859F00BB1C61 /* format in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F01049859E00BB1C61 /* format */; };
-		C93FEAEC1049859F00BB1C61 /* hash in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F11049859E00BB1C61 /* hash */; };
-		C93FEAED1049859F00BB1C61 /* help in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F21049859E00BB1C61 /* help */; };
-		C93FEAEE1049859F00BB1C61 /* hilight in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F31049859E00BB1C61 /* hilight */; };
-		C93FEAEF1049859F00BB1C61 /* ignore in Resources */ = {isa = PBXBuildFile; fileRef = C93FE9F41049859E00BB1C61 /* ignore */; };
-		C93FEB6D1049859F00BB1C61 /* info in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA731049859F00BB1C61 /* info */; };
-		C93FEB6E1049859F00BB1C61 /* invite in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA741049859F00BB1C61 /* invite */; };
-		C93FEB6F1049859F00BB1C61 /* invitelist in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA751049859F00BB1C61 /* invitelist */; };
-		C93FEB701049859F00BB1C61 /* ircnet in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA761049859F00BB1C61 /* ircnet */; };
-		C93FEB711049859F00BB1C61 /* ison in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA771049859F00BB1C61 /* ison */; };
-		C93FEB721049859F00BB1C61 /* join in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA781049859F00BB1C61 /* join */; };
-		C93FEB731049859F00BB1C61 /* kick in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA791049859F00BB1C61 /* kick */; };
-		C93FEB741049859F00BB1C61 /* kickban in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7A1049859F00BB1C61 /* kickban */; };
-		C93FEB751049859F00BB1C61 /* kill in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7B1049859F00BB1C61 /* kill */; };
-		C93FEB761049859F00BB1C61 /* knock in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7C1049859F00BB1C61 /* knock */; };
-		C93FEB771049859F00BB1C61 /* knockout in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7D1049859F00BB1C61 /* knockout */; };
-		C93FEB781049859F00BB1C61 /* lastlog in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7E1049859F00BB1C61 /* lastlog */; };
-		C93FEB791049859F00BB1C61 /* layout in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA7F1049859F00BB1C61 /* layout */; };
-		C93FEB7A1049859F00BB1C61 /* levels in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA801049859F00BB1C61 /* levels */; };
-		C93FEB7B1049859F00BB1C61 /* links in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA811049859F00BB1C61 /* links */; };
-		C93FEB7C1049859F00BB1C61 /* list in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA821049859F00BB1C61 /* list */; };
-		C93FEB7D1049859F00BB1C61 /* load in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA831049859F00BB1C61 /* load */; };
-		C93FEB7E1049859F00BB1C61 /* log in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA841049859F00BB1C61 /* log */; };
-		C93FEB7F1049859F00BB1C61 /* lusers in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA851049859F00BB1C61 /* lusers */; };
-		C93FEB841049859F00BB1C61 /* map in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8A1049859F00BB1C61 /* map */; };
-		C93FEB851049859F00BB1C61 /* me in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8B1049859F00BB1C61 /* me */; };
-		C93FEB861049859F00BB1C61 /* mircdcc in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8C1049859F00BB1C61 /* mircdcc */; };
-		C93FEB871049859F00BB1C61 /* mode in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8D1049859F00BB1C61 /* mode */; };
-		C93FEB881049859F00BB1C61 /* motd in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8E1049859F00BB1C61 /* motd */; };
-		C93FEB891049859F00BB1C61 /* msg in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA8F1049859F00BB1C61 /* msg */; };
-		C93FEB8A1049859F00BB1C61 /* names in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA901049859F00BB1C61 /* names */; };
-		C93FEB8B1049859F00BB1C61 /* nctcp in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA911049859F00BB1C61 /* nctcp */; };
-		C93FEB8C1049859F00BB1C61 /* netsplit in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA921049859F00BB1C61 /* netsplit */; };
-		C93FEB8D1049859F00BB1C61 /* network in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA931049859F00BB1C61 /* network */; };
-		C93FEB8E1049859F00BB1C61 /* nick in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA941049859F00BB1C61 /* nick */; };
-		C93FEB8F1049859F00BB1C61 /* note in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA951049859F00BB1C61 /* note */; };
-		C93FEB901049859F00BB1C61 /* notice in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA961049859F00BB1C61 /* notice */; };
-		C93FEB911049859F00BB1C61 /* notify in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA971049859F00BB1C61 /* notify */; };
-		C93FEB921049859F00BB1C61 /* op in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA981049859F00BB1C61 /* op */; };
-		C93FEB931049859F00BB1C61 /* oper in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA991049859F00BB1C61 /* oper */; };
-		C93FEB941049859F00BB1C61 /* part in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9A1049859F00BB1C61 /* part */; };
-		C93FEB951049859F00BB1C61 /* ping in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9B1049859F00BB1C61 /* ping */; };
-		C93FEB961049859F00BB1C61 /* query in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9C1049859F00BB1C61 /* query */; };
-		C93FEB971049859F00BB1C61 /* quit in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9D1049859F00BB1C61 /* quit */; };
-		C93FEB981049859F00BB1C61 /* quote in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9E1049859F00BB1C61 /* quote */; };
-		C93FEB991049859F00BB1C61 /* rawlog in Resources */ = {isa = PBXBuildFile; fileRef = C93FEA9F1049859F00BB1C61 /* rawlog */; };
-		C93FEB9A1049859F00BB1C61 /* recode in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA01049859F00BB1C61 /* recode */; };
-		C93FEB9B1049859F00BB1C61 /* reconnect in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA11049859F00BB1C61 /* reconnect */; };
-		C93FEB9C1049859F00BB1C61 /* rehash in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA21049859F00BB1C61 /* rehash */; };
-		C93FEB9D1049859F00BB1C61 /* reload in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA31049859F00BB1C61 /* reload */; };
-		C93FEB9E1049859F00BB1C61 /* restart in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA41049859F00BB1C61 /* restart */; };
-		C93FEB9F1049859F00BB1C61 /* rmreconns in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA51049859F00BB1C61 /* rmreconns */; };
-		C93FEBA01049859F00BB1C61 /* rmrejoins in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA61049859F00BB1C61 /* rmrejoins */; };
-		C93FEBA11049859F00BB1C61 /* rping in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA71049859F00BB1C61 /* rping */; };
-		C93FEBA21049859F00BB1C61 /* save in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA81049859F00BB1C61 /* save */; };
-		C93FEBA31049859F00BB1C61 /* say in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAA91049859F00BB1C61 /* say */; };
-		C93FEBA41049859F00BB1C61 /* sconnect in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAA1049859F00BB1C61 /* sconnect */; };
-		C93FEBA51049859F00BB1C61 /* script in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAB1049859F00BB1C61 /* script */; };
-		C93FEBA61049859F00BB1C61 /* scrollback in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAC1049859F00BB1C61 /* scrollback */; };
-		C93FEBA71049859F00BB1C61 /* server in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAD1049859F00BB1C61 /* server */; };
-		C93FEBA81049859F00BB1C61 /* servlist in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAE1049859F00BB1C61 /* servlist */; };
-		C93FEBA91049859F00BB1C61 /* set in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAAF1049859F00BB1C61 /* set */; };
-		C93FEBAA1049859F00BB1C61 /* silence in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB01049859F00BB1C61 /* silence */; };
-		C93FEBAB1049859F00BB1C61 /* squery in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB11049859F00BB1C61 /* squery */; };
-		C93FEBAC1049859F00BB1C61 /* squit in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB21049859F00BB1C61 /* squit */; };
-		C93FEBAD1049859F00BB1C61 /* stats in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB31049859F00BB1C61 /* stats */; };
-		C93FEBAE1049859F00BB1C61 /* statusbar in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB41049859F00BB1C61 /* statusbar */; };
-		C93FEBAF1049859F00BB1C61 /* time in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB51049859F00BB1C61 /* time */; };
-		C93FEBB01049859F00BB1C61 /* toggle in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB61049859F00BB1C61 /* toggle */; };
-		C93FEBB11049859F00BB1C61 /* topic in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB71049859F00BB1C61 /* topic */; };
-		C93FEBB21049859F00BB1C61 /* trace in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB81049859F00BB1C61 /* trace */; };
-		C93FEBB31049859F00BB1C61 /* ts in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAB91049859F00BB1C61 /* ts */; };
-		C93FEBB41049859F00BB1C61 /* unalias in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABA1049859F00BB1C61 /* unalias */; };
-		C93FEBB51049859F00BB1C61 /* unban in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABB1049859F00BB1C61 /* unban */; };
-		C93FEBB61049859F00BB1C61 /* unignore in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABC1049859F00BB1C61 /* unignore */; };
-		C93FEBB71049859F00BB1C61 /* unload in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABD1049859F00BB1C61 /* unload */; };
-		C93FEBB81049859F00BB1C61 /* unnotify in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABE1049859F00BB1C61 /* unnotify */; };
-		C93FEBB91049859F00BB1C61 /* unquery in Resources */ = {isa = PBXBuildFile; fileRef = C93FEABF1049859F00BB1C61 /* unquery */; };
-		C93FEBBA1049859F00BB1C61 /* unsilence in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC01049859F00BB1C61 /* unsilence */; };
-		C93FEBBB1049859F00BB1C61 /* upgrade in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC11049859F00BB1C61 /* upgrade */; };
-		C93FEBBC1049859F00BB1C61 /* uping in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC21049859F00BB1C61 /* uping */; };
-		C93FEBBD1049859F00BB1C61 /* userhost in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC31049859F00BB1C61 /* userhost */; };
-		C93FEBBE1049859F00BB1C61 /* ver in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC41049859F00BB1C61 /* ver */; };
-		C93FEBBF1049859F00BB1C61 /* version in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC51049859F00BB1C61 /* version */; };
-		C93FEBC01049859F00BB1C61 /* voice in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC61049859F00BB1C61 /* voice */; };
-		C93FEBC11049859F00BB1C61 /* wait in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC71049859F00BB1C61 /* wait */; };
-		C93FEBC21049859F00BB1C61 /* wall in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC81049859F00BB1C61 /* wall */; };
-		C93FEBC31049859F00BB1C61 /* wallops in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAC91049859F00BB1C61 /* wallops */; };
-		C93FEBC41049859F00BB1C61 /* watch in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACA1049859F00BB1C61 /* watch */; };
-		C93FEBC51049859F00BB1C61 /* who in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACB1049859F00BB1C61 /* who */; };
-		C93FEBC61049859F00BB1C61 /* whois in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACC1049859F00BB1C61 /* whois */; };
-		C93FEBC71049859F00BB1C61 /* whowas in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACD1049859F00BB1C61 /* whowas */; };
-		C93FEBC81049859F00BB1C61 /* window in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACE1049859F00BB1C61 /* window */; };
-		C93FEBC91049859F00BB1C61 /* wjoin in Resources */ = {isa = PBXBuildFile; fileRef = C93FEACF1049859F00BB1C61 /* wjoin */; };
-		C93FEBCA1049859F00BB1C61 /* wquery in Resources */ = {isa = PBXBuildFile; fileRef = C93FEAD01049859F00BB1C61 /* wquery */; };
 		C93FEBCB104985B300BB1C61 /* accept in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9D61049859E00BB1C61 /* accept */; };
 		C93FEBCC104985B300BB1C61 /* action in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9D71049859E00BB1C61 /* action */; };
 		C93FEBCD104985B300BB1C61 /* admin in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C93FE9D81049859E00BB1C61 /* admin */; };
@@ -588,6 +467,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B32A9E9005F0F99C00DB2595;
 			remoteInfo = irssi;
+		};
+		C9133865118A87BA0001F09D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C98F778D0E36500900CF2AAF;
+			remoteInfo = "Irssi Configure";
 		};
 		C91793290F743FD3005241A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1594,127 +1480,127 @@
 		C93FE7CC104976DB00BB1C61 /* UI.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = UI.pm; sourceTree = "<group>"; };
 		C93FE7CD104976DB00BB1C61 /* UI.xs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UI.xs; sourceTree = "<group>"; };
 		C93FE7CE104976DB00BB1C61 /* Window.xs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Window.xs; sourceTree = "<group>"; };
-		C93FE9D61049859E00BB1C61 /* accept */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = accept; sourceTree = "<group>"; };
-		C93FE9D71049859E00BB1C61 /* action */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = action; sourceTree = "<group>"; };
-		C93FE9D81049859E00BB1C61 /* admin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = admin; sourceTree = "<group>"; };
-		C93FE9D91049859E00BB1C61 /* alias */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alias; sourceTree = "<group>"; };
-		C93FE9DA1049859E00BB1C61 /* away */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = away; sourceTree = "<group>"; };
-		C93FE9DB1049859E00BB1C61 /* ban */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ban; sourceTree = "<group>"; };
-		C93FE9DC1049859E00BB1C61 /* beep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = beep; sourceTree = "<group>"; };
-		C93FE9DD1049859E00BB1C61 /* bind */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bind; sourceTree = "<group>"; };
-		C93FE9DE1049859E00BB1C61 /* cat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cat; sourceTree = "<group>"; };
-		C93FE9DF1049859E00BB1C61 /* cd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cd; sourceTree = "<group>"; };
-		C93FE9E01049859E00BB1C61 /* channel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = channel; sourceTree = "<group>"; };
-		C93FE9E11049859E00BB1C61 /* clear */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = clear; sourceTree = "<group>"; };
-		C93FE9E21049859E00BB1C61 /* completion */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = completion; sourceTree = "<group>"; };
-		C93FE9E31049859E00BB1C61 /* connect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = connect; sourceTree = "<group>"; };
-		C93FE9E41049859E00BB1C61 /* ctcp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ctcp; sourceTree = "<group>"; };
-		C93FE9E51049859E00BB1C61 /* cycle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cycle; sourceTree = "<group>"; };
-		C93FE9E61049859E00BB1C61 /* dcc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dcc; sourceTree = "<group>"; };
-		C93FE9E71049859E00BB1C61 /* dehilight */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dehilight; sourceTree = "<group>"; };
-		C93FE9E81049859E00BB1C61 /* deop */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = deop; sourceTree = "<group>"; };
-		C93FE9E91049859E00BB1C61 /* devoice */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = devoice; sourceTree = "<group>"; };
-		C93FE9EA1049859E00BB1C61 /* die */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = die; sourceTree = "<group>"; };
-		C93FE9EB1049859E00BB1C61 /* disconnect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = disconnect; sourceTree = "<group>"; };
-		C93FE9EC1049859E00BB1C61 /* echo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = echo; sourceTree = "<group>"; };
-		C93FE9ED1049859E00BB1C61 /* eval */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = eval; sourceTree = "<group>"; };
-		C93FE9EE1049859E00BB1C61 /* exec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = exec; sourceTree = "<group>"; };
-		C93FE9EF1049859E00BB1C61 /* flushbuffer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = flushbuffer; sourceTree = "<group>"; };
-		C93FE9F01049859E00BB1C61 /* format */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = format; sourceTree = "<group>"; };
-		C93FE9F11049859E00BB1C61 /* hash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hash; sourceTree = "<group>"; };
-		C93FE9F21049859E00BB1C61 /* help */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = help; sourceTree = "<group>"; };
-		C93FE9F31049859E00BB1C61 /* hilight */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hilight; sourceTree = "<group>"; };
-		C93FE9F41049859E00BB1C61 /* ignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ignore; sourceTree = "<group>"; };
-		C93FEA731049859F00BB1C61 /* info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = info; sourceTree = "<group>"; };
-		C93FEA741049859F00BB1C61 /* invite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = invite; sourceTree = "<group>"; };
-		C93FEA751049859F00BB1C61 /* invitelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = invitelist; sourceTree = "<group>"; };
-		C93FEA761049859F00BB1C61 /* ircnet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ircnet; sourceTree = "<group>"; };
-		C93FEA771049859F00BB1C61 /* ison */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ison; sourceTree = "<group>"; };
-		C93FEA781049859F00BB1C61 /* join */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = join; sourceTree = "<group>"; };
-		C93FEA791049859F00BB1C61 /* kick */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kick; sourceTree = "<group>"; };
-		C93FEA7A1049859F00BB1C61 /* kickban */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kickban; sourceTree = "<group>"; };
-		C93FEA7B1049859F00BB1C61 /* kill */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kill; sourceTree = "<group>"; };
-		C93FEA7C1049859F00BB1C61 /* knock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knock; sourceTree = "<group>"; };
-		C93FEA7D1049859F00BB1C61 /* knockout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = knockout; sourceTree = "<group>"; };
-		C93FEA7E1049859F00BB1C61 /* lastlog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lastlog; sourceTree = "<group>"; };
-		C93FEA7F1049859F00BB1C61 /* layout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = layout; sourceTree = "<group>"; };
-		C93FEA801049859F00BB1C61 /* levels */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = levels; sourceTree = "<group>"; };
-		C93FEA811049859F00BB1C61 /* links */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = links; sourceTree = "<group>"; };
-		C93FEA821049859F00BB1C61 /* list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = list; sourceTree = "<group>"; };
-		C93FEA831049859F00BB1C61 /* load */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = load; sourceTree = "<group>"; };
-		C93FEA841049859F00BB1C61 /* log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = log; sourceTree = "<group>"; };
-		C93FEA851049859F00BB1C61 /* lusers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lusers; sourceTree = "<group>"; };
-		C93FEA8A1049859F00BB1C61 /* map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = map; sourceTree = "<group>"; };
-		C93FEA8B1049859F00BB1C61 /* me */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = me; sourceTree = "<group>"; };
-		C93FEA8C1049859F00BB1C61 /* mircdcc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mircdcc; sourceTree = "<group>"; };
-		C93FEA8D1049859F00BB1C61 /* mode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mode; sourceTree = "<group>"; };
-		C93FEA8E1049859F00BB1C61 /* motd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = motd; sourceTree = "<group>"; };
-		C93FEA8F1049859F00BB1C61 /* msg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = msg; sourceTree = "<group>"; };
-		C93FEA901049859F00BB1C61 /* names */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = names; sourceTree = "<group>"; };
-		C93FEA911049859F00BB1C61 /* nctcp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nctcp; sourceTree = "<group>"; };
-		C93FEA921049859F00BB1C61 /* netsplit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = netsplit; sourceTree = "<group>"; };
-		C93FEA931049859F00BB1C61 /* network */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = network; sourceTree = "<group>"; };
-		C93FEA941049859F00BB1C61 /* nick */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nick; sourceTree = "<group>"; };
-		C93FEA951049859F00BB1C61 /* note */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = note; sourceTree = "<group>"; };
-		C93FEA961049859F00BB1C61 /* notice */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notice; sourceTree = "<group>"; };
-		C93FEA971049859F00BB1C61 /* notify */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = notify; sourceTree = "<group>"; };
-		C93FEA981049859F00BB1C61 /* op */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = op; sourceTree = "<group>"; };
-		C93FEA991049859F00BB1C61 /* oper */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = oper; sourceTree = "<group>"; };
-		C93FEA9A1049859F00BB1C61 /* part */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = part; sourceTree = "<group>"; };
-		C93FEA9B1049859F00BB1C61 /* ping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ping; sourceTree = "<group>"; };
-		C93FEA9C1049859F00BB1C61 /* query */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = query; sourceTree = "<group>"; };
-		C93FEA9D1049859F00BB1C61 /* quit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quit; sourceTree = "<group>"; };
-		C93FEA9E1049859F00BB1C61 /* quote */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = quote; sourceTree = "<group>"; };
-		C93FEA9F1049859F00BB1C61 /* rawlog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rawlog; sourceTree = "<group>"; };
-		C93FEAA01049859F00BB1C61 /* recode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = recode; sourceTree = "<group>"; };
-		C93FEAA11049859F00BB1C61 /* reconnect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reconnect; sourceTree = "<group>"; };
-		C93FEAA21049859F00BB1C61 /* rehash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rehash; sourceTree = "<group>"; };
-		C93FEAA31049859F00BB1C61 /* reload */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reload; sourceTree = "<group>"; };
-		C93FEAA41049859F00BB1C61 /* restart */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = restart; sourceTree = "<group>"; };
-		C93FEAA51049859F00BB1C61 /* rmreconns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rmreconns; sourceTree = "<group>"; };
-		C93FEAA61049859F00BB1C61 /* rmrejoins */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rmrejoins; sourceTree = "<group>"; };
-		C93FEAA71049859F00BB1C61 /* rping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rping; sourceTree = "<group>"; };
-		C93FEAA81049859F00BB1C61 /* save */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = save; sourceTree = "<group>"; };
-		C93FEAA91049859F00BB1C61 /* say */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = say; sourceTree = "<group>"; };
-		C93FEAAA1049859F00BB1C61 /* sconnect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sconnect; sourceTree = "<group>"; };
-		C93FEAAB1049859F00BB1C61 /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script; sourceTree = "<group>"; };
-		C93FEAAC1049859F00BB1C61 /* scrollback */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrollback; sourceTree = "<group>"; };
-		C93FEAAD1049859F00BB1C61 /* server */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server; sourceTree = "<group>"; };
-		C93FEAAE1049859F00BB1C61 /* servlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = servlist; sourceTree = "<group>"; };
-		C93FEAAF1049859F00BB1C61 /* set */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = set; sourceTree = "<group>"; };
-		C93FEAB01049859F00BB1C61 /* silence */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = silence; sourceTree = "<group>"; };
-		C93FEAB11049859F00BB1C61 /* squery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = squery; sourceTree = "<group>"; };
-		C93FEAB21049859F00BB1C61 /* squit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = squit; sourceTree = "<group>"; };
-		C93FEAB31049859F00BB1C61 /* stats */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stats; sourceTree = "<group>"; };
-		C93FEAB41049859F00BB1C61 /* statusbar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = statusbar; sourceTree = "<group>"; };
-		C93FEAB51049859F00BB1C61 /* time */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = time; sourceTree = "<group>"; };
-		C93FEAB61049859F00BB1C61 /* toggle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = toggle; sourceTree = "<group>"; };
-		C93FEAB71049859F00BB1C61 /* topic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = topic; sourceTree = "<group>"; };
-		C93FEAB81049859F00BB1C61 /* trace */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = trace; sourceTree = "<group>"; };
-		C93FEAB91049859F00BB1C61 /* ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ts; sourceTree = "<group>"; };
-		C93FEABA1049859F00BB1C61 /* unalias */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unalias; sourceTree = "<group>"; };
-		C93FEABB1049859F00BB1C61 /* unban */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unban; sourceTree = "<group>"; };
-		C93FEABC1049859F00BB1C61 /* unignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unignore; sourceTree = "<group>"; };
-		C93FEABD1049859F00BB1C61 /* unload */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unload; sourceTree = "<group>"; };
-		C93FEABE1049859F00BB1C61 /* unnotify */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unnotify; sourceTree = "<group>"; };
-		C93FEABF1049859F00BB1C61 /* unquery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unquery; sourceTree = "<group>"; };
-		C93FEAC01049859F00BB1C61 /* unsilence */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unsilence; sourceTree = "<group>"; };
-		C93FEAC11049859F00BB1C61 /* upgrade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = upgrade; sourceTree = "<group>"; };
-		C93FEAC21049859F00BB1C61 /* uping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = uping; sourceTree = "<group>"; };
-		C93FEAC31049859F00BB1C61 /* userhost */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = userhost; sourceTree = "<group>"; };
-		C93FEAC41049859F00BB1C61 /* ver */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ver; sourceTree = "<group>"; };
-		C93FEAC51049859F00BB1C61 /* version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = version; sourceTree = "<group>"; };
-		C93FEAC61049859F00BB1C61 /* voice */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = voice; sourceTree = "<group>"; };
-		C93FEAC71049859F00BB1C61 /* wait */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wait; sourceTree = "<group>"; };
-		C93FEAC81049859F00BB1C61 /* wall */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wall; sourceTree = "<group>"; };
-		C93FEAC91049859F00BB1C61 /* wallops */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wallops; sourceTree = "<group>"; };
-		C93FEACA1049859F00BB1C61 /* watch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = watch; sourceTree = "<group>"; };
-		C93FEACB1049859F00BB1C61 /* who */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = who; sourceTree = "<group>"; };
-		C93FEACC1049859F00BB1C61 /* whois */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whois; sourceTree = "<group>"; };
-		C93FEACD1049859F00BB1C61 /* whowas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = whowas; sourceTree = "<group>"; };
-		C93FEACE1049859F00BB1C61 /* window */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = window; sourceTree = "<group>"; };
-		C93FEACF1049859F00BB1C61 /* wjoin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wjoin; sourceTree = "<group>"; };
-		C93FEAD01049859F00BB1C61 /* wquery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wquery; sourceTree = "<group>"; };
+		C93FE9D61049859E00BB1C61 /* accept */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = accept; path = "../../../build/irssi-build/docs/help/accept"; sourceTree = "<group>"; };
+		C93FE9D71049859E00BB1C61 /* action */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = action; path = "../../../build/irssi-build/docs/help/action"; sourceTree = "<group>"; };
+		C93FE9D81049859E00BB1C61 /* admin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = admin; path = "../../../build/irssi-build/docs/help/admin"; sourceTree = "<group>"; };
+		C93FE9D91049859E00BB1C61 /* alias */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = alias; path = "../../../build/irssi-build/docs/help/alias"; sourceTree = "<group>"; };
+		C93FE9DA1049859E00BB1C61 /* away */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = away; path = "../../../build/irssi-build/docs/help/away"; sourceTree = "<group>"; };
+		C93FE9DB1049859E00BB1C61 /* ban */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ban; path = "../../../build/irssi-build/docs/help/ban"; sourceTree = "<group>"; };
+		C93FE9DC1049859E00BB1C61 /* beep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = beep; path = "../../../build/irssi-build/docs/help/beep"; sourceTree = "<group>"; };
+		C93FE9DD1049859E00BB1C61 /* bind */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = bind; path = "../../../build/irssi-build/docs/help/bind"; sourceTree = "<group>"; };
+		C93FE9DE1049859E00BB1C61 /* cat */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cat; path = "../../../build/irssi-build/docs/help/cat"; sourceTree = "<group>"; };
+		C93FE9DF1049859E00BB1C61 /* cd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cd; path = "../../../build/irssi-build/docs/help/cd"; sourceTree = "<group>"; };
+		C93FE9E01049859E00BB1C61 /* channel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = channel; path = "../../../build/irssi-build/docs/help/channel"; sourceTree = "<group>"; };
+		C93FE9E11049859E00BB1C61 /* clear */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = clear; path = "../../../build/irssi-build/docs/help/clear"; sourceTree = "<group>"; };
+		C93FE9E21049859E00BB1C61 /* completion */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = completion; path = "../../../build/irssi-build/docs/help/completion"; sourceTree = "<group>"; };
+		C93FE9E31049859E00BB1C61 /* connect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = connect; path = "../../../build/irssi-build/docs/help/connect"; sourceTree = "<group>"; };
+		C93FE9E41049859E00BB1C61 /* ctcp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ctcp; path = "../../../build/irssi-build/docs/help/ctcp"; sourceTree = "<group>"; };
+		C93FE9E51049859E00BB1C61 /* cycle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = cycle; path = "../../../build/irssi-build/docs/help/cycle"; sourceTree = "<group>"; };
+		C93FE9E61049859E00BB1C61 /* dcc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dcc; path = "../../../build/irssi-build/docs/help/dcc"; sourceTree = "<group>"; };
+		C93FE9E71049859E00BB1C61 /* dehilight */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dehilight; path = "../../../build/irssi-build/docs/help/dehilight"; sourceTree = "<group>"; };
+		C93FE9E81049859E00BB1C61 /* deop */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = deop; path = "../../../build/irssi-build/docs/help/deop"; sourceTree = "<group>"; };
+		C93FE9E91049859E00BB1C61 /* devoice */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = devoice; path = "../../../build/irssi-build/docs/help/devoice"; sourceTree = "<group>"; };
+		C93FE9EA1049859E00BB1C61 /* die */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = die; path = "../../../build/irssi-build/docs/help/die"; sourceTree = "<group>"; };
+		C93FE9EB1049859E00BB1C61 /* disconnect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = disconnect; path = "../../../build/irssi-build/docs/help/disconnect"; sourceTree = "<group>"; };
+		C93FE9EC1049859E00BB1C61 /* echo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = echo; path = "../../../build/irssi-build/docs/help/echo"; sourceTree = "<group>"; };
+		C93FE9ED1049859E00BB1C61 /* eval */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = eval; path = "../../../build/irssi-build/docs/help/eval"; sourceTree = "<group>"; };
+		C93FE9EE1049859E00BB1C61 /* exec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = exec; path = "../../../build/irssi-build/docs/help/exec"; sourceTree = "<group>"; };
+		C93FE9EF1049859E00BB1C61 /* flushbuffer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = flushbuffer; path = "../../../build/irssi-build/docs/help/flushbuffer"; sourceTree = "<group>"; };
+		C93FE9F01049859E00BB1C61 /* format */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = format; path = "../../../build/irssi-build/docs/help/format"; sourceTree = "<group>"; };
+		C93FE9F11049859E00BB1C61 /* hash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hash; path = "../../../build/irssi-build/docs/help/hash"; sourceTree = "<group>"; };
+		C93FE9F21049859E00BB1C61 /* help */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = help; path = "../../../build/irssi-build/docs/help/help"; sourceTree = "<group>"; };
+		C93FE9F31049859E00BB1C61 /* hilight */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = hilight; path = "../../../build/irssi-build/docs/help/hilight"; sourceTree = "<group>"; };
+		C93FE9F41049859E00BB1C61 /* ignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ignore; path = "../../../build/irssi-build/docs/help/ignore"; sourceTree = "<group>"; };
+		C93FEA731049859F00BB1C61 /* info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = info; path = "../../../build/irssi-build/docs/help/info"; sourceTree = "<group>"; };
+		C93FEA741049859F00BB1C61 /* invite */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = invite; path = "../../../build/irssi-build/docs/help/invite"; sourceTree = "<group>"; };
+		C93FEA751049859F00BB1C61 /* invitelist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = invitelist; path = "../../../build/irssi-build/docs/help/invitelist"; sourceTree = "<group>"; };
+		C93FEA761049859F00BB1C61 /* ircnet */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ircnet; path = "../../../build/irssi-build/docs/help/ircnet"; sourceTree = "<group>"; };
+		C93FEA771049859F00BB1C61 /* ison */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ison; path = "../../../build/irssi-build/docs/help/ison"; sourceTree = "<group>"; };
+		C93FEA781049859F00BB1C61 /* join */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = join; path = "../../../build/irssi-build/docs/help/join"; sourceTree = "<group>"; };
+		C93FEA791049859F00BB1C61 /* kick */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = kick; path = "../../../build/irssi-build/docs/help/kick"; sourceTree = "<group>"; };
+		C93FEA7A1049859F00BB1C61 /* kickban */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = kickban; path = "../../../build/irssi-build/docs/help/kickban"; sourceTree = "<group>"; };
+		C93FEA7B1049859F00BB1C61 /* kill */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = kill; path = "../../../build/irssi-build/docs/help/kill"; sourceTree = "<group>"; };
+		C93FEA7C1049859F00BB1C61 /* knock */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = knock; path = "../../../build/irssi-build/docs/help/knock"; sourceTree = "<group>"; };
+		C93FEA7D1049859F00BB1C61 /* knockout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = knockout; path = "../../../build/irssi-build/docs/help/knockout"; sourceTree = "<group>"; };
+		C93FEA7E1049859F00BB1C61 /* lastlog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lastlog; path = "../../../build/irssi-build/docs/help/lastlog"; sourceTree = "<group>"; };
+		C93FEA7F1049859F00BB1C61 /* layout */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = layout; path = "../../../build/irssi-build/docs/help/layout"; sourceTree = "<group>"; };
+		C93FEA801049859F00BB1C61 /* levels */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = levels; path = "../../../build/irssi-build/docs/help/levels"; sourceTree = "<group>"; };
+		C93FEA811049859F00BB1C61 /* links */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = links; path = "../../../build/irssi-build/docs/help/links"; sourceTree = "<group>"; };
+		C93FEA821049859F00BB1C61 /* list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = list; path = "../../../build/irssi-build/docs/help/list"; sourceTree = "<group>"; };
+		C93FEA831049859F00BB1C61 /* load */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = load; path = "../../../build/irssi-build/docs/help/load"; sourceTree = "<group>"; };
+		C93FEA841049859F00BB1C61 /* log */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = log; path = "../../../build/irssi-build/docs/help/log"; sourceTree = "<group>"; };
+		C93FEA851049859F00BB1C61 /* lusers */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = lusers; path = "../../../build/irssi-build/docs/help/lusers"; sourceTree = "<group>"; };
+		C93FEA8A1049859F00BB1C61 /* map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = map; path = "../../../build/irssi-build/docs/help/map"; sourceTree = "<group>"; };
+		C93FEA8B1049859F00BB1C61 /* me */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = me; path = "../../../build/irssi-build/docs/help/me"; sourceTree = "<group>"; };
+		C93FEA8C1049859F00BB1C61 /* mircdcc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mircdcc; path = "../../../build/irssi-build/docs/help/mircdcc"; sourceTree = "<group>"; };
+		C93FEA8D1049859F00BB1C61 /* mode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mode; path = "../../../build/irssi-build/docs/help/mode"; sourceTree = "<group>"; };
+		C93FEA8E1049859F00BB1C61 /* motd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = motd; path = "../../../build/irssi-build/docs/help/motd"; sourceTree = "<group>"; };
+		C93FEA8F1049859F00BB1C61 /* msg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = msg; path = "../../../build/irssi-build/docs/help/msg"; sourceTree = "<group>"; };
+		C93FEA901049859F00BB1C61 /* names */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = names; path = "../../../build/irssi-build/docs/help/names"; sourceTree = "<group>"; };
+		C93FEA911049859F00BB1C61 /* nctcp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = nctcp; path = "../../../build/irssi-build/docs/help/nctcp"; sourceTree = "<group>"; };
+		C93FEA921049859F00BB1C61 /* netsplit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = netsplit; path = "../../../build/irssi-build/docs/help/netsplit"; sourceTree = "<group>"; };
+		C93FEA931049859F00BB1C61 /* network */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = network; path = "../../../build/irssi-build/docs/help/network"; sourceTree = "<group>"; };
+		C93FEA941049859F00BB1C61 /* nick */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = nick; path = "../../../build/irssi-build/docs/help/nick"; sourceTree = "<group>"; };
+		C93FEA951049859F00BB1C61 /* note */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = note; path = "../../../build/irssi-build/docs/help/note"; sourceTree = "<group>"; };
+		C93FEA961049859F00BB1C61 /* notice */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = notice; path = "../../../build/irssi-build/docs/help/notice"; sourceTree = "<group>"; };
+		C93FEA971049859F00BB1C61 /* notify */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = notify; path = "../../../build/irssi-build/docs/help/notify"; sourceTree = "<group>"; };
+		C93FEA981049859F00BB1C61 /* op */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = op; path = "../../../build/irssi-build/docs/help/op"; sourceTree = "<group>"; };
+		C93FEA991049859F00BB1C61 /* oper */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = oper; path = "../../../build/irssi-build/docs/help/oper"; sourceTree = "<group>"; };
+		C93FEA9A1049859F00BB1C61 /* part */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = part; path = "../../../build/irssi-build/docs/help/part"; sourceTree = "<group>"; };
+		C93FEA9B1049859F00BB1C61 /* ping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ping; path = "../../../build/irssi-build/docs/help/ping"; sourceTree = "<group>"; };
+		C93FEA9C1049859F00BB1C61 /* query */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = query; path = "../../../build/irssi-build/docs/help/query"; sourceTree = "<group>"; };
+		C93FEA9D1049859F00BB1C61 /* quit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quit; path = "../../../build/irssi-build/docs/help/quit"; sourceTree = "<group>"; };
+		C93FEA9E1049859F00BB1C61 /* quote */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = quote; path = "../../../build/irssi-build/docs/help/quote"; sourceTree = "<group>"; };
+		C93FEA9F1049859F00BB1C61 /* rawlog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rawlog; path = "../../../build/irssi-build/docs/help/rawlog"; sourceTree = "<group>"; };
+		C93FEAA01049859F00BB1C61 /* recode */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = recode; path = "../../../build/irssi-build/docs/help/recode"; sourceTree = "<group>"; };
+		C93FEAA11049859F00BB1C61 /* reconnect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reconnect; path = "../../../build/irssi-build/docs/help/reconnect"; sourceTree = "<group>"; };
+		C93FEAA21049859F00BB1C61 /* rehash */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rehash; path = "../../../build/irssi-build/docs/help/rehash"; sourceTree = "<group>"; };
+		C93FEAA31049859F00BB1C61 /* reload */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = reload; path = "../../../build/irssi-build/docs/help/reload"; sourceTree = "<group>"; };
+		C93FEAA41049859F00BB1C61 /* restart */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = restart; path = "../../../build/irssi-build/docs/help/restart"; sourceTree = "<group>"; };
+		C93FEAA51049859F00BB1C61 /* rmreconns */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rmreconns; path = "../../../build/irssi-build/docs/help/rmreconns"; sourceTree = "<group>"; };
+		C93FEAA61049859F00BB1C61 /* rmrejoins */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rmrejoins; path = "../../../build/irssi-build/docs/help/rmrejoins"; sourceTree = "<group>"; };
+		C93FEAA71049859F00BB1C61 /* rping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rping; path = "../../../build/irssi-build/docs/help/rping"; sourceTree = "<group>"; };
+		C93FEAA81049859F00BB1C61 /* save */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = save; path = "../../../build/irssi-build/docs/help/save"; sourceTree = "<group>"; };
+		C93FEAA91049859F00BB1C61 /* say */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = say; path = "../../../build/irssi-build/docs/help/say"; sourceTree = "<group>"; };
+		C93FEAAA1049859F00BB1C61 /* sconnect */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sconnect; path = "../../../build/irssi-build/docs/help/sconnect"; sourceTree = "<group>"; };
+		C93FEAAB1049859F00BB1C61 /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = script; path = "../../../build/irssi-build/docs/help/script"; sourceTree = "<group>"; };
+		C93FEAAC1049859F00BB1C61 /* scrollback */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = scrollback; path = "../../../build/irssi-build/docs/help/scrollback"; sourceTree = "<group>"; };
+		C93FEAAD1049859F00BB1C61 /* server */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = server; path = "../../../build/irssi-build/docs/help/server"; sourceTree = "<group>"; };
+		C93FEAAE1049859F00BB1C61 /* servlist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = servlist; path = "../../../build/irssi-build/docs/help/servlist"; sourceTree = "<group>"; };
+		C93FEAAF1049859F00BB1C61 /* set */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = set; path = "../../../build/irssi-build/docs/help/set"; sourceTree = "<group>"; };
+		C93FEAB01049859F00BB1C61 /* silence */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = silence; path = "../../../build/irssi-build/docs/help/silence"; sourceTree = "<group>"; };
+		C93FEAB11049859F00BB1C61 /* squery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = squery; path = "../../../build/irssi-build/docs/help/squery"; sourceTree = "<group>"; };
+		C93FEAB21049859F00BB1C61 /* squit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = squit; path = "../../../build/irssi-build/docs/help/squit"; sourceTree = "<group>"; };
+		C93FEAB31049859F00BB1C61 /* stats */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = stats; path = "../../../build/irssi-build/docs/help/stats"; sourceTree = "<group>"; };
+		C93FEAB41049859F00BB1C61 /* statusbar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = statusbar; path = "../../../build/irssi-build/docs/help/statusbar"; sourceTree = "<group>"; };
+		C93FEAB51049859F00BB1C61 /* time */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = time; path = "../../../build/irssi-build/docs/help/time"; sourceTree = "<group>"; };
+		C93FEAB61049859F00BB1C61 /* toggle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = toggle; path = "../../../build/irssi-build/docs/help/toggle"; sourceTree = "<group>"; };
+		C93FEAB71049859F00BB1C61 /* topic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = topic; path = "../../../build/irssi-build/docs/help/topic"; sourceTree = "<group>"; };
+		C93FEAB81049859F00BB1C61 /* trace */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = trace; path = "../../../build/irssi-build/docs/help/trace"; sourceTree = "<group>"; };
+		C93FEAB91049859F00BB1C61 /* ts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ts; path = "../../../build/irssi-build/docs/help/ts"; sourceTree = "<group>"; };
+		C93FEABA1049859F00BB1C61 /* unalias */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unalias; path = "../../../build/irssi-build/docs/help/unalias"; sourceTree = "<group>"; };
+		C93FEABB1049859F00BB1C61 /* unban */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unban; path = "../../../build/irssi-build/docs/help/unban"; sourceTree = "<group>"; };
+		C93FEABC1049859F00BB1C61 /* unignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unignore; path = "../../../build/irssi-build/docs/help/unignore"; sourceTree = "<group>"; };
+		C93FEABD1049859F00BB1C61 /* unload */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unload; path = "../../../build/irssi-build/docs/help/unload"; sourceTree = "<group>"; };
+		C93FEABE1049859F00BB1C61 /* unnotify */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unnotify; path = "../../../build/irssi-build/docs/help/unnotify"; sourceTree = "<group>"; };
+		C93FEABF1049859F00BB1C61 /* unquery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unquery; path = "../../../build/irssi-build/docs/help/unquery"; sourceTree = "<group>"; };
+		C93FEAC01049859F00BB1C61 /* unsilence */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unsilence; path = "../../../build/irssi-build/docs/help/unsilence"; sourceTree = "<group>"; };
+		C93FEAC11049859F00BB1C61 /* upgrade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = upgrade; path = "../../../build/irssi-build/docs/help/upgrade"; sourceTree = "<group>"; };
+		C93FEAC21049859F00BB1C61 /* uping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = uping; path = "../../../build/irssi-build/docs/help/uping"; sourceTree = "<group>"; };
+		C93FEAC31049859F00BB1C61 /* userhost */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = userhost; path = "../../../build/irssi-build/docs/help/userhost"; sourceTree = "<group>"; };
+		C93FEAC41049859F00BB1C61 /* ver */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ver; path = "../../../build/irssi-build/docs/help/ver"; sourceTree = "<group>"; };
+		C93FEAC51049859F00BB1C61 /* version */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = version; path = "../../../build/irssi-build/docs/help/version"; sourceTree = "<group>"; };
+		C93FEAC61049859F00BB1C61 /* voice */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = voice; path = "../../../build/irssi-build/docs/help/voice"; sourceTree = "<group>"; };
+		C93FEAC71049859F00BB1C61 /* wait */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wait; path = "../../../build/irssi-build/docs/help/wait"; sourceTree = "<group>"; };
+		C93FEAC81049859F00BB1C61 /* wall */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wall; path = "../../../build/irssi-build/docs/help/wall"; sourceTree = "<group>"; };
+		C93FEAC91049859F00BB1C61 /* wallops */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wallops; path = "../../../build/irssi-build/docs/help/wallops"; sourceTree = "<group>"; };
+		C93FEACA1049859F00BB1C61 /* watch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = watch; path = "../../../build/irssi-build/docs/help/watch"; sourceTree = "<group>"; };
+		C93FEACB1049859F00BB1C61 /* who */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = who; path = "../../../build/irssi-build/docs/help/who"; sourceTree = "<group>"; };
+		C93FEACC1049859F00BB1C61 /* whois */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whois; path = "../../../build/irssi-build/docs/help/whois"; sourceTree = "<group>"; };
+		C93FEACD1049859F00BB1C61 /* whowas */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = whowas; path = "../../../build/irssi-build/docs/help/whowas"; sourceTree = "<group>"; };
+		C93FEACE1049859F00BB1C61 /* window */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = window; path = "../../../build/irssi-build/docs/help/window"; sourceTree = "<group>"; };
+		C93FEACF1049859F00BB1C61 /* wjoin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wjoin; path = "../../../build/irssi-build/docs/help/wjoin"; sourceTree = "<group>"; };
+		C93FEAD01049859F00BB1C61 /* wquery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = wquery; path = "../../../build/irssi-build/docs/help/wquery"; sourceTree = "<group>"; };
 		C9432BFA0EA16540005237E3 /* addWidgetSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addWidgetSelected.png; sourceTree = "<group>"; };
 		C9432BFB0EA16540005237E3 /* addWidget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addWidget.png; sourceTree = "<group>"; };
 		C9432BFC0EA16540005237E3 /* removeWidgetSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeWidgetSelected.png; sourceTree = "<group>"; };
@@ -2277,7 +2163,7 @@
 				C93FE78C104976DB00BB1C61 /* perl */,
 			);
 			name = src;
-			path = "irssi-0.8.14/src";
+			path = irssi/src;
 			sourceTree = "<group>";
 		};
 		C93FE63A104976DA00BB1C61 /* core */ = {
@@ -2942,7 +2828,7 @@
 				C93FEAD01049859F00BB1C61 /* wquery */,
 			);
 			name = help;
-			path = "irssi-0.8.14/docs/help";
+			path = irssi/docs/help;
 			sourceTree = "<group>";
 		};
 		C97A36C10E5DCAD4007D1191 /* Images */ = {
@@ -3065,6 +2951,7 @@
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "build/irssi-build";
 			dependencies = (
+				C9133866118A87BA0001F09D /* PBXTargetDependency */,
 			);
 			name = "Irssi Build";
 			passBuildSettingsInEnvironment = 1;
@@ -3077,7 +2964,7 @@
 			buildPhases = (
 			);
 			buildToolPath = ../xcodeConfigure.sh;
-			buildWorkingDirectory = "irssi-0.8.14";
+			buildWorkingDirectory = irssi/;
 			dependencies = (
 			);
 			name = "Irssi Configure";
@@ -3175,127 +3062,6 @@
 				C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */,
 				C911228B0F2B2431006C4BD0 /* Tab new.xib in Resources */,
 				C98777080F74F67300591183 /* MacIrssi.pub in Resources */,
-				C93FEAD11049859F00BB1C61 /* accept in Resources */,
-				C93FEAD21049859F00BB1C61 /* action in Resources */,
-				C93FEAD31049859F00BB1C61 /* admin in Resources */,
-				C93FEAD41049859F00BB1C61 /* alias in Resources */,
-				C93FEAD51049859F00BB1C61 /* away in Resources */,
-				C93FEAD61049859F00BB1C61 /* ban in Resources */,
-				C93FEAD71049859F00BB1C61 /* beep in Resources */,
-				C93FEAD81049859F00BB1C61 /* bind in Resources */,
-				C93FEAD91049859F00BB1C61 /* cat in Resources */,
-				C93FEADA1049859F00BB1C61 /* cd in Resources */,
-				C93FEADB1049859F00BB1C61 /* channel in Resources */,
-				C93FEADC1049859F00BB1C61 /* clear in Resources */,
-				C93FEADD1049859F00BB1C61 /* completion in Resources */,
-				C93FEADE1049859F00BB1C61 /* connect in Resources */,
-				C93FEADF1049859F00BB1C61 /* ctcp in Resources */,
-				C93FEAE01049859F00BB1C61 /* cycle in Resources */,
-				C93FEAE11049859F00BB1C61 /* dcc in Resources */,
-				C93FEAE21049859F00BB1C61 /* dehilight in Resources */,
-				C93FEAE31049859F00BB1C61 /* deop in Resources */,
-				C93FEAE41049859F00BB1C61 /* devoice in Resources */,
-				C93FEAE51049859F00BB1C61 /* die in Resources */,
-				C93FEAE61049859F00BB1C61 /* disconnect in Resources */,
-				C93FEAE71049859F00BB1C61 /* echo in Resources */,
-				C93FEAE81049859F00BB1C61 /* eval in Resources */,
-				C93FEAE91049859F00BB1C61 /* exec in Resources */,
-				C93FEAEA1049859F00BB1C61 /* flushbuffer in Resources */,
-				C93FEAEB1049859F00BB1C61 /* format in Resources */,
-				C93FEAEC1049859F00BB1C61 /* hash in Resources */,
-				C93FEAED1049859F00BB1C61 /* help in Resources */,
-				C93FEAEE1049859F00BB1C61 /* hilight in Resources */,
-				C93FEAEF1049859F00BB1C61 /* ignore in Resources */,
-				C93FEB6D1049859F00BB1C61 /* info in Resources */,
-				C93FEB6E1049859F00BB1C61 /* invite in Resources */,
-				C93FEB6F1049859F00BB1C61 /* invitelist in Resources */,
-				C93FEB701049859F00BB1C61 /* ircnet in Resources */,
-				C93FEB711049859F00BB1C61 /* ison in Resources */,
-				C93FEB721049859F00BB1C61 /* join in Resources */,
-				C93FEB731049859F00BB1C61 /* kick in Resources */,
-				C93FEB741049859F00BB1C61 /* kickban in Resources */,
-				C93FEB751049859F00BB1C61 /* kill in Resources */,
-				C93FEB761049859F00BB1C61 /* knock in Resources */,
-				C93FEB771049859F00BB1C61 /* knockout in Resources */,
-				C93FEB781049859F00BB1C61 /* lastlog in Resources */,
-				C93FEB791049859F00BB1C61 /* layout in Resources */,
-				C93FEB7A1049859F00BB1C61 /* levels in Resources */,
-				C93FEB7B1049859F00BB1C61 /* links in Resources */,
-				C93FEB7C1049859F00BB1C61 /* list in Resources */,
-				C93FEB7D1049859F00BB1C61 /* load in Resources */,
-				C93FEB7E1049859F00BB1C61 /* log in Resources */,
-				C93FEB7F1049859F00BB1C61 /* lusers in Resources */,
-				C93FEB841049859F00BB1C61 /* map in Resources */,
-				C93FEB851049859F00BB1C61 /* me in Resources */,
-				C93FEB861049859F00BB1C61 /* mircdcc in Resources */,
-				C93FEB871049859F00BB1C61 /* mode in Resources */,
-				C93FEB881049859F00BB1C61 /* motd in Resources */,
-				C93FEB891049859F00BB1C61 /* msg in Resources */,
-				C93FEB8A1049859F00BB1C61 /* names in Resources */,
-				C93FEB8B1049859F00BB1C61 /* nctcp in Resources */,
-				C93FEB8C1049859F00BB1C61 /* netsplit in Resources */,
-				C93FEB8D1049859F00BB1C61 /* network in Resources */,
-				C93FEB8E1049859F00BB1C61 /* nick in Resources */,
-				C93FEB8F1049859F00BB1C61 /* note in Resources */,
-				C93FEB901049859F00BB1C61 /* notice in Resources */,
-				C93FEB911049859F00BB1C61 /* notify in Resources */,
-				C93FEB921049859F00BB1C61 /* op in Resources */,
-				C93FEB931049859F00BB1C61 /* oper in Resources */,
-				C93FEB941049859F00BB1C61 /* part in Resources */,
-				C93FEB951049859F00BB1C61 /* ping in Resources */,
-				C93FEB961049859F00BB1C61 /* query in Resources */,
-				C93FEB971049859F00BB1C61 /* quit in Resources */,
-				C93FEB981049859F00BB1C61 /* quote in Resources */,
-				C93FEB991049859F00BB1C61 /* rawlog in Resources */,
-				C93FEB9A1049859F00BB1C61 /* recode in Resources */,
-				C93FEB9B1049859F00BB1C61 /* reconnect in Resources */,
-				C93FEB9C1049859F00BB1C61 /* rehash in Resources */,
-				C93FEB9D1049859F00BB1C61 /* reload in Resources */,
-				C93FEB9E1049859F00BB1C61 /* restart in Resources */,
-				C93FEB9F1049859F00BB1C61 /* rmreconns in Resources */,
-				C93FEBA01049859F00BB1C61 /* rmrejoins in Resources */,
-				C93FEBA11049859F00BB1C61 /* rping in Resources */,
-				C93FEBA21049859F00BB1C61 /* save in Resources */,
-				C93FEBA31049859F00BB1C61 /* say in Resources */,
-				C93FEBA41049859F00BB1C61 /* sconnect in Resources */,
-				C93FEBA51049859F00BB1C61 /* script in Resources */,
-				C93FEBA61049859F00BB1C61 /* scrollback in Resources */,
-				C93FEBA71049859F00BB1C61 /* server in Resources */,
-				C93FEBA81049859F00BB1C61 /* servlist in Resources */,
-				C93FEBA91049859F00BB1C61 /* set in Resources */,
-				C93FEBAA1049859F00BB1C61 /* silence in Resources */,
-				C93FEBAB1049859F00BB1C61 /* squery in Resources */,
-				C93FEBAC1049859F00BB1C61 /* squit in Resources */,
-				C93FEBAD1049859F00BB1C61 /* stats in Resources */,
-				C93FEBAE1049859F00BB1C61 /* statusbar in Resources */,
-				C93FEBAF1049859F00BB1C61 /* time in Resources */,
-				C93FEBB01049859F00BB1C61 /* toggle in Resources */,
-				C93FEBB11049859F00BB1C61 /* topic in Resources */,
-				C93FEBB21049859F00BB1C61 /* trace in Resources */,
-				C93FEBB31049859F00BB1C61 /* ts in Resources */,
-				C93FEBB41049859F00BB1C61 /* unalias in Resources */,
-				C93FEBB51049859F00BB1C61 /* unban in Resources */,
-				C93FEBB61049859F00BB1C61 /* unignore in Resources */,
-				C93FEBB71049859F00BB1C61 /* unload in Resources */,
-				C93FEBB81049859F00BB1C61 /* unnotify in Resources */,
-				C93FEBB91049859F00BB1C61 /* unquery in Resources */,
-				C93FEBBA1049859F00BB1C61 /* unsilence in Resources */,
-				C93FEBBB1049859F00BB1C61 /* upgrade in Resources */,
-				C93FEBBC1049859F00BB1C61 /* uping in Resources */,
-				C93FEBBD1049859F00BB1C61 /* userhost in Resources */,
-				C93FEBBE1049859F00BB1C61 /* ver in Resources */,
-				C93FEBBF1049859F00BB1C61 /* version in Resources */,
-				C93FEBC01049859F00BB1C61 /* voice in Resources */,
-				C93FEBC11049859F00BB1C61 /* wait in Resources */,
-				C93FEBC21049859F00BB1C61 /* wall in Resources */,
-				C93FEBC31049859F00BB1C61 /* wallops in Resources */,
-				C93FEBC41049859F00BB1C61 /* watch in Resources */,
-				C93FEBC51049859F00BB1C61 /* who in Resources */,
-				C93FEBC61049859F00BB1C61 /* whois in Resources */,
-				C93FEBC71049859F00BB1C61 /* whowas in Resources */,
-				C93FEBC81049859F00BB1C61 /* window in Resources */,
-				C93FEBC91049859F00BB1C61 /* wjoin in Resources */,
-				C93FEBCA1049859F00BB1C61 /* wquery in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3423,6 +3189,11 @@
 			isa = PBXTargetDependency;
 			target = B32A9E9005F0F99C00DB2595 /* Irssi Build */;
 			targetProxy = B32A9E9705F0FB4B00DB2595 /* PBXContainerItemProxy */;
+		};
+		C9133866118A87BA0001F09D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C98F778D0E36500900CF2AAF /* Irssi Configure */;
+			targetProxy = C9133865118A87BA0001F09D /* PBXContainerItemProxy */;
 		};
 		C917932A0F743FD3005241A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3578,7 +3349,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
-					"/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
@@ -3661,7 +3431,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
-					"/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
@@ -3741,7 +3510,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
-					"/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",

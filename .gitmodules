@@ -1,3 +1,6 @@
 [submodule "Frameworks/MILibs"]
 	path = Frameworks/MILibs
 	url = git://github.com/daagaak/MILibs.git
+[submodule "irssi"]
+	path = irssi
+	url = git://github.com/daagaak/irssi.git

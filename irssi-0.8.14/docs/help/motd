@@ -1,5 +1,0 @@
-
-MOTD %|[<server>|<nick>]
-
-Shows the motd of the current or specified server. This contains usually some useful info on the server, administrator and the rules.
-

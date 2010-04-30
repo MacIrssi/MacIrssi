@@ -1,7 +1,0 @@
-
-USERHOST %|<nicks>
-
-Shows the user@host, IRC operator (*) and away (-) status of the specified nick.
-
-See also: WHOIS
-

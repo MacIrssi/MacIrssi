@@ -1,8 +1,0 @@
-
-VERSION %|[<server>|<nick>]
-VERSION
-
-Shows the version info of the current or specified IRC server.
-
-See also: ADMIN, STATS
-

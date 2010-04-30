@@ -1,8 +1,6 @@
 #!/bin/bash
 
-test -r /sw/bin/init.sh && . /sw/bin/init.sh
-
-if [ ! -e configure ]; then
+if [ ! -e autogen.sh ]; then
   echo "Please run inside the irssi directory."
   exit 1
 fi
@@ -13,14 +11,16 @@ if [ "x$ACTION" == "xclean" ]; then
 fi
 
 if [ ! -e "$BUILD_ROOT"/irssi-build ]; then
-	mkdir -p "$BUILD_ROOT"/irssi-build
-	for i in `find * -print`; do
-		if [ -d $i ]; then
-			mkdir -p "$BUILD_ROOT/irssi-build/$i"
-		else
-			ln -s "`pwd`/$i" "$BUILD_ROOT/irssi-build/$i"
-		fi
-	done
+  mkdir -p "$BUILD_ROOT"/irssi-build
+  # link .git for irssi-version
+  ln -s "`pwd`/.git" "$BUILD_ROOT/irssi-build/.git"
+  for i in `find * -print`; do
+    if [ -d $i ]; then
+      mkdir -p "$BUILD_ROOT/irssi-build/$i"
+    else
+      ln -s "`pwd`/$i" "$BUILD_ROOT/irssi-build/$i"
+    fi
+  done
 fi
 
 # move to the real build directory
@@ -39,18 +39,24 @@ fi
 
 [ -e config.xcode ] && rm config.xcode
 
-make distclean
+export SHELL="/bin/bash"
+export CFLAGS="$CFLAGS -I$SRCROOT/Frameworks/MILibs/build/Release/include -DMACIRSSI_VERSION=\\\"$VERSION\\\""
+export LDFLAGS="$LDFLAGS -L$SRCROOT/Frameworks/MILibs/build/Release/lib"
+export PKG_CONFIG_PATH="$SRCROOT/Frameworks/MILibs/build/Release/lib/pkgconfig"
+export PATH="$SRCROOT/Frameworks/MILibs/build/pkg-config-build:$PATH"
 
-CFLAGS="$CFLAGS -I$SRCROOT/Frameworks/MILibs/build/Release/include -DMACIRSSI_VERSION=\\\"$VERSION\\\""
-LDFLAGS="$LDFLAGS -L$SRCROOT/Frameworks/MILibs/build/Release/lib"
-PKG_CONFIG_PATH="$SRCROOT/Frameworks/MILibs/build/Release/lib/pkgconfig"
-PATH="$PATH:$SRCROOT/Frameworks/MILibs/build/pkg-config-build"
-PKG_CONFIG_PATH=$PKG_CONFIG_PATH ./configure $@
+if [ ! -f ./configure ]; then
+  # set up autoconf so it has pkg.m4 around
+  cat "$SRCROOT/Frameworks/MILibs/build/pkg-config-build/pkg.m4" >> acinclude.m4 || exit 1
+  ./autogen.sh
+fi
+
+# yes I know I'm running configure twice (once in autogen). The first one is responsible for
+# generating us a libtool but fails to recognise that we can build perl as a module.
+./configure $@
 CONF_EXIT=$?
 
 if [ "$CONF_EXIT" -eq "0" ]; then
-  echo "warning: successful ./configure executed, cleaning irssi build tree."
-  make clean
   echo "$CONFIGURATION-$TARGET_NAME" > config.xcode
 fi
 exit $CONF_EXIT

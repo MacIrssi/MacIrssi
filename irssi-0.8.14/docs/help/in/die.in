@@ -1,7 +1,0 @@
-
-@SYNTAX:die@
-
-IRC operator command. Terminates the IRC server.
-
-See also: OPER
-

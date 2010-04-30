@@ -1,9 +1,0 @@
-
-@SYNTAX:format@
-
-   -reset
-   -delete
-
-Allows you to view/change irssi's messages.
-Use this command with care.
-
