@@ -1041,7 +1041,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [style setAlignment:NSCenterTextAlignment];
   [topicAttributes setObject:style forKey:NSParagraphStyleAttributeName];
   [topicAttributes setObject:[NSFont fontWithName:@"Monaco" size:9.0] forKey:NSFontAttributeName];
-  [topicTextField setStringValue:@"(no title)"];
+  [topicTextField setStringValue:@"(no topic)"];
 }
 
 
