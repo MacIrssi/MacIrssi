@@ -401,8 +401,6 @@ int irssi_main(int argc, char **argv)
   int majorVersion, minorVerson;
   majorVersion = (((systemVersion & 0xF000) >> 12) * 10) + ((systemVersion & 0x0F00) >> 8);
   minorVerson = ((systemVersion & 0x00F0) >> 4);
-  
-  signal_emit("command load", 1, "perl");
 
 	// Version Overwrite
   command_bind_first("version", NULL, (SIGNAL_FUNC)version_cmd_overwrite);
@@ -416,6 +414,10 @@ int irssi_main(int argc, char **argv)
   return 0;
 }
 
+// We need visibility default here, nothing links to macirssi_find_module directly,
+// because we load it using dlopen in the irssi code. So this forces the compiler/linker
+// not to remove/unexport the symbol.
+char* macirssi_find_module(char *module) __attribute__((visibility("default")));
 char* macirssi_find_module(char *module)
 {
 	// I'm taking a leap of faith here that the /System/Library/Perl/lib directory contains
