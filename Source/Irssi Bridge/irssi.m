@@ -459,5 +459,6 @@ char* macirssi_find_module(char *module)
 
 int irssi_exit()
 {
+  command_unbind("version", (SIGNAL_FUNC)version_cmd_overwrite);
   return 0;
 }
