@@ -188,7 +188,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     return;
   
   WINDOW_REC *rec = [currentChannelController windowRec];
-  CFStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
+  NSStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
   //[history addCommand:cmd];
   command_history_add(command_history_current(rec), [IrssiBridge irssiCStringWithString:cmd]);
   command_history_clear_pos(rec);
