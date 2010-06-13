@@ -449,6 +449,7 @@
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
 		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
 		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
+		C9B0FA0811C595F9009B09D5 /* lib_path_fix.sh in Resources */ = {isa = PBXBuildFile; fileRef = C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */; };
 		C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */; };
 		C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */; };
 		C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */; };
@@ -1673,6 +1674,7 @@
 		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
 		C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppcastVersionComparator.h; sourceTree = "<group>"; };
 		C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppcastVersionComparator.m; sourceTree = "<group>"; };
+		C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = lib_path_fix.sh; sourceTree = "<group>"; };
 		C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMenuAdditions.h; sourceTree = "<group>"; };
 		C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIMenuAdditions.m; sourceTree = "<group>"; };
 		C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
@@ -1805,6 +1807,7 @@
 			isa = PBXGroup;
 			children = (
 				24A981C3115313B5002B823B /* xcodeConfigure.sh */,
+				C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */,
 				32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -3153,6 +3156,7 @@
 				C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */,
 				C911228B0F2B2431006C4BD0 /* Tab new.xib in Resources */,
 				C98777080F74F67300591183 /* MacIrssi.pub in Resources */,
+				C9B0FA0811C595F9009B09D5 /* lib_path_fix.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3466,11 +3470,13 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/irssi-build/src/core\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/notifylist\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_13 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/build/irssi-build/src/irc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/build/irssi-build/src/irc/core\"";
@@ -3548,7 +3554,9 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/irssi-build/src/core\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/notifylist\"";
@@ -3627,7 +3635,9 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_12)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
 				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/irssi-build/src/core\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/dcc\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_11 = "\"$(SRCROOT)/build/irssi-build/src/fe-common/irc/notifylist\"";
