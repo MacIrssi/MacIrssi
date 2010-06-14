@@ -217,10 +217,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     {
       iTunes *it = [[[iTunes alloc] init] autorelease];
       NSString *nowPlaying;
-      
       if ([it isRunning] && [it isPlaying])
       {
-        nowPlaying = [NSString stringWithFormat:@"/me is listening to %@ by %@ from %@.", [it currentTitle], [it currentArtist], [it currentAlbum]];
+        NSString *albumText = @"";
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"showAlbumInSlashiTunes"]) {
+          albumText = [NSString stringWithFormat:@" from %@", [it currentAlbum]];
+        }
+        nowPlaying = [NSString stringWithFormat:@"/me is listening to %@ by %@%@.", [it currentTitle], [it currentArtist], albumText];
       }
       else if ([it isRunning] && ![it isPlaying])
       {
@@ -1628,6 +1631,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
                         [NSNumber numberWithBool:YES], @"channelInTitle",
                         [NSNumber numberWithBool:YES], @"homeEndGoesToTextView",
                         [NSNumber numberWithBool:YES], @"inputTextEntrySpellCheck",
+                        [NSNumber numberWithBool:YES], @"showAlbumInSlashiTunes",
                         nil];
     
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
