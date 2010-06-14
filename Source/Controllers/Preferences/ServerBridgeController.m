@@ -42,7 +42,11 @@
 
 - (void)setAddress:(NSString*)value
 {
-  rec->address = g_strdup([IrssiBridge irssiCStringWithString:value]);
+  if (value) {
+    rec->address = [IrssiBridge irssiCStringWithString:value];
+  } else {
+    rec->address = NULL;
+  }
   server_setup_add(rec);
 }
 
@@ -53,7 +57,11 @@
 
 - (void)setChatnet:(NSString*)value
 {
-  rec->chatnet = g_strdup([IrssiBridge irssiCStringWithString:value]);
+  if (value) {
+    rec->chatnet = [IrssiBridge irssiCStringWithString:value];
+  } else {
+    rec->chatnet = NULL;
+  }
   server_setup_add(rec);
 }
 

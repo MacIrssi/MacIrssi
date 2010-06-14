@@ -78,7 +78,11 @@
 
 - (void)setNick:(NSString*)value
 {
-  rec->nick = [IrssiBridge irssiCStringWithString:value];
+  if (value) {
+    rec->nick = [IrssiBridge irssiCStringWithString:value];
+  } else {
+    rec->nick = NULL;
+  }
   chatnet_create((CHATNET_REC*)rec);
 }
 
@@ -89,7 +93,11 @@
 
 - (void)setUsername:(NSString*)value
 {
-  rec->username = [IrssiBridge irssiCStringWithString:value];
+  if (value) {
+    rec->username = [IrssiBridge irssiCStringWithString:value];
+  } else {
+    rec->username = NULL;
+  }
   chatnet_create((CHATNET_REC*)rec);
 }
 
@@ -100,7 +108,11 @@
 
 - (void)setRealname:(NSString*)value
 {
-  rec->realname = [IrssiBridge irssiCStringWithString:value];
+  if (value) {
+    rec->realname = [IrssiBridge irssiCStringWithString:value];
+  } else {
+    rec->realname = NULL;
+  }
   chatnet_create((CHATNET_REC*)rec);
 }
 
@@ -111,7 +123,11 @@
 
 - (void)setAutoCommand:(NSString*)value
 {
-  rec->autosendcmd = [IrssiBridge irssiCStringWithString:value];
+  if (value) {
+    rec->autosendcmd = [IrssiBridge irssiCStringWithString:value];
+  } else {
+    rec->autosendcmd = NULL;
+  }
   chatnet_create((CHATNET_REC*)rec);
 }
 

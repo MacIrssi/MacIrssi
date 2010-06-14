@@ -42,7 +42,11 @@
 
 - (void)setName:(NSString*)value
 {
-  rec->name = g_strdup([IrssiBridge irssiCStringWithString:value]);
+  if (value) {
+    rec->name = [IrssiBridge irssiCStringWithString:value];
+  } else {
+    rec->name = NULL;
+  }
   channel_setup_create(rec);
 }
 
