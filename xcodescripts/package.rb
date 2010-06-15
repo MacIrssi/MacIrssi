@@ -54,13 +54,12 @@ Dir["#{ENV["BUILT_PRODUCTS_DIR"]}/*.app"].each do |app|
   apps << app
 end
 
-tmpRoot = "#{ENV["TEMP_DIR"]}/dmg"
-dmgRoot = "#{tmpRoot}/#{ENV["PROJECT"]}"
-dmgName = "#{ENV["PROJECT"]}-#{builtVersion}-#{ENV["CONFIGURATION"]}-#{Time.now.strftime('%d%m%y-%H%M')}-#{gitVersion}.dmg"
+dmgRoot = "#{ENV["TEMP_DIR"]}/dmg"
+dmgName = "#{ENV["PROJECT"]}-#{builtVersion}-#{ENV["CONFIGURATION"]}-#{Time.now.strftime('%d%m%y-%H%M')}-#{gitVersion}"
 
-if File.exists?(tmpRoot)
-  puts "Removing old DMG build root:\n\t#{tmpRoot}"
-  FileUtils.rm_r(tmpRoot)
+if File.exists?(dmgRoot)
+  puts "Removing old DMG build root:\n\t#{dmgRoot}"
+  FileUtils.rm_r(dmgRoot)
 end
 
 puts "Creating DMG build root:\n\t#{dmgRoot}"
@@ -69,16 +68,29 @@ unless FileUtils.mkdir_p(dmgRoot).length > 0
   exit 1
 end
 
-puts "Copying applications into DMG build root."
+templateDmg = "#{ENV["PROJECT_DIR"]}/#{ENV["PROJECT"]}-Template.sparseimage"
+sparseDmgName = "#{dmgRoot}/#{dmgName}.sparseimage"
+puts "Copying template DMG into build root.\n\t#{templateDmg} -> #{sparseDmgName}"
+FileUtils.cp_r(templateDmg, sparseDmgName)
+
+puts "Mounting new template:\n\t#{sparseDmgName}"
+res = `hdiutil mount #{sparseDmgName}`
+unless /Apple_HFS\s+(.*)/.match(res)
+  puts "error: Unable to determine mount point for new sparse image."
+  exit 1
+end
+mountLocation = $~[1]
+
+puts "Copying applications into DMG image."
 apps.each do |app|
-  puts "\t#{app}"
-  FileUtils.cp_r(app, dmgRoot)
+  puts "\t#{app} -> #{mountLocation}"
+  FileUtils.cp_r(app, mountLocation)
 end
 
-puts "Building DMG.\n\t#{dmgName}"
-res = `hdiutil create -ov -srcfolder "#{dmgRoot}" "#{dmgRoot}/#{dmgName}"`
+puts "Ejecting image.\n\t#{sparseDmgName}"
+res = `hdiutil eject #{mountLocation}`
 unless $? == 0
-  puts "error: hdiutil exited with non-zero status. #{res}."
+  puts "error: Unable to eject image #{sparseDmgName} at mount point #{mountLocation}. Exiting."
   exit 1
 end
 
@@ -89,7 +101,10 @@ Dir["#{ENV["BUILT_PRODUCTS_DIR"]}/*.dmg"].each do |stale|
     puts "warning: Could not remove #{stale}"
   end
 end
-  
-puts "Moving DMG to build products."
-puts "\t#{dmgName} -> #{ENV["BUILT_PRODUCTS_DIR"]}"
-FileUtils.mv("#{dmgRoot}/#{dmgName}", ENV["BUILT_PRODUCTS_DIR"])
+   
+puts "Converting sparse image template into DMG.\n\t#{sparseDmgName} -> #{ENV["BUILT_PRODUCTS_DIR"]}/#{dmgName}.dmg"
+res = `hdiutil convert #{sparseDmgName} -format UDBZ -o "#{ENV["BUILT_PRODUCTS_DIR"]}/#{dmgName}.dmg"`
+unless $? == 0
+  puts "error: Problem creating final DMG archive. #{res}"
+  exit 1
+end
