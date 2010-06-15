@@ -1,9 +1,0 @@
-
-REHASH
-
-IRC Operator command.
-
-This command is used to force the current server to reload it's ircd.conf configuration file. This is useful for effecting configuration changes without starting a new server.
-
-See also: OPER, RESTART
-

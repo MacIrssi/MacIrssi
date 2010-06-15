@@ -435,7 +435,6 @@
 		C947E1DC0E1E871F0001380E /* EventController.h in Headers */ = {isa = PBXBuildFile; fileRef = C947E1DA0E1E871F0001380E /* EventController.h */; };
 		C947E1DD0E1E871F0001380E /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947E1DB0E1E871F0001380E /* EventController.m */; };
 		C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = C9550D140E29A97400658372 /* MacIrssi-Alert.png */; };
-		C9553A9F0E24C17200626859 /* activityNewImportant.png in Resources */ = {isa = PBXBuildFile; fileRef = C9553A9E0E24C17200626859 /* activityNewImportant.png */; };
 		C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */; };
 		C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */; };
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
@@ -457,6 +456,7 @@
 		C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */; };
 		C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */; };
 		C9C2829011C747CD00914872 /* package.rb in Resources */ = {isa = PBXBuildFile; fileRef = C9C2828F11C747CD00914872 /* package.rb */; };
+		C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C2834C11C75F6100914872 /* activityNewImportant.png */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBAB110EA0A7D200025466 /* Networks.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAB100EA0A7D200025466 /* Networks.png */; };
@@ -1659,8 +1659,7 @@
 		C9432C240EA1673E005237E3 /* ChannelBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelBridgeController.m; sourceTree = "<group>"; };
 		C947E1DA0E1E871F0001380E /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventController.h; path = Controllers/EventController.h; sourceTree = "<group>"; };
 		C947E1DB0E1E871F0001380E /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventController.m; path = Controllers/EventController.m; sourceTree = "<group>"; };
-		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MacIrssi-Alert.png"; path = "../MacIrssi-Alert.png"; sourceTree = "<group>"; };
-		C9553A9E0E24C17200626859 /* activityNewImportant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityNewImportant.png; sourceTree = "<group>"; };
+		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MacIrssi-Alert.png"; sourceTree = "<group>"; };
 		C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectivityMonitor.h; sourceTree = "<group>"; };
 		C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectivityMonitor.m; sourceTree = "<group>"; };
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
@@ -1683,6 +1682,7 @@
 		C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIUnresponsiveButton.h; sourceTree = "<group>"; };
 		C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIUnresponsiveButton.m; sourceTree = "<group>"; };
 		C9C2828F11C747CD00914872 /* package.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = package.rb; sourceTree = "<group>"; };
+		C9C2834C11C75F6100914872 /* activityNewImportant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityNewImportant.png; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBAB100EA0A7D200025466 /* Networks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Networks.png; sourceTree = "<group>"; };
@@ -1821,8 +1821,6 @@
 				C97A36C10E5DCAD4007D1191 /* Images */,
 				C922B3D90E23BAE6000AA7BE /* Sounds */,
 				C232FA6E08C8978D000C624E /* Themes */,
-				C922B4300E23BD34000AA7BE /* sound.png */,
-				C9553A9E0E24C17200626859 /* activityNewImportant.png */,
 				C98777070F74F67300591183 /* MacIrssi.pub */,
 				C910265B0E5C654800E041F7 /* UKCrashReporter.strings */,
 				C91F15300F110AFC00763699 /* ShortcutRecorder.strings */,
@@ -2936,6 +2934,8 @@
 				C9EBACE40EA1055F00025466 /* Servers.png */,
 				C91F131D0F0A63F300763699 /* Themes.png */,
 				C91F13D30F0BE95F00763699 /* Keyboard.png */,
+				C922B4300E23BD34000AA7BE /* sound.png */,
+				C9C2834C11C75F6100914872 /* activityNewImportant.png */,
 				C9EBAC150EA0BCEC00025466 /* addSquareWidgetPressed.png */,
 				C9EBAC160EA0BCEC00025466 /* addSquareWidget.png */,
 				C9EBAC110EA0BCE000025466 /* deleteWidgetPressed.png */,
@@ -3143,7 +3143,6 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				C26FC9BD08C4E56300CFD1B3 /* MacIrssi.icns in Resources */,
 				C922B4310E23BD34000AA7BE /* sound.png in Resources */,
-				C9553A9F0E24C17200626859 /* activityNewImportant.png in Resources */,
 				C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */,
 				C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */,
 				C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */,
@@ -3169,6 +3168,7 @@
 				C98777080F74F67300591183 /* MacIrssi.pub in Resources */,
 				C9B0FA0811C595F9009B09D5 /* lib_path_fix.sh in Resources */,
 				C9C2829011C747CD00914872 /* package.rb in Resources */,
+				C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
