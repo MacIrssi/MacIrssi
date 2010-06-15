@@ -5,7 +5,7 @@
 use strict;
  
 # Get the current git commit hash and use it to set the CFBundleVersion value
-my $REV = `git show-ref --hash --abbrev --head HEAD`;
+my $REV = `git show-ref --hash --abbrev --head HEAD | head -1`;
 my $INFO = "$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist";
  
 my $version = $REV;
