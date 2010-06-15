@@ -456,6 +456,7 @@
 		C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */; };
 		C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */; };
 		C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */; };
+		C9C2829011C747CD00914872 /* package.rb in Resources */ = {isa = PBXBuildFile; fileRef = C9C2828F11C747CD00914872 /* package.rb */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBAB110EA0A7D200025466 /* Networks.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAB100EA0A7D200025466 /* Networks.png */; };
@@ -1681,6 +1682,7 @@
 		C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIUnresponsiveButton.h; sourceTree = "<group>"; };
 		C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIUnresponsiveButton.m; sourceTree = "<group>"; };
+		C9C2828F11C747CD00914872 /* package.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = package.rb; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBAB100EA0A7D200025466 /* Networks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Networks.png; sourceTree = "<group>"; };
@@ -1806,8 +1808,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				24A981C3115313B5002B823B /* xcodeConfigure.sh */,
-				C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */,
+				C9C2828B11C746BB00914872 /* xcodescripts */,
 				32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -2947,6 +2948,16 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		C9C2828B11C746BB00914872 /* xcodescripts */ = {
+			isa = PBXGroup;
+			children = (
+				24A981C3115313B5002B823B /* xcodeConfigure.sh */,
+				C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */,
+				C9C2828F11C747CD00914872 /* package.rb */,
+			);
+			path = xcodescripts;
+			sourceTree = "<group>";
+		};
 		C9EBAB650EA0AF3000025466 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -3055,7 +3066,7 @@
 			buildConfigurationList = C98F77960E36501500CF2AAF /* Build configuration list for PBXLegacyTarget "Irssi Configure" */;
 			buildPhases = (
 			);
-			buildToolPath = ../xcodeConfigure.sh;
+			buildToolPath = ../xcodescripts/xcodeConfigure.sh;
 			buildWorkingDirectory = irssi/;
 			dependencies = (
 			);
@@ -3157,6 +3168,7 @@
 				C911228B0F2B2431006C4BD0 /* Tab new.xib in Resources */,
 				C98777080F74F67300591183 /* MacIrssi.pub in Resources */,
 				C9B0FA0811C595F9009B09D5 /* lib_path_fix.sh in Resources */,
+				C9C2829011C747CD00914872 /* package.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3175,7 +3187,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ./lib_path_fix.sh;
+			shellScript = ./xcodescripts/lib_path_fix.sh;
 		};
 		C91025090E59C2A200E041F7 /* Copy Perl modules */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3189,7 +3201,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# copies perl libraries\n\nPERLPATH=\"build/irssi-build/src/perl\"\nSUBDIRS=\"common textui ui irc\"\n\nfor s in $SUBDIRS; do\n\tif [ -d $PERLPATH/$s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/lib/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nfor s in $SUBDIRS; do\n\tif [ -d $PERLPATH/$s ]; then\n\t\tSRCPATH=\"$PROJECT_DIR/$PERLPATH/$s/blib/arch/\"\n\t\tDSTPATH=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Scripts/\"\n\t\tmkdir -p \"$DSTPATH\"\n\t\ttar -zcpC \"$SRCPATH\" . | tar -zxC \"$DSTPATH\"\n\tfi\ndone\n\nexit 0";
+			shellScript = ./xcodescripts/libPerlCopy.sh;
 		};
 		C913404D118A9D690001F09D /* Compile Perl modules */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3203,7 +3215,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PERLLIB=\"/System/Library/Perl\"\n\n# enumerate over each directory in this directory, if they subsequently have a \n# darwin-thread-multi-2level/CORE/libperl.dylib file then build a copy of the\n# perl libraries against them and copy them to the app bundle\n\n# obtained by running perl -MExtUtils::Embed -e ldopts\nGLIB_LDFLAGS=\"-L$SRCROOT/Frameworks/MILibs/build/Release/lib -lgmodule-2.0 -lglib-2.0 -lintl -liconv -lssl -lcrypto\"\nLDFLAGS=\"-Wl,-undefined,dynamic_lookup -arch i386 -arch ppc -fstack-protector -lperl -dl -lm -lutil -lc\"\n\nDSTROOT=\"$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Perl\"\n[ ! -d $DSTROOT ] && mkdir -p $DSTROOT\n\nP=\"$BUILD_ROOT/irssi-build/src/perl/.libs/\"\nPERL_CORE=\"$P/perl-core.o $P/perl-common.o $P/perl-signals.o $P/perl-sources.o\"\nFE_PERL=\"$P/module-formats.o $P/perl-fe.o\"\n\n# right, iterate the libs\nfor lib in $PERLLIB/*; do\n\tV=`basename $lib`\n\t[[ $V == \"5.8.1\" ]] && continue\n\n\tif [ -e $lib/darwin-thread-multi-2level/CORE/libperl.dylib ]; then\n\t\tgcc-4.0 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libperl_core.$V.dylib $PERL_CORE\n\t\tgcc-4.0 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libfe_perl.$V.dylib $FE_PERL\n\tfi\ndone\n";
+			shellScript = ./xcodescripts/libPerlBuild.sh;
 		};
 		C9EC9EE30E36386C00445345 /* Update Git version */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3216,8 +3228,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/perl;
-			shellScript = "# Xcode auto-versioning script for Subversion by Axel Andersson\n# Updated for git by Marcus S. Zarra and Matt Long\n \nuse strict;\n \n# Get the current git commit hash and use it to set the CFBundleVersion value\nmy $REV = `git show-ref --hash --abbrev --head HEAD`;\nmy $INFO = \"$ENV{BUILT_PRODUCTS_DIR}/$ENV{WRAPPER_NAME}/Contents/Info.plist\";\n \nmy $version = $REV;\ndie \"$0: No Git revision found\" unless $version;\n \nchomp($version);\n\nopen(FH, \"$INFO\") or die \"$0: $INFO: $!\";\nmy $info = join(\"\", <FH>);\nclose(FH);\n \n$info =~ s/([\\t ]+<key>NSGitRevision<\\/key>\\n[\\t ]+<string>).*?(<\\/string>)/$1$version$2/;\n \nopen(FH, \">$INFO\") or die \"$0: $INFO: $!\";\nprint FH $info;\nclose(FH);";
+			shellPath = /bin/sh;
+			shellScript = ./xcodescripts/updateGitVersion.sh;
 		};
 		C9EC9F250E363AEB00445345 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3230,7 +3242,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "set -x\n\nVERSION=`pl < $PRODUCT_SETTINGS_PATH | perl -ne 'while (<STDIN>) { print $1 if ($_ =~ /CFBundleVersion\\s+=\\s+\"(.*?)\"/); }'`\nDATE=`date \"+%d%m%y-%H%M\"`\n\nDMG_NAME=\"$PROJECT-$VERSION-$CONFIGURATION-$DATE.dmg\"\nAPP_NAME=\"MacIrssi.app\"\n\nfunction git_clean() {\n  git status | fgrep 'working directory clean' 2>&1 > /dev/null\n  if [ $? -eq 1 ]; then\n    git status | fgrep 'but untracked files present' 2>&1 > /dev/null\n  fi\n}\n\ngit_clean\nif [[ $? != 0 ]]; then\n\techo \"error: git repository is not clean\"\n\texit 1\nfi\n\nmkdir -p \"$TEMP_DIR/dmg\"\n\nfor app in $BUILD_ROOT/*/MacIrssi.app; do\n\tDIR=`dirname \"$app\"`\n\n\tCOMPILED_GIT_VERSION=`pl < \"$app/Contents/Info.plist\" | perl -ne 'while (<STDIN>) { print $1 if /NSGitRevision\\s+=\\s+(.*?);/ }'`\n\n\tREAL_GIT_VERSION=`git show-ref --hash --abbrev --head HEAD`\n\n\tif [ \"x$COMPILED_GIT_VERSION\" != \"x$REAL_GIT_VERSION\" ]; then\n\t\techo \"error: binary was built with revision $COMPILED_GIT_VERSION but repository is at $REAL_GIT_VERSION\"\n\t\texit 1\n\tfi\n\n\techo \"Packaging $app...\"\n\tcd \"$TEMP_DIR/dmg\"\n\t\n\techo \"Making DMG build dir ($DMG_NAME)...\"\n\trm -rf \"$PROJECT\"\n\tmkdir \"$PROJECT\"\n\t\n\techo \"Copying Product...\"\n\tcp -Rf \"$app\" \"$PROJECT/$APP_NAME\"\n\t\n\techo \"Creating DMG...\"\n\thdiutil create -ov -srcfolder \"$PROJECT\" \"$DMG_NAME\"\n\t\n\techo \"Removing old dmgs from products dir...\"\n\trm -f \"$DIR\"/*.dmg\n\t\n\techo \"Moving to products dir...\"\n\tmv -f \"$DMG_NAME\" \"$DIR\"\ndone\n\nexit 0";
+			shellScript = ./xcodescripts/package.rb;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3429,8 +3441,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
-				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
@@ -3515,8 +3525,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
-				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -3598,8 +3606,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
-				CONFIGURATION_TEMP_DIR = "$(PROJECT_TEMP_DIR)/$(CONFIGURATION)-$(TARGET_NAME)$(EFFECTIVE_PLATFORM_NAME)";
 				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"/**";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
