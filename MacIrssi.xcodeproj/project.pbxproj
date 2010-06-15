@@ -884,9 +884,6 @@
 		B3241ACA06286AF7000B4624 /* NSAttributedStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSAttributedStringAdditions.m; sourceTree = "<group>"; };
 		B3241ACB06286AF7000B4624 /* NSAttributedStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSAttributedStringAdditions.h; sourceTree = "<group>"; };
 		B32A9E5F05F0B14800DB2595 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		B32A9E6105F0B18C00DB2595 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = Docs/README; sourceTree = "<group>"; };
-		B32A9E6305F0C69800DB2595 /* HISTORY */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = HISTORY; sourceTree = SOURCE_ROOT; };
-		B32A9E6405F0C69800DB2595 /* TODO */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = TODO; path = Docs/TODO; sourceTree = "<group>"; };
 		B3D0B8A405F637DB0067FD52 /* IrssiBridge.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IrssiBridge.h; sourceTree = "<group>"; };
 		B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IrssiBridge.m; sourceTree = "<group>"; };
 		C200D025073FC03700B850B1 /* ChannelBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelBarCell.h; sourceTree = "<group>"; };
@@ -1018,11 +1015,9 @@
 		C232FAE908C8978D000C624E /* xmas.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = xmas.theme; path = Themes/xmas.theme; sourceTree = SOURCE_ROOT; };
 		C232FAEA08C8978D000C624E /* zhafte.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = zhafte.theme; path = Themes/zhafte.theme; sourceTree = SOURCE_ROOT; };
 		C232FAEB08C8978D000C624E /* zng.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = zng.theme; path = Themes/zng.theme; sourceTree = SOURCE_ROOT; };
-		C240EC5908D19DF3002EE99A /* Files containing version number */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Files containing version number"; path = "Docs/Files containing version number"; sourceTree = "<group>"; };
 		C25491760681A35900C43D63 /* CustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextView.h; sourceTree = "<group>"; };
 		C25491770681A35900C43D63 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
 		C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacIrssi.icns; path = ../MacIrssi.icns; sourceTree = "<group>"; };
-		C273D9480757EC7E0032A7B8 /* MemoryCheck */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MemoryCheck; path = Docs/MemoryCheck; sourceTree = "<group>"; };
 		C2A5697908D0D74100788905 /* TextEncodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEncodings.h; sourceTree = "<group>"; };
 		C2A5697A08D0D74100788905 /* TextEncodings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEncodings.m; sourceTree = "<group>"; };
 		C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Growl-WithInstaller.framework"; sourceTree = "<group>"; };
@@ -1665,7 +1660,6 @@
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		C97A36D00E5DCB0F007D1191 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
 		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
-		C97F84721049BFB400B5ECC6 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		C9854DCB10D035B5004163C1 /* MIResizingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIResizingTextView.h; sourceTree = "<group>"; };
 		C9854DCC10D035B5004163C1 /* MIResizingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIResizingTextView.m; sourceTree = "<group>"; };
 		C98777070F74F67300591183 /* MacIrssi.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacIrssi.pub; sourceTree = "<group>"; };
@@ -1795,12 +1789,6 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				C913412A118AB3E50001F09D /* irssi */,
 				B32A9E5F05F0B14800DB2595 /* COPYING */,
-				B32A9E6105F0B18C00DB2595 /* README */,
-				B32A9E6305F0C69800DB2595 /* HISTORY */,
-				B32A9E6405F0C69800DB2595 /* TODO */,
-				C273D9480757EC7E0032A7B8 /* MemoryCheck */,
-				C240EC5908D19DF3002EE99A /* Files containing version number */,
-				C97F84721049BFB400B5ECC6 /* Unit Tests-Info.plist */,
 			);
 			name = MacIrssi;
 			sourceTree = "<group>";
