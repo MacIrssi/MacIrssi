@@ -90,6 +90,27 @@
   return [(NSString *)CFStringCreateWithCStringNoCopy(NULL, string, encoding, kCFAllocatorNull) autorelease];
 }
 
+NSInteger channelSortFunction(ChannelController *a, ChannelController *b, void *context) {
+  if ([a windowRec]->refnum == [b windowRec]->refnum) {
+    return NSOrderedSame;
+  }
+  return [a windowRec]->refnum > [b windowRec]->refnum;
+}
+
++ (NSArray*)channels
+{
+  NSMutableArray *array = [NSMutableArray array];
+  GSList *tmp, *list;
+  
+  list = NULL;
+	for (tmp = windows; tmp != NULL; tmp = tmp->next) {
+		WINDOW_REC *rec = tmp->data;
+    [array addObject:(id)rec->gui_data];
+  }
+  [array sortUsingFunction:channelSortFunction context:NULL];
+  return array;
+}
+
 @end
 
 /****************************************************************

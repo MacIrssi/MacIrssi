@@ -94,6 +94,8 @@ extern char **argv;
 	NSImage *currentIcon;
 	int hilightChannels;
 	NSString **shortcutCommands;
+  
+  NSMutableArray *windowsMenuItems;
 	
 	GSList *sleepList;
   BOOL isRestartingForUpdate;
@@ -120,7 +122,6 @@ extern char **argv;
 - (IBAction)nextChannel:(id)sender;
 - (IBAction)activeChannel:(id)sender;
 - (IBAction)previousChannel:(id)sender;
-- (IBAction)gotoChannel:(id)sender;
 - (IBAction)endReasonWindow:(id)sender;
 - (IBAction)endErrorWindow:(id)sender;
 - (IBAction)showFontPanel:(id)sender;
@@ -145,6 +146,8 @@ extern char **argv;
 - (void)updateServerMenu;
 - (NSMenu*)buildActiveServersMenu;
 - (NSMenu*)buildInactiveServersMenu;
+
+- (void)buildWindowsMenu;
 
 - (void)highlightChanged:(WINDOW_REC *)wind;
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old;

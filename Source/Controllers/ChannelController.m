@@ -429,6 +429,11 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   }
 }
 
+- (IBAction)makeChannelKey:(id)sender
+{
+  NSString *cmd = [NSString stringWithFormat:@"/window %d", windowRec->refnum];
+  signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
+}
 
 #pragma mark Indirect receivers of irssi signals
 //-------------------------------------------------------------------

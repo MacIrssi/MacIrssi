@@ -128,23 +128,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [[NSFontManager sharedFontManager] setSelectedFont:channelFont isMultiple:FALSE];
 }
 
-
-//-------------------------------------------------------------------
-// gotoChannel:
-// Called when user selects channel in channel menu. Makes that
-// channel active
-//
-// "sender" - The menu item selected
-//-------------------------------------------------------------------
-- (IBAction)gotoChannel:(id)sender
-{
-  WINDOW_REC *tmp = [currentChannelController windowRec];
-  int index = [channelMenu indexOfItem:sender] - 7;
-  NSString *cmd = [NSString stringWithFormat:@"/window %d", index];
-  signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], tmp->active_server, tmp->active);
-}
-
-
 //-------------------------------------------------------------------
 // activeChannel:
 // Goes to the channel with the highest activity (data level).
@@ -382,13 +365,12 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (IBAction)debugAction1:(id)sender
 {
-//  [[ConnectivityMonitor sharedMonitor] workspaceWillSleep:nil];
-  g_log("moo", G_LOG_LEVEL_WARNING, "moo");
+  [self buildWindowsMenu];
 }
 
 - (IBAction)debugAction2:(id)sender
 {
-  [[ConnectivityMonitor sharedMonitor] workspaceDidWake:nil];
+
 }
 
 #pragma mark Shortcuts
@@ -568,9 +550,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (void)setServer:(NSString *)serverName
 {
   NSString *tmp = [NSString stringWithFormat:@"Console [%@]", serverName];
-  [[channelMenu itemAtIndex:8] setTitle:tmp];
   ChannelController *c = (ChannelController *)[[tabView tabViewItemAtIndex:0] identifier];
   [c setName:tmp];
+  
+  [self buildWindowsMenu];
   [channelTableView reloadData];
   [channelBar setNeedsDisplay:TRUE];
 }
@@ -615,20 +598,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabViewItem setView:[owner view]];
   [tabView addTabViewItem:tabViewItem];
   [channelBar addChannel:wind];
-  
-  /* Update up channel menu */
-  int channelCount = [tabView numberOfTabViewItems];
-  NSMenuItem *newMenuItem = [[NSMenuItem alloc] initWithTitle:label action:@selector(gotoChannel:) keyEquivalent:@""];
 
-  if (channelCount <= 10)
-  {
-    [newMenuItem setKeyEquivalent:[[NSNumber numberWithInt:(channelCount % 10)] stringValue]];
-    [newMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
-  }
-  
-  [newMenuItem setTarget:self];
-  [channelMenu addItem:newMenuItem];
-  [newMenuItem release];
+  [self buildWindowsMenu];
+
   [owner release];
   [tabViewItem release];
   [channelTableView reloadData];
@@ -721,13 +693,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)windowNameChanged:(WINDOW_REC*)wind
 {
-  ChannelController *controller = (ChannelController*)wind->gui_data;
-  int index = [tabView indexOfTabViewItem:[controller tabViewItem]];
-  
+  ChannelController *controller = (ChannelController*)wind->gui_data;  
   NSString *newName = wind->name ? [IrssiBridge stringWithIrssiCString:wind->name] : @"";
   [controller setName:newName];
   
-  [[channelMenu itemAtIndex:index+8] setTitle:[controller name]];
+  [self buildWindowsMenu];
   [channelTableView reloadData];
   [channelBar setNeedsDisplay:TRUE];
   
@@ -747,12 +717,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   NSTabViewItem *tmp = [(ChannelController *)(wind->gui_data) tabViewItem];
   
-  /* Fix channel menu */
-  int i, index = [tabView indexOfTabViewItem:tmp] + 8;
-  [channelMenu removeItemAtIndex:index];
-  for (i = index; i < 10+7 && i < [channelMenu numberOfItems]; i++)
-    [[channelMenu itemAtIndex:i] setKeyEquivalent:[[NSNumber numberWithInt:i-7] stringValue]];
-  
+  [self buildWindowsMenu];
   
   [channelBar removeChannel:wind];
   [tabView removeTabViewItem:tmp];
@@ -784,12 +749,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)channelJoined:(WINDOW_REC *)rec
 {
-  NSTabViewItem *tmp = [(ChannelController *)(rec->gui_data) tabViewItem];
-  int index = [tabView indexOfTabViewItem:tmp];
-  
-  NSString *channelName = [(ChannelController *)(rec->gui_data) name];
-  
-  [[channelMenu itemAtIndex:index+8] setTitle:channelName];
+  [self buildWindowsMenu];
   [channelTableView reloadData];
   [channelBar setNeedsDisplay:TRUE];
   
@@ -798,6 +758,43 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [mainWindow setTitle:titleString];  
 }
 
+#pragma mark Window Menu
+
+- (void)buildWindowsMenu
+{
+  NSMenu *windowMenu = [NSApp windowsMenu];
+  for (NSMenuItem *item in windowsMenuItems) {
+    [windowMenu removeItem:item];
+  }
+  [windowsMenuItems removeAllObjects];
+  
+  NSMenuItem *sep = [NSMenuItem separatorItem];
+  [windowsMenuItems addObject:sep];
+  [windowMenu addItem:sep];
+  
+  NSArray *channels = [IrssiBridge channels];
+  if ([channels count] > 0) {
+    NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:@"Channels" action:nil keyEquivalent:@""] autorelease];
+    [windowsMenuItems addObject:item];
+    [windowMenu addItem:item];
+  }
+   
+  for (ChannelController *channel in channels) {
+    NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[channel name] target:channel action:@selector(makeChannelKey:) keyEquivalent:@""] autorelease];
+    if ([channels count] > 0) {
+      [item setIndentationLevel:1];
+    }
+    
+    if ([channel windowRec]->refnum < 10) {
+      [item setKeyEquivalent:[NSString stringWithFormat:@"%d", [channel windowRec]->refnum]];
+    } else if ([channel windowRec]->refnum == 10) {
+      [item setKeyEquivalent:@"0"];
+    }
+    
+    [windowsMenuItems addObject:item];
+    [windowMenu addItem:item];
+  }
+}
 
 #pragma mark Public methods
 /**
@@ -904,8 +901,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   // We'll do the shortcuts here now instead. We've got several choices that the user can pick for their,
   // left/right keystrokes. So lets set it up.
-  NSMenuItem *previousMenuItem = [channelMenu itemWithTitle:@"Previous"];
-  NSMenuItem *nextMenuItem = [channelMenu itemWithTitle:@"Next"];
+  NSMenuItem *previousMenuItem = [[NSApp windowsMenu] itemWithTitle:@"Previous Chat Room"];
+  NSMenuItem *nextMenuItem = [[NSApp windowsMenu] itemWithTitle:@"Next Chat Room"];
   
   switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"tabShortcuts"])
   {
@@ -1704,6 +1701,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   /* Sleep registration */
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceWillSleep:) name:NSWorkspaceWillSleepNotification object:[NSWorkspace sharedWorkspace]];
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:[NSWorkspace sharedWorkspace]];
+  
+  /* Window menu management */
+  windowsMenuItems = [[NSMutableArray alloc] init];
+  [mainWindow setExcludedFromWindowsMenu:YES];
   
   /* Init theme dirs */
   const char *tmp;

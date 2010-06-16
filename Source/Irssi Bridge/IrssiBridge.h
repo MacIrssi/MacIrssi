@@ -36,6 +36,7 @@
 #include "settings.h"
 #include "session.h"
 #include "servers.h"
+#include "channels.h"
 #include "queries.h"
 #include "window-items.h"
 #include "irc-servers-setup.h"
@@ -53,6 +54,8 @@
 + (NSString *)stringWithIrssiCString:(char *)string;
 + (NSString *)stringWithIrssiCStringNoCopy:(char *)string;
 + (NSString *)stringWithIrssiCStringNoCopy:(char *)string encoding:(CFStringEncoding)encoding;
+
++ (NSArray*)channels;
 @end
 
 void irssibridge_channel_mode_changed(CHANNEL_REC *channel, char *setby);

@@ -71,6 +71,7 @@ enum nickContextMenuTags {
   
   NSMutableArray *nicks; /* list of nicks */
   NICK_REC *ownnick; /* our own nick */
+  WINDOW_REC *windowRec;
   CHANNEL_REC *channel;
   
   BOOL no_modes; /* channel doesn't support modes */
@@ -131,7 +132,6 @@ enum nickContextMenuTags {
   NSMutableDictionary *textAttributes;
   NSMutableDictionary *topicAttributes;
   NSMutableDictionary *nickAttributes;
-  WINDOW_REC *windowRec;
   BOOL modeChanged;
   NSFont *channelFont;
   NSFont *nickListFont;
@@ -207,6 +207,7 @@ enum nickContextMenuTags {
 - (NSAttributedString *)parseTopic:(char *)str;
 
 /* GUI actions */
+- (IBAction)makeChannelKey:(id)sender;
 - (IBAction)raiseTopicWindow:(id)sender;
 - (IBAction)endTopicWindow:(id)sender;
 - (IBAction)endReasonWindow:(id)sender;
