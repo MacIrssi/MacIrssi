@@ -262,17 +262,21 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //
 // "sender" - A menu item
 //-------------------------------------------------------------------
-- (IBAction)closeChannel:(id)sender
+- (IBAction)performCloseChannel:(id)sender
 {
-  if (![mainWindow isKeyWindow])
-  {
-    // Probably the preference window, redirect the command there instead.
-    [[NSApp keyWindow] close];
+  if (![mainWindow isKeyWindow]) {
+    [[NSApp keyWindow] performClose:sender];
     return;
   }
   
-  WINDOW_REC *tmp = [currentChannelController windowRec];
-  signal_emit("command window close", 3, "", tmp->active_server, tmp->active);
+  if ([[IrssiBridge channels] count] == 1) {
+    // Last window, actually we want to perform a window close
+    [mainWindow performClose:sender];
+    return;
+  }
+  
+  WINDOW_REC *rec = [currentChannelController windowRec];
+  signal_emit("command window close", 3, "", rec->active_server, rec->active);
 }
 
 //-------------------------------------------------------------------
@@ -791,6 +795,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       [item setKeyEquivalent:@"0"];
     }
     
+    if ([channel isEqual:currentChannelController]) {
+      [item setState:YES];
+    }
+    
     [windowsMenuItems addObject:item];
     [windowMenu addItem:item];
   }
@@ -1238,17 +1246,17 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 #pragma mark Delegate & notification receiver methods
 
-/**
- * Makes sure the "Edit Current Channel" menu item only is enabled
- * for actual irc channels.
- */
-- (BOOL)validateMenuItem:(NSMenuItem*)item
+- (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)anItem
 {
-  if (item == editCurrentChannelMenuItem)
+  if ([anItem action] == @selector(editCurrentChannel:)) {
     return [currentChannelController isChannel];
-  if (item == findNextMenuItem || item == findPreviousMenuItem)
+  }
+  if (([anItem action] == @selector(findNext:)) || ([anItem action] == @selector(findPrevious:))) {
     return [currentChannelController hasActiveSearch];
-  
+  }
+  if ([anItem action] == @selector(performCloseChannel:)) {
+    return !([currentChannelController windowRec]->immortal);
+  }
   return YES;
 }
 

@@ -66,9 +66,6 @@ extern char **argv;
 	IBOutlet NSMenu *channelMenu;
 	IBOutlet NSMenu *shortcutsMenu;
   IBOutlet NSMenu *serversMenu;
-	IBOutlet NSMenuItem *editCurrentChannelMenuItem;
-	IBOutlet NSMenuItem *findNextMenuItem;
-	IBOutlet NSMenuItem *findPreviousMenuItem;
 	IBOutlet NSWindow *reasonWindow;
 	IBOutlet NSTextField *reasonTextField;
 	IBOutlet NSWindow *errorWindow;
@@ -114,11 +111,12 @@ extern char **argv;
 
 - (void)irssiQuit;
 
+- (IBAction)performCloseChannel:(id)sender;
+
 - (IBAction)findNext:(id)sender;
 - (IBAction)findPrevious:(id)sender;
 - (IBAction)useSelectionForFind:(id)sender;
 - (IBAction)sendCommand:(id)sender;
-- (IBAction)closeChannel:(id)sender;
 - (IBAction)nextChannel:(id)sender;
 - (IBAction)activeChannel:(id)sender;
 - (IBAction)previousChannel:(id)sender;
