@@ -63,7 +63,10 @@ extern char **argv;
   IBOutlet NSBox *inputTextFieldBox;
 	IBOutlet MIResizingTextView *inputTextField;
   
-	IBOutlet NSMenu *channelMenu;
+	IBOutlet NSMenuItem *_closeChannelItem;
+  IBOutlet NSMenuItem *_closeWindowItem;
+  
+  IBOutlet NSMenu *channelMenu;
 	IBOutlet NSMenu *shortcutsMenu;
   IBOutlet NSMenu *serversMenu;
 	IBOutlet NSWindow *reasonWindow;

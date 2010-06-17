@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">11A197</string>
+		<string key="IBDocument.SystemVersion">11A194a</string>
 		<string key="IBDocument.InterfaceBuilderVersion">787</string>
 		<string key="IBDocument.AppKitVersion">1079</string>
 		<string key="IBDocument.HIToolboxVersion">502.00</string>
@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="824"/>
 			<integer value="758"/>
+			<integer value="516"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -614,7 +614,7 @@
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSMenuItem" id="125721277">
 									<reference key="NSMenu" ref="756469523"/>
-									<string key="NSTitle">Join Chat Room...</string>
+									<string key="NSTitle">Join Channel…</string>
 									<string key="NSKeyEquiv">n</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -633,7 +633,7 @@
 								</object>
 								<object class="NSMenuItem" id="415903577">
 									<reference key="NSMenu" ref="756469523"/>
-									<string key="NSTitle">Leave Room</string>
+									<string key="NSTitle">Leave Channel</string>
 									<string key="NSKeyEquiv">w</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -1326,7 +1326,7 @@
 								</object>
 								<object class="NSMenuItem" id="494484187">
 									<reference key="NSMenu" ref="835783904"/>
-									<string key="NSTitle">Previous Chat Room</string>
+									<string key="NSTitle">Previous Channel</string>
 									<string key="NSKeyEquiv"></string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -1335,7 +1335,7 @@
 								</object>
 								<object class="NSMenuItem" id="728422627">
 									<reference key="NSMenu" ref="835783904"/>
-									<string key="NSTitle">Next Chat Room</string>
+									<string key="NSTitle">Next Channel</string>
 									<string key="NSKeyEquiv"></string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -1344,7 +1344,7 @@
 								</object>
 								<object class="NSMenuItem" id="830122383">
 									<reference key="NSMenu" ref="835783904"/>
-									<string key="NSTitle">Most Active Room</string>
+									<string key="NSTitle">Most Active Channel</string>
 									<string key="NSKeyEquiv">d</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
@@ -2733,6 +2733,30 @@
 					</object>
 					<int key="connectionID">937</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="634035653"/>
+						<reference key="destination" ref="899766323"/>
+					</object>
+					<int key="connectionID">938</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_closeChannelItem</string>
+						<reference key="source" ref="899766323"/>
+						<reference key="destination" ref="415903577"/>
+					</object>
+					<int key="connectionID">941</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_closeWindowItem</string>
+						<reference key="source" ref="899766323"/>
+						<reference key="destination" ref="569784552"/>
+					</object>
+					<int key="connectionID">942</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2788,7 +2812,6 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="464011167"/>
-							<reference ref="852939767"/>
 							<reference ref="144564201"/>
 							<reference ref="755785314"/>
 							<reference ref="807607127"/>
@@ -2796,6 +2819,7 @@
 							<reference ref="981598094"/>
 							<reference ref="571749581"/>
 							<reference ref="126919150"/>
+							<reference ref="852939767"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">MainMenu</string>
@@ -4399,7 +4423,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{506, 819}, {217, 143}}</string>
+					<string>{{506, 819}, {219, 143}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4413,7 +4437,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{126, 839}, {210, 123}}</string>
+					<string>{{126, 839}, {191, 123}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4492,7 +4516,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">937</int>
+			<int key="maxID">942</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4648,6 +4672,8 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>_closeChannelItem</string>
+							<string>_closeWindowItem</string>
 							<string>aboutBox</string>
 							<string>aboutVersionLabel</string>
 							<string>channelBar</string>
@@ -4670,6 +4696,8 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSMenuItem</string>
+							<string>NSMenuItem</string>
 							<string>NSWindow</string>
 							<string>NSTextField</string>
 							<string>ChannelBar</string>
@@ -4695,6 +4723,8 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>_closeChannelItem</string>
+							<string>_closeWindowItem</string>
 							<string>aboutBox</string>
 							<string>aboutVersionLabel</string>
 							<string>channelBar</string>
@@ -4717,6 +4747,14 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">_closeChannelItem</string>
+								<string key="candidateClassName">NSMenuItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">_closeWindowItem</string>
+								<string key="candidateClassName">NSMenuItem</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">aboutBox</string>
 								<string key="candidateClassName">NSWindow</string>

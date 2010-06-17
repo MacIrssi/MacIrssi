@@ -909,8 +909,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   // We'll do the shortcuts here now instead. We've got several choices that the user can pick for their,
   // left/right keystrokes. So lets set it up.
-  NSMenuItem *previousMenuItem = [[NSApp windowsMenu] itemWithTitle:@"Previous Chat Room"];
-  NSMenuItem *nextMenuItem = [[NSApp windowsMenu] itemWithTitle:@"Next Chat Room"];
+  NSMenuItem *previousMenuItem = [[NSApp windowsMenu] itemAtIndex:[[NSApp windowsMenu] indexOfItemWithTarget:self andAction:@selector(previousChannel:)]];
+  NSMenuItem *nextMenuItem = [[NSApp windowsMenu] itemAtIndex:[[NSApp windowsMenu] indexOfItemWithTarget:self andAction:@selector(nextChannel:)]];
   
   switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"tabShortcuts"])
   {
@@ -1245,6 +1245,18 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 
 #pragma mark Delegate & notification receiver methods
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+  [_closeChannelItem setKeyEquivalent:@"w"];
+  [_closeWindowItem setKeyEquivalent:@"W"];
+}
+
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+  [_closeChannelItem setKeyEquivalent:@"W"];
+  [_closeWindowItem setKeyEquivalent:@"w"];
+}
 
 - (BOOL)validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)anItem
 {
