@@ -162,7 +162,6 @@ extern char **argv;
 - (void)inputTextFieldColorChanged:(NSNotification *)note;
 - (void)channelListColorChanged:(NSNotification *)note;
 - (void)awakeFromNib;
-- (void)runGlibLoopIteration:(id)anArgument;
 - (void)glibRunLoopTimerEvent:(NSTimer*)timer;
 - (void)channelJoined:(WINDOW_REC *)rec;
 

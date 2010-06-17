@@ -1211,28 +1211,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   return [tmp autorelease];
 }
 
-
-//-------------------------------------------------------------------
-// runGlibLoopIteration
-// Runs the irssi main loop in a separate thread.
-//
-// "anArgument" - Ignored
-//-------------------------------------------------------------------
-- (void)runGlibLoopIteration:(id)anArgument
-{
-  NSAutoreleasePool *pool;
-  [NSThread setThreadPriority:0.1];
-  
-  while (!quitting) {
-    pool = [[NSAutoreleasePool alloc] init];
-    g_main_iteration(TRUE);
-    [pool release];
-  }
-  
-  [NSApp terminate:self];
-  [NSThread exit];
-}
-
 - (void)glibRunLoopTimerEvent:(NSTimer*)timer
 {
   g_main_iteration(FALSE);
@@ -1242,7 +1220,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   return eventController;
 }
-
 
 #pragma mark Delegate & notification receiver methods
 
