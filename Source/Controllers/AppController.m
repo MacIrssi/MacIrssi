@@ -369,7 +369,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (IBAction)debugAction1:(id)sender
 {
-  [self buildWindowsMenu];
+  
 }
 
 - (IBAction)debugAction2:(id)sender
@@ -762,24 +762,94 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [mainWindow setTitle:titleString];  
 }
 
-#pragma mark Window Menu
+#pragma mark Menus
+
+- (NSMenu*)buildServerSubmenu:(SERVER_REC*)srv
+{
+  // Build the server submenu
+  NSMenu *serverMenu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
+  if (srv->connection_lost) {
+    [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Stop Reconnecting" target:self action:nil keyEquivalent:@""] autorelease]];
+  } else {
+    [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Disconnect" target:self action:nil keyEquivalent:@""] autorelease]];
+  }
+  
+  [serverMenu addItem:[NSMenuItem separatorItem]];
+  
+  [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Make Active Server" target:self action:@selector(changeIrssiServerConsole:) keyEquivalent:@""] autorelease]];
+  
+  [serverMenu addItem:[NSMenuItem separatorItem]];
+  
+  [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Change Nickname..." target:self action:nil keyEquivalent:@""] autorelease]];
+  [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Change User Mode..." target:self action:nil keyEquivalent:@""] autorelease]];
+  
+  return serverMenu;
+}
+
+- (void)buildServersMenu
+{
+  NSMenu *fileMenu = [[[NSApp mainMenu] itemWithTitle:@"File"] submenu];
+  for (NSMenuItem *item in _serversMenuItems) {
+    _lastServersMenuItem = [fileMenu itemAtIndex:[fileMenu indexOfItem:item]-1];
+    [fileMenu removeItem:item];
+  }
+  [_serversMenuItems removeAllObjects];
+  
+  if (servers) {
+    GSList *tmp;
+    int count = 1;
+    
+    for (tmp = servers; tmp != NULL; tmp = tmp->next) {
+      SERVER_REC *srv = tmp->data;
+      if (srv->disconnected) {
+        // disconnected meant we're actually dying, we should just
+        // stop showing it to the user now.
+        continue;
+      }
+      
+      if (srv->connrec) {
+        NSString *title = [NSString stringWithFormat:@"%s", srv->connrec->address];
+        NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""] autorelease];
+        
+        NSValue *srvPointerValue = [NSValue valueWithPointer:srv];
+        [item setRepresentedObject:srvPointerValue];
+        
+        NSMenu *menu = [self buildServerSubmenu:srv];
+        [item setSubmenu:menu];
+        
+        [fileMenu insertItem:item atIndex:[fileMenu indexOfItem:_lastServersMenuItem]+1];
+        [_serversMenuItems addObject:item];
+        _lastServersMenuItem = item;
+        
+        count++;
+      }
+    }
+    
+    if (count > 1) {
+      NSMenuItem *sep = [[NSMenuItem separatorItem] copy];
+      [fileMenu insertItem:sep atIndex:[fileMenu indexOfItem:_lastServersMenuItem]+1];
+      [_serversMenuItems addObject:sep];
+      _lastServersMenuItem = sep;
+    }
+  }
+}
 
 - (void)buildWindowsMenu
 {
   NSMenu *windowMenu = [NSApp windowsMenu];
-  for (NSMenuItem *item in windowsMenuItems) {
+  for (NSMenuItem *item in _windowsMenuItems) {
     [windowMenu removeItem:item];
   }
-  [windowsMenuItems removeAllObjects];
+  [_windowsMenuItems removeAllObjects];
   
   NSMenuItem *sep = [NSMenuItem separatorItem];
-  [windowsMenuItems addObject:sep];
+  [_windowsMenuItems addObject:sep];
   [windowMenu addItem:sep];
   
   NSArray *channels = [IrssiBridge channels];
   if ([channels count] > 0) {
     NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:@"Channels" action:nil keyEquivalent:@""] autorelease];
-    [windowsMenuItems addObject:item];
+    [_windowsMenuItems addObject:item];
     [windowMenu addItem:item];
   }
    
@@ -799,7 +869,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       [item setState:YES];
     }
     
-    [windowsMenuItems addObject:item];
+    [_windowsMenuItems addObject:item];
     [windowMenu addItem:item];
   }
 }
@@ -1092,103 +1162,37 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)irssiServerChangedNotification:(NSNotification*)notification
 {
-	[self updateServerMenu];
-}
-
-- (void)updateServerMenu
-{
-  // Remove all the servers from the menu
-  while ([[serversMenu itemArray] count] > 1)
-  {
-    [serversMenu removeItemAtIndex:1];
-  }
-  
-	// Bit nasty but better to keep it separated. Tis a big beast now.
-	NSMenu *activeServersMenu = [self buildActiveServersMenu];
-	
-	// Now the inactive servers
-	NSMenu *inactiveServersMenu = [self buildInactiveServersMenu];
-	
-	if (activeServersMenu)
-	{
-		[serversMenu addItem:[NSMenuItem separatorItem]];
-		[serversMenu appendItemsFromMenu:activeServersMenu];
-	}
-	
-	if (inactiveServersMenu)
-	{
-		[serversMenu addItem:[NSMenuItem separatorItem]];
-		[serversMenu appendItemsFromMenu:inactiveServersMenu];
-	}
-}
-	
-- (NSMenu*)buildActiveServersMenu
-{
-	NSMenu *menu = nil;
-	
-	if (servers)
-	{
-		// If we've got servers, build a menu.
-		menu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
-		
-		// Server window is always the first one in the tabView list
-		WINDOW_REC *serverWindowRec = [(ChannelController *)[[tabView tabViewItemAtIndex:0] identifier] windowRec];
-		// "active" server is the active server from the server window, or the "connect" server (if the last thing you did was
-		// a connect that hasn't finished, active_server is NULL and connect_server has a pointer to a SERVER_REC*
-		SERVER_REC *activeServerRec = (serverWindowRec->active_server ? serverWindowRec->active_server : serverWindowRec->connect_server);
-		
-		// Iterate the servers, count them as we're going too
-		GSList *tmp, *next;
-		int count = 1;
-		for (tmp = servers; tmp != NULL; tmp = next)
-		{
-			SERVER_REC *server = tmp->data;
-			
-			// If we have a connrec, don't think we ever won't but its better than crashing on a null pointer.
-			if (server->connrec)
-			{
-				// Not all servers have chatnets but we need to make a stupid string with padding, so do it first.
-				NSString *chatnet = (server->connrec->chatnet ? [NSString stringWithFormat:@" [%s]", server->connrec->chatnet] : @"");
-				NSString *title = [NSString stringWithFormat:@"%s%@", 
-													 server->connrec->address, 
-													 chatnet];
-				[menu addItemWithTitle:title
-												target:self
-												action:@selector(changeIrssiServerConsole:)
-								 keyEquivalent:@""
-													 tag:*(int*)&server];
-				if (count <= 10)
-				{
-					// Not sure Command+Option+10 works too well ;). We could check here if we're gonna collide with a user
-					// shortcut but maybe some other time.
-					[[menu itemWithTag:*(int*)&server] setKeyEquivalent:[NSString stringWithFormat:@"%d", (count++) % 10]];
-					[[menu itemWithTag:*(int*)&server] setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
-				}
-				[[menu itemWithTag:*(int*)&server] setState:(activeServerRec == server)];
-			}
-			next = tmp->next;
-		}
-	}
-	return menu;
-}
-
-- (NSMenu*)buildInactiveServersMenu
-{
-	return nil;
+	[self buildServersMenu];
 }
 
 - (void)changeIrssiServerConsole:(id)sender
 {
-  ChannelController *c = (ChannelController *)[[tabView tabViewItemAtIndex:0] identifier];
-  SERVER_REC *server = (void*)[sender tag];
-  WINDOW_REC *window = [c windowRec];
+  NSMenu *menu = [(NSMenuItem*)sender menu];
+  NSMenuItem *item = [[menu supermenu] itemAtIndex:[[menu supermenu] indexOfItemWithSubmenu:menu]];
+  SERVER_REC *ptr = [(NSValue*)[item representedObject] pointerValue];
   
-  // The official signal way checks to see if you're looking at this window when you do it,
-  // I'd rather not restrict the user that way so I'm calling w_c_s directly. Also, poke
-  // irssiServerChangedNotification: to force the menu to regenerate with a new selected
-  // server.
-  window_change_server(window, server);
-  [self irssiServerChangedNotification:nil];
+  // Next impossible thing before breakfast ...
+  GSList *tmp;
+  for (tmp = servers; tmp != nil; tmp = tmp->next) {
+    if ((SERVER_REC*)tmp->data == ptr) {
+      break;
+    }
+  }
+  
+  // This means the pointer we got given in representedObject is still valid.
+  if (tmp != nil) {
+    // We should check use_status_window in validation, if we don't have one, then we don't have a server
+    // console to change the active server to.
+    WINDOW_REC *wnd = window_find_name("(status)");
+    if (wnd) {
+      // The official signal way checks to see if you're looking at this window when you do it,
+      // I'd rather not restrict the user that way so I'm calling w_c_s directly. Also, poke
+      // irssiServerChangedNotification: to force the menu to regenerate with a new selected
+      // server.
+      window_change_server(wnd, ptr);
+      [self irssiServerChangedNotification:nil];
+    }
+  }
 }
 
 #pragma mark Private methods
@@ -1245,6 +1249,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
   if ([anItem action] == @selector(performCloseChannel:)) {
     return !([currentChannelController windowRec]->immortal);
+  }
+  if ([anItem action] == @selector(changeIrssiServerConsole:)) {
+    return settings_get_bool("use_status_window");
   }
   return YES;
 }
@@ -1700,7 +1707,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:[NSWorkspace sharedWorkspace]];
   
   /* Window menu management */
-  windowsMenuItems = [[NSMutableArray alloc] init];
+  _windowsMenuItems = [[NSMutableArray alloc] init];
+  _serversMenuItems = [[NSMutableArray alloc] init];
   [mainWindow setExcludedFromWindowsMenu:YES];
   
   /* Init theme dirs */

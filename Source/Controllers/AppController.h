@@ -95,7 +95,9 @@ extern char **argv;
 	int hilightChannels;
 	NSString **shortcutCommands;
   
-  NSMutableArray *windowsMenuItems;
+  NSMutableArray *_windowsMenuItems;
+  NSMutableArray *_serversMenuItems;
+  IBOutlet NSMenuItem *_lastServersMenuItem;
 	
 	GSList *sleepList;
   BOOL isRestartingForUpdate;
@@ -144,10 +146,8 @@ extern char **argv;
 #pragma mark Server Change Notifications
 
 - (void)irssiServerChangedNotification:(NSNotification*)notification;
-- (void)updateServerMenu;
-- (NSMenu*)buildActiveServersMenu;
-- (NSMenu*)buildInactiveServersMenu;
 
+- (void)buildServersMenu;
 - (void)buildWindowsMenu;
 
 - (void)highlightChanged:(WINDOW_REC *)wind;
