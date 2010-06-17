@@ -30,8 +30,6 @@
 #include <locale.h>
 #include <dlfcn.h>
 
-#include "printd.h"
-
 #define IRSSI_GUI_AQUA 6
 
 #ifdef HAVE_STATIC_PERL

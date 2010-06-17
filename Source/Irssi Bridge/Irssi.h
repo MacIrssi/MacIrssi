@@ -1,6 +1,6 @@
 /*
- printd.h
- Copyright (c) 2008, 2009 Matt Wright, 2008 Nils Hjelte.
+ Irssi.h
+ Copyright (c) 2010 Matt Wright.
  
  MacIrssi is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -16,22 +16,4 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PRINTD_H
-#define PRINTD_H
-
-/* general debug facility */
-#ifndef DEBUG
-#define printd(x...)
-#else
-void printd(const char *fmt, ...) {
-    va_list ap;
-    va_start(ap, fmt);
-
-    fprintf(stderr, "DEBUG: ");
-    vfprintf(stderr, fmt, ap);
-
-    va_end(ap);
-}
-#endif /* DEBUG */
-
-#endif /* PRINTD_H */
+#import "irssi_internal.h"

@@ -19,7 +19,6 @@
 #import <Foundation/Foundation.h>
 #import "common.h"
 #import "formats.h"
-#import "printd.h"
 #import "fe-channels.h"
 #import "fe-windows.h"
 #import "nicklist.h"
