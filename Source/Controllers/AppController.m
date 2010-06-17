@@ -279,6 +279,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   signal_emit("command window close", 3, "", rec->active_server, rec->active);
 }
 
+- (IBAction)performDisconnect:(id)sender
+{
+  NSLog(@"Not implemented yet, %@", sender);
+}
+
 //-------------------------------------------------------------------
 // nextChannel:
 // Goes to the next channel
@@ -771,7 +776,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   if (srv->connection_lost) {
     [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Stop Reconnecting" target:self action:nil keyEquivalent:@""] autorelease]];
   } else {
-    [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Disconnect" target:self action:nil keyEquivalent:@""] autorelease]];
+    [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Disconnect" target:self action:@selector(performDisconnect:) keyEquivalent:@""] autorelease]];
   }
   
   [serverMenu addItem:[NSMenuItem separatorItem]];
