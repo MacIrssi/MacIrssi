@@ -16,5 +16,5 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "irssi_internal.h"
+#import "IrssiInternal.h"
 #import "IrssiCore.h"

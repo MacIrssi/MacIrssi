@@ -1222,7 +1222,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)glibRunLoopTimerEvent:(NSTimer*)timer
 {
-  g_main_iteration(FALSE);
+  [[IrssiCore sharedCore] runloopOneshot];
 }
 
 - (EventController*)eventController
@@ -1452,8 +1452,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
   
   g_main_destroy(main_loop);
-  irssi_exit();
-  textui_deinit();
+  [IrssiCore deinitialiseCore];
 }
 
 
@@ -1716,41 +1715,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   _serversMenuItems = [[NSMutableArray alloc] init];
   [mainWindow setExcludedFromWindowsMenu:YES];
   
-  /* Init theme dirs */
-  const char *tmp;
-  int i;
-  
-  NSArray *dirs = [self themeLocations];
-  num_theme_dirs = [dirs count];
-  theme_dirs = (char **)malloc(num_theme_dirs * sizeof(char *));
-  for (i = 0; i < [dirs count]; i++) {
-    tmp = [[dirs objectAtIndex:i] lossyCString];
-    theme_dirs[i] = (char *)malloc(strlen(tmp)+1);
-    strcpy(theme_dirs[i], tmp);
-  } 
-  
   [IrssiCore initialiseCore];
   
-  /* Start up irssi code */
-#ifdef MACIRSSI_DEBUG
-  char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};
-  int irssi_argc = 2;
-  irssi_main(irssi_argc, irssi_argv);
-#else
+#ifndef MACIRSSI_DEBUG
   [[NSApp mainMenu] removeItem:[[NSApp mainMenu] itemWithTitle:@"Debug"]];
-  
-  /* Double clicking an app gives a "-psn..." argument which irssi does
-   not like, remove if present */
-  if ( argc > 1 && strncmp(argv[1], "-psn", 4) == 0)
-  {
-    argc--;
-    argv[1] = argv[0];
-    irssi_main(argc, argv+1);
-  }
-  else
-  {
-    irssi_main(argc, argv);
-  }
 #endif
   
   main_loop = g_main_new(TRUE);

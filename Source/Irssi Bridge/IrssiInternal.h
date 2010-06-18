@@ -15,12 +15,3 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#ifndef IRSSI_H
-#define IRSSI_H
-
-int  irssi_main(int argc, char **argv);
-int  irssi_exit();
-void glib_main_loop_iterate(void);
-
-#endif /* IRSSI_H */

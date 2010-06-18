@@ -18,13 +18,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface IrssiCore : NSObject {
+struct _GMainLoop;
 
+@interface IrssiCore : NSObject {
+  struct _GMainLoop *glibRunloop;
 }
 
 + (id)initialiseCore;
++ (void)deinitialiseCore;
 + (id)sharedCore;
 
 - (void)runloopOneshot;
+
+- (NSString*)findThemeByName:(NSString*)name;
 
 @end

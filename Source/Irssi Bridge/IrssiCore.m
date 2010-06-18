@@ -22,6 +22,28 @@
 
 #import "IrssiBridge.h"
 
+#import "glib.h"
+#import "commands.h"
+#import "printtext.h"
+#import "irssi-version.h"
+#import "fe-common-core.h"
+
+#define IRSSI_GUI_AQUA 6
+
+#ifdef HAVE_STATIC_PERL
+void perl_core_init(void);
+void perl_core_deinit(void);
+
+void fe_perl_init(void);
+void fe_perl_deinit(void);
+#endif
+
+void irc_init(void);
+void irc_deinit(void);
+
+void fe_common_irc_init(void);
+void fe_common_irc_deinit(void);
+
 typedef enum {
   SIGNAL_NONE = 0,
   SIGNAL_NORMAL,
@@ -93,12 +115,45 @@ static ICSignal irssiSignals[] = {
   { NULL, 0, NULL }
 };
 
+static void version_cmd_overwrite(const char *data, SERVER_REC *server, void *item)
+{
+	char time[10];
+	
+	g_return_if_fail(data != NULL);
+	
+	if (*data == '\0') {
+		
+		g_snprintf(time, sizeof(time), "%04d", IRSSI_VERSION_TIME);
+    printtext(NULL, NULL, MSGLEVEL_CLIENTNOTICE,
+              "Client: MacIrssi %s (Core:"PACKAGE_TARNAME" " PACKAGE_VERSION" %d %s)",
+              [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] cStringUsingEncoding:NSASCIIStringEncoding],
+              IRSSI_VERSION_DATE, time);
+	}
+	signal_stop();
+}
+
+char* macirssi_find_theme(const char* theme, void* context)
+{
+  IrssiCore *core = (IrssiCore*)context;
+  
+  NSString *themeName = [IrssiBridge stringWithIrssiCString:(char*)theme];
+  NSString *res = [core findThemeByName:themeName];
+  
+  return [IrssiBridge irssiCStringWithString:res encoding:NSUTF8StringEncoding];
+}
+
 static pthread_once_t globalIrssiOnce = PTHREAD_ONCE_INIT;
 static IrssiCore *globalIrssiCore = nil;
 
 @interface IrssiCore ()
 - (void)_initialiseInterfaceSignals;
 - (void)_destroyInterfaceSignals;
+- (void)_overrideVersionInformation;
+- (void)_unregisterVersionInformation;
+
+- (void)_initialiseUI;
+- (void)_destroyUI;
+
 @end
 
 
@@ -115,6 +170,13 @@ void initialiseCoreOnce()
   return globalIrssiCore;
 }
 
++ (void)deinitialiseCore
+{
+  // This needs to happen prescisely once, at the close of MI
+  [globalIrssiCore release];
+  globalIrssiCore = nil;
+}
+
 + (id)sharedCore
 {
   return globalIrssiCore;
@@ -123,19 +185,146 @@ void initialiseCoreOnce()
 - (id)init
 {
   if (self = [super init]) {
+    GOptionEntry options[] = {
+      { NULL }
+    };
     
+#ifdef MACIRSSI_DEBUG
+    char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};
+    int irssi_argc = 2;
+#else
+    char *irssi_argv[] = { "irssi", NULL };
+    int irssi_argc = 1;
+#endif    
+    
+    core_register_options();
+    fe_common_core_register_options();
+    
+    args_register(options);
+    args_execute(irssi_argc, irssi_argv);
+    
+    core_preinit(irssi_argv[0]);
+    
+    setlocale(LC_CTYPE, "");
+    
+    theme_macirssi_set_callback(macirssi_find_theme, self);
+    
+    [self _initialiseUI];
+    [self _overrideVersionInformation];
+    
+    glibRunloop = g_main_loop_new(NULL, TRUE);
   }
   return self;
 }
 
 - (void)dealloc
 {
+  g_main_loop_unref(glibRunloop);
+  [self _unregisterVersionInformation];
+  [self _destroyInterfaceSignals];
+  [self _destroyUI];
   [super dealloc];
 }
 
 - (void)runloopOneshot
 {
+  g_main_context_iteration(NULL, FALSE);
+}
+
+#pragma mark GLib Logging
+
+void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *message, void* userdata)
+{
+  switch (level) {
+    case G_LOG_LEVEL_WARNING:
+      NSLog(@"glib: WARNING: %s", message);
+      break;
+    case G_LOG_LEVEL_CRITICAL:
+      NSLog(@"glib: CRITICAL: %s", message);
+      break;
+    default:
+      NSLog(@"glib: %s", message);
+      break;
+  }
+}
+
+#pragma mark Irssi Bringup/Teardown
+
+- (void)_initialiseUI
+{
+#ifdef SIGTRAP
+  struct sigaction act;
+  sigemptyset(&act.sa_mask);
+  act.sa_flags = 0;
+  act.sa_handler = SIG_IGN;
+  sigaction(SIGTRAP, &act, NULL);
+#endif
   
+  irssi_gui = IRSSI_GUI_AQUA;
+  core_init();
+  irc_init();
+  fe_common_core_init();
+  fe_common_irc_init();
+  
+  NSString *bundle = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"Scripts"];
+  char *bundleStr = [IrssiBridge irssiCStringWithString:bundle encoding:NSUTF8StringEncoding];
+  settings_add_str("perl", "macirssi_lib", bundleStr);
+  free(bundleStr);
+  
+  [self _initialiseInterfaceSignals];
+  
+  module_register("core", "fe-aqua");
+  
+#ifdef HAVE_STATIC_PERL
+  perl_core_init();
+  fe_perl_init();
+#endif
+  
+  fe_common_core_finish_init();
+  
+  /* Used to guard this with an #ifdef, but I control the fate of glib in MI */
+  g_log_set_default_handler(glib_log_NSLog, NULL);
+
+  signal_emit("irssi init finished", 0);
+}
+
+- (void)_destroyUI
+{
+  signal(SIGINT, SIG_DFL);
+  while (modules != NULL) {
+    module_unload(modules->data);
+  }
+  
+#ifdef HAVE_STATIC_PERL
+  perl_core_deinit();
+  fe_perl_deinit();
+#endif
+  
+  [self _destroyInterfaceSignals];
+  
+  fe_common_irc_deinit();
+  fe_common_core_deinit();
+  irc_deinit();
+  core_deinit();
+}
+
+- (void)_overrideVersionInformation
+{
+  command_bind_first("version", NULL, (SIGNAL_FUNC)version_cmd_overwrite);
+  
+  SETTINGS_REC *rec = settings_get_record("ctcp_version_reply");
+  g_free(rec->default_value.v_string);
+  
+  NSString *ctcpVersion = [NSString stringWithFormat:@"MacIrssi %@ (Core: "PACKAGE_TARNAME" "PACKAGE_VERSION")", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+  rec->default_value.v_string = g_strdup([ctcpVersion cStringUsingEncoding:NSUTF8StringEncoding]);
+  
+  NSString *sayVersion = [NSString stringWithFormat:@"sv say %@ - http://www.sysctl.co.uk/projects/macirssi/", ctcpVersion];
+  signal_emit("command alias", 1, [sayVersion cStringUsingEncoding:NSUTF8StringEncoding]);
+}
+
+- (void)_unregisterVersionInformation
+{
+  command_unbind("version", (SIGNAL_FUNC)version_cmd_overwrite);
 }
 
 #pragma mark Irssi Signals
@@ -166,7 +355,17 @@ void initialiseCoreOnce()
   int i = 0;
   while (irssiSignals[i].signal != NULL) {
     signal_remove(irssiSignals[i].signal, irssiSignals[i].func);
+    i++;
   }
+}
+
+#pragma mark Themes
+
+- (NSString*)findThemeByName:(NSString*)name
+{
+  NSBundle *bundle = [NSBundle mainBundle];
+  NSString *resource = [bundle pathForResource:name ofType:@"theme" inDirectory:@"Themes"];
+  return resource;
 }
 
 @end
