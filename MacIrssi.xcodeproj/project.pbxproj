@@ -45,6 +45,7 @@
 		24A9832B11532E7C002B823B /* libfe_irc_dcc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */; };
 		24A9832C11532E7C002B823B /* libfe_irc_notifylist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */; };
 		24A98348115331AA002B823B /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */; };
+		24FEBD7911CA70A30067C8D6 /* IrssiCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FEBD6911CA20400067C8D6 /* IrssiCore.m */; };
 		8D1107280486CEB800E47090 /* MacIrssi_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -863,6 +864,8 @@
 		24B1D1EB11C7F9510031A5E2 /* libPerlCopy.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = libPerlCopy.sh; sourceTree = "<group>"; };
 		24B1D1EC11C7F9510031A5E2 /* updateGitVersion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = updateGitVersion.sh; sourceTree = "<group>"; };
 		24FEBD5011CA1E780067C8D6 /* Irssi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Irssi.h; sourceTree = "<group>"; };
+		24FEBD6811CA20400067C8D6 /* IrssiCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IrssiCore.h; sourceTree = "<group>"; };
+		24FEBD6911CA20400067C8D6 /* IrssiCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrssiCore.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -1864,6 +1867,8 @@
 				B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */,
 				B322DD9505EF9A7100E640C2 /* irssi_internal.h */,
 				B322DD9605EF9A7100E640C2 /* irssi_internal.m */,
+				24FEBD6811CA20400067C8D6 /* IrssiCore.h */,
+				24FEBD6911CA20400067C8D6 /* IrssiCore.m */,
 			);
 			path = "Irssi Bridge";
 			sourceTree = "<group>";
@@ -3292,6 +3297,7 @@
 				C98E5F47104BF3830004C8F0 /* JVFontPreviewField.m in Sources */,
 				C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */,
 				C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */,
+				24FEBD7911CA70A30067C8D6 /* IrssiCore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

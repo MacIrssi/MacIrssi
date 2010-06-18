@@ -1729,6 +1729,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     strcpy(theme_dirs[i], tmp);
   } 
   
+  [IrssiCore initialiseCore];
+  
   /* Start up irssi code */
 #ifdef MACIRSSI_DEBUG
   char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};

@@ -1,5 +1,5 @@
 /*
- Irssi.h
+ IrssiCore.h
  Copyright (c) 2010 Matt Wright.
  
  MacIrssi is free software: you can redistribute it and/or modify
@@ -16,5 +16,15 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "irssi_internal.h"
-#import "IrssiCore.h"
+#import <Cocoa/Cocoa.h>
+
+@interface IrssiCore : NSObject {
+
+}
+
++ (id)initialiseCore;
++ (id)sharedCore;
+
+- (void)runloopOneshot;
+
+@end
