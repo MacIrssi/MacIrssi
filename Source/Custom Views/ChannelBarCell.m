@@ -30,26 +30,25 @@
 //-------------------------------------------------------------------
 - (id)initWithWindowRec:(WINDOW_REC *)rec
 {
-	NSRect frame;
-	self = [super initWithFrame:frame];
-  
-	highlightAttributes = [[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Monaco" size:9.0], NSFontAttributeName, nil] retain];
-	
-	//[self setDataLevel:rec->data_level];
-	isActive = false;
-	windowRec = rec;
-	bezierPath = [[NSBezierPath alloc] init];
-	[bezierPath setLineWidth:2];
-	[bezierPath setLineCapStyle:NSSquareLineCapStyle];
-	[bezierPath setLineJoinStyle:NSMiterLineJoinStyle];
-	return self;
+  if (self = [super initWithFrame:NSZeroRect]) {
+    highlightAttributes = [[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSFont fontWithName:@"Monaco" size:9.0], NSFontAttributeName, nil] retain];
+    
+    isActive = NO;
+    windowRec = rec;
+    
+    inactiveBorderBezierPath = [[NSBezierPath alloc] init];
+    [inactiveBorderBezierPath setLineWidth:2.0];
+    [inactiveBorderBezierPath setLineCapStyle:NSSquareLineCapStyle];
+    [inactiveBorderBezierPath setLineJoinStyle:NSMiterLineJoinStyle];
+  }
+  return self;
 }
 
 /* Dealloc */
 - (void)dealloc
 {
 	[highlightAttributes release];
-	[bezierPath release];
+	[inactiveBorderBezierPath release];
 	[super dealloc];
 }
 
@@ -69,13 +68,15 @@
 // setFrame:frame
 // Adjusts the tooltip area to the new frame.
 //-------------------------------------------------------------------
-#define equalRects(a, b) ((a).origin.x == (b).origin.x && (a).origin.y == (b).origin.y && (a).size.width == (b).size.width && (a).size.height == (b).size.height)
 - (void)setFrame:(NSRect)frame
 {
 	NSRect oldFrame = [self frame];
 	[super setFrame:frame];
   
-	if ( !equalRects(frame, oldFrame))
+  [inactiveBorderBezierPath removeAllPoints];
+  [inactiveBorderBezierPath appendBezierPathWithRect:[self bounds]];
+  
+  if ( !NSEqualRects(frame, oldFrame) )
 	{
 		[self removeAllToolTips];
 		[self addToolTipRect:[self bounds] owner:self userData:nil];
@@ -175,13 +176,7 @@
 - (void)drawRect:(NSRect)rect
 {	
   
-	/* Draw background */
-	NSRect r1 = [self bounds];
-	r1.origin.x += 2;
-	r1.origin.y += 2;
-	r1.size.width -= 4;
-	r1.size.height -= 4;
-	
+	NSRect backgroundRect = NSInsetRect([self bounds], 2.0, 2.0);
   if (isActive) {
 		[[NSColor clearColor] set];
 		NSRectFillUsingOperation([self bounds], NSCompositeDestinationOver);	
@@ -191,8 +186,7 @@
   {
     [[NSColor grayColor] set];
   }
-  
-	NSRectFillUsingOperation(r1, NSCompositeCopy);	
+	NSRectFillUsingOperation(backgroundRect, NSCompositeCopy);	
 	
 	/* Draw channel name */
 	NSRect r2 = [self bounds];
@@ -224,7 +218,7 @@
 	[[self name] drawAtPoint:r2.origin withAttributes:highlightAttributes];
 	
 	if ([self stringWidth] > [self bounds].size.width - 2 * [ChannelBarCell borderWidth]) {
-		NSRect removeRect = r1;
+		NSRect removeRect = backgroundRect;
 		removeRect.origin.x += [self bounds].size.width - [ChannelBarCell borderWidth];
 		removeRect.size.width = [ChannelBarCell borderWidth];
 		
@@ -240,20 +234,10 @@
 		[NSBezierPath fillRect:removeRect];
 	}		
   
-	/* Draw border */
 	if (!isActive) {
+    // the bounds of inactiveBorderBezierPath are set during setFrame:
 		[[NSColor whiteColor] set];
-		[bezierPath removeAllPoints];
-		NSPoint p = [self bounds].origin;
-		[bezierPath moveToPoint:p];
-		p.x += [self bounds].size.width;
-		[bezierPath lineToPoint:p];
-		p.y += [self bounds].size.height;
-		[bezierPath lineToPoint:p];
-		p.x -= [self bounds].size.width;
-		[bezierPath lineToPoint:p];
-		[bezierPath closePath];
-		[bezierPath stroke];
+    [inactiveBorderBezierPath stroke];
 	}
 }
 
