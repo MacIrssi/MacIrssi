@@ -174,26 +174,25 @@
 // Draws the cell
 //-------------------------------------------------------------------
 - (void)drawRect:(NSRect)rect
-{	
-  
-	NSRect backgroundRect = NSInsetRect([self bounds], 2.0, 2.0);
+{
+  NSRect backgroundRect = NSInsetRect([self bounds], 2.0, 2.0);
   if (isActive) {
-		[[NSColor clearColor] set];
-		NSRectFillUsingOperation([self bounds], NSCompositeDestinationOver);	
-		[[NSColor  colorWithCalibratedRed:246.0/255 green:249.0/255 blue:232.0/255 alpha:1.0] set];
-	}
-	else
+    [[NSColor clearColor] set];
+    NSRectFillUsingOperation([self bounds], NSCompositeDestinationOver);	
+    [[NSColor  colorWithCalibratedRed:246.0/255 green:249.0/255 blue:232.0/255 alpha:1.0] set];
+  }
+  else
   {
     [[NSColor grayColor] set];
   }
-	NSRectFillUsingOperation(backgroundRect, NSCompositeCopy);	
-	
-	/* Draw channel name */
-	NSRect stringRect = NSInsetRect([self bounds], [ChannelBarCell borderWidth], 1.0);
-	if (isActive && [NSApp isActive]) {
+  NSRectFillUsingOperation(backgroundRect, NSCompositeCopy);	
+  
+  /* Draw channel name */
+  NSRect stringRect = NSInsetRect([self bounds], [ChannelBarCell borderWidth], 1.0);
+  if (isActive && [NSApp isActive]) {
     [highlightAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
   } else {
-		int dataLevel = (windowRec->data_level > 3 ? 3 : windowRec->data_level);
+    int dataLevel = (windowRec->data_level > 3 ? 3 : windowRec->data_level);
     
     if (isActive && ![NSApp isActive] && (dataLevel == 0)) {
       [highlightAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
@@ -201,31 +200,31 @@
       [highlightAttributes setObject:[ColorSet colorForKey:[[ColorSet channelListForegroundKeys] objectAtIndex:dataLevel]] forKey:NSForegroundColorAttributeName];
     }
   }
-	
-	[[self name] drawAtPoint:stringRect.origin withAttributes:highlightAttributes];
-	
-	if ([self stringWidth] > [self bounds].size.width - 2 * [ChannelBarCell borderWidth]) {
-		NSRect removeRect = backgroundRect;
-		removeRect.origin.x += [self bounds].size.width - [ChannelBarCell borderWidth];
-		removeRect.size.width = [ChannelBarCell borderWidth];
-		
-		if (isActive && [NSApp isActive])
+  
+  [[self name] drawAtPoint:stringRect.origin withAttributes:highlightAttributes];
+  
+  if ([self stringWidth] > [self bounds].size.width - 2 * [ChannelBarCell borderWidth]) {
+    NSRect removeRect = backgroundRect;
+    removeRect.origin.x += [self bounds].size.width - [ChannelBarCell borderWidth];
+    removeRect.size.width = [ChannelBarCell borderWidth];
+    
+    if (isActive && [NSApp isActive])
     {
       [[NSColor colorWithCalibratedRed:246.0/255 green:249.0/255 blue:232.0/255 alpha:1.0] set];
     }
-		else
+    else
     {
       [[NSColor grayColor] set];
     }
     
-		[NSBezierPath fillRect:removeRect];
-	}		
+    [NSBezierPath fillRect:removeRect];
+  }		
   
-	if (!isActive) {
+  if (!isActive) {
     // the bounds of inactiveBorderBezierPath are set during setFrame:
-		[[NSColor whiteColor] set];
+    [[NSColor whiteColor] set];
     [inactiveBorderBezierPath stroke];
-	}
+  }
 }
 
 //-------------------------------------------------------------------
