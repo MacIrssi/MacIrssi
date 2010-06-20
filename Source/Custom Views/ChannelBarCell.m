@@ -189,33 +189,20 @@
 	NSRectFillUsingOperation(backgroundRect, NSCompositeCopy);	
 	
 	/* Draw channel name */
-	NSRect r2 = [self bounds];
-	r2.origin.y += 1;
-	r2.origin.x += [ChannelBarCell borderWidth];
-  
-	if (isActive && [NSApp isActive])
-  {
+	NSRect stringRect = NSInsetRect([self bounds], [ChannelBarCell borderWidth], 1.0);
+	if (isActive && [NSApp isActive]) {
     [highlightAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
-  }
-	else 
-  {
-		int dataLevel = windowRec->data_level;
+  } else {
+		int dataLevel = (windowRec->data_level > 3 ? 3 : windowRec->data_level);
     
-    if (isActive && ![NSApp isActive] && (dataLevel == 0))
-    {
+    if (isActive && ![NSApp isActive] && (dataLevel == 0)) {
       [highlightAttributes setObject:[NSColor blackColor] forKey:NSForegroundColorAttributeName];
-    }
-    else
-    {
-  		if (dataLevel > 3)//TODO: ugly fix
-      {
-        dataLevel = 3;
-      }
+    } else {
       [highlightAttributes setObject:[ColorSet colorForKey:[[ColorSet channelListForegroundKeys] objectAtIndex:dataLevel]] forKey:NSForegroundColorAttributeName];
     }
   }
 	
-	[[self name] drawAtPoint:r2.origin withAttributes:highlightAttributes];
+	[[self name] drawAtPoint:stringRect.origin withAttributes:highlightAttributes];
 	
 	if ([self stringWidth] > [self bounds].size.width - 2 * [ChannelBarCell borderWidth]) {
 		NSRect removeRect = backgroundRect;
