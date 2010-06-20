@@ -24,13 +24,12 @@
 {
 	WINDOW_REC *windowRec;
 	NSMutableDictionary *highlightAttributes;
-	NSBezierPath *bezierPath;
+	NSBezierPath *inactiveBorderBezierPath;
+  
 	BOOL isActive;
-	//int dataLevel;
 }
 - (id)initWithWindowRec:(WINDOW_REC *)rec;
 
-//- (void)setDataLevel:(int)level;
 - (float)stringWidth;
 - (NSString *)name;
 - (WINDOW_REC *)windowRec;
