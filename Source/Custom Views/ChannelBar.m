@@ -153,13 +153,14 @@
 	
 	enumerator = [channelBarCells objectEnumerator];
 	while (cell = (ChannelBarCell *)[enumerator nextObject]) {
-		
 		/* Each cell is shrunk in proportion to the size of the channel name contained in the cell */
 		removePart = (removeWidth > 0) ? [cell stringWidth] / totalStringWidth * removeWidth : 0;
 
 		rect.size.width = [cell stringWidth] - removePart + [ChannelBarCell borderWidth]*2;
-		[cell setFrame:rect];
-		[cell setNeedsDisplay:YES];
+    if (!NSEqualRects([cell frame], rect)) {
+      [cell setFrame:rect];
+      [cell setNeedsDisplay:YES];
+    }
 		rect.origin.x += rect.size.width + 3;
 	}
 }
@@ -196,7 +197,7 @@
 	[self fitCells];
 	
 	[[ColorSet channelListBackgroundColor] set];
-	NSRectFillUsingOperation([self bounds], NSCompositeCopy);	
+	NSRectFillUsingOperation(NSIntersectionRect([self bounds], rect), NSCompositeCopy);	
 }
 
 @end
