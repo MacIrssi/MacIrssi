@@ -847,7 +847,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   }
   
   /* Don't scroll to bottom if user is reading somewhere higher up */
-  if (scroll && active_win == windowRec) {
+  if (scroll) {
     endRange.location = [textStorage length];
     [mainTextView scrollRangeToVisible:endRange];
   }
