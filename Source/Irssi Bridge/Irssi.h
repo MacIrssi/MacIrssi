@@ -17,4 +17,6 @@
  */
 
 #import "IrssiInternal.h"
+#import "IrssiBridge.h"
 #import "IrssiCore.h"
+#import "IrssiRunloop.h"

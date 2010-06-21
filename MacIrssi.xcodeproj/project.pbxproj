@@ -442,6 +442,8 @@
 		C97A37220E5DCFED007D1191 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
 		C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9854DCB10D035B5004163C1 /* MIResizingTextView.h */; };
 		C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9854DCC10D035B5004163C1 /* MIResizingTextView.m */; };
+		C986F8ED11CEE2CD00D502AA /* IrssiRunloop.h in Headers */ = {isa = PBXBuildFile; fileRef = C986F8EB11CEE2CD00D502AA /* IrssiRunloop.h */; };
+		C986F8EE11CEE2CD00D502AA /* IrssiRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = C986F8EC11CEE2CD00D502AA /* IrssiRunloop.m */; };
 		C98777080F74F67300591183 /* MacIrssi.pub in Resources */ = {isa = PBXBuildFile; fileRef = C98777070F74F67300591183 /* MacIrssi.pub */; };
 		C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */ = {isa = PBXBuildFile; fileRef = C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */; };
 		C98E5F47104BF3830004C8F0 /* JVFontPreviewField.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */; };
@@ -1667,6 +1669,8 @@
 		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
 		C9854DCB10D035B5004163C1 /* MIResizingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIResizingTextView.h; sourceTree = "<group>"; };
 		C9854DCC10D035B5004163C1 /* MIResizingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIResizingTextView.m; sourceTree = "<group>"; };
+		C986F8EB11CEE2CD00D502AA /* IrssiRunloop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IrssiRunloop.h; sourceTree = "<group>"; };
+		C986F8EC11CEE2CD00D502AA /* IrssiRunloop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrssiRunloop.m; sourceTree = "<group>"; };
 		C98777070F74F67300591183 /* MacIrssi.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacIrssi.pub; sourceTree = "<group>"; };
 		C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFontPreviewField.h; sourceTree = "<group>"; };
 		C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFontPreviewField.m; sourceTree = "<group>"; };
@@ -1869,6 +1873,8 @@
 				B322DD9605EF9A7100E640C2 /* IrssiInternal.m */,
 				24FEBD6811CA20400067C8D6 /* IrssiCore.h */,
 				24FEBD6911CA20400067C8D6 /* IrssiCore.m */,
+				C986F8EB11CEE2CD00D502AA /* IrssiRunloop.h */,
+				C986F8EC11CEE2CD00D502AA /* IrssiRunloop.m */,
 			);
 			path = "Irssi Bridge";
 			sourceTree = "<group>";
@@ -3036,6 +3042,7 @@
 				C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */,
 				C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */,
 				C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */,
+				C986F8ED11CEE2CD00D502AA /* IrssiRunloop.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3298,6 +3305,7 @@
 				C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */,
 				C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */,
 				24FEBD7911CA70A30067C8D6 /* IrssiCore.m in Sources */,
+				C986F8EE11CEE2CD00D502AA /* IrssiRunloop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

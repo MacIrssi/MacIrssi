@@ -54,7 +54,6 @@
 
 void setRefToAppController(AppController *a);
 void textui_deinit();
-static GMainLoop *main_loop;
 int argc;
 char **argv;
 
@@ -1220,11 +1219,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   return [tmp autorelease];
 }
 
-- (void)glibRunLoopTimerEvent:(NSTimer*)timer
-{
-  [[IrssiCore sharedCore] runloopOneshot];
-}
-
 - (EventController*)eventController
 {
   return eventController;
@@ -1451,7 +1445,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     [tmp clearNickView];
   }
   
-  g_main_destroy(main_loop);
   [IrssiCore deinitialiseCore];
 }
 
@@ -1720,11 +1713,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 #ifndef MACIRSSI_DEBUG
   [[NSApp mainMenu] removeItem:[[NSApp mainMenu] itemWithTitle:@"Debug"]];
 #endif
-  
-  main_loop = g_main_new(TRUE);
-  
-  // Get rid of the shit old run loop thread and schedule the glib runloop on the NSRunLoop
-  [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];
 }
 
 @end

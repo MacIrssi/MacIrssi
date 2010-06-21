@@ -16,13 +16,11 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "IrssiCore.h"
+#import "Irssi.h"
+
 #import <pthread.h>
 #import "signals.h"
 
-#import "IrssiBridge.h"
-
-#import "glib.h"
 #import "commands.h"
 #import "printtext.h"
 #import "irssi-version.h"
@@ -212,14 +210,18 @@ void initialiseCoreOnce()
     [self _initialiseUI];
     [self _overrideVersionInformation];
     
-    glibRunloop = g_main_loop_new(NULL, TRUE);
+    runloop = [[IrssiRunloop alloc] init];
+    [runloop installInCurrentRunloop];
   }
   return self;
 }
 
 - (void)dealloc
 {
-  g_main_loop_unref(glibRunloop);
+  [runloop uninstallFromCurrentRunloop];
+  [runloop release];
+  runloop = nil;
+  
   [self _unregisterVersionInformation];
   [self _destroyInterfaceSignals];
   [self _destroyUI];
