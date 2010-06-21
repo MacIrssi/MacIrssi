@@ -1313,14 +1313,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabViewTextEntrySplitView adjustSubviews];
   
   // Scroll the view to the bottom
-  ChannelController *c = [[tabView selectedTabViewItem] identifier];
-  if ([c isKindOfClass:[ChannelController class]])
-  {
-    NSScrollView *view = (NSScrollView*)[[[c mainTextView] superview] superview];
-    
-    NSPoint newScrollPoint = [[view documentView] isFlipped] ? NSMakePoint(0.0, NSMaxY([[view documentView] frame])) : NSZeroPoint;
-    [[view documentView] scrollPoint:newScrollPoint];
-  }
+  NSScrollView *view = (NSScrollView*)[[[currentChannelController mainTextView] superview] superview];
+  
+  NSPoint newScrollPoint = [[view documentView] isFlipped] ? NSMakePoint(0.0, NSMaxY([[view documentView] frame])) : NSZeroPoint;
+  [[view documentView] scrollPoint:newScrollPoint];
 }
 
 #pragma mark Growl Delegates
