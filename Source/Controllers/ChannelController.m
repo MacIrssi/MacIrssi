@@ -174,7 +174,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
           if ([mode rangeOfString:@"k"].location != NSNotFound) {
             /* Remove old key */
             NSString *removeKey = [NSString stringWithFormat:@"/mode %@ -k", name];
-            const char *tmp = [removeKey cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+            const char *tmp = [removeKey cStringUsingEncoding:MICurrentTextEncoding];
             signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
           }
           [addMode appendFormat:@"+k %@", [keyTextField stringValue]];
@@ -182,7 +182,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
         
         [removeMode appendString:addMode];
         NSLog(removeMode);
-        const char *tmp2 = [removeMode cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+        const char *tmp2 = [removeMode cStringUsingEncoding:MICurrentTextEncoding];
         signal_emit("send command", 3, tmp2, windowRec->active_server, windowRec->active);
         [addMode release];
         [removeMode release];
@@ -206,7 +206,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 - (IBAction)endReasonWindow:(id)sender
 {
   [commandWithReason appendString:[sender stringValue]];
-  const char *tmp = [commandWithReason cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+  const char *tmp = [commandWithReason cStringUsingEncoding:MICurrentTextEncoding];
   signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
   [commandWithReason release];
         

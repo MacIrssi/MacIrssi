@@ -171,9 +171,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     return;
   
   WINDOW_REC *rec = [currentChannelController windowRec];
-  NSStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
   
-  command_history_add(command_history_current(rec), [cmd cStringUsingEncoding:enc]);
+  command_history_add(command_history_current(rec), [cmd cStringUsingEncoding:MICurrentTextEncoding]);
   command_history_clear_pos(rec);
   
   NSArray *commands = [self splitCommand:cmd];
@@ -217,14 +216,14 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
         nowPlaying = @"/me typed /itunes when it wasn't even open. Doh!";
       }
 
-      const char *tmp = [nowPlaying cStringUsingEncoding:enc];
+      const char *tmp = [nowPlaying cStringUsingEncoding:MICurrentTextEncoding];
       signal_emit("send command", 3, tmp, rec->active_server, rec->active);
       
       continue;
     }
     
     /* Else normal command */
-    const char *tmp = [[commands objectAtIndex:i] cStringUsingEncoding:enc];
+    const char *tmp = [[commands objectAtIndex:i] cStringUsingEncoding:MICurrentTextEncoding];
     signal_emit("send command", 3, tmp, rec->active_server, rec->active);
   }
 }
@@ -320,7 +319,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [NSApp endSheet:reasonWindow returnCode:1];
   if ([[sender title] isEqual:@"Ok"]) {
     NSString *str = [reasonTextField stringValue];
-    signal_emit("command quit", 1, [str cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]]);
+    signal_emit("command quit", 1, [str cStringUsingEncoding:MICurrentTextEncoding]);
     [NSApp replyToApplicationShouldTerminate:YES];
   }
   [reasonTextField setStringValue:@""];
@@ -339,7 +338,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   if ([[sender title] isEqual:@"Quit"])
   {
-    signal_emit("command quit", 1, [[[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"] cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]]);
+    signal_emit("command quit", 1, [[[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"] cStringUsingEncoding:MICurrentTextEncoding]);
   }
 }
 

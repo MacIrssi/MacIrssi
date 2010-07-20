@@ -79,7 +79,7 @@
 - (void)setNick:(NSString*)value
 {
   if (value) {
-    rec->nick = (char*)[value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->nick = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->nick = NULL;
   }
@@ -94,7 +94,7 @@
 - (void)setUsername:(NSString*)value
 {
   if (value) {
-    rec->username = (char*)[value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->username = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->username = NULL;
   }
@@ -109,7 +109,7 @@
 - (void)setRealname:(NSString*)value
 {
   if (value) {
-    rec->realname = (char*)[value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->realname = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->realname = NULL;
   }
@@ -124,7 +124,7 @@
 - (void)setAutoCommand:(NSString*)value
 {
   if (value) {
-    rec->autosendcmd = (char*)[value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->autosendcmd = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->autosendcmd = NULL;
   }

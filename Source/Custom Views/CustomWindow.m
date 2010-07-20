@@ -153,7 +153,7 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 			/******************/
 			/* Tab completion */
 			/******************/
-      old_s = (char*)[[(NSTextView*)[self firstResponder] string] cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+      old_s = (char*)[[(NSTextView*)[self firstResponder] string] cStringUsingEncoding:MICurrentTextEncoding];
 			int i = strlen(old_s);
 			new_s = word_complete([controller currentWindowRec], old_s, &i, 0);
 			if (!new_s)
