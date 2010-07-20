@@ -172,8 +172,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   WINDOW_REC *rec = [currentChannelController windowRec];
   NSStringEncoding enc = [[MITextEncoding irssiEncoding] encoding];
-  //[history addCommand:cmd];
-  command_history_add(command_history_current(rec), [IrssiBridge irssiCStringWithString:cmd]);
+  
+  command_history_add(command_history_current(rec), [cmd cStringUsingEncoding:enc]);
   command_history_clear_pos(rec);
   
   NSArray *commands = [self splitCommand:cmd];
@@ -217,7 +217,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
         nowPlaying = @"/me typed /itunes when it wasn't even open. Doh!";
       }
 
-      char *tmp = [IrssiBridge irssiCStringWithString:nowPlaying encoding:enc];
+      char *tmp = [nowPlaying cStringUsingEncoding:enc];
       signal_emit("send command", 3, tmp, rec->active_server, rec->active);
       free(tmp);
       
@@ -225,7 +225,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     }
     
     /* Else normal command */
-    char *tmp = [IrssiBridge irssiCStringWithString:[commands objectAtIndex:i] encoding:enc];
+    char *tmp = [[commands objectAtIndex:i] cStringUsingEncoding:enc];
     signal_emit("send command", 3, tmp, rec->active_server, rec->active);
     free(tmp);
   }
@@ -322,7 +322,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [NSApp endSheet:reasonWindow returnCode:1];
   if ([[sender title] isEqual:@"Ok"]) {
     NSString *str = [reasonTextField stringValue];
-    signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:str]);
+    signal_emit("command quit", 1, [str cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]]);
     [NSApp replyToApplicationShouldTerminate:YES];
   }
   [reasonTextField setStringValue:@""];
@@ -341,7 +341,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   if ([[sender title] isEqual:@"Quit"])
   {
-    signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:[[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"]]);
+    signal_emit("command quit", 1, [[[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"] cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]]);
   }
 }
 
@@ -455,13 +455,12 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   char *tmp, *tmp2;
   
   while (command = [enumerator nextObject]) {
-    tmp2 = tmp = [IrssiBridge irssiCStringWithString:command];
+    tmp2 = tmp = [command cStringUsingEncoding:NSUTF8StringEncoding];
     
     /* Skip whitespaces */
     while (*tmp2 == ' ')
       tmp2++;
     signal_emit("send command", 3, tmp2, rec->active_server, rec->active);
-    free(tmp);
   }
 }
 
@@ -1079,7 +1078,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)historyUp
 {
-  [inputTextField setString:[IrssiBridge stringWithIrssiCString:(char*)command_history_prev([currentChannelController windowRec], [IrssiBridge irssiCStringWithString:[inputTextField string]])]];
+  char *str = [[inputTextField string] cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+  char *next = (char*)command_history_prev([currentChannelController windowRec], str);
+  
+  [inputTextField setString:[IrssiBridge stringWithIrssiCString:next]];
   [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
 }
 
@@ -1092,7 +1094,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)historyDown
 {
-  [inputTextField setString:[IrssiBridge stringWithIrssiCString:(char*)command_history_next([currentChannelController windowRec], [IrssiBridge irssiCStringWithString:[inputTextField string]])]];
+  char *str = [[inputTextField string] cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+  char *next = (char*)command_history_next([currentChannelController windowRec], next);
+  
+  [inputTextField setString:[IrssiBridge stringWithIrssiCString:next]];
   [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
 }
 
@@ -1426,7 +1431,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
   
   /* Else quit with default quit message */
-  signal_emit("command quit", 1, [IrssiBridge irssiCStringWithString:quitMessage]);
+  signal_emit("command quit", 1, [quitMessage cStringUsingEncoding:NSUTF8StringEncoding]);
   return NSTerminateNow;
 }
 

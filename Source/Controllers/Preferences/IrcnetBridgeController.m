@@ -18,7 +18,7 @@
 
 #import "IrcnetBridgeController.h"
 #import "ChannelBridgeController.h"
-#import "IrssiBridge.h"
+#import "Irssi.h"
 
 /* Irssi Headers */
 #import "channels-setup.h"
@@ -79,7 +79,7 @@
 - (void)setNick:(NSString*)value
 {
   if (value) {
-    rec->nick = [IrssiBridge irssiCStringWithString:value];
+    rec->nick = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   } else {
     rec->nick = NULL;
   }
@@ -94,7 +94,7 @@
 - (void)setUsername:(NSString*)value
 {
   if (value) {
-    rec->username = [IrssiBridge irssiCStringWithString:value];
+    rec->username = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   } else {
     rec->username = NULL;
   }
@@ -109,7 +109,7 @@
 - (void)setRealname:(NSString*)value
 {
   if (value) {
-    rec->realname = [IrssiBridge irssiCStringWithString:value];
+    rec->realname = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   } else {
     rec->realname = NULL;
   }
@@ -124,7 +124,7 @@
 - (void)setAutoCommand:(NSString*)value
 {
   if (value) {
-    rec->autosendcmd = [IrssiBridge irssiCStringWithString:value];
+    rec->autosendcmd = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   } else {
     rec->autosendcmd = NULL;
   }

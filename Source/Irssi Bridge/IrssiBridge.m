@@ -30,35 +30,6 @@
 #endif
 
 @implementation IrssiBridge
-//-------------------------------------------------------------------
-// irssiCStringWithString:
-// Converts an NSString to irssi encoding/format.
-//
-// "string" - The string to be converted
-// "encoding" - The encoding to use
-//
-// Returns: A C-string representation of the string, which the sender
-// is responsible to release.
-//-------------------------------------------------------------------
-+ (char *)irssiCStringWithString:(NSString *)string encoding:(NSStringEncoding)encoding
-{
-	NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:NO];
-	
-	int length = [data length];
-	char *str = malloc(length + 1);
-	[data getBytes:str];
-	
-	/* Manually add string termination */
-	str[length] = '\0';
-	
-	return str;
-}
-
-/* Wrapper TODO: this should never be used (fix callers of this method) */
-+ (char *)irssiCStringWithString:(NSString *)string
-{
-	return [self irssiCStringWithString:string encoding:[[MITextEncoding irssiEncoding] encoding]];
-}
 
 //-------------------------------------------------------------------
 // stringWithIrssiCString:

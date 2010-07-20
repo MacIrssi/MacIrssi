@@ -105,9 +105,8 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
         ([[topicEditableTextField stringValue] isEqual:[topicTextField stringValue]] == FALSE)) 
     {
       NSString *cmd = [NSString stringWithFormat:@"/topic %@", [topicEditableTextField stringValue]];
-      char *tmp = [IrssiBridge irssiCStringWithString:cmd];
+      char *tmp = [cmd cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
       signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
-      free(tmp);
     }
     
     /* do channel silence */
@@ -175,18 +174,16 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
           if ([mode rangeOfString:@"k"].location != NSNotFound) {
             /* Remove old key */
             NSString *removeKey = [NSString stringWithFormat:@"/mode %@ -k", name];
-            char *tmp = [IrssiBridge irssiCStringWithString:removeKey];
+            char *tmp = [removeKey cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
             signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
-            free(tmp);
           }
           [addMode appendFormat:@"+k %@", [keyTextField stringValue]];
         }
         
         [removeMode appendString:addMode];
         NSLog(removeMode);
-        char *tmp2 = [IrssiBridge irssiCStringWithString:removeMode];
+        char *tmp2 = [removeMode cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
         signal_emit("send command", 3, tmp2, windowRec->active_server, windowRec->active);
-        free(tmp2);
         [addMode release];
         [removeMode release];
         modeChanged = FALSE;
@@ -209,9 +206,8 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 - (IBAction)endReasonWindow:(id)sender
 {
   [commandWithReason appendString:[sender stringValue]];
-  char *tmp = [IrssiBridge irssiCStringWithString:commandWithReason];
+  char *tmp = [commandWithReason cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
-  free(tmp);
   [commandWithReason release];
         
   /* Remove sheet */

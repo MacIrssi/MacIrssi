@@ -802,7 +802,7 @@
   signal_add_first("gui print text", (SIGNAL_FUNC)_preferences_bridge_print_text);
   signal_add_first("gui print text finished", (SIGNAL_FUNC)_preferences_bridge_print_text_finished);
   
-  windowRec.theme = theme_load([IrssiBridge irssiCStringWithString:themeName]);
+  windowRec.theme = theme_load([themeName cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]]);
   windowRec.gui_data = self;
   
   // The signal chain reassigns this but it frees it first, so need to put something here.

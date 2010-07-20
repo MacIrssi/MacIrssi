@@ -48,11 +48,9 @@
 @class ChannelController;
 
 @interface IrssiBridge : NSObject {}
-+ (char *)irssiCStringWithString:(NSString *)string encoding:(NSStringEncoding)encoding;
-+ (char *)irssiCStringWithString:(NSString *)string;
-+ (NSString *)stringWithIrssiCString:(char *)string;
-+ (NSString *)stringWithIrssiCStringNoCopy:(char *)string;
-+ (NSString *)stringWithIrssiCStringNoCopy:(char *)string encoding:(CFStringEncoding)encoding;
++ (NSString *)stringWithIrssiCString:(char *)string DEPRECATED_ATTRIBUTE;
++ (NSString *)stringWithIrssiCStringNoCopy:(char *)string DEPRECATED_ATTRIBUTE;
++ (NSString *)stringWithIrssiCStringNoCopy:(char *)string encoding:(CFStringEncoding)encoding DEPRECATED_ATTRIBUTE;
 
 + (NSArray*)channels;
 @end
