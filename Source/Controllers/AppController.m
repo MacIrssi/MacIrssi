@@ -217,17 +217,15 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
         nowPlaying = @"/me typed /itunes when it wasn't even open. Doh!";
       }
 
-      char *tmp = [nowPlaying cStringUsingEncoding:enc];
+      const char *tmp = [nowPlaying cStringUsingEncoding:enc];
       signal_emit("send command", 3, tmp, rec->active_server, rec->active);
-      free(tmp);
       
       continue;
     }
     
     /* Else normal command */
-    char *tmp = [[commands objectAtIndex:i] cStringUsingEncoding:enc];
+    const char *tmp = [[commands objectAtIndex:i] cStringUsingEncoding:enc];
     signal_emit("send command", 3, tmp, rec->active_server, rec->active);
-    free(tmp);
   }
 }
 
@@ -455,7 +453,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   char *tmp, *tmp2;
   
   while (command = [enumerator nextObject]) {
-    tmp2 = tmp = [command cStringUsingEncoding:NSUTF8StringEncoding];
+    tmp2 = tmp = (char*)[command cStringUsingEncoding:NSUTF8StringEncoding];
     
     /* Skip whitespaces */
     while (*tmp2 == ' ')

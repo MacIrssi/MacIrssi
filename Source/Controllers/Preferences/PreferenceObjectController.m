@@ -209,7 +209,7 @@
 
 - (void)setNick:(NSString*)nick
 {
-  char *irssiCString = [nick cStringUsingEncoding:NSUTF8StringEncoding];
+  const char *irssiCString = [nick cStringUsingEncoding:NSUTF8StringEncoding];
 	if (strcmp(irssiCString, settings_get_str("nick")) != 0)
 		settings_set_str("nick", irssiCString);
 }
@@ -221,7 +221,7 @@
 
 - (void)setAlternateNick:(NSString*)nick
 {
-  char *irssiCString = [nick cStringUsingEncoding:NSUTF8StringEncoding];
+  const char *irssiCString = [nick cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("alternate_nick")) != 0)
   {
     settings_set_str("alternate_nick", irssiCString);
@@ -235,7 +235,7 @@
 
 - (void)setUsername:(NSString*)username
 {
-  char *irssiCString = [username cStringUsingEncoding:NSUTF8StringEncoding];
+  const char *irssiCString = [username cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("user_name")) != 0)
   {
     settings_set_str("user_name", irssiCString);
@@ -249,7 +249,7 @@
 
 - (void)setRealName:(NSString*)name
 {
-  char *irssiCString = [name cStringUsingEncoding:NSUTF8StringEncoding];
+  const char *irssiCString = [name cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("real_name")) != 0)
   {
     settings_set_str("real_name", irssiCString);
@@ -263,7 +263,7 @@
 
 - (void)setTheme:(NSString*)theme
 {
-  char *irssiCString = [theme cStringUsingEncoding:NSUTF8StringEncoding];
+  const char *irssiCString = [theme cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("theme")) != 0)
   {
     settings_set_str("theme", irssiCString);

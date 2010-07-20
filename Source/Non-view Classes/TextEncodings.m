@@ -72,7 +72,7 @@
 
 + (void)setIrssiEncoding:(MITextEncoding*)enc;
 {
-  char *irssiCString = [[enc IANAString] cStringUsingEncoding:NSASCIIStringEncoding];
+  const char *irssiCString = [[enc IANAString] cStringUsingEncoding:NSASCIIStringEncoding];
   if (strcmp(irssiCString, settings_get_str("term_charset")) != 0)
   {
     settings_set_str("term_charset", irssiCString);
