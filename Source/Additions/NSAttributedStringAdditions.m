@@ -148,12 +148,11 @@ static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 
   
   if (text)
   {
-    NSAttributedString *tmp = [[NSAttributedString alloc] initWithString:text attributes:mutableAttributes];
+    NSAttributedString *tmp = [[[NSAttributedString alloc] initWithString:text attributes:mutableAttributes] autorelease];
     [buffer appendAttributedString:tmp];
-    [tmp release];
   }
   
-  return buffer;
+  return [buffer autorelease];
 }
 
 - (void)detectURLs:(NSColor*)linkColor

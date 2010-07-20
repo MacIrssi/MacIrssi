@@ -798,7 +798,11 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 {
   CFStringEncoding enc = [[MITextEncoding irssiEncoding] CFStringEncoding];
   NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, enc, kCFAllocatorNull);
-  line = [line attributedStringByAppendingString:decodedString foreground:fg background:bg flags:flags attributes:textAttributes];
+  
+  NSMutableAttributedString *new = [line attributedStringByAppendingString:decodedString foreground:fg background:bg flags:flags attributes:textAttributes];
+  [line release];
+  line = [new retain];
+  
   [decodedString release];
 }
 
