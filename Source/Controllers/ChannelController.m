@@ -113,7 +113,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
     NSString *squelchTag = [NSString stringWithFormat:@"%@ - %@", [NSString stringWithCString:channel->server->tag encoding:MICurrentTextEncoding], name];
     if ([silenceCheckBox state] || ([[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:squelchTag]))
     {
-      NSDictionary *silences = [[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] mutableCopy];
+      NSDictionary *silences = [[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] mutableCopy] autorelease];
       [silences setValue:[NSNumber numberWithBool:[silenceCheckBox state]] forKey:squelchTag];
       [[NSUserDefaults standardUserDefaults] setValue:silences forKey:@"eventSilences"];
     }
@@ -320,9 +320,10 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
       host = [NSString stringWithCString:((NICK_REC*)[[nicks objectAtIndex:row] pointerValue])->host encoding:MICurrentTextEncoding];
       NSArray *tmp = [host componentsSeparatedByString:@"@"];
       
-      if ([tmp count] < 2)
+      if ([tmp count] < 2) {
         command = [NSString stringWithFormat:@"/echo Error: Couldn't copy IP address!"];
-      else {
+        EMITSINGLE(command);
+      } else {
         [[NSPasteboard generalPasteboard] declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:self];
         [[NSPasteboard generalPasteboard] setString:[tmp lastObject] forType:NSStringPboardType];
         return;

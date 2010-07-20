@@ -449,15 +449,15 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   NSArray *commands = [[controller command] componentsSeparatedByString:@";"];
   NSEnumerator *enumerator = [commands objectEnumerator];
   NSString *command;
-  char *tmp, *tmp2;
+  char *tmp;
   
   while (command = [enumerator nextObject]) {
-    tmp2 = tmp = (char*)[command cStringUsingEncoding:NSUTF8StringEncoding];
+    tmp = (char*)[command cStringUsingEncoding:NSUTF8StringEncoding];
     
     /* Skip whitespaces */
-    while (*tmp2 == ' ')
-      tmp2++;
-    signal_emit("send command", 3, tmp2, rec->active_server, rec->active);
+    while (*tmp == ' ')
+      tmp++;
+    signal_emit("send command", 3, tmp, rec->active_server, rec->active);
   }
 }
 
@@ -574,8 +574,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   ChannelController *owner = [[ChannelController alloc] initWithWindowRec:wind];
   
   NSTabViewItem *tabViewItem = [[NSTabViewItem alloc] initWithIdentifier:owner];
-  
   if (![NSBundle loadNibNamed:@"Tab new.nib" owner:owner]) {
+    [tabViewItem release];
     [owner release];
     printf("can't load Tab new.nib\n");
     return;
@@ -687,6 +687,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [tabView removeTabViewItem:item];
   [tabView insertTabViewItem:item atIndex:(wind->refnum-1)];
   [tabView selectTabViewItem:[currentChannelController tabViewItem]];
+  [item release];
   
   [channelTableView reloadData];
   [channelTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[tabView indexOfTabViewItem:[currentChannelController tabViewItem]]] byExtendingSelection:NO];
@@ -972,6 +973,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       [containerView addSubview:inputTextFieldBox];
       [inputTextFieldBox setFrame:inputBoxFrame];
       [inputTextFieldBox setNeedsDisplay:YES];
+      
+      [containerView release];
       
       [channelTableSplitView restoreLayoutUsingName:@"ChannelTableViewSplit"];      
       break;
