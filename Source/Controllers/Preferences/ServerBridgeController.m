@@ -17,7 +17,7 @@
  */
 
 #import "ServerBridgeController.h"
-#import "IrssiBridge.h"
+#import "Irssi.h"
 
 @implementation ServerBridgeController
 
@@ -37,13 +37,13 @@
 
 - (NSString*)address
 {
-  return [IrssiBridge stringWithIrssiCString:rec->address];
+  return [NSString stringWithCString:rec->address encoding:MICurrentTextEncoding];
 }
 
 - (void)setAddress:(NSString*)value
 {
   if (value) {
-    rec->address = [IrssiBridge irssiCStringWithString:value];
+    rec->address = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->address = NULL;
   }
@@ -52,13 +52,13 @@
 
 - (NSString*)chatnet
 {
-  return [IrssiBridge stringWithIrssiCString:rec->chatnet];
+  return [NSString stringWithCString:rec->chatnet encoding:MICurrentTextEncoding];
 }
 
 - (void)setChatnet:(NSString*)value
 {
   if (value) {
-    rec->chatnet = [IrssiBridge irssiCStringWithString:value];
+    rec->chatnet = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->chatnet = NULL;
   }

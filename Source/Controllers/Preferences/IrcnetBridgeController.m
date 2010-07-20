@@ -18,7 +18,7 @@
 
 #import "IrcnetBridgeController.h"
 #import "ChannelBridgeController.h"
-#import "IrssiBridge.h"
+#import "Irssi.h"
 
 /* Irssi Headers */
 #import "channels-setup.h"
@@ -68,18 +68,18 @@
 
 - (NSString*)name
 {
-  return [IrssiBridge stringWithIrssiCString:rec->name];
+  return [NSString stringWithCString:rec->name encoding:NSUTF8StringEncoding];
 }
 
 - (NSString*)nick
 {
-  return [IrssiBridge stringWithIrssiCString:rec->nick];
+  return [NSString stringWithCString:rec->nick encoding:NSUTF8StringEncoding];
 }
 
 - (void)setNick:(NSString*)value
 {
   if (value) {
-    rec->nick = [IrssiBridge irssiCStringWithString:value];
+    rec->nick = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->nick = NULL;
   }
@@ -88,13 +88,13 @@
 
 - (NSString*)username
 {
-  return [IrssiBridge stringWithIrssiCString:rec->username];
+  return [NSString stringWithCString:rec->username encoding:NSUTF8StringEncoding];
 }
 
 - (void)setUsername:(NSString*)value
 {
   if (value) {
-    rec->username = [IrssiBridge irssiCStringWithString:value];
+    rec->username = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->username = NULL;
   }
@@ -103,13 +103,13 @@
 
 - (NSString*)realname
 {
-  return [IrssiBridge stringWithIrssiCString:rec->realname];
+  return [NSString stringWithCString:rec->realname encoding:NSUTF8StringEncoding];
 }
 
 - (void)setRealname:(NSString*)value
 {
   if (value) {
-    rec->realname = [IrssiBridge irssiCStringWithString:value];
+    rec->realname = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->realname = NULL;
   }
@@ -118,13 +118,13 @@
 
 - (NSString*)autoCommand
 {
-  return [IrssiBridge stringWithIrssiCString:rec->autosendcmd];
+  return [NSString stringWithCString:rec->autosendcmd encoding:NSUTF8StringEncoding];
 }
 
 - (void)setAutoCommand:(NSString*)value
 {
   if (value) {
-    rec->autosendcmd = [IrssiBridge irssiCStringWithString:value];
+    rec->autosendcmd = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->autosendcmd = NULL;
   }

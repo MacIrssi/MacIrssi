@@ -17,7 +17,7 @@
  */
 
 #import "ChannelBridgeController.h"
-#import "IrssiBridge.h"
+#import "Irssi.h"
 
 @implementation ChannelBridgeController
 
@@ -37,13 +37,13 @@
 
 - (NSString*)name
 {
-  return [IrssiBridge stringWithIrssiCString:rec->name];
+  return [NSString stringWithCString:rec->name encoding:MICurrentTextEncoding];
 }
 
 - (void)setName:(NSString*)value
 {
   if (value) {
-    rec->name = [IrssiBridge irssiCStringWithString:value];
+    rec->name = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->name = NULL;
   }

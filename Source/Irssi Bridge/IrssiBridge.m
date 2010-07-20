@@ -30,65 +30,6 @@
 #endif
 
 @implementation IrssiBridge
-//-------------------------------------------------------------------
-// irssiCStringWithString:
-// Converts an NSString to irssi encoding/format.
-//
-// "string" - The string to be converted
-// "encoding" - The encoding to use
-//
-// Returns: A C-string representation of the string, which the sender
-// is responsible to release.
-//-------------------------------------------------------------------
-+ (char *)irssiCStringWithString:(NSString *)string encoding:(NSStringEncoding)encoding
-{
-	NSData *data = [string dataUsingEncoding:encoding allowLossyConversion:NO];
-	
-	int length = [data length];
-	char *str = malloc(length + 1);
-	[data getBytes:str];
-	
-	/* Manually add string termination */
-	str[length] = '\0';
-	
-	return str;
-}
-
-/* Wrapper TODO: this should never be used (fix callers of this method) */
-+ (char *)irssiCStringWithString:(NSString *)string
-{
-	return [self irssiCStringWithString:string encoding:[[MITextEncoding irssiEncoding] encoding]];
-}
-
-//-------------------------------------------------------------------
-// stringWithIrssiCString:
-// Converts an irssi string to an NSString.
-//
-// "string" - The string to be converted
-//
-// Returns: An NSString representaion of the string
-//-------------------------------------------------------------------
-+ (NSString *)stringWithIrssiCString:(char *)string
-{
-	if (!string)
-		return @"";
-	
-  return [NSString stringWithCString:string encoding:[[MITextEncoding irssiEncoding] encoding]];
-}
-
-//-------------------------------------------------------------------
-// stringWithIrssiCStringNoCopy:
-// Same as stringWithIrssiCString but shares char buffer with string
-//-------------------------------------------------------------------
-+ (NSString *)stringWithIrssiCStringNoCopy:(char *)string
-{
-	return [(NSString *)CFStringCreateWithCStringNoCopy(NULL, string, kCFStringEncodingISOLatin1, kCFAllocatorNull) autorelease];
-}
-
-+ (NSString *)stringWithIrssiCStringNoCopy:(char *)string encoding:(CFStringEncoding)encoding
-{
-  return [(NSString *)CFStringCreateWithCStringNoCopy(NULL, string, encoding, kCFAllocatorNull) autorelease];
-}
 
 NSInteger channelSortFunction(ChannelController *a, ChannelController *b, void *context) {
   if ([a windowRec]->refnum == [b windowRec]->refnum) {
@@ -121,7 +62,9 @@ AppController *appController;
 ChannelController *windowController;
 
 // Nasty nasty define, but it makes things look prettier
-#define CHANNEL_SILENCE_NSSTRING(server, channel) [NSString stringWithFormat:@"%@ - %@", [IrssiBridge stringWithIrssiCString:(char*)server->tag], [IrssiBridge stringWithIrssiCString:(char*)channel]]
+#define CHANNEL_SILENCE_NSSTRING(server, channel) [NSString stringWithFormat:@"%@ - %@", \
+  [NSString stringWithCString:(char*)server->tag encoding:MICurrentTextEncoding], \
+  [NSString stringWithCString:(char*)channel encoding:MICurrentTextEncoding]]
 
 void irssibridge_server_setup_read(IRC_SERVER_SETUP_REC *rec, CONFIG_NODE *node)
 {	
@@ -432,7 +375,7 @@ void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char
   // existing PM
   if (rec) 
   {
-    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[IrssiBridge stringWithIrssiCString:msg], @"Description",
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithCString:msg encoding:MICurrentTextEncoding], @"Description",
                           [NSString stringWithFormat:@"Private Message from %s.", nick], @"Title", 
                           [NSString stringWithFormat:@"%s", server->tag], @"Server",
                           [NSString stringWithFormat:@"%s", nick], @"Channel", nil];
@@ -440,7 +383,7 @@ void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char
   }
   else
   {
-    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[IrssiBridge stringWithIrssiCString:msg], @"Description",
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithCString:msg encoding:MICurrentTextEncoding], @"Description",
                           [NSString stringWithFormat:@"New Private Message from %s.", nick], @"Title", 
                           [NSString stringWithFormat:@"%s", server->tag], @"Server",
                           [NSString stringWithFormat:@"%s", nick], @"Channel", nil];
@@ -461,7 +404,7 @@ void irssibridge_message_channel(SERVER_REC *server, char *msg, char *nick, char
   ChannelController *controller = (ChannelController*)window->gui_data;
     
   [controller setWaitingEvents:[controller waitingEvents]+1];
-  [controller setLastEventOwner:[IrssiBridge stringWithIrssiCString:nick]];
+  [controller setLastEventOwner:[NSString stringWithCString:nick encoding:MICurrentTextEncoding]];
   
   if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel->name)] ||
       ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel->name)] boolValue])

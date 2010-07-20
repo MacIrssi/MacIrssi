@@ -84,7 +84,7 @@
 - (IrcnetBridgeController*)addChatnetWithName:(NSString*)string
 {
   IRC_CHATNET_REC *rec = g_new0(IRC_CHATNET_REC, 1);
-  rec->name = g_strdup([IrssiBridge irssiCStringWithString:string]);
+  rec->name = g_strdup([string cStringUsingEncoding:NSUTF8StringEncoding]);
   ircnet_create(rec);
   
   IrcnetBridgeController *controller = [[[IrcnetBridgeController alloc] initWithChatnetRec:rec] autorelease];
@@ -118,7 +118,7 @@
 - (ChannelBridgeController*)addChannelWithName:(NSString*)name toChatnet:(IrcnetBridgeController*)controller
 {
   CHANNEL_SETUP_REC *rec = g_new0(CHANNEL_SETUP_REC, 1);
-  rec->name = g_strdup([IrssiBridge irssiCStringWithString:name]);
+  rec->name = g_strdup([name cStringUsingEncoding:NSUTF8StringEncoding]);
   rec->chatnet = g_strdup([controller rec]->name);
   channel_setup_create(rec);
   
@@ -143,7 +143,7 @@
 - (ServerBridgeController*)addServerWithAddress:(NSString*)name port:(int)port
 {
   SERVER_SETUP_REC *rec = g_new0(SERVER_SETUP_REC, 1);
-  rec->address = g_strdup([IrssiBridge irssiCStringWithString:name]);
+  rec->address = g_strdup([name cStringUsingEncoding:NSUTF8StringEncoding]);
   rec->port = port;
   rec->chat_type = chat_protocol_get_default()->id;
   server_setup_add(rec);
@@ -209,7 +209,7 @@
 
 - (void)setNick:(NSString*)nick
 {
-  char *irssiCString = [IrssiBridge irssiCStringWithString:nick];
+  const char *irssiCString = [nick cStringUsingEncoding:NSUTF8StringEncoding];
 	if (strcmp(irssiCString, settings_get_str("nick")) != 0)
 		settings_set_str("nick", irssiCString);
 }
@@ -221,7 +221,7 @@
 
 - (void)setAlternateNick:(NSString*)nick
 {
-  char *irssiCString = [IrssiBridge irssiCStringWithString:nick];
+  const char *irssiCString = [nick cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("alternate_nick")) != 0)
   {
     settings_set_str("alternate_nick", irssiCString);
@@ -235,7 +235,7 @@
 
 - (void)setUsername:(NSString*)username
 {
-  char *irssiCString = [IrssiBridge irssiCStringWithString:username];
+  const char *irssiCString = [username cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("user_name")) != 0)
   {
     settings_set_str("user_name", irssiCString);
@@ -249,7 +249,7 @@
 
 - (void)setRealName:(NSString*)name
 {
-  char *irssiCString = [IrssiBridge irssiCStringWithString:name];
+  const char *irssiCString = [name cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("real_name")) != 0)
   {
     settings_set_str("real_name", irssiCString);
@@ -263,7 +263,7 @@
 
 - (void)setTheme:(NSString*)theme
 {
-  char *irssiCString = [IrssiBridge irssiCStringWithString:theme];
+  const char *irssiCString = [theme cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("theme")) != 0)
   {
     settings_set_str("theme", irssiCString);

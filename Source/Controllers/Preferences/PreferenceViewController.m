@@ -802,7 +802,7 @@
   signal_add_first("gui print text", (SIGNAL_FUNC)_preferences_bridge_print_text);
   signal_add_first("gui print text finished", (SIGNAL_FUNC)_preferences_bridge_print_text_finished);
   
-  windowRec.theme = theme_load([IrssiBridge irssiCStringWithString:themeName]);
+  windowRec.theme = theme_load([themeName cStringUsingEncoding:MICurrentTextEncoding]);
   windowRec.gui_data = self;
   
   // The signal chain reassigns this but it frees it first, so need to put something here.
@@ -835,7 +835,7 @@
 
 - (void)printTextCallback:(char*)cText foreground:(int)fg background:(int)bg flags:(int)flags
 {
-  NSString *text = [IrssiBridge stringWithIrssiCString:cText];
+  NSString *text = [NSString stringWithCString:cText encoding:NSUTF8StringEncoding];
   
   NSFont *channelFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
   NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:channelFont, NSFontAttributeName,nil];

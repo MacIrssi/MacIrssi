@@ -153,13 +153,13 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 			/******************/
 			/* Tab completion */
 			/******************/
-			old_s = [IrssiBridge irssiCStringWithString:[(NSTextView *)[self firstResponder] string]];
+      old_s = (char*)[[(NSTextView*)[self firstResponder] string] cStringUsingEncoding:MICurrentTextEncoding];
 			int i = strlen(old_s);
 			new_s = word_complete([controller currentWindowRec], old_s, &i, 0);
 			if (!new_s)
 				return TRUE;
 				
-			NSString *decodedString = [[IrssiBridge stringWithIrssiCString:new_s] retain];
+      NSString *decodedString = [[NSString stringWithCString:new_s encoding:MICurrentTextEncoding] retain];
 			
 			[(NSTextView *)[self firstResponder] setString:decodedString];
 			[decodedString release];

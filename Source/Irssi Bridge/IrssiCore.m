@@ -132,14 +132,15 @@ static void version_cmd_overwrite(const char *data, SERVER_REC *server, void *it
 	signal_stop();
 }
 
+// caller assumes need for release
 char* macirssi_find_theme(const char* theme, void* context)
 {
   IrssiCore *core = (IrssiCore*)context;
   
-  NSString *themeName = [IrssiBridge stringWithIrssiCString:(char*)theme];
+  NSString *themeName = [NSString stringWithCString:theme encoding:NSUTF8StringEncoding];
   NSString *res = [core findThemeByName:themeName];
   
-  return [IrssiBridge irssiCStringWithString:res encoding:NSUTF8StringEncoding];
+  return strdup([res cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 static pthread_once_t globalIrssiOnce = PTHREAD_ONCE_INIT;
@@ -267,9 +268,7 @@ void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *messag
   fe_common_irc_init();
   
   NSString *bundle = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"Scripts"];
-  char *bundleStr = [IrssiBridge irssiCStringWithString:bundle encoding:NSUTF8StringEncoding];
-  settings_add_str("perl", "macirssi_lib", bundleStr);
-  free(bundleStr);
+  settings_add_str("perl", "macirssi_lib", [bundle cStringUsingEncoding:NSUTF8StringEncoding]);
   
   [self _initialiseInterfaceSignals];
   

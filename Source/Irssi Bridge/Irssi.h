@@ -18,3 +18,5 @@
 
 #import "IrssiInternal.h"
 #import "IrssiCore.h"
+
+#import "TextEncodings.h"
