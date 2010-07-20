@@ -501,6 +501,10 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   
   /* Make NSString objects from (char *) */
   name = rec->name ? [[NSString stringWithCString:rec->name encoding:MICurrentTextEncoding] retain] : @"";
+  if (topic_by) {
+    [topic_by release];
+    topic_by = nil;
+  }
   topic_by = [[NSString alloc] initWithCString:rec->topic_by ? rec->topic_by : ""];
   mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
   key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
