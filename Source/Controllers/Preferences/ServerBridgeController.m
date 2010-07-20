@@ -37,13 +37,13 @@
 
 - (NSString*)address
 {
-  return [IrssiBridge stringWithIrssiCString:rec->address];
+  return [NSString stringWithCString:rec->address encoding:MICurrentTextEncoding];
 }
 
 - (void)setAddress:(NSString*)value
 {
   if (value) {
-    rec->address = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->address = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->address = NULL;
   }
@@ -52,13 +52,13 @@
 
 - (NSString*)chatnet
 {
-  return [IrssiBridge stringWithIrssiCString:rec->chatnet];
+  return [NSString stringWithCString:rec->chatnet encoding:MICurrentTextEncoding];
 }
 
 - (void)setChatnet:(NSString*)value
 {
   if (value) {
-    rec->chatnet = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->chatnet = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
   } else {
     rec->chatnet = NULL;
   }

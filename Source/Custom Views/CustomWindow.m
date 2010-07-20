@@ -159,7 +159,7 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 			if (!new_s)
 				return TRUE;
 				
-			NSString *decodedString = [[IrssiBridge stringWithIrssiCString:new_s] retain];
+      NSString *decodedString = [[NSString stringWithCString:new_s encoding:MICurrentTextEncoding] retain];
 			
 			[(NSTextView *)[self firstResponder] setString:decodedString];
 			[decodedString release];

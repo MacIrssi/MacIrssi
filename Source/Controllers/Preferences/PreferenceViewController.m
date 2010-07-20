@@ -835,7 +835,7 @@
 
 - (void)printTextCallback:(char*)cText foreground:(int)fg background:(int)bg flags:(int)flags
 {
-  NSString *text = [IrssiBridge stringWithIrssiCString:cText];
+  NSString *text = [NSString stringWithCString:cText encoding:NSUTF8StringEncoding];
   
   NSFont *channelFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
   NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:channelFont, NSFontAttributeName,nil];

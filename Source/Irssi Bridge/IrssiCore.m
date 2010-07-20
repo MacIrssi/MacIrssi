@@ -137,7 +137,7 @@ char* macirssi_find_theme(const char* theme, void* context)
 {
   IrssiCore *core = (IrssiCore*)context;
   
-  NSString *themeName = [IrssiBridge stringWithIrssiCString:(char*)theme];
+  NSString *themeName = [NSString stringWithCString:theme encoding:NSUTF8StringEncoding];
   NSString *res = [core findThemeByName:themeName];
   
   return strdup([res cStringUsingEncoding:NSUTF8StringEncoding]);

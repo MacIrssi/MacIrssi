@@ -68,18 +68,18 @@
 
 - (NSString*)name
 {
-  return [IrssiBridge stringWithIrssiCString:rec->name];
+  return [NSString stringWithCString:rec->name encoding:NSUTF8StringEncoding];
 }
 
 - (NSString*)nick
 {
-  return [IrssiBridge stringWithIrssiCString:rec->nick];
+  return [NSString stringWithCString:rec->nick encoding:NSUTF8StringEncoding];
 }
 
 - (void)setNick:(NSString*)value
 {
   if (value) {
-    rec->nick = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->nick = (char*)[value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   } else {
     rec->nick = NULL;
   }
@@ -88,13 +88,13 @@
 
 - (NSString*)username
 {
-  return [IrssiBridge stringWithIrssiCString:rec->username];
+  return [NSString stringWithCString:rec->username encoding:NSUTF8StringEncoding];
 }
 
 - (void)setUsername:(NSString*)value
 {
   if (value) {
-    rec->username = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->username = (char*)[value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   } else {
     rec->username = NULL;
   }
@@ -103,13 +103,13 @@
 
 - (NSString*)realname
 {
-  return [IrssiBridge stringWithIrssiCString:rec->realname];
+  return [NSString stringWithCString:rec->realname encoding:NSUTF8StringEncoding];
 }
 
 - (void)setRealname:(NSString*)value
 {
   if (value) {
-    rec->realname = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->realname = (char*)[value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   } else {
     rec->realname = NULL;
   }
@@ -118,13 +118,13 @@
 
 - (NSString*)autoCommand
 {
-  return [IrssiBridge stringWithIrssiCString:rec->autosendcmd];
+  return [NSString stringWithCString:rec->autosendcmd encoding:NSUTF8StringEncoding];
 }
 
 - (void)setAutoCommand:(NSString*)value
 {
   if (value) {
-    rec->autosendcmd = [value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+    rec->autosendcmd = (char*)[value cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
   } else {
     rec->autosendcmd = NULL;
   }

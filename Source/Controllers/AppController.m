@@ -702,7 +702,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (void)windowNameChanged:(WINDOW_REC*)wind
 {
   ChannelController *controller = (ChannelController*)wind->gui_data;  
-  NSString *newName = wind->name ? [IrssiBridge stringWithIrssiCString:wind->name] : @"";
+  NSString *newName = wind->name ? [NSString stringWithCString:wind->name encoding:MICurrentTextEncoding] : @"";
   [controller setName:newName];
   
   [self buildWindowsMenu];
@@ -1078,10 +1078,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)historyUp
 {
-  char *str = [[inputTextField string] cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
+  const char *str = [[inputTextField string] cStringUsingEncoding:MICurrentTextEncoding];
   char *next = (char*)command_history_prev([currentChannelController windowRec], str);
   
-  [inputTextField setString:[IrssiBridge stringWithIrssiCString:next]];
+  [inputTextField setString:[NSString stringWithCString:next encoding:MICurrentTextEncoding]];
   [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
 }
 
@@ -1094,10 +1094,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)historyDown
 {
-  char *str = [[inputTextField string] cStringUsingEncoding:[[MITextEncoding irssiEncoding] encoding]];
-  char *next = (char*)command_history_next([currentChannelController windowRec], next);
+  const char *str = [[inputTextField string] cStringUsingEncoding:MICurrentTextEncoding];
+  char *next = (char*)command_history_next([currentChannelController windowRec], str);
   
-  [inputTextField setString:[IrssiBridge stringWithIrssiCString:next]];
+  [inputTextField setString:[NSString stringWithCString:next encoding:MICurrentTextEncoding]];
   [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
 }
 
