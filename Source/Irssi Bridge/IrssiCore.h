@@ -22,6 +22,9 @@ struct _GMainLoop;
 
 @interface IrssiCore : NSObject {
   struct _GMainLoop *glibRunloop;
+  
+  CFFileDescriptorRef _kqueueDescriptorRef;
+  int _kqueue;
 }
 
 + (id)initialiseCore;

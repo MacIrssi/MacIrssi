@@ -1720,7 +1720,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 #endif
   
   // Get rid of the shit old run loop thread and schedule the glib runloop on the NSRunLoop
-  [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];
+  //[NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];
 }
 
 @end

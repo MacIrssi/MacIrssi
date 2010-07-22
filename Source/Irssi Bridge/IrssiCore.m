@@ -17,6 +17,8 @@
  */
 
 #import "IrssiCore.h"
+#import <sys/event.h>
+#import <poll.h>
 #import <pthread.h>
 #import "signals.h"
 
@@ -115,6 +117,20 @@ static ICSignal irssiSignals[] = {
   { NULL, 0, NULL }
 };
 
+const CFDictionaryKeyCallBacks kCFDictionaryNumberCallbacks = {
+  .version = 0,
+  .retain = NULL,
+  .release = NULL,
+  .copyDescription = NULL,
+  .equal = NULL,
+  .hash = NULL
+};
+
+static void _fileDescriptorCallback(CFFileDescriptorRef f, CFOptionFlags callBackTypes, void *info)
+{
+  [(IrssiCore*)info _kqueueCallback];
+}
+
 static void version_cmd_overwrite(const char *data, SERVER_REC *server, void *item)
 {
 	char time[10];
@@ -155,6 +171,9 @@ static IrssiCore *globalIrssiCore = nil;
 - (void)_initialiseUI;
 - (void)_destroyUI;
 
+- (void)_handleRunloopObserver;
+- (int)_handleRunloopPoll:(GPollFD*)fds count:(unsigned int)nfds timeout:(int)timeout;
+- (void)_kqueueCallback;
 @end
 
 
@@ -181,6 +200,16 @@ void initialiseCoreOnce()
 + (id)sharedCore
 {
   return globalIrssiCore;
+}
+
+static void glib_runloop_observer(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info)
+{
+  [[IrssiCore sharedCore] _handleRunloopObserver];
+}
+
+static gint glib_runloop_pool(GPollFD *ufds, guint nfsd, gint timeout_)
+{
+  return [[IrssiCore sharedCore] _handleRunloopPoll:ufds count:nfsd timeout:timeout_];
 }
 
 - (id)init
@@ -214,6 +243,45 @@ void initialiseCoreOnce()
     [self _overrideVersionInformation];
     
     glibRunloop = g_main_loop_new(NULL, TRUE);
+    //g_main_context_set_poll_func(g_main_loop_get_context(glibRunloop), glib_runloop_pool);
+    
+    CFRunLoopObserverContext ctx = {
+      .version = 0,
+      .info = self,
+      .retain = CFRetain,
+      .release = CFRelease,
+      .copyDescription = NULL
+    };
+    
+    CFRunLoopObserverRef ref = CFRunLoopObserverCreate(NULL,
+                                                       kCFRunLoopAfterWaiting,
+                                                       YES,
+                                                       0,
+                                                       glib_runloop_observer,
+                                                       &ctx);
+    CFRunLoopAddObserver(CFRunLoopGetCurrent(), ref, kCFRunLoopCommonModes);
+
+    _kqueue = kqueue();
+    
+    CFFileDescriptorContext fileCtx = {
+      .version = 0,
+      .info = self,
+      .retain = (void*)CFRetain,
+      .release = (void*)CFRelease,
+      .copyDescription = NULL
+    };
+    
+    _kqueueDescriptorRef = CFFileDescriptorCreate(kCFAllocatorDefault, 
+                                                  _kqueue, 
+                                                  NO, 
+                                                  _fileDescriptorCallback,
+                                                  &fileCtx);
+    CFFileDescriptorEnableCallBacks(_kqueueDescriptorRef, kCFFileDescriptorReadCallBack);
+    
+    CFRunLoopSourceRef sourceRef = CFFileDescriptorCreateRunLoopSource(kCFAllocatorDefault, _kqueueDescriptorRef, 0);
+    CFRunLoopAddSource(CFRunLoopGetCurrent(), sourceRef, kCFRunLoopCommonModes);
+    
+    CFRelease(sourceRef);
   }
   return self;
 }
@@ -229,7 +297,9 @@ void initialiseCoreOnce()
 
 - (void)runloopOneshot
 {
-  g_main_context_iteration(NULL, FALSE);
+  if (g_main_context_pending(NULL)) {
+    g_main_context_iteration(NULL, FALSE);
+  }
 }
 
 #pragma mark GLib Logging
@@ -365,6 +435,68 @@ void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *messag
   NSBundle *bundle = [NSBundle mainBundle];
   NSString *resource = [bundle pathForResource:name ofType:@"theme" inDirectory:@"Themes"];
   return resource;
+}
+
+#pragma mark Polling
+
+- (void)_handleRunloopObserver
+{
+  int i, timeout, pri;
+  GPollFD fds[10];
+  GMainContext *ctx = g_main_loop_get_context(glibRunloop);
+  
+  g_main_context_prepare(ctx, &pri);
+    
+  //[(IrssiCore*)info runloopOneshot];
+  int actual = g_main_context_query(ctx, pri, &timeout, fds, 10);
+  if (actual > 10) {
+    NSLog(@"Runloop required more than ten fds...");
+    return;
+  }
+  NSLog(@"%d", timeout);
+  
+  for (i=0; i<actual; i++) {
+    struct kevent kev = {
+      .ident = fds[i].fd,
+      .filter = EVFILT_READ,
+      .flags = EV_ADD | EV_RECEIPT
+    };
+    kevent(_kqueue, &kev, 1, NULL, 0, NULL);
+    CFFileDescriptorEnableCallBacks(_kqueueDescriptorRef, kCFFileDescriptorReadCallBack);
+  }
+  
+  if (g_main_context_check(ctx, pri, fds, actual)) {
+    g_main_context_dispatch(ctx);
+  }
+}
+
+- (int)_handleRunloopPoll:(GPollFD*)fds count:(unsigned int)nfds timeout:(int)timeout
+{
+  int i;
+  
+  for (i=0; i<nfds; i++) {
+    struct kevent kev = {
+      .ident = fds[i].fd,
+      .filter = EVFILT_READ,
+      .flags = EV_ADD | EV_RECEIPT,
+    };
+    kevent(_kqueue, &kev, 1, NULL, 0, NULL);
+    CFFileDescriptorEnableCallBacks(_kqueueDescriptorRef, kCFFileDescriptorReadCallBack);
+  }
+  return poll((struct pollfd*)fds, nfds, timeout);
+}
+
+- (void)_kqueueCallback
+{
+  struct kevent kev;
+  struct timespec ts = { 0, 0 };
+  
+  // clear the queue, not really bothered about the results
+  kevent(_kqueue, NULL, 0, &kev, 1, &ts);
+  
+  NSLog(@"CALLBACK");
+  [self runloopOneshot];
+  CFFileDescriptorEnableCallBacks(_kqueueDescriptorRef, kCFFileDescriptorReadCallBack);
 }
 
 @end
