@@ -840,7 +840,9 @@
   NSFont *channelFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
   NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:channelFont, NSFontAttributeName,nil];
   
-  themeRenderLineBuffer = [themeRenderLineBuffer attributedStringByAppendingString:text foreground:fg background:bg flags:flags attributes:attributes];
+  NSMutableAttributedString *tmp = [themeRenderLineBuffer attributedStringByAppendingString:text foreground:fg background:bg flags:flags attributes:attributes];
+  [themeRenderLineBuffer release];
+  themeRenderLineBuffer = [tmp retain];
 }
 
 - (void)printTextFinishedCallback
