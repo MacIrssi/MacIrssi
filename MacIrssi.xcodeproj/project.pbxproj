@@ -440,6 +440,7 @@
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
 		C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C97A36D00E5DCB0F007D1191 /* General.tiff */; };
 		C97A37220E5DCFED007D1191 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
+		C97D3D5E11F8355F00D7E0E7 /* IrssiInterposes.c in Sources */ = {isa = PBXBuildFile; fileRef = C97D3D5D11F8355F00D7E0E7 /* IrssiInterposes.c */; };
 		C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9854DCB10D035B5004163C1 /* MIResizingTextView.h */; };
 		C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9854DCC10D035B5004163C1 /* MIResizingTextView.m */; };
 		C98777080F74F67300591183 /* MacIrssi.pub in Resources */ = {isa = PBXBuildFile; fileRef = C98777070F74F67300591183 /* MacIrssi.pub */; };
@@ -1665,6 +1666,7 @@
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		C97A36D00E5DCB0F007D1191 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
 		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
+		C97D3D5D11F8355F00D7E0E7 /* IrssiInterposes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = IrssiInterposes.c; sourceTree = "<group>"; };
 		C9854DCB10D035B5004163C1 /* MIResizingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIResizingTextView.h; sourceTree = "<group>"; };
 		C9854DCC10D035B5004163C1 /* MIResizingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIResizingTextView.m; sourceTree = "<group>"; };
 		C98777070F74F67300591183 /* MacIrssi.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacIrssi.pub; sourceTree = "<group>"; };
@@ -1869,6 +1871,7 @@
 				B322DD9605EF9A7100E640C2 /* IrssiInternal.m */,
 				24FEBD6811CA20400067C8D6 /* IrssiCore.h */,
 				24FEBD6911CA20400067C8D6 /* IrssiCore.m */,
+				C97D3D5D11F8355F00D7E0E7 /* IrssiInterposes.c */,
 			);
 			path = "Irssi Bridge";
 			sourceTree = "<group>";
@@ -3298,6 +3301,7 @@
 				C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */,
 				C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */,
 				24FEBD7911CA70A30067C8D6 /* IrssiCore.m in Sources */,
+				C97D3D5E11F8355F00D7E0E7 /* IrssiInterposes.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

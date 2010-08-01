@@ -19,9 +19,14 @@
 #import <Cocoa/Cocoa.h>
 
 struct _GMainLoop;
+struct _GPollFD;
 
 @interface IrssiCore : NSObject {
   struct _GMainLoop *glibRunloop;
+  struct _GPollFD *gFDs;
+  int fds_size;
+  
+  CFRunLoopTimerRef _idleTimer;
   
   CFFileDescriptorRef _kqueueDescriptorRef;
   int _kqueue;

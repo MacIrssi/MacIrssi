@@ -219,6 +219,16 @@ static gint glib_runloop_pool(GPollFD *ufds, guint nfsd, gint timeout_)
       { NULL }
     };
     
+    // start by allocating enough room for ten fds
+    gFDs = (void*)malloc(sizeof(GPollFD) * 10);
+    if (gFDs) {
+      fds_size = 10;
+    } else {
+      [self release];
+      return nil;
+    }
+    
+    
 #ifdef MACIRSSI_DEBUG
     char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};
     int irssi_argc = 2;
@@ -243,7 +253,6 @@ static gint glib_runloop_pool(GPollFD *ufds, guint nfsd, gint timeout_)
     [self _overrideVersionInformation];
     
     glibRunloop = g_main_loop_new(NULL, TRUE);
-    //g_main_context_set_poll_func(g_main_loop_get_context(glibRunloop), glib_runloop_pool);
     
     CFRunLoopObserverContext ctx = {
       .version = 0,
@@ -282,6 +291,7 @@ static gint glib_runloop_pool(GPollFD *ufds, guint nfsd, gint timeout_)
     CFRunLoopAddSource(CFRunLoopGetCurrent(), sourceRef, kCFRunLoopCommonModes);
     
     CFRelease(sourceRef);
+    
   }
   return self;
 }
@@ -289,6 +299,9 @@ static gint glib_runloop_pool(GPollFD *ufds, guint nfsd, gint timeout_)
 - (void)dealloc
 {
   g_main_loop_unref(glibRunloop);
+  free(gFDs);
+  fds_size = 0;
+  
   [self _unregisterVersionInformation];
   [self _destroyInterfaceSignals];
   [self _destroyUI];
@@ -441,23 +454,24 @@ void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *messag
 
 - (void)_handleRunloopObserver
 {
-  int i, timeout, pri;
-  GPollFD fds[10];
+  int i, timeout, pri, nfds;
   GMainContext *ctx = g_main_loop_get_context(glibRunloop);
   
   g_main_context_prepare(ctx, &pri);
     
   //[(IrssiCore*)info runloopOneshot];
-  int actual = g_main_context_query(ctx, pri, &timeout, fds, 10);
-  if (actual > 10) {
-    NSLog(@"Runloop required more than ten fds...");
-    return;
+  while ((nfds = g_main_context_query(ctx, pri, &timeout, gFDs, fds_size)) > fds_size) {
+    gFDs = realloc(gFDs, sizeof(GPollFD) * nfds);
+    fds_size = nfds;
   }
+
   NSLog(@"%d", timeout);
   
-  for (i=0; i<actual; i++) {
+  for (i=0; i<nfds; i++) {
+    // kevent doesn't mind too much if we register too many
+    // and it'll remove items which get closed
     struct kevent kev = {
-      .ident = fds[i].fd,
+      .ident = gFDs[i].fd,
       .filter = EVFILT_READ,
       .flags = EV_ADD | EV_RECEIPT
     };
@@ -465,7 +479,7 @@ void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *messag
     CFFileDescriptorEnableCallBacks(_kqueueDescriptorRef, kCFFileDescriptorReadCallBack);
   }
   
-  if (g_main_context_check(ctx, pri, fds, actual)) {
+  if (g_main_context_check(ctx, pri, gFDs, nfds)) {
     g_main_context_dispatch(ctx);
   }
 }
@@ -494,8 +508,14 @@ void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *messag
   // clear the queue, not really bothered about the results
   kevent(_kqueue, NULL, 0, &kev, 1, &ts);
   
-  NSLog(@"CALLBACK");
-  [self runloopOneshot];
+  NSLog(@"Callback");
+  
+  GMainContext *ctx = g_main_loop_get_context(glibRunloop);
+  
+  // run the loop once, don't block
+  g_main_context_iteration(ctx, FALSE);
+  
+  // reenable the kqueue callbacks
   CFFileDescriptorEnableCallBacks(_kqueueDescriptorRef, kCFFileDescriptorReadCallBack);
 }
 
