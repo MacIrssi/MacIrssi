@@ -37,7 +37,7 @@
 
 - (NSString*)address
 {
-  return [NSString stringWithCString:rec->address encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(rec->address) encoding:MICurrentTextEncoding];
 }
 
 - (void)setAddress:(NSString*)value
@@ -52,7 +52,7 @@
 
 - (NSString*)chatnet
 {
-  return [NSString stringWithCString:rec->chatnet encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(rec->chatnet) encoding:MICurrentTextEncoding];
 }
 
 - (void)setChatnet:(NSString*)value

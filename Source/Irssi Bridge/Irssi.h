@@ -20,3 +20,5 @@
 #import "IrssiCore.h"
 
 #import "TextEncodings.h"
+
+#define CSTR(x) (x ? x : "")

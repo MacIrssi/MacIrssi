@@ -68,12 +68,12 @@
 
 - (NSString*)name
 {
-  return [NSString stringWithCString:rec->name encoding:NSUTF8StringEncoding];
+  return [NSString stringWithCString:CSTR(rec->name) encoding:NSUTF8StringEncoding];
 }
 
 - (NSString*)nick
 {
-  return [NSString stringWithCString:rec->nick encoding:NSUTF8StringEncoding];
+  return [NSString stringWithCString:CSTR(rec->nick) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setNick:(NSString*)value
@@ -88,7 +88,7 @@
 
 - (NSString*)username
 {
-  return [NSString stringWithCString:rec->username encoding:NSUTF8StringEncoding];
+  return [NSString stringWithCString:CSTR(rec->username) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setUsername:(NSString*)value
@@ -103,7 +103,7 @@
 
 - (NSString*)realname
 {
-  return [NSString stringWithCString:rec->realname encoding:NSUTF8StringEncoding];
+  return [NSString stringWithCString:CSTR(rec->realname) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setRealname:(NSString*)value
@@ -118,7 +118,7 @@
 
 - (NSString*)autoCommand
 {
-  return [NSString stringWithCString:rec->autosendcmd encoding:NSUTF8StringEncoding];
+  return [NSString stringWithCString:CSTR(rec->autosendcmd) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setAutoCommand:(NSString*)value

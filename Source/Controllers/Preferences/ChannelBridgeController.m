@@ -37,7 +37,7 @@
 
 - (NSString*)name
 {
-  return [NSString stringWithCString:rec->name encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(rec->name) encoding:MICurrentTextEncoding];
 }
 
 - (void)setName:(NSString*)value

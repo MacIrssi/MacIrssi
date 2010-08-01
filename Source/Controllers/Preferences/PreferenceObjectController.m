@@ -17,7 +17,7 @@
  */
 
 #import "PreferenceObjectController.h"
-#import "IrssiBridge.h"
+#import "Irssi.h"
 
 // Irssi Imports
 #import "common.h"
@@ -204,7 +204,7 @@
 
 - (NSString*)nick
 {
-  return [NSString stringWithCString:settings_get_str("nick")];
+  return [NSString stringWithCString:CSTR(settings_get_str("nick"))];
 }
 
 - (void)setNick:(NSString*)nick
@@ -216,7 +216,7 @@
 
 - (NSString*)alternateNick
 {
-  return [NSString stringWithCString:settings_get_str("alternate_nick")];
+  return [NSString stringWithCString:CSTR(settings_get_str("alternate_nick"))];
 }
 
 - (void)setAlternateNick:(NSString*)nick
@@ -230,7 +230,7 @@
 
 - (NSString*)username
 {
-  return [NSString stringWithCString:settings_get_str("user_name")];
+  return [NSString stringWithCString:CSTR(settings_get_str("user_name"))];
 }
 
 - (void)setUsername:(NSString*)username
@@ -244,7 +244,7 @@
 
 - (NSString*)realName
 {
-  return [NSString stringWithCString:settings_get_str("real_name")];
+  return [NSString stringWithCString:CSTR(settings_get_str("real_name"))];
 }
 
 - (void)setRealName:(NSString*)name
@@ -258,7 +258,7 @@
 
 - (NSString*)theme
 {
-  return [NSString stringWithCString:settings_get_str("theme")];
+  return [NSString stringWithCString:CSTR(settings_get_str("theme"))];
 }
 
 - (void)setTheme:(NSString*)theme
