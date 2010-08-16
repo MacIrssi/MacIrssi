@@ -22,7 +22,7 @@ for lib in $PERLLIB/*; do
 	[[ $V == "5.8.1" ]] && continue
 
 	if [ -e $lib/darwin-thread-multi-2level/CORE/libperl.dylib ]; then
-		gcc-4.0 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libperl_core.$V.dylib $PERL_CORE
-		gcc-4.0 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libfe_perl.$V.dylib $FE_PERL
+		gcc-4.2 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libperl_core.$V.dylib $PERL_CORE
+		gcc-4.2 -dynamiclib $LDFLAGS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libfe_perl.$V.dylib $FE_PERL
 	fi
 done
