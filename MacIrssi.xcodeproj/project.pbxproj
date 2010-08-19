@@ -3740,11 +3740,11 @@
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
 				ACTION = $ACTION;
 				CC = "gcc-4.2";
-				CFLAGS = "-I/usr/local/include -g -arch i386 -isysroot $SDKROOT";
+				CFLAGS = "-I/usr/local/include -g -isysroot $SDKROOT";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				LDFLAGS = "-L/usr/local/lib -g -arch i386";
+				LDFLAGS = "-L/usr/local/lib -g";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PKG_CONFIG_PATH = /usr/local/lib/pkgconfig;
 				PRODUCT_NAME = "Irssi Configure";

@@ -39,9 +39,14 @@ fi
 
 [ -e config.xcode ] && rm config.xcode
 
+A=
+for x in $ARCHS; do
+  A="$A -arch $x"
+done
+
 export SHELL="/bin/bash"
-export CFLAGS="$CFLAGS -I$SRCROOT/Frameworks/MILibs/build/Release/include -DMACIRSSI_VERSION=\\\"$VERSION\\\""
-export LDFLAGS="$LDFLAGS -L$SRCROOT/Frameworks/MILibs/build/Release/lib"
+export CFLAGS="$CFLAGS $A -I$SRCROOT/Frameworks/MILibs/build/Release/include -DMACIRSSI_VERSION=\\\"$VERSION\\\""
+export LDFLAGS="$LDFLAGS $A -L$SRCROOT/Frameworks/MILibs/build/Release/lib"
 export PKG_CONFIG_PATH="$SRCROOT/Frameworks/MILibs/build/Release/lib/pkgconfig"
 export PATH="$SRCROOT/Frameworks/MILibs/build/pkg-config-build:$PATH"
 
