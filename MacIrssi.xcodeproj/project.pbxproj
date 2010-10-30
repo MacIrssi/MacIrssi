@@ -3112,7 +3112,14 @@
 			isa = PBXProject;
 			buildConfigurationList = C209D3AC08BF5CE6009C9E21 /* Build configuration list for PBXProject "MacIrssi" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MacIrssi */;
 			projectDirPath = "";
 			projectReferences = (
