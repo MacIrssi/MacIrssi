@@ -446,6 +446,8 @@
 		C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */ = {isa = PBXBuildFile; fileRef = C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */; };
 		C98E5F47104BF3830004C8F0 /* JVFontPreviewField.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */; };
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
+		C9907290127D433300D791F9 /* MIScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = C990728E127D433300D791F9 /* MIScrollView.h */; };
+		C9907291127D433300D791F9 /* MIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = C990728F127D433300D791F9 /* MIScrollView.m */; };
 		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
 		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
 		C9B0FA0811C595F9009B09D5 /* lib_path_fix.sh in Resources */ = {isa = PBXBuildFile; fileRef = C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */; };
@@ -1671,6 +1673,8 @@
 		C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFontPreviewField.h; sourceTree = "<group>"; };
 		C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFontPreviewField.m; sourceTree = "<group>"; };
 		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
+		C990728E127D433300D791F9 /* MIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIScrollView.h; sourceTree = "<group>"; };
+		C990728F127D433300D791F9 /* MIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIScrollView.m; sourceTree = "<group>"; };
 		C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppcastVersionComparator.h; sourceTree = "<group>"; };
 		C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppcastVersionComparator.m; sourceTree = "<group>"; };
 		C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = lib_path_fix.sh; sourceTree = "<group>"; };
@@ -2118,6 +2122,8 @@
 				C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */,
 				C9854DCB10D035B5004163C1 /* MIResizingTextView.h */,
 				C9854DCC10D035B5004163C1 /* MIResizingTextView.m */,
+				C990728E127D433300D791F9 /* MIScrollView.h */,
+				C990728F127D433300D791F9 /* MIScrollView.m */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3036,6 +3042,7 @@
 				C98E5F46104BF3830004C8F0 /* JVFontPreviewField.h in Headers */,
 				C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */,
 				C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */,
+				C9907290127D433300D791F9 /* MIScrollView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3305,6 +3312,7 @@
 				C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */,
 				C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */,
 				24FEBD7911CA70A30067C8D6 /* IrssiCore.m in Sources */,
+				C9907291127D433300D791F9 /* MIScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

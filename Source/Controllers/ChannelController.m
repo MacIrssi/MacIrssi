@@ -815,8 +815,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)finishLine
 {
-  BOOL scroll = [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
-
   [line detectURLs:[ColorSet channelLinkColour]];
   [textStorage appendAttributedString:line];
   
@@ -851,11 +849,8 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
     }
   }
   
-  /* Don't scroll to bottom if user is reading somewhere higher up */
-  if (scroll) {
-    endRange.location = [textStorage length];
-    [mainTextView scrollRangeToVisible:endRange];
-  }
+  /* I used to scroll the view here, however, now the view should scroll itself
+     to the bottom of the clipview for us, as long as the user hasn't scrolled up. */
   
   /* Reset line */
   [line release];
