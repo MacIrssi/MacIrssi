@@ -93,6 +93,7 @@ enum
   IBOutlet NSButton *playSoundBackgroundButton;
   IBOutlet NSButton *bounceIconButton;
   IBOutlet NSButton *bounceIconUntilFrontButton;
+  IBOutlet NSButton *bounceShowCountOnDock;
   IBOutlet NSButton *growlEventButton;
   IBOutlet NSButton *growlEventBackgroundButton;
   IBOutlet NSButton *growlEventUntilFrontButton;

@@ -425,6 +425,7 @@
   }
   [bounceIconButton setState:[eventController boolForEvent:eventCode alert:@"bounceIcon"]];
   [bounceIconUntilFrontButton setState:[eventController boolForEvent:eventCode alert:@"bounceIconUntilFront"]];
+  [bounceShowCountOnDock setState:[eventController boolForEvent:eventCode alert:@"bounceShowCountOnDock"]];
   [growlEventButton setState:[eventController boolForEvent:eventCode alert:@"growlEvent"]];
   [growlEventBackgroundButton setState:[eventController boolForEvent:eventCode alert:@"growlEventBackground"]];
   [growlEventUntilFrontButton setState:[eventController boolForEvent:eventCode alert:@"growlEventUntilFront"]];
@@ -460,6 +461,7 @@
     [eventController setBoolForEvent:event alert:@"playSoundBackground" value:[playSoundBackgroundButton state]];
     [eventController setBoolForEvent:event alert:@"bounceIcon" value:[bounceIconButton state]];
     [eventController setBoolForEvent:event alert:@"bounceIconUntilFront" value:[bounceIconUntilFrontButton state]];
+    [eventController setBoolForEvent:event alert:@"bounceShowCountOnDock" value:[bounceShowCountOnDock state]];
     [eventController setBoolForEvent:event alert:@"growlEvent" value:[growlEventButton state]];
     [eventController setBoolForEvent:event alert:@"growlEventBackground" value:[growlEventBackgroundButton state]];
     [eventController setBoolForEvent:event alert:@"growlEventUntilFront" value:[growlEventUntilFrontButton state]];
@@ -469,6 +471,7 @@
   [playSoundBackgroundButton setEnabled:[playSoundButton state]];
   
   [bounceIconUntilFrontButton setEnabled:[bounceIconButton state]];
+  [bounceShowCountOnDock setEnabled:[bounceIconButton state]];
   
   [growlEventBackgroundButton setEnabled:[growlEventButton state]];
   [growlEventUntilFrontButton setEnabled:[growlEventButton state]];

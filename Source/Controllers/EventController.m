@@ -21,6 +21,13 @@
 
 #import <Growl/GrowlApplicationBridge.h>
 
+@interface EventController ()
+
+- (void)_resetDockNotificationCount;
+
+@end
+
+
 @implementation EventController
 
 +(NSDictionary*)defaults
@@ -115,8 +122,17 @@
     [eventDefaults addEntriesFromDictionary:defaults];
     [[NSUserDefaults standardUserDefaults] setObject:eventDefaults forKey:@"eventDefaults"];
     
+    // Set the notifications count to zero and register for the app active notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_resetDockNotificationCount) name:NSApplicationDidBecomeActiveNotification object:NSApp];
+    unreadNotificationsCount = 0;
   }
   return self;
+}
+
+- (void)_resetDockNotificationCount
+{
+  unreadNotificationsCount = 0;
+  [[NSApp dockTile] setBadgeLabel:@""];
 }
      
 -(void)event:(NSNotification*)notification
@@ -166,6 +182,11 @@
       if ([event valueForKey:@"bounceIconUntilFront"] && [[event valueForKey:@"bounceIconUntilFront"] intValue] == 1)
       {
         type = NSCriticalRequest;
+      }
+      if ([event valueForKey:@"bounceShowCountOnDock"] && [[event valueForKey:@"bounceShowCountOnDock"] intValue] == 1)
+      {
+        NSDockTile *tile = [NSApp dockTile];
+        [tile setBadgeLabel:[NSString stringWithFormat:@"%d", ++unreadNotificationsCount]];
       }
       [NSApp requestUserAttention:type];
     }

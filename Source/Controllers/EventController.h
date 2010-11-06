@@ -27,6 +27,8 @@
   NSMutableDictionary *changedEventSettings;
   
   NSLock *eventControllerLock;
+  
+  int unreadNotificationsCount;
 }
 
 + (NSDictionary*)defaults;
