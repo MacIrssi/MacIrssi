@@ -120,6 +120,7 @@
   CHANNEL_SETUP_REC *rec = g_new0(CHANNEL_SETUP_REC, 1);
   rec->name = g_strdup([name cStringUsingEncoding:NSUTF8StringEncoding]);
   rec->chatnet = g_strdup([controller rec]->name);
+  rec->autojoin = YES;
   channel_setup_create(rec);
   
   ChannelBridgeController *channelController = [[[ChannelBridgeController alloc] initWithChannelRec:rec] autorelease];
