@@ -43,6 +43,7 @@
           
           [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:true], @"playSound", @"Stoof", @"playSoundSound", 
            [NSNumber numberWithBool:true], @"bounceIcon",
+           [NSNumber numberWithBool:true], @"bounceShowCountOnDock",
            [NSNumber numberWithBool:true], @"growlEvent", 
            [NSNumber numberWithBool:true], @"growlEventBackground", nil], @"IRSSI_QUERY_NEW",
           
@@ -54,6 +55,7 @@
           [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:true], @"playSound", @"Morse", @"playSoundSound", 
            [NSNumber numberWithBool:true], @"bounceIcon",
            [NSNumber numberWithBool:true], @"bounceIconUntilFront",
+           [NSNumber numberWithBool:true], @"bounceShowCountOnDock",
            [NSNumber numberWithBool:true], @"growlEvent", 
            [NSNumber numberWithBool:true], @"growlEventBackground", nil], @"IRSSI_ROOM_HIGHLIGHT",          
           nil];
