@@ -453,8 +453,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   topic_by = [[NSString alloc] initWithCString:setter];
   topic_time = time;
 
-  /* Error prone when updating on irssi thread (graphical glitches) - update on main thread instead */
-  [topicTextField performSelectorOnMainThread:@selector(setAttributedStringValue:) withObject:[self parseTopic:newTopic] waitUntilDone:TRUE];
+  [topicTextField setAttributedStringValue:[self parseTopic:newTopic]];
 }
 
 //-------------------------------------------------------------------
