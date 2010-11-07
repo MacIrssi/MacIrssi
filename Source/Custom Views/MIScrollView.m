@@ -28,13 +28,16 @@
 
 - (void)scrollWheel:(NSEvent *)theEvent
 {
-  [super scrollWheel:theEvent];
-  // [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
-  if (([[self verticalScroller] usableParts] == NSAllScrollerParts) && ([[self verticalScroller] floatValue] < 1.0)) {
-    scrollerAtBottom = NO;
-  } else {
-    scrollerAtBottom = YES;
+  if ([[self verticalScroller] usableParts] == NSAllScrollerParts) {
+    if (([theEvent deltaY] > 0) && scrollerAtBottom) {
+      // If the user scrolled up, regardless of position, we're no longer at the bottom.
+      scrollerAtBottom = NO;
+    } else if (([theEvent deltaY] < 0) && ([[self verticalScroller] floatValue] == 1.0) && !scrollerAtBottom) {
+      // If the user scrolled down, and we hit the bottom, then we're at the bottom.
+      scrollerAtBottom = YES;
+    }
   }
+  [super scrollWheel:theEvent];
 }
 
 - (BOOL)isScrollerAtBottom
