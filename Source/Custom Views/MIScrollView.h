@@ -20,9 +20,13 @@
 
 
 @interface MIScrollView : NSScrollView {
+  NSRect previousDocumentRect;
+  NSRect previousClipRect;
+  
   BOOL scrollerAtBottom;
 }
 
 - (BOOL)isScrollerAtBottom;
+- (void)forceScrollToBottom;
 
 @end

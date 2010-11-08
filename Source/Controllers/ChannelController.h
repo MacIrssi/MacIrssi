@@ -150,7 +150,6 @@ enum nickContextMenuTags {
   int attrRangesIndex;
   bool useFloater;
   bool isChannel;
-  bool scrollState;
   NSMutableAttributedString *line;
   int searchIteratorIndex;
   NSRange oldSearchMatchRange;
@@ -163,11 +162,12 @@ enum nickContextMenuTags {
 }
 - (NSString *)mode;
 - (NSArray *)nicks;
-- (void)saveScrollState;
-- (bool)scrollState;
 - (void)moveToNextSearchMatch;
 - (void)moveToPreviousSearchMatch;
 - (void)highlightCurrentSearchMatch;
+
+- (BOOL)isScrolledToBottom;
+- (void)forceScrollToBottom;
 
 - (BOOL)isChannel;
 - (id)init;

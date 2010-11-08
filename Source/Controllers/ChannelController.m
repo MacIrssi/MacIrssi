@@ -432,6 +432,16 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], windowRec->active_server, windowRec->active);
 }
 
+- (BOOL)isScrolledToBottom
+{
+  return [mainTextScrollView isScrollerAtBottom];
+}
+
+- (void)forceScrollToBottom
+{
+  [mainTextScrollView forceScrollToBottom];
+}
+
 #pragma mark Indirect receivers of irssi signals
 //-------------------------------------------------------------------
 // setTopic:setBy:atTime:
@@ -952,17 +962,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 }
 
 //-------------------------------------------------------------------
-// saveScrollState:
-// Saves the state of the scroller. TRUE if at the bottom, FALSE else
-//-------------------------------------------------------------------
-- (void)saveScrollState
-{
-  //if ([scroller floatValue] == 0.0)
-  //  NSLog(@"[%@] scroller:%f, knob:%f", name, [scroller floatValue], [scroller knobProportion]);
-  scrollState = [scroller usableParts] != NSAllScrollerParts || [scroller floatValue] == 1.0;
-}
-
-//-------------------------------------------------------------------
 // setFont:
 // Set font in main text view
 //
@@ -1223,7 +1222,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   textStorage = [mainTextView textStorage];
   searchRanges = [[NSMutableArray alloc] init];
   
-  [self saveScrollState];
   [nickTableView setTarget:self];
   [nickTableView setDoubleAction:@selector(nickListRowDoubleClicked:)];
 
@@ -1308,12 +1306,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 // The mode of the channel
 //-------------------------------------------------------------------
 - (NSString *)mode { return mode; }
-
-//-------------------------------------------------------------------
-// The state of the scroller when the window of the channel became
-// inactive.
-//-------------------------------------------------------------------
-- (bool)scrollState { return scrollState; }
 
 //-------------------------------------------------------------------
 // The current tab view item.

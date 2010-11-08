@@ -623,28 +623,20 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   currentChannelController = (ChannelController *)(wind->gui_data);
   NSTextView *textView = [currentChannelController mainTextView];
-  NSRange endRange;
-  
-  /* Since we only update the scrollbar of the front window we must save it's
-   state when we switch. Likewise we must also update the new front window with 
-   the status it had when it last was active */
-  if (oldwind)
-  {
-    ChannelController *oldWindowController = (ChannelController *)(oldwind->gui_data);
-    [oldWindowController saveScrollState];
-    [oldWindowController setPartialCommand:[NSString stringWithString:[inputTextField string]]];
-  }
-  
-  if ([currentChannelController scrollState]) {
-    endRange.location = [[textView textStorage] length];
-    endRange.length = 0;
-    [textView scrollRangeToVisible:endRange];
-  }
   
   /* Do the window switch */
   NSTabViewItem *tmp = [currentChannelController tabViewItem];
   [(CustomWindow *)[tabView window] setCurrentChannelTextView:textView];
+  
+  BOOL isAlreadyAtBottom = [currentChannelController isScrolledToBottom];
   [tabView selectTabViewItem:tmp];
+  
+  // Presenting an un-drawn window can cause the scroll state to get forced, if we were
+  // previously scrolled to bottom, then we should force it now.
+  if (isAlreadyAtBottom) {
+    [currentChannelController forceScrollToBottom];
+  }
+  
   [channelBar selectCellWithWindowRec:wind];
   [channelTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[tabView indexOfTabViewItem:tmp]] byExtendingSelection:FALSE];
   [currentChannelController setWaitingEvents:0];

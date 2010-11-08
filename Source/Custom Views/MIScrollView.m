@@ -18,26 +18,34 @@
 
 #import "MIScrollView.h"
 
+@interface MIScrollView ()
+- (void)documentViewFrameDidChangeNotification:(NSNotification*)notification;
+@end
+
 
 @implementation MIScrollView
 
 - (void)awakeFromNib 
 {
   scrollerAtBottom = YES;
+  previousDocumentRect = [[[self contentView] documentView] frame];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(documentViewFrameDidChangeNotification:) name:NSViewFrameDidChangeNotification object:[[self contentView] documentView]];  
 }
 
-- (void)scrollWheel:(NSEvent *)theEvent
+- (void)dealloc
 {
-  if ([[self verticalScroller] usableParts] == NSAllScrollerParts) {
-    if (([theEvent deltaY] > 0) && scrollerAtBottom) {
-      // If the user scrolled up, regardless of position, we're no longer at the bottom.
-      scrollerAtBottom = NO;
-    } else if (([theEvent deltaY] < 0) && ([[self verticalScroller] floatValue] == 1.0) && !scrollerAtBottom) {
-      // If the user scrolled down, and we hit the bottom, then we're at the bottom.
-      scrollerAtBottom = YES;
-    }
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSViewFrameDidChangeNotification object:[[self contentView] documentView]];
+  [super dealloc];
+}
+
+- (void)documentViewFrameDidChangeNotification:(NSNotification*)notification
+{
+  previousDocumentRect = [[[self contentView] documentView] frame];
+  if ([self isScrollerAtBottom]) {
+    NSPoint point = [[self contentView] constrainScrollPoint:NSMakePoint(0, [[self documentView] bounds].size.height)];
+    [[self contentView] scrollToPoint:point];
+    [self reflectScrolledClipView:[self contentView]];
   }
-  [super scrollWheel:theEvent];
 }
 
 - (BOOL)isScrollerAtBottom
@@ -45,12 +53,36 @@
   return scrollerAtBottom;
 }
 
+- (void)forceScrollToBottom
+{
+  NSPoint point = [[self contentView] constrainScrollPoint:NSMakePoint(0, [[self documentView] bounds].size.height)];
+  [[self contentView] scrollToPoint:point];
+  [self reflectScrolledClipView:[self contentView]];
+  
+  scrollerAtBottom = YES;
+}
+
 - (void)reflectScrolledClipView:(NSClipView *)aClipView
 {
-  if (scrollerAtBottom) {
-    [aClipView scrollToPoint:[aClipView constrainScrollPoint:NSMakePoint(0, [[self documentView] bounds].size.height)]];
-  }
   [super reflectScrolledClipView:aClipView];
+  
+  // Don't do any logic processing if we're redrawing because the scroller changed in size
+  if (NSEqualRects([[[self contentView] documentView] frame], previousDocumentRect) && ([[self verticalScroller] usableParts] == NSAllScrollerParts))
+  {
+    if (!NSEqualRects([[self contentView] documentVisibleRect], previousClipRect)) 
+    {
+      float yOffset = [[self contentView] documentVisibleRect].origin.y - previousClipRect.origin.y;
+
+      if ((yOffset < 0) && scrollerAtBottom) {
+        scrollerAtBottom = NO;
+      } else if ((yOffset > 0) && !scrollerAtBottom) {
+        scrollerAtBottom = YES;
+      }
+      
+      // Make sure we store where we are for next time
+      previousClipRect = [[self contentView] documentVisibleRect];
+    } 
+  }
 }
 
 @end
