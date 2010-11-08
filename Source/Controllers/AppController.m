@@ -1113,6 +1113,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
   NSTabViewItem *tmp;
   
+  /* Set the input text box to this font too */
+  [inputTextField setFont:font];
+  /* Also force the input box to resize itself */
+  [inputTextField textDidChange:nil];
+  
   /* Iterate through all channels */
   while (tmp = [enumerator nextObject])
   {
@@ -1603,9 +1608,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   // All font changes go somewhere global, we need a handler to sort that out.
   [[NSFontManager sharedFontManager] setAction:@selector(specialFontChange:)];
   
-  // Doesn't look like you can set this in IB
-  [inputTextField setFont:[NSFont fontWithName:@"Monaco" size:10.0]];
-  
   // Setup the event controller
   eventController = [[EventController alloc] init];
   
@@ -1631,6 +1633,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults registerDefaults:dict];
+
+  // Doesn't look like you can set this in IB
+  //[inputTextField setFont:[NSFont fontWithName:@"Monaco" size:10.0]];
+  [inputTextField setFont:[NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] dataForKey:@"channelFont"]]];
   
   // Register the default colours too.
   [ColorSet registerDefaults];
