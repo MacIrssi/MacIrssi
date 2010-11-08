@@ -206,24 +206,24 @@
 
 - (NSString*)nick
 {
-  return [NSString stringWithCString:CSTR(settings_get_str("nick")) encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(settings_get_str("nick")) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setNick:(NSString*)nick
 {
-  const char *irssiCString = [nick cStringUsingEncoding:MICurrentTextEncoding];
+  const char *irssiCString = [nick cStringUsingEncoding:NSUTF8StringEncoding];
 	if (strcmp(irssiCString, settings_get_str("nick")) != 0)
 		settings_set_str("nick", irssiCString);
 }
 
 - (NSString*)alternateNick
 {
-  return [NSString stringWithCString:CSTR(settings_get_str("alternate_nick")) encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(settings_get_str("alternate_nick")) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setAlternateNick:(NSString*)nick
 {
-  const char *irssiCString = [nick cStringUsingEncoding:MICurrentTextEncoding];
+  const char *irssiCString = [nick cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("alternate_nick")) != 0)
   {
     settings_set_str("alternate_nick", irssiCString);
@@ -232,12 +232,12 @@
 
 - (NSString*)username
 {
-  return [NSString stringWithCString:CSTR(settings_get_str("user_name")) encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(settings_get_str("user_name")) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setUsername:(NSString*)username
 {
-  const char *irssiCString = [username cStringUsingEncoding:MICurrentTextEncoding];
+  const char *irssiCString = [username cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("user_name")) != 0)
   {
     settings_set_str("user_name", irssiCString);
@@ -246,12 +246,12 @@
 
 - (NSString*)realName
 {
-  return [NSString stringWithCString:CSTR(settings_get_str("real_name")) encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(settings_get_str("real_name")) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setRealName:(NSString*)name
 {
-  const char *irssiCString = [name cStringUsingEncoding:MICurrentTextEncoding];
+  const char *irssiCString = [name cStringUsingEncoding:NSUTF8StringEncoding];
   if (strcmp(irssiCString, settings_get_str("real_name")) != 0)
   {
     settings_set_str("real_name", irssiCString);
