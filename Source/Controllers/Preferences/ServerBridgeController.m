@@ -37,30 +37,32 @@
 
 - (NSString*)address
 {
-  return [NSString stringWithCString:CSTR(rec->address) encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(rec->address) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setAddress:(NSString*)value
 {
+  if (rec->address) {
+    g_free_and_null(rec->address);
+  }
   if (value) {
-    rec->address = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
-  } else {
-    rec->address = NULL;
+    rec->address = g_strdup([value cStringUsingEncoding:NSUTF8StringEncoding]);
   }
   server_setup_add(rec);
 }
 
 - (NSString*)chatnet
 {
-  return [NSString stringWithCString:CSTR(rec->chatnet) encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(rec->chatnet) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setChatnet:(NSString*)value
 {
+  if (rec->chatnet) {
+    g_free_and_null(rec->chatnet);
+  }
   if (value) {
-    rec->chatnet = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
-  } else {
-    rec->chatnet = NULL;
+    rec->chatnet = g_strdup([value cStringUsingEncoding:NSUTF8StringEncoding]);
   }
   server_setup_add(rec);
 }

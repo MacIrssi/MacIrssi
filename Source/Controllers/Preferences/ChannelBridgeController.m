@@ -37,15 +37,16 @@
 
 - (NSString*)name
 {
-  return [NSString stringWithCString:CSTR(rec->name) encoding:MICurrentTextEncoding];
+  return [NSString stringWithCString:CSTR(rec->name) encoding:NSUTF8StringEncoding];
 }
 
 - (void)setName:(NSString*)value
 {
+  if (rec->name) {
+    g_free_and_null(rec->name);
+  }
   if (value) {
-    rec->name = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
-  } else {
-    rec->name = NULL;
+    rec->name = g_strdup([value cStringUsingEncoding:NSUTF8StringEncoding]);
   }
   channel_setup_create(rec);
 }

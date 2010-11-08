@@ -78,10 +78,11 @@
 
 - (void)setNick:(NSString*)value
 {
+  if (rec->nick) {
+    g_free_and_null(rec->nick);
+  }
   if (value) {
-    rec->nick = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
-  } else {
-    rec->nick = NULL;
+    rec->nick = g_strdup([value cStringUsingEncoding:NSUTF8StringEncoding]);
   }
   chatnet_create((CHATNET_REC*)rec);
 }
@@ -93,10 +94,11 @@
 
 - (void)setUsername:(NSString*)value
 {
+  if (rec->username) {
+    g_free_and_null(rec->username);
+  }
   if (value) {
-    rec->username = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
-  } else {
-    rec->username = NULL;
+    rec->username = g_strdup([value cStringUsingEncoding:NSUTF8StringEncoding]);
   }
   chatnet_create((CHATNET_REC*)rec);
 }
@@ -108,10 +110,11 @@
 
 - (void)setRealname:(NSString*)value
 {
+  if (rec->realname) {
+    g_free_and_null(rec->realname);
+  }
   if (value) {
-    rec->realname = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
-  } else {
-    rec->realname = NULL;
+    rec->realname = g_strdup([value cStringUsingEncoding:NSUTF8StringEncoding]);
   }
   chatnet_create((CHATNET_REC*)rec);
 }
@@ -123,10 +126,11 @@
 
 - (void)setAutoCommand:(NSString*)value
 {
+  if (rec->autosendcmd) {
+    g_free_and_null(rec->autosendcmd);
+  }
   if (value) {
-    rec->autosendcmd = (char*)[value cStringUsingEncoding:MICurrentTextEncoding];
-  } else {
-    rec->autosendcmd = NULL;
+    rec->autosendcmd = g_strdup([value cStringUsingEncoding:NSUTF8StringEncoding]);
   }
   chatnet_create((CHATNET_REC*)rec);
 }
