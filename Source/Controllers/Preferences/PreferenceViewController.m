@@ -382,7 +382,7 @@
   [soundListPopUpButton removeAllItems];
   NSFileManager *fileManager = [NSFileManager defaultManager];
   NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
-  NSString *file;
+  NSString *lib, *file;
   
   NSDirectoryEnumerator *dirEnumerator = [fileManager enumeratorAtPath:[resourcePath stringByAppendingPathComponent:@"Sounds"]];
   while (file = [dirEnumerator nextObject])
@@ -395,14 +395,23 @@
   
   [[soundListPopUpButton menu] addItem:[NSMenuItem separatorItem]];
   
-  dirEnumerator = [fileManager enumeratorAtPath:@"/System/Library/Sounds"];
-  while (file = [dirEnumerator nextObject])
-  {
-    NSMenuItem *item = [[NSMenuItem alloc] init];
-    [item setTitle:[file stringByDeletingPathExtension]];
-    [item setImage:[NSImage imageNamed:@"sound"]]; 
-    [[soundListPopUpButton menu] addItem:[item autorelease]];
+  NSArray *pathsToLibraries = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSAllDomainsMask, YES);
+  NSEnumerator *libraryEnumerator = [pathsToLibraries objectEnumerator];
+
+  while (lib = [libraryEnumerator nextObject]) {
+    NSString *path = [NSString pathWithComponents:[NSArray arrayWithObjects:lib, @"Sounds", nil]];
+    
+    dirEnumerator = [fileManager enumeratorAtPath:path];
+    while (file = [dirEnumerator nextObject])
+    {
+      NSMenuItem *item = [[NSMenuItem alloc] init];
+      [item setTitle:[file stringByDeletingPathExtension]];
+      [item setImage:[NSImage imageNamed:@"sound"]]; 
+      [[soundListPopUpButton menu] addItem:[item autorelease]];
+    }
+    
   }
+  
 }
 
 - (void)updateSoundListPopUpButton
