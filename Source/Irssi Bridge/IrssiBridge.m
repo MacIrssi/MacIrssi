@@ -249,8 +249,10 @@ void irssibridge_query_created(QUERY_REC *qr, int automatic) {
 
 void irssibridge_window_server_changed(WINDOW_REC *wind, SERVER_REC *serv) {
 	if (!serv || !serv->tag)
+	{
 		return;
-	[appController setServer:[NSString stringWithCString:serv->tag]];
+	}
+	[appController setServer:[NSString stringWithCString:serv->tag encoding:MICurrentTextEncoding]];
 }
 
 void irssibridge_window_level_changed(WINDOW_REC *wind) 

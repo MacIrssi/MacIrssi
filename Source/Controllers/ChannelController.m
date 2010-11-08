@@ -181,7 +181,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
         }
         
         [removeMode appendString:addMode];
-        NSLog(removeMode);
+
         const char *tmp2 = [removeMode cStringUsingEncoding:MICurrentTextEncoding];
         signal_emit("send command", 3, tmp2, windowRec->active_server, windowRec->active);
         [addMode release];
@@ -242,7 +242,10 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   // some commands can be coalesed, so get all the nicks first
   while (row != NSNotFound)
   {
-    [coalesedNicks addObject:[NSString stringWithCString:((NICK_REC *)[[nicks objectAtIndex:row] pointerValue])->nick]];
+    char *nickStr = ((NICK_REC*)[[nicks objectAtIndex:row] pointerValue])->nick;
+    NSString *nick = [NSString stringWithCString:nickStr encoding:MICurrentTextEncoding];
+    
+    [coalesedNicks addObject:nick];
     row = [indexSet indexGreaterThanIndex:row];
   }
   
@@ -343,7 +346,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 //-------------------------------------------------------------------
 - (IBAction)mainTextViewMenuClicked:(id)sender
 {
-  NSLog([sender title]);
+  NSLog(@"%@", [sender title]);
 }
 
 
@@ -398,9 +401,13 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   
   NSString *topicTime;
   if (topic_time == 0)
+  {
     topicTime = @"";
+  }
   else
-    topicTime = [NSString stringWithCString:ctime(&topic_time)];
+  {
+    topicTime = [NSString stringWithCString:ctime(&topic_time) encoding:NSASCIIStringEncoding];
+  }
   [topicTimeTextField setStringValue:topicTime];
   [maxUsersTextField setIntValue:limit];
   [floaterCheckBox setState:(useFloater ? NSOnState : NSOffState)];
@@ -1108,7 +1115,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   
   [nickAttributes setObject:color forKey:NSForegroundColorAttributeName];
   [nickAttributes setObject:nickListFont forKey:NSFontAttributeName];
-  return [[[NSAttributedString alloc] initWithString:[NSString stringWithCString:nick->nick] attributes:nickAttributes] autorelease];
+  return [[[NSAttributedString alloc] initWithString:[NSString stringWithCString:nick->nick encoding:MICurrentTextEncoding] attributes:nickAttributes] autorelease];
 }
 
 

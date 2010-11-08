@@ -1212,7 +1212,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   NSMutableArray *tmp = [[NSMutableArray alloc] init];
   if (get_irssi_dir()) {
-    [tmp addObject:[NSString stringWithCString:get_irssi_dir()]];
+    [tmp addObject:[NSString stringWithCString:get_irssi_dir() encoding:NSUTF8StringEncoding]];
     [tmp addObject:[NSString stringWithFormat:@"%s/%@", get_irssi_dir(), @"themes"]];
   }
   
