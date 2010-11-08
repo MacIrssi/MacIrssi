@@ -569,8 +569,46 @@
 
 - (IBAction)deleteNetworkAction:(id)sender
 {
-  [preferenceObjectController deleteChatnetWithIndex:[networksArrayController selectionIndex]];
-  [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+  IrcnetBridgeController *ircNet = [[networksArrayController selectedObjects] objectAtIndex:0];
+  
+  NSAlert *confirmationAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Are you sure you want to delete the %@ chatnet?", [ircNet name]]
+                                               defaultButton:@"Delete"
+                                             alternateButton:@"Cancel"
+                                                 otherButton:nil
+                                   informativeTextWithFormat:[NSString stringWithFormat:@"This action will also disassociate %@ from all servers that belong to this chatnet.", [ircNet name]]];
+  
+  [confirmationAlert beginSheetModalForWindow:preferenceWindow
+                                modalDelegate:self
+                               didEndSelector:@selector(deleteNetworkActionPanelDidEnd:returnCode:contextInfo:)
+                                  contextInfo:nil];
+}
+
+- (void)deleteNetworkActionPanelDidEnd:(NSWindow*)sheet returnCode:(int)code contextInfo:(void*)contextInfo
+{
+  if (code == NSOKButton)
+  {
+    int index = [networksArrayController selectionIndex];
+    IrcnetBridgeController *ircNet = [[networksArrayController selectedObjects] objectAtIndex:0];
+    
+    ServerBridgeController *server = nil;
+    int i = 0;
+    
+    for (i=0; i < [[serversArrayController content] count]; i++) {
+      server = [[serversArrayController content] objectAtIndex:i];
+      
+      if ([[server chatnet] isEqualToString:[ircNet name]])
+      {
+        [preferenceObjectController deleteServerWithIndex:i];
+      }
+    }
+    
+    [preferenceObjectController deleteChatnetWithIndex:index];
+    
+    [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+    [networksArrayController setSelectionIndex:index];
+    
+    [serversArrayController setContent:[preferenceObjectController serverArray]];
+  }
 }
 
 - (IBAction)addChannelAction:(id)sender
@@ -660,8 +698,31 @@
 
 - (IBAction)deleteServerAction:(id)sender
 {
-  [preferenceObjectController deleteServerWithIndex:[serversArrayController selectionIndex]];
-  [serversArrayController setContent:[preferenceObjectController serverArray]];
+  ServerBridgeController *server = [[serversArrayController selectedObjects] objectAtIndex:0];
+  
+  NSAlert *confirmationAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Are you sure you want to delete %@?", [server address]]
+                                               defaultButton:@"Delete"
+                                             alternateButton:@"Cancel"
+                                                 otherButton:nil
+                                   informativeTextWithFormat:@"You cannot undo this action."];
+  
+  [confirmationAlert beginSheetModalForWindow:preferenceWindow
+                                modalDelegate:self
+                               didEndSelector:@selector(deleteServerActionSheetDidEnd:returnCode:contextInfo:)
+                                  contextInfo:nil];
+}
+
+- (void)deleteServerActionSheetDidEnd:(NSWindow*)sheet returnCode:(int)code contextInfo:(void*)contextInfo
+{
+  if (code == NSOKButton)
+  {
+    int index = [serversArrayController selectionIndex];
+    
+    [preferenceObjectController deleteServerWithIndex:index];
+    
+    [serversArrayController setContent:[preferenceObjectController serverArray]];    
+    [serversArrayController setSelectionIndex:index];
+  }
 }
 
 #pragma mark Appearance Preference Panel
