@@ -140,7 +140,10 @@ char* macirssi_find_theme(const char* theme, void* context)
   NSString *themeName = [NSString stringWithCString:theme encoding:NSUTF8StringEncoding];
   NSString *res = [core findThemeByName:themeName];
   
-  return strdup([res cStringUsingEncoding:NSUTF8StringEncoding]);
+  if (res) {
+    return strdup([res cStringUsingEncoding:NSUTF8StringEncoding]);
+  }
+  return NULL;
 }
 
 static pthread_once_t globalIrssiOnce = PTHREAD_ONCE_INIT;
