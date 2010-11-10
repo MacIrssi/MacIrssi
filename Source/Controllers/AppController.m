@@ -934,6 +934,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       // Ok, for vertical channel bars, put the tableView in a split view and go from there
       NSRect channelTableSplitViewFrame = [[mainWindow contentView] frame];
       channelTableSplitView = [[MISplitView alloc] initWithFrame:channelTableSplitViewFrame];
+      [channelTableSplitView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
       [channelTableSplitView setVertical:YES];
       [channelTableSplitView setDelegate:self];
       
@@ -947,25 +948,30 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       [channelTableScrollView setNeedsDisplay:YES];
       
       NSRect containerTableFrame = NSMakeRect(channelTableFrame.size.width, 0.0, channelTableSplitViewFrame.size.width - channelTableFrame.size.width, channelTableSplitViewFrame.size.height);
-      NSView *containerView = [[NSView alloc] initWithFrame:containerTableFrame];
-      [channelTableSplitView addSubview:containerView];
+      [[mainWindow contentView] addSubview:tabViewTextEntrySplitView];
+      [tabViewTextEntrySplitView setFrame:containerTableFrame];
+      [tabViewTextEntrySplitView setNeedsDisplay:YES];
+      [tabViewTextEntrySplitView adjustSubviews];
       
-      NSRect inputBoxFrame = NSMakeRect(0.0, 5.0, containerTableFrame.size.width - 5.0, [inputTextFieldBox frame].size.height);
-      // A wee hack
-      NSRect tabViewFrame = NSMakeRect(-5.0,
-                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
-                                       containerTableFrame.size.width + 5.0,
-                                       containerTableFrame.size.height - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
-      
-      [containerView addSubview:tabView];
-      [tabView setFrame:tabViewFrame];
-      [tabView setNeedsDisplay:YES];
-      
-      [containerView addSubview:inputTextFieldBox];
-      [inputTextFieldBox setFrame:inputBoxFrame];
-      [inputTextFieldBox setNeedsDisplay:YES];
-      
-      [containerView release];
+//      NSView *containerView = [[NSView alloc] initWithFrame:containerTableFrame];
+//      [channelTableSplitView addSubview:containerView];
+//      
+//      NSRect inputBoxFrame = NSMakeRect(0.0, 5.0, containerTableFrame.size.width - 5.0, [inputTextFieldBox frame].size.height);
+//      // A wee hack
+//      NSRect tabViewFrame = NSMakeRect(-5.0,
+//                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
+//                                       containerTableFrame.size.width + 5.0,
+//                                       containerTableFrame.size.height - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
+//      
+//      [containerView addSubview:tabView];
+//      [tabView setFrame:tabViewFrame];
+//      [tabView setNeedsDisplay:YES];
+//      
+//      [containerView addSubview:inputTextFieldBox];
+//      [inputTextFieldBox setFrame:inputBoxFrame];
+//      [inputTextFieldBox setNeedsDisplay:YES];
+//      
+//      [containerView release];
       
       [channelTableSplitView restoreLayoutUsingName:@"ChannelTableViewSplit"];      
       break;
