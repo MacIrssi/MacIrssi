@@ -459,6 +459,13 @@
 		C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */; };
 		C9BB213E1299D3A400EA8AB0 /* DebugController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB213C1299D3A400EA8AB0 /* DebugController.h */; };
 		C9BB213F1299D3A400EA8AB0 /* DebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB213D1299D3A400EA8AB0 /* DebugController.m */; };
+		C9BB22151299E5C500EA8AB0 /* CHLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB220E1299E5C500EA8AB0 /* CHLayout.h */; };
+		C9BB22161299E5C500EA8AB0 /* CHLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB220F1299E5C500EA8AB0 /* CHLayoutConstraint.h */; };
+		C9BB22171299E5C500EA8AB0 /* CHLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB22101299E5C500EA8AB0 /* CHLayoutConstraint.m */; };
+		C9BB22181299E5C500EA8AB0 /* CHLayoutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB22111299E5C500EA8AB0 /* CHLayoutManager.h */; };
+		C9BB22191299E5C500EA8AB0 /* CHLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB22121299E5C500EA8AB0 /* CHLayoutManager.m */; };
+		C9BB221A1299E5C500EA8AB0 /* NSView+CHLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB22131299E5C500EA8AB0 /* NSView+CHLayout.h */; };
+		C9BB221B1299E5C500EA8AB0 /* NSView+CHLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB22141299E5C500EA8AB0 /* NSView+CHLayout.m */; };
 		C9BB227A129A013E00EA8AB0 /* MITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB2278129A013E00EA8AB0 /* MITextField.h */; };
 		C9BB227B129A013E00EA8AB0 /* MITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB2279129A013E00EA8AB0 /* MITextField.m */; };
 		C9BB24BD129A520300EA8AB0 /* SRHacks.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB24BB129A520300EA8AB0 /* SRHacks.h */; };
@@ -1694,6 +1701,13 @@
 		C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIUnresponsiveButton.m; sourceTree = "<group>"; };
 		C9BB213C1299D3A400EA8AB0 /* DebugController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugController.h; sourceTree = "<group>"; };
 		C9BB213D1299D3A400EA8AB0 /* DebugController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugController.m; sourceTree = "<group>"; };
+		C9BB220E1299E5C500EA8AB0 /* CHLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLayout.h; sourceTree = "<group>"; };
+		C9BB220F1299E5C500EA8AB0 /* CHLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLayoutConstraint.h; sourceTree = "<group>"; };
+		C9BB22101299E5C500EA8AB0 /* CHLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLayoutConstraint.m; sourceTree = "<group>"; };
+		C9BB22111299E5C500EA8AB0 /* CHLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHLayoutManager.h; sourceTree = "<group>"; };
+		C9BB22121299E5C500EA8AB0 /* CHLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHLayoutManager.m; sourceTree = "<group>"; };
+		C9BB22131299E5C500EA8AB0 /* NSView+CHLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+CHLayout.h"; sourceTree = "<group>"; };
+		C9BB22141299E5C500EA8AB0 /* NSView+CHLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+CHLayout.m"; sourceTree = "<group>"; };
 		C9BB2278129A013E00EA8AB0 /* MITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITextField.h; sourceTree = "<group>"; };
 		C9BB2279129A013E00EA8AB0 /* MITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MITextField.m; sourceTree = "<group>"; };
 		C9BB24BB129A520300EA8AB0 /* SRHacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRHacks.h; sourceTree = "<group>"; };
@@ -2223,6 +2237,7 @@
 		C91F13360F0A6EF600763699 /* Non-view Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C9BB220B1299E54800EA8AB0 /* Constraints */,
 				C91F190E0F1400B500763699 /* iTunes */,
 				C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */,
 				C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */,
@@ -3043,6 +3058,20 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		C9BB220B1299E54800EA8AB0 /* Constraints */ = {
+			isa = PBXGroup;
+			children = (
+				C9BB220E1299E5C500EA8AB0 /* CHLayout.h */,
+				C9BB220F1299E5C500EA8AB0 /* CHLayoutConstraint.h */,
+				C9BB22101299E5C500EA8AB0 /* CHLayoutConstraint.m */,
+				C9BB22111299E5C500EA8AB0 /* CHLayoutManager.h */,
+				C9BB22121299E5C500EA8AB0 /* CHLayoutManager.m */,
+				C9BB22131299E5C500EA8AB0 /* NSView+CHLayout.h */,
+				C9BB22141299E5C500EA8AB0 /* NSView+CHLayout.m */,
+			);
+			path = Constraints;
+			sourceTree = "<group>";
+		};
 		C9C2828B11C746BB00914872 /* xcodescripts */ = {
 			isa = PBXGroup;
 			children = (
@@ -3139,6 +3168,10 @@
 				C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */,
 				C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */,
 				C9BB213E1299D3A400EA8AB0 /* DebugController.h in Headers */,
+				C9BB22151299E5C500EA8AB0 /* CHLayout.h in Headers */,
+				C9BB22161299E5C500EA8AB0 /* CHLayoutConstraint.h in Headers */,
+				C9BB22181299E5C500EA8AB0 /* CHLayoutManager.h in Headers */,
+				C9BB221A1299E5C500EA8AB0 /* NSView+CHLayout.h in Headers */,
 				C9BB227A129A013E00EA8AB0 /* MITextField.h in Headers */,
 				C9BB24BD129A520300EA8AB0 /* SRHacks.h in Headers */,
 				C9FDCE4A129DB813004598C1 /* MIScrollViewHelper.h in Headers */,
@@ -3413,6 +3446,9 @@
 				C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */,
 				24FEBD7911CA70A30067C8D6 /* IrssiCore.m in Sources */,
 				C9BB213F1299D3A400EA8AB0 /* DebugController.m in Sources */,
+				C9BB22171299E5C500EA8AB0 /* CHLayoutConstraint.m in Sources */,
+				C9BB22191299E5C500EA8AB0 /* CHLayoutManager.m in Sources */,
+				C9BB221B1299E5C500EA8AB0 /* NSView+CHLayout.m in Sources */,
 				C9BB227B129A013E00EA8AB0 /* MITextField.m in Sources */,
 				C9BB24BE129A520300EA8AB0 /* SRHacks.m in Sources */,
 				C9FDCE4B129DB813004598C1 /* MIScrollViewHelper.m in Sources */,
