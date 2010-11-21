@@ -615,6 +615,12 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   currentChannelController = (ChannelController *)(wind->gui_data);
   NSTextView *textView = [currentChannelController mainTextView];
   
+  if (oldwind)
+  {
+    ChannelController *oldWindowController = (ChannelController *)(oldwind->gui_data);
+    [oldWindowController setPartialCommand:[[[inputTextField string] copy] autorelease]];
+  }
+  
   /* Do the window switch */
   NSTabViewItem *tmp = [currentChannelController tabViewItem];
   [(CustomWindow *)[tabView window] setCurrentChannelTextView:textView];
