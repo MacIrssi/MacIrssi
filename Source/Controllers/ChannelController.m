@@ -1357,11 +1357,20 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (NSString *)partialCommand { return partialCommand; }
 
+- (NSRange)partialCommandSelection {
+  return partialCommandSelection;
+}
+
 - (void)setPartialCommand:(NSString*)cmd
 {
   [cmd retain];
   [partialCommand release];
   partialCommand = cmd;
+}
+
+- (void)setPartialCommandSelection:(NSRange)range
+{
+  partialCommandSelection = range;
 }
 
 //-------------------------------------------------------------------

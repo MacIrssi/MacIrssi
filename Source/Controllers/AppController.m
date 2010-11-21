@@ -619,6 +619,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   {
     ChannelController *oldWindowController = (ChannelController *)(oldwind->gui_data);
     [oldWindowController setPartialCommand:[[[inputTextField string] copy] autorelease]];
+    [oldWindowController setPartialCommandSelection:[inputTextField selectedRange]];
   }
   
   /* Do the window switch */
@@ -649,7 +650,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   if ([currentChannelController partialCommand])
   {
     [inputTextField setString:[currentChannelController partialCommand]];
-    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[currentChannelController partialCommand] length], 0)];
+    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:[currentChannelController partialCommandSelection]];
   }
   else
   {

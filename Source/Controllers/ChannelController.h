@@ -156,6 +156,7 @@ enum nickContextMenuTags {
   //int currentDataLevel;
   
   NSString *partialCommand;
+  NSRange partialCommandSelection;
   
   int waitingEvents;
   NSString *lastEventOwner;
@@ -183,7 +184,9 @@ enum nickContextMenuTags {
 - (void)setName:(NSString *)newName;
 
 - (NSString *)partialCommand;
+- (NSRange)partialCommandSelection;
 - (void)setPartialCommand:(NSString*)cmd;
+- (void)setPartialCommandSelection:(NSRange)range;
 
 - (int)waitingEvents;
 - (void)setWaitingEvents:(int)count;
