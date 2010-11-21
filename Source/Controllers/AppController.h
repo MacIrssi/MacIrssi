@@ -140,9 +140,6 @@ extern char **argv;
 - (IBAction)performShortcut:(id)sender;
 - (void)checkAndConvertOldShortcuts;
 
-- (IBAction)debugAction1:(id)sender;
-- (IBAction)debugAction2:(id)sender;
-
 #pragma mark Server Change Notifications
 
 - (void)irssiServerChangedNotification:(NSNotification*)notification;

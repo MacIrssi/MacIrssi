@@ -368,16 +368,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [aboutBox makeKeyAndOrderFront:sender];
 }
 
-- (IBAction)debugAction1:(id)sender
-{
-  
-}
-
-- (IBAction)debugAction2:(id)sender
-{
-
-}
-
 #pragma mark Shortcuts
 
 //-------------------------------------------------------------------
@@ -1713,10 +1703,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [mainWindow setExcludedFromWindowsMenu:YES];
   
   [IrssiCore initialiseCore];
-  
-#ifndef MACIRSSI_DEBUG
-  [[NSApp mainMenu] removeItem:[[NSApp mainMenu] itemWithTitle:@"Debug"]];
-#endif
   
   // Get rid of the shit old run loop thread and schedule the glib runloop on the NSRunLoop
   [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];
