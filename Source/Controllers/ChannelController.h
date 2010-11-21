@@ -159,6 +159,8 @@ enum nickContextMenuTags {
   
   int waitingEvents;
   NSString *lastEventOwner;
+  
+  BOOL wasScrolledToBottom;
 }
 - (NSString *)mode;
 - (NSArray *)nicks;
@@ -225,8 +227,12 @@ enum nickContextMenuTags {
 - (void)clearTextView;
 - (void)setTopic:(char *)newTopic setBy:(char *)setter atTime:(time_t)time;
 - (NSString *)topic;
+
+- (void)beginTextUpdates;
 - (void)printText:(char *)text forground:(int)fg background:(int)bg flags:(int)flags;
 - (void)finishLine;
+- (void)endTextUpdates;
+
 - (void)channelColorChanged:(NSNotification *)note;
 - (void)nickListColorChanged:(NSNotification *)note;
 - (void)awakeFromNib;

@@ -188,13 +188,17 @@ void irssibridge_channel_destroyed(CHANNEL_REC *channel)
 	}
 }
 
+void irssibridge_print_starting(TEXT_DEST_REC *dest) {
+  [(ChannelController *)(dest->window->gui_data) beginTextUpdates];
+}
+
 void irssibridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *text, TEXT_DEST_REC *dest_rect) {
   [(ChannelController *)(wind->gui_data) printText:text forground:fg background:bg flags:flags];
 }
 
 void irssibridge_print_text_finished(WINDOW_REC *wind) {
-  //[(ChannelController *)(wind->gui_data) finishLine];
-	[(ChannelController *)(wind->gui_data) performSelectorOnMainThread:@selector(finishLine) withObject:nil waitUntilDone:TRUE];
+  [(ChannelController *)(wind->gui_data) finishLine];
+  [(ChannelController *)(wind->gui_data) endTextUpdates];
 }
 
 void irssibridge_window_created(WINDOW_REC *wind) {

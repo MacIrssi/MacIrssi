@@ -65,6 +65,7 @@ void setRefToAppController(AppController *a);
 void get_nicks(gpointer key, NICK_REC *rec, gpointer unused);
 void irssibridge_server_setup_read(IRC_SERVER_SETUP_REC *rec, CONFIG_NODE *node);
 void irssibridge_display_nicks(CHANNEL_REC *channel, int flags);
+void irssibridge_print_starting(TEXT_DEST_REC *dest);
 void irssibridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *text, TEXT_DEST_REC *dest_rect);
 void irssibridge_print_text_finished(WINDOW_REC *wind);
 

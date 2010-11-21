@@ -628,14 +628,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   NSTabViewItem *tmp = [currentChannelController tabViewItem];
   [(CustomWindow *)[tabView window] setCurrentChannelTextView:textView];
   
-  BOOL isAlreadyAtBottom = [currentChannelController isScrolledToBottom];
+  [currentChannelController beginTextUpdates];
   [tabView selectTabViewItem:tmp];
-  
-  // Presenting an un-drawn window can cause the scroll state to get forced, if we were
-  // previously scrolled to bottom, then we should force it now.
-  if (isAlreadyAtBottom) {
-    [currentChannelController forceScrollToBottom];
-  }
+  [currentChannelController endTextUpdates];
   
   [channelBar selectCellWithWindowRec:wind];
   [channelTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[tabView indexOfTabViewItem:tmp]] byExtendingSelection:FALSE];

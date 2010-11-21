@@ -63,6 +63,7 @@ static ICSignal irssiSignals[] = {
   { "server disconnected", SIGNAL_NORMAL, (SIGNAL_FUNC)irssibridge_server_disconnected },
   { "server connected", SIGNAL_NORMAL, (SIGNAL_FUNC)irssibridge_server_connected },
   
+  { "print starting", SIGNAL_NORMAL, (SIGNAL_FUNC)irssibridge_print_starting },
   { "gui print text", SIGNAL_NORMAL, (SIGNAL_FUNC)irssibridge_print_text },
   { "gui print text finished", SIGNAL_NORMAL, (SIGNAL_FUNC)irssibridge_print_text_finished },
   

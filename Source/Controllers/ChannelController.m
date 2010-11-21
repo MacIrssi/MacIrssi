@@ -803,6 +803,12 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 /* From gui-printtext.c */
 int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
+- (void)beginTextUpdates
+{
+  // Save our current state, then when updates are finished we'll restore the state.
+  wasScrolledToBottom = [self isScrolledToBottom];
+}
+
 //-------------------------------------------------------------------
 // printText:forground:background:flags:
 // Adds a text section to the linebuffer. Called for each new
@@ -875,6 +881,12 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   line = [[NSMutableAttributedString alloc] initWithString:@"\n"];
 }
 
+- (void)endTextUpdates
+{
+  if (wasScrolledToBottom) {
+    [self forceScrollToBottom];
+  }
+}
 
 #pragma mark Public methods
 /**
