@@ -22,6 +22,7 @@
 #import "ChannelController.h"
 #import "PreferenceViewController.h"
 #import "EventController.h"
+#import "DebugController.h"
 #import "AppcastVersionComparator.h"
 #import "CustomWindow.h"
 #import "CustomTableView.h"
@@ -1217,6 +1218,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [[IrssiCore sharedCore] runloopOneshot];
 }
 
+- (ChannelController*)currentChannelController
+{
+  return currentChannelController;
+}
+
 - (EventController*)eventController
 {
   return eventController;
@@ -1703,6 +1709,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [mainWindow setExcludedFromWindowsMenu:YES];
   
   [IrssiCore initialiseCore];
+  
+  [DebugController initialiseDebugController];
   
   // Get rid of the shit old run loop thread and schedule the glib runloop on the NSRunLoop
   [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];

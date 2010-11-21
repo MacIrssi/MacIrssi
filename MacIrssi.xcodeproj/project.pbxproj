@@ -457,6 +457,8 @@
 		C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */; };
 		C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */; };
 		C9B9980110B83BD40093A1BB /* MIUnresponsiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */; };
+		C9BB213E1299D3A400EA8AB0 /* DebugController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB213C1299D3A400EA8AB0 /* DebugController.h */; };
+		C9BB213F1299D3A400EA8AB0 /* DebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB213D1299D3A400EA8AB0 /* DebugController.m */; };
 		C9C2829011C747CD00914872 /* package.rb in Resources */ = {isa = PBXBuildFile; fileRef = C9C2828F11C747CD00914872 /* package.rb */; };
 		C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C2834C11C75F6100914872 /* activityNewImportant.png */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
@@ -1684,6 +1686,8 @@
 		C9B90D450F8CEF0500A5D0C4 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIUnresponsiveButton.h; sourceTree = "<group>"; };
 		C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIUnresponsiveButton.m; sourceTree = "<group>"; };
+		C9BB213C1299D3A400EA8AB0 /* DebugController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugController.h; sourceTree = "<group>"; };
+		C9BB213D1299D3A400EA8AB0 /* DebugController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugController.m; sourceTree = "<group>"; };
 		C9C2828F11C747CD00914872 /* package.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = package.rb; sourceTree = "<group>"; };
 		C9C2834C11C75F6100914872 /* activityNewImportant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityNewImportant.png; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
@@ -1887,6 +1891,8 @@
 				B322DDA405EF9AB300E640C2 /* ChannelController.m */,
 				C947E1DA0E1E871F0001380E /* EventController.h */,
 				C947E1DB0E1E871F0001380E /* EventController.m */,
+				C9BB213C1299D3A400EA8AB0 /* DebugController.h */,
+				C9BB213D1299D3A400EA8AB0 /* DebugController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -3043,6 +3049,7 @@
 				C9B9980010B83BD40093A1BB /* MIUnresponsiveButton.h in Headers */,
 				C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */,
 				C9907290127D433300D791F9 /* MIScrollView.h in Headers */,
+				C9BB213E1299D3A400EA8AB0 /* DebugController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3313,6 +3320,7 @@
 				C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */,
 				24FEBD7911CA70A30067C8D6 /* IrssiCore.m in Sources */,
 				C9907291127D433300D791F9 /* MIScrollView.m in Sources */,
+				C9BB213F1299D3A400EA8AB0 /* DebugController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -169,6 +169,7 @@ extern char **argv;
 - (void)loadTheme:(NSString *)theme;
 - (NSArray *)splitCommand:(NSString *)command;
 
+- (ChannelController*)currentChannelController;
 - (EventController*)eventController;
 
 /* Growl delegate */
