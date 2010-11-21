@@ -189,7 +189,9 @@ void irssibridge_channel_destroyed(CHANNEL_REC *channel)
 }
 
 void irssibridge_print_starting(TEXT_DEST_REC *dest) {
-  [(ChannelController *)(dest->window->gui_data) beginTextUpdates];
+  if ([(id)(dest->window->gui_data) respondsToSelector:@selector(beginTextUpdates)]) {
+    [(id)(dest->window->gui_data) beginTextUpdates];
+  }
 }
 
 void irssibridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *text, TEXT_DEST_REC *dest_rect) {
@@ -198,7 +200,9 @@ void irssibridge_print_text(WINDOW_REC *wind, int fg, int bg, int flags, char *t
 
 void irssibridge_print_text_finished(WINDOW_REC *wind) {
   [(ChannelController *)(wind->gui_data) finishLine];
-  [(ChannelController *)(wind->gui_data) endTextUpdates];
+  if ([(id)(wind->gui_data) respondsToSelector:@selector(endTextUpdates)]) {
+    [(id)(wind->gui_data) endTextUpdates];
+  }
 }
 
 void irssibridge_window_created(WINDOW_REC *wind) {
