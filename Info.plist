@@ -16,12 +16,12 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>0.8.6.6</string>
 	<key>NSGitRevision</key>
 	<string>N/A</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>CFBundleVersion</key>
+	<string>0.8.6.6</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUEnableSystemProfiling</key>
