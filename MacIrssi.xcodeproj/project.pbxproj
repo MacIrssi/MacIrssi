@@ -461,6 +461,8 @@
 		C9BB213F1299D3A400EA8AB0 /* DebugController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB213D1299D3A400EA8AB0 /* DebugController.m */; };
 		C9BB227A129A013E00EA8AB0 /* MITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB2278129A013E00EA8AB0 /* MITextField.h */; };
 		C9BB227B129A013E00EA8AB0 /* MITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB2279129A013E00EA8AB0 /* MITextField.m */; };
+		C9BB24BD129A520300EA8AB0 /* SRHacks.h in Headers */ = {isa = PBXBuildFile; fileRef = C9BB24BB129A520300EA8AB0 /* SRHacks.h */; };
+		C9BB24BE129A520300EA8AB0 /* SRHacks.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB24BC129A520300EA8AB0 /* SRHacks.m */; };
 		C9C2829011C747CD00914872 /* package.rb in Resources */ = {isa = PBXBuildFile; fileRef = C9C2828F11C747CD00914872 /* package.rb */; };
 		C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C2834C11C75F6100914872 /* activityNewImportant.png */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
@@ -1692,6 +1694,8 @@
 		C9BB213D1299D3A400EA8AB0 /* DebugController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugController.m; sourceTree = "<group>"; };
 		C9BB2278129A013E00EA8AB0 /* MITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MITextField.h; sourceTree = "<group>"; };
 		C9BB2279129A013E00EA8AB0 /* MITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MITextField.m; sourceTree = "<group>"; };
+		C9BB24BB129A520300EA8AB0 /* SRHacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRHacks.h; sourceTree = "<group>"; };
+		C9BB24BC129A520300EA8AB0 /* SRHacks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRHacks.m; sourceTree = "<group>"; };
 		C9C2828F11C747CD00914872 /* package.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = package.rb; sourceTree = "<group>"; };
 		C9C2834C11C75F6100914872 /* activityNewImportant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityNewImportant.png; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
@@ -2184,6 +2188,8 @@
 				C91F151F0F110A8600763699 /* SRRecorderControl.m */,
 				C91F15200F110A8600763699 /* SRValidator.h */,
 				C91F15210F110A8600763699 /* SRValidator.m */,
+				C9BB24BB129A520300EA8AB0 /* SRHacks.h */,
+				C9BB24BC129A520300EA8AB0 /* SRHacks.m */,
 			);
 			path = "Shortcut Recorder";
 			sourceTree = "<group>";
@@ -3057,6 +3063,7 @@
 				C9907290127D433300D791F9 /* MIScrollView.h in Headers */,
 				C9BB213E1299D3A400EA8AB0 /* DebugController.h in Headers */,
 				C9BB227A129A013E00EA8AB0 /* MITextField.h in Headers */,
+				C9BB24BD129A520300EA8AB0 /* SRHacks.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3329,6 +3336,7 @@
 				C9907291127D433300D791F9 /* MIScrollView.m in Sources */,
 				C9BB213F1299D3A400EA8AB0 /* DebugController.m in Sources */,
 				C9BB227B129A013E00EA8AB0 /* MITextField.m in Sources */,
+				C9BB24BE129A520300EA8AB0 /* SRHacks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

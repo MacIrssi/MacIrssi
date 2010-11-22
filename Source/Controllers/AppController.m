@@ -34,6 +34,7 @@
 #import "NSString+Additions.h"
 
 // For shortcuts
+#import "SRHacks.h"
 #import "SRCommon.h"
 #import "SRKeyCodeTransformer.h"
 #import "ShortcutBridgeController.h"
