@@ -17,15 +17,6 @@ end
 gitVersion = `git show-ref --hash --abbrev --head HEAD | head -1`.chomp
 
 PLIST=`pl < #{ENV["PRODUCT_SETTINGS_PATH"]}`
-builtVersion = nil
-if /CFBundleVersion\s+=\s+"(.*?)"/.match(PLIST)
-  builtVersion = $~[1]
-end
-
-unless builtVersion
-  puts "error: Unable to determine version number of current build."
-  exit 1
-end
 
 if execReturnStatus("git diff --quiet --cached") != 0 or execReturnStatus("git diff --quiet") != 0
   puts "error: Git index is not clean."
@@ -34,11 +25,16 @@ end
 
 # Find the applications, check them and collect
 apps = []
+builtVersion = nil
 Dir["#{ENV["BUILT_PRODUCTS_DIR"]}/*.app"].each do |app|
   compiledPlist = `pl < #{app}/Contents/Info.plist`
   compiledGitVersion = nil
   if /NSGitRevision\s+=\s+(.*?);/.match(compiledPlist)
     compiledGitVersion = $~[1]
+  end
+  
+  if !builtVersion && /CFBundleVersion\s+=\s+"(.*?)"/.match(compiledPlist)
+    builtVersion = $~[1]
   end
   
   unless compiledGitVersion and compiledGitVersion != ""
@@ -52,6 +48,11 @@ Dir["#{ENV["BUILT_PRODUCTS_DIR"]}/*.app"].each do |app|
   end
   
   apps << app
+end
+
+unless builtVersion
+  puts "error: Unable to determine version number of current build."
+  exit 1
 end
 
 dmgRoot = "#{ENV["TEMP_DIR"]}/dmg"
