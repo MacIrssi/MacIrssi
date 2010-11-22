@@ -47,8 +47,6 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
 // Notifications from workspace on system state
 - (void)workspaceWillSleep:(NSNotification*)notification
 {
-	NSLog(@"ConnectivityMonitor: workspaceWillSleep:");
-	
 	isSleeping = YES;
 	sleepList = NULL;
 	
@@ -65,9 +63,6 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
 		}
 		conn->reconnection = TRUE;
 		
-		NSLog(@"ConnectivityMonitor: found connection to %s:%d, rooms: %s, prepping for sleep.",
-			  conn->address, conn->port, conn->channels);
-		
 		// Annoyingly, this has to be set before disconnect, or you'll lose the link to the next server
 		next = tmp->next;
 		
@@ -79,8 +74,6 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
 
 - (void)workspaceDidWake:(NSNotification*)notification
 {
-	NSLog(@"ConnectivityMonitor: workspaceDidSleep:");
-	
 	GSList *tmp, *next;
 	
 	isSleeping = NO;
@@ -88,8 +81,6 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
 	for (tmp = sleepList; tmp != NULL; tmp = next)
 	{
 		SERVER_CONNECT_REC *rec = (SERVER_CONNECT_REC*)tmp->data;
-		
-		NSLog(@"ConnectivityMonitor: Creating ReachabilityRef with address %s.", rec->address);
 		
 		SCNetworkReachabilityRef target = SCNetworkReachabilityCreateWithName(NULL, rec->address);
 		SCNetworkReachabilityContext reachabilityContext = {
@@ -105,27 +96,15 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
 															
 - (void)networkReachabilityCallback:(SCNetworkReachabilityRef)target flags:(SCNetworkConnectionFlags)flags info:(void*)info
 {
-	NSLog(@"networkReachabilityCallback: got flags: %c%c%c%c%c%c%c",  
- 	      (flags & kSCNetworkFlagsTransientConnection)  ? 't' : '-',  
- 	      (flags & kSCNetworkFlagsReachable)            ? 'r' : '-',  
- 	      (flags & kSCNetworkFlagsConnectionRequired)   ? 'c' : '-',  
- 	      (flags & kSCNetworkFlagsConnectionAutomatic)  ? 'C' : '-',  
- 	      (flags & kSCNetworkFlagsInterventionRequired) ? 'i' : '-',  
- 	      (flags & kSCNetworkFlagsIsLocalAddress)       ? 'l' : '-',  
- 	      (flags & kSCNetworkFlagsIsDirect)             ? 'd' : '-');
-	
 	if ((flags & kSCNetworkFlagsReachable) && !(flags & kSCNetworkFlagsConnectionRequired))
 	{
 		// Remove from callback now that we're connected again
 		SCNetworkReachabilityUnscheduleFromRunLoop(target, [[NSRunLoop currentRunLoop] getCFRunLoop], kCFRunLoopDefaultMode);
 		
 		SERVER_CONNECT_REC *conn = (SERVER_CONNECT_REC*)info;
-		NSLog(@"ConnectivityMonitor: %s reachable, reconnecting.", conn->address);
-		
 		server_connect(conn);
 		server_connect_unref(conn);
 	}
-	
 }
 
 @end
