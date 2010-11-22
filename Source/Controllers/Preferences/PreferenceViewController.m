@@ -90,6 +90,9 @@
     // Some things we need to bind to preferences I can't do in IB
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
+    // Make sure we apply these defaults to the current window
+    [self userDefaultsChanged:nil];
+    
     colorSet = colors;
     availableThemes = [[NSMutableArray alloc] init];
     appController = controller;
