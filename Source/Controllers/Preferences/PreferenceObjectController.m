@@ -189,16 +189,24 @@
   NSEnumerator *enumerator = [shortcutArray objectEnumerator];
   ShortcutBridgeController *controller;
   
+  NSMutableArray *objectsToRemove = [NSMutableArray array];
+  
   while (controller = [enumerator nextObject])
   {
     if (([controller keyCode] == keyCode) && ([controller flags] == flags))
     {
-      // kk, this is cheating but WTH
-      [controller _invalidateOld];
-      [self willChangeValueForKey:@"shortcutArray"];
-      [shortcutArray removeObject:controller];
-      [self didChangeValueForKey:@"shortcutArray"];
+      [objectsToRemove addObject:controller];
     }
+  }
+  
+  enumerator = [objectsToRemove objectEnumerator];
+  while (controller = [enumerator nextObject])
+  {
+    // kk, this is cheating but WTH
+    [controller _invalidateOld];
+    [self willChangeValueForKey:@"shortcutArray"];
+    [shortcutArray removeObject:controller];
+    [self didChangeValueForKey:@"shortcutArray"];    
   }
 }
 
