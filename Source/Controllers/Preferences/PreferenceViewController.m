@@ -65,6 +65,7 @@
     
     // We want to receive window{Did,Will}*: messages
     [preferenceWindow setDelegate:self];
+    [preferenceWindow setOpaque:NO];
     
     // Allocate a preference proxy controller and assign it to the bindings controllers
     preferenceObjectController = [[PreferenceObjectController alloc] init];
@@ -103,6 +104,7 @@
     eventController = [appController eventController];
     
     [themePreviewTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
+    [[themePreviewTextView enclosingScrollView] setBackgroundColor:[ColorSet channelBackgroundColor]];
     
     [self initTextEncodingPopUpButton];
     [self initTabShortcutPopUpButton];
