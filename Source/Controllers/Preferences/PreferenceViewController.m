@@ -93,6 +93,10 @@
     // Make sure we apply these defaults to the current window
     [self userDefaultsChanged:nil];
     
+    // Check the Feed URL to see if we're beta or normal.
+    BOOL checkForBetas = [[[[[SUUpdater sharedUpdater] feedURL] path] lastPathComponent] isEqual:@"beta.php"];
+    [checkForBetasCheckBox setState:checkForBetas];
+    
     colorSet = colors;
     availableThemes = [[NSMutableArray alloc] init];
     appController = controller;
@@ -253,6 +257,18 @@
 - (void)userDefaultsChanged:(NSNotification*)notification
 {
   [themePreviewTextView setShouldAntialias:[[NSUserDefaults standardUserDefaults] boolForKey:@"antiAliasFonts"]];
+}
+
+- (IBAction)checkForBetasCheckBoxChanged:(id)sender
+{
+  if ([checkForBetasCheckBox state])
+  {
+    [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:@"http://www.sysctl.co.uk/projects/macirssi/beta.php"]];
+  } 
+  else
+  {
+    [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:@"http://www.sysctl.co.uk/projects/macirssi/feed.php"]];
+  }
 }
 
 #pragma mark Channel Bar

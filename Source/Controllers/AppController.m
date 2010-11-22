@@ -1368,6 +1368,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   return [AppcastVersionComparator defaultComparator];
 }
 
+- (void)userDefaultsChanged:(NSNotification*)notification
+{
+
+}
+
 #pragma mark NSApp notifications
 
 //-------------------------------------------------------------------
@@ -1621,6 +1626,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   // Setup sparkle, we're gonna be delegate for sparkle routines. In particular, I want to stop the retarded quit message
   // box appearing when sparkle tries to update the application.
   [[SUUpdater sharedUpdater] setDelegate:self];
+  
+  // Also register the user-defaults check.
+  [nc addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
   
   // Keep hold of the UI elements we give a damn about
   [inputTextFieldBox retain];

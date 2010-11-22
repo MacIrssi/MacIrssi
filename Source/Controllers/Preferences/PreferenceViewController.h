@@ -87,6 +87,8 @@ enum
 	IBOutlet NSPopUpButton *textEncodingPopUpButton;
   IBOutlet NSPopUpButton *tabShortcutPopUpButton;
   
+  IBOutlet NSButton *checkForBetasCheckBox;
+  
   /* Notifications tab */
   IBOutlet NSPopUpButton *chatEventPopUpButton;
   IBOutlet NSButton *playSoundButton;
@@ -153,6 +155,8 @@ enum
 - (void)windowWillClose:(NSNotification *)aNotification;
 
 - (void)userDefaultsChanged:(NSNotification*)notification;
+
+- (IBAction)checkForBetasCheckBoxChanged:(id)sender;
 
 #pragma mark Text Encodings
 
