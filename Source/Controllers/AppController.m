@@ -363,7 +363,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (IBAction)showAbout:(id)sender
 {
-  [aboutVersionLabel setStringValue:[NSString stringWithFormat:@"Version %@ (Build %@)", 
+  [aboutVersionLabel setStringValue:[NSString stringWithFormat:@"Version %@ (%@)",
                      [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
                      [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSGitRevision"]]];
   
