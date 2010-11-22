@@ -997,6 +997,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
   [textAttributes setObject:font forKey:NSFontAttributeName];
   [textStorage addAttribute:NSFontAttributeName value:font range:range];
+  [topicTextField setFont:font];
 }
 
 - (void)setNicklistFont:(NSFont*)font
@@ -1179,7 +1180,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 - (void)checkUserDefaults:(NSNotification*)notification
 {
   // Re-check user defaults that we care about.
-  [mainTextView setShouldAntialias:[[NSUserDefaults standardUserDefaults] boolForKey:@"antiAliasFonts"]];
+  BOOL shouldAntialias = [[NSUserDefaults standardUserDefaults] boolForKey:@"antiAliasFonts"];
+  [mainTextView setShouldAntialias:shouldAntialias];
+  [topicTextField setShouldAntialias:shouldAntialias];
 }
 
 //-------------------------------------------------------------------
@@ -1239,6 +1242,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [nc addObserver:self selector:@selector(nickListColorChanged:) name:@"nickListColorChanged" object:nil];
   [nc addObserver:self selector:@selector(channelControllerSplitViewDidResize:) name:@"ChannelControllerSplitViewDidResize" object:nil];
   [nc addObserver:self selector:@selector(checkUserDefaults:) name:NSUserDefaultsDidChangeNotification object:nil];
+  
+  /* Force the important defaults to be checked now */
+  [self checkUserDefaults:nil];
 
   /* Set up context-menus */
   [nickTableView setMenu:nickViewMenu];

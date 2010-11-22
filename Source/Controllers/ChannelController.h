@@ -28,6 +28,7 @@
 #import "CustomTextView.h"
 #import "MISplitView.h"
 #import "MIScrollView.h"
+#import "MITextField.h"
 
 #import "fe-windows.h"
 
@@ -117,7 +118,7 @@ enum nickContextMenuTags {
   IBOutlet CustomTextView *mainTextView;
   IBOutlet MIScrollView *mainTextScrollView;
   IBOutlet NSTableView *nickTableView;
-  IBOutlet NSTextField *topicTextField;
+  IBOutlet MITextField *topicTextField;
   IBOutlet NSView *wholeView;
   IBOutlet MISplitView *splitView;
   IBOutlet NSButton *editChannelButton;

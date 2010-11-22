@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
   <data>
     <int key="IBDocument.SystemTarget">1050</int>
-    <string key="IBDocument.SystemVersion">11A308</string>
+    <string key="IBDocument.SystemVersion">11A320</string>
     <string key="IBDocument.InterfaceBuilderVersion">804</string>
-    <string key="IBDocument.AppKitVersion">1097.1</string>
-    <string key="IBDocument.HIToolboxVersion">524.00</string>
+    <string key="IBDocument.AppKitVersion">1099.2</string>
+    <string key="IBDocument.HIToolboxVersion">526.00</string>
     <object class="NSMutableDictionary" key="IBDocument.PluginVersions">
       <string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
       <string key="NS.object.0">804</string>
@@ -2410,6 +2410,7 @@
           <string>262.CustomClassName</string>
           <string>262.IBPluginDependency</string>
           <string>263.IBPluginDependency</string>
+          <string>268.CustomClassName</string>
           <string>268.IBPluginDependency</string>
           <string>269.IBPluginDependency</string>
           <string>5.IBEditorWindowLastContentRect</string>
@@ -2576,6 +2577,7 @@
           <string>MIUnresponsiveButton</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+          <string>MITextField</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <string>{{264, 521}, {729, 335}}</string>
@@ -2788,7 +2790,7 @@
               <string>NSButton</string>
               <string>NSTextField</string>
               <string>MIScrollView</string>
-              <string>NSTextView</string>
+              <string>CustomTextView</string>
               <string>NSMenu</string>
               <string>NSTextField</string>
               <string>NSButton</string>
@@ -2873,7 +2875,7 @@
               </object>
               <object class="IBToOneOutletInfo">
                 <string key="name">mainTextView</string>
-                <string key="candidateClassName">NSTextView</string>
+                <string key="candidateClassName">CustomTextView</string>
               </object>
               <object class="IBToOneOutletInfo">
                 <string key="name">mainTextViewMenu</string>
@@ -3047,6 +3049,14 @@
           <object class="IBClassDescriptionSource" key="sourceIdentifier">
             <string key="majorKey">IBUserSource</string>
             <string key="minorKey"/>
+          </object>
+        </object>
+        <object class="IBPartialClassDescription">
+          <string key="className">MITextField</string>
+          <string key="superclassName">NSTextField</string>
+          <object class="IBClassDescriptionSource" key="sourceIdentifier">
+            <string key="majorKey">IBProjectSource</string>
+            <string key="minorKey">Source/Custom Views/MITextField.h</string>
           </object>
         </object>
         <object class="IBPartialClassDescription">
