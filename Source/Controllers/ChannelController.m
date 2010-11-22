@@ -1042,6 +1042,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   tabViewItem = newTabViewItem;
 
   [mainTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
+  [[mainTextView enclosingScrollView] setBackgroundColor:[ColorSet channelBackgroundColor]];
   [nickTableView setBackgroundColor:[ColorSet nickListBackgroundColor]];
   
   /* Set up fonts and attributes */
@@ -1187,6 +1188,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //  [defaultTextColor release];
 //  defaultTextColor = [[colorSet channelFGDefaultColor] retain];
   [mainTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
+  [[mainTextView enclosingScrollView] setBackgroundColor:[ColorSet channelBackgroundColor]];
   [mainTextView setNeedsDisplay:TRUE];
 }
 

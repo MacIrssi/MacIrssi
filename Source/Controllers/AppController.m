@@ -893,11 +893,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       // So, horitonzal operation. We want the channelBar and tabView.
       NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
       NSRect splitViewFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width, channelBarFrame.origin.y);
-//      NSRect inputBoxFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width + 0.0, [inputTextFieldBox frame].size.height);
-//      NSRect tabViewFrame = NSMakeRect(0.0,
-//                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
-//                                       [[mainWindow contentView] frame].size.width, 
-//                                       channelBarFrame.origin.y - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
       
       [[mainWindow contentView] addSubview:channelBar];
       [channelBar setFrame:channelBarFrame];
@@ -913,13 +908,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       inputBoxFrame.size.height = [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height + 6.0;
       [inputTextFieldBox setFrame:inputBoxFrame];
       
-//      [[mainWindow contentView] addSubview:tabView];
-//      [tabView setFrame:tabViewFrame];
-//      [tabView setNeedsDisplay:YES];
-//      
-//      [[mainWindow contentView] addSubview:inputTextFieldBox];
-//      [inputTextFieldBox setFrame:inputBoxFrame];
-//      [inputTextFieldBox setNeedsDisplay:YES];
       break;
     }
     case MIChannelBarVerticalOrientation:
@@ -928,6 +916,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       NSRect channelTableSplitViewFrame = [[mainWindow contentView] frame];
       channelTableSplitView = [[MISplitView alloc] initWithFrame:channelTableSplitViewFrame];
       [channelTableSplitView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
+      [channelTableSplitView setDividerThickness:2.0f];
+      [channelTableSplitView setDrawLowerBorder:YES];
       [channelTableSplitView setVertical:YES];
       [channelTableSplitView setDelegate:self];
       
@@ -941,31 +931,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
       [channelTableScrollView setNeedsDisplay:YES];
       
       NSRect containerTableFrame = NSMakeRect(channelTableFrame.size.width, 0.0, channelTableSplitViewFrame.size.width - channelTableFrame.size.width, channelTableSplitViewFrame.size.height);
-      [[mainWindow contentView] addSubview:tabViewTextEntrySplitView];
+      [channelTableSplitView addSubview:tabViewTextEntrySplitView];
       [tabViewTextEntrySplitView setFrame:containerTableFrame];
       [tabViewTextEntrySplitView setNeedsDisplay:YES];
+
       [tabViewTextEntrySplitView adjustSubviews];
-      
-//      NSView *containerView = [[NSView alloc] initWithFrame:containerTableFrame];
-//      [channelTableSplitView addSubview:containerView];
-//      
-//      NSRect inputBoxFrame = NSMakeRect(0.0, 5.0, containerTableFrame.size.width - 5.0, [inputTextFieldBox frame].size.height);
-//      // A wee hack
-//      NSRect tabViewFrame = NSMakeRect(-5.0,
-//                                       inputBoxFrame.origin.y + inputBoxFrame.size.height, 
-//                                       containerTableFrame.size.width + 5.0,
-//                                       containerTableFrame.size.height - (inputBoxFrame.origin.y + inputBoxFrame.size.height));
-//      
-//      [containerView addSubview:tabView];
-//      [tabView setFrame:tabViewFrame];
-//      [tabView setNeedsDisplay:YES];
-//      
-//      [containerView addSubview:inputTextFieldBox];
-//      [inputTextFieldBox setFrame:inputBoxFrame];
-//      [inputTextFieldBox setNeedsDisplay:YES];
-//      
-//      [containerView release];
-      
+      [channelTableSplitView adjustSubviews];
+            
       [channelTableSplitView restoreLayoutUsingName:@"ChannelTableViewSplit"];      
       break;
     }
@@ -1302,7 +1274,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     // max position for the split view should be the text field contents + 6 + the divider size
     return ([sender frame].size.height - [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height - 6.0);
   }
-  return 0.0;
+  return proposedMax;
 }
 
 #pragma mark MIResizingTextView Notifications
@@ -1506,7 +1478,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)channelListColorChanged:(NSNotification *)note
 {
-  [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
+  [[channelTableView enclosingScrollView] setBackgroundColor:[ColorSet channelListBackgroundColor]];
   [channelTableView reloadData];
   [channelBar setNeedsDisplay:YES];
 }
@@ -1701,7 +1673,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [inputTextField setTextColor:[ColorSet inputTextForegroundColor]];
   [inputTextField setBackgroundColor:[ColorSet inputTextBackgroundColor]];
   [inputTextField setContinuousSpellCheckingEnabled:[[NSUserDefaults standardUserDefaults] boolForKey:@"inputTextEntrySpellCheck"]];
-  [channelTableView setBackgroundColor:[ColorSet channelListBackgroundColor]];
+  [channelTableView setBackgroundColor:[NSColor clearColor]];
+  [[channelTableView enclosingScrollView] setBackgroundColor:[ColorSet channelListBackgroundColor]];
+  [channelTableView setUsesAlternatingRowBackgroundColors:NO];
   
   /* Init Growl */
   [GrowlApplicationBridge setGrowlDelegate:self];

@@ -107,11 +107,19 @@
   
   if (drawLowerBorder)
   {
-    // Gah can't work out how to draw a line
-    NSRect line = NSMakeRect(aRect.origin.x, aRect.origin.y, aRect.size.width, 1);
-    if ([self isFlipped])
+    NSRect line;
+    if ([self isVertical]) 
     {
-      line.origin.y += aRect.size.height;
+      line = NSMakeRect(aRect.origin.x + aRect.size.width, aRect.origin.y, 1, aRect.size.height);
+    }
+    else
+    {
+      // Gah can't work out how to draw a line
+      line = NSMakeRect(aRect.origin.x, aRect.origin.y, aRect.size.width, 1);
+      if ([self isFlipped])
+      {
+        line.origin.y += aRect.size.height;
+      }
     }
     
     [[NSColor grayColor] set];
