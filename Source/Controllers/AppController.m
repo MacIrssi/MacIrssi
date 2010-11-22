@@ -278,7 +278,12 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (IBAction)performDisconnect:(id)sender
 {
-  NSLog(@"Not implemented yet, %@", sender);
+  SERVER_REC *server = [self serverRecordFromServerMenu:sender];
+  
+  if (server)
+  {
+    signal_emit("command disconnect", 2, "* Disconnecting", server);
+  }
 }
 
 //-------------------------------------------------------------------
@@ -820,6 +825,24 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
 }
 
+- (SERVER_REC*)serverRecordFromServerMenu:(id)sender
+{
+  NSMenu *menu = [(NSMenuItem*)sender menu];
+  NSMenuItem *item = [[menu supermenu] itemAtIndex:[[menu supermenu] indexOfItemWithSubmenu:menu]];
+  
+  SERVER_REC *ptr = [(NSValue*)[item representedObject] pointerValue];
+  
+  // Next impossible thing before breakfast ...
+  GSList *tmp;
+  for (tmp = servers; tmp != NULL; tmp = tmp->next) {
+    if ((SERVER_REC*)tmp->data == ptr) {
+      break;
+    }
+  }
+  
+  return (tmp ? ptr : NULL);
+}
+
 - (void)buildWindowsMenu
 {
   NSMenu *windowMenu = [NSApp windowsMenu];
@@ -1144,20 +1167,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 
 - (void)changeIrssiServerConsole:(id)sender
 {
-  NSMenu *menu = [(NSMenuItem*)sender menu];
-  NSMenuItem *item = [[menu supermenu] itemAtIndex:[[menu supermenu] indexOfItemWithSubmenu:menu]];
-  SERVER_REC *ptr = [(NSValue*)[item representedObject] pointerValue];
-  
-  // Next impossible thing before breakfast ...
-  GSList *tmp;
-  for (tmp = servers; tmp != nil; tmp = tmp->next) {
-    if ((SERVER_REC*)tmp->data == ptr) {
-      break;
-    }
-  }
+  SERVER_REC *ptr = [self serverRecordFromServerMenu:sender];
   
   // This means the pointer we got given in representedObject is still valid.
-  if (tmp != nil) {
+  if (ptr != NULL) {
     // We should check use_status_window in validation, if we don't have one, then we don't have a server
     // console to change the active server to.
     WINDOW_REC *wnd = window_find_name("(status)");

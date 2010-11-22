@@ -146,6 +146,7 @@ extern char **argv;
 
 - (void)buildServersMenu;
 - (void)buildWindowsMenu;
+- (SERVER_REC*)serverRecordFromServerMenu:(id)sender;
 
 - (void)highlightChanged:(WINDOW_REC *)wind;
 - (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old;
