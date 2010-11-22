@@ -1605,11 +1605,12 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
                         [NSNumber numberWithBool:YES], @"homeEndGoesToTextView",
                         [NSNumber numberWithBool:YES], @"inputTextEntrySpellCheck",
                         [NSNumber numberWithBool:YES], @"showAlbumInSlashiTunes",
+                        [NSNumber numberWithBool:YES], @"antiAliasFonts",
                         nil];
     
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults registerDefaults:dict];
-
+  
   // Doesn't look like you can set this in IB
   //[inputTextField setFont:[NSFont fontWithName:@"Monaco" size:10.0]];
   [inputTextField setFont:[NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] dataForKey:@"channelFont"]]];

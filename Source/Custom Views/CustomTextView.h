@@ -22,7 +22,11 @@
 
 @interface CustomTextView : NSTextView
 {
+  BOOL shouldAntialias;
 }
+
+- (BOOL)shouldAntialias;
+- (void)setShouldAntialias:(BOOL)flag;
 
 - (NSDictionary *)linkTextAttributes;
 

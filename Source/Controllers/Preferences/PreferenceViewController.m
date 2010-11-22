@@ -87,6 +87,9 @@
     [nickListFontField setShowFontFace:YES];
     [nickListFontField setShowPointSize:YES];
     
+    // Some things we need to bind to preferences I can't do in IB
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
+    
     colorSet = colors;
     availableThemes = [[NSMutableArray alloc] init];
     appController = controller;
@@ -107,6 +110,8 @@
 
 - (void)dealloc
 {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+  
   [irssiObjectController setContent:nil];
   [networksArrayController setContent:nil];
   [serversArrayController setContent:nil];
@@ -240,6 +245,11 @@
   }
   
   return toolbarHeight;
+}
+
+- (void)userDefaultsChanged:(NSNotification*)notification
+{
+  [themePreviewTextView setShouldAntialias:[[NSUserDefaults standardUserDefaults] boolForKey:@"antiAliasFonts"]];
 }
 
 #pragma mark Channel Bar

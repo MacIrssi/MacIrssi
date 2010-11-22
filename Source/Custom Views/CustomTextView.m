@@ -23,6 +23,43 @@
 
 @implementation CustomTextView
 
+- (void)awakeFromNib
+{
+  shouldAntialias = YES;
+}
+
+- (id)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)aTextContainer
+{
+  if (self = [super initWithFrame:frameRect textContainer:aTextContainer])
+  {
+    shouldAntialias = YES;
+  }
+  return self;
+}
+
+- (BOOL)shouldAntialias
+{
+  return shouldAntialias;
+}
+
+- (void)setShouldAntialias:(BOOL)flag
+{
+  if (flag != shouldAntialias)
+  {
+    shouldAntialias = flag;
+    [self setNeedsDisplay:YES];
+  }
+}
+
+- (void)drawRect:(NSRect)rect
+{
+  if ([[NSGraphicsContext currentContext] shouldAntialias] != shouldAntialias)
+  {
+    [[NSGraphicsContext currentContext] setShouldAntialias:shouldAntialias];
+  }
+  [super drawRect:rect];
+}
+
 - (NSDictionary *)linkTextAttributes
 {
 	return [NSDictionary dictionaryWithObjectsAndKeys:[NSCursor pointingHandCursor], NSCursorAttributeName, 

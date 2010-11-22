@@ -18,6 +18,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ColorSet.h"
+#import "CustomTextView.h"
 
 #import "AppController.h"
 #import "EventController.h"
@@ -116,7 +117,7 @@ enum
   IBOutlet NSArrayController *serversArrayController;
   
   /* Themes tab */
-  IBOutlet NSTextView *themePreviewTextView;
+  IBOutlet CustomTextView *themePreviewTextView;
   IBOutlet NSArrayController *themesArrayController;
   IBOutlet JVFontPreviewField *mainWindowFontField;
   IBOutlet JVFontPreviewField *nickListFontField;
@@ -150,6 +151,8 @@ enum
 - (void)showWindow:(id)sender;
 - (void)windowDidLoad;
 - (void)windowWillClose:(NSNotification *)aNotification;
+
+- (void)userDefaultsChanged:(NSNotification*)notification;
 
 #pragma mark Text Encodings
 

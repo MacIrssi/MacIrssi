@@ -25,6 +25,7 @@
 #import "nicklist.h"
 #import "glib.h"
 #import "MarkedScroller.h"
+#import "CustomTextView.h"
 #import "MISplitView.h"
 #import "MIScrollView.h"
 
@@ -113,7 +114,7 @@ enum nickContextMenuTags {
   IBOutlet NSWindow *reasonWindow;
   
   /* Main view */
-  IBOutlet NSTextView *mainTextView;
+  IBOutlet CustomTextView *mainTextView;
   IBOutlet MIScrollView *mainTextScrollView;
   IBOutlet NSTableView *nickTableView;
   IBOutlet NSTextField *topicTextField;
@@ -236,6 +237,7 @@ enum nickContextMenuTags {
 - (void)finishLine;
 - (void)endTextUpdates;
 
+- (void)checkUserDefaults:(NSNotification *)note;
 - (void)channelColorChanged:(NSNotification *)note;
 - (void)nickListColorChanged:(NSNotification *)note;
 - (void)awakeFromNib;
