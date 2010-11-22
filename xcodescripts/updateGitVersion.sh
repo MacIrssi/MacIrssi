@@ -4,6 +4,13 @@
  
 use strict;
 
+my $BRANCH = `cat $ENV{PROJECT_DIR}/.git/HEAD`;
+if ($BRANCH =~ /release/) {
+  print "error: Release branches need changes made to updateGitVersion.sh.\n";
+  print "error: Please perform release changes to updateGitVersion.sh before continuing.\n";
+  exit 1;
+}
+
 # Get the current git commit hash and use it to set the CFBundleVersion value
 my $REV = `git show-ref --hash --abbrev --head HEAD | head -1`;
 my $INC = `git rev-list HEAD | wc -l`;
