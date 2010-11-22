@@ -1627,6 +1627,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   // box appearing when sparkle tries to update the application.
   [[SUUpdater sharedUpdater] setDelegate:self];
   
+  // Check the current app version, if we have more than three full-stops in the version then we're a beta build and should
+  // enable beta updates.
+  if ([[[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] componentsSeparatedByString:@"."] count] > 4)
+  {
+    [[SUUpdater sharedUpdater] setFeedURL:[NSURL URLWithString:@"http://www.sysctl.co.uk/projects/macirssi/beta.php"]];
+  }
+  
   // Also register the user-defaults check.
   [nc addObserver:self selector:@selector(userDefaultsChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
   
