@@ -441,12 +441,12 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 
 - (BOOL)isScrolledToBottom
 {
-  return [mainTextScrollView isScrollerAtBottom];
+  return ([scrollViewHelper currentScrollPosition] == 1.0);
 }
 
 - (void)forceScrollToBottom
 {
-  [mainTextScrollView forceScrollToBottom];
+  [scrollViewHelper restoreScrollPosition:1.0];
 }
 
 #pragma mark Indirect receivers of irssi signals
@@ -800,13 +800,22 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   limit = rec->limit;
 }
 
+#pragma mark - Text Updates
+
 /* From gui-printtext.c */
 int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 - (void)beginTextUpdates
 {
   // Save our current state, then when updates are finished we'll restore the state.
-  wasScrolledToBottom = [self isScrolledToBottom];
+  savedScrollPoint = [scrollViewHelper currentScrollPosition];
+  NSLog(@"%f", savedScrollPoint);
+}
+
+- (void)endTextUpdates
+{
+  [[mainTextView layoutManager] ensureLayoutForTextContainer:[mainTextView textContainer]];
+  [scrollViewHelper restoreScrollPosition:savedScrollPoint];
 }
 
 //-------------------------------------------------------------------
@@ -879,14 +888,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   /* Reset line */
   [line release];
   line = [[NSMutableAttributedString alloc] initWithString:@"\n"];
-}
-
-- (void)endTextUpdates
-{
-  if (wasScrolledToBottom) {
-    [self forceScrollToBottom];
-    wasScrolledToBottom = NO;
-  }
 }
 
 #pragma mark Public methods
@@ -1244,6 +1245,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [nc addObserver:self selector:@selector(channelControllerSplitViewDidResize:) name:@"ChannelControllerSplitViewDidResize" object:nil];
   [nc addObserver:self selector:@selector(checkUserDefaults:) name:NSUserDefaultsDidChangeNotification object:nil];
   
+  /* Create the helper to control scrolling */
+  scrollViewHelper = [[MIScrollViewHelper alloc] initWithScrollView:[mainTextView enclosingScrollView]];
+  
   /* Force the important defaults to be checked now */
   [self checkUserDefaults:nil];
 
@@ -1309,6 +1313,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  
+  [scrollViewHelper release];
+  
   [wholeView release];
   [topicWindow release];
   //[mainTextViewMenu release];

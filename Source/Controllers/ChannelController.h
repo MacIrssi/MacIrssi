@@ -27,7 +27,7 @@
 #import "MarkedScroller.h"
 #import "CustomTextView.h"
 #import "MISplitView.h"
-#import "MIScrollView.h"
+#import "MIScrollViewHelper.h"
 #import "MITextField.h"
 
 #import "fe-windows.h"
@@ -116,13 +116,16 @@ enum nickContextMenuTags {
   
   /* Main view */
   IBOutlet CustomTextView *mainTextView;
-  IBOutlet MIScrollView *mainTextScrollView;
+  IBOutlet NSScrollView *mainTextScrollView;
   IBOutlet NSTableView *nickTableView;
   IBOutlet MITextField *topicTextField;
   IBOutlet NSView *wholeView;
   IBOutlet MISplitView *splitView;
   IBOutlet NSButton *editChannelButton;
   IBOutlet NSScrollView *nickTableScrollView;
+  
+  /* Scroll View Management */
+  MIScrollViewHelper *scrollViewHelper;
   
   /* Context menus */
   IBOutlet NSMenu *nickViewMenu;
@@ -163,7 +166,7 @@ enum nickContextMenuTags {
   int waitingEvents;
   NSString *lastEventOwner;
   
-  BOOL wasScrolledToBottom;
+  CGFloat savedScrollPoint;
 }
 - (NSString *)mode;
 - (NSArray *)nicks;

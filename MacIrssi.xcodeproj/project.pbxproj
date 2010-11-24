@@ -479,6 +479,8 @@
 		C9EBACE50EA1055F00025466 /* Servers.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBACE40EA1055F00025466 /* Servers.png */; };
 		C9FBBC3F1049A5A700FE4ACD /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
 		C9FBBC8F1049A5BC00FE4ACD /* GoogleToolboxForMac.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */; };
+		C9FDCE4A129DB813004598C1 /* MIScrollViewHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FDCE48129DB813004598C1 /* MIScrollViewHelper.h */; };
+		C9FDCE4B129DB813004598C1 /* MIScrollViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FDCE49129DB813004598C1 /* MIScrollViewHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1711,6 +1713,8 @@
 		C9EBACAA0EA100D400025466 /* ServerBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerBridgeController.m; sourceTree = "<group>"; };
 		C9EBACE40EA1055F00025466 /* Servers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Servers.png; sourceTree = "<group>"; };
 		C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleToolboxForMac.framework; sourceTree = "<group>"; };
+		C9FDCE48129DB813004598C1 /* MIScrollViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIScrollViewHelper.h; sourceTree = "<group>"; };
+		C9FDCE49129DB813004598C1 /* MIScrollViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIScrollViewHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2140,6 +2144,8 @@
 				C990728F127D433300D791F9 /* MIScrollView.m */,
 				C9BB2278129A013E00EA8AB0 /* MITextField.h */,
 				C9BB2279129A013E00EA8AB0 /* MITextField.m */,
+				C9FDCE48129DB813004598C1 /* MIScrollViewHelper.h */,
+				C9FDCE49129DB813004598C1 /* MIScrollViewHelper.m */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -3064,6 +3070,7 @@
 				C9BB213E1299D3A400EA8AB0 /* DebugController.h in Headers */,
 				C9BB227A129A013E00EA8AB0 /* MITextField.h in Headers */,
 				C9BB24BD129A520300EA8AB0 /* SRHacks.h in Headers */,
+				C9FDCE4A129DB813004598C1 /* MIScrollViewHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3337,6 +3344,7 @@
 				C9BB213F1299D3A400EA8AB0 /* DebugController.m in Sources */,
 				C9BB227B129A013E00EA8AB0 /* MITextField.m in Sources */,
 				C9BB24BE129A520300EA8AB0 /* SRHacks.m in Sources */,
+				C9FDCE4B129DB813004598C1 /* MIScrollViewHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

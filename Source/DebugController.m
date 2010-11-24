@@ -69,6 +69,9 @@ static int loremIpsumCount = 8;
     [channelTextTestItem setSubmenu:channelTestMenu];
     [debugMenu addItem:channelTextTestItem];
     
+    NSMenuItem *forceScrollToBottom = [[NSMenuItem alloc] initWithTitle:@"Force Scroll to Bottom" target:self action:@selector(forceScrollToBottom:) keyEquivalent:@""];
+    [debugMenu addItem:forceScrollToBottom];
+    
     // Put this thing in the menu now.
     NSMenuItem *mainMenuItem = [[NSMenuItem alloc] initWithTitle:@"Debug" action:nil keyEquivalent:@""];
     [mainMenuItem setSubmenu:debugMenu];
@@ -125,6 +128,14 @@ static int loremIpsumCount = 8;
   } else {
     [userInfo setValue:[NSNumber numberWithInt:remaining] forKey:@"Count"];
   }
+}
+
+- (void)forceScrollToBottom:(id)sender
+{
+  ChannelController *cc = [appController currentChannelController];
+  
+  NSLog(@"Forcing %@ to scroll to bottom.", [cc name]);
+  [cc forceScrollToBottom];
 }
 
 //- (void)dealloc

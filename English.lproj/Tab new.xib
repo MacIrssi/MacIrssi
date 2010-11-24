@@ -12,8 +12,8 @@
     </object>
     <object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
       <bool key="EncodedWithXMLCoder">YES</bool>
+      <integer value="7"/>
       <integer value="147"/>
-      <integer value="5"/>
     </object>
     <object class="NSArray" key="IBDocument.PluginDependencies">
       <bool key="EncodedWithXMLCoder">YES</bool>
@@ -2434,7 +2434,6 @@
           <string>68.ImportedFromIB2</string>
           <string>69.IBPluginDependency</string>
           <string>69.ImportedFromIB2</string>
-          <string>7.CustomClassName</string>
           <string>7.IBPluginDependency</string>
           <string>7.IBViewBoundsToFrameTransform</string>
           <string>7.ImportedFromIB2</string>
@@ -2601,7 +2600,6 @@
           <boolean value="YES"/>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <boolean value="YES"/>
-          <string>MIScrollView</string>
           <string>com.apple.InterfaceBuilder.CocoaPlugin</string>
           <object class="NSAffineTransform">
             <bytes key="NSTransformStruct">P4AAAL+AAAC/gAAAw54AAA</bytes>
@@ -2808,7 +2806,7 @@
               <string>MISplitView</string>
               <string>NSTextField</string>
               <string>NSTextField</string>
-              <string>NSTextField</string>
+              <string>MITextField</string>
               <string>NSTextField</string>
               <string>NSWindow</string>
               <string>NSView</string>
@@ -2947,7 +2945,7 @@
               </object>
               <object class="IBToOneOutletInfo">
                 <string key="name">topicTextField</string>
-                <string key="candidateClassName">NSTextField</string>
+                <string key="candidateClassName">MITextField</string>
               </object>
               <object class="IBToOneOutletInfo">
                 <string key="name">topicTimeTextField</string>
