@@ -19,6 +19,8 @@
 #import "DebugController.h"
 #import "AppController.h"
 #import "ChannelController.h"
+#import "AIMenuAdditions.h"
+#import "IrssiBridge.h"
 
 #import "module-formats.h"
 
@@ -60,8 +62,11 @@ static int loremIpsumCount = 8;
   {
     debugMenu = [[NSMenu alloc] initWithTitle:@"Debug"];
     
-    NSMenuItem *channelTextTestItem = [[NSMenuItem alloc] initWithTitle:@"Channel Text Test" action:@selector(channelTextTest:) keyEquivalent:@""];
-    [channelTextTestItem setTarget:self];
+    NSMenu *channelTestMenu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
+    [channelTestMenu setDelegate:self];
+    
+    NSMenuItem *channelTextTestItem = [[NSMenuItem alloc] initWithTitle:@"Channel Text Test" action:nil keyEquivalent:@""];
+    [channelTextTestItem setSubmenu:channelTestMenu];
     [debugMenu addItem:channelTextTestItem];
     
     // Put this thing in the menu now.
@@ -73,10 +78,24 @@ static int loremIpsumCount = 8;
   return self;
 }
 
+- (void)menuNeedsUpdate:(NSMenu *)menu
+{
+  [menu removeAllItems];
+  
+  NSArray *channels = [IrssiBridge channels];
+  for (ChannelController *cc in channels)
+  {
+    NSString *title = [cc name];
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title target:self action:@selector(channelTextTest:) keyEquivalent:@"" representedObject:cc];
+    
+    [menu addItem:item];
+  }  
+}
+
 - (void)channelTextTest:(id)sender
 {
   // Run a channel text test on the current channel controller.
-  ChannelController *cc = [appController currentChannelController];
+  ChannelController *cc = [sender representedObject];
   
   NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                cc, @"ChannelController",
@@ -84,7 +103,10 @@ static int loremIpsumCount = 8;
                                nil];
   
   // Lets set up a timer to run the chat spew.
-  [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(channelTextTestTimer:) userInfo:dict repeats:YES];
+  [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(channelTextTestTimer:) userInfo:dict repeats:YES];
+  
+  // Print to console so we can see when it starts/stops.
+  NSLog(@"Started channel text test on window \"%@\"", [cc name]);
 }
 
 - (void)channelTextTestTimer:(NSTimer*)timer
@@ -99,6 +121,7 @@ static int loremIpsumCount = 8;
   remaining--;
   if (remaining == 0) {
     [timer invalidate];
+    NSLog(@"Finished channel text test on window \"%@\"", [controller name]);
   } else {
     [userInfo setValue:[NSNumber numberWithInt:remaining] forKey:@"Count"];
   }
