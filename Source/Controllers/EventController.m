@@ -185,7 +185,7 @@
       {
         type = NSCriticalRequest;
       }
-      if ([event valueForKey:@"bounceShowCountOnDock"] && [[event valueForKey:@"bounceShowCountOnDock"] intValue] == 1)
+      if ([event valueForKey:@"bounceShowCountOnDock"] && [[event valueForKey:@"bounceShowCountOnDock"] intValue] == 1 && ![NSApp isActive])
       {
         NSDockTile *tile = [NSApp dockTile];
         [tile setBadgeLabel:[NSString stringWithFormat:@"%d", ++unreadNotificationsCount]];
