@@ -654,14 +654,17 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   else
     [mainWindow makeFirstResponder:inputTextField];
   
-  if ([currentChannelController partialCommand])
+  if (settings_get_bool("window_history"))
   {
-    [inputTextField setString:[currentChannelController partialCommand]];
-    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:[currentChannelController partialCommandSelection]];
-  }
-  else
-  {
-    [inputTextField setString:@""];
+    if ([currentChannelController partialCommand])
+    {
+      [inputTextField setString:[currentChannelController partialCommand]];
+      [(NSTextView *)[mainWindow firstResponder] setSelectedRange:[currentChannelController partialCommandSelection]];
+    }
+    else
+    {
+      [inputTextField setString:@""];
+    }
   }
 }
 
