@@ -41,7 +41,7 @@
   NSRect documentBounds = [[target documentView] frame];
   NSRect clipViewBounds = [[target contentView] visibleRect];
   
-  if (NSMaxY(clipViewBounds) > documentBounds.size.height)
+  if (NSMaxY(clipViewBounds) >= documentBounds.size.height)
   {
     return 1.0; // at bottom
   }
