@@ -212,6 +212,8 @@
 		C2CC3BFC0C0B7B63001C0DDD /* libintl.8.0.2.dylib in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */; };
 		C2D1679106E3E16C000EC6F9 /* ChannelBar.h in Headers */ = {isa = PBXBuildFile; fileRef = C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */; };
 		C2D1679206E3E16C000EC6F9 /* ChannelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D1679006E3E16C000EC6F9 /* ChannelBar.m */; };
+		C90301BF129DEA5000B30679 /* PreferenceVersionHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = C90301BD129DEA5000B30679 /* PreferenceVersionHelper.h */; };
+		C90301C0129DEA5000B30679 /* PreferenceVersionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C90301BE129DEA5000B30679 /* PreferenceVersionHelper.m */; };
 		C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265A0E5C654800E041F7 /* UKCrashReporter.h */; };
 		C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
 		C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265C0E5C654800E041F7 /* UKSystemInfo.h */; };
@@ -1056,6 +1058,8 @@
 		C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DynaLoader.a; path = "/System/Library/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a"; sourceTree = "<absolute>"; };
 		C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ChannelBar.h; sourceTree = "<group>"; };
 		C2D1679006E3E16C000EC6F9 /* ChannelBar.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ChannelBar.m; sourceTree = "<group>"; };
+		C90301BD129DEA5000B30679 /* PreferenceVersionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceVersionHelper.h; sourceTree = "<group>"; };
+		C90301BE129DEA5000B30679 /* PreferenceVersionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceVersionHelper.m; sourceTree = "<group>"; };
 		C910265A0E5C654800E041F7 /* UKCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKCrashReporter.h; sourceTree = "<group>"; };
 		C910265B0E5C654800E041F7 /* UKCrashReporter.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = UKCrashReporter.strings; path = UKCrashReporter/UKCrashReporter.strings; sourceTree = "<group>"; };
 		C910265C0E5C654800E041F7 /* UKSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKSystemInfo.h; sourceTree = "<group>"; };
@@ -3001,6 +3005,8 @@
 				C9432C240EA1673E005237E3 /* ChannelBridgeController.m */,
 				C91F16890F12937B00763699 /* ShortcutBridgeController.h */,
 				C91F168A0F12937B00763699 /* ShortcutBridgeController.m */,
+				C90301BD129DEA5000B30679 /* PreferenceVersionHelper.h */,
+				C90301BE129DEA5000B30679 /* PreferenceVersionHelper.m */,
 			);
 			name = Preferences;
 			path = Controllers/Preferences;
@@ -3071,6 +3077,7 @@
 				C9BB227A129A013E00EA8AB0 /* MITextField.h in Headers */,
 				C9BB24BD129A520300EA8AB0 /* SRHacks.h in Headers */,
 				C9FDCE4A129DB813004598C1 /* MIScrollViewHelper.h in Headers */,
+				C90301BF129DEA5000B30679 /* PreferenceVersionHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3345,6 +3352,7 @@
 				C9BB227B129A013E00EA8AB0 /* MITextField.m in Sources */,
 				C9BB24BE129A520300EA8AB0 /* SRHacks.m in Sources */,
 				C9FDCE4B129DB813004598C1 /* MIScrollViewHelper.m in Sources */,
+				C90301C0129DEA5000B30679 /* PreferenceVersionHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

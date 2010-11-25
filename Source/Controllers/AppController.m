@@ -29,6 +29,7 @@
 #import "ColorSet.h"
 #import "ConnectivityMonitor.h"
 #import "IrssiBridge.h"
+#import "PreferenceVersionHelper.h"
 
 #import "AIMenuAdditions.h"
 #import "NSString+Additions.h"
@@ -1633,7 +1634,13 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     
   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
   [defaults registerDefaults:dict];
+
+  /* Check for any preference migrations we need to do. */
+  [PreferenceVersionHelper checkVersionAndUpgrade];
   
+  /* A small hack, given that we could have migrated window sizes and this window is already loaded. */
+  [mainWindow setFrameUsingName:[mainWindow frameAutosaveName]];
+
   // Setting useSmallTextEntryFont in preferences causes us to use Monaco, 10pt for the text area
   if ([[NSUserDefaults standardUserDefaults] boolForKey:@"useSmallTextEntryFont"])
   {
