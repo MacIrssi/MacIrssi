@@ -27,6 +27,9 @@
 - (void)dealloc;
 
 - (CGFloat)currentScrollPosition;
+- (CGFloat)currentDistanceFromTop;
+
 - (void)restoreScrollPosition:(CGFloat)position;
+- (void)restoreDistanceFromTop:(CGFloat)distance;
 
 @end

@@ -809,13 +809,23 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 {
   // Save our current state, then when updates are finished we'll restore the state.
   savedScrollPoint = [scrollViewHelper currentScrollPosition];
-  NSLog(@"%f", savedScrollPoint);
+  if ((savedScrollPoint > 0.0) && (savedScrollPoint < 1.0))
+  {
+    savedScrollPoint = [scrollViewHelper currentDistanceFromTop];
+  }
 }
 
 - (void)endTextUpdates
 {
   [[mainTextView layoutManager] ensureLayoutForTextContainer:[mainTextView textContainer]];
-  [scrollViewHelper restoreScrollPosition:savedScrollPoint];
+  if (savedScrollPoint > 1.0)
+  {
+    [scrollViewHelper restoreDistanceFromTop:savedScrollPoint];
+  }
+  else
+  {
+    [scrollViewHelper restoreScrollPosition:savedScrollPoint];
+  }
 }
 
 //-------------------------------------------------------------------

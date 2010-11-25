@@ -60,6 +60,11 @@
   return 0.0;
 }
 
+- (CGFloat)currentDistanceFromTop
+{
+  return [[target contentView] visibleRect].origin.y;
+}
+
 - (void)restoreScrollPosition:(CGFloat)position
 {
   NSClipView *clipView = [target contentView];
@@ -84,9 +89,15 @@
     scrollPoint = floor(position * ((documentBounds.origin.y + documentBounds.size.height) - clipViewBounds.size.height));
   }
 
-  if (scrollPoint != [clipView visibleRect].origin.y)
+  [self restoreDistanceFromTop:scrollPoint];
+}
+
+- (void)restoreDistanceFromTop:(CGFloat)distance
+{
+  NSClipView *clipView = [target contentView];
+  if (distance != [clipView visibleRect].origin.y)
   {
-    [target scrollClipView:clipView toPoint:NSMakePoint(0.0, scrollPoint)];
+    [target scrollClipView:clipView toPoint:NSMakePoint(0.0, distance)];
     [target reflectScrolledClipView:clipView];
   }
 }
