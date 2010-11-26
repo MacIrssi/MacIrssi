@@ -212,6 +212,8 @@
 		C2D1679206E3E16C000EC6F9 /* ChannelBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D1679006E3E16C000EC6F9 /* ChannelBar.m */; };
 		C90301BF129DEA5000B30679 /* PreferenceVersionHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = C90301BD129DEA5000B30679 /* PreferenceVersionHelper.h */; };
 		C90301C0129DEA5000B30679 /* PreferenceVersionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C90301BE129DEA5000B30679 /* PreferenceVersionHelper.m */; };
+		C90C9E8212A06196009F43CE /* MISearchBar.h in Headers */ = {isa = PBXBuildFile; fileRef = C90C9E8012A06196009F43CE /* MISearchBar.h */; };
+		C90C9E8312A06196009F43CE /* MISearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C90C9E8112A06196009F43CE /* MISearchBar.m */; };
 		C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265A0E5C654800E041F7 /* UKCrashReporter.h */; };
 		C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
 		C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265C0E5C654800E041F7 /* UKSystemInfo.h */; };
@@ -1061,6 +1063,8 @@
 		C2D1679006E3E16C000EC6F9 /* ChannelBar.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ChannelBar.m; sourceTree = "<group>"; };
 		C90301BD129DEA5000B30679 /* PreferenceVersionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceVersionHelper.h; sourceTree = "<group>"; };
 		C90301BE129DEA5000B30679 /* PreferenceVersionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceVersionHelper.m; sourceTree = "<group>"; };
+		C90C9E8012A06196009F43CE /* MISearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MISearchBar.h; sourceTree = "<group>"; };
+		C90C9E8112A06196009F43CE /* MISearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISearchBar.m; sourceTree = "<group>"; };
 		C910265A0E5C654800E041F7 /* UKCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKCrashReporter.h; sourceTree = "<group>"; };
 		C910265B0E5C654800E041F7 /* UKCrashReporter.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = UKCrashReporter.strings; path = UKCrashReporter/UKCrashReporter.strings; sourceTree = "<group>"; };
 		C910265C0E5C654800E041F7 /* UKSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKSystemInfo.h; sourceTree = "<group>"; };
@@ -2146,6 +2150,15 @@
 			name = "Font Preview Field";
 			sourceTree = "<group>";
 		};
+		C90C9E7F12A06177009F43CE /* Search Bar */ = {
+			isa = PBXGroup;
+			children = (
+				C90C9E8012A06196009F43CE /* MISearchBar.h */,
+				C90C9E8112A06196009F43CE /* MISearchBar.m */,
+			);
+			path = "Search Bar";
+			sourceTree = "<group>";
+		};
 		C91026570E5C652000E041F7 /* UKCrashReporter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2220,6 +2233,7 @@
 				C90C9E2E12A05B9C009F43CE /* Layout Splitview */,
 				C90C9E2812A05B51009F43CE /* MainWindow Subclass */,
 				C90C9E3D12A05DF2009F43CE /* Nicklist TableView */,
+				C90C9E7F12A06177009F43CE /* Search Bar */,
 				C90C9E3012A05D15009F43CE /* ScrollView Helper */,
 				C90C9E2F12A05CFF009F43CE /* Self-sizing TextView */,
 				C91F150E0F110A5400763699 /* Shortcut Recorder */,
@@ -3169,6 +3183,7 @@
 				C9BB24BD129A520300EA8AB0 /* SRHacks.h in Headers */,
 				C9FDCE4A129DB813004598C1 /* MIScrollViewHelper.h in Headers */,
 				C90301BF129DEA5000B30679 /* PreferenceVersionHelper.h in Headers */,
+				C90C9E8212A06196009F43CE /* MISearchBar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3445,6 +3460,7 @@
 				C9BB24BE129A520300EA8AB0 /* SRHacks.m in Sources */,
 				C9FDCE4B129DB813004598C1 /* MIScrollViewHelper.m in Sources */,
 				C90301C0129DEA5000B30679 /* PreferenceVersionHelper.m in Sources */,
+				C90C9E8312A06196009F43CE /* MISearchBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
