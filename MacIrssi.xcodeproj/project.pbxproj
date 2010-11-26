@@ -2051,6 +2051,91 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C90C9E2012A05AF9009F43CE /* Channel Bar */ = {
+			isa = PBXGroup;
+			children = (
+				C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */,
+				C2D1679006E3E16C000EC6F9 /* ChannelBar.m */,
+				C200D025073FC03700B850B1 /* ChannelBarCell.h */,
+				C200D026073FC03700B850B1 /* ChannelBarCell.m */,
+			);
+			name = "Channel Bar";
+			sourceTree = "<group>";
+		};
+		C90C9E2112A05B13009F43CE /* Antialias Subclasses */ = {
+			isa = PBXGroup;
+			children = (
+				C25491760681A35900C43D63 /* CustomTextView.h */,
+				C25491770681A35900C43D63 /* CustomTextView.m */,
+				C9BB2278129A013E00EA8AB0 /* MITextField.h */,
+				C9BB2279129A013E00EA8AB0 /* MITextField.m */,
+			);
+			name = "Antialias Subclasses";
+			sourceTree = "<group>";
+		};
+		C90C9E2812A05B51009F43CE /* MainWindow Subclass */ = {
+			isa = PBXGroup;
+			children = (
+				B322DDB905EF9AE600E640C2 /* CustomWindow.h */,
+				B322DDBA05EF9AE600E640C2 /* CustomWindow.m */,
+			);
+			name = "MainWindow Subclass";
+			sourceTree = "<group>";
+		};
+		C90C9E2E12A05B9C009F43CE /* Layout Splitview */ = {
+			isa = PBXGroup;
+			children = (
+				C91F0B150F06E3C900763699 /* MISplitView.h */,
+				C91F0B160F06E3C900763699 /* MISplitView.m */,
+			);
+			name = "Layout Splitview";
+			sourceTree = "<group>";
+		};
+		C90C9E2F12A05CFF009F43CE /* Self-sizing TextView */ = {
+			isa = PBXGroup;
+			children = (
+				C9854DCB10D035B5004163C1 /* MIResizingTextView.h */,
+				C9854DCC10D035B5004163C1 /* MIResizingTextView.m */,
+			);
+			name = "Self-sizing TextView";
+			sourceTree = "<group>";
+		};
+		C90C9E3012A05D15009F43CE /* ScrollView Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C9FDCE48129DB813004598C1 /* MIScrollViewHelper.h */,
+				C9FDCE49129DB813004598C1 /* MIScrollViewHelper.m */,
+			);
+			name = "ScrollView Helper";
+			sourceTree = "<group>";
+		};
+		C90C9E3112A05D2E009F43CE /* Unresponsive Button */ = {
+			isa = PBXGroup;
+			children = (
+				C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */,
+				C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */,
+			);
+			name = "Unresponsive Button";
+			sourceTree = "<group>";
+		};
+		C90C9E3D12A05DF2009F43CE /* Nicklist TableView */ = {
+			isa = PBXGroup;
+			children = (
+				B322DDB705EF9AE600E640C2 /* CustomTableView.h */,
+				B322DDB805EF9AE600E640C2 /* CustomTableView.m */,
+			);
+			name = "Nicklist TableView";
+			sourceTree = "<group>";
+		};
+		C90C9E3E12A05E0A009F43CE /* Font Preview Field */ = {
+			isa = PBXGroup;
+			children = (
+				C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */,
+				C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */,
+			);
+			name = "Font Preview Field";
+			sourceTree = "<group>";
+		};
 		C91026570E5C652000E041F7 /* UKCrashReporter */ = {
 			isa = PBXGroup;
 			children = (
@@ -2119,31 +2204,18 @@
 		C91F0B130F06E3AA00763699 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				C90C9E2112A05B13009F43CE /* Antialias Subclasses */,
+				C90C9E2012A05AF9009F43CE /* Channel Bar */,
+				C90C9E3E12A05E0A009F43CE /* Font Preview Field */,
+				C90C9E2E12A05B9C009F43CE /* Layout Splitview */,
+				C90C9E2812A05B51009F43CE /* MainWindow Subclass */,
+				C90C9E3D12A05DF2009F43CE /* Nicklist TableView */,
+				C90C9E3012A05D15009F43CE /* ScrollView Helper */,
+				C90C9E2F12A05CFF009F43CE /* Self-sizing TextView */,
 				C91F150E0F110A5400763699 /* Shortcut Recorder */,
-				C98E5F44104BF3830004C8F0 /* JVFontPreviewField.h */,
-				C98E5F45104BF3830004C8F0 /* JVFontPreviewField.m */,
-				C91F0B150F06E3C900763699 /* MISplitView.h */,
-				C91F0B160F06E3C900763699 /* MISplitView.m */,
-				B322DDB705EF9AE600E640C2 /* CustomTableView.h */,
-				B322DDB805EF9AE600E640C2 /* CustomTableView.m */,
-				B322DDB905EF9AE600E640C2 /* CustomWindow.h */,
-				B322DDBA05EF9AE600E640C2 /* CustomWindow.m */,
-				C25491760681A35900C43D63 /* CustomTextView.h */,
-				C25491770681A35900C43D63 /* CustomTextView.m */,
-				C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */,
-				C2D1679006E3E16C000EC6F9 /* ChannelBar.m */,
-				C200D025073FC03700B850B1 /* ChannelBarCell.h */,
-				C200D026073FC03700B850B1 /* ChannelBarCell.m */,
+				C90C9E3112A05D2E009F43CE /* Unresponsive Button */,
 				C2C2C0F7074B822700396F82 /* MarkedScroller.h */,
 				C2C2C0F8074B822700396F82 /* MarkedScroller.m */,
-				C9B997FE10B83BD40093A1BB /* MIUnresponsiveButton.h */,
-				C9B997FF10B83BD40093A1BB /* MIUnresponsiveButton.m */,
-				C9854DCB10D035B5004163C1 /* MIResizingTextView.h */,
-				C9854DCC10D035B5004163C1 /* MIResizingTextView.m */,
-				C9BB2278129A013E00EA8AB0 /* MITextField.h */,
-				C9BB2279129A013E00EA8AB0 /* MITextField.m */,
-				C9FDCE48129DB813004598C1 /* MIScrollViewHelper.h */,
-				C9FDCE49129DB813004598C1 /* MIScrollViewHelper.m */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
