@@ -24,7 +24,6 @@
 #import "channels.h"
 #import "nicklist.h"
 #import "glib.h"
-#import "MarkedScroller.h"
 #import "CustomTextView.h"
 #import "MISplitView.h"
 #import "MIScrollViewHelper.h"
@@ -132,7 +131,6 @@ enum nickContextMenuTags {
   IBOutlet NSMenu *mainTextViewMenu;
   
   IBOutlet NSSearchField *searchField;
-  MarkedScroller *scroller;
   NSTabViewItem *tabViewItem;
   NSRange endRange;
   NSMutableDictionary *textAttributes;
@@ -168,11 +166,9 @@ enum nickContextMenuTags {
   
   CGFloat savedScrollPoint;
 }
+
 - (NSString *)mode;
 - (NSArray *)nicks;
-- (void)moveToNextSearchMatch;
-- (void)moveToPreviousSearchMatch;
-- (void)highlightCurrentSearchMatch;
 
 - (BOOL)isScrolledToBottom;
 - (void)forceScrollToBottom;
@@ -181,7 +177,6 @@ enum nickContextMenuTags {
 - (id)init;
 - (id)initWithWindowRec:(WINDOW_REC *)rec;
 - (void)dealloc;
-- (BOOL)hasActiveSearch;
 
 - (NSView *)view;
 - (WINDOW_REC *)windowRec;
@@ -225,12 +220,10 @@ enum nickContextMenuTags {
 - (IBAction)modeChanged:(id)sender;
 - (IBAction)nickViewMenuClicked:(id)sender;
 - (IBAction)mainTextViewMenuClicked:(id)sender;
-- (IBAction)performSearch:(id)sender;
 
 - (void)setFont:(NSFont *)font;
 - (void)setNicklistFont:(NSFont*)font;
 - (float)yPositionInTextView:(NSRange)r;
-- (void)makeSearchFieldFirstResponder;
 
 - (void)clearTextView;
 - (void)setTopic:(char *)newTopic setBy:(char *)setter atTime:(time_t)time;
@@ -249,7 +242,6 @@ enum nickContextMenuTags {
 - (void)clearNickView;
 - (void)queryCreated:(QUERY_REC *)rec;
 //- (void)setCurrentDataLevel:(int)level;
-- (void)searchForString:(NSString *)string;
 
 - (void)nickListRowDoubleClicked:(id)sender;
 

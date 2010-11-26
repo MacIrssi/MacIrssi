@@ -118,9 +118,6 @@ extern char **argv;
 
 - (IBAction)performCloseChannel:(id)sender;
 
-- (IBAction)findNext:(id)sender;
-- (IBAction)findPrevious:(id)sender;
-- (IBAction)useSelectionForFind:(id)sender;
 - (IBAction)sendCommand:(id)sender;
 - (IBAction)nextChannel:(id)sender;
 - (IBAction)activeChannel:(id)sender;
@@ -131,7 +128,6 @@ extern char **argv;
 - (IBAction)showPreferencePanel:(id)sender;
 - (IBAction)showAbout:(id)sender;
 //- (IBAction)paste:(id)sender;
-- (IBAction)makeSearchFieldFirstResponder:(id)sender;
 - (IBAction)editCurrentChannel:(id)sender;
 
 #pragma mark Shortcuts

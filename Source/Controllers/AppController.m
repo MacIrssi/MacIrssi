@@ -71,26 +71,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 @implementation AppController
 
 #pragma mark IBAction methods
-- (IBAction)findNext:(id)sender
-{
-  [currentChannelController moveToNextSearchMatch];
-}
-
-- (IBAction)findPrevious:(id)sender
-{
-  [currentChannelController moveToPreviousSearchMatch];
-}
-
-- (IBAction)useSelectionForFind:(id)sender
-{
-  if (![[mainWindow firstResponder] isKindOfClass:[NSTextView class]])
-    return;
-  
-  NSTextView *textView = (NSTextView *)[mainWindow firstResponder];
-  NSString *selectedText = [[textView string] substringWithRange:[textView selectedRange]];
-  
-  [currentChannelController searchForString:selectedText];
-}
 
 //-------------------------------------------------------------------
 // editCurrentChannel:
@@ -101,17 +81,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (IBAction)editCurrentChannel:(id)sender
 {
   [currentChannelController raiseTopicWindow:sender];
-}
-
-//-------------------------------------------------------------------
-// makeSearchFieldFirstResponder:
-// Makes the searchfield first responder. 
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)makeSearchFieldFirstResponder:(id)sender
-{
-  [currentChannelController makeSearchFieldFirstResponder];
 }
 
 //-------------------------------------------------------------------
@@ -1246,9 +1215,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 {
   if ([anItem action] == @selector(editCurrentChannel:)) {
     return [currentChannelController isChannel];
-  }
-  if (([anItem action] == @selector(findNext:)) || ([anItem action] == @selector(findPrevious:))) {
-    return [currentChannelController hasActiveSearch];
   }
   if ([anItem action] == @selector(performCloseChannel:)) {
     return !([currentChannelController windowRec]->immortal);
