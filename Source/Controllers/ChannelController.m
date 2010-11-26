@@ -1324,35 +1324,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 #pragma mark Private methods
 
-/**
- * Mark and move to current search iterator index
- */
-- (void)highlightCurrentSearchMatch
-{
-  NSRange range = [[searchRanges objectAtIndex:searchIteratorIndex] rangeValue];
-  [textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:oldSearchMatchRange];
-  [textStorage addAttribute:NSBackgroundColorAttributeName value:currentSearchMatchColor range:range];
-  
-  [mainTextView scrollRangeToVisible:range];
-  oldSearchMatchRange = range;
-}
-
-//-------------------------------------------------------------------
-// yPositionInTextView:
-// Calculates the y position for the first character in
-// a range of characters in the main text view. 
-//
-// r - The range where the characters are located
-//
-// return - the y location
-//-------------------------------------------------------------------
-- (float)yPositionInTextView:(NSRange)r
-{
-  NSRange glyphRange = [[mainTextView layoutManager] glyphRangeForCharacterRange:r actualCharacterRange:nil];
-  NSRect rect = [[mainTextView layoutManager] lineFragmentRectForGlyphAtIndex:glyphRange.location effectiveRange:nil];
-  return rect.origin.y+rect.size.height/2;
-}
-
 //-------------------------------------------------------------------
 // parseTopic:
 // Parses a topic string, looking for mirc colors (currently ignores them) and links

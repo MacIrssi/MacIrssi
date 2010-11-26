@@ -223,7 +223,6 @@ enum nickContextMenuTags {
 
 - (void)setFont:(NSFont *)font;
 - (void)setNicklistFont:(NSFont*)font;
-- (float)yPositionInTextView:(NSRange)r;
 
 - (void)clearTextView;
 - (void)setTopic:(char *)newTopic setBy:(char *)setter atTime:(time_t)time;
