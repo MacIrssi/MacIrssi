@@ -72,6 +72,9 @@ static int loremIpsumCount = 8;
     NSMenuItem *forceScrollToBottom = [[NSMenuItem alloc] initWithTitle:@"Force Scroll to Bottom" target:self action:@selector(forceScrollToBottom:) keyEquivalent:@""];
     [debugMenu addItem:forceScrollToBottom];
     
+    NSMenuItem *changeOrientation = [[NSMenuItem alloc] initWithTitle:@"Toggle Orientation" target:self action:@selector(toggleOrientation:) keyEquivalent:@"O"];
+    [debugMenu addItem:changeOrientation];
+    
     // Put this thing in the menu now.
     NSMenuItem *mainMenuItem = [[NSMenuItem alloc] initWithTitle:@"Debug" action:nil keyEquivalent:@""];
     [mainMenuItem setSubmenu:debugMenu];
@@ -136,6 +139,15 @@ static int loremIpsumCount = 8;
   
   NSLog(@"Forcing %@ to scroll to bottom.", [cc name]);
   [cc forceScrollToBottom];
+}
+
+- (void)toggleOrientation:(id)sender
+{
+  int orientation = [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"];
+  orientation = (orientation == MIChannelBarHorizontalOrientation ? MIChannelBarVerticalOrientation : MIChannelBarHorizontalOrientation);
+
+  [[NSUserDefaults standardUserDefaults] setInteger:orientation forKey:@"channelBarOrientation"];
+  [appController channelBarOrientationDidChange:nil];  
 }
 
 //- (void)dealloc
