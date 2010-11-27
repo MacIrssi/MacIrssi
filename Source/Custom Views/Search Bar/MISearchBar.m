@@ -159,6 +159,11 @@
   }
 }
 
+- (BOOL)becomeFirstResponder
+{
+  return [searchField becomeFirstResponder];
+}
+
 - (void)update
 {
   NSString *term = [searchField stringValue];
@@ -187,6 +192,12 @@
     [nextBackButton setEnabled:NO forSegment:0];
     [nextBackButton setEnabled:NO forSegment:1];
   }  
+}
+
+- (void)cancelOperation:(id)sender
+{
+  /* Escape means Done */
+  [self doneButtonAction:sender];
 }
 
 - (void)drawRect:(NSRect)dirtyRect

@@ -37,6 +37,7 @@ typedef enum {
 - (id)delegate;
 - (void)setDelegate:(id)aDelegate;
 
+- (BOOL)becomeFirstResponder;
 - (void)update;
 
 @end

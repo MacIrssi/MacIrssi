@@ -30,6 +30,7 @@
 #import "MITextField.h"
 #import "CHLayout.h"
 #import "MISearchBar.h"
+#import "MIChannelSearchController.h"
 
 #import "fe-windows.h"
 
@@ -67,7 +68,10 @@ enum nickContextMenuTags {
   CopyIP
 };
 
-@interface ChannelController : NSObject {
+@interface ChannelController : NSObject
+{
+  MIChannelSearchController *searchController;
+  MISearchBar *searchBar;
   
   NSString *name;
   NSString *topic_by;
@@ -168,6 +172,10 @@ enum nickContextMenuTags {
   
   CGFloat savedScrollPoint;
 }
+
+- (MIChannelSearchController*)searchController;
+- (MISearchBar*)searchBar;
+- (void)setSearchBarVisible:(BOOL)flag;
 
 - (NSString *)mode;
 - (NSArray *)nicks;

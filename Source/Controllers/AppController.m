@@ -345,6 +345,12 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [aboutBox makeKeyAndOrderFront:sender];
 }
 
+- (IBAction)performFind:(id)sender
+{
+  // Find simply defers to the current channel controller's searchController.
+  [[currentChannelController searchController] performFind:sender];
+}
+
 #pragma mark Shortcuts
 
 //-------------------------------------------------------------------
@@ -1218,6 +1224,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
   if ([anItem action] == @selector(performCloseChannel:)) {
     return !([currentChannelController windowRec]->immortal);
+  }
+  if ([anItem action] == @selector(performFind:)) {
+    return ([[currentChannelController searchController] canPerformFindForTag:[anItem tag]]);
   }
   if ([anItem action] == @selector(changeIrssiServerConsole:)) {
     return settings_get_bool("use_status_window");

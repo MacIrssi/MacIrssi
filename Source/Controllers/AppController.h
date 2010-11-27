@@ -129,6 +129,7 @@ extern char **argv;
 - (IBAction)showAbout:(id)sender;
 //- (IBAction)paste:(id)sender;
 - (IBAction)editCurrentChannel:(id)sender;
+- (IBAction)performFind:(id)sender;
 
 #pragma mark Shortcuts
 

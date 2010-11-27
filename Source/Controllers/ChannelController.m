@@ -33,6 +33,63 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 
 @implementation ChannelController
 
+- (MIChannelSearchController*)searchController
+{
+  return searchController;
+}
+
+- (MISearchBar*)searchBar
+{
+  return searchBar;
+}
+
+- (void)setSearchBarVisible:(BOOL)flag
+{
+  id target = ([nickTableScrollView isHidden] ? (id)[mainTextView enclosingScrollView] : (id)splitView);
+  
+  if (flag && !searchBar)
+  {
+    /* Make a search bar, link it to the search controller and put onscreen. */
+    searchBar = [[MISearchBar alloc] initWithFrame:NSMakeRect(0, 0, [target frame].size.width, 25.0f)];
+    [searchBar setDelegate:searchController];
+    [[target superview] addSubview:searchBar];
+    
+    /* Pull the splitView down by 20 pixels and put it in there */
+    NSRect r = [target frame];
+    r.size.height -= [searchBar frame].size.height;
+    
+    [target setLayoutName:@"targetView"];
+    
+    /* Search bar is directly above the split view, centered X axis, equal width */
+    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMinY relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMaxY]];
+    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeWidth relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeWidth]];
+    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidX relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMidX]];
+    
+    [target setFrame:r];
+  }
+  else if (!flag && searchBar)
+  {
+    [searchBar removeAllConstraints];
+    
+    /* Push the target view up before we remove the search bar */
+    NSRect r = [target frame];
+    r.size.height += [searchBar frame].size.height;
+
+    [target setFrame:r];
+    [target setLayoutName:nil];
+    
+    [searchBar removeFromSuperview];
+    [searchBar release];
+    searchBar = nil;
+  }
+  
+  if (flag)
+  {
+    /* Always make the search box responder on keypress */
+    [[searchBar window] makeFirstResponder:searchBar];
+  }
+}
+
 #pragma mark IBAction methods
 
 //-------------------------------------------------------------------
@@ -1169,6 +1226,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
   line = [[NSMutableAttributedString alloc] init];
   oldSearchMatchRange = NSMakeRange(0,0);
+  searchController = [[MIChannelSearchController alloc] initWithController:self];
   return self;
 }
 
@@ -1186,6 +1244,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
+  [searchController release];
   [scrollViewHelper release];
   
   [wholeView release];
