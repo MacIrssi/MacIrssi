@@ -33,46 +33,69 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 
 @implementation ChannelController
 
+- (MIChannelSearchController*)searchController
+{
+  return searchController;
+}
+
+- (MISearchBar*)searchBar
+{
+  return searchBar;
+}
+
+- (NSTextView*)textView
+{
+  return mainTextView;
+}
+
+- (void)setSearchBarVisible:(BOOL)flag
+{
+  id target = ([nickTableScrollView isHidden] ? (id)[mainTextView enclosingScrollView] : (id)splitView);
+  
+  if (flag && !searchBar)
+  {
+    /* Make a search bar, link it to the search controller and put onscreen. */
+    searchBar = [[MISearchBar alloc] initWithFrame:NSMakeRect(0, 0, [target frame].size.width, 25.0f)];
+    [searchBar setDelegate:searchController];
+    [[target superview] addSubview:searchBar];
+    
+    /* Pull the splitView down by 20 pixels and put it in there */
+    NSRect r = [target frame];
+    r.size.height -= [searchBar frame].size.height;
+    
+    [target setLayoutName:@"targetView"];
+    
+    /* Search bar is directly above the split view, centered X axis, equal width */
+    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMinY relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMaxY]];
+    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeWidth relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeWidth]];
+    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidX relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMidX]];
+    
+    [target setFrame:r];
+  }
+  else if (!flag && searchBar)
+  {
+    [searchBar removeAllConstraints];
+    
+    /* Push the target view up before we remove the search bar */
+    NSRect r = [target frame];
+    r.size.height += [searchBar frame].size.height;
+
+    [target setFrame:r];
+    [target setLayoutName:nil];
+    
+    [searchBar removeFromSuperview];
+    [searchBar release];
+    searchBar = nil;
+  }
+  
+  if (flag)
+  {
+    /* Always make the search box responder on keypress */
+    [[searchBar window] makeFirstResponder:searchBar];
+  }
+}
+
 #pragma mark IBAction methods
-
-/**
- * Highlights substrings in main text area matching the string from the search field. 
- */
-- (IBAction)performSearch:(id)sender
-{
-  [self searchForString:[sender stringValue]];
-}
-
-/**
- * Moves the next search match to the center of the main text area.
- */
-- (void)moveToNextSearchMatch
-{
-  if (![self hasActiveSearch] || searchIteratorIndex < -1)
-    return;
-  
-  /* Increase iterator, wraparound at end */
-  if (++searchIteratorIndex >= [searchRanges count])
-    searchIteratorIndex = 0;
-
-  [self highlightCurrentSearchMatch];
-}
-
-/**
-* Moves the previous search match to the center of the main text area.
- */
-- (void)moveToPreviousSearchMatch
-{
-  if (![self hasActiveSearch] || searchIteratorIndex > [searchRanges count])
-    return;
-  
-  /* Decrease iterator, wraparound at end */
-  if (--searchIteratorIndex < 0)
-    searchIteratorIndex = [searchRanges count] - 1;
-
-  [self highlightCurrentSearchMatch];
-}
-
 
 //-------------------------------------------------------------------
 // modeChanged:
@@ -84,7 +107,6 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 {
   modeChanged = TRUE;
 }
-
 
 //-------------------------------------------------------------------
 // endTopicWindow:
@@ -861,22 +883,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [line detectURLs:[ColorSet channelLinkColour]];
   [textStorage appendAttributedString:line];
   
-  /* Check if we are in search mode */
-  if ([searchString length] > 0) {
-    NSRange searchRange = {0, [line length]};
-    NSRange r = [[line string] rangeOfString:searchString options:NSCaseInsensitiveSearch range:searchRange]; 
-    if (r.location != NSNotFound) {
-      r.location += [textStorage length] - [line length];
-      [textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:r];
-      
-      [searchRanges addObject:[NSValue valueWithRange:r]];
-      [scroller addMarker:[self yPositionInTextView:r]];
-    }
-    
-    [scroller setMaxPos:[mainTextView bounds].size.height];
-    [scroller setNeedsDisplay:TRUE];
-  }
-
   /* User notifications */
   if (currentDataLevel > 2)
   {
@@ -901,86 +907,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 }
 
 #pragma mark Public methods
-/**
- * Searches for a specified string. And highlights the first occurance.
- */
-- (void)searchForString:(NSString *)string
-{
-  /* First remove old search */
-  if ([searchString length] > 0) {
-    NSEnumerator *e = [searchRanges objectEnumerator];
-    NSValue *value;
-    
-    while (value = [e nextObject])
-      [textStorage removeAttribute:NSBackgroundColorAttributeName range:[value rangeValue]];
-    
-    [searchRanges removeAllObjects];
-    [scroller removeAllMarkers];
-    [scroller setNeedsDisplay:TRUE];
-  }
-  
-  if (searchString != string) {
-    [searchString release];
-    searchString = [string retain];
-  }
-  
-  oldSearchMatchRange = NSMakeRange(0,0);
-  [searchField setStringValue:string];
-
-  if ([searchString length] == 0)
-    return;
-  
-  searchIteratorIndex = -1;
-  NSString *text = [textStorage string];
-  NSRange searchRange;
-  searchRange.location = 0;
-  searchRange.length = [text length];
-  NSRange r;
-  searchColor = [NSColor redColor];
-  currentSearchMatchColor = [NSColor orangeColor];
-  
-  //[textStorage beginEditing];
-  
-  while (TRUE) {
-    r = [text rangeOfString:searchString options:NSCaseInsensitiveSearch range:searchRange]; 
-    if (r.location == NSNotFound)
-      break;
-    
-    [searchRanges addObject:[NSValue valueWithRange:r]];
-    [textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:r];
-    
-    [scroller addMarker:[self yPositionInTextView:r]];
-    
-    searchRange.location = r.location + r.length;
-    searchRange.length = [text length] - searchRange.location;
-  }
-  
-  //[textStorage endEditing];
-  
-  [scroller setMaxPos:[mainTextView bounds].size.height];
-  [scroller setNeedsDisplay:TRUE];
-  
-  /* If we found 1+ matches, goto first match */
-  if ([searchRanges count] > 0)
-    [self moveToNextSearchMatch];
-}
-
-/**
- * Returns true if there currently are any highlighted words from a search
- */
-- (BOOL)hasActiveSearch
-{
-  return [searchRanges count] > 0;
-}
-
-//-------------------------------------------------------------------
-// makeSearchFieldFirstResponder
-// Makes search field first responder.
-//-------------------------------------------------------------------
-- (void)makeSearchFieldFirstResponder
-{
-  [[mainTextView window] makeFirstResponder:searchField];
-}
 
 //-------------------------------------------------------------------
 // clearTextView:
@@ -1267,8 +1193,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [mainTextView setUsesFontPanel:FALSE];
 
   /* Other */
-  scroller = [[MarkedScroller alloc] initWithFrame:[[mainTextScrollView verticalScroller] frame]];
-  [mainTextScrollView setVerticalScroller:scroller];
   textStorage = [mainTextView textStorage];
   searchRanges = [[NSMutableArray alloc] init];
   
@@ -1307,6 +1231,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
   line = [[NSMutableAttributedString alloc] init];
   oldSearchMatchRange = NSMakeRange(0,0);
+  searchController = [[MIChannelSearchController alloc] initWithController:self];
   return self;
 }
 
@@ -1324,6 +1249,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
   
+  [searchController release];
   [scrollViewHelper release];
   
   [wholeView release];
@@ -1461,35 +1387,6 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 }
 
 #pragma mark Private methods
-
-/**
- * Mark and move to current search iterator index
- */
-- (void)highlightCurrentSearchMatch
-{
-  NSRange range = [[searchRanges objectAtIndex:searchIteratorIndex] rangeValue];
-  [textStorage addAttribute:NSBackgroundColorAttributeName value:searchColor range:oldSearchMatchRange];
-  [textStorage addAttribute:NSBackgroundColorAttributeName value:currentSearchMatchColor range:range];
-  
-  [mainTextView scrollRangeToVisible:range];
-  oldSearchMatchRange = range;
-}
-
-//-------------------------------------------------------------------
-// yPositionInTextView:
-// Calculates the y position for the first character in
-// a range of characters in the main text view. 
-//
-// r - The range where the characters are located
-//
-// return - the y location
-//-------------------------------------------------------------------
-- (float)yPositionInTextView:(NSRange)r
-{
-  NSRange glyphRange = [[mainTextView layoutManager] glyphRangeForCharacterRange:r actualCharacterRange:nil];
-  NSRect rect = [[mainTextView layoutManager] lineFragmentRectForGlyphAtIndex:glyphRange.location effectiveRange:nil];
-  return rect.origin.y+rect.size.height/2;
-}
 
 //-------------------------------------------------------------------
 // parseTopic:

@@ -71,26 +71,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 @implementation AppController
 
 #pragma mark IBAction methods
-- (IBAction)findNext:(id)sender
-{
-  [currentChannelController moveToNextSearchMatch];
-}
-
-- (IBAction)findPrevious:(id)sender
-{
-  [currentChannelController moveToPreviousSearchMatch];
-}
-
-- (IBAction)useSelectionForFind:(id)sender
-{
-  if (![[mainWindow firstResponder] isKindOfClass:[NSTextView class]])
-    return;
-  
-  NSTextView *textView = (NSTextView *)[mainWindow firstResponder];
-  NSString *selectedText = [[textView string] substringWithRange:[textView selectedRange]];
-  
-  [currentChannelController searchForString:selectedText];
-}
 
 //-------------------------------------------------------------------
 // editCurrentChannel:
@@ -101,17 +81,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (IBAction)editCurrentChannel:(id)sender
 {
   [currentChannelController raiseTopicWindow:sender];
-}
-
-//-------------------------------------------------------------------
-// makeSearchFieldFirstResponder:
-// Makes the searchfield first responder. 
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)makeSearchFieldFirstResponder:(id)sender
-{
-  [currentChannelController makeSearchFieldFirstResponder];
 }
 
 //-------------------------------------------------------------------
@@ -374,6 +343,17 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   [aboutBox center];
   [aboutBox makeKeyAndOrderFront:sender];
+}
+
+- (IBAction)performFind:(id)sender
+{
+  // Find simply defers to the current channel controller's searchController.
+  [[currentChannelController searchController] performFind:sender];
+}
+
+- (IBAction)performJumpToSelection:(id)sender
+{
+  [[currentChannelController textView] scrollRangeToVisible:[[currentChannelController textView] selectedRange]];
 }
 
 #pragma mark Shortcuts
@@ -1247,11 +1227,14 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   if ([anItem action] == @selector(editCurrentChannel:)) {
     return [currentChannelController isChannel];
   }
-  if (([anItem action] == @selector(findNext:)) || ([anItem action] == @selector(findPrevious:))) {
-    return [currentChannelController hasActiveSearch];
-  }
   if ([anItem action] == @selector(performCloseChannel:)) {
     return !([currentChannelController windowRec]->immortal);
+  }
+  if ([anItem action] == @selector(performFind:)) {
+    return ([[currentChannelController searchController] canPerformFindForTag:[anItem tag]]);
+  }
+  if ([anItem action] == @selector(performJumpToSelection:)) {
+    return ([[currentChannelController textView] selectedRange].length > 0);
   }
   if ([anItem action] == @selector(changeIrssiServerConsole:)) {
     return settings_get_bool("use_status_window");
