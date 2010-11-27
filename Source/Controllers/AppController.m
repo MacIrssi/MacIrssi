@@ -351,6 +351,11 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [[currentChannelController searchController] performFind:sender];
 }
 
+- (IBAction)performJumpToSelection:(id)sender
+{
+  [[currentChannelController textView] scrollRangeToVisible:[[currentChannelController textView] selectedRange]];
+}
+
 #pragma mark Shortcuts
 
 //-------------------------------------------------------------------
@@ -1227,6 +1232,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
   if ([anItem action] == @selector(performFind:)) {
     return ([[currentChannelController searchController] canPerformFindForTag:[anItem tag]]);
+  }
+  if ([anItem action] == @selector(performJumpToSelection:)) {
+    return ([[currentChannelController textView] selectedRange].length > 0);
   }
   if ([anItem action] == @selector(changeIrssiServerConsole:)) {
     return settings_get_bool("use_status_window");

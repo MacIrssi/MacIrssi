@@ -130,6 +130,7 @@ extern char **argv;
 //- (IBAction)paste:(id)sender;
 - (IBAction)editCurrentChannel:(id)sender;
 - (IBAction)performFind:(id)sender;
+- (IBAction)performJumpToSelection:(id)sender;
 
 #pragma mark Shortcuts
 

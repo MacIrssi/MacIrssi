@@ -2617,14 +2617,6 @@
         </object>
         <object class="IBConnectionRecord">
           <object class="IBActionConnection" key="connection">
-            <string key="label">centerSelectionInVisibleArea:</string>
-            <reference key="source" ref="993770121"/>
-            <reference key="destination" ref="699950447"/>
-          </object>
-          <int key="connectionID">934</int>
-        </object>
-        <object class="IBConnectionRecord">
-          <object class="IBActionConnection" key="connection">
             <string key="label">performCloseChannel:</string>
             <reference key="source" ref="899766323"/>
             <reference key="destination" ref="415903577"/>
@@ -2694,6 +2686,14 @@
             <reference key="destination" ref="461439353"/>
           </object>
           <int key="connectionID">953</int>
+        </object>
+        <object class="IBConnectionRecord">
+          <object class="IBActionConnection" key="connection">
+            <string key="label">performJumpToSelection:</string>
+            <reference key="source" ref="993770121"/>
+            <reference key="destination" ref="699950447"/>
+          </object>
+          <int key="connectionID">954</int>
         </object>
       </object>
       <object class="IBMutableOrderedSet" key="objectRecords">
@@ -4378,7 +4378,7 @@
         </object>
       </object>
       <nil key="sourceID"/>
-      <int key="maxID">953</int>
+      <int key="maxID">954</int>
     </object>
     <object class="IBClassDescriber" key="IBDocument.Classes">
       <object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4397,6 +4397,7 @@
               <string>nextChannel:</string>
               <string>performCloseChannel:</string>
               <string>performFind:</string>
+              <string>performJumpToSelection:</string>
               <string>performShortcut:</string>
               <string>previousChannel:</string>
               <string>sendCommand:</string>
@@ -4406,6 +4407,7 @@
             </object>
             <object class="NSMutableArray" key="dict.values">
               <bool key="EncodedWithXMLCoder">YES</bool>
+              <string>id</string>
               <string>id</string>
               <string>id</string>
               <string>id</string>
@@ -4432,6 +4434,7 @@
               <string>nextChannel:</string>
               <string>performCloseChannel:</string>
               <string>performFind:</string>
+              <string>performJumpToSelection:</string>
               <string>performShortcut:</string>
               <string>previousChannel:</string>
               <string>sendCommand:</string>
@@ -4467,6 +4470,10 @@
               </object>
               <object class="IBActionInfo">
                 <string key="name">performFind:</string>
+                <string key="candidateClassName">id</string>
+              </object>
+              <object class="IBActionInfo">
+                <string key="name">performJumpToSelection:</string>
                 <string key="candidateClassName">id</string>
               </object>
               <object class="IBActionInfo">
