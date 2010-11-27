@@ -829,8 +829,10 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 - (void)beginTextUpdates
 {
-  // Save our current state, then when updates are finished we'll restore the state.
+  // Flush out the layout before we start updating, so we can be sure where the scroller is.
   [[mainTextView layoutManager] ensureLayoutForTextContainer:[mainTextView textContainer]];
+
+  // Save our current state, then when updates are finished we'll restore the state.
   savedScrollPoint = [scrollViewHelper currentScrollPosition];
   if ((savedScrollPoint > 0.0) && (savedScrollPoint < 1.0))
   {
@@ -840,7 +842,10 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 - (void)endTextUpdates
 {
+  // ... and force the layout of new stuff so we can see the effects.
   [[mainTextView layoutManager] ensureLayoutForTextContainer:[mainTextView textContainer]];
+  
+  // savedScrollPoint which is > 1.0 is an absolute distance-from-top.
   if (savedScrollPoint > 1.0)
   {
     [scrollViewHelper restoreDistanceFromTop:savedScrollPoint];
