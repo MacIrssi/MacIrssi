@@ -874,7 +874,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 // finishLine
 // Called after a series of printText when the current line should be
-// put out to screen. TODO: better parsing (html, underlines ...)
+// put out to screen.
 //-------------------------------------------------------------------
 - (void)finishLine
 {
