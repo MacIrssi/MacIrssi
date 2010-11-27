@@ -44,6 +44,7 @@ typedef enum {
 
 @interface NSObject (MISearchBarDelegates)
 
+- (NSString*)searchBarWantsExistingSearchTerm:(MISearchBar*)bar;
 - (void)searchBar:(MISearchBar*)bar findInDirection:(MISearchDirection)direction withString:(NSString*)term;
 - (NSInteger)searchBar:(MISearchBar *)bar numberOfMatchesWithString:(NSString*)term;
 - (void)searchBarShouldCancel:(MISearchBar*)bar;

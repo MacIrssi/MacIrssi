@@ -143,6 +143,11 @@
   }
 }
 
+- (NSString*)searchBarWantsExistingSearchTerm:(MISearchBar*)bar
+{
+  return currentSearchTerm;
+}
+
 - (void)searchBar:(MISearchBar*)bar findInDirection:(MISearchDirection)direction withString:(NSString*)term
 {
   if (![term isEqual:currentSearchTerm])

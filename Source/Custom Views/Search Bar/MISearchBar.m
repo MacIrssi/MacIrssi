@@ -124,6 +124,20 @@
 - (void)setDelegate:(id)aDelegate
 {
   delegate = aDelegate;
+  
+  if ([self delegate] && [[self delegate] respondsToSelector:@selector(searchBarWantsExistingSearchTerm:)])
+  {
+    NSString *term = [[self delegate] searchBarWantsExistingSearchTerm:self];
+    if (term && ![term isEqual:@""])
+    {
+      [searchField setStringValue:term];
+    }
+    else
+    {
+      [searchField setStringValue:@""];
+    }
+  }
+  
   [self update];
 }
 
