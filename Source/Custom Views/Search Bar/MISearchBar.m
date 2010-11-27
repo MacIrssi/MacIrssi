@@ -21,6 +21,15 @@
 
 #define DONE_BUTTON_WIDTH 45
 
+@interface MISearchBar ()
+
+- (void)doneButtonAction:(id)sender;
+- (void)segmentControlAction:(id)sender;
+- (void)controlTextDidChange:(NSNotification *)aNotification;
+
+@end
+
+
 @implementation MISearchBar
 
 - (id)initWithFrame:(NSRect)frame
@@ -31,6 +40,8 @@
     
     doneButton = [[NSButton alloc] initWithFrame:NSMakeRect(frame.size.width - DONE_BUTTON_WIDTH - 10, 1, DONE_BUTTON_WIDTH, 22)];
     [[doneButton cell] setFont:smallSystemFont];
+    [doneButton setTarget:self];
+    [doneButton setAction:@selector(doneButtonAction:)];
     [doneButton setTitle:@"Done"];
     [doneButton setBezelStyle:NSRoundRectBezelStyle];
     [doneButton setAutoresizingMask:(NSViewMinXMargin|NSViewMaxYMargin)];
@@ -58,6 +69,8 @@
     
     nextBackButton = [[NSSegmentedControl alloc] initWithFrame:NSMakeRect(0, 0, 40, 22)];
     [[nextBackButton cell] setTrackingMode:NSSegmentSwitchTrackingMomentary];
+    [nextBackButton setTarget:self];
+    [nextBackButton setAction:@selector(segmentControlAction:)];
     [nextBackButton setSegmentStyle:NSSegmentStyleRoundRect];
     [nextBackButton setSegmentCount:2];
     [nextBackButton setImageScaling:NSImageScaleProportionallyDown forSegment:0];
@@ -76,12 +89,16 @@
     searchField = [[NSSearchField alloc] initWithFrame:NSMakeRect(0, 0, searchFieldWidth, 20)];
     [[searchField cell] setControlSize:NSSmallControlSize];
     [[searchField cell] setFont:smallSystemFont];
+    [[searchField cell] setSendsSearchStringImmediately:YES];
     [searchField setAutoresizingMask:NSViewWidthSizable];
     [searchField setLayoutName:@"searchField"];
+    [searchField setDelegate:self];
     [self addSubview:searchField];    
                                    
     [searchField addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMaxX relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMinX offset:-10]];
     [searchField addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidY relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMidY]];
+    
+    [self update];
   }
   return self;
 }
@@ -97,6 +114,79 @@
   [doneButton removeAllConstraints];
   [doneButton release];
   [super dealloc];
+}
+
+- (id)delegate
+{
+  return delegate;
+}
+
+- (void)setDelegate:(id)aDelegate
+{
+  delegate = aDelegate;
+  [self update];
+}
+
+- (void)doneButtonAction:(id)sender
+{
+  if ([self delegate] && [[self delegate] respondsToSelector:@selector(searchBarShouldCancel:)])
+  {
+    [[self delegate] searchBarShouldCancel:self];
+  }
+}
+
+- (void)segmentControlAction:(id)sender
+{
+  MISearchDirection direction = ([sender selectedSegment] == 0 ? MISearchPreviousDirection : MISearchNextDirection);
+  
+  if ([self delegate] && [[self delegate] respondsToSelector:@selector(searchBar:findInDirection:withString:)])
+  {
+    [[self delegate] searchBar:self findInDirection:direction withString:[searchField stringValue]];
+  }
+}
+
+- (void)controlTextDidChange:(NSNotification *)aNotification
+{
+  NSString *term = [[aNotification object] stringValue];
+  
+  /* Enable/disable the navigation buttons */
+  [self update];
+
+  /* Do search */
+  if ([self delegate] && [[self delegate] respondsToSelector:@selector(searchBar:findInDirection:withString:)])
+  {
+    [[self delegate] searchBar:self findInDirection:MISearchNextDirection withString:term];
+  }
+}
+
+- (void)update
+{
+  NSString *term = [searchField stringValue];
+  
+  /* Enable/disable back button */
+  if ([self delegate] && [[self delegate] respondsToSelector:@selector(searchBar:numberOfMatchesWithString:)])
+  {
+    NSInteger numberOfMatches = [[self delegate] searchBar:self numberOfMatchesWithString:term];
+    
+    if (numberOfMatches > 0)
+    {
+      [searchResultsLabel setStringValue:[NSString stringWithFormat:@"%d %@.", numberOfMatches, (numberOfMatches == 1 ? @"match" : @"matches")]];
+      [nextBackButton setEnabled:YES forSegment:0];
+      [nextBackButton setEnabled:YES forSegment:1];
+    }
+    else
+    {
+      [searchResultsLabel setStringValue:@""];
+      [nextBackButton setEnabled:NO forSegment:0];
+      [nextBackButton setEnabled:NO forSegment:1];      
+    }
+  }
+  else
+  {
+    [searchResultsLabel setStringValue:@""];
+    [nextBackButton setEnabled:NO forSegment:0];
+    [nextBackButton setEnabled:NO forSegment:1];
+  }  
 }
 
 - (void)drawRect:(NSRect)dirtyRect

@@ -28,10 +28,15 @@ typedef enum {
   NSSegmentedControl *nextBackButton;
   NSSearchField *searchField;
   NSButton *doneButton;
+  id delegate;
 }
 
 - (id)initWithFrame:(NSRect)frame;
 - (void)dealloc;
+
+- (id)delegate;
+- (void)setDelegate:(id)aDelegate;
+
 - (void)update;
 
 @end
@@ -39,6 +44,7 @@ typedef enum {
 @interface NSObject (MISearchBarDelegates)
 
 - (void)searchBar:(MISearchBar*)bar findInDirection:(MISearchDirection)direction withString:(NSString*)term;
-- (BOOL)searchBar:(MISearchBar*)bar canFindInDirection:(MISearchDirection)direction withString:(NSString*)term;
+- (NSInteger)searchBar:(MISearchBar *)bar numberOfMatchesWithString:(NSString*)term;
+- (void)searchBarShouldCancel:(MISearchBar*)bar;
 
 @end
