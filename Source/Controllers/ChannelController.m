@@ -50,7 +50,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 
 - (void)setSearchBarVisible:(BOOL)flag
 {
-  id target = ([nickTableScrollView isHidden] ? (id)[mainTextView enclosingScrollView] : (id)splitView);
+  id target = (splitView ? (id)splitView : (id)[mainTextView enclosingScrollView]);
   
   if (flag && !searchBar)
   {
