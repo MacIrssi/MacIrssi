@@ -175,6 +175,7 @@ enum nickContextMenuTags {
 
 - (MIChannelSearchController*)searchController;
 - (MISearchBar*)searchBar;
+- (NSTextView*)textView;
 - (void)setSearchBarVisible:(BOOL)flag;
 
 - (NSString *)mode;

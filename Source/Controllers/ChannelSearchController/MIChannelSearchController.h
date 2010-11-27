@@ -15,7 +15,9 @@
   ChannelController *controller;
 
   NSString *currentSearchTerm;
+  
   NSMutableArray *matches;
+  int currentMatch;
 }
 
 - (id)initWithController:(ChannelController*)controller;
