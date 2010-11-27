@@ -93,6 +93,8 @@
     [searchField setAutoresizingMask:NSViewWidthSizable];
     [searchField setLayoutName:@"searchField"];
     [searchField setDelegate:self];
+    [searchField setTarget:self];
+    [searchField setAction:@selector(searchFieldAction:)];
     [self addSubview:searchField];    
                                    
     [searchField addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMaxX relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMinX offset:-10]];
@@ -149,6 +151,14 @@
   }
 }
 
+- (void)searchFieldAction:(id)sender
+{
+  if ([self delegate] && [[self delegate] respondsToSelector:@selector(searchBar:findInDirection:withString:)])
+  {
+    [[self delegate] searchBar:self findInDirection:MISearchNextDirection withString:[searchField stringValue]];
+  }  
+}
+
 - (void)segmentControlAction:(id)sender
 {
   MISearchDirection direction = ([sender selectedSegment] == 0 ? MISearchPreviousDirection : MISearchNextDirection);
@@ -161,16 +171,8 @@
 
 - (void)controlTextDidChange:(NSNotification *)aNotification
 {
-  NSString *term = [[aNotification object] stringValue];
-  
   /* Enable/disable the navigation buttons */
   [self update];
-
-  /* Do search */
-  if ([self delegate] && [[self delegate] respondsToSelector:@selector(searchBar:findInDirection:withString:)])
-  {
-    [[self delegate] searchBar:self findInDirection:MISearchNextDirection withString:term];
-  }
 }
 
 - (BOOL)becomeFirstResponder
