@@ -57,7 +57,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
     /* Make a search bar, link it to the search controller and put onscreen. */
     searchBar = [[MISearchBar alloc] initWithFrame:NSMakeRect(0, 0, [target frame].size.width, 25.0f)];
     [searchBar setDelegate:searchController];
-    [[target superview] addSubview:searchBar];
+    [[target superview] addSubview:searchBar positioned:NSWindowBelow relativeTo:[topicTextField superview]];
     
     /* Pull the splitView down by 20 pixels and put it in there */
     NSRect r = [target frame];
