@@ -18,12 +18,27 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum {
+  MISearchPreviousDirection = 0,
+  MISearchNextDirection,
+} MISearchDirection;
 
 @interface MISearchBar : NSView {
-
+  NSTextField *searchResultsLabel;
+  NSSegmentedControl *nextBackButton;
+  NSSearchField *searchField;
+  NSButton *doneButton;
 }
 
 - (id)initWithFrame:(NSRect)frame;
 - (void)dealloc;
+- (void)update;
+
+@end
+
+@interface NSObject (MISearchBarDelegates)
+
+- (void)searchBar:(MISearchBar*)bar findInDirection:(MISearchDirection)direction withString:(NSString*)term;
+- (BOOL)searchBar:(MISearchBar*)bar canFindInDirection:(MISearchDirection)direction withString:(NSString*)term;
 
 @end

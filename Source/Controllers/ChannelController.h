@@ -28,6 +28,7 @@
 #import "MISplitView.h"
 #import "MIScrollViewHelper.h"
 #import "MITextField.h"
+#import "MISearchBar.h"
 
 #import "fe-windows.h"
 
