@@ -47,6 +47,7 @@
     case 3: // "Find Previous"
       return ([matches count] != 0);
     case 7: // "Use Selection for Find"
+      return (controller && ([[controller textView] selectedRange].length > 0));
     default:
       return NO;
   }
@@ -65,6 +66,14 @@
     case 3:
       [self jumpToNextResultInDirection:MISearchPreviousDirection];
       break;
+    case 7:
+    {
+      NSString *term = [[[controller textView] string] substringWithRange:[[controller textView] selectedRange]];
+      [self clearResultsAndSearchWithTerm:term];
+      [self makeSearchBarVisibleAndKey];
+      [self jumpToNextResultInDirection:MISearchNextDirection];
+      break;
+    }
     default:
       return;
   }
