@@ -862,12 +862,10 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)printText:(char *)text forground:(int)fg background:(int)bg flags:(int)flags
 {
+  /* Convert the incoming string to NSString */
   CFStringEncoding enc = [[MITextEncoding irssiEncoding] CFStringEncoding];
   NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, enc, kCFAllocatorNull);
-  
-  NSMutableAttributedString *new = [line attributedStringByAppendingString:decodedString foreground:fg background:bg flags:flags attributes:textAttributes];
-  [line release];
-  line = [new retain];
+  [line appendString:decodedString foreground:fg background:bg flags:flags attributes:textAttributes];
   
   [decodedString release];
 }
@@ -884,26 +882,18 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [textStorage appendAttributedString:line];
   
   /* User notifications */
-  if (currentDataLevel > 2)
+  if (currentDataLevel > 2 && [self isChannel])
   {
-    NSString *str = [line string];
-    if ([str length] > 1 && [str characterAtIndex:0] == '\n') {
-      str = [str substringFromIndex:1];
-    }
+    NSString *str = [[line string] stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:str forKey:@"Description"];
-    
-    if ([self isChannel])
-    {
-      [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_HIGHLIGHT" object:self userInfo:info];
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"IRSSI_ROOM_HIGHLIGHT" object:self userInfo:info];
   }
   
   /* I used to scroll the view here, however, now the view should scroll itself
      to the bottom of the clipview for us, as long as the user hasn't scrolled up. */
   
   /* Reset line */
-  [line release];
-  line = [[NSMutableAttributedString alloc] initWithString:@"\n"];
+  [line replaceCharactersInRange:NSMakeRange(0, [line length]) withString:@"\n"];
 }
 
 #pragma mark Public methods
@@ -914,10 +904,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (void)clearTextView
 {
-  NSRange range;
-  range.location = 0;
-  range.length = [textStorage length];
-  [textStorage deleteCharactersInRange:range];
+  [textStorage deleteCharactersInRange:NSMakeRange(0, [textStorage length])];
 }
 
 //-------------------------------------------------------------------

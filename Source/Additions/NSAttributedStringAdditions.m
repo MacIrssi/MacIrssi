@@ -29,9 +29,6 @@
 
 #import "NSString+Additions.h"
 
-/* From gui-printtext.c */
-static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
-
 @implementation NSAttributedString (Additions)
 
 #define FONT_HEIGHT_STRING		@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()"
@@ -75,84 +72,55 @@ static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 
 
 @implementation NSMutableAttributedString (Additions)
 
-- (NSMutableAttributedString*)attributedStringByAppendingString:(NSString*)text foreground:(int)fg background:(int)bg flags:(int)flags attributes:(NSDictionary*)attributes;
+- (void)appendString:(NSString*)text foreground:(int)fg background:(int)bg flags:(int)flags attributes:(NSDictionary*)attributes
 {
-  NSMutableAttributedString *buffer = [[NSMutableAttributedString alloc] initWithAttributedString:self];
-  NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
-  
-  /* Handle colors */
-  if (flags & GUI_PRINT_FLAG_MIRC_COLOR) {
-    /* mirc colors - real range is 0..15, but after 16
-     colors wrap to 0, 1, ... */
-    if (bg >= 0)
+  if (text) // We could have an invalid string but still need to append a new line.
+  {
+    NSMutableDictionary *mutableAttributes = [NSMutableDictionary dictionaryWithDictionary:attributes];
+    
+    if (fg < 0 || fg > 15) 
     {
-      bg = mirc_colors[bg % 16];
+      [mutableAttributes setObject:[ColorSet channelForegroundColor] forKey:NSForegroundColorAttributeName];
+    }
+    else 
+    {
+      [mutableAttributes setObject:[ColorSet colourMappedFromIrssiIndex:fg isMircColour:(flags & GUI_PRINT_FLAG_MIRC_COLOR)] forKey:NSForegroundColorAttributeName];
     }
     
-    if (fg >= 0)
+    if (bg < 0 || bg > 15)
     {
-      fg = mirc_colors[fg % 16];
+      [mutableAttributes removeObjectForKey:NSBackgroundColorAttributeName];
     }
+    else
+    {
+      [mutableAttributes setObject:[ColorSet colourMappedFromIrssiIndex:bg isMircColour:(flags & GUI_PRINT_FLAG_MIRC_COLOR)] forKey:NSBackgroundColorAttributeName];
+    }
+    
+    /* Ignored Flags */
+    // if (flags & GUI_PRINT_FLAG_REVERSE)
+    // if (flags & GUI_PRINT_FLAG_BLINK) 
+    // if (flags & GUI_PRINT_FLAG_INDENT) 
+    // if (flags & GUI_PRINT_FLAG_CLRTOEOL) 
+    
+    if (flags & GUI_PRINT_FLAG_BOLD) 
+    {
+      NSFont *newFont = [[NSFontManager sharedFontManager] convertFont:[mutableAttributes objectForKey:NSFontAttributeName] toHaveTrait:NSBoldFontMask];
+      [mutableAttributes setObject:newFont forKey:NSFontAttributeName];
+    }
+    if (flags & GUI_PRINT_FLAG_UNDERLINE) 
+    {
+      [mutableAttributes setObject:[NSNumber numberWithInt:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
+    }
+    
+    int l = [self length];
+    [self replaceCharactersInRange:NSMakeRange(l, 0) withString:text];
+    [self setAttributes:mutableAttributes range:NSMakeRange(l, [text length])];
   }
   
-  if (fg < 0 || fg > 15) 
+  if (flags & GUI_PRINT_FLAG_NEWLINE)
   {
-    [mutableAttributes setObject:[ColorSet channelForegroundColor] forKey:NSForegroundColorAttributeName];
+    [self replaceCharactersInRange:NSMakeRange([self length], 0) withString:@"\n"];
   }
-  else 
-  {
-    [mutableAttributes setObject:[[ColorSet mircColours] objectAtIndex:fg] forKey:NSForegroundColorAttributeName];
-  }
-
-  if (bg < 0 || bg > 15)
-  {
-    [mutableAttributes removeObjectForKey:NSBackgroundColorAttributeName];
-  }
-  else
-  {
-    [mutableAttributes setObject:[[ColorSet mircColours] objectAtIndex:bg] forKey:NSBackgroundColorAttributeName];
-  }
-
-  /* Handle flags */ //TODO
-  if (flags & GUI_PRINT_FLAG_REVERSE)
-  {
-    NSLog(@"GUI_PRINT_FLAG_REVERSE");
-  }
-  if (flags & GUI_PRINT_FLAG_BOLD) 
-  {
-    // convert the font into bold
-    NSFont *font = [mutableAttributes objectForKey:NSFontAttributeName];
-    NSFont *newFont = [[NSFontManager sharedFontManager] convertFont:font toHaveTrait:NSBoldFontMask];
-    [mutableAttributes setObject:newFont forKey:NSFontAttributeName];
-  }
-  if (flags & GUI_PRINT_FLAG_UNDERLINE) 
-  {
-    [mutableAttributes setObject:[NSNumber numberWithInt:NSUnderlineStyleSingle] forKey:NSUnderlineStyleAttributeName];
-  }
-  if (flags & GUI_PRINT_FLAG_BLINK) 
-  {
-    /* Ignore */
-  } 
-  if (flags & GUI_PRINT_FLAG_NEWLINE) 
-  {
-    [buffer appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
-  }
-  if (flags & GUI_PRINT_FLAG_INDENT) 
-  {
-    //NSLog(@"GUI_PRINT_FLAG_INDENT for text \'%@\'", text);
-  }
-  if (flags & GUI_PRINT_FLAG_CLRTOEOL) 
-  {
-    NSLog(@"GUI_PRINT_FLAG_CLRTOEOL for text \'%@\'", text);
-  }
-  
-  if (text)
-  {
-    NSAttributedString *tmp = [[[NSAttributedString alloc] initWithString:text attributes:mutableAttributes] autorelease];
-    [buffer appendAttributedString:tmp];
-  }
-  
-  return [buffer autorelease];
 }
 
 - (void)detectURLs:(NSColor*)linkColor

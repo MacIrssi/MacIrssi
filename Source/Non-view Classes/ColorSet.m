@@ -23,6 +23,9 @@
 
 @implementation ColorSet
 
+/* From gui-printtext.c */
+static int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
+
 + (NSArray*) mircColours
 {
   return [NSArray arrayWithObjects:
@@ -43,6 +46,15 @@
           [NSColor yellowColor],
           [NSColor whiteColor],
           nil];
+}
+
++ (NSColor*)colourMappedFromIrssiIndex:(int)index isMircColour:(BOOL)flag
+{
+  if (flag)
+  {
+    index = mirc_colors[index % 16];
+  }
+  return [[ColorSet mircColours] objectAtIndex:index];
 }
 
 + (void)registerDefaults

@@ -928,6 +928,8 @@
   _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "AngryLuke", "err, that it is linking to QuickTime, I mean", " ");
   _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "hennker", "otool -L", " ");
 
+  // The very last character in the preview is a '\n' that we don't really want.
+  [themeRenderLineBuffer deleteCharactersInRange:NSMakeRange([themeRenderLineBuffer length]-1, 1)];
   [[themePreviewTextView textStorage] appendAttributedString:themeRenderLineBuffer];
   [themeRenderLineBuffer release];
 
@@ -944,14 +946,12 @@
   NSFont *channelFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
   NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:channelFont, NSFontAttributeName,nil];
   
-  NSMutableAttributedString *tmp = [themeRenderLineBuffer attributedStringByAppendingString:text foreground:fg background:bg flags:flags attributes:attributes];
-  [themeRenderLineBuffer release];
-  themeRenderLineBuffer = [tmp retain];
+  [themeRenderLineBuffer appendString:text foreground:fg background:bg flags:flags attributes:attributes];
 }
 
 - (void)printTextFinishedCallback
 {
-  [themeRenderLineBuffer appendAttributedString:[[[NSMutableAttributedString alloc] initWithString:@"\n"] autorelease]];
+  [themeRenderLineBuffer replaceCharactersInRange:NSMakeRange([themeRenderLineBuffer length], 0) withString:@"\n"];
 }
 
 - (IBAction)switchChannelBarOrientation:(id)sender

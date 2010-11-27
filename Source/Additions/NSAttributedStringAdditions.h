@@ -31,8 +31,6 @@
 
 
 @interface NSMutableAttributedString (Additions)
-
-- (NSMutableAttributedString*)attributedStringByAppendingString:(NSString*)text foreground:(int)fg background:(int)bg flags:(int)flags attributes:(NSDictionary*)attributes;
+- (void)appendString:(NSString*)text foreground:(int)fg background:(int)bg flags:(int)flags attributes:(NSDictionary*)attributes;
 - (void)detectURLs:(NSColor*)linkColor;
-
 @end

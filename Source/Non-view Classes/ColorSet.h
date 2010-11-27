@@ -49,6 +49,7 @@ enum nickStatus {
 }
 
 + (NSArray*)mircColours;
++ (NSColor*)colourMappedFromIrssiIndex:(int)index isMircColour:(BOOL)flag;
 
 + (void)registerDefaults;
 + (void)revertToDefaults;
