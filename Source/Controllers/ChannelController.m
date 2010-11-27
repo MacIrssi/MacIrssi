@@ -830,6 +830,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 - (void)beginTextUpdates
 {
   // Save our current state, then when updates are finished we'll restore the state.
+  [[mainTextView layoutManager] ensureLayoutForTextContainer:[mainTextView textContainer]];
   savedScrollPoint = [scrollViewHelper currentScrollPosition];
   if ((savedScrollPoint > 0.0) && (savedScrollPoint < 1.0))
   {
