@@ -32,7 +32,6 @@
 #import "signals.h"
 #include <unistd.h>
 #include "themes.h"
-#import "TextEncodings.h"
 
 #import "AIMenuAdditions.h"
 #import "NSString+Additions.h"
@@ -106,7 +105,6 @@
     [themePreviewTextView setBackgroundColor:[ColorSet channelBackgroundColor]];
     [[themePreviewTextView enclosingScrollView] setBackgroundColor:[ColorSet channelBackgroundColor]];
     
-    [self initTextEncodingPopUpButton];
     [self initTabShortcutPopUpButton];
     [self initChatEventsPopUpButton];
     [self initSoundListPopUpButton];
@@ -190,7 +188,6 @@
   [preferencesToolbar setSelectedItemIdentifier:@"General"];
 	
   /* General */
-	[self updateTextEncodingPopUpButton];
   [self updateTabShortcutPopUpButton];
   
   /* Notifications */
@@ -226,9 +223,6 @@
 //-------------------------------------------------------------------
 - (void)windowDidLoad
 {
-  NSLog(@"Fart");
-	
-	[self initTextEncodingPopUpButton];
   [self initChatEventsPopUpButton];
   [self initSoundListPopUpButton];
   
@@ -288,44 +282,6 @@
 	[nc postNotificationName:@"channelListColorChanged" object:nil];
 	[nc postNotificationName:@"nickListColorChanged" object:nil];
 	[nc postNotificationName:@"inputTextFieldColorChanged" object:nil];
-}
-
-#pragma mark Text Encodings
-
-/**
- * Inserts all text encodings into the text encoding popup button
- */
-- (void)initTextEncodingPopUpButton
-{
-  [textEncodingPopUpButton removeAllItems];
-  
-  NSArray *encodings = [MITextEncoding encodings];
-  NSEnumerator *encodingsEnumerator = [encodings objectEnumerator];
-  MITextEncoding *enc;
-  
-  while (enc = [encodingsEnumerator nextObject])
-  {
-    NSMenuItem *item = [[textEncodingPopUpButton menu] addItemWithTitle:[enc name] action:nil keyEquivalent:@""];
-    [item setRepresentedObject:enc];
-    [item setTag:[enc CFStringEncoding]];
-  }
-}
-
-/**
- * Updates text encoding popup button with current settings.
- */
-- (void)updateTextEncodingPopUpButton
-{
-  NSStringEncoding textEncoding = [[MITextEncoding irssiEncoding] CFStringEncoding];
-  [textEncodingPopUpButton selectItemWithTag:textEncoding];
-  [textEncodingPopUpButton setNeedsDisplay:YES];
-}
-
-- (IBAction)encodingPopup:(id)sender
-{
-  NSMenuItem *selectedItem = [textEncodingPopUpButton selectedItem];
-  MITextEncoding *enc = [selectedItem representedObject];
-  [MITextEncoding setIrssiEncoding:enc];
 }
 
 #pragma mark Tab Shortcuts
@@ -906,7 +862,7 @@
   signal_add_first("gui print text", (SIGNAL_FUNC)_preferences_bridge_print_text);
   signal_add_first("gui print text finished", (SIGNAL_FUNC)_preferences_bridge_print_text_finished);
   
-  windowRec.theme = theme_load([themeName cStringUsingEncoding:MICurrentTextEncoding]);
+  windowRec.theme = theme_load([themeName UTF8String]);
   windowRec.gui_data = self;
   
   // The signal chain reassigns this but it frees it first, so need to put something here.

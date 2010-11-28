@@ -26,7 +26,6 @@
 #import "IrssiBridge.h"
 #import "ColorSet.h"
 #import "NSAttributedStringAdditions.h"
-#import "TextEncodings.h"
 
 extern int currentDataLevel;
 void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
@@ -127,12 +126,12 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
         ([[topicEditableTextField stringValue] isEqual:[topicTextField stringValue]] == FALSE)) 
     {
       NSString *cmd = [NSString stringWithFormat:@"/topic %@", [topicEditableTextField stringValue]];
-      const char *tmp = [cmd cStringUsingEncoding:MICurrentTextEncoding];
+      const char *tmp = [cmd UTF8String];
       signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
     }
     
     /* do channel silence */
-    NSString *squelchTag = [NSString stringWithFormat:@"%@ - %@", [NSString stringWithCString:channel->server->tag encoding:MICurrentTextEncoding], name];
+    NSString *squelchTag = [NSString stringWithFormat:@"%@ - %@", [NSString stringWithUTF8String:channel->server->tag], name];
     if ([silenceCheckBox state] || ([[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:squelchTag]))
     {
       NSDictionary *silences = [[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] mutableCopy] autorelease];
@@ -196,7 +195,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
           if ([mode rangeOfString:@"k"].location != NSNotFound) {
             /* Remove old key */
             NSString *removeKey = [NSString stringWithFormat:@"/mode %@ -k", name];
-            const char *tmp = [removeKey cStringUsingEncoding:MICurrentTextEncoding];
+            const char *tmp = [removeKey UTF8String];
             signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
           }
           [addMode appendFormat:@"+k %@", [keyTextField stringValue]];
@@ -204,7 +203,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
         
         [removeMode appendString:addMode];
 
-        const char *tmp2 = [removeMode cStringUsingEncoding:MICurrentTextEncoding];
+        const char *tmp2 = [removeMode UTF8String];
         signal_emit("send command", 3, tmp2, windowRec->active_server, windowRec->active);
         [addMode release];
         [removeMode release];
@@ -228,7 +227,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 - (IBAction)endReasonWindow:(id)sender
 {
   [commandWithReason appendString:[sender stringValue]];
-  const char *tmp = [commandWithReason cStringUsingEncoding:MICurrentTextEncoding];
+  const char *tmp = [commandWithReason UTF8String];
   signal_emit("send command", 3, tmp, windowRec->active_server, windowRec->active);
   [commandWithReason release];
         
@@ -265,7 +264,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   while (row != NSNotFound)
   {
     char *nickStr = ((NICK_REC*)[[nicks objectAtIndex:row] pointerValue])->nick;
-    NSString *nick = [NSString stringWithCString:nickStr encoding:MICurrentTextEncoding];
+    NSString *nick = [NSString stringWithUTF8String:nickStr];
     
     [coalesedNicks addObject:nick];
     row = [indexSet indexGreaterThanIndex:row];
@@ -342,7 +341,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
       EMITSINGLE(@"/msg %@ xdcc list");
       break;
     case CopyIP:
-      host = [NSString stringWithCString:((NICK_REC*)[[nicks objectAtIndex:row] pointerValue])->host encoding:MICurrentTextEncoding];
+      host = [NSString stringWithUTF8String:((NICK_REC*)[[nicks objectAtIndex:row] pointerValue])->host];
       NSArray *tmp = [host componentsSeparatedByString:@"@"];
       
       if ([tmp count] < 2) {
@@ -541,7 +540,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   [self sortNicks];
   
   /* Make NSString objects from (char *) */
-  name = rec->name ? [[NSString stringWithCString:rec->name encoding:MICurrentTextEncoding] retain] : @"";
+  name = rec->name ? [[NSString stringWithUTF8String:rec->name] retain] : @"";
   if (topic_by) {
     [topic_by release];
     topic_by = nil;
@@ -566,7 +565,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   destroying = (BOOL)rec->destroying;
   
   /* Go and see if we're supposed to silence this channel */
-  NSString *squelchTag = [NSString stringWithFormat:@"%@ - %@", [NSString stringWithCString:channel->server->tag encoding:MICurrentTextEncoding], name];
+  NSString *squelchTag = [NSString stringWithFormat:@"%@ - %@", [NSString stringWithUTF8String:channel->server->tag], name];
   [silenceCheckBox setState:[[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:squelchTag] boolValue]];  
   
   /* Update GUI */
@@ -698,13 +697,13 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   else if (*mode1 == '%')
     nick->halfop = (*type == '-') ? TRUE : FALSE;
   else
-    NSLog(@"Nick \"%@\" received unknown mode!", [NSString stringWithCString:nick->nick encoding:MICurrentTextEncoding]);
+    NSLog(@"Nick \"%@\" received unknown mode!", [NSString stringWithUTF8String:nick->nick]);
   
   @synchronized(nicks) {
 
     index = [self findNick:nick];
     if (index < 0) {
-      NSLog(@"[ChannelController setMode] Error: Couldn't find nick %@ in thread %p", [NSString stringWithCString:nick->nick encoding:MICurrentTextEncoding], [NSThread currentThread]);
+      NSLog(@"[ChannelController setMode] Error: Couldn't find nick %@ in thread %p", [NSString stringWithUTF8String:nick->nick], [NSThread currentThread]);
       return;
     }
     
@@ -718,7 +717,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
     else if (*mode1 == '%')
       nick->halfop = (*type == '+') ? TRUE : FALSE;
     else
-      NSLog(@"Nick \"%@\" received unknown mode!", [NSString stringWithCString:nick->nick encoding:MICurrentTextEncoding]);
+      NSLog(@"Nick \"%@\" received unknown mode!", [NSString stringWithUTF8String:nick->nick]);
 
     
     index = [self findInsertionPositionForNick:nick];
@@ -758,7 +757,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   @synchronized(nicks) {
     int i = [self findNick:nick];
     if (i == -1) {
-      NSLog(@"Error: nick %@ not found in thread %p!\n", [NSString stringWithCString:nick->nick encoding:MICurrentTextEncoding], [NSThread currentThread]);
+      NSLog(@"Error: nick %@ not found in thread %p!\n", [NSString stringWithUTF8String:nick->nick], [NSThread currentThread]);
       return;
     }
     [nicks removeObjectAtIndex:i];
@@ -869,8 +868,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 - (void)printText:(char *)text forground:(int)fg background:(int)bg flags:(int)flags
 {
   /* Convert the incoming string to NSString */
-  CFStringEncoding enc = [[MITextEncoding irssiEncoding] CFStringEncoding];
-  NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, enc, kCFAllocatorNull);
+  NSString *decodedString = (NSString *)CFStringCreateWithCStringNoCopy(NULL, text, kCFStringEncodingUTF8, kCFAllocatorNull);
   [line appendString:decodedString foreground:fg background:bg flags:flags attributes:textAttributes];
   
   [decodedString release];
@@ -1060,7 +1058,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   
   [nickAttributes setObject:color forKey:NSForegroundColorAttributeName];
   [nickAttributes setObject:nickListFont forKey:NSFontAttributeName];
-  return [[[NSAttributedString alloc] initWithString:[NSString stringWithCString:nick->nick encoding:MICurrentTextEncoding] attributes:nickAttributes] autorelease];
+  return [[[NSAttributedString alloc] initWithString:[NSString stringWithUTF8String:nick->nick] attributes:nickAttributes] autorelease];
 }
 
 
@@ -1103,9 +1101,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   }
   
   return [NSString stringWithFormat:@"%@ -- [%@]\n%@", 
-          [NSString stringWithCString:nick->nick encoding:MICurrentTextEncoding], 
-          nick->realname ? [NSString stringWithCString:nick->realname encoding:MICurrentTextEncoding] : @"real name not received", 
-          nick->host ? [NSString stringWithCString:nick->host encoding:MICurrentTextEncoding] : @"host name not received"];
+          [NSString stringWithUTF8String:nick->nick], 
+          nick->realname ? [NSString stringWithUTF8String:nick->realname] : @"real name not received", 
+          nick->host ? [NSString stringWithUTF8String:nick->host] : @"host name not received"];
 }
 
 - (void)checkUserDefaults:(NSNotification*)notification
@@ -1430,7 +1428,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
       else
         [topicAttributes setObject:[bg_colors objectAtIndex:[mirc_colors[bg % 16]]] forKey:NSBackgroundColorAttributeName];
 
-      partialTopic = [[NSAttributedString alloc] initWithString:[NSString stringWithCString:tmp encoding:MICurrentTextEncoding] attributes:topicAttributes];
+      partialTopic = [[NSAttributedString alloc] initWithString:[NSString stringWithUTF8String:tmp] attributes:topicAttributes];
       [attributedTopic appendAttributedString:partialTopic];
       
       free(tmp);
@@ -1450,7 +1448,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
   char *stripped = strip_codes(str);
   
-  NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithCString:stripped encoding:MICurrentTextEncoding] attributes:topicAttributes];
+  NSMutableAttributedString *attributedTopic = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithUTF8String:stripped] attributes:topicAttributes];
   [attributedTopic detectURLs:[NSColor blueColor]];
   
   free(stripped);

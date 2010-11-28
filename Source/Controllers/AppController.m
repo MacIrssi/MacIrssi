@@ -43,9 +43,6 @@
 // For iChooons
 #import "iTunes.h"
 
-// For encodings
-#import "TextEncodings.h"
-
 #import "chatnets.h"
 #import "irc.h"
 #import "irc-chatnets.h"
@@ -143,7 +140,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   WINDOW_REC *rec = [currentChannelController windowRec];
   
-  command_history_add(command_history_current(rec), [cmd cStringUsingEncoding:MICurrentTextEncoding]);
+  command_history_add(command_history_current(rec), [cmd UTF8String]);
   command_history_clear_pos(rec);
   
   NSArray *commands = [self splitCommand:cmd];
@@ -187,14 +184,14 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
         nowPlaying = @"/me typed /itunes when it wasn't even open. Doh!";
       }
 
-      const char *tmp = [nowPlaying cStringUsingEncoding:MICurrentTextEncoding];
+      const char *tmp = [nowPlaying UTF8String];
       signal_emit("send command", 3, tmp, rec->active_server, rec->active);
       
       continue;
     }
     
     /* Else normal command */
-    const char *tmp = [[commands objectAtIndex:i] cStringUsingEncoding:MICurrentTextEncoding];
+    const char *tmp = [[commands objectAtIndex:i] UTF8String];
     signal_emit("send command", 3, tmp, rec->active_server, rec->active);
   }
 }
@@ -295,7 +292,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [NSApp endSheet:reasonWindow returnCode:1];
   if ([[sender title] isEqual:@"Ok"]) {
     NSString *str = [reasonTextField stringValue];
-    signal_emit("command quit", 1, [str cStringUsingEncoding:MICurrentTextEncoding]);
+    signal_emit("command quit", 1, [str UTF8String]);
     [NSApp replyToApplicationShouldTerminate:YES];
   }
   [reasonTextField setStringValue:@""];
@@ -314,7 +311,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   if ([[sender title] isEqual:@"Quit"])
   {
-    signal_emit("command quit", 1, [[[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"] cStringUsingEncoding:MICurrentTextEncoding]);
+    signal_emit("command quit", 1, [[[NSUserDefaults standardUserDefaults] stringForKey:@"defaultQuitMessage"] UTF8String]);
   }
 }
 
@@ -674,7 +671,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 - (void)windowNameChanged:(WINDOW_REC*)wind
 {
   ChannelController *controller = (ChannelController*)wind->gui_data;  
-  NSString *newName = wind->name ? [NSString stringWithCString:wind->name encoding:MICurrentTextEncoding] : @"";
+  NSString *newName = wind->name ? [NSString stringWithUTF8String:wind->name] : @"";
   [controller setName:newName];
   
   [self buildWindowsMenu];
@@ -1048,10 +1045,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)historyUp
 {
-  const char *str = [[inputTextField string] cStringUsingEncoding:MICurrentTextEncoding];
+  const char *str = [[inputTextField string] UTF8String];
   char *next = (char*)command_history_prev([currentChannelController windowRec], str);
   
-  [inputTextField setString:[NSString stringWithCString:next encoding:MICurrentTextEncoding]];
+  [inputTextField setString:[NSString stringWithUTF8String:next]];
   [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
 }
 
@@ -1064,10 +1061,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
 //-------------------------------------------------------------------
 - (void)historyDown
 {
-  const char *str = [[inputTextField string] cStringUsingEncoding:MICurrentTextEncoding];
+  const char *str = [[inputTextField string] UTF8String];
   char *next = (char*)command_history_next([currentChannelController windowRec], str);
   
-  [inputTextField setString:[NSString stringWithCString:next encoding:MICurrentTextEncoding]];
+  [inputTextField setString:[NSString stringWithUTF8String:next]];
   [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
 }
 

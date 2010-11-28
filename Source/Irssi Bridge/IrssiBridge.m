@@ -21,7 +21,6 @@
 #import "IrssiBridge.h"
 #import "AppController.h"
 #import "ChannelController.h"
-#import "TextEncodings.h"
 
 //#define	G_LOG_DOMAIN "MacIrssi"
 #define printf(...)
@@ -63,12 +62,17 @@ ChannelController *windowController;
 
 // Nasty nasty define, but it makes things look prettier
 #define CHANNEL_SILENCE_NSSTRING(server, channel) [NSString stringWithFormat:@"%@ - %@", \
-  [NSString stringWithCString:(char*)server->tag encoding:MICurrentTextEncoding], \
-  [NSString stringWithCString:(char*)channel encoding:MICurrentTextEncoding]]
+  [NSString stringWithUTF8String:(char*)server->tag], \
+  [NSString stringWithUTF8String:(char*)channel]]
 
 void irssibridge_server_setup_read(IRC_SERVER_SETUP_REC *rec, CONFIG_NODE *node)
-{	
+{
 	//printf("Value: %s\n", rec->chatnet);
+}
+
+void irssibridge_setup_changed(void)
+{
+  [[IrssiCore sharedCore] forceUTF8Charset];
 }
 
 void irssibridge_channel_mode_changed(CHANNEL_REC *channel, char *setby)
@@ -260,7 +264,7 @@ void irssibridge_window_server_changed(WINDOW_REC *wind, SERVER_REC *serv) {
 	{
 		return;
 	}
-	[appController setServer:[NSString stringWithCString:serv->tag encoding:MICurrentTextEncoding]];
+	[appController setServer:[NSString stringWithUTF8String:serv->tag]];
 }
 
 void irssibridge_window_level_changed(WINDOW_REC *wind) 
@@ -385,7 +389,7 @@ void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char
   // existing PM
   if (rec) 
   {
-    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithCString:msg encoding:MICurrentTextEncoding], @"Description",
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithUTF8String:msg], @"Description",
                           [NSString stringWithFormat:@"Private Message from %s.", nick], @"Title", 
                           [NSString stringWithFormat:@"%s", server->tag], @"Server",
                           [NSString stringWithFormat:@"%s", nick], @"Channel", nil];
@@ -393,7 +397,7 @@ void irssibridge_message_private(SERVER_REC *server, char *msg, char *nick, char
   }
   else
   {
-    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithCString:msg encoding:MICurrentTextEncoding], @"Description",
+    NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithUTF8String:msg], @"Description",
                           [NSString stringWithFormat:@"New Private Message from %s.", nick], @"Title", 
                           [NSString stringWithFormat:@"%s", server->tag], @"Server",
                           [NSString stringWithFormat:@"%s", nick], @"Channel", nil];
@@ -414,7 +418,7 @@ void irssibridge_message_channel(SERVER_REC *server, char *msg, char *nick, char
   ChannelController *controller = (ChannelController*)window->gui_data;
     
   [controller setWaitingEvents:[controller waitingEvents]+1];
-  [controller setLastEventOwner:[NSString stringWithCString:nick encoding:MICurrentTextEncoding]];
+  [controller setLastEventOwner:[NSString stringWithUTF8String:nick]];
   
   if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel->name)] ||
       ![[[[NSUserDefaults standardUserDefaults] valueForKey:@"eventSilences"] valueForKey:CHANNEL_SILENCE_NSSTRING(server, channel->name)] boolValue])

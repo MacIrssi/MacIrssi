@@ -60,6 +60,7 @@ void irssibridge_server_disconnected(SERVER_REC *server);
 void irssibridge_server_connected(SERVER_REC *server);
 
 void irssibridge_event_connected(void);
+void irssibridge_setup_changed(void);
 
 void setRefToAppController(AppController *a);
 void get_nicks(gpointer key, NICK_REC *rec, gpointer unused);

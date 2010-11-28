@@ -30,6 +30,7 @@ struct _GMainLoop;
 
 - (void)runloopOneshot;
 
+- (void)forceUTF8Charset;
 - (NSString*)findThemeByName:(NSString*)name;
 
 @end

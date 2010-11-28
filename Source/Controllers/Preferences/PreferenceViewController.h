@@ -84,7 +84,6 @@ enum
 	IBOutlet NSTextField *defaultQuitMessageField;
 
 	IBOutlet NSButton *askQuitCheckBox;
-	IBOutlet NSPopUpButton *textEncodingPopUpButton;
   IBOutlet NSPopUpButton *tabShortcutPopUpButton;
   
   IBOutlet NSButton *checkForBetasCheckBox;
@@ -157,12 +156,6 @@ enum
 - (void)userDefaultsChanged:(NSNotification*)notification;
 
 - (IBAction)checkForBetasCheckBoxChanged:(id)sender;
-
-#pragma mark Text Encodings
-
-- (void)updateTextEncodingPopUpButton;
-- (void)initTextEncodingPopUpButton;
-- (IBAction)encodingPopup:(id)sender;
 
 #pragma mark Tab Shortcuts
 
