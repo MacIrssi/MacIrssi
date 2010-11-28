@@ -100,4 +100,20 @@
   server_setup_add(rec);
 }
 
+- (NSString*)password
+{
+  return [NSString stringWithUTF8String:CSTR(rec->password)];
+}
+
+- (void)setPassword:(NSString*)value
+{
+  if (rec->password) {
+    g_free_and_null(rec->password);
+  }
+  if (value) {
+    rec->password = g_strdup([value UTF8String]);
+  }
+  server_setup_add(rec);
+}
+
 @end

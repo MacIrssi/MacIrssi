@@ -45,4 +45,7 @@
 - (BOOL)useSSL;
 - (void)setUseSSL:(BOOL)flag;
 
+- (NSString*)password;
+- (void)setPassword:(NSString*)value;
+
 @end
