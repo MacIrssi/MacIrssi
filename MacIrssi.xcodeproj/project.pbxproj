@@ -200,8 +200,6 @@
 		C25491780681A35900C43D63 /* CustomTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C25491760681A35900C43D63 /* CustomTextView.h */; };
 		C25491790681A35900C43D63 /* CustomTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25491770681A35900C43D63 /* CustomTextView.m */; };
 		C26FC9BD08C4E56300CFD1B3 /* MacIrssi.icns in Resources */ = {isa = PBXBuildFile; fileRef = C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */; };
-		C2A5697B08D0D74100788905 /* TextEncodings.h in Headers */ = {isa = PBXBuildFile; fileRef = C2A5697908D0D74100788905 /* TextEncodings.h */; };
-		C2A5697C08D0D74100788905 /* TextEncodings.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A5697A08D0D74100788905 /* TextEncodings.m */; };
 		C2A9B10C0C1187BC002A9848 /* Growl-WithInstaller.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */; };
 		C2A9B1250C118BC2002A9848 /* Growl-WithInstaller.framework in Copy Growl Framework */ = {isa = PBXBuildFile; fileRef = C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */; };
 		C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */; };
@@ -1042,8 +1040,6 @@
 		C25491760681A35900C43D63 /* CustomTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTextView.h; sourceTree = "<group>"; };
 		C25491770681A35900C43D63 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
 		C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacIrssi.icns; path = ../MacIrssi.icns; sourceTree = "<group>"; };
-		C2A5697908D0D74100788905 /* TextEncodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEncodings.h; sourceTree = "<group>"; };
-		C2A5697A08D0D74100788905 /* TextEncodings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEncodings.m; sourceTree = "<group>"; };
 		C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Growl-WithInstaller.framework"; sourceTree = "<group>"; };
 		C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_notifylist.a; path = "build/irssi-build/src/irc/notifylist/libirc_notifylist.a"; sourceTree = SOURCE_ROOT; };
 		C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_flood.a; path = "build/irssi-build/src/irc/flood/libirc_flood.a"; sourceTree = SOURCE_ROOT; };
@@ -2268,8 +2264,6 @@
 				B322DDB605EF9AE600E640C2 /* ColorSet.m */,
 				C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */,
 				C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */,
-				C2A5697908D0D74100788905 /* TextEncodings.h */,
-				C2A5697A08D0D74100788905 /* TextEncodings.m */,
 			);
 			path = "Non-view Classes";
 			sourceTree = "<group>";
@@ -3150,7 +3144,6 @@
 				C25491780681A35900C43D63 /* CustomTextView.h in Headers */,
 				C2D1679106E3E16C000EC6F9 /* ChannelBar.h in Headers */,
 				C200D027073FC03700B850B1 /* ChannelBarCell.h in Headers */,
-				C2A5697B08D0D74100788905 /* TextEncodings.h in Headers */,
 				C947E1DC0E1E871F0001380E /* EventController.h in Headers */,
 				C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */,
 				C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */,
@@ -3432,7 +3425,6 @@
 				C25491790681A35900C43D63 /* CustomTextView.m in Sources */,
 				C2D1679206E3E16C000EC6F9 /* ChannelBar.m in Sources */,
 				C200D028073FC03700B850B1 /* ChannelBarCell.m in Sources */,
-				C2A5697C08D0D74100788905 /* TextEncodings.m in Sources */,
 				C947E1DD0E1E871F0001380E /* EventController.m in Sources */,
 				C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */,
 				C91026650E5C654800E041F7 /* UKCrashReporter.m in Sources */,

@@ -112,6 +112,7 @@ static ICSignal irssiSignals[] = {
   { "channel destroyed", SIGNAL_FIRST, (SIGNAL_FUNC)irssibridge_channel_destroyed },
   
   { "event connected", SIGNAL_NORMAL, (SIGNAL_FUNC)irssibridge_event_connected },
+  { "setup changed", SIGNAL_NORMAL, (SIGNAL_FUNC)irssibridge_setup_changed },
   
   { NULL, 0, NULL }
 };
@@ -275,6 +276,7 @@ void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *messag
   settings_add_str("perl", "macirssi_lib", [bundle cStringUsingEncoding:NSUTF8StringEncoding]);
   
   [self _initialiseInterfaceSignals];
+  [self forceUTF8Charset];
   
   module_register("core", "fe-aqua");
   
@@ -360,6 +362,19 @@ void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *messag
     signal_remove(irssiSignals[i].signal, irssiSignals[i].func);
     i++;
   }
+}
+
+- (void)forceUTF8Charset
+{
+  // Force term_charset to always be utf-8. If we ever change settings make sure we check it.
+  // ... and BE CAREFUL, this is called from a "setup changed" signal handler.
+  
+  const char *charset = settings_get_str("term_charset");
+  if (!charset || strcasecmp(charset, "utf-8") != 0)
+  {
+    settings_set_str("term_charset", "utf-8");
+    signal_emit("setup changed", 0);
+  }  
 }
 
 #pragma mark Themes

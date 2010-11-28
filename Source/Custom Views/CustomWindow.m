@@ -22,7 +22,6 @@
 #import "servers.h"
 #import "signals.h"
 #import "IrssiBridge.h"
-#import "TextEncodings.h"
 
 char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 
@@ -153,13 +152,13 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 			/******************/
 			/* Tab completion */
 			/******************/
-      old_s = (char*)[[(NSTextView*)[self firstResponder] string] cStringUsingEncoding:MICurrentTextEncoding];
+      old_s = (char*)[[(NSTextView*)[self firstResponder] string] UTF8String];
 			int i = strlen(old_s);
 			new_s = word_complete([controller currentWindowRec], old_s, &i, 0);
 			if (!new_s)
 				return TRUE;
 				
-      NSString *decodedString = [[NSString stringWithCString:new_s encoding:MICurrentTextEncoding] retain];
+      NSString *decodedString = [[NSString stringWithUTF8String:new_s] retain];
 			
 			[(NSTextView *)[self firstResponder] setString:decodedString];
 			[decodedString release];
