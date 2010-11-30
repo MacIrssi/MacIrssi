@@ -27,6 +27,9 @@
 #import "printtext.h"
 #import "irssi-version.h"
 #import "fe-common-core.h"
+#import "irc.h"
+#import "irc-commands.h"
+#import "irc-servers.h"
 
 #define IRSSI_GUI_AQUA 6
 
@@ -117,21 +120,22 @@ static ICSignal irssiSignals[] = {
   { NULL, 0, NULL }
 };
 
-static void version_cmd_overwrite(const char *data, SERVER_REC *server, void *item)
+static void version_cmd_overwrite(const char *data, IRC_SERVER_REC *server, void *item)
 {
-	char time[10];
-	
-	g_return_if_fail(data != NULL);
-	
-	if (*data == '\0') {
-		
-		g_snprintf(time, sizeof(time), "%04d", IRSSI_VERSION_TIME);
-    printtext(NULL, NULL, MSGLEVEL_CLIENTNOTICE,
-              "Client: MacIrssi %s (Core:"PACKAGE_TARNAME" " PACKAGE_VERSION" %d %s)",
-              [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] cStringUsingEncoding:NSASCIIStringEncoding],
-              IRSSI_VERSION_DATE, time);
-	}
-	signal_stop();
+  char time[10];
+
+  g_return_if_fail(data != NULL);
+
+  g_snprintf(time, sizeof(time), "%04d", IRSSI_VERSION_TIME);
+  printtext(NULL, NULL, MSGLEVEL_CLIENTNOTICE,
+    "Client: MacIrssi %s (Core:"PACKAGE_TARNAME" " PACKAGE_VERSION" %d %s)",
+    [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"] cStringUsingEncoding:NSASCIIStringEncoding],
+    IRSSI_VERSION_DATE, time);
+
+  CMD_IRC_SERVER(server);
+  irc_send_cmdv(server, *data == '\0' ? "VERSION" : "VERSION %s", data);
+
+  signal_stop();
 }
 
 // caller assumes need for release
