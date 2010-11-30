@@ -732,7 +732,10 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   // Update the window title, just in case the channel that just joined was showing "joining..." in the title bar
   NSString *titleString = ([[NSUserDefaults standardUserDefaults] boolForKey:@"channelInTitle"]) ? [NSString stringWithFormat:@"MacIrssi - %@", [currentChannelController name]] : @"MacIrssi";
-  [mainWindow setTitle:titleString];  
+  [mainWindow setTitle:titleString];
+  if (rec->name) {
+    [self windowNameChanged:rec];
+  }
 }
 
 #pragma mark Menus
