@@ -323,7 +323,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
       return;
     /* CTCP */
     case Ping:
-      EMITSINGLE(@"/ctcp %@ ping");
+      EMITSINGLE(@"/ping %@");
       break;
     case Finger:
       EMITSINGLE(@"/ctcp %@ finger");
