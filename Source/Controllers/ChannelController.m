@@ -53,6 +53,9 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   
   if (flag && !searchBar)
   {
+    /* Setup state so that we maintain scroll position */
+    [self beginTextUpdates];
+    
     /* Make a search bar, link it to the search controller and put onscreen. */
     searchBar = [[MISearchBar alloc] initWithFrame:NSMakeRect(0, 0, [target frame].size.width, 25.0f)];
     [searchBar setDelegate:searchController];
@@ -70,9 +73,14 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
     [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidX relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMidX]];
     
     [target setFrame:r];
+    
+    /* Now restore scroll position */
+    [self endTextUpdates];
   }
   else if (!flag && searchBar)
   {
+    [self beginTextUpdates];
+    
     [searchBar removeAllConstraints];
     
     /* Push the target view up before we remove the search bar */
@@ -85,6 +93,8 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
     [searchBar removeFromSuperview];
     [searchBar release];
     searchBar = nil;
+    
+    [self endTextUpdates];
   }
   
   if (flag)
