@@ -39,7 +39,45 @@ static char* loremIpsum[] = {
   "Suspendisse adipiscing neque non neque congue eleifend."
 };
 
+static char *urlTestLines[] = {
+  "http://foo.com/blah_blah",
+  "http://foo.com/blah_blah/ ",
+  "(Something like http://foo.com/blah_blah)",
+  "http://foo.com/blah_blah_(wikipedia)",
+  "http://foo.com/more_(than)_one_(parens)",
+  "(Something like http://foo.com/blah_blah_(wikipedia))",
+  "http://foo.com/blah_(wikipedia)#cite-1",
+  "http://foo.com/blah_(wikipedia)_blah#cite-1",
+  "http://foo.com/unicode_(✪)_in_parens",
+  "http://foo.com/(something)?after=parens",
+  "http://foo.com/blah_blah.",
+  "http://foo.com/blah_blah/.",
+  "<http://foo.com/blah_blah>",
+  "<http://foo.com/blah_blah/>",
+  "http://foo.com/blah_blah,",
+  "http://www.extinguishedscholar.com/wpglob/?p=364.",
+  "http://✪df.ws/1234",
+  "rdar://1234",
+  "rdar:/1234",
+  "x-yojimbo-item://6303E4C1-6A6E-45A6-AB9D-3A908F59AE0E",
+  "message://%3c330e7f840905021726r6a4ba78dkf1fd71420c1bf6ff@mail.gmail.com%3e",
+  "http://➡.ws/䨹",
+  "www.c.ws/䨹",
+  "<tag>http://example.com</tag>",
+  "Just a www.example.com link.",
+  "http://example.com/something?with,commas,in,url, but not at end",
+  "What about <mailto:gruber@daringfireball.net?subject=TEST> (including brokets).",
+  "mailto:name@example.com",
+  "bit.ly/foo",
+  "“is.gd/foo/”",
+  "WWW.EXAMPLE.COM",
+  "http://www.asianewsphoto.com/(S(neugxif4twuizg551ywh3f55))/Web_ENG/View_DetailPhoto.aspx?PicId=752",
+  "http://www.asianewsphoto.com/(S(neugxif4twuizg551ywh3f55))",
+  "http://lcweb2.loc.gov/cgi-bin/query/h?pp/horyd:@field(NUMBER+@band(thc+5a46634))"
+};
+
 static int loremIpsumCount = 8;
+static int urlTestLinesCount = 34;
 
 #endif
 
@@ -62,12 +100,21 @@ static int loremIpsumCount = 8;
   {
     debugMenu = [[NSMenu alloc] initWithTitle:@"Debug"];
     
-    NSMenu *channelTestMenu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
+    NSMenu *channelTestMenu = [[[NSMenu alloc] initWithTitle:@"Text"] autorelease];
     [channelTestMenu setDelegate:self];
     
     NSMenuItem *channelTextTestItem = [[NSMenuItem alloc] initWithTitle:@"Channel Text Test" action:nil keyEquivalent:@""];
     [channelTextTestItem setSubmenu:channelTestMenu];
+    [channelTextTestItem setTag:0];
     [debugMenu addItem:channelTextTestItem];
+    
+    NSMenu *urlTestMenu = [[[NSMenu alloc] initWithTitle:@"URL"] autorelease];
+    [urlTestMenu setDelegate:self];
+    
+    NSMenuItem *urlTestItem = [[NSMenuItem alloc] initWithTitle:@"URL Test" action:nil keyEquivalent:@""];
+    [urlTestItem setSubmenu:urlTestMenu];
+    [urlTestItem setTag:1];
+    [debugMenu addItem:urlTestItem];
     
     NSMenuItem *forceScrollToBottom = [[NSMenuItem alloc] initWithTitle:@"Force Scroll to Bottom" target:self action:@selector(forceScrollToBottom:) keyEquivalent:@""];
     [debugMenu addItem:forceScrollToBottom];
@@ -94,6 +141,11 @@ static int loremIpsumCount = 8;
     NSString *title = [cc name];
     NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title target:self action:@selector(channelTextTest:) keyEquivalent:@"" representedObject:cc];
     
+    if ([[menu title] isEqual:@"URL"])
+    {
+      [item setAction:@selector(urlTextTest:)];
+    }
+    
     [menu addItem:item];
   }  
 }
@@ -113,6 +165,17 @@ static int loremIpsumCount = 8;
   
   // Print to console so we can see when it starts/stops.
   NSLog(@"Started channel text test on window \"%@\"", [cc name]);
+}
+
+- (void)urlTextTest:(id)sender
+{
+  ChannelController *cc = [sender representedObject];
+  int i;
+  
+  for (i=0; i < urlTestLinesCount; i++)
+  {
+    printformat_module_window("fe-common/core", [cc windowRec], 1, TXT_PUBMSG, "MacIrssi", urlTestLines[i], " ");
+  }
 }
 
 - (void)channelTextTestTimer:(NSTimer*)timer
