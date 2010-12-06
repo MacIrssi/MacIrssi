@@ -68,9 +68,9 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
     [target setLayoutName:@"targetView"];
     
     /* Search bar is directly above the split view, centered X axis, equal width */
-    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMinY relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMaxY]];
-    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeWidth relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeWidth]];
-    [searchBar addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidX relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMidX]];
+    [searchBar addLayoutConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMinY relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMaxY]];
+    [searchBar addLayoutConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeWidth relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeWidth]];
+    [searchBar addLayoutConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidX relativeTo:@"targetView" attribute:CHLayoutConstraintAttributeMidX]];
     
     [target setFrame:r];
     
@@ -81,7 +81,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   {
     [self beginTextUpdates];
     
-    [searchBar removeAllConstraints];
+    [searchBar removeAllLayoutConstraints];
     
     /* Push the target view up before we remove the search bar */
     NSRect r = [target frame];

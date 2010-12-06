@@ -60,7 +60,7 @@
     [searchResultsLabel setLayoutName:@"searchResultsLabel"];
     [self addSubview:searchResultsLabel];
     
-    [searchResultsLabel addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidY relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMidY]];
+    [searchResultsLabel addLayoutConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidY relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMidY]];
     
     NSImage *smallGoLeftImage = [NSImage imageNamed:NSImageNameGoLeftTemplate];
     [smallGoLeftImage setSize:NSMakeSize(8, 8)];
@@ -82,8 +82,8 @@
     [nextBackButton setLayoutName:@"nextBackButton"];
     [self addSubview:nextBackButton];
     
-    [nextBackButton addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMinX relativeTo:@"searchResultsLabel" attribute:CHLayoutConstraintAttributeMaxX offset:10]];
-    [nextBackButton addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidY relativeTo:@"searchResultsLabel" attribute:CHLayoutConstraintAttributeMidY]];
+    [nextBackButton addLayoutConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMinX relativeTo:@"searchResultsLabel" attribute:CHLayoutConstraintAttributeMaxX offset:10]];
+    [nextBackButton addLayoutConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidY relativeTo:@"searchResultsLabel" attribute:CHLayoutConstraintAttributeMidY]];
     
     CGFloat searchFieldWidth = [doneButton frame].origin.x - ([nextBackButton frame].origin.x + [nextBackButton frame].size.width) - 20;
     searchField = [[NSSearchField alloc] initWithFrame:NSMakeRect(0, 0, searchFieldWidth, 20)];
@@ -97,8 +97,8 @@
     [searchField setAction:@selector(searchFieldAction:)];
     [self addSubview:searchField];    
                                    
-    [searchField addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMaxX relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMinX offset:-10]];
-    [searchField addConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidY relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMidY]];
+    [searchField addLayoutConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMaxX relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMinX offset:-10]];
+    [searchField addLayoutConstraint:[CHLayoutConstraint constraintWithAttribute:CHLayoutConstraintAttributeMidY relativeTo:@"doneButton" attribute:CHLayoutConstraintAttributeMidY]];
     
     [self update];
   }
@@ -107,13 +107,13 @@
 
 - (void)dealloc
 {
-  [searchResultsLabel removeAllConstraints];
+  [searchResultsLabel removeAllLayoutConstraints];
   [searchResultsLabel release];
-  [nextBackButton removeAllConstraints];
+  [nextBackButton removeAllLayoutConstraints];
   [nextBackButton release];
-  [searchField removeAllConstraints];
+  [searchField removeAllLayoutConstraints];
   [searchField release];
-  [doneButton removeAllConstraints];
+  [doneButton removeAllLayoutConstraints];
   [doneButton release];
   [super dealloc];
 }

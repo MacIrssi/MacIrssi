@@ -31,9 +31,9 @@
 - (void) setLayoutName:(NSString *)newLayoutName;
 - (NSString *) layoutName;
 
-- (void) addConstraint:(CHLayoutConstraint *)constraint;
-- (NSArray *) constraints;
-- (void) removeAllConstraints;
+- (void) addLayoutConstraint:(CHLayoutConstraint *)constraint;
+- (NSArray *) layoutConstraints;
+- (void) removeAllLayoutConstraints;
 
 - (NSRect) valueForLayoutAttribute:(CHLayoutConstraintAttribute)attribute;
 - (void) setValue:(NSRect)newValue forLayoutAttribute:(CHLayoutConstraintAttribute)attribute;
