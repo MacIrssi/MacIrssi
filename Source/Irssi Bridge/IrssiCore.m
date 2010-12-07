@@ -199,6 +199,12 @@ void initialiseCoreOnce()
       { NULL }
     };
     
+    /* 
+      Stop stupid accesses to random files, glib looks in a COMPILE TIME
+      specific place for a character set file. Stupid.
+     */
+    setenv("CHARSET", "UTF-8", 1);
+    
 #ifdef MACIRSSI_DEBUG
     char *irssi_argv[] = {"irssi", "--config=~/.irssi/config_debug", NULL};
     int irssi_argc = 2;
