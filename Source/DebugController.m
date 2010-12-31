@@ -147,7 +147,7 @@ static int urlTestLinesCount = 34;
 
 - (void)menuNeedsUpdate:(NSMenu *)menu
 {
-  if ([[menu title] isEqual:@"URL"])
+  if ([[menu title] isEqual:@"URL"] || [[menu title] isEqual:@"Text"])
   {
     [menu removeAllItems];
     
