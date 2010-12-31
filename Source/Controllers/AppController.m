@@ -1714,8 +1714,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [GrowlApplicationBridge setGrowlDelegate:self];
   
   /* Sleep registration */
-  [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceWillSleep:) name:NSWorkspaceWillSleepNotification object:[NSWorkspace sharedWorkspace]];
-  [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:[ConnectivityMonitor sharedMonitor] selector:@selector(workspaceDidWake:) name:NSWorkspaceDidWakeNotification object:[NSWorkspace sharedWorkspace]];
+  (void)[ConnectivityMonitor sharedMonitor];
   
   /* Window menu management */
   _windowsMenuItems = [[NSMutableArray alloc] init];

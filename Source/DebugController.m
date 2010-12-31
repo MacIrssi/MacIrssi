@@ -21,6 +21,7 @@
 #import "ChannelController.h"
 #import "AIMenuAdditions.h"
 #import "IrssiBridge.h"
+#import "ConnectivityMonitor.h"
 
 #import "module-formats.h"
 
@@ -116,12 +117,25 @@ static int urlTestLinesCount = 34;
     [urlTestItem setTag:1];
     [debugMenu addItem:urlTestItem];
     
+    NSMenu *sleepMenu = [[[NSMenu alloc] initWithTitle:@"Sleep"] autorelease];
+    [sleepMenu setDelegate:self];
+    
+    NSMenuItem *sleepMenuItem = [[NSMenuItem alloc] initWithTitle:@"Sleep Events" action:nil keyEquivalent:@""];
+    [sleepMenuItem setSubmenu:sleepMenu];
+    [debugMenu addItem:sleepMenuItem];
+    
     NSMenuItem *forceScrollToBottom = [[NSMenuItem alloc] initWithTitle:@"Force Scroll to Bottom" target:self action:@selector(forceScrollToBottom:) keyEquivalent:@""];
     [debugMenu addItem:forceScrollToBottom];
     
     NSMenuItem *changeOrientation = [[NSMenuItem alloc] initWithTitle:@"Toggle Orientation" target:self action:@selector(toggleOrientation:) keyEquivalent:@"O"];
     [debugMenu addItem:changeOrientation];
     
+    NSMenuItem *simulateSleepEvent = [[NSMenuItem alloc] initWithTitle:@"Simulate Sleep Event" target:self action:@selector(simulateSleepEvent:) keyEquivalent:@""];
+    [sleepMenu addItem:simulateSleepEvent];
+
+    NSMenuItem *simulateWakeEvent = [[NSMenuItem alloc] initWithTitle:@"Simulate Wake Event" target:self action:@selector(simulateWakeEvent:) keyEquivalent:@""];
+    [sleepMenu addItem:simulateWakeEvent];
+
     // Put this thing in the menu now.
     NSMenuItem *mainMenuItem = [[NSMenuItem alloc] initWithTitle:@"Debug" action:nil keyEquivalent:@""];
     [mainMenuItem setSubmenu:debugMenu];
@@ -133,21 +147,24 @@ static int urlTestLinesCount = 34;
 
 - (void)menuNeedsUpdate:(NSMenu *)menu
 {
-  [menu removeAllItems];
-  
-  NSArray *channels = [IrssiBridge channels];
-  for (ChannelController *cc in channels)
+  if ([[menu title] isEqual:@"URL"])
   {
-    NSString *title = [cc name];
-    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title target:self action:@selector(channelTextTest:) keyEquivalent:@"" representedObject:cc];
+    [menu removeAllItems];
     
-    if ([[menu title] isEqual:@"URL"])
+    NSArray *channels = [IrssiBridge channels];
+    for (ChannelController *cc in channels)
     {
-      [item setAction:@selector(urlTextTest:)];
-    }
-    
-    [menu addItem:item];
-  }  
+      NSString *title = [cc name];
+      NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:title target:self action:@selector(channelTextTest:) keyEquivalent:@"" representedObject:cc];
+      
+      if ([[menu title] isEqual:@"URL"])
+      {
+        [item setAction:@selector(urlTextTest:)];
+      }
+      
+      [menu addItem:item];
+    }  
+  }
 }
 
 - (void)channelTextTest:(id)sender
@@ -211,6 +228,16 @@ static int urlTestLinesCount = 34;
 
   [[NSUserDefaults standardUserDefaults] setInteger:orientation forKey:@"channelBarOrientation"];
   [appController channelBarOrientationDidChange:nil];  
+}
+
+- (void)simulateSleepEvent:(id)sender
+{
+  [[ConnectivityMonitor sharedMonitor] workspaceWillSleep:nil];
+}
+
+- (void)simulateWakeEvent:(id)sender
+{
+  [[ConnectivityMonitor sharedMonitor] refresh];
 }
 
 //- (void)dealloc

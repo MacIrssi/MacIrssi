@@ -27,8 +27,7 @@
 #import "servers-reconnect.h"
 
 @interface ConnectivityMonitor : NSObject {
-	BOOL isSleeping;
-	GSList *sleepList;
+  NSMapTable *serverMap;
 }
 
 + (ConnectivityMonitor*)sharedMonitor;
@@ -36,7 +35,8 @@
 
 // Notifications from workspace on system state
 - (void)workspaceWillSleep:(NSNotification*)notification;
-- (void)workspaceDidWake:(NSNotification*)notification;
+
+- (void)refresh;
 
 // SCNetworkReachability
 - (void)networkReachabilityCallback:(SCNetworkReachabilityRef)target flags:(SCNetworkConnectionFlags)flags info:(void*)info;
