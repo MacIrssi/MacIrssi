@@ -1168,6 +1168,22 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   }
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+  if ([object isEqual:mainTextView])
+  {
+    /* deal with externally influenced bounds changes */
+    if ([[change objectForKey:@"notificationIsPrior"] boolValue])
+    {
+      [self beginTextUpdates];
+    }
+    else
+    {
+      [self endTextUpdates];
+    }
+  }
+}
+
 #pragma mark [De]Initializers
 //-------------------------------------------------------------------
 // awakeFromNib
@@ -1181,6 +1197,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   [nc addObserver:self selector:@selector(nickListColorChanged:) name:@"nickListColorChanged" object:nil];
   [nc addObserver:self selector:@selector(channelControllerSplitViewDidResize:) name:@"ChannelControllerSplitViewDidResize" object:nil];
   [nc addObserver:self selector:@selector(checkUserDefaults:) name:NSUserDefaultsDidChangeNotification object:nil];
+  
+  /* Force the text view to post frame changes */
+  [mainTextView addObserver:self forKeyPath:@"frame" options:(NSKeyValueObservingOptionPrior|NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew) context:nil];
   
   /* Create the helper to control scrolling */
   scrollViewHelper = [[MIScrollViewHelper alloc] initWithScrollView:[mainTextView enclosingScrollView]];
