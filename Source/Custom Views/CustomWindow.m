@@ -163,7 +163,6 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 			[(NSTextView *)[self firstResponder] setString:decodedString];
 			[decodedString release];
 			free(new_s);
-			free(old_s);
 			return TRUE;
       
     case 0x0d:
