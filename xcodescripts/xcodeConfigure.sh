@@ -44,11 +44,15 @@ for x in $ARCHS; do
   A="$A -arch $x"
 done
 
+# find the *lowest* versioned perl on the system (there's usually two, more if you have PerlSDKs installed)
+PERL_VERSION=`perl -e 'opendir(DIR, "/System/Library/Perl"); my @ds=(); while (my $d = readdir(DIR)) { next unless $d =~ /\d+\.\d+/ ; push(@ds, $d); }; @ds = sort { my @as=split(/\./, $a) ; my @bs=split(/\./, $b); $as[0] <=> $bs[0] || $as[1] <=> $bs[1] || $as[2] <=> $bs[2]; } @ds; printf "$ds[0]\n";'`
+
 export SHELL="/bin/bash"
 export CFLAGS="$CFLAGS $A -I$SRCROOT/Frameworks/MILibs/build/Release/include -DMACIRSSI_VERSION=\\\"$VERSION\\\""
 export LDFLAGS="$LDFLAGS $A -L$SRCROOT/Frameworks/MILibs/build/Release/lib"
 export PKG_CONFIG_PATH="$SRCROOT/Frameworks/MILibs/build/Release/lib/pkgconfig"
 export PATH="$SRCROOT/Frameworks/MILibs/build/pkg-config-build:$PATH"
+export VERSIONER_PERL_VERSION=$PERL_VERSION
 
 if [ ! -f ./configure ]; then
   # set up autoconf so it has pkg.m4 around

@@ -7,7 +7,10 @@ PERLLIB="/System/Library/Perl"
 
 # obtained by running perl -MExtUtils::Embed -e ldopts
 GLIB_LDFLAGS="-L$SRCROOT/Frameworks/MILibs/build/Release/lib -lgmodule-2.0 -lglib-2.0 -lintl -liconv -lssl -lcrypto"
-LDFLAGS="-Wl,-undefined,dynamic_lookup -arch i386 -arch ppc -fstack-protector -lperl -dl -lm -lutil -lc"
+LDFLAGS="-Wl,-undefined,dynamic_lookup -fstack-protector -lperl -dl -lm -lutil -lc"
+for x in $ARCHS; do
+  LDFLAGS="$LDFLAGS -arch $x"
+done
 
 DSTROOT="$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Perl"
 [ ! -d $DSTROOT ] && mkdir -p $DSTROOT
