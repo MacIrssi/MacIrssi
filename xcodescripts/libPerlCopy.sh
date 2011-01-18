@@ -2,7 +2,7 @@
 # copies perl libraries
 
 PERLPATH="build/irssi-build/src/perl"
-SUBDIRS="common textui ui irc"
+SUBDIRS="common ui irc"
 
 for s in $SUBDIRS; do
 	if [ -d $PERLPATH/$s ]; then
