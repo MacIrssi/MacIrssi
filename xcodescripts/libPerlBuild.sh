@@ -49,7 +49,7 @@ for lib in $PERLLIB/*; do
 		# someone is going to burn me in a firey hell for this
 		for x in $PERL_CORE; do
 			f=`basename $x .o`.c
-			CFLAGS="`flags_from_dwarf $x` -I$lib/darwin-thread-multi-2level/CORE"
+			CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
 			COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
 
 			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .o`.$V.o
@@ -60,7 +60,7 @@ for lib in $PERLLIB/*; do
 
 		for x in $FE_PERL; do
 			f=`basename $x .o`.c
-			CFLAGS="`flags_from_dwarf $x` -I$lib/darwin-thread-multi-2level/CORE"
+			CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
 			COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
 
 			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .o`.$V.o

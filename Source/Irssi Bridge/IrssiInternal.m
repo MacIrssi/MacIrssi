@@ -47,7 +47,7 @@ char* macirssi_find_module(char *module)
 			NSString *stem = [[dylib lastPathComponent] substringWithRange:NSMakeRange(3, strlen(module))];
 			if (!strcmp([stem UTF8String], module))
 			{
-				void *handle = dlopen([dylib UTF8String], 0);
+				void *handle = dlopen([dylib UTF8String], RTLD_NOW);
 				if (handle)
 				{
 					// We've managed to load, rejoice!
