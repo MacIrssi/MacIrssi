@@ -3914,7 +3914,7 @@
 			buildSettings = {
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
 				ACTION = $ACTION;
-				CC = "gcc-4.2";
+				CC = "llvm-gcc";
 				CFLAGS = "-I/usr/local/include -g -isysroot $SDKROOT";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
