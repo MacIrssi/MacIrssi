@@ -49,22 +49,28 @@ for lib in $PERLLIB/*; do
 		# someone is going to burn me in a firey hell for this
 		for x in $PERL_CORE; do
 			f=`basename $x .o`.c
-			CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
-			COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
-
 			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .o`.$V.o
-			(cd $COMPDIR ; gcc-4.2 $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f)
+      
+			if [[ $x -nt $OBJ ]]; then
+				CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
+				COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
+
+				(cd $COMPDIR ; gcc-4.2 $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f)
+			fi
 
 			CORE_SRCS="$CORE_SRCS $OBJ"
 		done
 
 		for x in $FE_PERL; do
 			f=`basename $x .o`.c
-			CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
-			COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
-
 			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .o`.$V.o
-			(cd $COMPDIR ; gcc-4.2 $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f)
+
+			if [[ $x -nt $OBJ ]]; then
+				CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
+				COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
+
+				(cd $COMPDIR ; gcc-4.2 $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f)
+			fi
 
 			FE_SRCS="$FE_SRCS $OBJ"
 		done
