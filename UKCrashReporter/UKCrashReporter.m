@@ -48,7 +48,7 @@ void	UKCrashReporterCheckForCrash()
 			NS_VOIDRETURN;
 		}
 		
-		long	sysvMajor = 0, sysvMinor = 0, sysvBugfix = 0;
+		SInt32	sysvMajor = 0, sysvMinor = 0, sysvBugfix = 0;
 		UKGetSystemVersionComponents( &sysvMajor, &sysvMinor, &sysvBugfix );
 		BOOL	isTenFiveOrBetter = sysvMajor >= 10 && sysvMinor >= 5;
 		

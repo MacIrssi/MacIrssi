@@ -1271,7 +1271,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
 }
 
-- (float)splitView:(NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
+- (CGFloat)splitView:(NSSplitView *)sender constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)offset
 {
   if ([sender isEqual:tabViewTextEntrySplitView])
   {

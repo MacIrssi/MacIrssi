@@ -763,8 +763,8 @@ void resolveHSV(float *color1, float *color2);
     
   CGFunctionCallbacks evaluationCallbackInfo = {0 , evaluationFunction, NULL};	//Version, evaluator function, cleanup function
   
-  static const float input_value_range   [2] = { 0, 1 };						//range  for the evaluator input
-  static const float output_value_ranges [8] = { 0, 1, 0, 1, 0, 1, 0, 1 };		//ranges for the evaluator output (4 returned values)
+  static const CGFloat input_value_range   [2] = { 0, 1 };						//range  for the evaluator input
+  static const CGFloat output_value_ranges [8] = { 0, 1, 0, 1, 0, 1, 0, 1 };		//ranges for the evaluator output (4 returned values)
   
   gradientFunction = CGFunctionCreate(&elementList,					//the two transition colors
 									  1, input_value_range  ,		//number of inputs (just fraction of progression)

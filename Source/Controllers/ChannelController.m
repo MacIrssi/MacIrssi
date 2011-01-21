@@ -266,7 +266,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 - (IBAction)nickViewMenuClicked:(id)sender
 {
   NSIndexSet *indexSet = [nickTableView selectedRowIndexes];
-  unsigned int row = [indexSet firstIndex];
+  NSInteger row = [indexSet firstIndex];
   
   NSMutableArray *coalesedNicks = [NSMutableArray array];
   
@@ -1081,7 +1081,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 // "tableColum" - Ignored
 // "rowIndex" - The row that contains the cell
 //-------------------------------------------------------------------
-- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(int)rowIndex {
+- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)rowIndex {
 #if 0
   [nickTableView addToolTipRect:[nickTableView frameOfCellAtColumn:0 row:rowIndex] 
               owner:self userData:(void *)rowIndex];
@@ -1096,7 +1096,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 //-------------------------------------------------------------------
 - (NSString *)view:(NSView *)view stringForToolTip:(NSToolTipTag)tag point:(NSPoint)point userData:(void *)userData
 {
-  NICK_REC *nick = (NICK_REC *)[[nicks objectAtIndex:(int)userData] pointerValue];
+  NICK_REC *nick = (NICK_REC *)[[nicks objectAtIndex:(NSInteger)userData] pointerValue];
     
   if (!nick || !nick->nick) {
     [appController presentUnexpectedEvent:@"Can't create tooltip when nick is NULL!"];
