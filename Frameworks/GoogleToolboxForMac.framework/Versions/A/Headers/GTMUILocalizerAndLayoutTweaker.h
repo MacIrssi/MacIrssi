@@ -17,8 +17,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "GTMDefines.h"
 
 @class GTMUILocalizer;
+
+// In addition to the information here, please see the project's documentation
+// (http://code.google.com/p/google-toolbox-for-mac/wiki/UILocalization) for
+// more information and examples.
 
 // This object will run a GTMUILocalizer on the given object, and then run
 // through the object's view heirarchy triggering any Tweakers to do their work.
@@ -30,14 +35,57 @@
   IBOutlet GTMUILocalizer *localizer_;  // If nil, one will be created
   IBOutlet id localizerOwner_;  // Set if you want the default GTMUILocalizer
 }
+// Localize the the UI and then tweak the layout in the given object.
 - (void)applyLocalizer:(GTMUILocalizer *)localizer
             tweakingUI:(id)uiObject;
 
+// Don't do any localization, just runs the tweaks, useful if you just need
+// layout adjusted based on content from elsewhere.  |uiObject| should be
+// a NSWindow or NSView (or subclass).
+- (void)tweakUI:(id)uiObject;
+
 // This checks to see if |view| implements @selector(sizeToFit) and calls it.
 // It then checks the class of |view| and does some fixup for known issues
-// where sizeToFit doesn't product a view that meets UI guidelines.
+// where sizeToFit doesn't produce a view that meets UI guidelines.
 // Returns the amount the view changed in size.
 + (NSSize)sizeToFitView:(NSView *)view;
+
+// If you call sizeToFit on a NSTextField it will try not to word wrap, so it
+// can get really wide.  This method will keep the width fixed, but figure out
+// how tall the textfield needs to be to fit its text.
+// Returns the amount the field changed height.
++ (CGFloat)sizeToFitFixedWidthTextField:(NSTextField *)textField;
+
+#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+// If you call sizeToFit on a NSTextField it will try not to word wrap, so it
+// can get really wide.  This method will keep the height fixed, but figure out
+// how wide the textfield needs to be to fit its text.
+// Returns the amount the field changed width.
++ (CGFloat)sizeToFitFixedHeightTextField:(NSTextField *)textField;
++ (CGFloat)sizeToFitFixedHeightTextField:(NSTextField *)textField
+                                minWidth:(NSUInteger)minWidth;
+#endif  // MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5
+
+// Insert newlines into the title of the button (radio or checkbox) or all cells
+// in the radio group (NSMatrix) so they will word wrap to the item's current
+// width.  Then +sizeToFitView can be called to then resize to the exact width
+// and height needed.  Note: any existing Opt-Return forced wraps are removed
+// from the existing titles.
++ (void)wrapButtonTitleForWidth:(NSButton *)button;
++ (void)wrapRadioGroupForWidth:(NSMatrix *)radioGroup;
+
+// Resizes |window| or |view| by |delta| without letting the subviews get
+// resized.  Useful when you've done manual tweaking by things like
+// +sizeToFitFixedWidthTextField.  The origin is not adjusted.  For windows,
+// passes |NO| to for -setFrame:display:'s |displayViews| flag on the
+// assumptions the caller is doing all the invals/updates needed.
+// NOTE: For windows, |delta| is assumed to be in content coordinates, and
+// Resolution Independence transforms on the window's frame are done.
++ (void)resizeWindowWithoutAutoResizingSubViews:(NSWindow*)window
+                                          delta:(NSSize)delta;
++ (void)resizeViewWithoutAutoResizingSubViews:(NSView*)view
+                                        delta:(NSSize)delta;
+
 @end
 
 // This is a Tweaker that will call sizeToFit on everything within it (that

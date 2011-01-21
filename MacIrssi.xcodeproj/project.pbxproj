@@ -261,34 +261,8 @@
 		C91F15580F110B6500763699 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F15570F110B6500763699 /* Carbon.framework */; };
 		C91F168B0F12937B00763699 /* ShortcutBridgeController.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F16890F12937B00763699 /* ShortcutBridgeController.h */; };
 		C91F168C0F12937B00763699 /* ShortcutBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F168A0F12937B00763699 /* ShortcutBridgeController.m */; };
-		C91F192C0F1400D500763699 /* ASDefaultAEMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19120F1400D500763699 /* ASDefaultAEMConstants.h */; };
-		C91F192D0F1400D500763699 /* ASDefaultApplicationGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19130F1400D500763699 /* ASDefaultApplicationGlue.h */; };
-		C91F192E0F1400D500763699 /* ASDefaultApplicationGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19140F1400D500763699 /* ASDefaultApplicationGlue.m */; };
-		C91F192F0F1400D500763699 /* ASDefaultCommandGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19150F1400D500763699 /* ASDefaultCommandGlue.h */; };
-		C91F19300F1400D500763699 /* ASDefaultCommandGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19160F1400D500763699 /* ASDefaultCommandGlue.m */; };
-		C91F19310F1400D500763699 /* ASDefaultConstantGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19170F1400D500763699 /* ASDefaultConstantGlue.h */; };
-		C91F19320F1400D500763699 /* ASDefaultConstantGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19180F1400D500763699 /* ASDefaultConstantGlue.m */; };
-		C91F19330F1400D500763699 /* ASDefaultGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19190F1400D500763699 /* ASDefaultGlue.h */; };
-		C91F19340F1400D500763699 /* ASDefaultReferenceGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F191A0F1400D500763699 /* ASDefaultReferenceGlue.h */; };
-		C91F19350F1400D500763699 /* ASDefaultReferenceGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F191B0F1400D500763699 /* ASDefaultReferenceGlue.m */; };
-		C91F19360F1400D500763699 /* ASDefaultReferenceRendererGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F191C0F1400D500763699 /* ASDefaultReferenceRendererGlue.h */; };
-		C91F19370F1400D500763699 /* ASDefaultReferenceRendererGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F191D0F1400D500763699 /* ASDefaultReferenceRendererGlue.m */; };
-		C91F19380F1400D500763699 /* ITAEMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F191E0F1400D500763699 /* ITAEMConstants.h */; };
-		C91F19390F1400D500763699 /* ITApplicationGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F191F0F1400D500763699 /* ITApplicationGlue.h */; };
-		C91F193A0F1400D500763699 /* ITApplicationGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19200F1400D500763699 /* ITApplicationGlue.m */; };
-		C91F193B0F1400D500763699 /* ITCommandGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19210F1400D500763699 /* ITCommandGlue.h */; };
-		C91F193C0F1400D500763699 /* ITCommandGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19220F1400D500763699 /* ITCommandGlue.m */; };
-		C91F193D0F1400D500763699 /* ITConstantGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19230F1400D500763699 /* ITConstantGlue.h */; };
-		C91F193E0F1400D500763699 /* ITConstantGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19240F1400D500763699 /* ITConstantGlue.m */; };
-		C91F193F0F1400D500763699 /* ITGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19250F1400D500763699 /* ITGlue.h */; };
-		C91F19400F1400D500763699 /* ITReferenceGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19260F1400D500763699 /* ITReferenceGlue.h */; };
-		C91F19410F1400D500763699 /* ITReferenceGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19270F1400D500763699 /* ITReferenceGlue.m */; };
-		C91F19420F1400D500763699 /* ITReferenceRendererGlue.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F19280F1400D500763699 /* ITReferenceRendererGlue.h */; };
-		C91F19430F1400D500763699 /* ITReferenceRendererGlue.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F19290F1400D500763699 /* ITReferenceRendererGlue.m */; };
 		C91F194E0F14025D00763699 /* iTunes.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F194C0F14025D00763699 /* iTunes.h */; };
 		C91F194F0F14025D00763699 /* iTunes.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F194D0F14025D00763699 /* iTunes.m */; };
-		C91F19520F1404B900763699 /* Appscript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91F19510F1404B900763699 /* Appscript.framework */; };
-		C91F19800F1405FE00763699 /* Appscript.framework in Copy Libraries */ = {isa = PBXBuildFile; fileRef = C91F19510F1404B900763699 /* Appscript.framework */; };
 		C922B4140E23BCE1000AA7BE /* Beep 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */; };
 		C922B4150E23BCE1000AA7BE /* Beep 2.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */; };
 		C922B4160E23BCE1000AA7BE /* Bell 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */; };
@@ -472,6 +446,8 @@
 		C9BB24BE129A520300EA8AB0 /* SRHacks.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BB24BC129A520300EA8AB0 /* SRHacks.m */; };
 		C9C2829011C747CD00914872 /* package.rb in Resources */ = {isa = PBXBuildFile; fileRef = C9C2828F11C747CD00914872 /* package.rb */; };
 		C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C2834C11C75F6100914872 /* activityNewImportant.png */; };
+		C9C9415712E9F0FE00A4D7A5 /* iTunesBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C9415612E9F0FE00A4D7A5 /* iTunesBridge.h */; };
+		C9C9415D12E9F17700A4D7A5 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBAB110EA0A7D200025466 /* Networks.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAB100EA0A7D200025466 /* Networks.png */; };
@@ -535,7 +511,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C91F19800F1405FE00763699 /* Appscript.framework in Copy Libraries */,
 				C91F13A50F0A748600763699 /* Sparkle.framework in Copy Libraries */,
 				C9FBBC8F1049A5BC00FE4ACD /* GoogleToolboxForMac.framework in Copy Libraries */,
 				C91793920F74447C005241A4 /* libglib-2.0.0.dylib in Copy Libraries */,
@@ -1118,30 +1093,6 @@
 		C91F15570F110B6500763699 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		C91F16890F12937B00763699 /* ShortcutBridgeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutBridgeController.h; sourceTree = "<group>"; };
 		C91F168A0F12937B00763699 /* ShortcutBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutBridgeController.m; sourceTree = "<group>"; };
-		C91F19120F1400D500763699 /* ASDefaultAEMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDefaultAEMConstants.h; sourceTree = "<group>"; };
-		C91F19130F1400D500763699 /* ASDefaultApplicationGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDefaultApplicationGlue.h; sourceTree = "<group>"; };
-		C91F19140F1400D500763699 /* ASDefaultApplicationGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDefaultApplicationGlue.m; sourceTree = "<group>"; };
-		C91F19150F1400D500763699 /* ASDefaultCommandGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDefaultCommandGlue.h; sourceTree = "<group>"; };
-		C91F19160F1400D500763699 /* ASDefaultCommandGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDefaultCommandGlue.m; sourceTree = "<group>"; };
-		C91F19170F1400D500763699 /* ASDefaultConstantGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDefaultConstantGlue.h; sourceTree = "<group>"; };
-		C91F19180F1400D500763699 /* ASDefaultConstantGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDefaultConstantGlue.m; sourceTree = "<group>"; };
-		C91F19190F1400D500763699 /* ASDefaultGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDefaultGlue.h; sourceTree = "<group>"; };
-		C91F191A0F1400D500763699 /* ASDefaultReferenceGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDefaultReferenceGlue.h; sourceTree = "<group>"; };
-		C91F191B0F1400D500763699 /* ASDefaultReferenceGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDefaultReferenceGlue.m; sourceTree = "<group>"; };
-		C91F191C0F1400D500763699 /* ASDefaultReferenceRendererGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASDefaultReferenceRendererGlue.h; sourceTree = "<group>"; };
-		C91F191D0F1400D500763699 /* ASDefaultReferenceRendererGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASDefaultReferenceRendererGlue.m; sourceTree = "<group>"; };
-		C91F191E0F1400D500763699 /* ITAEMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITAEMConstants.h; sourceTree = "<group>"; };
-		C91F191F0F1400D500763699 /* ITApplicationGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITApplicationGlue.h; sourceTree = "<group>"; };
-		C91F19200F1400D500763699 /* ITApplicationGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITApplicationGlue.m; sourceTree = "<group>"; };
-		C91F19210F1400D500763699 /* ITCommandGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITCommandGlue.h; sourceTree = "<group>"; };
-		C91F19220F1400D500763699 /* ITCommandGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITCommandGlue.m; sourceTree = "<group>"; };
-		C91F19230F1400D500763699 /* ITConstantGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITConstantGlue.h; sourceTree = "<group>"; };
-		C91F19240F1400D500763699 /* ITConstantGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITConstantGlue.m; sourceTree = "<group>"; };
-		C91F19250F1400D500763699 /* ITGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITGlue.h; sourceTree = "<group>"; };
-		C91F19260F1400D500763699 /* ITReferenceGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITReferenceGlue.h; sourceTree = "<group>"; };
-		C91F19270F1400D500763699 /* ITReferenceGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITReferenceGlue.m; sourceTree = "<group>"; };
-		C91F19280F1400D500763699 /* ITReferenceRendererGlue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITReferenceRendererGlue.h; sourceTree = "<group>"; };
-		C91F19290F1400D500763699 /* ITReferenceRendererGlue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITReferenceRendererGlue.m; sourceTree = "<group>"; };
 		C91F194C0F14025D00763699 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		C91F194D0F14025D00763699 /* iTunes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunes.m; sourceTree = "<group>"; };
 		C91F19510F1404B900763699 /* Appscript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Appscript.framework; sourceTree = "<group>"; };
@@ -1714,6 +1665,8 @@
 		C9BB24BC129A520300EA8AB0 /* SRHacks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRHacks.m; sourceTree = "<group>"; };
 		C9C2828F11C747CD00914872 /* package.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = package.rb; sourceTree = "<group>"; };
 		C9C2834C11C75F6100914872 /* activityNewImportant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activityNewImportant.png; sourceTree = "<group>"; };
+		C9C9415612E9F0FE00A4D7A5 /* iTunesBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesBridge.h; sourceTree = "<group>"; };
+		C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBAB100EA0A7D200025466 /* Networks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Networks.png; sourceTree = "<group>"; };
@@ -1759,8 +1712,8 @@
 				C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */,
 				C91F139E0F0A743800763699 /* Sparkle.framework in Frameworks */,
 				C91F15580F110B6500763699 /* Carbon.framework in Frameworks */,
-				C91F19520F1404B900763699 /* Appscript.framework in Frameworks */,
 				C9FBBC3F1049A5A700FE4ACD /* GoogleToolboxForMac.framework in Frameworks */,
+				C9C9415D12E9F17700A4D7A5 /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1828,6 +1781,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				C913412A118AB3E50001F09D /* irssi */,
 				B32A9E5F05F0B14800DB2595 /* COPYING */,
+				C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */,
 			);
 			name = MacIrssi;
 			sourceTree = "<group>";
@@ -2305,42 +2259,11 @@
 		C91F190E0F1400B500763699 /* iTunes */ = {
 			isa = PBXGroup;
 			children = (
-				C91F19110F1400D500763699 /* Glue */,
+				C9C9415612E9F0FE00A4D7A5 /* iTunesBridge.h */,
 				C91F194C0F14025D00763699 /* iTunes.h */,
 				C91F194D0F14025D00763699 /* iTunes.m */,
 			);
 			path = iTunes;
-			sourceTree = "<group>";
-		};
-		C91F19110F1400D500763699 /* Glue */ = {
-			isa = PBXGroup;
-			children = (
-				C91F19120F1400D500763699 /* ASDefaultAEMConstants.h */,
-				C91F19130F1400D500763699 /* ASDefaultApplicationGlue.h */,
-				C91F19140F1400D500763699 /* ASDefaultApplicationGlue.m */,
-				C91F19150F1400D500763699 /* ASDefaultCommandGlue.h */,
-				C91F19160F1400D500763699 /* ASDefaultCommandGlue.m */,
-				C91F19170F1400D500763699 /* ASDefaultConstantGlue.h */,
-				C91F19180F1400D500763699 /* ASDefaultConstantGlue.m */,
-				C91F19190F1400D500763699 /* ASDefaultGlue.h */,
-				C91F191A0F1400D500763699 /* ASDefaultReferenceGlue.h */,
-				C91F191B0F1400D500763699 /* ASDefaultReferenceGlue.m */,
-				C91F191C0F1400D500763699 /* ASDefaultReferenceRendererGlue.h */,
-				C91F191D0F1400D500763699 /* ASDefaultReferenceRendererGlue.m */,
-				C91F191E0F1400D500763699 /* ITAEMConstants.h */,
-				C91F191F0F1400D500763699 /* ITApplicationGlue.h */,
-				C91F19200F1400D500763699 /* ITApplicationGlue.m */,
-				C91F19210F1400D500763699 /* ITCommandGlue.h */,
-				C91F19220F1400D500763699 /* ITCommandGlue.m */,
-				C91F19230F1400D500763699 /* ITConstantGlue.h */,
-				C91F19240F1400D500763699 /* ITConstantGlue.m */,
-				C91F19250F1400D500763699 /* ITGlue.h */,
-				C91F19260F1400D500763699 /* ITReferenceGlue.h */,
-				C91F19270F1400D500763699 /* ITReferenceGlue.m */,
-				C91F19280F1400D500763699 /* ITReferenceRendererGlue.h */,
-				C91F19290F1400D500763699 /* ITReferenceRendererGlue.m */,
-			);
-			path = Glue;
 			sourceTree = "<group>";
 		};
 		C922B3D90E23BAE6000AA7BE /* Sounds */ = {
@@ -3162,20 +3085,6 @@
 				C91F152A0F110A8600763699 /* SRRecorderControl.h in Headers */,
 				C91F152C0F110A8600763699 /* SRValidator.h in Headers */,
 				C91F168B0F12937B00763699 /* ShortcutBridgeController.h in Headers */,
-				C91F192C0F1400D500763699 /* ASDefaultAEMConstants.h in Headers */,
-				C91F192D0F1400D500763699 /* ASDefaultApplicationGlue.h in Headers */,
-				C91F192F0F1400D500763699 /* ASDefaultCommandGlue.h in Headers */,
-				C91F19310F1400D500763699 /* ASDefaultConstantGlue.h in Headers */,
-				C91F19330F1400D500763699 /* ASDefaultGlue.h in Headers */,
-				C91F19340F1400D500763699 /* ASDefaultReferenceGlue.h in Headers */,
-				C91F19360F1400D500763699 /* ASDefaultReferenceRendererGlue.h in Headers */,
-				C91F19380F1400D500763699 /* ITAEMConstants.h in Headers */,
-				C91F19390F1400D500763699 /* ITApplicationGlue.h in Headers */,
-				C91F193B0F1400D500763699 /* ITCommandGlue.h in Headers */,
-				C91F193D0F1400D500763699 /* ITConstantGlue.h in Headers */,
-				C91F193F0F1400D500763699 /* ITGlue.h in Headers */,
-				C91F19400F1400D500763699 /* ITReferenceGlue.h in Headers */,
-				C91F19420F1400D500763699 /* ITReferenceRendererGlue.h in Headers */,
 				C91F194E0F14025D00763699 /* iTunes.h in Headers */,
 				C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */,
 				C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */,
@@ -3193,6 +3102,7 @@
 				C90301BF129DEA5000B30679 /* PreferenceVersionHelper.h in Headers */,
 				C90C9E8212A06196009F43CE /* MISearchBar.h in Headers */,
 				C90CA25B12A0CDD9009F43CE /* MIChannelSearchController.h in Headers */,
+				C9C9415712E9F0FE00A4D7A5 /* iTunesBridge.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3443,16 +3353,6 @@
 				C91F152B0F110A8600763699 /* SRRecorderControl.m in Sources */,
 				C91F152D0F110A8600763699 /* SRValidator.m in Sources */,
 				C91F168C0F12937B00763699 /* ShortcutBridgeController.m in Sources */,
-				C91F192E0F1400D500763699 /* ASDefaultApplicationGlue.m in Sources */,
-				C91F19300F1400D500763699 /* ASDefaultCommandGlue.m in Sources */,
-				C91F19320F1400D500763699 /* ASDefaultConstantGlue.m in Sources */,
-				C91F19350F1400D500763699 /* ASDefaultReferenceGlue.m in Sources */,
-				C91F19370F1400D500763699 /* ASDefaultReferenceRendererGlue.m in Sources */,
-				C91F193A0F1400D500763699 /* ITApplicationGlue.m in Sources */,
-				C91F193C0F1400D500763699 /* ITCommandGlue.m in Sources */,
-				C91F193E0F1400D500763699 /* ITConstantGlue.m in Sources */,
-				C91F19410F1400D500763699 /* ITReferenceGlue.m in Sources */,
-				C91F19430F1400D500763699 /* ITReferenceRendererGlue.m in Sources */,
 				C91F194F0F14025D00763699 /* iTunes.m in Sources */,
 				C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */,
 				C9B90D470F8CEF0500A5D0C4 /* NSString+Additions.m in Sources */,
@@ -3855,7 +3755,9 @@
 					i386,
 					ppc,
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				VALID_ARCHS = "i386 x86_64 ppc";
 			};
 			name = Development;
 		};
@@ -3868,6 +3770,7 @@
 					ppc,
 				);
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				VALID_ARCHS = "i386 x86_64 ppc";
 			};
 			name = Deployment;
 		};
@@ -3880,6 +3783,7 @@
 					ppc,
 				);
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				VALID_ARCHS = "i386 x86_64 ppc";
 			};
 			name = Default;
 		};

@@ -36,8 +36,11 @@
 //  - stringValue (for labels)
 //  - tooltips
 //  - accessibility help
-//  - accessibility description
 //  - menus
+//
+// Due to technical limitations, accessibility description cannot be localized.
+// See http://lists.apple.com/archives/Accessibility-dev/2009/Dec/msg00004.html
+// and http://openradar.appspot.com/7496255 for more information.
 //
 // As an example if I wanted to localize a button with the word "Print" on
 // it, I would put it in a window controlled by a NSWindowController that was
@@ -61,6 +64,12 @@
 // will localize properly. This keeps the differences between the nibs down
 // to the bare essentials.
 //
+// NOTE: NSToolbar localization support is limited to only working on the
+// default items in the toolbar. We cannot localize items that are on of the
+// customization palette but not in the default items because there is not an
+// API for NSToolbar to get all possible items. You are responsible for
+// localizing all non-default toolbar items by hand.
+//
 @interface GTMUILocalizer : NSObject {
  @private
   IBOutlet id owner_;
@@ -69,17 +78,17 @@
   NSBundle *bundle_;
 }
 - (id)initWithBundle:(NSBundle *)bundle;
+
+// Localize |object|. If |recursive| is true, it will attempt
+// to localize objects owned/referenced by |object|.
 - (void)localizeObject:(id)object recursively:(BOOL)recursive;
-- (void)localizeWindow:(NSWindow *)window recursively:(BOOL)recursive;
-- (void)localizeView:(NSView *)view recursively:(BOOL)recursive;
-- (void)localizeMenu:(NSMenu *)menu recursively:(BOOL)recursive;
-- (void)localizeCell:(NSCell *)cell recursively:(BOOL)recursive;
 
 // A method for subclasses to override in case you have a different
 // way to go about getting localized strings.
 // If |string| does not start with ^ you should return nil.
 // If |string| is nil, you should return nil
 - (NSString *)localizedStringForString:(NSString *)string;
+
 // Allows subclasses to override how the bundle is picked up
 + (NSBundle *)bundleForOwner:(id)owner;
 @end

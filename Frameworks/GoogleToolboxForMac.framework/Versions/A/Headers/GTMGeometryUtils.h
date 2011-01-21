@@ -9,9 +9,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License"); you may not
 //  use this file except in compliance with the License.  You may obtain a copy
 //  of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 //  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
@@ -21,11 +21,14 @@
 
 #import <Foundation/Foundation.h>
 #import "GTMDefines.h"
+#if GTM_IPHONE_SDK
+#import <CoreGraphics/CoreGraphics.h>
+#endif //  GTM_IPHONE_SDK
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-  
+
 enum {
   GTMScaleProportionally = 0,   // Fit proportionally
   GTMScaleToFit,                // Forced fit (distort if necessary)
@@ -53,7 +56,7 @@ typedef NSUInteger GTMRectAlignment;
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the middle of min X side of rect
 GTM_INLINE CGPoint GTMCGMidMinX(CGRect rect) {
@@ -64,7 +67,7 @@ GTM_INLINE CGPoint GTMCGMidMinX(CGRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the middle of max X side of rect
 GTM_INLINE CGPoint GTMCGMidMaxX(CGRect rect) {
@@ -75,7 +78,7 @@ GTM_INLINE CGPoint GTMCGMidMaxX(CGRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the middle of max Y side of rect
 GTM_INLINE CGPoint GTMCGMidMaxY(CGRect rect) {
@@ -86,7 +89,7 @@ GTM_INLINE CGPoint GTMCGMidMaxY(CGRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the middle of min Y side of rect
 GTM_INLINE CGPoint GTMCGMidMinY(CGRect rect) {
@@ -97,7 +100,7 @@ GTM_INLINE CGPoint GTMCGMidMinY(CGRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the center of rect
 GTM_INLINE CGPoint GTMCGCenter(CGRect rect) {
@@ -111,7 +114,7 @@ GTM_INLINE CGPoint GTMCGCenter(CGRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    size of rectangle
 GTM_INLINE CGSize GTMCGRectSize(CGRect rect) {
@@ -122,7 +125,7 @@ GTM_INLINE CGSize GTMCGRectSize(CGRect rect) {
 //
 //  Args:
 //    size - size
-//  
+//
 //  Returns:
 //    rectangle of size (origin 0,0)
 GTM_INLINE CGRect GTMCGRectOfSize(CGSize size) {
@@ -134,7 +137,7 @@ GTM_INLINE CGRect GTMCGRectOfSize(CGSize size) {
 
 ///  Scales an CGRect
 //
-//  Args: 
+//  Args:
 //    inRect: Rect to scale
 //    xScale: fraction to scale (1.0 is 100%)
 //    yScale: fraction to scale (1.0 is 100%)
@@ -142,7 +145,7 @@ GTM_INLINE CGRect GTMCGRectOfSize(CGSize size) {
 //  Returns:
 //    Converted Rect
 GTM_INLINE CGRect GTMCGRectScale(CGRect inRect, CGFloat xScale, CGFloat yScale) {
-  return CGRectMake(inRect.origin.x, inRect.origin.y, 
+  return CGRectMake(inRect.origin.x, inRect.origin.y,
                     inRect.size.width * xScale, inRect.size.height * yScale);
 }
 
@@ -153,7 +156,7 @@ GTM_INLINE CGRect GTMCGRectScale(CGRect inRect, CGFloat xScale, CGFloat yScale) 
 //    alignee - rect to be aligned
 //    aligner - rect to be aligned from
 //    alignment - way to align the rectangles
-CGRect GTMCGAlignRectangles(CGRect alignee, CGRect aligner, 
+CGRect GTMCGAlignRectangles(CGRect alignee, CGRect aligner,
                             GTMRectAlignment alignment);
 /// Scale rectangle
 //
@@ -161,7 +164,7 @@ CGRect GTMCGAlignRectangles(CGRect alignee, CGRect aligner,
 //    scalee - rect to be scaled
 //    size - size to scale to
 //    scaling - way to scale the rectangle
-CGRect GTMCGScaleRectangleToSize(CGRect scalee, CGSize size, 
+CGRect GTMCGScaleRectangleToSize(CGRect scalee, CGSize size,
                                  GTMScaling scaling);
 
 #pragma mark -
@@ -172,13 +175,13 @@ CGRect GTMCGScaleRectangleToSize(CGRect scalee, CGSize size,
 //  Args:
 //    pt1 first point
 //    pt2 second point
-//  
+//
 //  Returns:
 //    Distance
 GTM_INLINE CGFloat GTMCGDistanceBetweenPoints(CGPoint pt1, CGPoint pt2) {
   CGFloat dX = pt1.x - pt2.x;
   CGFloat dY = pt1.y - pt2.y;
-#if CGFLOAT_IS_DOUBLE  
+#if CGFLOAT_IS_DOUBLE
   return sqrt(dX * dX + dY * dY);
 #else
   return sqrtf(dX * dX + dY * dY);
@@ -189,7 +192,7 @@ GTM_INLINE CGFloat GTMCGDistanceBetweenPoints(CGPoint pt1, CGPoint pt2) {
 // iPhone does not have NSTypes defined, only CGTypes. So no NSRect, NSPoint etc.
 
 #pragma mark -
-// All of the conversion routines below are basically copied from the 
+// All of the conversion routines below are basically copied from the
 // NSGeometry header in the 10.5 sdk.
 
 #pragma mark NS <-> CG Point Conversion
@@ -199,12 +202,12 @@ GTM_INLINE CGFloat GTMCGDistanceBetweenPoints(CGPoint pt1, CGPoint pt2) {
 ///  CGPoints are relative to 0,0 in lower left;
 ///  NSPoints are relative to 0,0 in lower left
 //
-//  Args: 
+//  Args:
 //    inPoint: CGPoint to convert
 //
 //  Returns:
 //    Converted NSPoint
-GTM_INLINE NSPoint GTMCGPointToNSPoint(CGPoint inPoint) { 
+GTM_INLINE NSPoint GTMCGPointToNSPoint(CGPoint inPoint) {
   _GTMCompileAssert(sizeof(NSPoint) == sizeof(CGPoint), NSPoint_and_CGPoint_must_be_the_same_size);
   union convertUnion {NSPoint ns; CGPoint cg;};
   return ((union convertUnion *)&inPoint)->ns;
@@ -215,12 +218,12 @@ GTM_INLINE NSPoint GTMCGPointToNSPoint(CGPoint inPoint) {
 ///  CGPoints are relative to 0,0 in lower left;
 ///  NSPoints are relative to 0,0 in lower left
 //
-//  Args: 
+//  Args:
 //    inPoint: NSPoint to convert
 //
 //  Returns:
 //    Converted CGPoint
-GTM_INLINE CGPoint GTMNSPointToCGPoint(NSPoint inPoint) { 
+GTM_INLINE CGPoint GTMNSPointToCGPoint(NSPoint inPoint) {
   _GTMCompileAssert(sizeof(NSPoint) == sizeof(CGPoint), NSPoint_and_CGPoint_must_be_the_same_size);
   union convertUnion {NSPoint ns; CGPoint cg;};
   return ((union convertUnion *)&inPoint)->cg;
@@ -234,7 +237,7 @@ GTM_INLINE CGPoint GTMNSPointToCGPoint(NSPoint inPoint) {
 ///  NSRect are relative to 0,0 in lower left;
 ///  CGRect are relative to 0,0 in lower left
 //
-//  Args: 
+//  Args:
 //    inRect: CGRect to convert
 //
 //  Returns:
@@ -250,7 +253,7 @@ GTM_INLINE NSRect GTMCGRectToNSRect(CGRect inRect) {
 ///  NSRect are relative to 0,0 in lower left;
 ///  CGRect are relative to 0,0 in lower left
 //
-//  Args: 
+//  Args:
 //    inRect: NSRect to convert
 //
 //  Returns:
@@ -267,7 +270,7 @@ GTM_INLINE CGRect GTMNSRectToCGRect(NSRect inRect) {
 
 ///  Convert from a CGSize to an NSSize.
 //
-//  Args: 
+//  Args:
 //    inSize: CGSize to convert
 //
 //  Returns:
@@ -280,7 +283,7 @@ GTM_INLINE NSSize GTMCGSizeToNSSize(CGSize inSize) {
 
 ///  Convert from a NSSize to a CGSize.
 //
-//  Args: 
+//  Args:
 //    inSize: NSSize to convert
 //
 //  Returns:
@@ -298,7 +301,7 @@ GTM_INLINE CGSize GTMNSSizeToCGSize(NSSize inSize) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the middle of min X side of rect
 GTM_INLINE NSPoint GTMNSMidMinX(NSRect rect) {
@@ -309,7 +312,7 @@ GTM_INLINE NSPoint GTMNSMidMinX(NSRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the middle of max X side of rect
 GTM_INLINE NSPoint GTMNSMidMaxX(NSRect rect) {
@@ -320,7 +323,7 @@ GTM_INLINE NSPoint GTMNSMidMaxX(NSRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the middle of max Y side of rect
 GTM_INLINE NSPoint GTMNSMidMaxY(NSRect rect) {
@@ -331,7 +334,7 @@ GTM_INLINE NSPoint GTMNSMidMaxY(NSRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the middle of min Y side of rect
 GTM_INLINE NSPoint GTMNSMidMinY(NSRect rect) {
@@ -342,7 +345,7 @@ GTM_INLINE NSPoint GTMNSMidMinY(NSRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    point located in the center of rect
 GTM_INLINE NSPoint GTMNSCenter(NSRect rect) {
@@ -356,7 +359,7 @@ GTM_INLINE NSPoint GTMNSCenter(NSRect rect) {
 //
 //  Args:
 //    rect - rectangle
-//  
+//
 //  Returns:
 //    size of rectangle
 GTM_INLINE NSSize GTMNSRectSize(NSRect rect) {
@@ -367,7 +370,7 @@ GTM_INLINE NSSize GTMNSRectSize(NSRect rect) {
 //
 //  Args:
 //    size - size
-//  
+//
 //  Returns:
 //    rectangle of size (origin 0,0)
 GTM_INLINE NSRect GTMNSRectOfSize(NSSize size) {
@@ -379,7 +382,7 @@ GTM_INLINE NSRect GTMNSRectOfSize(NSSize size) {
 
 ///  Scales an NSRect
 //
-//  Args: 
+//  Args:
 //    inRect: Rect to scale
 //    xScale: fraction to scale (1.0 is 100%)
 //    yScale: fraction to scale (1.0 is 100%)
@@ -387,7 +390,7 @@ GTM_INLINE NSRect GTMNSRectOfSize(NSSize size) {
 //  Returns:
 //    Converted Rect
 GTM_INLINE NSRect GTMNSRectScale(NSRect inRect, CGFloat xScale, CGFloat yScale) {
-  return NSMakeRect(inRect.origin.x, inRect.origin.y, 
+  return NSMakeRect(inRect.origin.x, inRect.origin.y,
                     inRect.size.width * xScale, inRect.size.height * yScale);
 }
 
@@ -396,12 +399,12 @@ GTM_INLINE NSRect GTMNSRectScale(NSRect inRect, CGFloat xScale, CGFloat yScale) 
 //  Args:
 //    alignee - rect to be aligned
 //    aligner - rect to be aligned from
-GTM_INLINE NSRect GTMNSAlignRectangles(NSRect alignee, NSRect aligner, 
+GTM_INLINE NSRect GTMNSAlignRectangles(NSRect alignee, NSRect aligner,
                                        GTMRectAlignment alignment) {
   return GTMCGRectToNSRect(GTMCGAlignRectangles(GTMNSRectToCGRect(alignee),
                                               GTMNSRectToCGRect(aligner),
                                               alignment));
-}  
+}
 
 /// Align a rectangle to another
 //
@@ -410,27 +413,27 @@ GTM_INLINE NSRect GTMNSAlignRectangles(NSRect alignee, NSRect aligner,
 //    scaler - rect to scale to
 //    scaling - way to scale the rectangle
 //    alignment - way to align the scaled rectangle
-GTM_INLINE NSRect GTMNSScaleRectToRect(NSRect scalee, 
-                                       NSRect scaler, 
+GTM_INLINE NSRect GTMNSScaleRectToRect(NSRect scalee,
+                                       NSRect scaler,
                                        GTMScaling scaling,
                                        GTMRectAlignment alignment) {
-  
+
   return GTMCGRectToNSRect(
            GTMCGAlignRectangles(
              GTMCGScaleRectangleToSize(GTMNSRectToCGRect(scalee),
                                        GTMNSSizeToCGSize(scaler.size),
-                                       scaling), 
+                                       scaling),
              GTMNSRectToCGRect(scaler),
              alignment));
-}  
-                           
+}
+
 /// Scale rectangle
 //
 //  Args:
 //    scalee - rect to be scaled
 //    size - size to scale to
 //    scaling - way to scale the rectangle
-GTM_INLINE NSRect GTMNSScaleRectangleToSize(NSRect scalee, NSSize size, 
+GTM_INLINE NSRect GTMNSScaleRectangleToSize(NSRect scalee, NSSize size,
                                             GTMScaling scaling) {
   return GTMCGRectToNSRect(GTMCGScaleRectangleToSize(GTMNSRectToCGRect(scalee),
                                                      GTMNSSizeToCGSize(size),
@@ -445,16 +448,16 @@ GTM_INLINE NSRect GTMNSScaleRectangleToSize(NSRect scalee, NSSize size,
 //  Args:
 //    pt1 first point
 //    pt2 second point
-//  
+//
 //  Returns:
 //    Distance
 GTM_INLINE CGFloat GTMNSDistanceBetweenPoints(NSPoint pt1, NSPoint pt2) {
-  return GTMCGDistanceBetweenPoints(GTMNSPointToCGPoint(pt1), 
+  return GTMCGDistanceBetweenPoints(GTMNSPointToCGPoint(pt1),
                                     GTMNSPointToCGPoint(pt2));
 }
 
 #endif //  !GTM_IPHONE_SDK
-  
+
 #ifdef __cplusplus
 }
 #endif

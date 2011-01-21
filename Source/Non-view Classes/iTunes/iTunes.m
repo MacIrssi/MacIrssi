@@ -25,40 +25,40 @@
 {
   if (self = [super init])
   {
-    iTunesGlue = [[ITApplication alloc] initWithBundleID:@"com.apple.iTunes"];
+    iTunesBridge = [[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"] retain];
   }
   return self;
 }
 
 - (void)dealloc
 {
-  [iTunesGlue release];
+  [iTunesBridge release];
   [super dealloc];
 }
 
 - (BOOL)isRunning
 {
-  return [iTunesGlue isRunning];
+  return [iTunesBridge isRunning];
 }
 
 - (BOOL)isPlaying
 {
-  return [[[[iTunesGlue playerState] get] send] isEqualTo:[ITConstant playing]];
+  return [iTunesBridge playerState] == iTunesEPlSPlaying;
 }
 
 - (NSString*)currentTitle
 {
-  return [[[[iTunesGlue currentTrack] name] get] send];
+  return [[iTunesBridge currentTrack] name];
 }
 
 - (NSString*)currentArtist
 {
-  return [[[[iTunesGlue currentTrack] artist] get] send];
+  return [[iTunesBridge currentTrack] artist];
 }
 
 - (NSString*)currentAlbum
 {
-  return [[[[iTunesGlue currentTrack] album] get] send];
+  return [[iTunesBridge currentTrack] album];
 }
 
 @end

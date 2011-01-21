@@ -17,10 +17,11 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "ITGlue.h"
+#import <ScriptingBridge/ScriptingBridge.h>
+#import "iTunesBridge.h"
 
 @interface iTunes : NSObject {
-  ITApplication *iTunesGlue;
+  iTunesApplication *iTunesBridge;
 }
 
 - (id)init;
