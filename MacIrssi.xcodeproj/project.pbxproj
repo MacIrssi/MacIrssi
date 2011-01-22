@@ -3479,6 +3479,7 @@
 				OTHER_REZFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = irssi;
+				RC_DEBUG_OPTIONS = 1;
 				SECTORDER_FLAGS = "\U0001";
 				WARNING_CFLAGS = (
 					"-Wmost",

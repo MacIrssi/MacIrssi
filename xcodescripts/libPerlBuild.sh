@@ -9,7 +9,7 @@ CC="llvm-gcc"
 
 # obtained by running perl -MExtUtils::Embed -e ldopts
 GLIB_LDFLAGS="-L$SRCROOT/Frameworks/MILibs/build/Release/lib -lgmodule-2.0 -lglib-2.0 -lintl -liconv -lssl -lcrypto"
-LDFLAGS="-Wl,-undefined,dynamic_lookup -fstack-protector -lperl -dl -lm -lutil -lc"
+LDFLAGS="-isysroot $SDKROOT -Wl,-undefined,dynamic_lookup -fstack-protector -lperl -dl -lm -lutil -lc"
 RC_ARCHS=""
 for x in $ARCHS; do
   RC_ARCHS="$RC_ARCHS -arch $x"
@@ -57,7 +57,7 @@ for lib in $PERLLIB/*; do
 				CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
 				COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
 
-				(cd $COMPDIR ; $CC $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f)
+				(cd $COMPDIR ; $CC -isysroot $SDKROOT $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f) || exit 1
 			fi
 
 			CORE_SRCS="$CORE_SRCS $OBJ"
@@ -71,13 +71,13 @@ for lib in $PERLLIB/*; do
 				CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
 				COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
 
-				(cd $COMPDIR ; $CC $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f)
+				(cd $COMPDIR ; $CC -isysroot $SDKROOT $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f) || exit 1
 			fi
 
 			FE_SRCS="$FE_SRCS $OBJ"
 		done
 
-		$CC -dynamiclib $LDFLAGS $RC_ARCHS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libperl_core.$V.dylib $CORE_SRCS
-		$CC -dynamiclib $LDFLAGS $RC_ARCHS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libfe_perl.$V.dylib $FE_SRCS
+		$CC -dynamiclib $LDFLAGS $RC_ARCHS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libperl_core.$V.dylib $CORE_SRCS || exit 1
+		$CC -dynamiclib $LDFLAGS $RC_ARCHS -L$lib/darwin-thread-multi-2level/CORE -o $DSTROOT/libfe_perl.$V.dylib $FE_SRCS || exit 1
 	fi
 done
