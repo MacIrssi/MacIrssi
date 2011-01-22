@@ -1095,7 +1095,6 @@
 		C91F168A0F12937B00763699 /* ShortcutBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutBridgeController.m; sourceTree = "<group>"; };
 		C91F194C0F14025D00763699 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		C91F194D0F14025D00763699 /* iTunes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunes.m; sourceTree = "<group>"; };
-		C91F19510F1404B900763699 /* Appscript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Appscript.framework; sourceTree = "<group>"; };
 		C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 1.aiff"; sourceTree = "<group>"; };
 		C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 2.aiff"; sourceTree = "<group>"; };
 		C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Bell 1.aiff"; sourceTree = "<group>"; };
@@ -1741,7 +1740,7 @@
 				C229C73F0C1AA82900D7CCD0 /* libcrypto.dylib */,
 				C229C73C0C1AA7B900D7CCD0 /* libssl.dylib */,
 				C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */,
-				C91F19510F1404B900763699 /* Appscript.framework */,
+				C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */,
 				C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */,
 				C91F14690F10EE9900763699 /* ExceptionHandling.framework */,
 				C91F15570F110B6500763699 /* Carbon.framework */,
@@ -1781,7 +1780,6 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				C913412A118AB3E50001F09D /* irssi */,
 				B32A9E5F05F0B14800DB2595 /* COPYING */,
-				C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */,
 			);
 			name = MacIrssi;
 			sourceTree = "<group>";
