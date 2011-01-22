@@ -3835,7 +3835,7 @@
 			buildSettings = {
 				ACLOCAL_FLAGS = "\"-I /usr/local/share/aclocal\"";
 				ACTION = $ACTION;
-				CC = "gcc-4.2";
+				CC = "llvm-gcc";
 				CFLAGS = "-I/usr/local/include -isysroot $SDKROOT";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
