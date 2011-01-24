@@ -96,7 +96,7 @@ unless $? == 0
 end
 
 puts "Removing stale DMG files in build products."
-Dir["#{ENV["BUILT_PRODUCTS_DIR"]}/*.dmg"].each do |stale|
+Dir["#{ENV["BUILT_PRODUCTS_DIR"]}/*.dmg", "#{ENV["BUILT_PRODUCTS_DIR"]}/*.zip"].each do |stale|
   puts "\t#{stale}"
   unless FileUtils.rm(stale).length > 0
     puts "warning: Could not remove #{stale}"
@@ -107,5 +107,13 @@ puts "Converting sparse image template into DMG.\n\t#{sparseDmgName} -> #{ENV["B
 res = `hdiutil convert #{sparseDmgName} -format UDBZ -o "#{ENV["BUILT_PRODUCTS_DIR"]}/#{dmgName}.dmg"`
 unless $? == 0
   puts "error: Problem creating final DMG archive. #{res}"
+  exit 1
+end
+
+# take all the dSYMs and zip them up into a nice package
+puts "Zipping dSYMs."
+res = `cd "#{ENV["BUILT_PRODUCTS_DIR"]}" && zip -r "#{ENV["BUILT_PRODUCTS_DIR"]}/#{dmgName}-dSYMs.zip" *.dSYM`
+unless $? == 0
+  puts "error: Problem zipping dSYMs. #{res}"
   exit 1
 end

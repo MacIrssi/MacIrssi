@@ -13,7 +13,7 @@
 			buildPhases = (
 			);
 			dependencies = (
-				C917932A0F743FD3005241A4 /* PBXTargetDependency */,
+				C960CD7B12ED742200DBB3E9 /* PBXTargetDependency */,
 			);
 			name = "Build MILibs";
 			productName = "Build MILibs";
@@ -411,6 +411,10 @@
 		C947E1DC0E1E871F0001380E /* EventController.h in Headers */ = {isa = PBXBuildFile; fileRef = C947E1DA0E1E871F0001380E /* EventController.h */; };
 		C947E1DD0E1E871F0001380E /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947E1DB0E1E871F0001380E /* EventController.m */; };
 		C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = C9550D140E29A97400658372 /* MacIrssi-Alert.png */; };
+		C960CD9C12ED78DE00DBB3E9 /* libglib-2.0.0.dylib.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = C960CD9A12ED78DE00DBB3E9 /* libglib-2.0.0.dylib.dSYM */; };
+		C960CD9D12ED78DE00DBB3E9 /* libgmodule-2.0.0.dylib.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = C960CD9B12ED78DE00DBB3E9 /* libgmodule-2.0.0.dylib.dSYM */; };
+		C960CD9F12ED78F900DBB3E9 /* libglib-2.0.0.dylib.dSYM in Copy dSYMs */ = {isa = PBXBuildFile; fileRef = C960CD9A12ED78DE00DBB3E9 /* libglib-2.0.0.dylib.dSYM */; };
+		C960CDA012ED78F900DBB3E9 /* libgmodule-2.0.0.dylib.dSYM in Copy dSYMs */ = {isa = PBXBuildFile; fileRef = C960CD9B12ED78DE00DBB3E9 /* libgmodule-2.0.0.dylib.dSYM */; };
 		C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */; };
 		C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */; };
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
@@ -481,12 +485,12 @@
 			remoteGlobalIDString = C98F778D0E36500900CF2AAF;
 			remoteInfo = "Irssi Configure";
 		};
-		C91793290F743FD3005241A4 /* PBXContainerItemProxy */ = {
+		C960CD7A12ED742200DBB3E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C91792C90F743801005241A4 /* MILibs.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = A81581480F73F18000862AEC;
-			remoteInfo = "\"Install\" glib";
+			remoteGlobalIDString = C960CD5512ED67BF00DBB3E9 /* Copy important dSYMs */;
+			remoteInfo = "Copy important dSYMs";
 		};
 		C98F77D00E3651DC00CF2AAF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -843,6 +847,18 @@
 				C922B4240E23BCE1000AA7BE /* Whip.aiff in Copy Alert Sounds */,
 			);
 			name = "Copy Alert Sounds";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C960CDA412ED790100DBB3E9 /* Copy dSYMs */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				C960CD9F12ED78F900DBB3E9 /* libglib-2.0.0.dylib.dSYM in Copy dSYMs */,
+				C960CDA012ED78F900DBB3E9 /* libgmodule-2.0.0.dylib.dSYM in Copy dSYMs */,
+			);
+			name = "Copy dSYMs";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1629,6 +1645,8 @@
 		C947E1DA0E1E871F0001380E /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventController.h; path = Controllers/EventController.h; sourceTree = "<group>"; };
 		C947E1DB0E1E871F0001380E /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventController.m; path = Controllers/EventController.m; sourceTree = "<group>"; };
 		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MacIrssi-Alert.png"; sourceTree = "<group>"; };
+		C960CD9A12ED78DE00DBB3E9 /* libglib-2.0.0.dylib.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = "libglib-2.0.0.dylib.dSYM"; path = "Frameworks/MILibs/build/Release/lib/libglib-2.0.0.dylib.dSYM"; sourceTree = SOURCE_ROOT; };
+		C960CD9B12ED78DE00DBB3E9 /* libgmodule-2.0.0.dylib.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = "libgmodule-2.0.0.dylib.dSYM"; path = "Frameworks/MILibs/build/Release/lib/libgmodule-2.0.0.dylib.dSYM"; sourceTree = SOURCE_ROOT; };
 		C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectivityMonitor.h; sourceTree = "<group>"; };
 		C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectivityMonitor.m; sourceTree = "<group>"; };
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
@@ -2011,6 +2029,8 @@
 		C2CC3B000C09F404001C0DDD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C960CD9A12ED78DE00DBB3E9 /* libglib-2.0.0.dylib.dSYM */,
+				C960CD9B12ED78DE00DBB3E9 /* libgmodule-2.0.0.dylib.dSYM */,
 				C91793840F744140005241A4 /* libglib-2.0.0.dylib */,
 				C2CC3B060C09F404001C0DDD /* libgmodule-2.0.0.dylib */,
 				C2CC3B0C0C09F404001C0DDD /* libintl.8.0.2.dylib */,
@@ -3156,6 +3176,7 @@
 				C922B4290E23BCE4000AA7BE /* Copy Alert Sounds */,
 				C913404D118A9D690001F09D /* Compile Perl modules */,
 				C91025090E59C2A200E041F7 /* Copy Perl modules */,
+				C960CDA412ED790100DBB3E9 /* Copy dSYMs */,
 				C9EC9EE30E36386C00445345 /* Update Git version */,
 			);
 			buildRules = (
@@ -3238,6 +3259,8 @@
 				C9B0FA0811C595F9009B09D5 /* lib_path_fix.sh in Resources */,
 				C9C2829011C747CD00914872 /* package.rb in Resources */,
 				C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */,
+				C960CD9C12ED78DE00DBB3E9 /* libglib-2.0.0.dylib.dSYM in Resources */,
+				C960CD9D12ED78DE00DBB3E9 /* libgmodule-2.0.0.dylib.dSYM in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3384,10 +3407,10 @@
 			target = C98F778D0E36500900CF2AAF /* Irssi Configure */;
 			targetProxy = C9133865118A87BA0001F09D /* PBXContainerItemProxy */;
 		};
-		C917932A0F743FD3005241A4 /* PBXTargetDependency */ = {
+		C960CD7B12ED742200DBB3E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "\"Install\" glib";
-			targetProxy = C91793290F743FD3005241A4 /* PBXContainerItemProxy */;
+			name = "Copy important dSYMs";
+			targetProxy = C960CD7A12ED742200DBB3E9 /* PBXContainerItemProxy */;
 		};
 		C98F77D10E3651DC00CF2AAF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
