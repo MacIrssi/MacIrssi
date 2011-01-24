@@ -3532,6 +3532,7 @@
 					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
 				);
+				IBC_WARNINGS = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -3611,6 +3612,7 @@
 					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
 				);
+				IBC_WARNINGS = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -3689,6 +3691,7 @@
 					"$(BUILD_ROOT)/irssi-build/**",
 					"Source/**",
 				);
+				IBC_WARNINGS = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
