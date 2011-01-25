@@ -489,7 +489,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = C91792C90F743801005241A4 /* MILibs.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = C960CD5512ED67BF00DBB3E9 /* Copy important dSYMs */;
+			remoteGlobalIDString = C960CD5512ED67BF00DBB3E9;
 			remoteInfo = "Copy important dSYMs";
 		};
 		C98F77D00E3651DC00CF2AAF /* PBXContainerItemProxy */ = {

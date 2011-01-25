@@ -838,14 +838,23 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
 
 - (void)beginTextUpdates
 {
-  // Flush out the layout before we start updating, so we can be sure where the scroller is.
-  [[mainTextView layoutManager] ensureLayoutForTextContainer:[mainTextView textContainer]];
-
-  // Save our current state, then when updates are finished we'll restore the state.
-  savedScrollPoint = [scrollViewHelper currentScrollPosition];
-  if ((savedScrollPoint > 0.0) && (savedScrollPoint < 1.0))
+  // Caught text updates happening during window display after we've already saved
+  // the window state. So this is to prevent an interior update overwriting the scroll
+  // state.
+  if (!insideTextUpdates)
   {
-    savedScrollPoint = [scrollViewHelper currentDistanceFromTop];
+    // Yep, we're inside text updates now
+    insideTextUpdates = YES;
+    
+    // Flush out the layout before we start updating, so we can be sure where the scroller is.
+    [[mainTextView layoutManager] ensureLayoutForTextContainer:[mainTextView textContainer]];
+    
+    // Save our current state, then when updates are finished we'll restore the state.
+    savedScrollPoint = [scrollViewHelper currentScrollPosition];
+    if ((savedScrollPoint > 0.0) && (savedScrollPoint < 1.0))
+    {
+      savedScrollPoint = [scrollViewHelper currentDistanceFromTop];
+    }
   }
 }
 
@@ -863,6 +872,9 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   {
     [scrollViewHelper restoreScrollPosition:savedScrollPoint];
   }
+  
+  // reset update state, all on mainthread, shouldn't need to be atomic
+  insideTextUpdates = NO;
 }
 
 //-------------------------------------------------------------------
@@ -1248,6 +1260,7 @@ int mirc_colors[] = { 15, 0, 1, 2, 12, 4, 5, 6, 14, 10, 3, 11, 9, 13, 8, 7 };
   windowRec = rec;
   isChannel = FALSE;
   useFloater = FALSE;
+  insideTextUpdates = NO;
 
   line = [[NSMutableAttributedString alloc] init];
   oldSearchMatchRange = NSMakeRange(0,0);

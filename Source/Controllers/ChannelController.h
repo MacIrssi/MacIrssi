@@ -171,6 +171,7 @@ enum nickContextMenuTags {
   NSString *lastEventOwner;
   
   CGFloat savedScrollPoint;
+  BOOL insideTextUpdates;
 }
 
 - (MIChannelSearchController*)searchController;
