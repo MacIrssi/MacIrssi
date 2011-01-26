@@ -969,7 +969,6 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		24A981C3115313B5002B823B /* xcodeConfigure.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = xcodeConfigure.sh; sourceTree = "<group>"; };
 		24A9825311532AAB002B823B /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "build/irssi-build/src/core/libcore.a"; sourceTree = SOURCE_ROOT; };
 		24B1D1EA11C7F9510031A5E2 /* libPerlBuild.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = libPerlBuild.sh; sourceTree = "<group>"; };
 		24B1D1EB11C7F9510031A5E2 /* libPerlCopy.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = libPerlCopy.sh; sourceTree = "<group>"; };
@@ -2563,7 +2562,6 @@
 		C9C2828B11C746BB00914872 /* xcodescripts */ = {
 			isa = PBXGroup;
 			children = (
-				24A981C3115313B5002B823B /* xcodeConfigure.sh */,
 				C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */,
 				24B1D1EA11C7F9510031A5E2 /* libPerlBuild.sh */,
 				C9C2828F11C747CD00914872 /* package.rb */,

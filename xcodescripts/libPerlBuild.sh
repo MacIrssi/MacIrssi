@@ -8,8 +8,11 @@ PERLLIB="/System/Library/Perl"
 CC="llvm-gcc"
 
 # obtained by running perl -MExtUtils::Embed -e ldopts
-GLIB_LDFLAGS="-L$SRCROOT/Frameworks/MILibs/build/Release/lib -lgmodule-2.0 -lglib-2.0 -lintl -liconv -lssl -lcrypto"
+IRSSI_INCLUDES="-I$SRCROOT/irssi/src -I$SRCROOT/irssi/src/core -I$SRCROOT/irssi/src/fe-common/core"
+DEFINES="-DPERL_DARWIN -DPERL_STATIC_LIBS=0 -D_REENTRANT -DSCRIPTDIR=\"\" -DHAVE_CONFIG_H -DPERL_USE_LIB=\"\""
+CFLAGS="$IRSSI_INCLUDES -I$SRCROOT/Frameworks/MILibs/build/Release/GLib.framework/Headers -I$SRCROOT/Headers -g -Os $DEFINES"
 LDFLAGS="-isysroot $SDKROOT -Wl,-undefined,dynamic_lookup -fstack-protector -lperl -dl -lm -lutil -lc"
+
 RC_ARCHS=""
 for x in $ARCHS; do
   RC_ARCHS="$RC_ARCHS -arch $x"
@@ -18,26 +21,9 @@ done
 DSTROOT="$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources/Perl"
 [ ! -d $DSTROOT ] && mkdir -p $DSTROOT
 
-P="$BUILD_ROOT/irssi-build/src/perl/"
-PERL_CORE="$P/perl-core.o $P/perl-common.o $P/perl-signals.o $P/perl-sources.o"
-FE_PERL="$P/module-formats.o $P/perl-fe.o"
-
-function flags_from_dwarf {
-	# RC_DEBUG_OPTIONS in irssi's make causes AT_APPLE_flags to be emitted in the DWARF
-	# find them and use them to get the flags to rebuild perl with
-	dwarfdump -r 0 $1 | perl -n \
-		-e 'if (/AT_APPLE_flags\(\s*"(.*)"\s*\)/) {' \
-		-e '  for my $flag (split(/\s+/, $1)) {'\
-		-e '    next if $flag =~ /^[^-]/;' \
-		-e '    next if $flag =~ /^(-|-quiet|-o|-dumpbase|-auxbase-strip)$/;' \
-		-e '    next if $flag =~ /^-i/;' \
-		-e '    next if $flag =~ /^-m/;' \
-		-e '    next if $flag =~ /-I\/System\/Library\/Perl/;' \
-		-e '    printf "$flag ";' \
-		-e '  }' \
-		-e '  exit 0;' \
-		-e '}'
-}
+P="$SRCROOT/irssi/src/perl/"
+PERL_CORE="$P/perl-core.c $P/perl-common.c $P/perl-signals.c $P/perl-sources.c"
+FE_PERL="$P/module-formats.c $P/perl-fe.c"
 
 # right, iterate the libs
 for lib in $PERLLIB/*; do
@@ -50,28 +36,22 @@ for lib in $PERLLIB/*; do
 
 		# someone is going to burn me in a firey hell for this
 		for x in $PERL_CORE; do
-			f=`basename $x .o`.c
-			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .o`.$V.o
+			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .c`.$V.o
       
 			if [[ $x -nt $OBJ ]]; then
-				CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
-				COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
-
-				(cd $COMPDIR ; $CC -isysroot $SDKROOT $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f) || exit 1
+				_CFLAGS="$CFLAGS -I$lib/darwin-thread-multi-2level/CORE"
+        $CC -isysroot $SDKROOT $_CFLAGS $RC_ARCHS -o $OBJ -c $x || exit 1
 			fi
 
 			CORE_SRCS="$CORE_SRCS $OBJ"
 		done
 
 		for x in $FE_PERL; do
-			f=`basename $x .o`.c
-			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .o`.$V.o
+			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .c`.$V.o
 
 			if [[ $x -nt $OBJ ]]; then
-				CFLAGS="`flags_from_dwarf $x` -Wno-unused-value -I$lib/darwin-thread-multi-2level/CORE"
-				COMPDIR=`dwarfdump -r 0 $x | perl -ne 'if (/AT_comp_dir\(\s*"(.*)"\s*\)/) { print $1; exit 0; }'`
-
-				(cd $COMPDIR ; $CC -isysroot $SDKROOT $CFLAGS $RC_ARCHS -o $OBJ -c "$P"/$f) || exit 1
+				_CFLAGS="$CFLAGS -I$lib/darwin-thread-multi-2level/CORE"
+        $CC -isysroot $SDKROOT $_CFLAGS $RC_ARCHS -o $OBJ -c $x || exit 1
 			fi
 
 			FE_SRCS="$FE_SRCS $OBJ"
