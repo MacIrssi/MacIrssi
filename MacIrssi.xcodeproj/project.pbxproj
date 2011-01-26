@@ -275,7 +275,6 @@
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
 		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
 		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
-		C9B0FA0811C595F9009B09D5 /* lib_path_fix.sh in Resources */ = {isa = PBXBuildFile; fileRef = C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */; };
 		C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */; };
 		C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */; };
 		C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */; };
@@ -1255,7 +1254,6 @@
 		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
 		C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppcastVersionComparator.h; sourceTree = "<group>"; };
 		C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppcastVersionComparator.m; sourceTree = "<group>"; };
-		C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = lib_path_fix.sh; sourceTree = "<group>"; };
 		C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIMenuAdditions.h; sourceTree = "<group>"; };
 		C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIMenuAdditions.m; sourceTree = "<group>"; };
 		C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
@@ -2571,10 +2569,9 @@
 		C9C2828B11C746BB00914872 /* xcodescripts */ = {
 			isa = PBXGroup;
 			children = (
-				C9B0FA0711C595F9009B09D5 /* lib_path_fix.sh */,
 				24B1D1EA11C7F9510031A5E2 /* libPerlBuild.sh */,
-				C9C2828F11C747CD00914872 /* package.rb */,
 				24B1D1EB11C7F9510031A5E2 /* libPerlCopy.sh */,
+				C9C2828F11C747CD00914872 /* package.rb */,
 				24B1D1EC11C7F9510031A5E2 /* updateGitVersion.sh */,
 			);
 			path = xcodescripts;
@@ -3245,7 +3242,6 @@
 				B322D70305EF930400E640C2 /* Copy Libraries */,
 				B322DA1F05EF97EF00E640C2 /* Copy Helpfiles */,
 				C913415E118AB45C0001F09D /* Copy Scripts */,
-				C2FC9ED0081C09FD009B9A06 /* Library Paths Fix */,
 				C237874108C25AE000D73190 /* Copy Growl Framework */,
 				C232FB6E08C897DA000C624E /* Copy Themes */,
 				C922B4290E23BCE4000AA7BE /* Copy Alert Sounds */,
@@ -3362,7 +3358,6 @@
 				C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */,
 				C911228B0F2B2431006C4BD0 /* Tab new.xib in Resources */,
 				C98777080F74F67300591183 /* MacIrssi.pub in Resources */,
-				C9B0FA0811C595F9009B09D5 /* lib_path_fix.sh in Resources */,
 				C9C2829011C747CD00914872 /* package.rb in Resources */,
 				C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */,
 			);
@@ -3371,20 +3366,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C2FC9ED0081C09FD009B9A06 /* Library Paths Fix */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Library Paths Fix";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ./xcodescripts/lib_path_fix.sh;
-		};
 		C91025090E59C2A200E041F7 /* Copy Perl modules */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
