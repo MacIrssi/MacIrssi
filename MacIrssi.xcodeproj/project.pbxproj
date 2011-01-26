@@ -263,6 +263,18 @@
 		C947E1DC0E1E871F0001380E /* EventController.h in Headers */ = {isa = PBXBuildFile; fileRef = C947E1DA0E1E871F0001380E /* EventController.h */; };
 		C947E1DD0E1E871F0001380E /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947E1DB0E1E871F0001380E /* EventController.m */; };
 		C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = C9550D140E29A97400658372 /* MacIrssi-Alert.png */; };
+		C95D81DE12F082DD001925F0 /* generatePerlModule.sh in Resources */ = {isa = PBXBuildFile; fileRef = C95D81DD12F082DD001925F0 /* generatePerlModule.sh */; };
+		C95D823412F08756001925F0 /* Channel.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D821E12F08743001925F0 /* Channel.c */; };
+		C95D823512F08756001925F0 /* Core.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D821F12F08743001925F0 /* Core.c */; };
+		C95D823612F08756001925F0 /* Expando.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822012F08743001925F0 /* Expando.c */; };
+		C95D823712F08756001925F0 /* Ignore.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822112F08743001925F0 /* Ignore.c */; };
+		C95D823812F08756001925F0 /* Irssi.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822212F08743001925F0 /* Irssi.c */; };
+		C95D823912F08756001925F0 /* Log.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822312F08743001925F0 /* Log.c */; };
+		C95D823A12F08756001925F0 /* Masks.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822412F08743001925F0 /* Masks.c */; };
+		C95D823B12F08756001925F0 /* Query.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822512F08743001925F0 /* Query.c */; };
+		C95D823C12F08756001925F0 /* Rawlog.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822612F08743001925F0 /* Rawlog.c */; };
+		C95D823D12F08756001925F0 /* Server.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822712F08743001925F0 /* Server.c */; };
+		C95D823E12F08756001925F0 /* Settings.c in Sources */ = {isa = PBXBuildFile; fileRef = C95D822812F08743001925F0 /* Settings.c */; };
 		C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */; };
 		C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */; };
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
@@ -1243,6 +1255,20 @@
 		C947E1DA0E1E871F0001380E /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventController.h; path = Controllers/EventController.h; sourceTree = "<group>"; };
 		C947E1DB0E1E871F0001380E /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventController.m; path = Controllers/EventController.m; sourceTree = "<group>"; };
 		C9550D140E29A97400658372 /* MacIrssi-Alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MacIrssi-Alert.png"; sourceTree = "<group>"; };
+		C95D81D512F082A7001925F0 /* Irssi.pm.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Irssi.pm.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D81D612F082A7001925F0 /* Irssi.pm-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Irssi.pm-Info.plist"; sourceTree = "<group>"; };
+		C95D81DD12F082DD001925F0 /* generatePerlModule.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = generatePerlModule.sh; sourceTree = "<group>"; };
+		C95D821E12F08743001925F0 /* Channel.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Channel.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Channel.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D821F12F08743001925F0 /* Core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Core.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Core.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822012F08743001925F0 /* Expando.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Expando.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Expando.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822112F08743001925F0 /* Ignore.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Ignore.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Ignore.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822212F08743001925F0 /* Irssi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Irssi.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Irssi.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822312F08743001925F0 /* Log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Log.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Log.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822412F08743001925F0 /* Masks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Masks.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Masks.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822512F08743001925F0 /* Query.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Query.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Query.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822612F08743001925F0 /* Rawlog.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Rawlog.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Rawlog.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822712F08743001925F0 /* Server.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Server.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Server.c; sourceTree = BUILT_PRODUCTS_DIR; };
+		C95D822812F08743001925F0 /* Settings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = Settings.c; path = ../MacIrssi.build/Development/Irssi.pm.build/DerivedSources/Settings.c; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectivityMonitor.h; sourceTree = "<group>"; };
 		C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectivityMonitor.m; sourceTree = "<group>"; };
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
@@ -1818,6 +1844,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C95D81D312F082A7001925F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9C763DC12EFF50A0072D1E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1877,6 +1910,7 @@
 			children = (
 				8D1107320486CEB800E47090 /* MacIrssi.app */,
 				C9C763DE12EFF50A0072D1E8 /* libirssicore.a */,
+				C95D81D512F082A7001925F0 /* Irssi.pm.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1890,7 +1924,9 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				C913412A118AB3E50001F09D /* irssi */,
+				C95D821A12F08705001925F0 /* Perl Derived Sources */,
 				B32A9E5F05F0B14800DB2595 /* COPYING */,
+				C95D81D612F082A7001925F0 /* Irssi.pm-Info.plist */,
 			);
 			name = MacIrssi;
 			sourceTree = "<group>";
@@ -2529,6 +2565,32 @@
 			path = irssi/docs/help;
 			sourceTree = "<group>";
 		};
+		C95D821A12F08705001925F0 /* Perl Derived Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C95D821C12F08738001925F0 /* Irssi.pm */,
+			);
+			name = "Perl Derived Sources";
+			sourceTree = "<group>";
+		};
+		C95D821C12F08738001925F0 /* Irssi.pm */ = {
+			isa = PBXGroup;
+			children = (
+				C95D821E12F08743001925F0 /* Channel.c */,
+				C95D821F12F08743001925F0 /* Core.c */,
+				C95D822012F08743001925F0 /* Expando.c */,
+				C95D822112F08743001925F0 /* Ignore.c */,
+				C95D822212F08743001925F0 /* Irssi.c */,
+				C95D822312F08743001925F0 /* Log.c */,
+				C95D822412F08743001925F0 /* Masks.c */,
+				C95D822512F08743001925F0 /* Query.c */,
+				C95D822612F08743001925F0 /* Rawlog.c */,
+				C95D822712F08743001925F0 /* Server.c */,
+				C95D822812F08743001925F0 /* Settings.c */,
+			);
+			name = Irssi.pm;
+			sourceTree = "<group>";
+		};
 		C97A36C10E5DCAD4007D1191 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -2575,6 +2637,7 @@
 				24B1D1EA11C7F9510031A5E2 /* libPerlBuild.sh */,
 				24B1D1EB11C7F9510031A5E2 /* libPerlCopy.sh */,
 				C9E1B48E12F02380004E75B0 /* copySymbols.sh */,
+				C95D81DD12F082DD001925F0 /* generatePerlModule.sh */,
 				C9C2828F11C747CD00914872 /* package.rb */,
 				24B1D1EC11C7F9510031A5E2 /* updateGitVersion.sh */,
 			);
@@ -3264,6 +3327,24 @@
 			productReference = 8D1107320486CEB800E47090 /* MacIrssi.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C95D81D412F082A7001925F0 /* Irssi.pm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95D81DA12F082A8001925F0 /* Build configuration list for PBXNativeTarget "Irssi.pm" */;
+			buildPhases = (
+				C95D81DC12F082B2001925F0 /* ShellScript */,
+				C95D81D112F082A7001925F0 /* Resources */,
+				C95D81D212F082A7001925F0 /* Sources */,
+				C95D81D312F082A7001925F0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Irssi.pm;
+			productName = Irssi.pm;
+			productReference = C95D81D512F082A7001925F0 /* Irssi.pm.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		C9C763DD12EFF50A0072D1E8 /* Irssi Core */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9C763E312EFF5310072D1E8 /* Build configuration list for PBXNativeTarget "Irssi Core" */;
@@ -3310,6 +3391,7 @@
 				C9C763DD12EFF50A0072D1E8 /* Irssi Core */,
 				8D1107260486CEB800E47090 /* MacIrssi */,
 				C9EC9F1E0E363AE000445345 /* Packages */,
+				C95D81D412F082A7001925F0 /* Irssi.pm */,
 			);
 		};
 /* End PBXProject section */
@@ -3365,6 +3447,14 @@
 				C9C2829011C747CD00914872 /* package.rb in Resources */,
 				C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */,
 				C9E1B48F12F02380004E75B0 /* copySymbols.sh in Resources */,
+				C95D81DE12F082DD001925F0 /* generatePerlModule.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C95D81D112F082A7001925F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3398,6 +3488,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = ./xcodescripts/libPerlBuild.sh;
+		};
+		C95D81DC12F082B2001925F0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./xcodescripts/generatePerlModule.sh $SRCROOT/irssi/src/perl/common Irssi";
 		};
 		C9E1B48D12F0235A004E75B0 /* Copy MILibs dSYMs */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3496,6 +3599,24 @@
 				C90301C0129DEA5000B30679 /* PreferenceVersionHelper.m in Sources */,
 				C90C9E8312A06196009F43CE /* MISearchBar.m in Sources */,
 				C90CA25C12A0CDD9009F43CE /* MIChannelSearchController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C95D81D212F082A7001925F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C95D823412F08756001925F0 /* Channel.c in Sources */,
+				C95D823512F08756001925F0 /* Core.c in Sources */,
+				C95D823612F08756001925F0 /* Expando.c in Sources */,
+				C95D823712F08756001925F0 /* Ignore.c in Sources */,
+				C95D823812F08756001925F0 /* Irssi.c in Sources */,
+				C95D823912F08756001925F0 /* Log.c in Sources */,
+				C95D823A12F08756001925F0 /* Masks.c in Sources */,
+				C95D823B12F08756001925F0 /* Query.c in Sources */,
+				C95D823C12F08756001925F0 /* Rawlog.c in Sources */,
+				C95D823D12F08756001925F0 /* Server.c in Sources */,
+				C95D823E12F08756001925F0 /* Settings.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3914,6 +4035,141 @@
 			};
 			name = Default;
 		};
+		C95D81D712F082A8001925F0 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi/src/perl/common\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi/src/fe-common/core\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi/src/core\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi/src\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Headers\"";
+				INFOPLIST_FILE = "Irssi.pm-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_CFLAGS = (
+					"-D_REENTRANT",
+					"-DPERL_DARWIN",
+					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
+					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_2)",
+					"@$DERIVED_SOURCES_DIR/compiler.opts",
+				);
+				OTHER_CFLAGS_QUOTED_FOR_TARGET_1 = "-DVERSION=\\\"0.9\\\"";
+				OTHER_CFLAGS_QUOTED_FOR_TARGET_2 = "-DXS_VERSION=\\\"0.9\\\"";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Irssi.pm;
+				USE_HEADERMAP = NO;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Development;
+		};
+		C95D81D812F082A8001925F0 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi/src/perl/common\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi/src/fe-common/core\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi/src/core\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi/src\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Headers\"";
+				INFOPLIST_FILE = "Irssi.pm-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_CFLAGS = (
+					"-D_REENTRANT",
+					"-DPERL_DARWIN",
+					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
+					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_2)",
+					"@$DERIVED_SOURCES_DIR/compiler.opts",
+				);
+				OTHER_CFLAGS_QUOTED_FOR_TARGET_1 = "-DVERSION=\\\"0.9\\\"";
+				OTHER_CFLAGS_QUOTED_FOR_TARGET_2 = "-DXS_VERSION=\\\"0.9\\\"";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Irssi.pm;
+				USE_HEADERMAP = NO;
+				WRAPPER_EXTENSION = bundle;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		C95D81D912F082A8001925F0 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
+					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
+				);
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi/src/perl/common\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi/src/fe-common/core\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi/src/core\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi/src\"";
+				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Headers\"";
+				INFOPLIST_FILE = "Irssi.pm-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				OTHER_CFLAGS = (
+					"-D_REENTRANT",
+					"-DPERL_DARWIN",
+					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
+					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_2)",
+					"@$DERIVED_SOURCES_DIR/compiler.opts",
+				);
+				OTHER_CFLAGS_QUOTED_FOR_TARGET_1 = "-DVERSION=\\\"0.9\\\"";
+				OTHER_CFLAGS_QUOTED_FOR_TARGET_2 = "-DXS_VERSION=\\\"0.9\\\"";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Irssi.pm;
+				USE_HEADERMAP = NO;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Default;
+		};
 		C9C763DF12EFF50B0072D1E8 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4051,6 +4307,16 @@
 				C209D3AD08BF5CE6009C9E21 /* Development */,
 				C209D3AE08BF5CE6009C9E21 /* Deployment */,
 				C209D3AF08BF5CE6009C9E21 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		C95D81DA12F082A8001925F0 /* Build configuration list for PBXNativeTarget "Irssi.pm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C95D81D712F082A8001925F0 /* Development */,
+				C95D81D812F082A8001925F0 /* Deployment */,
+				C95D81D912F082A8001925F0 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
