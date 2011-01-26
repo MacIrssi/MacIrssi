@@ -568,6 +568,10 @@
 		C9E1B35912F012C6004E75B0 /* window in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C9E1B2DF12F012B6004E75B0 /* window */; };
 		C9E1B35A12F012C6004E75B0 /* wjoin in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C9E1B2E012F012B6004E75B0 /* wjoin */; };
 		C9E1B35B12F012C6004E75B0 /* wquery in Copy Helpfiles */ = {isa = PBXBuildFile; fileRef = C9E1B2E112F012B6004E75B0 /* wquery */; };
+		C9E1B3D012F019F8004E75B0 /* default-config.h in Headers */ = {isa = PBXBuildFile; fileRef = C9E1B3CC12F019F8004E75B0 /* default-config.h */; };
+		C9E1B3D112F019F8004E75B0 /* default-theme.h in Headers */ = {isa = PBXBuildFile; fileRef = C9E1B3CD12F019F8004E75B0 /* default-theme.h */; };
+		C9E1B3D212F019F8004E75B0 /* irssi-config.h in Headers */ = {isa = PBXBuildFile; fileRef = C9E1B3CE12F019F8004E75B0 /* irssi-config.h */; };
+		C9E1B3D312F019F8004E75B0 /* irssi-version.h in Headers */ = {isa = PBXBuildFile; fileRef = C9E1B3CF12F019F8004E75B0 /* irssi-version.h */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBAB110EA0A7D200025466 /* Networks.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAB100EA0A7D200025466 /* Networks.png */; };
@@ -1771,6 +1775,10 @@
 		C9E1B2DF12F012B6004E75B0 /* window */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = window; sourceTree = "<group>"; };
 		C9E1B2E012F012B6004E75B0 /* wjoin */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wjoin; sourceTree = "<group>"; };
 		C9E1B2E112F012B6004E75B0 /* wquery */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wquery; sourceTree = "<group>"; };
+		C9E1B3CC12F019F8004E75B0 /* default-config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "default-config.h"; sourceTree = "<group>"; };
+		C9E1B3CD12F019F8004E75B0 /* default-theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "default-theme.h"; sourceTree = "<group>"; };
+		C9E1B3CE12F019F8004E75B0 /* irssi-config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "irssi-config.h"; sourceTree = "<group>"; };
+		C9E1B3CF12F019F8004E75B0 /* irssi-version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "irssi-version.h"; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBAB100EA0A7D200025466 /* Networks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Networks.png; sourceTree = "<group>"; };
@@ -1889,6 +1897,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				C9E1B3CB12F019F8004E75B0 /* Headers */,
 				C9C2828B11C746BB00914872 /* xcodescripts */,
 				32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
@@ -3119,6 +3128,17 @@
 			path = "Irssi Chaff";
 			sourceTree = "<group>";
 		};
+		C9E1B3CB12F019F8004E75B0 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				C9E1B3CC12F019F8004E75B0 /* default-config.h */,
+				C9E1B3CD12F019F8004E75B0 /* default-theme.h */,
+				C9E1B3CE12F019F8004E75B0 /* irssi-config.h */,
+				C9E1B3CF12F019F8004E75B0 /* irssi-version.h */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
 		C9EBAB650EA0AF3000025466 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -3197,6 +3217,10 @@
 				C90C9E8212A06196009F43CE /* MISearchBar.h in Headers */,
 				C90CA25B12A0CDD9009F43CE /* MIChannelSearchController.h in Headers */,
 				C9C9415712E9F0FE00A4D7A5 /* iTunesBridge.h in Headers */,
+				C9E1B3D012F019F8004E75B0 /* default-config.h in Headers */,
+				C9E1B3D112F019F8004E75B0 /* default-theme.h in Headers */,
+				C9E1B3D212F019F8004E75B0 /* irssi-config.h in Headers */,
+				C9E1B3D312F019F8004E75B0 /* irssi-version.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
