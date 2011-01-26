@@ -11,7 +11,8 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */;
 			buildPhases = (
-				C9EC9F250E363AEB00445345 /* ShellScript */,
+				C9E1B48D12F0235A004E75B0 /* Copy MILibs dSYMs */,
+				C9EC9F250E363AEB00445345 /* Run Packager */,
 			);
 			dependencies = (
 				C9EC9F230E363AE500445345 /* PBXTargetDependency */,
@@ -571,6 +572,7 @@
 		C9E1B3D112F019F8004E75B0 /* default-theme.h in Headers */ = {isa = PBXBuildFile; fileRef = C9E1B3CD12F019F8004E75B0 /* default-theme.h */; };
 		C9E1B3D212F019F8004E75B0 /* irssi-config.h in Headers */ = {isa = PBXBuildFile; fileRef = C9E1B3CE12F019F8004E75B0 /* irssi-config.h */; };
 		C9E1B3D312F019F8004E75B0 /* irssi-version.h in Headers */ = {isa = PBXBuildFile; fileRef = C9E1B3CF12F019F8004E75B0 /* irssi-version.h */; };
+		C9E1B48F12F02380004E75B0 /* copySymbols.sh in Resources */ = {isa = PBXBuildFile; fileRef = C9E1B48E12F02380004E75B0 /* copySymbols.sh */; };
 		C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */ = {isa = PBXBuildFile; fileRef = C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */; };
 		C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */; };
 		C9EBAB110EA0A7D200025466 /* Networks.png in Resources */ = {isa = PBXBuildFile; fileRef = C9EBAB100EA0A7D200025466 /* Networks.png */; };
@@ -1777,6 +1779,7 @@
 		C9E1B3CD12F019F8004E75B0 /* default-theme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "default-theme.h"; sourceTree = "<group>"; };
 		C9E1B3CE12F019F8004E75B0 /* irssi-config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "irssi-config.h"; sourceTree = "<group>"; };
 		C9E1B3CF12F019F8004E75B0 /* irssi-version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "irssi-version.h"; sourceTree = "<group>"; };
+		C9E1B48E12F02380004E75B0 /* copySymbols.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = copySymbols.sh; sourceTree = "<group>"; };
 		C9EBA8A30E9FF5EE00025466 /* PreferenceObjectController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceObjectController.h; sourceTree = "<group>"; };
 		C9EBA8A40E9FF5EE00025466 /* PreferenceObjectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceObjectController.m; sourceTree = "<group>"; };
 		C9EBAB100EA0A7D200025466 /* Networks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Networks.png; sourceTree = "<group>"; };
@@ -2571,6 +2574,7 @@
 			children = (
 				24B1D1EA11C7F9510031A5E2 /* libPerlBuild.sh */,
 				24B1D1EB11C7F9510031A5E2 /* libPerlCopy.sh */,
+				C9E1B48E12F02380004E75B0 /* copySymbols.sh */,
 				C9C2828F11C747CD00914872 /* package.rb */,
 				24B1D1EC11C7F9510031A5E2 /* updateGitVersion.sh */,
 			);
@@ -3360,6 +3364,7 @@
 				C98777080F74F67300591183 /* MacIrssi.pub in Resources */,
 				C9C2829011C747CD00914872 /* package.rb in Resources */,
 				C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */,
+				C9E1B48F12F02380004E75B0 /* copySymbols.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3394,6 +3399,20 @@
 			shellPath = /bin/sh;
 			shellScript = ./xcodescripts/libPerlBuild.sh;
 		};
+		C9E1B48D12F0235A004E75B0 /* Copy MILibs dSYMs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy MILibs dSYMs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./xcodescripts/copySymbols.sh;
+		};
 		C9EC9EE30E36386C00445345 /* Update Git version */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3408,13 +3427,14 @@
 			shellPath = /bin/sh;
 			shellScript = ./xcodescripts/updateGitVersion.sh;
 		};
-		C9EC9F250E363AEB00445345 /* ShellScript */ = {
+		C9EC9F250E363AEB00445345 /* Run Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Packager";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
