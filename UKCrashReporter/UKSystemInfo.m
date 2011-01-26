@@ -89,11 +89,12 @@ NSString*	UKMachineName()
 	if( cpuName )
 		return cpuName;
 	
-	char*				machineName = NULL;
-	
-	if( Gestalt( gestaltUserVisibleMachineName, (SInt32*) &machineName ) == noErr )
+	char machineName[128] = { 0 };
+	size_t size = sizeof(machineName);
+
+	if (sysctlbyname("hw.model", &machineName, &size, NULL, 0) == 0)
 	{
-		NSString*	internalName = [NSString stringWithCString: machineName +1 length: machineName[0]];
+		NSString* internalName = [NSString stringWithUTF8String:machineName];
 		
 		NSDictionary* translationDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:
 					@"PowerMac 8500/8600",@"AAPL,8500",
