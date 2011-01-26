@@ -3,7 +3,11 @@
 
 [ ! -d $DERIVED_SOURCES_DIR ] && mkdir $DERIVED_SOURCES_DIR
 for x in $1/*.xs; do
-  [ $x -nt "$DERIVED_SOURCES_DIR/`basename $x .xs`.xc" ] && xsubpp -typemap $1/typemap $x > $DERIVED_SOURCES_DIR/`basename $x .xs`.c
+  OTHER_TYPEMAPS=""
+  if [ -f $1/../common/typemap ]; then
+    OTHER_TYPEMAPS="-typemap ../common/typemap"
+  fi
+  [ $x -nt "$DERIVED_SOURCES_DIR/`basename $x .xs`.c" ] && (xsubpp -typemap $1/typemap $OTHER_TYPEMAPS $x > $DERIVED_SOURCES_DIR/`basename $x .xs`.c || exit 1)
 done
 
 CCOPTS=$DERIVED_SOURCES_DIR/compiler.opts
