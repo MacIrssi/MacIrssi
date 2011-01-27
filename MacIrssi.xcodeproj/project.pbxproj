@@ -622,21 +622,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = C91792C90F743801005241A4 /* MILibs.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = C9CDEB3212EFBD2200A76118 /* GLib */;
+			remoteGlobalIDString = C9CDEB3212EFBD2200A76118;
 			remoteInfo = GLib;
 		};
 		C99D5E2D12F0FAD5009C36BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C91792C90F743801005241A4 /* MILibs.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = C9CDEB3212EFBD2200A76118 /* GLib */;
+			remoteGlobalIDString = C9CDEB3212EFBD2200A76118;
 			remoteInfo = GLib;
 		};
 		C99D5E2F12F0FADA009C36BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C91792C90F743801005241A4 /* MILibs.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = C9CDEB3212EFBD2200A76118 /* GLib */;
+			remoteGlobalIDString = C9CDEB3212EFBD2200A76118;
 			remoteInfo = GLib;
 		};
 		C9AF629512F0DFBB00C06A86 /* PBXContainerItemProxy */ = {
