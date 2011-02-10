@@ -74,8 +74,9 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
     SCNetworkReachabilityRef ref = (SCNetworkReachabilityRef)[serverMap objectForKey:(id)rec];
     if (ref != nil)
     {
-      /* we still have a reachability ref, so we didn't disconnet unnaturally */
+      /* we still have a reachability ref, so we didn't disconnect unnaturally */
       [serverMap removeObjectForKey:(id)rec];
+      SCNetworkReachabilityUnscheduleFromRunLoop(ref, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopCommonModes);
       CFRelease(ref);
     }
   }
