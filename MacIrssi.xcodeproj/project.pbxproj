@@ -4200,59 +4200,6 @@
 			};
 			name = Deployment;
 		};
-		C209D3AB08BF5CE6009C9E21 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks\"";
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = "";
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = (
-					"Frameworks/*.framework",
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers",
-					"$(SRCROOT)/Headers",
-				);
-				IBC_WARNINGS = NO;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_CFLAGS = (
-					"-fno-common",
-					"-DPERL_DARWIN",
-					"-fno-strict-aliasing",
-					"-DMACIRSSI_DEBUG",
-					"-L/System/Library/Perl/5.10.0/darwin-thread-multi-2level/CORE",
-				);
-				OTHER_LDFLAGS = (
-					"-ldl",
-					"-lm",
-					"-lc",
-					"-lssl",
-					"-lcrypto",
-					"-bind_at_load",
-					"-multiply_defined",
-					suppress,
-				);
-				PRODUCT_NAME = MacIrssi;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = Default;
-		};
 		C209D3AD08BF5CE6009C9E21 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4262,6 +4209,7 @@
 					ppc,
 				);
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
@@ -4283,21 +4231,6 @@
 				VALID_ARCHS = "i386 x86_64 ppc";
 			};
 			name = Deployment;
-		};
-		C209D3AF08BF5CE6009C9E21 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					x86_64,
-					i386,
-					ppc,
-				);
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
-				VALID_ARCHS = "i386 x86_64 ppc";
-			};
-			name = Default;
 		};
 		C9AF627512F0DE6700C06A86 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -4393,50 +4326,6 @@
 			};
 			name = Deployment;
 		};
-		C9AF627712F0DE6700C06A86 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_EXTENSION = bundle;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
-				);
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi/src/perl/common\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi/src/fe-common/core\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi/src/core\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi/src\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Headers\"";
-				INSTALL_PATH = /usr/local/lib;
-				OTHER_CFLAGS = (
-					"-D_REENTRANT",
-					"-DPERL_DARWIN",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_2)",
-					"@$DERIVED_SOURCES_DIR/compiler.opts",
-				);
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_1 = "-DVERSION=\\\"0.9\\\"";
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_2 = "-DXS_VERSION=\\\"0.9\\\"";
-				OTHER_LDFLAGS = (
-					"-undefined",
-					dynamic_lookup,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = Irssi;
-				USE_HEADERMAP = NO;
-			};
-			name = Default;
-		};
 		C9AF62BF12F0E01C00C06A86 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4530,50 +4419,6 @@
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
-		};
-		C9AF62C112F0E01C00C06A86 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_EXTENSION = bundle;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
-				);
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi/src/perl/ui\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi/src/fe-common/core\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi/src/core\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi/src\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Headers\"";
-				INSTALL_PATH = /usr/local/lib;
-				OTHER_CFLAGS = (
-					"-D_REENTRANT",
-					"-DPERL_DARWIN",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_2)",
-					"@$DERIVED_SOURCES_DIR/compiler.opts",
-				);
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_1 = "-DVERSION=\\\"0.9\\\"";
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_2 = "-DXS_VERSION=\\\"0.9\\\"";
-				OTHER_LDFLAGS = (
-					"-undefined",
-					dynamic_lookup,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = Irssi;
-				USE_HEADERMAP = NO;
-			};
-			name = Default;
 		};
 		C9AF631B12F0E2AB00C06A86 /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -4677,50 +4522,6 @@
 			};
 			name = Deployment;
 		};
-		C9AF631D12F0E2AB00C06A86 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_EXTENSION = bundle;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5)",
-					"$(HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6)",
-				);
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_2 = "\"$(SRCROOT)/irssi/src/perl/common\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_3 = "\"$(SRCROOT)/irssi/src/fe-common/core\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/irssi/src/core\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/irssi/src\"";
-				HEADER_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/Headers\"";
-				INSTALL_PATH = /usr/local/lib;
-				OTHER_CFLAGS = (
-					"-D_REENTRANT",
-					"-DPERL_DARWIN",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_2)",
-					"@$DERIVED_SOURCES_DIR/compiler.opts",
-				);
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_1 = "-DVERSION=\\\"0.9\\\"";
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_2 = "-DXS_VERSION=\\\"0.9\\\"";
-				OTHER_LDFLAGS = (
-					"-undefined",
-					dynamic_lookup,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = Irssi;
-				USE_HEADERMAP = NO;
-			};
-			name = Default;
-		};
 		C9C763DF12EFF50B0072D1E8 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4781,33 +4582,6 @@
 			};
 			name = Deployment;
 		};
-		C9C763E112EFF50B0072D1E8 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers",
-					"$(SRCROOT)/Headers",
-					"$(SRCROOT)/irssi/src",
-				);
-				INSTALL_PATH = /usr/local/lib;
-				OTHER_CFLAGS = (
-					"-DHAVE_CONFIG_H",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_2)",
-					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_3)",
-				);
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_1 = "-DSYSCONFDIR=\"\\\"/usr/local/etc\\\"\"";
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_2 = "-DHELPDIR=\"\\\"/usr/local/share/irssi/help\\\"\"";
-				OTHER_CFLAGS_QUOTED_FOR_TARGET_3 = "-DTHEMESDIR=\"\\\"/usr/local/share/irssi/themes\\\"\"";
-				PREBINDING = NO;
-				PRODUCT_NAME = irssicore;
-			};
-			name = Default;
-		};
 		C9EC9F1F0E363AE000445345 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4832,13 +4606,6 @@
 			};
 			name = Deployment;
 		};
-		C9EC9F210E363AE000445345 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = Packages;
-			};
-			name = Default;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4847,70 +4614,63 @@
 			buildConfigurations = (
 				C209D3A908BF5CE6009C9E21 /* Development */,
 				C209D3AA08BF5CE6009C9E21 /* Deployment */,
-				C209D3AB08BF5CE6009C9E21 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		C209D3AC08BF5CE6009C9E21 /* Build configuration list for PBXProject "MacIrssi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C209D3AD08BF5CE6009C9E21 /* Development */,
 				C209D3AE08BF5CE6009C9E21 /* Deployment */,
-				C209D3AF08BF5CE6009C9E21 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		C9AF628712F0DED000C06A86 /* Build configuration list for PBXNativeTarget "Irssi.pm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9AF627512F0DE6700C06A86 /* Development */,
 				C9AF627612F0DE6700C06A86 /* Deployment */,
-				C9AF627712F0DE6700C06A86 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		C9AF62BE12F0E01C00C06A86 /* Build configuration list for PBXNativeTarget "UI.pm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9AF62BF12F0E01C00C06A86 /* Development */,
 				C9AF62C012F0E01C00C06A86 /* Deployment */,
-				C9AF62C112F0E01C00C06A86 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		C9AF631A12F0E2AB00C06A86 /* Build configuration list for PBXNativeTarget "Irc.pm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9AF631B12F0E2AB00C06A86 /* Development */,
 				C9AF631C12F0E2AB00C06A86 /* Deployment */,
-				C9AF631D12F0E2AB00C06A86 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		C9C763E312EFF5310072D1E8 /* Build configuration list for PBXNativeTarget "Irssi Core" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9C763DF12EFF50B0072D1E8 /* Development */,
 				C9C763E012EFF50B0072D1E8 /* Deployment */,
-				C9C763E112EFF50B0072D1E8 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 		C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9EC9F1F0E363AE000445345 /* Development */,
 				C9EC9F200E363AE000445345 /* Deployment */,
-				C9EC9F210E363AE000445345 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Development;
 		};
 /* End XCConfigurationList section */
 	};
