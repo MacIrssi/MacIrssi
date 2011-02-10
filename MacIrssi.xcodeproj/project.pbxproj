@@ -236,6 +236,8 @@
 		C91F168C0F12937B00763699 /* ShortcutBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F168A0F12937B00763699 /* ShortcutBridgeController.m */; };
 		C91F194E0F14025D00763699 /* iTunes.h in Headers */ = {isa = PBXBuildFile; fileRef = C91F194C0F14025D00763699 /* iTunes.h */; };
 		C91F194F0F14025D00763699 /* iTunes.m in Sources */ = {isa = PBXBuildFile; fileRef = C91F194D0F14025D00763699 /* iTunes.m */; };
+		C920EDBB1303C05200CD80DA /* IrssiRunloop.h in Headers */ = {isa = PBXBuildFile; fileRef = C920EDB91303C05200CD80DA /* IrssiRunloop.h */; };
+		C920EDBC1303C05200CD80DA /* IrssiRunloop.m in Sources */ = {isa = PBXBuildFile; fileRef = C920EDBA1303C05200CD80DA /* IrssiRunloop.m */; };
 		C922B4140E23BCE1000AA7BE /* Beep 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */; };
 		C922B4150E23BCE1000AA7BE /* Beep 2.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */; };
 		C922B4160E23BCE1000AA7BE /* Bell 1.aiff in Copy Alert Sounds */ = {isa = PBXBuildFile; fileRef = C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */; };
@@ -1283,6 +1285,8 @@
 		C91F168A0F12937B00763699 /* ShortcutBridgeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortcutBridgeController.m; sourceTree = "<group>"; };
 		C91F194C0F14025D00763699 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		C91F194D0F14025D00763699 /* iTunes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunes.m; sourceTree = "<group>"; };
+		C920EDB91303C05200CD80DA /* IrssiRunloop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IrssiRunloop.h; sourceTree = "<group>"; };
+		C920EDBA1303C05200CD80DA /* IrssiRunloop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrssiRunloop.m; sourceTree = "<group>"; };
 		C922B3DB0E23BB1D000AA7BE /* Beep 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 1.aiff"; sourceTree = "<group>"; };
 		C922B3DC0E23BB1D000AA7BE /* Beep 2.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Beep 2.aiff"; sourceTree = "<group>"; };
 		C922B3DD0E23BB1D000AA7BE /* Bell 1.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = "Bell 1.aiff"; sourceTree = "<group>"; };
@@ -2089,6 +2093,8 @@
 				B322DD9605EF9A7100E640C2 /* IrssiInternal.m */,
 				24FEBD6811CA20400067C8D6 /* IrssiCore.h */,
 				24FEBD6911CA20400067C8D6 /* IrssiCore.m */,
+				C920EDB91303C05200CD80DA /* IrssiRunloop.h */,
+				C920EDBA1303C05200CD80DA /* IrssiRunloop.m */,
 			);
 			path = "Irssi Bridge";
 			sourceTree = "<group>";
@@ -3401,6 +3407,7 @@
 				C9E1B3D112F019F8004E75B0 /* default-theme.h in Headers */,
 				C9E1B3D212F019F8004E75B0 /* irssi-config.h in Headers */,
 				C9E1B3D312F019F8004E75B0 /* irssi-version.h in Headers */,
+				C920EDBB1303C05200CD80DA /* IrssiRunloop.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3805,6 +3812,7 @@
 				C90301C0129DEA5000B30679 /* PreferenceVersionHelper.m in Sources */,
 				C90C9E8312A06196009F43CE /* MISearchBar.m in Sources */,
 				C90CA25C12A0CDD9009F43CE /* MIChannelSearchController.m in Sources */,
+				C920EDBC1303C05200CD80DA /* IrssiRunloop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

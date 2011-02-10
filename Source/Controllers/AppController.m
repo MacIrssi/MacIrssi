@@ -29,6 +29,7 @@
 #import "ColorSet.h"
 #import "ConnectivityMonitor.h"
 #import "IrssiBridge.h"
+#import "IrssiRunloop.h"
 #import "PreferenceVersionHelper.h"
 
 #import "AIMenuAdditions.h"
@@ -1193,11 +1194,6 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   return [tmp autorelease];
 }
 
-- (void)glibRunLoopTimerEvent:(NSTimer*)timer
-{
-  [[IrssiCore sharedCore] runloopOneshot];
-}
-
 - (ChannelController*)currentChannelController
 {
   return currentChannelController;
@@ -1725,8 +1721,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   
   [DebugController initialiseDebugController];
   
-  // Get rid of the shit old run loop thread and schedule the glib runloop on the NSRunLoop
-  [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(glibRunLoopTimerEvent:) userInfo:nil repeats:YES];
+  /* Fire up the glib runloop integration */
+  [[IrssiRunloop mainRunloop] run];
 }
 
 @end

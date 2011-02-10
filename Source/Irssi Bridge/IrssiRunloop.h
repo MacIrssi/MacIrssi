@@ -1,6 +1,6 @@
 /*
- IrssiCore.h
- Copyright (c) 2010 Matt Wright.
+ IrssiRunloop.h
+ Copyright (c) 2011 Matt Wright.
  
  MacIrssi is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -17,18 +17,22 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import <CoreFoundation/CoreFoundation.h>
+#import <sys/event.h>
 
-struct _GMainLoop;
-
-@interface IrssiCore : NSObject {
-  struct _GMainLoop *glibRunloop;
+@interface IrssiRunloop : NSObject {
+  CFRunLoopSourceRef notificationSourceRef;
+  CFRunLoopObserverRef preWaitingObserverRef;
+  CFRunLoopRef mainRunloopRef;
+  int notifyPorts[2];
+  int kFD;
+  
+  struct timeval next_timeout;
+  BOOL timeout_valid;
 }
 
-+ (id)initialiseCore;
-+ (void)deinitialiseCore;
-+ (id)sharedCore;
++ (id)mainRunloop;
 
-- (void)forceUTF8Charset;
-- (NSString*)findThemeByName:(NSString*)name;
+- (void)run;
 
 @end

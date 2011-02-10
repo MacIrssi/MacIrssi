@@ -242,11 +242,6 @@ void initialiseCoreOnce()
   [super dealloc];
 }
 
-- (void)runloopOneshot
-{
-  g_main_context_iteration(NULL, FALSE);
-}
-
 #pragma mark GLib Logging
 
 void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *message, void* userdata)
