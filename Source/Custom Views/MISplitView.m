@@ -74,14 +74,14 @@
 
 #pragma mark Non-standard Divider support
 
-- (void)setDividerThickness:(float)newThickness
+- (void)setDividerThickness:(CGFloat)newThickness
 {
   thickness = newThickness;
   [self adjustSubviews];
   [self setNeedsDisplay:YES];
 }
 
-- (float)dividerThickness
+- (CGFloat)dividerThickness
 {
   return thickness;
 }
