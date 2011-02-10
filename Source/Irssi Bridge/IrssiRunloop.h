@@ -19,18 +19,16 @@
 #import <Cocoa/Cocoa.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import <sys/event.h>
+#import <pthread.h>
 
 @interface IrssiRunloop : NSObject {
   CFRunLoopSourceRef notificationSourceRef;
   CFRunLoopObserverRef preWaitingObserverRef;
+  CFRunLoopTimerRef wakeupTimerRef;
   CFRunLoopRef mainRunloopRef;
-  int notifyPorts[2];
   int kFD;
   
-  struct timeval next_timeout;
-  BOOL timeout_valid;
-  
-  BOOL runloopStopping;
+  pthread_t kevent_thread;
 }
 
 + (IrssiRunloop*)mainRunloop;

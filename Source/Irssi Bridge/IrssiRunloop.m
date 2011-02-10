@@ -61,6 +61,11 @@ static void RunLoopObserve(CFRunLoopObserverRef observer, CFRunLoopActivity acti
   [[IrssiRunloop mainRunloop] run];
 }
 
+static void RunLoopTimer(CFRunLoopTimerRef timer, void *context)
+{
+  /* We don't really need to do anything here */
+}
+
 static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
 {
   /* Pass it off to the object */
@@ -95,16 +100,8 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
      */
     
     mainRunloopRef = (CFRunLoopRef)CFRetain(CFRunLoopGetMain());
-    timeout_valid = NO;
-    runloopStopping = NO;
+    kevent_thread = NULL;
     kFD = kqueue();
-    
-    if (socketpair(AF_UNIX, SOCK_STREAM, 0, notifyPorts) != 0)
-    {
-      NSLog(@"-[%@ %@] unable to open kevent socketpair (%d, %s).", [self className], NSStringFromSelector(_cmd), errno, strerror(errno));
-      [self release];
-      return nil;
-    }
     
     [self _installRunloopSource];
     
@@ -116,7 +113,7 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
 }
 
 - (void)dealloc
-{  
+{
   if (notificationSourceRef) {
     CFRunLoopRemoveSource(mainRunloopRef, notificationSourceRef, kCFRunLoopCommonModes);
     CFRelease(notificationSourceRef);
@@ -127,12 +124,15 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
     CFRelease(preWaitingObserverRef);
   }
   
+  if (wakeupTimerRef) {
+    CFRunLoopTimerInvalidate(wakeupTimerRef);
+    CFRelease(wakeupTimerRef);
+  }
+  
   if (mainRunloopRef) {
     CFRelease(mainRunloopRef);
   }
   
-  close(notifyPorts[0]);
-  close(notifyPorts[1]);
   close(kFD);
   
   [super dealloc];
@@ -157,39 +157,58 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
                                                   RunLoopObserve, 
                                                   NULL);
   CFRunLoopAddObserver(mainRunloopRef, preWaitingObserverRef, kCFRunLoopCommonModes);
+  
+  wakeupTimerRef = CFRunLoopTimerCreate(kCFAllocatorDefault, CFAbsoluteTimeGetCurrent(), 0, 0, 0, RunLoopTimer, NULL);
 }
 
 - (void)_startKeventThread
 {
+  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+  BOOL runloopStopping = NO;
+  int fd = kqueue();
+  
+  signal(SIGUSR1, SIG_IGN);
+  kevent_thread = pthread_self();
+  
+  struct kevent kev = {
+    .filter = EVFILT_READ,
+    .flags = EV_ADD | EV_RECEIPT,
+    .ident = kFD,
+  };
+  
+  int rval = kevent(fd, &kev, 1, &kev, 1, NULL);
+  if (rval < 1)
+  {
+    NSLog(@"-[%@ %@] failed to register main kqueue in watcher thread (%d). Thread not started.", [self className], NSStringFromSelector(_cmd), (int)kev.data);
+    return;
+  }
+  
   /* Ok, we're in the kevent thread now! OMG. */
   do
   {
-    struct timeval *t = NULL;
-    
-    if (timeout_valid) {
-      t = &next_timeout;
-      __sync_bool_compare_and_swap(&timeout_valid, YES, NO);
-    }
-    
-    /* so going to do launchd's trick and select() on the kevent, with the notifyPorts fd in there too */
-    fd_set rfds;
-    FD_ZERO(&rfds);
-    FD_SET(notifyPorts[1], &rfds);
-    FD_SET(kFD, &rfds);
-    
-    if (select((kFD > notifyPorts[1] ? kFD : notifyPorts[1]) + 1, &rfds, NULL, NULL, t) > 0) {
-      if (FD_ISSET(notifyPorts[1], &rfds)) {
-        char poke = 0;
-        read(notifyPorts[1], &poke, sizeof(poke));
-      }
-
-      if (FD_ISSET(kFD, &rfds)) {
+    rval = kevent(fd, NULL, 0, &kev, 1, NULL);
+    switch (rval)
+    {
+      case -1:
+        if (errno == EINTR && kFD == -1) {
+          runloopStopping = YES;
+        }
+        if (errno != EINTR) {
+          NSLog(@"-[%@ %@] kevent poll loop returned %d.", [self className], NSStringFromSelector(_cmd));
+        }
+        continue;
+      case 0:
+        continue;
+      default:
         CFRunLoopSourceSignal(notificationSourceRef);
         CFRunLoopWakeUp(mainRunloopRef);
-      }
+        break;
     }
   }
   while (!runloopStopping);
+  
+  close(fd);
+  [pool release];
 }
 
 - (void)_installGlibPoll
@@ -206,10 +225,9 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
 - (void)stop
 {
   /* Set runloopStopping then poke the runloop sockets */
-  runloopStopping = YES;
-  
-  char poke = 0;
-  write(notifyPorts[0], &poke, sizeof(poke));
+  close(kFD);
+  kFD = -1;
+  pthread_kill(kevent_thread, SIGUSR1);
 }
 
 - (gint)_poll:(GPollFD*)fds count:(guint)nfds timeout:(gint)timeout
@@ -240,10 +258,6 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
       }
       
       handled_events++;
-      
-      /* dealt with this one, remove it from the kevent */
-      kev.flags = EV_DELETE;
-      kevent(kFD, &kev, 1, NULL, 0, NULL);
     }
   }
   
@@ -252,7 +266,7 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
     /* feed the kevent */
     struct kevent kev = {
       .ident = fds[i].fd,
-      .flags = EV_ADD | EV_RECEIPT,
+      .flags = EV_ADD | EV_CLEAR | EV_RECEIPT,
     };
     struct kevent kev_return = { 0 };
     
@@ -275,15 +289,14 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
     /* TODO: G_IO_PRI ? */
   }
   
-  /* set the timeout */
-  next_timeout.tv_sec = timeout / 1000;
-  next_timeout.tv_usec = (timeout % 1000) / 1000;
-  timeout_valid = YES;
+  /* if the timeout is greater than -1 then we should setup the CFRunloopTimer with the next fire date */
+  if (timeout > -1)
+  {
+    CFAbsoluteTime nextFireDate = CFAbsoluteTimeGetCurrent() + ((CFTimeInterval)timeout / 1000.0f);
+    CFRunLoopTimerSetNextFireDate(wakeupTimerRef, nextFireDate);
+    CFRunLoopAddTimer(mainRunloopRef, wakeupTimerRef, kCFRunLoopCommonModes);
+  }
   
-  /* poke the kev */
-  char poke = 0;
-  write(notifyPorts[0], &poke, sizeof(poke));
-    
   return handled_events;
 }
 
