@@ -22,6 +22,7 @@
 #import "AIMenuAdditions.h"
 #import "IrssiBridge.h"
 #import "ConnectivityMonitor.h"
+#import "IrssiRunloop.h"
 
 #import "module-formats.h"
 
@@ -135,6 +136,9 @@ static int urlTestLinesCount = 34;
 
     NSMenuItem *simulateWakeEvent = [[NSMenuItem alloc] initWithTitle:@"Simulate Wake Event" target:self action:@selector(simulateWakeEvent:) keyEquivalent:@""];
     [sleepMenu addItem:simulateWakeEvent];
+    
+    NSMenuItem *deallocateIrssiRunloop = [[NSMenuItem alloc] initWithTitle:@"Deallocate Irssi Runloop" target:self action:@selector(deallocateIrssiRunloop:) keyEquivalent:@""];
+    [debugMenu addItem:deallocateIrssiRunloop];
 
     // Put this thing in the menu now.
     NSMenuItem *mainMenuItem = [[NSMenuItem alloc] initWithTitle:@"Debug" action:nil keyEquivalent:@""];
@@ -238,6 +242,12 @@ static int urlTestLinesCount = 34;
 - (void)simulateWakeEvent:(id)sender
 {
   [[ConnectivityMonitor sharedMonitor] refresh];
+}
+
+- (void)deallocateIrssiRunloop:(id)sender
+{
+  [[IrssiRunloop mainRunloop] stop];
+  [[IrssiRunloop mainRunloop] release];
 }
 
 //- (void)dealloc

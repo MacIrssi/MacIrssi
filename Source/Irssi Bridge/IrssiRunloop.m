@@ -96,6 +96,7 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
     
     mainRunloopRef = (CFRunLoopRef)CFRetain(CFRunLoopGetMain());
     timeout_valid = NO;
+    runloopStopping = NO;
     kFD = kqueue();
     
     if (socketpair(AF_UNIX, SOCK_STREAM, 0, notifyPorts) != 0)
@@ -128,7 +129,11 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
   
   if (mainRunloopRef) {
     CFRelease(mainRunloopRef);
-  }  
+  }
+  
+  close(notifyPorts[0]);
+  close(notifyPorts[1]);
+  close(kFD);
   
   [super dealloc];
 }
@@ -157,8 +162,6 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
 - (void)_startKeventThread
 {
   /* Ok, we're in the kevent thread now! OMG. */
-  
-  /* For now, we'll make this an infinite loop */
   do
   {
     struct timeval *t = NULL;
@@ -186,7 +189,7 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
       }
     }
   }
-  while (1);
+  while (!runloopStopping);
 }
 
 - (void)_installGlibPoll
@@ -198,6 +201,15 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
 {
   /* We're going to ask to "block" because glib will then call our poll with a timeout */
   g_main_context_iteration(NULL, TRUE);
+}
+
+- (void)stop
+{
+  /* Set runloopStopping then poke the runloop sockets */
+  runloopStopping = YES;
+  
+  char poke = 0;
+  write(notifyPorts[0], &poke, sizeof(poke));
 }
 
 - (gint)_poll:(GPollFD*)fds count:(guint)nfds timeout:(gint)timeout

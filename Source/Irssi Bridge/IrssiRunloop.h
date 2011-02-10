@@ -29,10 +29,13 @@
   
   struct timeval next_timeout;
   BOOL timeout_valid;
+  
+  BOOL runloopStopping;
 }
 
-+ (id)mainRunloop;
++ (IrssiRunloop*)mainRunloop;
 
 - (void)run;
+- (void)stop;
 
 @end
