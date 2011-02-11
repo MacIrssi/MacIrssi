@@ -116,6 +116,7 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
 
     SCNetworkReachabilitySetCallback(reachabilityRef, networkReachabilityCallback, &context);
     SCNetworkReachabilityScheduleWithRunLoop(reachabilityRef, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopCommonModes);
+    CFRelease(reachabilityRef);
   }
 }
 
@@ -127,9 +128,8 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
   SCNetworkReachabilityRef reachabilityRef = (SCNetworkReachabilityRef)[serverMap objectForKey:pointerToServerRec];
 
   if (reachabilityRef) {
-    [serverMap removeObjectForKey:pointerToServerRec];
     SCNetworkReachabilityUnscheduleFromRunLoop(reachabilityRef, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopCommonModes);
-    CFRelease(reachabilityRef);
+    [serverMap removeObjectForKey:pointerToServerRec];
   }
 }
 
@@ -147,8 +147,15 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
     }
     server_connection_rec->reconnection = TRUE;
     
-    /* swizzle our connection rec to the reconnection map */
+    /* signal emit a disconnection so we tell people we're going away */
+    signal_emit("command disconnect", 2, "* Computer has gone to sleep", server_rec);
+
     NSValue *newConnectionValue = [NSValue valueWithPointer:server_connection_rec];
+
+    SCNetworkReachabilityUnscheduleFromRunLoop(reachabilityRef, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopCommonModes);
+
+    reachabilityRef = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, server_connection_rec->address);
+
     [serverMap removeObjectForKey:pointerToServerRec];
     [serverMap setObject:(id)reachabilityRef forKey:newConnectionValue];
     
@@ -159,9 +166,8 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
       .release = CFRelease,
     };
     SCNetworkReachabilitySetCallback(reachabilityRef, networkReachabilityCallback, &context);
-    
-    /* signal emit a disconnection so we tell people we're going away */
-    signal_emit("command disconnect", 2, "* Computer has gone to sleep", server_rec);
+    SCNetworkReachabilityScheduleWithRunLoop(reachabilityRef, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopCommonModes);
+    CFRelease(reachabilityRef);
   }
 }
 
@@ -201,20 +207,9 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
       server_rec = server_connect(reconnect_rec);
       server_connect_unref(reconnect_rec);
       
-      NSValue *newPointerToRec = [NSValue valueWithPointer:server_rec];
-      
-      /* replace the servermap pointer */
+      /* remove the old reachability, the server connection will add a new one for us */
+      SCNetworkReachabilityUnscheduleFromRunLoop(reachabilityRef, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopCommonModes);
       [serverMap removeObjectForKey:pointerToServerRec];
-      [serverMap setObject:(id)reachabilityRef forKey:newPointerToRec];
-      
-      /* replace the reachability context with the server */
-      SCNetworkReachabilityContext c = {
-        .version = 0,
-        .info = newPointerToRec,
-        .retain = CFRetain,
-        .release = CFRelease,
-      };
-      SCNetworkReachabilitySetCallback(target, networkReachabilityCallback, &c);
     }
   }
   else
@@ -226,7 +221,16 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
       reconnect_save_status(reconnect_rec, server_rec);
       reconnect_rec->reconnection = TRUE;
       
+      server_rec->connection_lost = TRUE;
+      server_rec->no_reconnect = TRUE;
+      server_disconnect(server_rec);
+      
       NSValue *newPointer = [NSValue valueWithPointer:reconnect_rec];
+      
+      /* if we're disconnected, we're more interested in the desintation being reachable, not the source too */
+      SCNetworkReachabilityUnscheduleFromRunLoop(reachabilityRef, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopCommonModes);
+      
+      reachabilityRef = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, reconnect_rec->address);
       
       /* replace the servermap pointer */
       [serverMap removeObjectForKey:(id)pointerToServerRec];
@@ -240,10 +244,8 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
         .release = CFRelease,
       };
       SCNetworkReachabilitySetCallback(reachabilityRef, networkReachabilityCallback, &c);
-      
-      server_rec->connection_lost = TRUE;
-      server_rec->no_reconnect = TRUE;
-      server_disconnect(server_rec);
+      SCNetworkReachabilityScheduleWithRunLoop(reachabilityRef, [[NSRunLoop mainRunLoop] getCFRunLoop], kCFRunLoopCommonModes);
+      CFRelease(reachabilityRef);
     }
   }
 }
