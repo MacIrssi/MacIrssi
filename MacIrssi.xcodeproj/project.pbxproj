@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		C95430BC1305AE8700C19A0C /* Copy GLib */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C95430C71305AEAC00C19A0C /* Build configuration list for PBXAggregateTarget "Copy GLib" */;
+			buildPhases = (
+				C95430BB1305AE8700C19A0C /* CopyFiles */,
+			);
+			dependencies = (
+				C95430CB1305AEFD00C19A0C /* PBXTargetDependency */,
+			);
+			name = "Copy GLib";
+			productName = "Copy GLib";
+		};
 		C9EC9F1E0E363AE000445345 /* Packages */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = C9EC9F290E363AED00445345 /* Build configuration list for PBXAggregateTarget "Packages" */;
@@ -266,6 +278,7 @@
 		C9432C260EA1673E005237E3 /* ChannelBridgeController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9432C240EA1673E005237E3 /* ChannelBridgeController.m */; };
 		C947E1DC0E1E871F0001380E /* EventController.h in Headers */ = {isa = PBXBuildFile; fileRef = C947E1DA0E1E871F0001380E /* EventController.h */; };
 		C947E1DD0E1E871F0001380E /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = C947E1DB0E1E871F0001380E /* EventController.m */; };
+		C95430BF1305AE9E00C19A0C /* GLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9C762AB12EFD5850072D1E8 /* GLib.framework */; };
 		C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */ = {isa = PBXBuildFile; fileRef = C9550D140E29A97400658372 /* MacIrssi-Alert.png */; };
 		C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */ = {isa = PBXBuildFile; fileRef = C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */; };
 		C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */; };
@@ -596,6 +609,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C95430C81305AEEF00C19A0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C95430BC1305AE8700C19A0C /* Copy GLib */;
+			remoteInfo = "Copy GLib";
+		};
+		C95430CA1305AEFD00C19A0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C91792C90F743801005241A4 /* MILibs.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C9CDEB3212EFBD2200A76118 /* GLib */;
+			remoteInfo = GLib;
+		};
 		C9C762AA12EFD5850072D1E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C91792C90F743801005241A4 /* MILibs.xcodeproj */;
@@ -971,6 +998,16 @@
 				C922B4240E23BCE1000AA7BE /* Whip.aiff in Copy Alert Sounds */,
 			);
 			name = "Copy Alert Sounds";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C95430BB1305AE8700C19A0C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				C95430BF1305AE9E00C19A0C /* GLib.framework in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -3372,6 +3409,7 @@
 			);
 			dependencies = (
 				C9C7646912EFF6220072D1E8 /* PBXTargetDependency */,
+				C95430C91305AEEF00C19A0C /* PBXTargetDependency */,
 			);
 			name = "Irssi Core";
 			productName = "Irssi Core";
@@ -3407,8 +3445,9 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* MacIrssi */,
-				C9EC9F1E0E363AE000445345 /* Packages */,
 				C9C763DD12EFF50A0072D1E8 /* Irssi Core */,
+				C95430BC1305AE8700C19A0C /* Copy GLib */,
+				C9EC9F1E0E363AE000445345 /* Packages */,
 			);
 		};
 /* End PBXProject section */
@@ -3754,6 +3793,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C95430C91305AEEF00C19A0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C95430BC1305AE8700C19A0C /* Copy GLib */;
+			targetProxy = C95430C81305AEEF00C19A0C /* PBXContainerItemProxy */;
+		};
+		C95430CB1305AEFD00C19A0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GLib;
+			targetProxy = C95430CA1305AEFD00C19A0C /* PBXContainerItemProxy */;
+		};
 		C9C7646912EFF6220072D1E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GLib;
@@ -3836,7 +3885,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers",
+					"$(BUILT_PRODUCTS_DIR)/GLib.framework/Headers",
 					"$(SRCROOT)/Headers",
 				);
 				IBC_WARNINGS = NO;
@@ -3886,7 +3935,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers",
+					"$(BUILT_PRODUCTS_DIR)/GLib.framework/Headers",
 					"$(SRCROOT)/Headers",
 				);
 				IBC_WARNINGS = NO;
@@ -3948,6 +3997,27 @@
 			};
 			name = Deployment;
 		};
+		C95430BD1305AE8700C19A0C /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Copy GLib";
+			};
+			name = Development;
+		};
+		C95430BE1305AE8700C19A0C /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Copy GLib";
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
 		C9C763DF12EFF50B0072D1E8 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3959,7 +4029,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers",
+					"$(BUILT_PRODUCTS_DIR)/GLib.framework/Headers",
 					"$(SRCROOT)/Headers",
 					"$(SRCROOT)/irssi/src",
 				);
@@ -3988,7 +4058,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(SRCROOT)/Frameworks/MILibs/build/Release/GLib.framework/Headers",
+					"$(BUILT_PRODUCTS_DIR)/GLib.framework/Headers",
 					"$(SRCROOT)/Headers",
 					"$(SRCROOT)/irssi/src",
 				);
@@ -4049,6 +4119,15 @@
 			buildConfigurations = (
 				C209D3AD08BF5CE6009C9E21 /* Development */,
 				C209D3AE08BF5CE6009C9E21 /* Deployment */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Development;
+		};
+		C95430C71305AEAC00C19A0C /* Build configuration list for PBXAggregateTarget "Copy GLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C95430BD1305AE8700C19A0C /* Development */,
+				C95430BE1305AE8700C19A0C /* Deployment */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Development;
