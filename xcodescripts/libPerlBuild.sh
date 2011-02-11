@@ -10,7 +10,7 @@ CC="llvm-gcc"
 # obtained by running perl -MExtUtils::Embed -e ldopts
 IRSSI_INCLUDES="-I$SRCROOT/irssi/src -I$SRCROOT/irssi/src/core -I$SRCROOT/irssi/src/fe-common/core"
 DEFINES="-DPERL_DARWIN -DPERL_STATIC_LIBS=0 -D_REENTRANT -DPIC -DSCRIPTDIR=\"\" -DHAVE_CONFIG_H -DPERL_USE_LIB=\"\""
-CFLAGS="$IRSSI_INCLUDES -I$SRCROOT/Frameworks/MILibs/build/Release/GLib.framework/Headers -I$SRCROOT/Headers -g -Os -fPIC $DEFINES"
+CFLAGS="$IRSSI_INCLUDES -I$TARGET_BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Frameworks/GLib.framework/Headers -I$SRCROOT/Headers -g -Os -fPIC $DEFINES"
 LDFLAGS="-isysroot $SDKROOT -Wl,-undefined,dynamic_lookup -lperl -dl -lm -lutil -lc"
 
 RC_ARCHS=""
