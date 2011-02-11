@@ -277,9 +277,6 @@ void glib_log_NSLog(const char *domain, GLogLevelFlags level, const char *messag
   fe_common_core_init();
   fe_common_irc_init();
   
-  NSString *bundle = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"Scripts"];
-  settings_add_str("perl", "macirssi_lib", [bundle cStringUsingEncoding:NSUTF8StringEncoding]);
-  
   [self _initialiseInterfaceSignals];
   [self forceUTF8Charset];
   

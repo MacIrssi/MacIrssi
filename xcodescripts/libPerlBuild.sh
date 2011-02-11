@@ -9,9 +9,9 @@ CC="llvm-gcc"
 
 # obtained by running perl -MExtUtils::Embed -e ldopts
 IRSSI_INCLUDES="-I$SRCROOT/irssi/src -I$SRCROOT/irssi/src/core -I$SRCROOT/irssi/src/fe-common/core"
-DEFINES="-DPERL_DARWIN -DPERL_STATIC_LIBS=0 -D_REENTRANT -DSCRIPTDIR=\"\" -DHAVE_CONFIG_H -DPERL_USE_LIB=\"\""
-CFLAGS="$IRSSI_INCLUDES -I$SRCROOT/Frameworks/MILibs/build/Release/GLib.framework/Headers -I$SRCROOT/Headers -g -Os $DEFINES"
-LDFLAGS="-isysroot $SDKROOT -Wl,-undefined,dynamic_lookup -fstack-protector -lperl -dl -lm -lutil -lc"
+DEFINES="-DPERL_DARWIN -DPERL_STATIC_LIBS=0 -D_REENTRANT -DPIC -DSCRIPTDIR=\"\" -DHAVE_CONFIG_H -DPERL_USE_LIB=\"\""
+CFLAGS="$IRSSI_INCLUDES -I$SRCROOT/Frameworks/MILibs/build/Release/GLib.framework/Headers -I$SRCROOT/Headers -g -Os -fPIC $DEFINES"
+LDFLAGS="-isysroot $SDKROOT -Wl,-undefined,dynamic_lookup -lperl -dl -lm -lutil -lc"
 
 RC_ARCHS=""
 for x in $ARCHS; do
@@ -43,6 +43,7 @@ for lib in $PERLLIB/*; do
 			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .c`.$V.o
 
 			if [[ $x -nt $OBJ ]]; then
+				echo cc/core `basename $x`
 				$CC -isysroot $SDKROOT $_CFLAGS $RC_ARCHS -o $OBJ -c $x || exit 1
 			fi
 
@@ -53,6 +54,7 @@ for lib in $PERLLIB/*; do
 			OBJ="$OBJECT_FILE_DIR-$CURRENT_VARIANT"/`basename $x .c`.$V.o
 
 			if [[ $x -nt $OBJ ]]; then
+				echo cc/perl `basename $x`
 				$CC -isysroot $SDKROOT $_CFLAGS $RC_ARCHS -o $OBJ -c $x || exit 1
 			fi
 
@@ -71,7 +73,7 @@ for lib in $PERLLIB/*; do
 
 			for xs in $P/$module/*.xs; do
 				CFILE="$DERIVED_SOURCES_DIR/perl/$V/$module/`basename $xs .xs`.c"
-				[ $xs -nt $CFILE ] && (cd $P/$module ; echo xsubpp $V/$module/`basename $xs` ; xsubpp -typemap typemap -typemap ../common/typemap $xs > $CFILE || exit 2)
+				[ $xs -nt $CFILE ] && (cd $P/$module ; echo xsubpp $V/$module/`basename $xs` ; xsubpp$V -typemap $lib/ExtUtils/typemap -typemap typemap -typemap ../common/typemap $xs > $CFILE || exit 2)
 				[ $? -eq 2 ] && exit 1
 			done
 
