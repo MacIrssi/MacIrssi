@@ -125,17 +125,29 @@ static int urlTestLinesCount = 34;
     [sleepMenuItem setSubmenu:sleepMenu];
     [debugMenu addItem:sleepMenuItem];
     
+    NSMenuItem *simulateSleepEvent = [[NSMenuItem alloc] initWithTitle:@"Simulate Sleep Event" target:self action:@selector(simulateSleepEvent:) keyEquivalent:@""];
+    [sleepMenu addItem:simulateSleepEvent];
+    
+    NSMenuItem *simulateWakeEvent = [[NSMenuItem alloc] initWithTitle:@"Simulate Wake Event" target:self action:@selector(simulateWakeEvent:) keyEquivalent:@""];
+    [sleepMenu addItem:simulateWakeEvent];
+    
+    NSMenu *disconnectionMenu = [[[NSMenu alloc] initWithTitle:@"Disconnection"] autorelease];
+    
+    NSMenuItem *disconnectionMenuItem = [[[NSMenuItem alloc] initWithTitle:@"Network Events" action:nil keyEquivalent:@""] autorelease];
+    [disconnectionMenuItem setSubmenu:disconnectionMenu];
+    [debugMenu addItem:disconnectionMenuItem];
+    
+    NSMenuItem *simulateConnection = [[[NSMenuItem alloc] initWithTitle:@"Simulate Connection" target:self action:@selector(simiulateConnection:) keyEquivalent:@""] autorelease];
+    [disconnectionMenu addItem:simulateConnection];
+    
+    NSMenuItem *simulateDisconnection = [[[NSMenuItem alloc] initWithTitle:@"Simulate Disconnection" target:self action:@selector(simiulateDisconnection:) keyEquivalent:@""] autorelease];
+    [disconnectionMenu addItem:simulateDisconnection];    
+    
     NSMenuItem *forceScrollToBottom = [[NSMenuItem alloc] initWithTitle:@"Force Scroll to Bottom" target:self action:@selector(forceScrollToBottom:) keyEquivalent:@""];
     [debugMenu addItem:forceScrollToBottom];
     
     NSMenuItem *changeOrientation = [[NSMenuItem alloc] initWithTitle:@"Toggle Orientation" target:self action:@selector(toggleOrientation:) keyEquivalent:@"O"];
     [debugMenu addItem:changeOrientation];
-    
-    NSMenuItem *simulateSleepEvent = [[NSMenuItem alloc] initWithTitle:@"Simulate Sleep Event" target:self action:@selector(simulateSleepEvent:) keyEquivalent:@""];
-    [sleepMenu addItem:simulateSleepEvent];
-
-    NSMenuItem *simulateWakeEvent = [[NSMenuItem alloc] initWithTitle:@"Simulate Wake Event" target:self action:@selector(simulateWakeEvent:) keyEquivalent:@""];
-    [sleepMenu addItem:simulateWakeEvent];
     
     NSMenuItem *deallocateIrssiRunloop = [[NSMenuItem alloc] initWithTitle:@"Deallocate Irssi Runloop" target:self action:@selector(deallocateIrssiRunloop:) keyEquivalent:@""];
     [debugMenu addItem:deallocateIrssiRunloop];
@@ -242,6 +254,16 @@ static int urlTestLinesCount = 34;
 - (void)simulateWakeEvent:(id)sender
 {
   [[ConnectivityMonitor sharedMonitor] refresh];
+}
+
+- (void)simiulateConnection:(id)sender
+{
+  [[ConnectivityMonitor sharedMonitor] _simulateAllReachable];
+}
+
+- (void)simiulateDisconnection:(id)sender
+{
+  [[ConnectivityMonitor sharedMonitor] _simulateAllUnreachable];
 }
 
 - (void)deallocateIrssiRunloop:(id)sender

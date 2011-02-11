@@ -41,4 +41,8 @@
 // SCNetworkReachability
 - (void)networkReachabilityCallback:(SCNetworkReachabilityRef)target flags:(SCNetworkConnectionFlags)flags info:(void*)info;
 
+// Simulating reachabillity events
+- (void)_simulateAllUnreachable;
+- (void)_simulateAllReachable;
+
 @end

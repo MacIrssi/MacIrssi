@@ -1695,7 +1695,8 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [nc addObserver:self selector:@selector(inputTextFieldColorChanged:) name:@"inputTextFieldColorChanged" object:nil];
   [nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
   [nc addObserver:self selector:@selector(setShortcutCommands) name:@"shortcutChanged" object:nil];
-  [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:@"irssiServerChangedNotification" object:nil];
+  [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:kMIServerConnectedEvent object:nil];
+  [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:kMIServerDisconnectedEvent object:nil];
   [nc addObserver:self selector:@selector(channelBackgroundColorChanged:) name:@"channelColorChanged" object:nil];
     
   /* Set up colors */

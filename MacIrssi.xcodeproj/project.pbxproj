@@ -201,6 +201,8 @@
 		C911226E0F2B235E006C4BD0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C911226C0F2B235E006C4BD0 /* MainMenu.xib */; };
 		C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122860F2B2431006C4BD0 /* Preferences.xib */; };
 		C911228B0F2B2431006C4BD0 /* Tab new.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122880F2B2431006C4BD0 /* Tab new.xib */; };
+		C91264BD1304F4BA006E0AA4 /* IrssiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = C91264BB1304F4BA006E0AA4 /* IrssiConstants.h */; };
+		C91264BE1304F4BA006E0AA4 /* IrssiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C91264BC1304F4BA006E0AA4 /* IrssiConstants.m */; };
 		C9134153118AB44E0001F09D /* autoop.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913412C118AB4000001F09D /* autoop.pl */; };
 		C9134154118AB44E0001F09D /* autorejoin.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913412D118AB4000001F09D /* autorejoin.pl */; };
 		C9134155118AB44E0001F09D /* buf.pl in Copy Scripts */ = {isa = PBXBuildFile; fileRef = C913412E118AB4000001F09D /* buf.pl */; };
@@ -1243,6 +1245,8 @@
 		C911226D0F2B235E006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C91122870F2B2431006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
 		C91122890F2B2431006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = "English.lproj/Tab new.xib"; sourceTree = "<group>"; };
+		C91264BB1304F4BA006E0AA4 /* IrssiConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IrssiConstants.h; sourceTree = "<group>"; };
+		C91264BC1304F4BA006E0AA4 /* IrssiConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrssiConstants.m; sourceTree = "<group>"; };
 		C913412C118AB4000001F09D /* autoop.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = autoop.pl; sourceTree = "<group>"; };
 		C913412D118AB4000001F09D /* autorejoin.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = autorejoin.pl; sourceTree = "<group>"; };
 		C913412E118AB4000001F09D /* buf.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = buf.pl; sourceTree = "<group>"; };
@@ -2087,6 +2091,8 @@
 			isa = PBXGroup;
 			children = (
 				24FEBD5011CA1E780067C8D6 /* Irssi.h */,
+				C91264BB1304F4BA006E0AA4 /* IrssiConstants.h */,
+				C91264BC1304F4BA006E0AA4 /* IrssiConstants.m */,
 				B3D0B8A405F637DB0067FD52 /* IrssiBridge.h */,
 				B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */,
 				B322DD9505EF9A7100E640C2 /* IrssiInternal.h */,
@@ -3408,6 +3414,7 @@
 				C9E1B3D212F019F8004E75B0 /* irssi-config.h in Headers */,
 				C9E1B3D312F019F8004E75B0 /* irssi-version.h in Headers */,
 				C920EDBB1303C05200CD80DA /* IrssiRunloop.h in Headers */,
+				C91264BD1304F4BA006E0AA4 /* IrssiConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3813,6 +3820,7 @@
 				C90C9E8312A06196009F43CE /* MISearchBar.m in Sources */,
 				C90CA25C12A0CDD9009F43CE /* MIChannelSearchController.m in Sources */,
 				C920EDBC1303C05200CD80DA /* IrssiRunloop.m in Sources */,
+				C91264BE1304F4BA006E0AA4 /* IrssiConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

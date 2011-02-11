@@ -18,5 +18,6 @@
 
 #import "IrssiInternal.h"
 #import "IrssiCore.h"
+#import "IrssiConstants.h"
 
 #define CSTR(x) (x ? x : "")

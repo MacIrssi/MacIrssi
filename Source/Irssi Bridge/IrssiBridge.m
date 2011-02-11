@@ -152,14 +152,14 @@ void irssibridge_away_mode_changed(SERVER_REC *server)
 void irssibridge_server_disconnected(SERVER_REC *server)
 {
   /* package the SERVER_REC pointer up in an NSValue */
-  NSValue *v = [NSValue valueWithPointer:server];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"irssiServerChangedNotification" object:v];
+  NSValue *pointerToServerRec = [NSValue valueWithPointer:server];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kMIServerDisconnectedEvent object:pointerToServerRec];
 }
 
 void irssibridge_server_connected(SERVER_REC *server)
 {
-  NSValue *v = [NSValue valueWithPointer:server];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"irssiServerChangedNotification" object:v];
+  NSValue *pointerToServerRec = [NSValue valueWithPointer:server];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kMIServerConnectedEvent object:pointerToServerRec];
 }
 
 void irssibridge_event_connected(void)

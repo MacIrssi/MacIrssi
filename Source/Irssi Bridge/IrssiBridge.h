@@ -17,6 +17,9 @@
  */
 
 #import <Foundation/Foundation.h>
+
+#import "IrssiConstants.h"
+
 #import "common.h"
 #import "formats.h"
 #import "fe-channels.h"
