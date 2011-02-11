@@ -32,7 +32,7 @@ for lib in $PERLLIB/*; do
 	V=`basename $lib`
 	[[ $V == "5.8.1" ]] && continue
 
-	_CFLAGS="$CFLAGS -I$lib/darwin-thread-multi-2level/CORE"
+	_CFLAGS="$CFLAGS -DMIPERL=\"$V\" -I$lib/darwin-thread-multi-2level/CORE"
 
 	if [ -e $lib/darwin-thread-multi-2level/CORE/libperl.dylib ]; then
 		CORE_SRCS=""
