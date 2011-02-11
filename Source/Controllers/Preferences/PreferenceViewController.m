@@ -778,7 +778,7 @@
   
   while (location = [locationsEnumerator nextObject])
   {
-    NSArray *files = [fileManager directoryContentsAtPath:location];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath:location error:nil];
     
     if (!files)
     {

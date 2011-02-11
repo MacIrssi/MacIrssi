@@ -19,7 +19,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface DebugController : NSObject {
+@interface DebugController : NSObject <NSMenuDelegate> {
   NSMenu *debugMenu;
   
   NSTimer *channelTextTestTimer;

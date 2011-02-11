@@ -38,7 +38,7 @@ enum
   TabShortcutBraces
 };
 
-@interface PreferenceViewController : NSObject
+@interface PreferenceViewController : NSObject <NSSplitViewDelegate, NSToolbarDelegate, NSWindowDelegate>
 {
 	IBOutlet NSWindow *preferenceWindow;
 	

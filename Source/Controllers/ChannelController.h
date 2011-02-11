@@ -68,7 +68,7 @@ enum nickContextMenuTags {
   CopyIP
 };
 
-@interface ChannelController : NSObject
+@interface ChannelController : NSObject <NSSplitViewDelegate>
 {
   MIChannelSearchController *searchController;
   MISearchBar *searchBar;

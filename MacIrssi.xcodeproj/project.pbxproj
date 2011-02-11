@@ -204,7 +204,7 @@
 		C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265A0E5C654800E041F7 /* UKCrashReporter.h */; };
 		C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
 		C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265C0E5C654800E041F7 /* UKSystemInfo.h */; };
-		C91026650E5C654800E041F7 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265D0E5C654800E041F7 /* UKCrashReporter.m */; };
+		C91026650E5C654800E041F7 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265D0E5C654800E041F7 /* UKCrashReporter.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		C91026660E5C654800E041F7 /* UKNibOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265E0E5C654800E041F7 /* UKNibOwner.h */; };
 		C91026670E5C654800E041F7 /* UKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265F0E5C654800E041F7 /* UKSystemInfo.m */; };
 		C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */ = {isa = PBXBuildFile; fileRef = C91026600E5C654800E041F7 /* UKCrashReporter.nib */; };
@@ -613,14 +613,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C95430BC1305AE8700C19A0C /* Copy GLib */;
+			remoteGlobalIDString = C95430BC1305AE8700C19A0C;
 			remoteInfo = "Copy GLib";
 		};
 		C95430CA1305AEFD00C19A0C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C91792C90F743801005241A4 /* MILibs.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = C9CDEB3212EFBD2200A76118 /* GLib */;
+			remoteGlobalIDString = C9CDEB3212EFBD2200A76118;
 			remoteInfo = GLib;
 		};
 		C9C762AA12EFD5850072D1E8 /* PBXContainerItemProxy */ = {
@@ -3976,8 +3976,9 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 				VALID_ARCHS = "i386 x86_64 ppc";
 			};
 			name = Development;
@@ -3992,7 +3993,8 @@
 				);
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 				VALID_ARCHS = "i386 x86_64 ppc";
 			};
 			name = Deployment;

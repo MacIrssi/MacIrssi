@@ -51,7 +51,7 @@ extern char **argv;
 #define MIChannelBarHorizontalOrientation 0
 #define MIChannelBarVerticalOrientation   1
 
-@interface AppController : NSObject <GrowlApplicationBridgeDelegate> {
+@interface AppController : NSObject <GrowlApplicationBridgeDelegate, NSSplitViewDelegate> {
 	IBOutlet NSWindow *mainWindow;
 	IBOutlet NSTabView *tabView;
   

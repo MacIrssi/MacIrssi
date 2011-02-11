@@ -49,12 +49,12 @@ typedef unsigned int NSUInteger;
 	if(!font) return;
 
 	if([[self delegate] respondsToSelector:@selector(fontPreviewField:shouldChangeToFont:)])
-		if(![[self delegate] fontPreviewField:self shouldChangeToFont:font]) return;
+		if(![(id)[self delegate] fontPreviewField:self shouldChangeToFont:font]) return;
 
 	[self setFont:font];
 
 	if([[self delegate] respondsToSelector:@selector(fontPreviewField:didChangeToFont:)])
-		[[self delegate] fontPreviewField:self didChangeToFont:font];
+		[(id)[self delegate] fontPreviewField:self didChangeToFont:font];
 }
 
 #ifndef MAC_OS_X_VERSION_10_3

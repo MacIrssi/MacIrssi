@@ -23,7 +23,7 @@ typedef enum {
   MISearchNextDirection,
 } MISearchDirection;
 
-@interface MISearchBar : NSView {
+@interface MISearchBar : NSView <NSTextFieldDelegate> {
   NSTextField *searchResultsLabel;
   NSSegmentedControl *nextBackButton;
   NSSearchField *searchField;
