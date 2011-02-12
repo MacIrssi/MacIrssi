@@ -1002,7 +1002,7 @@
 		C95430BB1305AE8700C19A0C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "";
+			dstPath = Frameworks;
 			dstSubfolderSpec = 16;
 			files = (
 				C95430BF1305AE9E00C19A0C /* GLib.framework in CopyFiles */,
@@ -3845,7 +3845,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
-					"$(BUILT_PRODUCTS_DIR)/GLib.framework/Headers",
+					"$(BUILT_PRODUCTS_DIR)/Frameworks/GLib.framework/Headers",
 					"$(SRCROOT)/Headers",
 				);
 				IBC_WARNINGS = NO;
@@ -3890,7 +3890,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
-					"$(BUILT_PRODUCTS_DIR)/GLib.framework/Headers",
+					"$(BUILT_PRODUCTS_DIR)/Frameworks/GLib.framework/Headers",
 					"$(SRCROOT)/Headers",
 				);
 				IBC_WARNINGS = NO;
@@ -3979,7 +3979,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/GLib.framework/Headers",
+					"$(BUILT_PRODUCTS_DIR)/Frameworks/GLib.framework/Headers",
 					"$(SRCROOT)/Headers",
 					"$(SRCROOT)/irssi/src",
 				);
@@ -4008,7 +4008,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(BUILT_PRODUCTS_DIR)/GLib.framework/Headers",
+					"$(BUILT_PRODUCTS_DIR)/Frameworks/GLib.framework/Headers",
 					"$(SRCROOT)/Headers",
 					"$(SRCROOT)/irssi/src",
 				);
