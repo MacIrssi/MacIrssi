@@ -60,8 +60,6 @@
 		B3D0B8A705F637DB0067FD52 /* IrssiBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */; };
 		C200D027073FC03700B850B1 /* ChannelBarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C200D025073FC03700B850B1 /* ChannelBarCell.h */; };
 		C200D028073FC03700B850B1 /* ChannelBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C200D026073FC03700B850B1 /* ChannelBarCell.m */; };
-		C229C73D0C1AA7B900D7CCD0 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C229C73C0C1AA7B900D7CCD0 /* libssl.dylib */; };
-		C229C7400C1AA82900D7CCD0 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C229C73F0C1AA82900D7CCD0 /* libcrypto.dylib */; };
 		C232FB7008C897F9000C624E /* zng.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FAEB08C8978D000C624E /* zng.theme */; };
 		C232FB7108C8980B000C624E /* agon.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA6F08C8978D000C624E /* agon.theme */; };
 		C232FB7208C8980B000C624E /* ash.theme in Copy Themes */ = {isa = PBXBuildFile; fileRef = C232FA7008C8978D000C624E /* ash.theme */; };
@@ -293,6 +291,7 @@
 		C98E88760E5E21500051AD53 /* Colours.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C98E88750E5E21500051AD53 /* Colours.tiff */; };
 		C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */ = {isa = PBXBuildFile; fileRef = C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */; };
 		C9A3EA3A0EA48342005025BC /* AppcastVersionComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */; };
+		C9AA5DE613062A3A00C87B25 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AA5DE513062A3A00C87B25 /* Security.framework */; };
 		C9B90D020F8CE99000A5D0C4 /* AIMenuAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D000F8CE99000A5D0C4 /* AIMenuAdditions.h */; };
 		C9B90D030F8CE99000A5D0C4 /* AIMenuAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9B90D010F8CE99000A5D0C4 /* AIMenuAdditions.m */; };
 		C9B90D460F8CEF0500A5D0C4 /* NSString+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9B90D440F8CEF0500A5D0C4 /* NSString+Additions.h */; };
@@ -316,6 +315,7 @@
 		C9C2834D11C75F6100914872 /* activityNewImportant.png in Resources */ = {isa = PBXBuildFile; fileRef = C9C2834C11C75F6100914872 /* activityNewImportant.png */; };
 		C9C9415712E9F0FE00A4D7A5 /* iTunesBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = C9C9415612E9F0FE00A4D7A5 /* iTunesBridge.h */; };
 		C9C9415D12E9F17700A4D7A5 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */; };
+		C9CA1D971306210800318FD9 /* network-macosx.c in Sources */ = {isa = PBXBuildFile; fileRef = C9CA1D961306210800318FD9 /* network-macosx.c */; };
 		C9E1AEEB12EFFF42004E75B0 /* GLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C762AB12EFD5850072D1E8 /* GLib.framework */; };
 		C9E1AEEE12EFFF5A004E75B0 /* libirssicore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C763DE12EFF50A0072D1E8 /* libirssicore.a */; };
 		C9E1B12012F00193004E75B0 /* args.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E1AF9812F00152004E75B0 /* args.c */; };
@@ -425,7 +425,6 @@
 		C9E1B18812F00193004E75B0 /* net-nonblock.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E1AFC112F00152004E75B0 /* net-nonblock.c */; };
 		C9E1B18912F00193004E75B0 /* net-sendbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E1AFC312F00152004E75B0 /* net-sendbuffer.c */; };
 		C9E1B18A12F00193004E75B0 /* netsplit.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E1B09F12F00153004E75B0 /* netsplit.c */; };
-		C9E1B18B12F00193004E75B0 /* network-openssl.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E1AFC512F00152004E75B0 /* network-openssl.c */; };
 		C9E1B18C12F00193004E75B0 /* network.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E1AFC612F00152004E75B0 /* network.c */; };
 		C9E1B18D12F00193004E75B0 /* nicklist.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E1AFC912F00152004E75B0 /* nicklist.c */; };
 		C9E1B18E12F00193004E75B0 /* nickmatch-cache.c in Sources */ = {isa = PBXBuildFile; fileRef = C9E1AFCB12F00152004E75B0 /* nickmatch-cache.c */; };
@@ -1015,7 +1014,6 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		24A9825311532AAB002B823B /* libcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcore.a; path = "build/irssi-build/src/core/libcore.a"; sourceTree = SOURCE_ROOT; };
 		24B1D1EA11C7F9510031A5E2 /* libPerlBuild.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = libPerlBuild.sh; sourceTree = "<group>"; };
 		24B1D1EB11C7F9510031A5E2 /* libPerlCopy.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = libPerlCopy.sh; sourceTree = "<group>"; };
 		24B1D1EC11C7F9510031A5E2 /* updateGitVersion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = updateGitVersion.sh; sourceTree = "<group>"; };
@@ -1049,8 +1047,6 @@
 		B3D0B8A505F637DB0067FD52 /* IrssiBridge.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IrssiBridge.m; sourceTree = "<group>"; };
 		C200D025073FC03700B850B1 /* ChannelBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelBarCell.h; sourceTree = "<group>"; };
 		C200D026073FC03700B850B1 /* ChannelBarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelBarCell.m; sourceTree = "<group>"; };
-		C229C73C0C1AA7B900D7CCD0 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = /usr/lib/libssl.dylib; sourceTree = "<absolute>"; };
-		C229C73F0C1AA82900D7CCD0 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = /usr/lib/libcrypto.dylib; sourceTree = "<absolute>"; };
 		C232FA6F08C8978D000C624E /* agon.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = agon.theme; path = Themes/agon.theme; sourceTree = SOURCE_ROOT; };
 		C232FA7008C8978D000C624E /* ash.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = ash.theme; path = Themes/ash.theme; sourceTree = SOURCE_ROOT; };
 		C232FA7108C8978D000C624E /* asyura.theme */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = text; name = asyura.theme; path = Themes/asyura.theme; sourceTree = SOURCE_ROOT; };
@@ -1180,20 +1176,7 @@
 		C25491770681A35900C43D63 /* CustomTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTextView.m; sourceTree = "<group>"; };
 		C26FC9BB08C4E56300CFD1B3 /* MacIrssi.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacIrssi.icns; path = ../MacIrssi.icns; sourceTree = "<group>"; };
 		C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "Growl-WithInstaller.framework"; sourceTree = "<group>"; };
-		C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_notifylist.a; path = "build/irssi-build/src/irc/notifylist/libirc_notifylist.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_flood.a; path = "build/irssi-build/src/irc/flood/libirc_flood.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_core.a; path = "build/irssi-build/src/irc/core/libirc_core.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */ = {isa = PBXFileReference; explicitFileType = file; name = libfe_common_irc.a; path = "build/irssi-build/src/fe-common/irc/libfe_common_irc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_common_core.a; path = "build/irssi-build/src/fe-common/core/libfe_common_core.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AE90C09EE42001C0DDD /* libirc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc.a; path = "build/irssi-build/src/irc/libirc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirssi_config.a; path = "build/irssi-build/src/lib-config/libirssi_config.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libirc_dcc.a; path = "build/irssi-build/src/irc/dcc/libirc_dcc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_dcc.a; path = "build/irssi-build/src/fe-common/irc/dcc/libfe_irc_dcc.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_irc_notifylist.a; path = "build/irssi-build/src/fe-common/irc/notifylist/libfe_irc_notifylist.a"; sourceTree = SOURCE_ROOT; };
 		C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = /usr/lib/libiconv.2.dylib; sourceTree = "<absolute>"; };
-		C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfe_perl_static.a; path = "build/irssi-build/libfe_perl_static.a"; sourceTree = SOURCE_ROOT; };
-		C2CC3B550C0B42BD001C0DDD /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = /System/Library/Perl/lib/5.10/libperl.dylib; sourceTree = "<absolute>"; };
-		C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DynaLoader.a; path = "/System/Library/Perl/5.8.8/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a"; sourceTree = "<absolute>"; };
 		C2D1678F06E3E16C000EC6F9 /* ChannelBar.h */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.h; path = ChannelBar.h; sourceTree = "<group>"; };
 		C2D1679006E3E16C000EC6F9 /* ChannelBar.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = ChannelBar.m; sourceTree = "<group>"; };
 		C90301BD129DEA5000B30679 /* PreferenceVersionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceVersionHelper.h; sourceTree = "<group>"; };
@@ -1278,7 +1261,6 @@
 		C922B3EA0E23BB1D000AA7BE /* Switch.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Switch.aiff; sourceTree = "<group>"; };
 		C922B3EB0E23BB1D000AA7BE /* Whip.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Whip.aiff; sourceTree = "<group>"; };
 		C922B4300E23BD34000AA7BE /* sound.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sound.png; sourceTree = "<group>"; };
-		C925E7710E5A2D550041921B /* libperl_core_static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libperl_core_static.a; path = "build/irssi-build/libperl_core_static.a"; sourceTree = SOURCE_ROOT; };
 		C9432BFA0EA16540005237E3 /* addWidgetSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addWidgetSelected.png; sourceTree = "<group>"; };
 		C9432BFB0EA16540005237E3 /* addWidget.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addWidget.png; sourceTree = "<group>"; };
 		C9432BFC0EA16540005237E3 /* removeWidgetSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeWidgetSelected.png; sourceTree = "<group>"; };
@@ -1312,6 +1294,7 @@
 		C98E88750E5E21500051AD53 /* Colours.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colours.tiff; sourceTree = "<group>"; };
 		C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppcastVersionComparator.h; sourceTree = "<group>"; };
 		C9A3EA380EA48342005025BC /* AppcastVersionComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppcastVersionComparator.m; sourceTree = "<group>"; };
+		C9AA5DE513062A3A00C87B25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C9AF62D912F0E11200C06A86 /* Formats.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Formats.c; sourceTree = "<group>"; };
 		C9AF62DA12F0E11200C06A86 /* Themes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Themes.c; sourceTree = "<group>"; };
 		C9AF62DB12F0E11200C06A86 /* UI.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = UI.c; sourceTree = "<group>"; };
@@ -1350,6 +1333,7 @@
 		C9C763DE12EFF50A0072D1E8 /* libirssicore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libirssicore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C9415612E9F0FE00A4D7A5 /* iTunesBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesBridge.h; sourceTree = "<group>"; };
 		C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		C9CA1D961306210800318FD9 /* network-macosx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "network-macosx.c"; sourceTree = "<group>"; };
 		C9E1AF9612F00152004E75B0 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		C9E1AF9812F00152004E75B0 /* args.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = args.c; sourceTree = "<group>"; };
 		C9E1AF9912F00152004E75B0 /* args.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = args.h; sourceTree = "<group>"; };
@@ -1872,19 +1856,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9E1AEEB12EFFF42004E75B0 /* GLib.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */,
-				C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */,
-				C2A9B10C0C1187BC002A9848 /* Growl-WithInstaller.framework in Frameworks */,
-				C229C73D0C1AA7B900D7CCD0 /* libssl.dylib in Frameworks */,
-				C229C7400C1AA82900D7CCD0 /* libcrypto.dylib in Frameworks */,
 				C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */,
 				C91F139E0F0A743800763699 /* Sparkle.framework in Frameworks */,
 				C91F15580F110B6500763699 /* Carbon.framework in Frameworks */,
 				C9FBBC3F1049A5A700FE4ACD /* GoogleToolboxForMac.framework in Frameworks */,
 				C9C9415D12E9F17700A4D7A5 /* ScriptingBridge.framework in Frameworks */,
+				C2A9B10C0C1187BC002A9848 /* Growl-WithInstaller.framework in Frameworks */,
+				C9E1AEEB12EFFF42004E75B0 /* GLib.framework in Frameworks */,
+				C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */,
 				C9E1AEEE12EFFF5A004E75B0 /* libirssicore.a in Frameworks */,
+				C9AA5DE613062A3A00C87B25 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1916,10 +1899,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C2CC3B5B0C0B43C7001C0DDD /* DynaLoader.a */,
-				C229C73F0C1AA82900D7CCD0 /* libcrypto.dylib */,
-				C229C73C0C1AA7B900D7CCD0 /* libssl.dylib */,
-				C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */,
 				C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */,
 				C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */,
 				C91F14690F10EE9900763699 /* ExceptionHandling.framework */,
@@ -1929,6 +1908,7 @@
 				C9667E020E3790FD00014B02 /* SystemConfiguration.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				C9FBBC3E1049A5A700FE4ACD /* GoogleToolboxForMac.framework */,
+				C2CC3B090C09F404001C0DDD /* libiconv.2.dylib */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -1962,6 +1942,7 @@
 				C913412A118AB3E50001F09D /* irssi */,
 				C95D821A12F08705001925F0 /* Perl Derived Sources */,
 				B32A9E5F05F0B14800DB2595 /* COPYING */,
+				C9AA5DE513062A3A00C87B25 /* Security.framework */,
 			);
 			name = MacIrssi;
 			sourceTree = "<group>";
@@ -2002,30 +1983,8 @@
 				C2CC3B000C09F404001C0DDD /* Frameworks */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
-				B322D6DF05EF900200E640C2 /* irssi */,
 			);
 			path = Frameworks;
-			sourceTree = "<group>";
-		};
-		B322D6DF05EF900200E640C2 /* irssi */ = {
-			isa = PBXGroup;
-			children = (
-				24A9825311532AAB002B823B /* libcore.a */,
-				C2CC3AE90C09EE42001C0DDD /* libirc.a */,
-				C2CC3ADD0C09EDFA001C0DDD /* libirc_core.a */,
-				C2CC3AE00C09EE1B001C0DDD /* libfe_common_irc.a */,
-				C2CC3AD50C09EDBB001C0DDD /* libirc_notifylist.a */,
-				C2CC3ADA0C09EDD5001C0DDD /* libirc_flood.a */,
-				C2CC3AE30C09EE28001C0DDD /* libfe_common_core.a */,
-				C2CC3AEC0C09EE74001C0DDD /* libirssi_config.a */,
-				C2CC3AEF0C09EE89001C0DDD /* libirc_dcc.a */,
-				C2CC3AF20C09EEA1001C0DDD /* libfe_irc_dcc.a */,
-				C2CC3AF80C09EEC0001C0DDD /* libfe_irc_notifylist.a */,
-				C2CC3B330C0A058D001C0DDD /* libfe_perl_static.a */,
-				C925E7710E5A2D550041921B /* libperl_core_static.a */,
-				C2CC3B550C0B42BD001C0DDD /* libperl.dylib */,
-			);
-			name = irssi;
 			sourceTree = "<group>";
 		};
 		B322DD9205EF9A5C00E640C2 /* Irssi Bridge */ = {
@@ -2703,9 +2662,9 @@
 		C9C2828B11C746BB00914872 /* xcodescripts */ = {
 			isa = PBXGroup;
 			children = (
+				C9E1B48E12F02380004E75B0 /* copySymbols.sh */,
 				24B1D1EA11C7F9510031A5E2 /* libPerlBuild.sh */,
 				24B1D1EB11C7F9510031A5E2 /* libPerlCopy.sh */,
-				C9E1B48E12F02380004E75B0 /* copySymbols.sh */,
 				C9C2828F11C747CD00914872 /* package.rb */,
 				24B1D1EC11C7F9510031A5E2 /* updateGitVersion.sh */,
 			);
@@ -2778,6 +2737,7 @@
 				C9E1AFC312F00152004E75B0 /* net-sendbuffer.c */,
 				C9E1AFC412F00152004E75B0 /* net-sendbuffer.h */,
 				C9E1AFC512F00152004E75B0 /* network-openssl.c */,
+				C9CA1D961306210800318FD9 /* network-macosx.c */,
 				C9E1AFC612F00152004E75B0 /* network.c */,
 				C9E1AFC712F00152004E75B0 /* network.h */,
 				C9E1AFC812F00152004E75B0 /* nick-rec.h */,
@@ -3752,7 +3712,7 @@
 				C9E1B18812F00193004E75B0 /* net-nonblock.c in Sources */,
 				C9E1B18912F00193004E75B0 /* net-sendbuffer.c in Sources */,
 				C9E1B18A12F00193004E75B0 /* netsplit.c in Sources */,
-				C9E1B18B12F00193004E75B0 /* network-openssl.c in Sources */,
+				C9CA1D971306210800318FD9 /* network-macosx.c in Sources */,
 				C9E1B18C12F00193004E75B0 /* network.c in Sources */,
 				C9E1B18D12F00193004E75B0 /* nicklist.c in Sources */,
 				C9E1B18E12F00193004E75B0 /* nickmatch-cache.c in Sources */,
@@ -3893,11 +3853,6 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_CFLAGS = "-DMACIRSSI_DEBUG";
 				OTHER_LDFLAGS = (
-					"-ldl",
-					"-lm",
-					"-lc",
-					"-lssl",
-					"-lcrypto",
 					"-bind_at_load",
 					"-multiply_defined",
 					suppress,
@@ -3943,11 +3898,6 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
-					"-ldl",
-					"-lm",
-					"-lc",
-					"-lssl",
-					"-lcrypto",
 					"-bind_at_load",
 					"-multiply_defined",
 					suppress,
@@ -3979,7 +3929,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
-				VALID_ARCHS = "i386 x86_64 ppc";
 			};
 			name = Development;
 		};
@@ -3995,7 +3944,6 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
-				VALID_ARCHS = "i386 x86_64 ppc";
 			};
 			name = Deployment;
 		};
