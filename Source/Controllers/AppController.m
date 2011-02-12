@@ -18,6 +18,7 @@
 
 #import <SecurityInterface/SFCertificateTrustPanel.h>
 #import <Growl/GrowlApplicationBridge.h>
+#import <objc/objc-runtime.h>
 
 #import "AppController.h"
 #import "ChannelController.h"
@@ -66,6 +67,8 @@ char **argv;
 @end
 
 static PreferenceViewController *_sharedPrefsWindowController = nil;
+
+static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 
 @implementation AppController
 
@@ -195,6 +198,54 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
     /* Else normal command */
     const char *tmp = [[commands objectAtIndex:i] UTF8String];
     signal_emit("send command", 3, tmp, rec->active_server, rec->active);
+  }
+}
+
+- (IBAction)joinChannel:(id)sender
+{
+  NSAlert *alert = [NSAlert alertWithMessageText:@"Join Channel"
+                                   defaultButton:@"Join"
+                                 alternateButton:@"Cancel"
+                                     otherButton:nil
+                       informativeTextWithFormat:@"Enter the name of the channel to join."];
+  
+  NSTextField *field = [[[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 300, 20)] autorelease];
+  [field setAutoresizingMask:(NSViewWidthSizable|NSViewMaxXMargin)];
+  [alert setAccessoryView:field];
+  
+  /* Make sure we set the Join button to reflect it's correct state */
+  [[[alert buttons] objectAtIndex:0] setEnabled:([[field stringValue] length] > 0)];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(joinChannelFieldDidChange:)
+                                               name:NSControlTextDidChangeNotification
+                                             object:field];
+  
+  objc_setAssociatedObject(field, kMIJoinChannelAlertKey, alert, OBJC_ASSOCIATION_RETAIN);
+
+  [alert beginSheetModalForWindow:mainWindow
+                    modalDelegate:self
+                   didEndSelector:@selector(joinChannelEnded:returnCode:context:)
+                      contextInfo:nil];
+}
+
+- (void)joinChannelFieldDidChange:(NSNotification*)notification
+{
+  NSTextField *field = [notification object];
+  NSAlert *alert = objc_getAssociatedObject(field, kMIJoinChannelAlertKey);
+  NSButton *joinButton = [[alert buttons] objectAtIndex:0];
+  
+  [joinButton setEnabled:[[field stringValue] length] > 0];
+}
+
+- (void)joinChannelEnded:(NSAlert*)alert returnCode:(NSInteger)code context:(void*)context
+{
+  NSTextField *field = (NSTextField*)[alert accessoryView];
+  
+  objc_setAssociatedObject(field, kMIJoinChannelAlertKey, nil, OBJC_ASSOCIATION_RETAIN);
+  
+  if (code == NSOKButton) {
+    signal_emit("command join", 2, [[field stringValue] UTF8String], [currentChannelController windowRec]->active_server);
   }
 }
 
@@ -1248,6 +1299,9 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   }
   if ([anItem action] == @selector(changeIrssiServerConsole:)) {
     return settings_get_bool("use_status_window");
+  }
+  if ([anItem action] == @selector(joinChannel:)) {
+    return ([currentChannelController windowRec]->active_server != NULL);
   }
   return YES;
 }

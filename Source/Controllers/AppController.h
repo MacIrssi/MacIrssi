@@ -119,6 +119,7 @@ extern char **argv;
 - (IBAction)performCloseChannel:(id)sender;
 
 - (IBAction)sendCommand:(id)sender;
+- (IBAction)joinChannel:(id)sender;
 - (IBAction)nextChannel:(id)sender;
 - (IBAction)activeChannel:(id)sender;
 - (IBAction)previousChannel:(id)sender;
