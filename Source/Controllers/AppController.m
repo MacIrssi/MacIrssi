@@ -1014,7 +1014,7 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   SFCertificateTrustPanel *panel = [SFCertificateTrustPanel sharedCertificateTrustPanel];
   [panel setAlternateButtonTitle:@"Cancel"];
   
-  NSString *message = [NSString stringWithFormat:@"MacIrssi was unable to verify the certificate of the server you are connecting to."];
+  NSString *message = [NSString stringWithFormat:@"MacIrssi was unable to verify the certificate of the server."];
   NSString *infoText = [NSString stringWithFormat:@"You may choose to continue, or cancel. You may also adjust your preferences to avoid this message in the future."];
   
   [panel setInformativeText:infoText];
