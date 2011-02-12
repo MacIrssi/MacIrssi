@@ -79,6 +79,10 @@ extern char **argv;
 	IBOutlet NSWindow *aboutBox;
 	IBOutlet NSTextField *aboutVersionLabel;
 	IBOutlet NSTextView *copyrightTextView;
+  
+	IBOutlet NSView *joinChannelAccessoryView;
+	IBOutlet NSPopUpButton *joinChannelServersPopup;
+	IBOutlet NSTextField *joinChannelTextField;
 	
 	ChannelController *currentChannelController;
 	EventController *eventController;

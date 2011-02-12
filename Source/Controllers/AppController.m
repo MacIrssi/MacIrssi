@@ -209,19 +209,37 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
                                      otherButton:nil
                        informativeTextWithFormat:@"Enter the name of the channel to join."];
   
-  NSTextField *field = [[[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 300, 20)] autorelease];
-  [field setAutoresizingMask:(NSViewWidthSizable|NSViewMaxXMargin)];
-  [alert setAccessoryView:field];
+  [joinChannelServersPopup removeAllItems];
+  [joinChannelTextField setStringValue:@""];
+  
+  GSList *tmp;
+  for (tmp = servers; tmp; tmp = tmp->next) {
+    NSString *hostname = [NSString stringWithFormat:@"%s", ((SERVER_REC*)tmp->data)->connrec->address];
+    [joinChannelServersPopup addItemWithTitle:hostname];
+    
+    NSMenuItem *item = [joinChannelServersPopup itemWithTitle:hostname];
+    [item setRepresentedObject:[NSValue valueWithPointer:tmp->data]];
+    [item setImage:[NSImage imageNamed:NSImageNameNetwork]];
+    [[item image] setSize:NSMakeSize(16, 16)];
+    
+    if (tmp->data == [currentChannelController windowRec]->active_server) {
+      [joinChannelServersPopup selectItem:item];
+    }
+  }
+    
+  [alert setAccessoryView:joinChannelAccessoryView];
+  [alert layout]; /* force things to exist so we can set the responder */
+  [[alert window] makeFirstResponder:joinChannelTextField];
   
   /* Make sure we set the Join button to reflect it's correct state */
-  [[[alert buttons] objectAtIndex:0] setEnabled:([[field stringValue] length] > 0)];
+  [[[alert buttons] objectAtIndex:0] setEnabled:([[joinChannelTextField stringValue] length] > 0)];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(joinChannelFieldDidChange:)
                                                name:NSControlTextDidChangeNotification
-                                             object:field];
+                                             object:joinChannelTextField];
   
-  objc_setAssociatedObject(field, kMIJoinChannelAlertKey, alert, OBJC_ASSOCIATION_RETAIN);
+  objc_setAssociatedObject(joinChannelTextField, kMIJoinChannelAlertKey, alert, OBJC_ASSOCIATION_RETAIN);
 
   [alert beginSheetModalForWindow:mainWindow
                     modalDelegate:self
@@ -245,8 +263,12 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   objc_setAssociatedObject(field, kMIJoinChannelAlertKey, nil, OBJC_ASSOCIATION_RETAIN);
   
   if (code == NSOKButton) {
-    signal_emit("command join", 2, [[field stringValue] UTF8String], [currentChannelController windowRec]->active_server);
+    NSMenuItem *item = [joinChannelServersPopup selectedItem];
+    SERVER_REC *server = [[item representedObject] pointerValue];
+    signal_emit("command join", 2, [[joinChannelTextField stringValue] UTF8String], server);
   }
+  
+  [joinChannelServersPopup removeAllItems];
 }
 
 #if 0

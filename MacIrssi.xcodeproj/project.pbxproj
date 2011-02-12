@@ -1029,7 +1029,7 @@
 		8D1107320486CEB800E47090 /* MacIrssi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacIrssi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B322DD9505EF9A7100E640C2 /* IrssiInternal.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IrssiInternal.h; sourceTree = "<group>"; };
 		B322DD9605EF9A7100E640C2 /* IrssiInternal.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IrssiInternal.m; sourceTree = "<group>"; };
-		B322DD9F05EF9AB300E640C2 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = Controllers/AppController.h; sourceTree = "<group>"; };
+		B322DD9F05EF9AB300E640C2 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = Controllers/AppController.h; sourceTree = "<group>"; usesTabs = 1; };
 		B322DDA005EF9AB300E640C2 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = AppController.m; path = Controllers/AppController.m; sourceTree = "<group>"; };
 		B322DDA205EF9AB300E640C2 /* ChannelController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ChannelController.h; path = Controllers/ChannelController.h; sourceTree = "<group>"; };
 		B322DDA405EF9AB300E640C2 /* ChannelController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = ChannelController.m; path = Controllers/ChannelController.m; sourceTree = "<group>"; };
