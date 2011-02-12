@@ -108,12 +108,6 @@ enum
   IBOutlet NSButton *addChannelButton;
   IBOutlet NSButton *deleteChannelButton;
   
-  /* Channel/Networks panel */
-  IBOutlet NSWindow *channetPanelWindow;
-  IBOutlet NSTextField *channetPanelLabel; 
-  IBOutlet NSTextField *channetPanelTextField;
-  BOOL isChannetPanelNetwork;
-  
   /* Servers tab */
   IBOutlet NSArrayController *serversArrayController;
   
@@ -182,14 +176,6 @@ enum
 
 - (IBAction)addChannelAction:(id)sender;
 - (IBAction)deleteChannelAction:(id)sender;
-
-#pragma mark Network/Channel Panel
-
-- (void)showChannelPanel:(id)sender;
-- (void)showNetworkPanel:(id)sender;
-
-- (IBAction)channetPanelOKAction:(id)sender;
-- (IBAction)channetPanelCancelAction:(id)sender;
 
 #pragma mark Servers Preference Panel
 

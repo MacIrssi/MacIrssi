@@ -24,3 +24,8 @@
 /* Server */
 MIStringConstant(kMIServerConnectedEvent);
 MIStringConstant(kMIServerDisconnectedEvent);
+
+/* Network Preferences */
+MIStringConstant(kMINetworkDidChangeNameNotification);
+MIStringConstant(kMINetworkChangeOldName);
+MIStringConstant(kMINetworkChangeNewName);

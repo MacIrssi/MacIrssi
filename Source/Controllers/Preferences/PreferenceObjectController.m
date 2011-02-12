@@ -55,12 +55,15 @@
       [serverArray addObject:controller];
       next = tmp->next;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkDidChangeName:) name:kMINetworkDidChangeNameNotification object:nil];
   }
   return self;
 }
 
 - (void)dealloc
 {
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:kMINetworkDidChangeNameNotification object:nil];
   [shortcutArray release];
   [serverArray release];
   [chatnetArray release];
@@ -80,6 +83,28 @@
 - (NSMutableArray*)shortcutArray
 {
   return shortcutArray;
+}
+
+- (NSString*)uniqueNameForNewChatnet
+{
+  NSString *baseTemplate = @"New Network", *name = nil;
+  BOOL foundUniqueName = YES;
+  NSUInteger count = 0;
+  
+  do {
+    foundUniqueName = YES;
+    name = baseTemplate;
+    if (count++ > 0) {
+      name = [NSString stringWithFormat:@"%@ %d", baseTemplate, count];
+    }
+    for (IrcnetBridgeController *net in chatnetArray) {
+      if ([[net name] isEqualToString:name]) {
+        foundUniqueName = NO;
+      }
+    }
+  } while (!foundUniqueName);
+  
+  return name;
 }
 
 - (IrcnetBridgeController*)addChatnetWithName:(NSString*)string
@@ -116,6 +141,40 @@
   [self didChangeValueForKey:@"chatnetArray"];
 }
 
+- (void)networkDidChangeName:(NSNotification*)notification
+{
+  NSString *oldName = [[notification userInfo] objectForKey:kMINetworkChangeOldName];
+  NSString *newName = [[notification userInfo] objectForKey:kMINetworkChangeNewName];
+  
+  for (ServerBridgeController *server in serverArray) {
+    if ([[server chatnet] isEqualToString:oldName]) {
+      [server setChatnet:newName];
+    }
+  }
+}
+
+- (NSString*)uniqueNameForNewChannelInNetwork:(IrcnetBridgeController*)network
+{
+  NSString *baseTemplate = @"#newchannel", *name = nil;
+  BOOL foundUniqueName = YES;
+  NSUInteger count = 0;
+  
+  do {
+    foundUniqueName = YES;
+    name = baseTemplate;
+    if (count++ > 0) {
+      name = [NSString stringWithFormat:@"%@%d", baseTemplate, count];
+    }
+    for (ChannelBridgeController *channel in [network channelArray]) {
+      if ([[channel name] isEqualToString:name]) {
+        foundUniqueName = NO;
+      }
+    }
+  } while (!foundUniqueName);
+  
+  return name;
+}
+
 - (ChannelBridgeController*)addChannelWithName:(NSString*)name toChatnet:(IrcnetBridgeController*)controller
 {
   CHANNEL_SETUP_REC *rec = g_new0(CHANNEL_SETUP_REC, 1);
@@ -142,7 +201,7 @@
   [ircController didChangeValueForKey:@"channelArray"];
 }
 
-- (ServerBridgeController*)addServerWithAddress:(NSString*)name port:(int)port
+- (ServerBridgeController*)addServerWithAddress:(NSString*)name port:(int)port atIndex:(NSUInteger)index
 {
   SERVER_SETUP_REC *rec = g_new0(SERVER_SETUP_REC, 1);
   rec->address = g_strdup([name cStringUsingEncoding:NSUTF8StringEncoding]);
@@ -152,7 +211,7 @@
   
   ServerBridgeController *serverController = [[[ServerBridgeController alloc] initWithServerSetupRec:rec] autorelease];
   [self willChangeValueForKey:@"serverArray"];
-  [serverArray insertObject:serverController atIndex:0];
+  [serverArray insertObject:serverController atIndex:index];
   [self didChangeValueForKey:@"serverArray"];
   
   return serverController;

@@ -22,6 +22,7 @@
 
 /* Irssi Headers */
 #import "channels-setup.h"
+#import "settings.h"
 
 @implementation IrcnetBridgeController
 
@@ -69,6 +70,24 @@
 - (NSString*)name
 {
   return [NSString stringWithCString:CSTR(rec->name) encoding:NSUTF8StringEncoding];
+}
+
+- (void)setName:(NSString*)value
+{
+  NSString *oldname = [NSString stringWithUTF8String:rec->name];
+  if (rec->name) {
+    signal_emit("chatnet removed", 1, rec);
+    chatnet_config_remove((CHATNET_REC*)rec);
+    g_free_and_null(rec->name);
+  }
+  if (value) {
+    rec->name = g_strdup([value cStringUsingEncoding:NSUTF8StringEncoding]);
+  }
+  chatnet_create((CHATNET_REC*)rec);
+  settings_save(NULL, TRUE);
+  
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:value, kMINetworkChangeNewName, oldname, kMINetworkChangeOldName, nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kMINetworkDidChangeNameNotification object:self userInfo:userInfo];
 }
 
 - (NSString*)nick

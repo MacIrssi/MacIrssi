@@ -551,18 +551,29 @@
 
 - (IBAction)addNetworkAction:(id)sender
 {
-  [self showNetworkPanel:self];
+  NSString *name = [preferenceObjectController uniqueNameForNewChatnet];
+  IrcnetBridgeController *controller = [preferenceObjectController addChatnetWithName:name];
+  [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+  [networksArrayController setSelectedObjects:[NSArray arrayWithObject:controller]];
 }
 
 - (IBAction)deleteNetworkAction:(id)sender
 {
-  IrcnetBridgeController *ircNet = [[networksArrayController selectedObjects] objectAtIndex:0];
+  NSString *messageText = nil, *informativeText = nil;
+  if ([[networksArrayController selectedObjects] count] == 1) {
+    IrcnetBridgeController *ircNet = [[networksArrayController selectedObjects] objectAtIndex:0];
+    messageText = [NSString stringWithFormat:@"Are you sure you want to delete the %@ network?", [ircNet name]];
+    informativeText = [NSString stringWithFormat:@"This action will also disassociate %@ from all servers that belong to this network.", [ircNet name]];
+  } else {
+    messageText = [NSString stringWithFormat:@"Are you sure you want to delete these %d networks?", [[networksArrayController selectedObjects] count]];
+    informativeText = [NSString stringWithFormat:@"This action will disassociate all affected servers from their networks."];
+  }
   
-  NSAlert *confirmationAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Are you sure you want to delete the %@ chatnet?", [ircNet name]]
+  NSAlert *confirmationAlert = [NSAlert alertWithMessageText:messageText
                                                defaultButton:@"Delete"
                                              alternateButton:@"Cancel"
                                                  otherButton:nil
-                                   informativeTextWithFormat:[NSString stringWithFormat:@"This action will also disassociate %@ from all servers that belong to this chatnet.", [ircNet name]]];
+                                   informativeTextWithFormat:informativeText];
   
   [confirmationAlert beginSheetModalForWindow:preferenceWindow
                                 modalDelegate:self
@@ -574,120 +585,77 @@
 {
   if (code == NSOKButton)
   {
-    int index = [networksArrayController selectionIndex];
-    IrcnetBridgeController *ircNet = [[networksArrayController selectedObjects] objectAtIndex:0];
+    NSIndexSet *set = [networksArrayController selectionIndexes];
+    NSUInteger index = [set lastIndex];
     
-    ServerBridgeController *server = nil;
-    int i = 0;
-    
-    for (i=0; i < [[serversArrayController content] count]; i++) {
-      server = [[serversArrayController content] objectAtIndex:i];
+    do {
+      IrcnetBridgeController *network = [[networksArrayController arrangedObjects] objectAtIndex:index];
       
-      if ([[server chatnet] isEqualToString:[ircNet name]])
-      {
-        [preferenceObjectController deleteServerWithIndex:i];
+      for (ServerBridgeController *server in [serversArrayController content]) {
+        if ([[server chatnet] isEqualToString:[network name]]) {
+          [server setChatnet:nil];
+        }
       }
-    }
-    
-    [preferenceObjectController deleteChatnetWithIndex:index];
+      
+      [preferenceObjectController deleteChatnetWithIndex:index];
+    } while ((index = [set indexLessThanIndex:index]) != NSNotFound);
     
     [networksArrayController setContent:[preferenceObjectController chatnetArray]];
-    [networksArrayController setSelectionIndex:index];
-    
-    [serversArrayController setContent:[preferenceObjectController serverArray]];
+    [networksArrayController setSelectionIndexes:[NSIndexSet indexSet]];
   }
 }
 
 - (IBAction)addChannelAction:(id)sender
 {
-  [self showChannelPanel:self];
+  IrcnetBridgeController *ircController = [[networksArrayController selectedObjects] objectAtIndex:0];
+  NSString *name = [NSString stringWithString:[preferenceObjectController uniqueNameForNewChannelInNetwork:ircController]];
+  [preferenceObjectController addChannelWithName:name toChatnet:ircController];
+  [networksArrayController setContent:[preferenceObjectController chatnetArray]];
+  [networksArrayController setSelectedObjects:[NSArray arrayWithObject:ircController]];
 }
 
 - (IBAction)deleteChannelAction:(id)sender
 {
-  [preferenceObjectController deleteChannelWithIndex:[channelsArrayController selectionIndex] fromChatnet:[[networksArrayController selectedObjects] objectAtIndex:0]];
-}
-
-#pragma mark Network/Channel Panel
-
-- (void)showChannelPanel:(id)sender 
-{
-  [channetPanelLabel setStringValue:@"Channel:"];
-  [channetPanelTextField setStringValue:@""];
-  isChannetPanelNetwork = NO;
-  
-  [NSApp beginSheet:channetPanelWindow
-     modalForWindow:preferenceWindow 
-      modalDelegate:self 
-     didEndSelector:@selector(channetPanelDidEnd:returnCode:contextInfo:)
-        contextInfo:nil];
-}
-
-- (void)showNetworkPanel:(id)sender
-{
-  [channetPanelLabel setStringValue:@"Network:"];
-  [channetPanelTextField setStringValue:@""];
-  isChannetPanelNetwork = YES;
-  
-  [NSApp beginSheet:channetPanelWindow
-     modalForWindow:preferenceWindow 
-      modalDelegate:self
-     didEndSelector:@selector(channetPanelDidEnd:returnCode:contextInfo:)
-        contextInfo:nil];
-}
-
-- (void)channetPanelDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
-{
-  [sheet orderOut:self];
-  
-  // Firstly, may as well bomb out here if the entry is empty
-  if ([[[channetPanelTextField stringValue] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqualToString:@""])
-  {
+  NSIndexSet *set = [channelsArrayController selectionIndexes];
+  if (!set) {
     return;
   }
   
-  // Two code paths here, one if we're a network box. Another if we're a channel box.
-  if (isChannetPanelNetwork)
-  {
-    NSString *networkName = [NSString stringWithString:[channetPanelTextField stringValue]];
-    IrcnetBridgeController *controller = [preferenceObjectController addChatnetWithName:networkName];
-    [networksArrayController setContent:[preferenceObjectController chatnetArray]];
-    [networksArrayController setSelectedObjects:[NSArray arrayWithObject:controller]];
-  }
-  else
-  {
-    NSString *channelName = [NSString stringWithString:[channetPanelTextField stringValue]];
-    IrcnetBridgeController *ircController = [[networksArrayController selectedObjects] objectAtIndex:0];
-    [preferenceObjectController addChannelWithName:channelName toChatnet:ircController];
-    [networksArrayController setContent:[preferenceObjectController chatnetArray]];
-    [networksArrayController setSelectedObjects:[NSArray arrayWithObject:ircController]];
-  }
-}
-
-- (IBAction)channetPanelOKAction:(id)sender
-{
-  [NSApp endSheet:channetPanelWindow returnCode:NSOKButton];
-}
-
-- (IBAction)channetPanelCancelAction:(id)sender
-{
-  [NSApp endSheet:channetPanelWindow returnCode:NSCancelButton];
+  NSUInteger index = [set lastIndex];
+  IrcnetBridgeController *network = [[networksArrayController selectedObjects] objectAtIndex:0];
+  
+  do {
+    [preferenceObjectController deleteChannelWithIndex:index fromChatnet:network];
+  } while ((index = [set indexLessThanIndex:index]) != NSNotFound);
 }
 
 #pragma mark Servers Preference Panel
 
 - (IBAction)addServerAction:(id)sender
 {
-  ServerBridgeController *controller = [preferenceObjectController addServerWithAddress:@"irc.example.com" port:6667];
+  NSUInteger insertionIndex;
+  if ([[serversArrayController selectedObjects] count] == 0) {
+    insertionIndex = [[serversArrayController arrangedObjects] count];
+  } else {
+    insertionIndex = [[serversArrayController selectionIndexes] lastIndex] + 1;
+  }
+  
+  ServerBridgeController *controller = [preferenceObjectController addServerWithAddress:@"irc.example.com" port:6667 atIndex:insertionIndex];
   [serversArrayController setContent:[preferenceObjectController serverArray]];
   [serversArrayController setSelectedObjects:[NSArray arrayWithObject:controller]];
 }
 
 - (IBAction)deleteServerAction:(id)sender
 {
-  ServerBridgeController *server = [[serversArrayController selectedObjects] objectAtIndex:0];
+  NSString *alertMessage = nil;
+  if ([[serversArrayController selectedObjects] count] == 1) {
+    ServerBridgeController *server = [[serversArrayController selectedObjects] objectAtIndex:0];
+    alertMessage = [NSString stringWithFormat:@"Are you sure you want to delete %@?", [server address]];
+  } else {
+    alertMessage = [NSString stringWithFormat:@"Are you sure you want to delete these %d servers?", [[serversArrayController selectedObjects] count]];
+  }
   
-  NSAlert *confirmationAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Are you sure you want to delete %@?", [server address]]
+  NSAlert *confirmationAlert = [NSAlert alertWithMessageText:alertMessage
                                                defaultButton:@"Delete"
                                              alternateButton:@"Cancel"
                                                  otherButton:nil
@@ -703,12 +671,15 @@
 {
   if (code == NSOKButton)
   {
-    int index = [serversArrayController selectionIndex];
+    NSIndexSet *set = [serversArrayController selectionIndexes];
+    NSUInteger index = [set lastIndex];
     
-    [preferenceObjectController deleteServerWithIndex:index];
+    do {
+      [preferenceObjectController deleteServerWithIndex:index];
+    } while ((index = [set indexLessThanIndex:index]) != NSNotFound);
     
-    [serversArrayController setContent:[preferenceObjectController serverArray]];    
-    [serversArrayController setSelectionIndex:index];
+    [serversArrayController setContent:[preferenceObjectController serverArray]];
+    [serversArrayController setSelectionIndexes:[NSIndexSet indexSet]];
   }
 }
 

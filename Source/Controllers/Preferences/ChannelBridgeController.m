@@ -23,7 +23,7 @@
 
 - (id)initWithChannelRec:(CHANNEL_SETUP_REC*)chanrec
 {
-  if (self = [super init])
+  if ((self = [super init]))
   {
     rec = chanrec;
   }

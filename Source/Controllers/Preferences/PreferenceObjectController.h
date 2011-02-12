@@ -33,13 +33,15 @@
 - (NSMutableArray*)serverArray;
 - (NSMutableArray*)shortcutArray;
 
+- (NSString*)uniqueNameForNewChatnet;
 - (IrcnetBridgeController*)addChatnetWithName:(NSString*)string;
 - (void)deleteChatnetWithIndex:(int)index;
 
+- (NSString*)uniqueNameForNewChannelInNetwork:(IrcnetBridgeController*)network;
 - (ChannelBridgeController*)addChannelWithName:(NSString*)name toChatnet:(IrcnetBridgeController*)controller;
 - (void)deleteChannelWithIndex:(int)index fromChatnet:(IrcnetBridgeController*)ircController;
 
-- (ServerBridgeController*)addServerWithAddress:(NSString*)name port:(int)port;
+- (ServerBridgeController*)addServerWithAddress:(NSString*)name port:(int)port atIndex:(NSUInteger)index;
 - (void)deleteServerWithIndex:(int)index;
 
 - (ShortcutBridgeController*)addShortcutWithKeyCode:(int)keyCode flags:(int)flags;

@@ -39,6 +39,7 @@
 - (NSMutableArray*)channelArray;
 
 - (NSString*)name;
+- (void)setName:(NSString*)value;
 
 - (NSString*)nick;
 - (void)setNick:(NSString*)value;
