@@ -283,6 +283,7 @@
 		C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9667E020E3790FD00014B02 /* SystemConfiguration.framework */; };
 		C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C97A36D00E5DCB0F007D1191 /* General.tiff */; };
 		C97A37220E5DCFED007D1191 /* Notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = C97A37210E5DCFED007D1191 /* Notifications.png */; };
+		C98461321306554100724A88 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C98461311306553F00724A88 /* SecurityInterface.framework */; };
 		C9854DCD10D035B5004163C1 /* MIResizingTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = C9854DCB10D035B5004163C1 /* MIResizingTextView.h */; };
 		C9854DCE10D035B5004163C1 /* MIResizingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9854DCC10D035B5004163C1 /* MIResizingTextView.m */; };
 		C98777080F74F67300591183 /* MacIrssi.pub in Resources */ = {isa = PBXBuildFile; fileRef = C98777070F74F67300591183 /* MacIrssi.pub */; };
@@ -1286,6 +1287,7 @@
 		C9667E020E3790FD00014B02 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = /System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<absolute>"; };
 		C97A36D00E5DCB0F007D1191 /* General.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = General.tiff; sourceTree = "<group>"; };
 		C97A37210E5DCFED007D1191 /* Notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notifications.png; sourceTree = "<group>"; };
+		C98461311306553F00724A88 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		C9854DCB10D035B5004163C1 /* MIResizingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIResizingTextView.h; sourceTree = "<group>"; };
 		C9854DCC10D035B5004163C1 /* MIResizingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIResizingTextView.m; sourceTree = "<group>"; };
 		C98777070F74F67300591183 /* MacIrssi.pub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacIrssi.pub; sourceTree = "<group>"; };
@@ -1860,14 +1862,15 @@
 				C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */,
 				C9667E030E3790FD00014B02 /* SystemConfiguration.framework in Frameworks */,
 				C91F139E0F0A743800763699 /* Sparkle.framework in Frameworks */,
+				C9AA5DE613062A3A00C87B25 /* Security.framework in Frameworks */,
 				C91F15580F110B6500763699 /* Carbon.framework in Frameworks */,
 				C9FBBC3F1049A5A700FE4ACD /* GoogleToolboxForMac.framework in Frameworks */,
 				C9C9415D12E9F17700A4D7A5 /* ScriptingBridge.framework in Frameworks */,
+				C98461321306554100724A88 /* SecurityInterface.framework in Frameworks */,
 				C2A9B10C0C1187BC002A9848 /* Growl-WithInstaller.framework in Frameworks */,
 				C9E1AEEB12EFFF42004E75B0 /* GLib.framework in Frameworks */,
 				C2CC3B150C09F404001C0DDD /* libiconv.2.dylib in Frameworks */,
 				C9E1AEEE12EFFF5A004E75B0 /* libirssicore.a in Frameworks */,
-				C9AA5DE613062A3A00C87B25 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1901,6 +1904,7 @@
 			children = (
 				C9C9415C12E9F17700A4D7A5 /* ScriptingBridge.framework */,
 				C2A9B10B0C1187BC002A9848 /* Growl-WithInstaller.framework */,
+				C98461311306553F00724A88 /* SecurityInterface.framework */,
 				C91F14690F10EE9900763699 /* ExceptionHandling.framework */,
 				C91F15570F110B6500763699 /* Carbon.framework */,
 				C91026760E5C665B00E041F7 /* AddressBook.framework */,

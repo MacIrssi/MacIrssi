@@ -16,6 +16,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#import <SecurityInterface/SFCertificateTrustPanel.h>
 #import <Growl/GrowlApplicationBridge.h>
 
 #import "AppController.h"
@@ -1006,6 +1007,19 @@ static PreferenceViewController *_sharedPrefsWindowController = nil;
   [mainWindow orderFront:self];
   [errorTextField setStringValue:description];
   [NSApp beginSheet:errorWindow modalForWindow:mainWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+}
+
+- (NSInteger)presentCertificateTrustPanel:(SecTrustRef)trust
+{
+  SFCertificateTrustPanel *panel = [SFCertificateTrustPanel sharedCertificateTrustPanel];
+  [panel setAlternateButtonTitle:@"Cancel"];
+  
+  NSString *message = [NSString stringWithFormat:@"MacIrssi was unable to verify the certificate of the server you are connecting to."];
+  NSString *infoText = [NSString stringWithFormat:@"You may choose to continue, or cancel. You may also adjust your preferences to avoid this message in the future."];
+  
+  [panel setInformativeText:infoText];
+  
+  return [panel runModalForTrust:trust message:message];
 }
 
 //-------------------------------------------------------------------

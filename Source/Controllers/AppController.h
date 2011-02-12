@@ -162,6 +162,7 @@ extern char **argv;
 
 - (void)setIcon:(NSImage *)icon;
 - (void)presentUnexpectedEvent:(NSString *)description;
+- (NSInteger)presentCertificateTrustPanel:(SecTrustRef)trust;
 
 - (NSArray *)themeLocations;
 - (void)loadTheme:(NSString *)theme;

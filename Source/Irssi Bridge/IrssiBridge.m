@@ -65,6 +65,12 @@ ChannelController *windowController;
   [NSString stringWithUTF8String:(char*)server->tag], \
   [NSString stringWithUTF8String:(char*)channel]]
 
+/* This is ugly but I wanted a way to escape network-macosx.c to present the trust dialog */
+int irssibridge_present_trust_panel(SecTrustRef trust)
+{
+  return (int)[appController presentCertificateTrustPanel:trust];
+}
+
 void irssibridge_server_setup_read(IRC_SERVER_SETUP_REC *rec, CONFIG_NODE *node)
 {
 	//printf("Value: %s\n", rec->chatnet);
