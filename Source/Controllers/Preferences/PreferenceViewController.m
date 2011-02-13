@@ -157,6 +157,8 @@
     [oldView release];
   }
   
+  NSResponder *newFirstResponder = [preferencePane initialFirstResponder];
+  
   currentPreferenceTab = preferencePane;
   NSView *paneView = [preferencePane contentView];
   NSRect newWindowFrame;
@@ -170,6 +172,7 @@
   
   [preferenceWindow setFrame:newWindowFrame display:YES animate:animate];
   [preferencesWindowView setContentView:paneView];
+  [preferenceWindow makeFirstResponder:newFirstResponder];
   
   [preferenceWindow setTitle:[preferencePane title]];
 }
@@ -921,12 +924,10 @@
 
 - (IBAction)deleteShortcutAction:(id)sender
 {
-  if ([[shortcutsArrayController selectedObjects] count] > 0)
-  {
-    ShortcutBridgeController *controller = [[shortcutsArrayController selectedObjects] objectAtIndex:0];
+  for (ShortcutBridgeController *controller in [shortcutsArrayController selectedObjects]) {
     [preferenceObjectController deleteShortcutWithKeyCode:[controller keyCode] flags:[controller flags]];
-    [shortcutsArrayController setContent:[preferenceObjectController shortcutArray]];
   }
+  [shortcutsArrayController setContent:[preferenceObjectController shortcutArray]];
 }
 
 - (IBAction)editShortcutAction:(id)sender

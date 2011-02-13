@@ -72,25 +72,146 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 
 @implementation AppController
 
-#pragma mark IBAction methods
+#pragma mark - Menu Actions
+#pragma mark -- Application Menu
 
-//-------------------------------------------------------------------
-// editCurrentChannel:
-// Brings up the channel edit sheet for the current channel. 
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)editCurrentChannel:(id)sender
+- (IBAction)showAbout:(id)sender
 {
-  [currentChannelController raiseTopicWindow:sender];
+  [aboutVersionLabel setStringValue:[NSString stringWithFormat:@"Version %@ (%@)",
+                                     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
+                                     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSGitRevision"]]];
+  
+  [copyrightTextView setString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]];
+  [copyrightTextView setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [[copyrightTextView textStorage] length])];
+  
+  [aboutBox center];
+  [aboutBox makeKeyAndOrderFront:sender];
 }
 
 //-------------------------------------------------------------------
-// showFontPanel:
-// Brings up the font panel.
+// showPreferencePanel:
+// Brings up the preference panel
 //
 // "sender" - A menu item
 //-------------------------------------------------------------------
+- (IBAction)showPreferencePanel:(id)sender
+{
+	if (!_sharedPrefsWindowController) {
+    _sharedPrefsWindowController = [[PreferenceViewController alloc] initWithColorSet:nil appController:self];
+  }
+	[_sharedPrefsWindowController showWindow:self];
+}
+
+#pragma mark -- File Menu
+
+- (IBAction)joinChannel:(id)sender
+{
+  NSAlert *alert = [NSAlert alertWithMessageText:@"Join Channel"
+                                   defaultButton:@"Join"
+                                 alternateButton:@"Cancel"
+                                     otherButton:nil
+                       informativeTextWithFormat:@"Enter the name of the channel to join."];
+  
+  [joinChannelServersPopup removeAllItems];
+  [joinChannelTextField setStringValue:@""];
+  
+  GSList *tmp;
+  for (tmp = servers; tmp; tmp = tmp->next) {
+    NSString *hostname = [NSString stringWithFormat:@"%s", ((SERVER_REC*)tmp->data)->connrec->address];
+    [joinChannelServersPopup addItemWithTitle:hostname];
+    
+    NSMenuItem *item = [joinChannelServersPopup itemWithTitle:hostname];
+    [item setRepresentedObject:[NSValue valueWithPointer:tmp->data]];
+    [item setImage:[NSImage imageNamed:NSImageNameNetwork]];
+    [[item image] setSize:NSMakeSize(16, 16)];
+    
+    if (tmp->data == [currentChannelController windowRec]->active_server) {
+      [joinChannelServersPopup selectItem:item];
+    }
+  }
+  
+  [alert setAccessoryView:joinChannelAccessoryView];
+  [alert layout]; /* force things to exist so we can set the responder */
+  [[alert window] makeFirstResponder:joinChannelTextField];
+  
+  /* Make sure we set the Join button to reflect it's correct state */
+  [[[alert buttons] objectAtIndex:0] setEnabled:([[joinChannelTextField stringValue] length] > 0)];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(joinChannelFieldDidChange:)
+                                               name:NSControlTextDidChangeNotification
+                                             object:joinChannelTextField];
+  
+  objc_setAssociatedObject(joinChannelTextField, kMIJoinChannelAlertKey, alert, OBJC_ASSOCIATION_RETAIN);
+  
+  [alert beginSheetModalForWindow:mainWindow
+                    modalDelegate:self
+                   didEndSelector:@selector(joinChannelEnded:returnCode:context:)
+                      contextInfo:nil];
+}
+
+- (IBAction)performDisconnect:(id)sender
+{
+  SERVER_REC *server = [self serverRecordFromServerMenu:sender];
+  
+  if (server)
+  {
+    signal_emit("command disconnect", 2, "* Disconnecting", server);
+  }
+}
+
+- (IBAction)changeIrssiServerConsole:(id)sender
+{
+  SERVER_REC *ptr = [self serverRecordFromServerMenu:sender];
+  
+  // This means the pointer we got given in representedObject is still valid.
+  if (ptr != NULL) {
+    // We should check use_status_window in validation, if we don't have one, then we don't have a server
+    // console to change the active server to.
+    WINDOW_REC *wnd = window_find_name("(status)");
+    if (wnd) {
+      // The official signal way checks to see if you're looking at this window when you do it,
+      // I'd rather not restrict the user that way so I'm calling w_c_s directly. Also, poke
+      // irssiServerChangedNotification: to force the menu to regenerate with a new selected
+      // server.
+      window_change_server(wnd, ptr);
+      [self irssiServerChangedNotification:nil];
+    }
+  }
+}
+
+- (IBAction)performCloseChannel:(id)sender
+{
+  if (![mainWindow isKeyWindow]) {
+    [[NSApp keyWindow] performClose:sender];
+    return;
+  }
+  
+  if ([[IrssiBridge channels] count] == 1) {
+    // Last window, actually we want to perform a window close
+    [mainWindow performClose:sender];
+    return;
+  }
+  
+  WINDOW_REC *rec = [currentChannelController windowRec];
+  signal_emit("command window close", 3, "", rec->active_server, rec->active);
+}
+
+#pragma mark -- Edit Menu
+
+- (IBAction)performFind:(id)sender
+{
+  // Find simply defers to the current channel controller's searchController.
+  [[currentChannelController searchController] performFind:sender];
+}
+
+- (IBAction)performJumpToSelection:(id)sender
+{
+  [[currentChannelController textView] scrollRangeToVisible:[[currentChannelController textView] selectedRange]];
+}
+
+#pragma mark -- Channel Menu
+
 - (IBAction)showFontPanel:(id)sender
 {
   NSFont *channelFont = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"channelFont"]];
@@ -101,41 +222,69 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   [[NSFontManager sharedFontManager] setSelectedFont:channelFont isMultiple:FALSE];
 }
 
-//-------------------------------------------------------------------
-// activeChannel:
-// Goes to the channel with the highest activity (data level).
-//
-// "sender" - The menu item selected
-//-------------------------------------------------------------------
+- (IBAction)editCurrentChannel:(id)sender
+{
+  [currentChannelController raiseTopicWindow:sender];
+}
+
+#pragma mark -- Shortcut Menu
+
+- (IBAction)showShortcutsPreferences:(id)sender
+{
+  if (!_sharedPrefsWindowController) {
+    _sharedPrefsWindowController = [[PreferenceViewController alloc] initWithColorSet:nil appController:self];
+  }
+  [_sharedPrefsWindowController showWindow:self];
+  [_sharedPrefsWindowController switchPreferenceWindowToNamed:@"Shortcuts" animate:YES];
+}
+
+- (IBAction)performShortcut:(id)sender
+{
+  NSMenuItem *item = sender;
+  unichar letter = [[item keyEquivalent] characterAtIndex:0];
+  NSString *key = SRStringForCocoaModifierFlagsAndKeyCode([item keyEquivalentModifierMask] | ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:letter] ? NSShiftKeyMask : 0), [item tag]);
+  
+  NSDictionary *dict = [[[NSUserDefaults standardUserDefaults] valueForKey:@"shortcutDict"] valueForKey:key];
+  ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] initWithDictionary:dict] autorelease];
+  
+  WINDOW_REC *rec = [currentChannelController windowRec];
+  NSArray *commands = [[controller command] componentsSeparatedByString:@";"];
+  NSEnumerator *enumerator = [commands objectEnumerator];
+  NSString *command;
+  char *tmp;
+  
+  while (command = [enumerator nextObject]) {
+    tmp = (char*)[command cStringUsingEncoding:NSUTF8StringEncoding];
+    
+    /* Skip whitespaces */
+    while (*tmp == ' ')
+      tmp++;
+    signal_emit("send command", 3, tmp, rec->active_server, rec->active);
+  }
+}
+
+#pragma mark -- Window Menu
+
+- (IBAction)nextChannel:(id)sender
+{
+  WINDOW_REC *tmp = [currentChannelController windowRec];
+  signal_emit("command window next", 3, "", tmp->active_server, tmp->active);
+}
+
+- (IBAction)previousChannel:(id)sender
+{
+  WINDOW_REC *tmp = [currentChannelController windowRec];
+  signal_emit("command window previous", 3, "", tmp->active_server, tmp->active);
+}
+
 - (IBAction)activeChannel:(id)sender
 {
   WINDOW_REC *tmp = [currentChannelController windowRec];
   signal_emit("command window goto", 3, "active", tmp->active_server, tmp->active);
 }
 
-- (NSArray *)splitCommand:(NSString *)command
-{
-  int i, j;
-  NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:100];
-  NSArray *firstSplit = [command componentsSeparatedByString:@"\n"];
-  for (i = 0; i < [firstSplit count]; i++) {
-    
-    /* Also need to remove carriage returns */
-    NSArray *secondSplit = [[firstSplit objectAtIndex:i] componentsSeparatedByString:@"\r"];
-    
-    for (j = 0; j < [secondSplit count]; j++)
-      [commands addObject:[secondSplit objectAtIndex:j]];
-  }
-  
-  return [commands autorelease];
-}
+#pragma mark - Invisible Actions
 
-//-------------------------------------------------------------------
-// sendCommand:
-// Receives commands from user and passes them on to irssi engine
-//
-// "sender" - The input text field
-//-------------------------------------------------------------------
 - (IBAction)sendCommand:(id)sender
 {
   int i;
@@ -188,7 +337,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
       {
         nowPlaying = @"/me typed /itunes when it wasn't even open. Doh!";
       }
-
+      
       const char *tmp = [nowPlaying UTF8String];
       signal_emit("send command", 3, tmp, rec->active_server, rec->active);
       
@@ -201,166 +350,6 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   }
 }
 
-- (IBAction)joinChannel:(id)sender
-{
-  NSAlert *alert = [NSAlert alertWithMessageText:@"Join Channel"
-                                   defaultButton:@"Join"
-                                 alternateButton:@"Cancel"
-                                     otherButton:nil
-                       informativeTextWithFormat:@"Enter the name of the channel to join."];
-  
-  [joinChannelServersPopup removeAllItems];
-  [joinChannelTextField setStringValue:@""];
-  
-  GSList *tmp;
-  for (tmp = servers; tmp; tmp = tmp->next) {
-    NSString *hostname = [NSString stringWithFormat:@"%s", ((SERVER_REC*)tmp->data)->connrec->address];
-    [joinChannelServersPopup addItemWithTitle:hostname];
-    
-    NSMenuItem *item = [joinChannelServersPopup itemWithTitle:hostname];
-    [item setRepresentedObject:[NSValue valueWithPointer:tmp->data]];
-    [item setImage:[NSImage imageNamed:NSImageNameNetwork]];
-    [[item image] setSize:NSMakeSize(16, 16)];
-    
-    if (tmp->data == [currentChannelController windowRec]->active_server) {
-      [joinChannelServersPopup selectItem:item];
-    }
-  }
-    
-  [alert setAccessoryView:joinChannelAccessoryView];
-  [alert layout]; /* force things to exist so we can set the responder */
-  [[alert window] makeFirstResponder:joinChannelTextField];
-  
-  /* Make sure we set the Join button to reflect it's correct state */
-  [[[alert buttons] objectAtIndex:0] setEnabled:([[joinChannelTextField stringValue] length] > 0)];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(joinChannelFieldDidChange:)
-                                               name:NSControlTextDidChangeNotification
-                                             object:joinChannelTextField];
-  
-  objc_setAssociatedObject(joinChannelTextField, kMIJoinChannelAlertKey, alert, OBJC_ASSOCIATION_RETAIN);
-
-  [alert beginSheetModalForWindow:mainWindow
-                    modalDelegate:self
-                   didEndSelector:@selector(joinChannelEnded:returnCode:context:)
-                      contextInfo:nil];
-}
-
-- (void)joinChannelFieldDidChange:(NSNotification*)notification
-{
-  NSTextField *field = [notification object];
-  NSAlert *alert = objc_getAssociatedObject(field, kMIJoinChannelAlertKey);
-  NSButton *joinButton = [[alert buttons] objectAtIndex:0];
-  
-  [joinButton setEnabled:[[field stringValue] length] > 0];
-}
-
-- (void)joinChannelEnded:(NSAlert*)alert returnCode:(NSInteger)code context:(void*)context
-{
-  NSTextField *field = (NSTextField*)[alert accessoryView];
-  
-  objc_setAssociatedObject(field, kMIJoinChannelAlertKey, nil, OBJC_ASSOCIATION_RETAIN);
-  
-  if (code == NSOKButton) {
-    NSMenuItem *item = [joinChannelServersPopup selectedItem];
-    SERVER_REC *server = [[item representedObject] pointerValue];
-    signal_emit("command join", 2, [[joinChannelTextField stringValue] UTF8String], server);
-  }
-  
-  [joinChannelServersPopup removeAllItems];
-}
-
-#if 0
-//-------------------------------------------------------------------
-// paste:
-// Makes sure all pastes go into the input text field
-//
-// "sender" - The paste menu item
-//-------------------------------------------------------------------
-- (IBAction)paste:(id)sender
-{
-  if (![mainWindow isKeyWindow]) {
-    [[[NSApp keyWindow] fieldEditor:FALSE forObject:nil] paste:sender];
-    return;
-  }
-  
-  if (![[mainWindow firstResponder] respondsToSelector:@selector(isDescendantOf:)] || ![(NSTextView *)[mainWindow firstResponder] isDescendantOf:inputTextField]) {
-    NSRange tmp;
-    [mainWindow makeFirstResponder:inputTextField];
-    tmp.location = [[(NSTextView *)[mainWindow firstResponder] textStorage] length];
-    [(NSTextView *)[mainWindow firstResponder] setSelectedRange:tmp];
-  }
-  
-  [[mainWindow fieldEditor:FALSE forObject:nil] paste:sender];
-}
-#endif
-
-//-------------------------------------------------------------------
-// closeChannel:
-// Closes the current channel
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)performCloseChannel:(id)sender
-{
-  if (![mainWindow isKeyWindow]) {
-    [[NSApp keyWindow] performClose:sender];
-    return;
-  }
-  
-  if ([[IrssiBridge channels] count] == 1) {
-    // Last window, actually we want to perform a window close
-    [mainWindow performClose:sender];
-    return;
-  }
-  
-  WINDOW_REC *rec = [currentChannelController windowRec];
-  signal_emit("command window close", 3, "", rec->active_server, rec->active);
-}
-
-- (IBAction)performDisconnect:(id)sender
-{
-  SERVER_REC *server = [self serverRecordFromServerMenu:sender];
-  
-  if (server)
-  {
-    signal_emit("command disconnect", 2, "* Disconnecting", server);
-  }
-}
-
-//-------------------------------------------------------------------
-// nextChannel:
-// Goes to the next channel
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)nextChannel:(id)sender
-{
-  WINDOW_REC *tmp = [currentChannelController windowRec];
-  signal_emit("command window next", 3, "", tmp->active_server, tmp->active);
-}
-
-
-//-------------------------------------------------------------------
-// previousChannel:
-// Goes to the previous channel
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)previousChannel:(id)sender
-{
-  WINDOW_REC *tmp = [currentChannelController windowRec];
-  signal_emit("command window previous", 3, "", tmp->active_server, tmp->active);
-}
-
-
-//-------------------------------------------------------------------
-// endReasonWindow:
-// Removes the reason window
-//
-// "sender" - A button on the reason window
-//-------------------------------------------------------------------
 - (IBAction)endReasonWindow:(id)sender
 {
   [reasonWindow orderOut:sender];
@@ -373,12 +362,6 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   [reasonTextField setStringValue:@""];
 }
 
-//-------------------------------------------------------------------
-// endErrorWindow:
-// Removes the error window
-//
-// "sender" - A button on the reason window
-//-------------------------------------------------------------------
 - (IBAction)endErrorWindow:(id)sender
 {
   [errorWindow orderOut:sender];
@@ -390,179 +373,9 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   }
 }
 
-//-------------------------------------------------------------------
-// showPreferencePanel:
-// Brings up the preference panel
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)showPreferencePanel:(id)sender
-{
-	if (!_sharedPrefsWindowController) {
-        _sharedPrefsWindowController = [[PreferenceViewController alloc] initWithColorSet:nil appController:self];
-    }
-	[_sharedPrefsWindowController showWindow:self];
-}
+#pragma mark - Irssi
+#pragma mark -- Bridge Calls
 
-- (IBAction)showShortcutsPreferences:(id)sender
-{
-  if (!_sharedPrefsWindowController) {
-    _sharedPrefsWindowController = [[PreferenceViewController alloc] initWithColorSet:nil appController:self];
-  }
-  [_sharedPrefsWindowController showWindow:self];
-  [_sharedPrefsWindowController switchPreferenceWindowToNamed:@"Shortcuts" animate:YES];
-}
-
-- (IBAction)showAbout:(id)sender
-{
-  [aboutVersionLabel setStringValue:[NSString stringWithFormat:@"Version %@ (%@)",
-                     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
-                     [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSGitRevision"]]];
-  
-  [copyrightTextView setString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"]];
-  [copyrightTextView setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [[copyrightTextView textStorage] length])];
-  
-  [aboutBox center];
-  [aboutBox makeKeyAndOrderFront:sender];
-}
-
-- (IBAction)performFind:(id)sender
-{
-  // Find simply defers to the current channel controller's searchController.
-  [[currentChannelController searchController] performFind:sender];
-}
-
-- (IBAction)performJumpToSelection:(id)sender
-{
-  [[currentChannelController textView] scrollRangeToVisible:[[currentChannelController textView] selectedRange]];
-}
-
-#pragma mark Shortcuts
-
-//-------------------------------------------------------------------
-// buildShortcutsMenu
-// Buildd the shortcuts menu.
-//-------------------------------------------------------------------
-- (void)buildShortcutsMenu
-{
-  NSMenu *_shortcutsMenu = [[[NSApp mainMenu] itemWithTitle:@"Shortcuts"] submenu];
-  for (NSMenuItem *item in _shortcutsMenuItems) {
-    _lastShortcutsMenuItem = [_shortcutsMenu itemAtIndex:[_shortcutsMenu indexOfItem:item]-1];
-    [_shortcutsMenu removeItem:item];
-  }
-  [_shortcutsMenuItems removeAllObjects];
-  
-  // Right, if we've no shortcuts, then display a non-clickable menu item. Else...
-  NSArray *shortcuts = [[NSUserDefaults standardUserDefaults] valueForKey:@"shortcutDict"];
-  if ([shortcuts count] > 0)
-  {
-    NSEnumerator *shortcutEnumerator = [shortcuts objectEnumerator];
-    NSDictionary *shortcut;
-    
-    while (shortcut = [shortcutEnumerator nextObject])
-    {
-      ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] initWithDictionary:shortcut] autorelease];
-      
-      NSString *equivKey = (([controller flags] & NSShiftKeyMask) | SRIsSpecialKey([controller keyCode])) ? SRStringForKeyCode([controller keyCode]) : [SRStringForKeyCode([controller keyCode]) lowercaseString];
-      if (SRFunctionKeyToString([controller keyCode]))
-      {
-        equivKey = SRFunctionKeyToString([controller keyCode]);
-      }
-      
-      NSString *title = [controller command];
-      if ([title length] > 15)
-      {
-        title = [NSString stringWithFormat:@"%@...", [title stringByPaddingToLength:15 withString:@"" startingAtIndex:0]];
-      }
-      
-      NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:title action:@selector(performShortcut:) keyEquivalent:equivKey] autorelease];
-      
-      [item setKeyEquivalentModifierMask:[controller flags]];
-      [item setTarget:self];
-      [item setTag:[controller keyCode]];
-      
-      [_shortcutsMenu insertItem:item atIndex:[_shortcutsMenu indexOfItem:_lastShortcutsMenuItem]+1];
-      [_shortcutsMenuItems addObject:item];
-      _lastShortcutsMenuItem = item;
-    }
-  }
-  else
-  {
-    NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:@"No Shortucts." action:nil keyEquivalent:@""] autorelease];
-    [_shortcutsMenu insertItem:item atIndex:[_shortcutsMenu indexOfItem:_lastShortcutsMenuItem]+1];
-    [_shortcutsMenuItems addObject:item];
-    _lastShortcutsMenuItem = item;
-  }
-}
-
-//-------------------------------------------------------------------
-// performShortcut:
-// Performes the command that is bound to the selected menu item 
-//
-// "sender" - A menu item
-//-------------------------------------------------------------------
-- (IBAction)performShortcut:(id)sender
-{
-  NSMenuItem *item = sender;
-  unichar letter = [[item keyEquivalent] characterAtIndex:0];
-  NSString *key = SRStringForCocoaModifierFlagsAndKeyCode([item keyEquivalentModifierMask] | ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:letter] ? NSShiftKeyMask : 0), [item tag]);
-  
-  NSDictionary *dict = [[[NSUserDefaults standardUserDefaults] valueForKey:@"shortcutDict"] valueForKey:key];
-  ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] initWithDictionary:dict] autorelease];
-  
-  WINDOW_REC *rec = [currentChannelController windowRec];
-  NSArray *commands = [[controller command] componentsSeparatedByString:@";"];
-  NSEnumerator *enumerator = [commands objectEnumerator];
-  NSString *command;
-  char *tmp;
-  
-  while (command = [enumerator nextObject]) {
-    tmp = (char*)[command cStringUsingEncoding:NSUTF8StringEncoding];
-    
-    /* Skip whitespaces */
-    while (*tmp == ' ')
-      tmp++;
-    signal_emit("send command", 3, tmp, rec->active_server, rec->active);
-  }
-}
-
-- (void)checkAndConvertOldShortcuts
-{
-  // We need to iterate through the old F1-F12 shortcuts and convert them to our own
-  int i;
-  BOOL performedConversion = NO;
-  
-  for (i = 1; i < 13; i++)
-  {
-    NSString *key = [NSString stringWithFormat:@"shortcut%d", i];
-    NSString *value = [[NSUserDefaults standardUserDefaults] valueForKey:key];
-    
-    if (value && [value isNotEqualTo:@""])
-    {
-      SRKeyCodeTransformer *transformer = [[[SRKeyCodeTransformer alloc] init] autorelease];
-      ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] init] autorelease];
-      
-      [controller setCommand:value];
-      [controller setFlags:0];
-      [controller setKeyCode:[[transformer reverseTransformedValue:[NSString stringWithFormat:@"F%d", i]] intValue]];
-      
-      performedConversion = YES;
-    }
-    // Bin the old one
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
-  }
-  
-  if (performedConversion)
-  {
-    [[NSAlert alertWithMessageText:@"Shortcut Conversion"
-                     defaultButton:@"OK"
-                   alternateButton:nil
-                       otherButton:nil 
-         informativeTextWithFormat:@"Your old shortcuts have been converted to the new shortcut system. You should be able to find them in the Shortcuts menu."] runModal];
-  }
-}
-
-#pragma mark Indirect receivers of irssi signals
 //-------------------------------------------------------------------
 // highlightChanged:
 // Reloads the channel table view when the hilight of a channel changes
@@ -669,9 +482,9 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   [tabViewItem setView:[owner view]];
   [tabView addTabViewItem:tabViewItem];
   [channelBar addChannel:wind];
-
+  
   [self buildWindowsMenu];
-
+  
   [owner release];
   [tabViewItem release];
   [channelTableView reloadData];
@@ -709,7 +522,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   [channelBar selectCellWithWindowRec:wind];
   [channelTableView selectRowIndexes:[NSIndexSet indexSetWithIndex:[tabView indexOfTabViewItem:tmp]] byExtendingSelection:FALSE];
   [currentChannelController setWaitingEvents:0];
-
+  
   // Update the window title
   NSString *titleString = ([[NSUserDefaults standardUserDefaults] boolForKey:@"channelInTitle"]) ? [NSString stringWithFormat:@"MacIrssi - %@", [currentChannelController name]] : @"MacIrssi";
   [mainWindow setTitle:titleString];
@@ -830,7 +643,115 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   }
 }
 
-#pragma mark Menus
+#pragma mark -- History
+
+- (void)historyUp
+{
+  const char *str = [[inputTextField string] UTF8String];
+  char *next = (char*)command_history_prev([currentChannelController windowRec], str);
+  
+  [inputTextField setString:[NSString stringWithUTF8String:next]];
+  [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
+}
+
+- (void)historyDown
+{
+  const char *str = [[inputTextField string] UTF8String];
+  char *next = (char*)command_history_next([currentChannelController windowRec], str);
+  
+  [inputTextField setString:[NSString stringWithUTF8String:next]];
+  [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
+}
+
+#pragma mark - Menu Builders
+
+- (void)buildShortcutsMenu
+{
+  NSMenu *_shortcutsMenu = [[[NSApp mainMenu] itemWithTitle:@"Shortcuts"] submenu];
+  for (NSMenuItem *item in _shortcutsMenuItems) {
+    _lastShortcutsMenuItem = [_shortcutsMenu itemAtIndex:[_shortcutsMenu indexOfItem:item]-1];
+    [_shortcutsMenu removeItem:item];
+  }
+  [_shortcutsMenuItems removeAllObjects];
+  
+  // Right, if we've no shortcuts, then display a non-clickable menu item. Else...
+  NSArray *shortcuts = [[NSUserDefaults standardUserDefaults] valueForKey:@"shortcutDict"];
+  if ([shortcuts count] > 0)
+  {
+    NSEnumerator *shortcutEnumerator = [shortcuts objectEnumerator];
+    NSDictionary *shortcut;
+    
+    while (shortcut = [shortcutEnumerator nextObject])
+    {
+      ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] initWithDictionary:shortcut] autorelease];
+      
+      NSString *equivKey = (([controller flags] & NSShiftKeyMask) | SRIsSpecialKey([controller keyCode])) ? SRStringForKeyCode([controller keyCode]) : [SRStringForKeyCode([controller keyCode]) lowercaseString];
+      if (SRFunctionKeyToString([controller keyCode]))
+      {
+        equivKey = SRFunctionKeyToString([controller keyCode]);
+      }
+      
+      NSString *title = [controller command];
+      if ([title length] > 15)
+      {
+        title = [NSString stringWithFormat:@"%@...", [title stringByPaddingToLength:15 withString:@"" startingAtIndex:0]];
+      }
+      
+      NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:title action:@selector(performShortcut:) keyEquivalent:equivKey] autorelease];
+      
+      [item setKeyEquivalentModifierMask:[controller flags]];
+      [item setTarget:self];
+      [item setTag:[controller keyCode]];
+      
+      [_shortcutsMenu insertItem:item atIndex:[_shortcutsMenu indexOfItem:_lastShortcutsMenuItem]+1];
+      [_shortcutsMenuItems addObject:item];
+      _lastShortcutsMenuItem = item;
+    }
+  }
+  else
+  {
+    NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:@"No Shortucts." action:nil keyEquivalent:@""] autorelease];
+    [_shortcutsMenu insertItem:item atIndex:[_shortcutsMenu indexOfItem:_lastShortcutsMenuItem]+1];
+    [_shortcutsMenuItems addObject:item];
+    _lastShortcutsMenuItem = item;
+  }
+}
+
+- (void)checkAndConvertOldShortcuts
+{
+  // We need to iterate through the old F1-F12 shortcuts and convert them to our own
+  int i;
+  BOOL performedConversion = NO;
+  
+  for (i = 1; i < 13; i++)
+  {
+    NSString *key = [NSString stringWithFormat:@"shortcut%d", i];
+    NSString *value = [[NSUserDefaults standardUserDefaults] valueForKey:key];
+    
+    if (value && [value isNotEqualTo:@""])
+    {
+      SRKeyCodeTransformer *transformer = [[[SRKeyCodeTransformer alloc] init] autorelease];
+      ShortcutBridgeController *controller = [[[ShortcutBridgeController alloc] init] autorelease];
+      
+      [controller setCommand:value];
+      [controller setFlags:0];
+      [controller setKeyCode:[[transformer reverseTransformedValue:[NSString stringWithFormat:@"F%d", i]] intValue]];
+      
+      performedConversion = YES;
+    }
+    // Bin the old one
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+  }
+  
+  if (performedConversion)
+  {
+    [[NSAlert alertWithMessageText:@"Shortcut Conversion"
+                     defaultButton:@"OK"
+                   alternateButton:nil
+                       otherButton:nil 
+         informativeTextWithFormat:@"Your old shortcuts have been converted to the new shortcut system. You should be able to find them in the Shortcuts menu."] runModal];
+  }
+}
 
 - (NSMenu*)buildServerSubmenu:(SERVER_REC*)srv
 {
@@ -944,7 +865,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
     [_windowsMenuItems addObject:item];
     [windowMenu addItem:item];
   }
-   
+  
   for (ChannelController *channel in channels) {
     NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:[channel name] target:channel action:@selector(makeChannelKey:) keyEquivalent:@""] autorelease];
     if ([channels count] > 0) {
@@ -966,129 +887,49 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   }
 }
 
-#pragma mark Public methods
-/**
- * Sets a irssi theme
- */
-- (void)loadTheme:(NSString *)theme
+#pragma mark - PanelDidEnd Callbacks
+
+- (void)joinChannelFieldDidChange:(NSNotification*)notification
 {
-  WINDOW_REC *rec = [currentChannelController windowRec];
-  NSString *cmd = [NSString stringWithFormat:@"/set theme %@", theme];
-  signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);      
+  NSTextField *field = [notification object];
+  NSAlert *alert = objc_getAssociatedObject(field, kMIJoinChannelAlertKey);
+  NSButton *joinButton = [[alert buttons] objectAtIndex:0];
+  
+  [joinButton setEnabled:[[field stringValue] length] > 0];
 }
 
-- (void)channelBarOrientationDidChange:(NSNotification*)notification
+- (void)joinChannelEnded:(NSAlert*)alert returnCode:(NSInteger)code context:(void*)context
 {
-  // Right, we don't post anything useful with the notification but we need to re-read the config var and
-  // possibly re-orientate.
+  NSTextField *field = (NSTextField*)[alert accessoryView];
   
-  // Remove everything from the content view. All the important shit is retained.
-  [channelTableScrollView removeFromSuperview];
-  [channelTableSplitView removeFromSuperview];
-  [channelBar removeFromSuperview];
-  [tabViewTextEntrySplitView removeFromSuperview];
-  //[tabView removeFromSuperview];
-  //[inputTextFieldBox removeFromSuperview];
-
-  int orientation = [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"];
-
-  switch (orientation)
-  {
-    case MIChannelBarHorizontalOrientation:
-    {
-      // So, horitonzal operation. We want the channelBar and tabView.
-      NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
-      NSRect splitViewFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width, channelBarFrame.origin.y);
-      
-      [[mainWindow contentView] addSubview:channelBar];
-      [channelBar setFrame:channelBarFrame];
-      [channelBar setNeedsDisplay:YES];
-      
-      [[mainWindow contentView] addSubview:tabViewTextEntrySplitView];
-      [tabViewTextEntrySplitView setFrame:splitViewFrame];
-      [tabViewTextEntrySplitView setNeedsDisplay:YES];
-      [tabViewTextEntrySplitView adjustSubviews];
-      
-      // Now adjust the views internally
-      NSRect inputBoxFrame = [inputTextFieldBox frame];
-      inputBoxFrame.size.height = [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height + 6.0;
-      [inputTextFieldBox setFrame:inputBoxFrame];
-      
-      break;
-    }
-    case MIChannelBarVerticalOrientation:
-    {
-      // Ok, for vertical channel bars, put the tableView in a split view and go from there
-      NSRect channelTableSplitViewFrame = [[mainWindow contentView] frame];
-      channelTableSplitView = [[MISplitView alloc] initWithFrame:channelTableSplitViewFrame];
-      [channelTableSplitView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
-      [channelTableSplitView setDividerThickness:2.0f];
-      [channelTableSplitView setDrawLowerBorder:YES];
-      [channelTableSplitView setVertical:YES];
-      [channelTableSplitView setDelegate:self];
-      
-      [[mainWindow contentView] addSubview:channelTableSplitView];
-      [channelTableSplitView setFrame:channelTableSplitViewFrame];
-      [channelTableSplitView setNeedsDisplay:YES];
-
-      NSRect channelTableFrame = NSMakeRect(0, 0, 120.0, channelTableSplitViewFrame.size.height);
-      [channelTableSplitView addSubview:channelTableScrollView];
-      [channelTableScrollView setFrame:channelTableFrame];
-      [channelTableScrollView setNeedsDisplay:YES];
-      
-      NSRect containerTableFrame = NSMakeRect(channelTableFrame.size.width, 0.0, channelTableSplitViewFrame.size.width - channelTableFrame.size.width, channelTableSplitViewFrame.size.height);
-      [channelTableSplitView addSubview:tabViewTextEntrySplitView];
-      [tabViewTextEntrySplitView setFrame:containerTableFrame];
-      [tabViewTextEntrySplitView setNeedsDisplay:YES];
-
-      [tabViewTextEntrySplitView adjustSubviews];
-      [channelTableSplitView adjustSubviews];
-            
-      [channelTableSplitView restoreLayoutUsingName:@"ChannelTableViewSplit"];      
-      break;
-    }
+  objc_setAssociatedObject(field, kMIJoinChannelAlertKey, nil, OBJC_ASSOCIATION_RETAIN);
+  
+  if (code == NSOKButton) {
+    NSMenuItem *item = [joinChannelServersPopup selectedItem];
+    SERVER_REC *server = [[item representedObject] pointerValue];
+    signal_emit("command join", 2, [[joinChannelTextField stringValue] UTF8String], server);
   }
   
-  // We'll do the shortcuts here now instead. We've got several choices that the user can pick for their,
-  // left/right keystrokes. So lets set it up.
-  NSMenuItem *previousMenuItem = [[NSApp windowsMenu] itemAtIndex:[[NSApp windowsMenu] indexOfItemWithTarget:self andAction:@selector(previousChannel:)]];
-  NSMenuItem *nextMenuItem = [[NSApp windowsMenu] itemAtIndex:[[NSApp windowsMenu] indexOfItemWithTarget:self andAction:@selector(nextChannel:)]];
-  
-  switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"tabShortcuts"])
-  {
-    case TabShortcutArrows:
-      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
-      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
-      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
-      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
-      break;
-    case TabShortcutShiftArrows:
-      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
-      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSShiftKeyMask];
-      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
-      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSShiftKeyMask];
-      break;
-    case TabShortcutOptionArrows:
-      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
-      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
-      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
-      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
-      break;
-    case TabShortcutBrackets:
-      [previousMenuItem setKeyEquivalent:@"["];
-      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
-      [nextMenuItem setKeyEquivalent:@"]"];
-      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
-      break;
-    case TabShortcutBraces:
-      [previousMenuItem setKeyEquivalent:@"{"];
-      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
-      [nextMenuItem setKeyEquivalent:@"}"];
-      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
-      break;
-    default:
-      NSLog(@"channelBarOrientationDidChange: Uh, what? Invalid tabShortcuts value.");
+  [joinChannelServersPopup removeAllItems];
+}
+
+#pragma mark - Leftover Crap
+
+- (NSArray *)splitCommand:(NSString *)command
+{
+  int i, j;
+  NSMutableArray *commands = [[NSMutableArray alloc] initWithCapacity:100];
+  NSArray *firstSplit = [command componentsSeparatedByString:@"\n"];
+  for (i = 0; i < [firstSplit count]; i++) {
+    
+    /* Also need to remove carriage returns */
+    NSArray *secondSplit = [[firstSplit objectAtIndex:i] componentsSeparatedByString:@"\r"];
+    
+    for (j = 0; j < [secondSplit count]; j++)
+      [commands addObject:[secondSplit objectAtIndex:j]];
   }
+  
+  return [commands autorelease];
 }
 
 //-------------------------------------------------------------------
@@ -1148,40 +989,6 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
     currentIcon = defaultIcon;
   }
 }
-
-#pragma mark History
-
-//-------------------------------------------------------------------
-// historyUp
-// Iterates one step back in history and outputs it in the command field.
-//
-// Returns: The length of the history-command
-//-------------------------------------------------------------------
-- (void)historyUp
-{
-  const char *str = [[inputTextField string] UTF8String];
-  char *next = (char*)command_history_prev([currentChannelController windowRec], str);
-  
-  [inputTextField setString:[NSString stringWithUTF8String:next]];
-  [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
-}
-
-
-//-------------------------------------------------------------------
-// historyDown
-// Iterates one step forward in history and outputs it in the command field.
-//
-// Returns: The length of the history-command
-//-------------------------------------------------------------------
-- (void)historyDown
-{
-  const char *str = [[inputTextField string] UTF8String];
-  char *next = (char*)command_history_next([currentChannelController windowRec], str);
-  
-  [inputTextField setString:[NSString stringWithUTF8String:next]];
-  [(NSTextView*)[mainWindow firstResponder] setSelectedRange:NSMakeRange([[inputTextField string] length], 0)];
-}
-
 
 //-------------------------------------------------------------------
 // specialFontChange:
@@ -1257,34 +1064,19 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   }
 }
 
-#pragma mark Server Change Notifications
+#pragma mark - Themes
+#pragma mark -- (Why are these here?)
 
-- (void)irssiServerChangedNotification:(NSNotification*)notification
+/**
+ * Sets a irssi theme
+ */
+- (void)loadTheme:(NSString *)theme
 {
-	[self buildServersMenu];
+  WINDOW_REC *rec = [currentChannelController windowRec];
+  NSString *cmd = [NSString stringWithFormat:@"/set theme %@", theme];
+  signal_emit("send command", 3, [cmd cStringUsingEncoding:NSASCIIStringEncoding], rec->active_server, rec->active);      
 }
 
-- (void)changeIrssiServerConsole:(id)sender
-{
-  SERVER_REC *ptr = [self serverRecordFromServerMenu:sender];
-  
-  // This means the pointer we got given in representedObject is still valid.
-  if (ptr != NULL) {
-    // We should check use_status_window in validation, if we don't have one, then we don't have a server
-    // console to change the active server to.
-    WINDOW_REC *wnd = window_find_name("(status)");
-    if (wnd) {
-      // The official signal way checks to see if you're looking at this window when you do it,
-      // I'd rather not restrict the user that way so I'm calling w_c_s directly. Also, poke
-      // irssiServerChangedNotification: to force the menu to regenerate with a new selected
-      // server.
-      window_change_server(wnd, ptr);
-      [self irssiServerChangedNotification:nil];
-    }
-  }
-}
-
-#pragma mark Private methods
 /**
  * returns an array of theme locations
  * ~/.irssi/
@@ -1314,7 +1106,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   return eventController;
 }
 
-#pragma mark Delegate & notification receiver methods
+#pragma mark - Notifications and Delegates
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
@@ -1349,6 +1141,142 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
     return ([currentChannelController windowRec]->active_server != NULL);
   }
   return YES;
+}
+
+- (void)channelBarOrientationDidChange:(NSNotification*)notification
+{
+  // Right, we don't post anything useful with the notification but we need to re-read the config var and
+  // possibly re-orientate.
+  
+  // Remove everything from the content view. All the important shit is retained.
+  [channelTableScrollView removeFromSuperview];
+  [channelTableSplitView removeFromSuperview];
+  [channelBar removeFromSuperview];
+  [tabViewTextEntrySplitView removeFromSuperview];
+  //[tabView removeFromSuperview];
+  //[inputTextFieldBox removeFromSuperview];
+  
+  int orientation = [[NSUserDefaults standardUserDefaults] integerForKey:@"channelBarOrientation"];
+  
+  switch (orientation)
+  {
+    case MIChannelBarHorizontalOrientation:
+    {
+      // So, horitonzal operation. We want the channelBar and tabView.
+      NSRect channelBarFrame = NSMakeRect(0.0, [[mainWindow contentView] frame].size.height - [channelBar frame].size.height + 1.0, [[mainWindow contentView] frame].size.width, [channelBar frame].size.height);
+      NSRect splitViewFrame = NSMakeRect(0.0, 0.0, [[mainWindow contentView] frame].size.width, channelBarFrame.origin.y);
+      
+      [[mainWindow contentView] addSubview:channelBar];
+      [channelBar setFrame:channelBarFrame];
+      [channelBar setNeedsDisplay:YES];
+      
+      [[mainWindow contentView] addSubview:tabViewTextEntrySplitView];
+      [tabViewTextEntrySplitView setFrame:splitViewFrame];
+      [tabViewTextEntrySplitView setNeedsDisplay:YES];
+      [tabViewTextEntrySplitView adjustSubviews];
+      
+      // Now adjust the views internally
+      NSRect inputBoxFrame = [inputTextFieldBox frame];
+      inputBoxFrame.size.height = [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height + 6.0;
+      [inputTextFieldBox setFrame:inputBoxFrame];
+      
+      break;
+    }
+    case MIChannelBarVerticalOrientation:
+    {
+      // Ok, for vertical channel bars, put the tableView in a split view and go from there
+      NSRect channelTableSplitViewFrame = [[mainWindow contentView] frame];
+      channelTableSplitView = [[MISplitView alloc] initWithFrame:channelTableSplitViewFrame];
+      [channelTableSplitView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
+      [channelTableSplitView setDividerThickness:2.0f];
+      [channelTableSplitView setDrawLowerBorder:YES];
+      [channelTableSplitView setVertical:YES];
+      [channelTableSplitView setDelegate:self];
+      
+      [[mainWindow contentView] addSubview:channelTableSplitView];
+      [channelTableSplitView setFrame:channelTableSplitViewFrame];
+      [channelTableSplitView setNeedsDisplay:YES];
+      
+      NSRect channelTableFrame = NSMakeRect(0, 0, 120.0, channelTableSplitViewFrame.size.height);
+      [channelTableSplitView addSubview:channelTableScrollView];
+      [channelTableScrollView setFrame:channelTableFrame];
+      [channelTableScrollView setNeedsDisplay:YES];
+      
+      NSRect containerTableFrame = NSMakeRect(channelTableFrame.size.width, 0.0, channelTableSplitViewFrame.size.width - channelTableFrame.size.width, channelTableSplitViewFrame.size.height);
+      [channelTableSplitView addSubview:tabViewTextEntrySplitView];
+      [tabViewTextEntrySplitView setFrame:containerTableFrame];
+      [tabViewTextEntrySplitView setNeedsDisplay:YES];
+      
+      [tabViewTextEntrySplitView adjustSubviews];
+      [channelTableSplitView adjustSubviews];
+      
+      [channelTableSplitView restoreLayoutUsingName:@"ChannelTableViewSplit"];      
+      break;
+    }
+  }
+  
+  // We'll do the shortcuts here now instead. We've got several choices that the user can pick for their,
+  // left/right keystrokes. So lets set it up.
+  NSMenuItem *previousMenuItem = [[NSApp windowsMenu] itemAtIndex:[[NSApp windowsMenu] indexOfItemWithTarget:self andAction:@selector(previousChannel:)]];
+  NSMenuItem *nextMenuItem = [[NSApp windowsMenu] itemAtIndex:[[NSApp windowsMenu] indexOfItemWithTarget:self andAction:@selector(nextChannel:)]];
+  
+  switch ([[NSUserDefaults standardUserDefaults] integerForKey:@"tabShortcuts"])
+  {
+    case TabShortcutArrows:
+      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      break;
+    case TabShortcutShiftArrows:
+      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSShiftKeyMask];
+      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSShiftKeyMask];
+      break;
+    case TabShortcutOptionArrows:
+      [previousMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSLeftArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSUpArrowFunctionKey])];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
+      [nextMenuItem setKeyEquivalent:((orientation == MIChannelBarHorizontalOrientation) ? [NSString stringWithUnicodeCharacter:NSRightArrowFunctionKey] : [NSString stringWithUnicodeCharacter:NSDownArrowFunctionKey])];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask|NSAlternateKeyMask];
+      break;
+    case TabShortcutBrackets:
+      [previousMenuItem setKeyEquivalent:@"["];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      [nextMenuItem setKeyEquivalent:@"]"];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      break;
+    case TabShortcutBraces:
+      [previousMenuItem setKeyEquivalent:@"{"];
+      [previousMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      [nextMenuItem setKeyEquivalent:@"}"];
+      [nextMenuItem setKeyEquivalentModifierMask:NSCommandKeyMask];
+      break;
+    default:
+      NSLog(@"channelBarOrientationDidChange: Uh, what? Invalid tabShortcuts value.");
+  }
+}
+
+- (void)resizingTextViewUpdated:(NSNotification*)notification
+{
+  // Need to resize the two views.
+  NSRect textViewRect = NSMakeRect(0, 0, [inputTextField frame].size.width, [inputTextField desiredSize].height);
+  NSRect tabViewRect = NSMakeRect(0, 0, [tabView frame].size.width, [tabViewTextEntrySplitView frame].size.height - textViewRect.size.height - [tabViewTextEntrySplitView dividerThickness]);
+  
+  [inputTextFieldBox setFrame:textViewRect];
+  [tabView setFrame:tabViewRect];
+  [tabViewTextEntrySplitView adjustSubviews];
+  
+  // Scroll the view to the bottom
+  NSScrollView *view = (NSScrollView*)[[[currentChannelController mainTextView] superview] superview];
+  
+  NSPoint newScrollPoint = [[view documentView] isFlipped] ? NSMakePoint(0.0, NSMaxY([[view documentView] frame])) : NSZeroPoint;
+  [[view documentView] scrollPoint:newScrollPoint];
+}
+
+- (void)irssiServerChangedNotification:(NSNotification*)notification
+{
+	[self buildServersMenu];
 }
 
 #pragma mark SplitView Delegates
@@ -1388,25 +1316,6 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
     return ([sender frame].size.height - [[inputTextField layoutManager] usedRectForTextContainer:[inputTextField textContainer]].size.height - 6.0);
   }
   return proposedMax;
-}
-
-#pragma mark MIResizingTextView Notifications
-
-- (void)resizingTextViewUpdated:(NSNotification*)notification
-{
-  // Need to resize the two views.
-  NSRect textViewRect = NSMakeRect(0, 0, [inputTextField frame].size.width, [inputTextField desiredSize].height);
-  NSRect tabViewRect = NSMakeRect(0, 0, [tabView frame].size.width, [tabViewTextEntrySplitView frame].size.height - textViewRect.size.height - [tabViewTextEntrySplitView dividerThickness]);
-  
-  [inputTextFieldBox setFrame:textViewRect];
-  [tabView setFrame:tabViewRect];
-  [tabViewTextEntrySplitView adjustSubviews];
-  
-  // Scroll the view to the bottom
-  NSScrollView *view = (NSScrollView*)[[[currentChannelController mainTextView] superview] superview];
-  
-  NSPoint newScrollPoint = [[view documentView] isFlipped] ? NSMakePoint(0.0, NSMaxY([[view documentView] frame])) : NSZeroPoint;
-  [[view documentView] scrollPoint:newScrollPoint];
 }
 
 #pragma mark Growl Delegates
@@ -1486,7 +1395,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 
 }
 
-#pragma mark NSApp notifications
+#pragma mark - NSApp notifications
 
 //-------------------------------------------------------------------
 // applicationShouldTerminate:
@@ -1547,7 +1456,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 
 //-------------------------------------------------------------------
 // applicationDidBecomeActive:
-// Called when becoming active. Removes some notification systems
+// Called when becominxg active. Removes some notification systems
 //
 // "aNotification" - Ignored
 //-------------------------------------------------------------------
@@ -1616,7 +1525,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   [channelBar setNeedsDisplay:YES];
 }
 
-#pragma mark Channel TableView Datasource
+#pragma mark - Channel TableView Datasource
 
 //-------------------------------------------------------------------
 // numberOfRowsInTableView
@@ -1684,7 +1593,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 }
 
 
-#pragma mark [De]initializers
+#pragma mark - Initializers
 //-------------------------------------------------------------------
 // awakeFromNib
 // The initializer. TODO: Clean up, this is ugly

@@ -110,6 +110,67 @@ extern char **argv;
   BOOL isRestartingForUpdate;
 }
 
+#pragma mark - Menu Actions
+#pragma mark -- Application Menu
+
+- (IBAction)showAbout:(id)sender;
+- (IBAction)showPreferencePanel:(id)sender;
+
+#pragma mark -- File Menu
+
+- (IBAction)joinChannel:(id)sender;
+- (IBAction)performDisconnect:(id)sender;
+- (IBAction)changeIrssiServerConsole:(id)sender;
+- (IBAction)performCloseChannel:(id)sender;
+
+#pragma mark -- Edit Menu
+
+- (IBAction)performFind:(id)sender;
+- (IBAction)performJumpToSelection:(id)sender;
+
+#pragma mark -- Channel Menu
+
+- (IBAction)showFontPanel:(id)sender;
+- (IBAction)editCurrentChannel:(id)sender;
+
+#pragma mark -- Shortcut Menu
+
+- (IBAction)showShortcutsPreferences:(id)sender;
+- (IBAction)performShortcut:(id)sender;
+
+#pragma mark -- Window Menu
+
+- (IBAction)nextChannel:(id)sender;
+- (IBAction)activeChannel:(id)sender;
+- (IBAction)previousChannel:(id)sender;
+
+#pragma mark - Invisible Actions
+
+- (IBAction)sendCommand:(id)sender;
+
+#pragma mark - Irssi
+#pragma mark -- Bridge Calls
+
+- (void)highlightChanged:(WINDOW_REC *)wind;
+- (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old;
+- (void)setServer:(NSString *)serverName;
+- (void)newTabWithWindowRec:(WINDOW_REC *)wind;
+- (void)windowChanged:(WINDOW_REC *)wind withOldWind:(WINDOW_REC *)oldwind;
+- (void)refnumChanged:(WINDOW_REC *)wind old:(int)old;
+- (void)windowNameChanged:(WINDOW_REC*)wind;
+- (void)removeTabWithWindowRec:(WINDOW_REC *)wind;
+- (void)queryCreated:(QUERY_REC *)qr automatically:(int)automatic;
+- (void)channelJoined:(WINDOW_REC *)rec;
+
+#pragma mark - Menu Builders
+
+- (void)buildServersMenu;
+- (void)buildWindowsMenu;
+- (void)buildShortcutsMenu;
+- (void)checkAndConvertOldShortcuts;
+
+#pragma mark -
+
 - (WINDOW_REC *)currentWindowRec;
 - (void)historyUp;
 - (void)historyDown;
@@ -123,50 +184,21 @@ extern char **argv;
 
 - (void)irssiQuit;
 
-- (IBAction)performCloseChannel:(id)sender;
+#pragma mark - Other Actions
 
-- (IBAction)sendCommand:(id)sender;
-- (IBAction)joinChannel:(id)sender;
-- (IBAction)nextChannel:(id)sender;
-- (IBAction)activeChannel:(id)sender;
-- (IBAction)previousChannel:(id)sender;
+
 - (IBAction)endReasonWindow:(id)sender;
 - (IBAction)endErrorWindow:(id)sender;
-- (IBAction)showFontPanel:(id)sender;
-- (IBAction)showPreferencePanel:(id)sender;
-- (IBAction)showAbout:(id)sender;
-//- (IBAction)paste:(id)sender;
-- (IBAction)editCurrentChannel:(id)sender;
-- (IBAction)performFind:(id)sender;
-- (IBAction)performJumpToSelection:(id)sender;
-
-#pragma mark Shortcuts
-
-- (void)buildShortcutsMenu;
-- (IBAction)performShortcut:(id)sender;
-- (void)checkAndConvertOldShortcuts;
 
 #pragma mark Server Change Notifications
 
 - (void)irssiServerChangedNotification:(NSNotification*)notification;
 
-- (void)buildServersMenu;
-- (void)buildWindowsMenu;
 - (SERVER_REC*)serverRecordFromServerMenu:(id)sender;
 
-- (void)highlightChanged:(WINDOW_REC *)wind;
-- (void)windowActivity:(WINDOW_REC *)wind oldLevel:(int)old;
-- (void)setServer:(NSString *)serverName;
-- (void)newTabWithWindowRec:(WINDOW_REC *)wind;
-- (void)windowChanged:(WINDOW_REC *)wind withOldWind:(WINDOW_REC *)oldwind;
-- (void)refnumChanged:(WINDOW_REC *)wind old:(int)old;
-- (void)windowNameChanged:(WINDOW_REC*)wind;
-- (void)removeTabWithWindowRec:(WINDOW_REC *)wind;
-- (void)queryCreated:(QUERY_REC *)qr automatically:(int)automatic;
 - (void)inputTextFieldColorChanged:(NSNotification *)note;
 - (void)channelListColorChanged:(NSNotification *)note;
 - (void)awakeFromNib;
-- (void)channelJoined:(WINDOW_REC *)rec;
 
 - (void)setIcon:(NSImage *)icon;
 - (void)presentUnexpectedEvent:(NSString *)description;
