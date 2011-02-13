@@ -103,6 +103,9 @@ extern char **argv;
   NSMutableArray *_serversMenuItems;
   IBOutlet NSMenuItem *_lastServersMenuItem;
 	
+	NSMutableArray *_shortcutsMenuItems;
+	IBOutlet NSMenuItem *_lastShortcutsMenuItem;
+	
 	GSList *sleepList;
   BOOL isRestartingForUpdate;
 }
@@ -139,7 +142,7 @@ extern char **argv;
 
 #pragma mark Shortcuts
 
-- (void)setShortcutCommands;
+- (void)buildShortcutsMenu;
 - (IBAction)performShortcut:(id)sender;
 - (void)checkAndConvertOldShortcuts;
 

@@ -431,16 +431,17 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 #pragma mark Shortcuts
 
 //-------------------------------------------------------------------
-// setShortcutCommands
-// Set up the shortcuts menu.
+// buildShortcutsMenu
+// Buildd the shortcuts menu.
 //-------------------------------------------------------------------
-- (void)setShortcutCommands
+- (void)buildShortcutsMenu
 {
-  // Ngg, retarded NSMenu has no removeAllItems
-  while ([shortcutsMenu numberOfItems] > 0)
-  {
-    [shortcutsMenu removeItemAtIndex:0];
+  NSMenu *_shortcutsMenu = [[[NSApp mainMenu] itemWithTitle:@"Shortcuts"] submenu];
+  for (NSMenuItem *item in _shortcutsMenuItems) {
+    _lastShortcutsMenuItem = [_shortcutsMenu itemAtIndex:[_shortcutsMenu indexOfItem:item]-1];
+    [_shortcutsMenu removeItem:item];
   }
+  [_shortcutsMenuItems removeAllObjects];
   
   // Right, if we've no shortcuts, then display a non-clickable menu item. Else...
   NSArray *shortcuts = [[NSUserDefaults standardUserDefaults] valueForKey:@"shortcutDict"];
@@ -470,12 +471,18 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
       [item setKeyEquivalentModifierMask:[controller flags]];
       [item setTarget:self];
       [item setTag:[controller keyCode]];
-      [shortcutsMenu addItem:item];
+      
+      [_shortcutsMenu insertItem:item atIndex:[_shortcutsMenu indexOfItem:_lastShortcutsMenuItem]+1];
+      [_shortcutsMenuItems addObject:item];
+      _lastShortcutsMenuItem = item;
     }
   }
   else
   {
-    [shortcutsMenu addItemWithTitle:@"Empty" action:nil keyEquivalent:@""];
+    NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:@"No Shortucts." action:nil keyEquivalent:@""] autorelease];
+    [_shortcutsMenu insertItem:item atIndex:[_shortcutsMenu indexOfItem:_lastShortcutsMenuItem]+1];
+    [_shortcutsMenuItems addObject:item];
+    _lastShortcutsMenuItem = item;
   }
 }
 
@@ -1559,6 +1566,15 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+  if (![mainWindow isVisible]) {
+    [mainWindow makeKeyAndOrderFront:self];
+  }
+  /* we're not NSDocument based, so don't let AppKit try */
+  return NO;
+}
+
 //-------------------------------------------------------------------
 // inputTextFieldColorChanged:
 // Updates the color of the input text field.
@@ -1768,10 +1784,16 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   
   // Hook up the observer
   [nc addObserver:self selector:@selector(channelBarOrientationDidChange:) name:@"channelBarOrientationDidChange" object:nil];
+  
+  /* Window menu management */
+  _windowsMenuItems = [[NSMutableArray alloc] init];
+  _serversMenuItems = [[NSMutableArray alloc] init];
+  _shortcutsMenuItems = [[NSMutableArray alloc] init];
+  [mainWindow setExcludedFromWindowsMenu:YES];
 
   // Convert any shortcuts from the old system and set the menu up
   [self checkAndConvertOldShortcuts];
-  [self setShortcutCommands];
+  [self buildShortcutsMenu];
   
   currentIcon = defaultIcon = [[NSApp applicationIconImage] copy];
   iconOnPriv = [[NSImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/MacIrssi-Alert.png"]];
@@ -1791,7 +1813,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   
   [nc addObserver:self selector:@selector(inputTextFieldColorChanged:) name:@"inputTextFieldColorChanged" object:nil];
   [nc addObserver:self selector:@selector(channelListColorChanged:) name:@"channelListColorChanged" object:nil];
-  [nc addObserver:self selector:@selector(setShortcutCommands) name:@"shortcutChanged" object:nil];
+  [nc addObserver:self selector:@selector(buildShortcutsMenu) name:kMIShortcutsChangedNotiication object:nil];
   [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:kMIServerConnectedEvent object:nil];
   [nc addObserver:self selector:@selector(irssiServerChangedNotification:) name:kMIServerDisconnectedEvent object:nil];
   [nc addObserver:self selector:@selector(channelBackgroundColorChanged:) name:@"channelColorChanged" object:nil];
@@ -1809,11 +1831,6 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   
   /* Sleep registration */
   (void)[ConnectivityMonitor sharedMonitor];
-  
-  /* Window menu management */
-  _windowsMenuItems = [[NSMutableArray alloc] init];
-  _serversMenuItems = [[NSMutableArray alloc] init];
-  [mainWindow setExcludedFromWindowsMenu:YES];
   
   [IrssiCore initialiseCore];
   

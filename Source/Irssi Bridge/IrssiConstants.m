@@ -29,3 +29,6 @@ MIStringConstant(kMIServerDisconnectedEvent);
 MIStringConstant(kMINetworkDidChangeNameNotification);
 MIStringConstant(kMINetworkChangeOldName);
 MIStringConstant(kMINetworkChangeNewName);
+
+/* Shorcuts */
+MIStringConstant(kMIShortcutsChangedNotiication);

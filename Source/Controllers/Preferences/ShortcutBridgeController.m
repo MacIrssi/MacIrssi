@@ -18,6 +18,7 @@
 
 #import "ShortcutBridgeController.h"
 #import "SRCommon.h"
+#import "IrssiConstants.h"
 
 @implementation ShortcutBridgeController
 
@@ -117,7 +118,7 @@
   [defaults setValue:currentShortcuts forKey:@"shortcutDict"];
   [defaults synchronize];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"shortcutChanged" object:self];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kMIShortcutsChangedNotiication object:self];
 }
 
 - (void)_store
@@ -132,7 +133,7 @@
     [defaults setValue:currentShortcuts forKey:@"shortcutDict"];
     [defaults synchronize];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shortcutChanged" object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kMIShortcutsChangedNotiication object:self];
   }
 }
 
