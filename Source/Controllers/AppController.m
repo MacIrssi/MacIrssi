@@ -773,11 +773,6 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
     [item setState:YES];
   }
   
-  [serverMenu addItem:[NSMenuItem separatorItem]];
-  
-  [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Change Nickname..." target:self action:nil keyEquivalent:@""] autorelease]];
-  [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Change User Mode..." target:self action:nil keyEquivalent:@""] autorelease]];
-  
   return serverMenu;
 }
 
