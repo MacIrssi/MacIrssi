@@ -67,7 +67,7 @@
 				</object>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="406375478">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -458,6 +458,7 @@
 						</object>
 					</object>
 					<string key="NSFrame">{{7, 11}, {917, 493}}</string>
+					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="553388483"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -2779,6 +2780,14 @@
 					</object>
 					<int key="connectionID">984</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showShortcutsPreferences:</string>
+						<reference key="source" ref="899766323"/>
+						<reference key="destination" ref="840469551"/>
+					</object>
+					<int key="connectionID">985</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -4478,7 +4487,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">984</int>
+			<int key="maxID">985</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -138,6 +138,7 @@ enum
 - (id)initWithColorSet:(ColorSet *)colors appController:(AppController*)controller;
 
 - (float)toolbarHeightForWindow:(NSWindow*)window;
+- (void)switchPreferenceWindowToNamed:(NSString*)preferencePaneName animate:(BOOL)animate;
 - (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate;
 
 - (IBAction)changeColor:(id)sender;
@@ -222,6 +223,7 @@ enum
 
 #pragma mark Toolbar Delegates
 
+- (IBAction)changeViewFromToolbar:(id)sender;
 - (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar;
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar;
 - (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag;

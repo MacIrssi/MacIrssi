@@ -404,6 +404,15 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 	[_sharedPrefsWindowController showWindow:self];
 }
 
+- (IBAction)showShortcutsPreferences:(id)sender
+{
+  if (!_sharedPrefsWindowController) {
+    _sharedPrefsWindowController = [[PreferenceViewController alloc] initWithColorSet:nil appController:self];
+  }
+  [_sharedPrefsWindowController showWindow:self];
+  [_sharedPrefsWindowController switchPreferenceWindowToNamed:@"Shortcuts" animate:YES];
+}
+
 - (IBAction)showAbout:(id)sender
 {
   [aboutVersionLabel setStringValue:[NSString stringWithFormat:@"Version %@ (%@)",

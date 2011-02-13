@@ -131,6 +131,22 @@
 
 #pragma mark Window Functions
 
+- (void)switchPreferenceWindowToNamed:(NSString*)preferencePaneName animate:(BOOL)animate
+{
+  /* Cheating slightly */
+  NSToolbarItem *item = nil;
+  for (NSToolbarItem *possible in [preferencesToolbar items]) {
+    if ([[possible label] isEqualToString:preferencePaneName]) {
+      item = possible;
+    }
+  }
+  
+  if (item) {
+    [preferencesToolbar setSelectedItemIdentifier:preferencePaneName];
+    [self changeViewFromToolbar:item];
+  }
+}
+
 - (void)switchPreferenceWindowTo:(NSWindow*)preferencePane animate:(BOOL)animate
 {
   if (currentPreferenceTab)
