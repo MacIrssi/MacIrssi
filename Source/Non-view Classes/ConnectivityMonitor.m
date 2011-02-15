@@ -142,6 +142,11 @@ static void networkReachabilityCallback(SCNetworkReachabilityRef target, SCNetwo
     SCNetworkReachabilityRef reachabilityRef = (SCNetworkReachabilityRef)[serverMap objectForKey:pointerToServerRec];
     
     SERVER_CONNECT_REC *server_connection_rec = server_connect_copy_skeleton(server_rec->connrec, TRUE);
+    if (server_connection_rec == NULL) {
+      /* We tried to copy something not an SERVER_REC */
+      continue;
+    }
+
     if (server_rec->connected) {
       reconnect_save_status(server_connection_rec, server_rec);
     }
