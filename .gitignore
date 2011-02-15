@@ -5,6 +5,7 @@
 *~
 build/
 .DS_Store
+xcuserdata
 *.xcodeproj/*.mode*
 *.xcodeproj/*.pbxuser
 *.xcodeproj/*.perspectivev3
