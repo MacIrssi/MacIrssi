@@ -283,6 +283,24 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   signal_emit("command window goto", 3, "active", tmp->active_server, tmp->active);
 }
 
+#pragma mark -- Help Menu
+
+- (IBAction)showMacIrssiFAQHelp:(id)sender
+{
+  NSURL *url = [[NSBundle mainBundle] URLForResource:@"FAQ" withExtension:@"html"];
+  if (url) {
+    [[NSWorkspace sharedWorkspace] openURL:url];
+  }
+}
+
+- (IBAction)showIrssiSettingsHelp:(id)sender
+{
+  NSURL *url = [NSURL URLWithString:@"http://irssi.org/documentation/settings"];
+  if (url) {
+    [[NSWorkspace sharedWorkspace] openURL:url];
+  }
+}
+
 #pragma mark - Invisible Actions
 
 - (IBAction)sendCommand:(id)sender
