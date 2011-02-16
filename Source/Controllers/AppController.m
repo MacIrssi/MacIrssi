@@ -768,7 +768,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Make Active Server" target:self action:@selector(changeIrssiServerConsole:) keyEquivalent:@""] autorelease]];
   
   WINDOW_REC *console = window_find_name("(status)");
-  if (console->active_server == srv) {
+  if (console && (console->active_server == srv)) {
     NSMenuItem *item = [serverMenu itemWithTitle:@"Make Active Server"];
     [item setState:YES];
   }
