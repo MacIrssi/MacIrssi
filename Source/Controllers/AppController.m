@@ -283,6 +283,24 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   signal_emit("command window goto", 3, "active", tmp->active_server, tmp->active);
 }
 
+#pragma mark -- Help Menu
+
+- (IBAction)showMacIrssiFAQHelp:(id)sender
+{
+  NSURL *url = [[NSBundle mainBundle] URLForResource:@"FAQ" withExtension:@"html"];
+  if (url) {
+    [[NSWorkspace sharedWorkspace] openURL:url];
+  }
+}
+
+- (IBAction)showIrssiSettingsHelp:(id)sender
+{
+  NSURL *url = [NSURL URLWithString:@"http://irssi.org/documentation/settings"];
+  if (url) {
+    [[NSWorkspace sharedWorkspace] openURL:url];
+  }
+}
+
 #pragma mark - Invisible Actions
 
 - (IBAction)sendCommand:(id)sender
@@ -768,7 +786,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   [serverMenu addItem:[[[NSMenuItem alloc] initWithTitle:@"Make Active Server" target:self action:@selector(changeIrssiServerConsole:) keyEquivalent:@""] autorelease]];
   
   WINDOW_REC *console = window_find_name("(status)");
-  if (console->active_server == srv) {
+  if (console && (console->active_server == srv)) {
     NSMenuItem *item = [serverMenu itemWithTitle:@"Make Active Server"];
     [item setState:YES];
   }

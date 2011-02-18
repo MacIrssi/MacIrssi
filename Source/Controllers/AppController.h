@@ -144,6 +144,11 @@ extern char **argv;
 - (IBAction)activeChannel:(id)sender;
 - (IBAction)previousChannel:(id)sender;
 
+#pragma mark -- Help Menu
+
+- (IBAction)showMacIrssiFAQHelp:(id)sender;
+- (IBAction)showIrssiSettingsHelp:(id)sender;
+
 #pragma mark - Invisible Actions
 
 - (IBAction)sendCommand:(id)sender;
