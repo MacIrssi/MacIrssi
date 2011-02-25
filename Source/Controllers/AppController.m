@@ -817,6 +817,9 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
       
       if (srv->connrec) {
         NSString *title = [NSString stringWithFormat:@"%s", srv->connrec->address];
+        if (srv->connrec->chatnet) {
+          title = [title stringByAppendingFormat:@" [%s]", srv->connrec->chatnet];
+        }
         NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:title action:nil keyEquivalent:@""] autorelease];
         
         NSValue *srvPointerValue = [NSValue valueWithPointer:srv];
