@@ -430,13 +430,13 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   if (wind->data_level > 2 && old <= 2) {    
     /* Notify user by changing icon */
     hilightChannels++;
-    [self setIcon:iconOnPriv];
+    [self setNotificationIcon];
   }
   else if (wind->data_level == 0 && old > 2) {
     /* Check if all notified channels have been visited */
     hilightChannels--;
     if (hilightChannels == 0)
-      [self setIcon:defaultIcon];
+      [self setDefaultIcon];
   }
 }
 
@@ -989,18 +989,20 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 }
 
 //-------------------------------------------------------------------
-// setIcon:
-// Sets the icon in the dock to a specific image.
-//
-// "icon" - The image
+// setNotificationIcon, setDefaultIcon
+// Changes the icon in the dock.
 //-------------------------------------------------------------------
-- (void)setIcon:(NSImage *)icon
+- (void)setNotificationIcon
 {
-  if (icon == iconOnPriv && currentIcon != iconOnPriv) {
+  if (currentIcon != iconOnPriv) {
     [NSApp setApplicationIconImage:iconOnPriv];
     currentIcon = iconOnPriv;
   }
-  else if (icon == defaultIcon && currentIcon != defaultIcon) {
+}
+
+- (void)setDefaultIcon
+{
+  if (currentIcon != defaultIcon) {
     [NSApp setApplicationIconImage:defaultIcon];
     currentIcon = defaultIcon;
   }
@@ -1488,7 +1490,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
    app was inactive while no other channel needs notification, then we
    must revert icon to normal */
   if (hilightChannels == 0)
-    [self setIcon:defaultIcon];
+    [self setDefaultIcon];
   
   [channelBar setNeedsDisplay:YES];
   
