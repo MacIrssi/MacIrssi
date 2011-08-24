@@ -994,18 +994,12 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 //-------------------------------------------------------------------
 - (void)setNotificationIcon
 {
-  if (currentIcon != iconOnPriv) {
-    [NSApp setApplicationIconImage:iconOnPriv];
-    currentIcon = iconOnPriv;
-  }
+  [NSApp setApplicationIconImage:iconOnPriv];
 }
 
 - (void)setDefaultIcon
 {
-  if (currentIcon != defaultIcon) {
-    [NSApp setApplicationIconImage:defaultIcon];
-    currentIcon = defaultIcon;
-  }
+  [NSApp setApplicationIconImage:nil];
 }
 
 //-------------------------------------------------------------------
@@ -1731,7 +1725,6 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   [self checkAndConvertOldShortcuts];
   [self buildShortcutsMenu];
   
-  currentIcon = defaultIcon = [[NSApp applicationIconImage] copy];
   iconOnPriv = [[NSImage alloc] initWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingString:@"/Contents/Resources/MacIrssi-Alert.png"]];
   if (!iconOnPriv) {
     NSLog(@"Can't load 'icon-dot' image!");

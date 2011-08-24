@@ -94,8 +94,6 @@ extern char **argv;
 	bool quitting;
 	bool sleeping;
 	NSImage *iconOnPriv;
-	NSImage *defaultIcon;
-	NSImage *currentIcon;
 	int hilightChannels;
 	NSString **shortcutCommands;
   
