@@ -205,7 +205,8 @@ extern char **argv;
 - (void)channelListColorChanged:(NSNotification *)note;
 - (void)awakeFromNib;
 
-- (void)setIcon:(NSImage *)icon;
+- (void)setNotificationIcon;
+- (void)setDefaultIcon;
 - (void)presentUnexpectedEvent:(NSString *)description;
 - (NSInteger)presentCertificateTrustPanel:(SecTrustRef)trust;
 

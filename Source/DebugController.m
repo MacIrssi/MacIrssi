@@ -142,7 +142,16 @@ static int urlTestLinesCount = 34;
     
     NSMenuItem *simulateDisconnection = [[[NSMenuItem alloc] initWithTitle:@"Simulate Disconnection" target:self action:@selector(simiulateDisconnection:) keyEquivalent:@""] autorelease];
     [disconnectionMenu addItem:simulateDisconnection];    
-    
+
+    NSMenuItem *activityNotificationItem = [[[NSMenuItem alloc] initWithTitle:@"Activity Notification Icon" action:nil keyEquivalent:@""] autorelease];
+    [debugMenu addItem:activityNotificationItem];
+    NSMenu *activityNotificationMenu = [[[NSMenu alloc] init] autorelease];
+    NSMenuItem *activityNotificationTriggerItem = [[[NSMenuItem alloc] initWithTitle:@"Set Notification Icon" target:appController action:@selector(setNotificationIcon) keyEquivalent:@""] autorelease];
+    NSMenuItem *activityNotificationClearItem = [[[NSMenuItem alloc] initWithTitle:@"Set Default Icon" target:appController action:@selector(setDefaultIcon) keyEquivalent:@""] autorelease];
+    [activityNotificationMenu addItem:activityNotificationTriggerItem];
+    [activityNotificationMenu addItem:activityNotificationClearItem];
+    [activityNotificationItem setSubmenu:activityNotificationMenu];
+
     NSMenuItem *forceScrollToBottom = [[NSMenuItem alloc] initWithTitle:@"Force Scroll to Bottom" target:self action:@selector(forceScrollToBottom:) keyEquivalent:@""];
     [debugMenu addItem:forceScrollToBottom];
     
