@@ -1,3 +1,7 @@
+# UNMAINTAINED
+
+MacIrssi is no longer in active maintainance and no further changes are being made to the source repository. I no longer have this free time, or sufficient motivation to work on this project.
+
 ## Checking Out ##
 
 To check out the MacIrssi code base, do the following
