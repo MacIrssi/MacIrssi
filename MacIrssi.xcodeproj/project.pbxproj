@@ -40,6 +40,10 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A07C52B5189EFF0D00BED081 /* Defaults.h in Headers */ = {isa = PBXBuildFile; fileRef = A07C52B3189EFF0D00BED081 /* Defaults.h */; };
+		A07C52B6189EFF0D00BED081 /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A07C52B4189EFF0D00BED081 /* Defaults.m */; };
+		A07C52BB189F195D00BED081 /* PixelValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = A07C52B9189F195D00BED081 /* PixelValueTransformer.h */; };
+		A07C52BC189F195D00BED081 /* PixelValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A07C52BA189F195D00BED081 /* PixelValueTransformer.m */; };
 		B322DD9A05EF9A7100E640C2 /* IrssiInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DD9505EF9A7100E640C2 /* IrssiInternal.h */; };
 		B322DD9B05EF9A7100E640C2 /* IrssiInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = B322DD9605EF9A7100E640C2 /* IrssiInternal.m */; };
 		B322DDA905EF9AB300E640C2 /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = B322DD9F05EF9AB300E640C2 /* AppController.h */; };
@@ -1027,6 +1031,10 @@
 		32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacIrssi_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MacIrssi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacIrssi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A07C52B3189EFF0D00BED081 /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
+		A07C52B4189EFF0D00BED081 /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
+		A07C52B9189F195D00BED081 /* PixelValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelValueTransformer.h; sourceTree = "<group>"; };
+		A07C52BA189F195D00BED081 /* PixelValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixelValueTransformer.m; sourceTree = "<group>"; };
 		B322DD9505EF9A7100E640C2 /* IrssiInternal.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IrssiInternal.h; sourceTree = "<group>"; };
 		B322DD9605EF9A7100E640C2 /* IrssiInternal.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IrssiInternal.m; sourceTree = "<group>"; };
 		B322DD9F05EF9AB300E640C2 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = Controllers/AppController.h; sourceTree = "<group>"; usesTabs = 1; };
@@ -1991,6 +1999,15 @@
 			path = Frameworks;
 			sourceTree = "<group>";
 		};
+		A07C52B8189F193600BED081 /* Value Tansformers */ = {
+			isa = PBXGroup;
+			children = (
+				A07C52B9189F195D00BED081 /* PixelValueTransformer.h */,
+				A07C52BA189F195D00BED081 /* PixelValueTransformer.m */,
+			);
+			name = "Value Tansformers";
+			sourceTree = "<group>";
+		};
 		B322DD9205EF9A5C00E640C2 /* Irssi Bridge */ = {
 			isa = PBXGroup;
 			children = (
@@ -2357,6 +2374,7 @@
 		C91F13360F0A6EF600763699 /* Non-view Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A07C52B8189F193600BED081 /* Value Tansformers */,
 				C9BB220B1299E54800EA8AB0 /* Constraints */,
 				C91F190E0F1400B500763699 /* iTunes */,
 				C9A3EA370EA48342005025BC /* AppcastVersionComparator.h */,
@@ -2365,6 +2383,8 @@
 				B322DDB605EF9AE600E640C2 /* ColorSet.m */,
 				C9667D4A0E37728F00014B02 /* ConnectivityMonitor.h */,
 				C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */,
+				A07C52B3189EFF0D00BED081 /* Defaults.h */,
+				A07C52B4189EFF0D00BED081 /* Defaults.m */,
 			);
 			path = "Non-view Classes";
 			sourceTree = "<group>";
@@ -3271,6 +3291,7 @@
 				B322DDB105EF9AB300E640C2 /* PreferenceViewController.h in Headers */,
 				B322DDC705EF9AE600E640C2 /* ColorSet.h in Headers */,
 				B322DDC905EF9AE600E640C2 /* CustomTableView.h in Headers */,
+				A07C52BB189F195D00BED081 /* PixelValueTransformer.h in Headers */,
 				B322DDCB05EF9AE600E640C2 /* CustomWindow.h in Headers */,
 				B3D0B8A605F637DB0067FD52 /* IrssiBridge.h in Headers */,
 				B3241ACD06286AF7000B4624 /* NSAttributedStringAdditions.h in Headers */,
@@ -3288,6 +3309,7 @@
 				C9432C250EA1673E005237E3 /* ChannelBridgeController.h in Headers */,
 				C9A3EA390EA48342005025BC /* AppcastVersionComparator.h in Headers */,
 				C91F0B170F06E3C900763699 /* MISplitView.h in Headers */,
+				A07C52B5189EFF0D00BED081 /* Defaults.h in Headers */,
 				C91F15220F110A8600763699 /* CTGradient.h in Headers */,
 				C91F15240F110A8600763699 /* SRCommon.h in Headers */,
 				C91F15260F110A8600763699 /* SRKeyCodeTransformer.h in Headers */,
@@ -3555,9 +3577,11 @@
 				B322DD9B05EF9A7100E640C2 /* IrssiInternal.m in Sources */,
 				B322DDAA05EF9AB300E640C2 /* AppController.m in Sources */,
 				B322DDAE05EF9AB300E640C2 /* ChannelController.m in Sources */,
+				A07C52B6189EFF0D00BED081 /* Defaults.m in Sources */,
 				B322DDB205EF9AB300E640C2 /* PreferenceViewController.m in Sources */,
 				B322DDC805EF9AE600E640C2 /* ColorSet.m in Sources */,
 				B322DDCA05EF9AE600E640C2 /* CustomTableView.m in Sources */,
+				A07C52BC189F195D00BED081 /* PixelValueTransformer.m in Sources */,
 				B322DDCC05EF9AE600E640C2 /* CustomWindow.m in Sources */,
 				B3D0B8A705F637DB0067FD52 /* IrssiBridge.m in Sources */,
 				B3241ACC06286AF7000B4624 /* NSAttributedStringAdditions.m in Sources */,

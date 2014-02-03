@@ -33,6 +33,7 @@
 #import "IrssiBridge.h"
 #import "IrssiRunloop.h"
 #import "PreferenceVersionHelper.h"
+#import "Defaults.h"
 
 #import "AIMenuAdditions.h"
 #import "NSString+Additions.h"
@@ -1636,6 +1637,9 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   eventController = [[EventController alloc] init];
   
   /* Register defaults */
+  [Defaults registerDefaults];
+
+  // TODO: Move this to Defaults.m
   NSFont *defaultChannelFont = [NSFont fontWithName:@"Monaco" size:9.0];
   NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                         [NSDictionary dictionary], @"shortcutDict",

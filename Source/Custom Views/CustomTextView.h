@@ -25,6 +25,7 @@
   BOOL shouldAntialias;
 }
 
+- (void)applyUserDefaults:(NSNotification*)notification;
 - (BOOL)shouldAntialias;
 - (void)setShouldAntialias:(BOOL)flag;
 

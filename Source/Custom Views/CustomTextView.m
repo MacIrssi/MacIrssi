@@ -20,21 +20,28 @@
 
 #import "CustomTextView.h"
 #import "CustomWindow.h"
+#import "Defaults.h"
 
 @implementation CustomTextView
 
-- (void)awakeFromNib
+- (id)initWithCoder:(NSCoder *)coder
 {
-  shouldAntialias = YES;
+    self = [super initWithCoder:coder];
+    if (self) {
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self selector:@selector(applyUserDefaults:) name:NSUserDefaultsDidChangeNotification object:nil];
+
+        [self applyUserDefaults:nil];
+    }
+    return self;
 }
 
-- (id)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)aTextContainer
-{
-  if (self = [super initWithFrame:frameRect textContainer:aTextContainer])
-  {
-    shouldAntialias = YES;
-  }
-  return self;
+- (void)applyUserDefaults:(NSNotification*)notification {
+    shouldAntialias = [Defaults boolForKey:@"ChatView.shouldAntialias"];
+    [self setTextContainerInset:NSMakeSize(
+                                           [Defaults integerForKey:@"ChatView.padding.horizontal"],
+                                           [Defaults integerForKey:@"ChatView.padding.vertical"]
+                                           )];
 }
 
 - (BOOL)shouldAntialias
