@@ -1,6 +1,6 @@
 [submodule "Frameworks/MILibs"]
 	path = Frameworks/MILibs
-	url = https://github.com/x3ro/MILibs.git
+	url = git@github.com:MacIrssi/MILibs.git
 [submodule "irssi"]
 	path = irssi
-	url = https://github.com/x3ro/irrsi.git
+	url = git@github.com:MacIrssi/irssi.git
