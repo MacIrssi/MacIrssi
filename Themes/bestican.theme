@@ -29,10 +29,14 @@ abstracts = {
   ## channel specific messages
   ##
 
-  channick_hilight = "%W$0-%n";
-  chanhost_hilight = "($0-)";
-  channick = "$G-";
-  chanhost = "[$0-]";
+  # highlighted nick/host is printed (joins)
+  channick_hilight = "%_$0-%_";
+  chanhost_hilight = "{nickhost $0-}";
+
+  # nick/host is printed (parts, quits, etc.)
+  channick = "%_$0-%_";
+  chanhost = "{nickhost $0-}";
+
   channelhilight = "%W$0-%n";
 
   # ban/ban exception/invite list mask is printed
