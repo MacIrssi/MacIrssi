@@ -78,7 +78,8 @@ static char *urlTestLines[] = {
   "http://lcweb2.loc.gov/cgi-bin/query/h?pp/horyd:@field(NUMBER+@band(thc+5a46634))",
   "http://68.168.137.146:16504/listen.pls",
   "http://www.mmo-champion.com/news-2/earth-wind-and-fire-(10-player)-by-vanquish/",
-  "http://developer.apple.com/mac/library/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1"
+  "http://developer.apple.com/mac/library/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1",
+  "http://www.example.net/index.html?session=A54C6FE2%23info%20test"
 };
 
 static int loremIpsumCount = 8;
