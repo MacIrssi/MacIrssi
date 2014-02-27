@@ -43,14 +43,24 @@
                         "(:[0-9]{1,4})?" // port number- :80 
                         "((/?)|" // a slash isn't required if there is no file name 
                         "((/[0-9a-zA-Z_!~*'.;?:@&=+$,%#-]+)|\\(([0-9a-zA-Z_!~*'.;?:@&=+$,%#-]+)\\))+/?)";
-  
-  GTMRegex *regex = [GTMRegex regexWithPattern:pattern];
-  NSEnumerator *matchesEnumerator = [regex matchSegmentEnumeratorForString:self];
-  
-  GTMRegexStringSegment *match;
-  while (match = [matchesEnumerator nextObject])
-  {
-    [urls addObject:[match string]];
+
+  // Old behavior for pre 10.7 systems
+  if(NSClassFromString(@"NSDataDetector") == nil) {
+    GTMRegex *regex = [GTMRegex regexWithPattern:pattern];
+    NSEnumerator *matchesEnumerator = [regex matchSegmentEnumeratorForString:self];
+
+    GTMRegexStringSegment *match;
+    while (match = [matchesEnumerator nextObject]) {
+      [urls addObject:[match string]];
+    }
+
+  } else {
+    NSDataDetector *detect = [[NSDataDetector alloc] initWithTypes:NSTextCheckingTypeLink error:nil];
+    NSArray *matches = [detect matchesInString:self options:nil range:NSMakeRange(0, [self length])];
+
+    for(NSTextCheckingResult *result in matches) {
+      [urls addObject:[[result URL] absoluteString]];
+    }
   }
 
   return urls;
