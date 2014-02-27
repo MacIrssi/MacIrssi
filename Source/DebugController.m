@@ -75,11 +75,13 @@ static char *urlTestLines[] = {
   "WWW.EXAMPLE.COM",
   "http://www.asianewsphoto.com/(S(neugxif4twuizg551ywh3f55))/Web_ENG/View_DetailPhoto.aspx?PicId=752",
   "http://www.asianewsphoto.com/(S(neugxif4twuizg551ywh3f55))",
-  "http://lcweb2.loc.gov/cgi-bin/query/h?pp/horyd:@field(NUMBER+@band(thc+5a46634))"
+  "http://lcweb2.loc.gov/cgi-bin/query/h?pp/horyd:@field(NUMBER+@band(thc+5a46634))",
+  "http://68.168.137.146:16504/listen.pls",
+  "http://www.mmo-champion.com/news-2/earth-wind-and-fire-(10-player)-by-vanquish/",
+  "http://developer.apple.com/mac/library/documentation/General/Conceptual/ConcurrencyProgrammingGuide/OperationQueues/OperationQueues.html#//apple_ref/doc/uid/TP40008091-CH102-SW1"
 };
 
 static int loremIpsumCount = 8;
-static int urlTestLinesCount = 34;
 
 #endif
 
@@ -212,9 +214,10 @@ static int urlTestLinesCount = 34;
 - (void)urlTextTest:(id)sender
 {
   ChannelController *cc = [sender representedObject];
-  int i;
-  
-  for (i=0; i < urlTestLinesCount; i++)
+  int i, length;
+
+  length = sizeof(urlTestLines) / sizeof(urlTestLines[0]);
+  for (i=0; i < length; i++)
   {
     printformat_module_window("fe-common/core", [cc windowRec], 1, TXT_PUBMSG, "MacIrssi", urlTestLines[i], " ");
   }
