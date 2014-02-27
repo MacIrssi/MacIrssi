@@ -61,6 +61,8 @@
     for(NSTextCheckingResult *result in matches) {
       [urls addObject:[[result URL] absoluteString]];
     }
+
+    [detect release];
   }
 
   return urls;
