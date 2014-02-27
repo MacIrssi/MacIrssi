@@ -873,6 +873,7 @@
   _preferences_printformat("fe-common/core", &dest, TXT_PART, "rici2", "rlake@grail1.oxfam.org.uk", "#macdev", "");
   _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "AngryLuke", "err, that it is linking to QuickTime, I mean", " ");
   _preferences_printformat("fe-common/core", &dest, TXT_PUBMSG, "hennker", "otool -L", " ");
+  _preferences_printformat("fe-common/core", &dest, TXT_NICK_CHANGED, "x3ro_", "x3ro", "x3ro", "");
 
   // The very last character in the preview is a '\n' that we don't really want.
   [themeRenderLineBuffer deleteCharactersInRange:NSMakeRange([themeRenderLineBuffer length]-1, 1)];
