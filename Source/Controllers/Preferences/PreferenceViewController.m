@@ -602,7 +602,7 @@
 
 - (void)deleteNetworkActionPanelDidEnd:(NSWindow*)sheet returnCode:(int)code contextInfo:(void*)contextInfo
 {
-  if (code == NSOKButton)
+  if (code == NSOKButton && [[networksArrayController selectedObjects] count] > 0)
   {
     NSIndexSet *set = [networksArrayController selectionIndexes];
     NSUInteger index = [set lastIndex];
