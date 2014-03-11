@@ -191,7 +191,7 @@
     
     if (numberOfMatches > 0)
     {
-      [searchResultsLabel setStringValue:[NSString stringWithFormat:@"%d %@.", numberOfMatches, (numberOfMatches == 1 ? @"match" : @"matches")]];
+      [searchResultsLabel setStringValue:[NSString stringWithFormat:@"%ld %@.", (long)numberOfMatches, (numberOfMatches == 1 ? @"match" : @"matches")]];
       [nextBackButton setEnabled:YES forSegment:0];
       [nextBackButton setEnabled:YES forSegment:1];
     }

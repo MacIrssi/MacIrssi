@@ -584,7 +584,7 @@
     messageText = [NSString stringWithFormat:@"Are you sure you want to delete the %@ network?", [ircNet name]];
     informativeText = [NSString stringWithFormat:@"This action will also disassociate %@ from all servers that belong to this network.", [ircNet name]];
   } else {
-    messageText = [NSString stringWithFormat:@"Are you sure you want to delete these %d networks?", [[networksArrayController selectedObjects] count]];
+    messageText = [NSString stringWithFormat:@"Are you sure you want to delete these %lu networks?", (unsigned long)[[networksArrayController selectedObjects] count]];
     informativeText = [NSString stringWithFormat:@"This action will disassociate all affected servers from their networks."];
   }
   
@@ -671,7 +671,7 @@
     ServerBridgeController *server = [[serversArrayController selectedObjects] objectAtIndex:0];
     alertMessage = [NSString stringWithFormat:@"Are you sure you want to delete %@?", [server address]];
   } else {
-    alertMessage = [NSString stringWithFormat:@"Are you sure you want to delete these %d servers?", [[serversArrayController selectedObjects] count]];
+    alertMessage = [NSString stringWithFormat:@"Are you sure you want to delete these %lu servers?", (unsigned long)[[serversArrayController selectedObjects] count]];
   }
   
   NSAlert *confirmationAlert = [NSAlert alertWithMessageText:alertMessage

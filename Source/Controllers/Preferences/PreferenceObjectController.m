@@ -95,7 +95,7 @@
     foundUniqueName = YES;
     name = baseTemplate;
     if (count++ > 0) {
-      name = [NSString stringWithFormat:@"%@ %d", baseTemplate, count];
+      name = [NSString stringWithFormat:@"%@ %lu", baseTemplate, (unsigned long)count];
     }
     for (IrcnetBridgeController *net in chatnetArray) {
       if ([[net name] isEqualToString:name]) {
@@ -163,7 +163,7 @@
     foundUniqueName = YES;
     name = baseTemplate;
     if (count++ > 0) {
-      name = [NSString stringWithFormat:@"%@%d", baseTemplate, count];
+      name = [NSString stringWithFormat:@"%@%lu", baseTemplate, (unsigned long)count];
     }
     for (ChannelBridgeController *channel in [network channelArray]) {
       if ([[channel name] isEqualToString:name]) {

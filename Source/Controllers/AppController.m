@@ -320,7 +320,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   
   /* Check with user before sending multiple lines */
   if ([commands count] > PASTE_WARNING_THRESHOLD) {
-    int button = [[NSAlert alertWithMessageText:@"Confirmation request" defaultButton:@"Ok" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you really want to paste %d lines?", [commands count]] runModal];
+    int button = [[NSAlert alertWithMessageText:@"Confirmation request" defaultButton:@"Ok" alternateButton:@"Cancel" otherButton:nil informativeTextWithFormat:@"Do you really want to paste %lu lines?", (unsigned long)[commands count]] runModal];
     
     if (button == 0)
       return;
