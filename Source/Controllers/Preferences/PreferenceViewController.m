@@ -592,7 +592,7 @@
                                                defaultButton:@"Delete"
                                              alternateButton:@"Cancel"
                                                  otherButton:nil
-                                   informativeTextWithFormat:informativeText];
+                                   informativeTextWithFormat:@"%@", informativeText];
   
   [confirmationAlert beginSheetModalForWindow:preferenceWindow
                                 modalDelegate:self

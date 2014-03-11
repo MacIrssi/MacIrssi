@@ -242,7 +242,7 @@ CGFloat SRAnimationEaseInOut(CGFloat t) {
 						defaultButton:[[error localizedRecoveryOptions] objectAtIndex:0U]
 					  alternateButton:nil
 						  otherButton:nil
-			informativeTextWithFormat:(reason ? reason : @"")];
+			informativeTextWithFormat:@"%@", (reason ? reason : @"")];
 }
 
 @end
