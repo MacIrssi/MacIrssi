@@ -133,7 +133,7 @@ static void version_cmd_overwrite(const char *data, IRC_SERVER_REC *server, void
     IRSSI_VERSION_DATE, time);
 
   CMD_IRC_SERVER(server);
-  irc_send_cmdv(server, *data == '\0' ? "VERSION" : "VERSION %s", data);
+  irc_send_cmdv(server, "VERSION %s", data);
 
   signal_stop();
 }
