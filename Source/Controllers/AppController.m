@@ -1459,7 +1459,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
   NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
   ChannelController *tmp;
   
-  while (tmp = [[enumerator nextObject] identifier])
+  while ((tmp = [[enumerator nextObject] identifier]))
   {
     [tmp clearNickView];
   }

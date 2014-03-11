@@ -63,7 +63,7 @@ char *word_complete(WINDOW_REC *window, const char *line, int *pos, int erase);
 	
 	if ([aResponder isKindOfClass:[NSView class]]) {
 		NSView *view = (NSView *)aResponder;
-		while (view = [view superview]) {
+		while ((view = [view superview])) {
 			if ([view isMemberOfClass:[NSSearchField class]]) {
 				interceptKeys = FALSE;
 				break;
