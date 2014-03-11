@@ -498,7 +498,7 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
   
   
   [topic_by release];
-  topic_by = [[NSString alloc] initWithCString:setter];
+  topic_by = [[NSString alloc] initWithCString:setter encoding:NSUTF8StringEncoding];
   topic_time = time;
 
   NSAttributedString *topic = [self parseTopic:newTopic];
@@ -555,9 +555,10 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
     [topic_by release];
     topic_by = nil;
   }
-  topic_by = [[NSString alloc] initWithCString:rec->topic_by ? rec->topic_by : ""];
-  mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
-  key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
+
+  topic_by = [[NSString alloc] initWithCString:(rec->topic_by ? rec->topic_by : "") encoding:NSUTF8StringEncoding];
+  mode = [[NSString alloc] initWithCString:(rec->mode ? rec->mode : "") encoding:NSUTF8StringEncoding];
+  key = [[NSString alloc] initWithCString:(rec->key ? rec->key : "") encoding:NSUTF8StringEncoding];
   
   /* Copy rest of the values */
   topic_time = rec->topic_time;
@@ -826,8 +827,8 @@ void get_mirc_color(const char **str, int *fg_ret, int *bg_ret);
 {
   [mode release];
   [key release];
-  mode = [[NSString alloc] initWithCString:rec->mode ? rec->mode : ""];
-  key = [[NSString alloc] initWithCString:rec->key ? rec->key : ""];
+  mode = [[NSString alloc] initWithCString:(rec->mode ? rec->mode : "") encoding:NSUTF8StringEncoding];
+  key = [[NSString alloc] initWithCString:(rec->key ? rec->key : "") encoding:NSUTF8StringEncoding];
   limit = rec->limit;
 }
 

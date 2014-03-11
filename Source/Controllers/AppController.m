@@ -638,7 +638,7 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 //-------------------------------------------------------------------
 - (void)queryCreated:(QUERY_REC *)qr automatically:(int)automatic
 {
-  queryObject = [[NSString alloc] initWithCString:qr->name];
+  queryObject = [[NSString alloc] initWithCString:qr->name encoding:NSUTF8StringEncoding];
 }
 
 
