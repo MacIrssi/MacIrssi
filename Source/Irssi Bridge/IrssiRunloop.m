@@ -194,7 +194,7 @@ static gint GlibPollReplacement(GPollFD *fds, guint nfds, gint timeout)
           runloopStopping = YES;
         }
         if (errno != EINTR) {
-          NSLog(@"-[%@ %@] kevent poll loop returned %d.", [self className], NSStringFromSelector(_cmd));
+          NSLog(@"-[%@ %@] kevent poll loop returned %d.", [self className], NSStringFromSelector(_cmd), rval);
         }
         continue;
       case 0:
