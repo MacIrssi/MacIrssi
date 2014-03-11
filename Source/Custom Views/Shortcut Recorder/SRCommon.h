@@ -22,6 +22,12 @@
 #pragma mark -
 #pragma mark Typedefs
 
+// Since this is only available in 10.8 and later,...
+// http://nshipster.com/ns_enum-ns_options/
+#ifndef NS_ENUM
+#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
+#endif
+
 typedef struct _KeyCombo {
 	NSUInteger flags; // 0 for no flags
 	NSInteger code; // -1 for no code
@@ -31,7 +37,7 @@ typedef struct _KeyCombo {
 #pragma mark Enums
 
 // Unicode values of some keyboard glyphs
-enum {
+NS_ENUM(unichar, SRKeyCodeGlyph) {
 	KeyboardTabRightGlyph       = 0x21E5,
 	KeyboardTabLeftGlyph        = 0x21E4,
 	KeyboardCommandGlyph        = kCommandUnicode,
