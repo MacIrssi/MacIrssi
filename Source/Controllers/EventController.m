@@ -215,7 +215,7 @@
         //   a) We're given a ChannelController, extract the refnum (window number, basically) and set context to be an NSNumber
         //   b) No ChannelController object but Server and Channel keys exist in the userinfo. So supply them in an NSDictionary.
         // The callback handler will cope with these later.
-        NSNumber *context = nil;
+        id context = nil;
         if ([notification object] && [[notification object] isKindOfClass:[ChannelController class]])
         {
           ChannelController *controller = [notification object];
