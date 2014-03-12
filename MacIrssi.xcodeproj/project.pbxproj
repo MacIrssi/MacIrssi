@@ -3867,7 +3867,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
 					"$(BUILT_PRODUCTS_DIR)/Frameworks/GLib.framework/Headers",
@@ -3905,7 +3905,7 @@
 				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacIrssi_Prefix.pch;
-				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				HEADER_SEARCH_PATHS = (
 					"Frameworks/*.framework",
 					"$(BUILT_PRODUCTS_DIR)/Frameworks/GLib.framework/Headers",
