@@ -49,7 +49,7 @@
     return [theMenuItem autorelease];
 }
 
-
+#if __MAC_OS_X_VERSION_MAX_ALLOWED < 1060
 - (void)removeAllItems
 {
 	int count = [self numberOfItems];
@@ -57,6 +57,7 @@
 		[self removeItemAtIndex:0];
 	}
 }
+#endif
 
 - (void)removeAllItemsButFirst
 {

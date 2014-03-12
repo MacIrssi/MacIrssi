@@ -18,7 +18,11 @@
 - (NSMenuItem *)addItemWithTitle:(NSString *)aString target:(id)target action:(SEL)aSelector keyEquivalent:(NSString *)charCode;
 - (NSMenuItem *)addItemWithTitle:(NSString *)aString target:(id)target action:(SEL)aSelector keyEquivalent:(NSString *)charCode tag:(int)tag;
 - (NSMenuItem *)addItemWithTitle:(NSString *)aString target:(id)target action:(SEL)aSelector keyEquivalent:(NSString *)charCode representedObject:(id)object;
+
+#if __MAC_OS_X_VERSION_MAX_ALLOWED < 1060
 - (void)removeAllItems;
+#endif
+
 - (void)removeAllItemsButFirst;
 
 @end
