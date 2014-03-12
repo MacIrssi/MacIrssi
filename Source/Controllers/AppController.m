@@ -1456,13 +1456,10 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 //-------------------------------------------------------------------
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-  NSEnumerator *enumerator = [[tabView tabViewItems] objectEnumerator];
-  ChannelController *tmp;
-  
-  while ((tmp = [[enumerator nextObject] identifier]))
-  {
+  for(ChannelController *tmp in [tabView tabViewItems]) {
     [tmp clearNickView];
   }
+
   [IrssiCore deinitialiseCore];
 }
 
