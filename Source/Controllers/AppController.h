@@ -17,7 +17,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "UKCrashReporter.h"
 #import "Growl/Growl.h"
 #import "ChannelBar.h"
 #import "MISplitView.h"

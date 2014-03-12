@@ -1613,9 +1613,6 @@ static char *kMIJoinChannelAlertKey = "kMIJoinChannelAlertKey";
 //-------------------------------------------------------------------
 - (void)awakeFromNib
 {
-  // The crash catcher should be first in the list apparently.
-  UKCrashReporterCheckForCrash();
-  
   NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
   
   setRefToAppController(self);

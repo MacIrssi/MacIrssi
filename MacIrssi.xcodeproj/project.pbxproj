@@ -203,14 +203,7 @@
 		C90C9E8312A06196009F43CE /* MISearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C90C9E8112A06196009F43CE /* MISearchBar.m */; };
 		C90CA25B12A0CDD9009F43CE /* MIChannelSearchController.h in Headers */ = {isa = PBXBuildFile; fileRef = C90CA25912A0CDD9009F43CE /* MIChannelSearchController.h */; };
 		C90CA25C12A0CDD9009F43CE /* MIChannelSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CA25A12A0CDD9009F43CE /* MIChannelSearchController.m */; };
-		C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265A0E5C654800E041F7 /* UKCrashReporter.h */; };
 		C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
-		C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265C0E5C654800E041F7 /* UKSystemInfo.h */; };
-		C91026650E5C654800E041F7 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265D0E5C654800E041F7 /* UKCrashReporter.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
-		C91026660E5C654800E041F7 /* UKNibOwner.h in Headers */ = {isa = PBXBuildFile; fileRef = C910265E0E5C654800E041F7 /* UKNibOwner.h */; };
-		C91026670E5C654800E041F7 /* UKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C910265F0E5C654800E041F7 /* UKSystemInfo.m */; };
-		C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */ = {isa = PBXBuildFile; fileRef = C91026600E5C654800E041F7 /* UKCrashReporter.nib */; };
-		C91026690E5C654800E041F7 /* UKNibOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = C91026610E5C654800E041F7 /* UKNibOwner.m */; };
 		C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91026760E5C665B00E041F7 /* AddressBook.framework */; };
 		C911226E0F2B235E006C4BD0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C911226C0F2B235E006C4BD0 /* MainMenu.xib */; };
 		C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122860F2B2431006C4BD0 /* Preferences.xib */; };
@@ -1194,14 +1187,7 @@
 		C90C9E8112A06196009F43CE /* MISearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISearchBar.m; sourceTree = "<group>"; };
 		C90CA25912A0CDD9009F43CE /* MIChannelSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIChannelSearchController.h; sourceTree = "<group>"; };
 		C90CA25A12A0CDD9009F43CE /* MIChannelSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIChannelSearchController.m; sourceTree = "<group>"; };
-		C910265A0E5C654800E041F7 /* UKCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKCrashReporter.h; sourceTree = "<group>"; };
 		C910265B0E5C654800E041F7 /* UKCrashReporter.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = UKCrashReporter.strings; path = UKCrashReporter/UKCrashReporter.strings; sourceTree = "<group>"; };
-		C910265C0E5C654800E041F7 /* UKSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKSystemInfo.h; sourceTree = "<group>"; };
-		C910265D0E5C654800E041F7 /* UKCrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKCrashReporter.m; sourceTree = "<group>"; };
-		C910265E0E5C654800E041F7 /* UKNibOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKNibOwner.h; sourceTree = "<group>"; };
-		C910265F0E5C654800E041F7 /* UKSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKSystemInfo.m; sourceTree = "<group>"; };
-		C91026600E5C654800E041F7 /* UKCrashReporter.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = UKCrashReporter.nib; sourceTree = "<group>"; };
-		C91026610E5C654800E041F7 /* UKNibOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKNibOwner.m; sourceTree = "<group>"; };
 		C91026760E5C665B00E041F7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
 		C911226D0F2B235E006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C91122870F2B2431006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -1895,7 +1881,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C91026570E5C652000E041F7 /* UKCrashReporter */,
 				C9E1B1B712F001E1004E75B0 /* Irssi Chaff */,
 				B322DD9205EF9A5C00E640C2 /* Irssi Bridge */,
 				B322DD9E05EF9A9100E640C2 /* Controllers */,
@@ -2284,21 +2269,6 @@
 			);
 			name = "Channel Search Controller";
 			path = Controllers/ChannelSearchController;
-			sourceTree = "<group>";
-		};
-		C91026570E5C652000E041F7 /* UKCrashReporter */ = {
-			isa = PBXGroup;
-			children = (
-				C910265A0E5C654800E041F7 /* UKCrashReporter.h */,
-				C910265D0E5C654800E041F7 /* UKCrashReporter.m */,
-				C910265C0E5C654800E041F7 /* UKSystemInfo.h */,
-				C910265E0E5C654800E041F7 /* UKNibOwner.h */,
-				C910265F0E5C654800E041F7 /* UKSystemInfo.m */,
-				C91026600E5C654800E041F7 /* UKCrashReporter.nib */,
-				C91026610E5C654800E041F7 /* UKNibOwner.m */,
-			);
-			name = UKCrashReporter;
-			path = ../UKCrashReporter;
 			sourceTree = "<group>";
 		};
 		C913412A118AB3E50001F09D /* irssi */ = {
@@ -3300,9 +3270,6 @@
 				C200D027073FC03700B850B1 /* ChannelBarCell.h in Headers */,
 				C947E1DC0E1E871F0001380E /* EventController.h in Headers */,
 				C9667D4C0E37728F00014B02 /* ConnectivityMonitor.h in Headers */,
-				C91026620E5C654800E041F7 /* UKCrashReporter.h in Headers */,
-				C91026640E5C654800E041F7 /* UKSystemInfo.h in Headers */,
-				C91026660E5C654800E041F7 /* UKNibOwner.h in Headers */,
 				C9EBA8A50E9FF5EE00025466 /* PreferenceObjectController.h in Headers */,
 				C9EBAB700EA0AF7600025466 /* IrcnetBridgeController.h in Headers */,
 				C9EBACAB0EA100D400025466 /* ServerBridgeController.h in Headers */,
@@ -3466,7 +3433,6 @@
 				C922B4310E23BD34000AA7BE /* sound.png in Resources */,
 				C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */,
 				C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */,
-				C91026680E5C654800E041F7 /* UKCrashReporter.nib in Resources */,
 				C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */,
 				C97A37220E5DCFED007D1191 /* Notifications.png in Resources */,
 				C98E88760E5E21500051AD53 /* Colours.tiff in Resources */,
@@ -3590,9 +3556,6 @@
 				C200D028073FC03700B850B1 /* ChannelBarCell.m in Sources */,
 				C947E1DD0E1E871F0001380E /* EventController.m in Sources */,
 				C9667D4D0E37728F00014B02 /* ConnectivityMonitor.m in Sources */,
-				C91026650E5C654800E041F7 /* UKCrashReporter.m in Sources */,
-				C91026670E5C654800E041F7 /* UKSystemInfo.m in Sources */,
-				C91026690E5C654800E041F7 /* UKNibOwner.m in Sources */,
 				C9EBA8A60E9FF5EE00025466 /* PreferenceObjectController.m in Sources */,
 				C9EBAB710EA0AF7600025466 /* IrcnetBridgeController.m in Sources */,
 				C9EBACAC0EA100D400025466 /* ServerBridgeController.m in Sources */,
