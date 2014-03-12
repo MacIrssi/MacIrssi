@@ -26,7 +26,7 @@
   NSMutableDictionary *dict;
 }
 
-+ (NSArray*)shortcutsFromDefaults;
++ (NSMutableArray*)shortcutsFromDefaults;
 
 - (id)init;
 - (id)initWithDictionary:(NSDictionary*)dictionary;

@@ -22,7 +22,7 @@
 
 @implementation ShortcutBridgeController
 
-+ (NSArray*)shortcutsFromDefaults
++ (NSMutableArray*)shortcutsFromDefaults
 {
   NSArray *shortcuts = [[[NSUserDefaults standardUserDefaults] valueForKey:@"shortcutDict"] allValues];
   NSEnumerator *shortcutEnumerator = [shortcuts objectEnumerator];
