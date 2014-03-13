@@ -3952,7 +3952,6 @@
 					"$(SRCROOT)/Headers",
 					"$(SRCROOT)/irssi/src",
 				);
-				INSTALL_PATH = /usr/local/lib;
 				OTHER_CFLAGS = (
 					"-DHAVE_CONFIG_H",
 					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
@@ -3964,6 +3963,7 @@
 				OTHER_CFLAGS_QUOTED_FOR_TARGET_3 = "-DTHEMESDIR=\"\\\"/usr/local/share/irssi/themes\\\"\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = irssicore;
+				SKIP_INSTALL = YES;
 			};
 			name = Development;
 		};
@@ -3982,7 +3982,6 @@
 					"$(SRCROOT)/Headers",
 					"$(SRCROOT)/irssi/src",
 				);
-				INSTALL_PATH = /usr/local/lib;
 				OTHER_CFLAGS = (
 					"-DHAVE_CONFIG_H",
 					"$(OTHER_CFLAGS_QUOTED_FOR_TARGET_1)",
@@ -3994,6 +3993,7 @@
 				OTHER_CFLAGS_QUOTED_FOR_TARGET_3 = "-DTHEMESDIR=\"\\\"/usr/local/share/irssi/themes\\\"\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = irssicore;
+				SKIP_INSTALL = YES;
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
