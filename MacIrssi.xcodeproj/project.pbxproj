@@ -203,7 +203,6 @@
 		C90C9E8312A06196009F43CE /* MISearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C90C9E8112A06196009F43CE /* MISearchBar.m */; };
 		C90CA25B12A0CDD9009F43CE /* MIChannelSearchController.h in Headers */ = {isa = PBXBuildFile; fileRef = C90CA25912A0CDD9009F43CE /* MIChannelSearchController.h */; };
 		C90CA25C12A0CDD9009F43CE /* MIChannelSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = C90CA25A12A0CDD9009F43CE /* MIChannelSearchController.m */; };
-		C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = C910265B0E5C654800E041F7 /* UKCrashReporter.strings */; };
 		C91026770E5C665B00E041F7 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C91026760E5C665B00E041F7 /* AddressBook.framework */; };
 		C911226E0F2B235E006C4BD0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C911226C0F2B235E006C4BD0 /* MainMenu.xib */; };
 		C911228A0F2B2431006C4BD0 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C91122860F2B2431006C4BD0 /* Preferences.xib */; };
@@ -1187,7 +1186,6 @@
 		C90C9E8112A06196009F43CE /* MISearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MISearchBar.m; sourceTree = "<group>"; };
 		C90CA25912A0CDD9009F43CE /* MIChannelSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIChannelSearchController.h; sourceTree = "<group>"; };
 		C90CA25A12A0CDD9009F43CE /* MIChannelSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIChannelSearchController.m; sourceTree = "<group>"; };
-		C910265B0E5C654800E041F7 /* UKCrashReporter.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = UKCrashReporter.strings; path = UKCrashReporter/UKCrashReporter.strings; sourceTree = "<group>"; };
 		C91026760E5C665B00E041F7 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
 		C911226D0F2B235E006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C91122870F2B2431006C4BD0 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -1962,7 +1960,6 @@
 				C922B3D90E23BAE6000AA7BE /* Sounds */,
 				C232FA6E08C8978D000C624E /* Themes */,
 				C98777070F74F67300591183 /* MacIrssi.pub */,
-				C910265B0E5C654800E041F7 /* UKCrashReporter.strings */,
 				C91F15300F110AFC00763699 /* ShortcutRecorder.strings */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -3432,7 +3429,6 @@
 				C26FC9BD08C4E56300CFD1B3 /* MacIrssi.icns in Resources */,
 				C922B4310E23BD34000AA7BE /* sound.png in Resources */,
 				C9550D150E29A97400658372 /* MacIrssi-Alert.png in Resources */,
-				C91026630E5C654800E041F7 /* UKCrashReporter.strings in Resources */,
 				C97A36D10E5DCB0F007D1191 /* General.tiff in Resources */,
 				C97A37220E5DCFED007D1191 /* Notifications.png in Resources */,
 				C98E88760E5E21500051AD53 /* Colours.tiff in Resources */,
