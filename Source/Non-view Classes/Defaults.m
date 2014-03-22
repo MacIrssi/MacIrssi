@@ -18,29 +18,39 @@
 #import <Foundation/NSUserDefaults.h>
 #import "Defaults.h"
 
+static NSUserDefaults *standardDefaults;
+
 @implementation Defaults
 
-+ (void)registerDefaults {
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    [standardDefaults registerDefaults:@{
-                                         @"ChatView.padding.horizontal": @2,
-                                         @"ChatView.padding.vertical": @5
-                                         }];
++ (void)initialize {
+  standardDefaults = [NSUserDefaults standardUserDefaults];
 }
+
++ (void)registerDefaults {
+  [standardDefaults registerDefaults:@{
+                                       @"ChatView.padding.horizontal": @2,
+                                       @"ChatView.padding.vertical": @5
+                                       }];
+}
+
+
+
+#pragma mark Default getters
 
 + (NSInteger)integerForKey:(NSString *)defaultName {
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    return [standardDefaults integerForKey:defaultName];
-}
-
-+ (void)setInteger:(NSInteger)value forKey:(NSString *)defaultName {
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    [standardDefaults setInteger:value forKey:defaultName];
+  return [standardDefaults integerForKey:defaultName];
 }
 
 + (BOOL)boolForKey:(NSString *)defaultName {
-    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
-    return [standardDefaults boolForKey:defaultName];
+  return [standardDefaults boolForKey:defaultName];
+}
+
+
+
+#pragma mark Default setters
+
++ (void)setInteger:(NSInteger)value forKey:(NSString *)defaultName {
+  [standardDefaults setInteger:value forKey:defaultName];
 }
 
 

@@ -17,12 +17,24 @@
 
 #import <Foundation/Foundation.h>
 
+// Thin wrapper around NSUserDefaults which aims to consolidate all
+// "defaults related" code.
 @interface Defaults : NSObject
 
+// Registers the "default" default values, i.e. those that are used
+// if the user hasn't supplied his own yet.
 + (void)registerDefaults;
+
+
+
+#pragma mark Default getters
 
 + (NSInteger)integerForKey:(NSString *)defaultName;
 + (BOOL)boolForKey:(NSString *)defaultName;
+
+
+
+#pragma mark Default setters
 
 + (void)setInteger:(NSInteger)value forKey:(NSString *)defaultName;
 
