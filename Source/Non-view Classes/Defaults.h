@@ -22,6 +22,7 @@
 + (void)registerDefaults;
 
 + (NSInteger)integerForKey:(NSString *)defaultName;
++ (float)floatForKey:(NSString *)defaultName;
 + (BOOL)boolForKey:(NSString *)defaultName;
 
 + (void)setInteger:(NSInteger)value forKey:(NSString *)defaultName;

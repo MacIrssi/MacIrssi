@@ -24,7 +24,8 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     [standardDefaults registerDefaults:@{
                                          @"ChatView.padding.horizontal": @2,
-                                         @"ChatView.padding.vertical": @5
+                                         @"ChatView.padding.vertical": @5,
+                                         @"Notifications.playSound.volume": @1.00
                                          }];
 }
 
@@ -32,6 +33,12 @@
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     return [standardDefaults integerForKey:defaultName];
 }
+
++ (float)floatForKey:(NSString *)defaultName {
+    NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
+    return [standardDefaults floatForKey:defaultName];
+}
+
 
 + (void)setInteger:(NSInteger)value forKey:(NSString *)defaultName {
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];

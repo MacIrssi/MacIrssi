@@ -18,6 +18,8 @@
 
 #import "EventController.h"
 #import "ChannelController.h"
+#import "Defaults.h"
+#import "Util.h"
 
 #import <Growl/GrowlApplicationBridge.h>
 
@@ -158,17 +160,8 @@
           (![event valueForKey:@"playSoundBackground"]))
       {
         NSString *soundName = [event valueForKey:@"playSoundSound"];
-        NSSound *sound = [NSSound soundNamed:soundName];
-        if (!sound) 
-        {
-          NSString *soundPath = [[NSBundle mainBundle] resourcePath];
-          soundPath = [soundPath stringByAppendingPathComponent:@"Sounds"];
-          soundPath = [soundPath stringByAppendingPathComponent:soundName];
-          soundPath = [soundPath stringByAppendingPathExtension:@"aiff"];
-          sound = [[[NSSound alloc] initWithContentsOfFile:soundPath byReference:YES] autorelease];
-        }
-        // Pew pew
-        [sound play];
+        // pew pew
+        playSoundNamed(soundName);
       }
     }
     
