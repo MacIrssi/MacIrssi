@@ -35,6 +35,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1D6DAE8219E36F3D00548A30 /* Util.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D6DAE8119E36F3D00548A30 /* Util.h */; };
+		1D6DAE8419E36F5800548A30 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D6DAE8319E36F5800548A30 /* Util.m */; };
 		24FEBD7911CA70A30067C8D6 /* IrssiCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 24FEBD6911CA20400067C8D6 /* IrssiCore.m */; };
 		8D1107280486CEB800E47090 /* MacIrssi_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* MacIrssi_Prefix.pch */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -1019,6 +1021,8 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		1D6DAE8119E36F3D00548A30 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		1D6DAE8319E36F5800548A30 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		24B1D1EA11C7F9510031A5E2 /* libPerlBuild.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = libPerlBuild.sh; sourceTree = "<group>"; };
 		24B1D1EB11C7F9510031A5E2 /* libPerlCopy.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = libPerlCopy.sh; sourceTree = "<group>"; };
 		24B1D1EC11C7F9510031A5E2 /* updateGitVersion.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = updateGitVersion.sh; sourceTree = "<group>"; };
@@ -2385,6 +2389,8 @@
 				C9667D4B0E37728F00014B02 /* ConnectivityMonitor.m */,
 				A07C52B3189EFF0D00BED081 /* Defaults.h */,
 				A07C52B4189EFF0D00BED081 /* Defaults.m */,
+				1D6DAE8119E36F3D00548A30 /* Util.h */,
+				1D6DAE8319E36F5800548A30 /* Util.m */,
 			);
 			path = "Non-view Classes";
 			sourceTree = "<group>";
@@ -3333,6 +3339,7 @@
 				C9FDCE4A129DB813004598C1 /* MIScrollViewHelper.h in Headers */,
 				C90301BF129DEA5000B30679 /* PreferenceVersionHelper.h in Headers */,
 				C90C9E8212A06196009F43CE /* MISearchBar.h in Headers */,
+				1D6DAE8219E36F3D00548A30 /* Util.h in Headers */,
 				C90CA25B12A0CDD9009F43CE /* MIChannelSearchController.h in Headers */,
 				C9C9415712E9F0FE00A4D7A5 /* iTunesBridge.h in Headers */,
 				C9E1B3D012F019F8004E75B0 /* default-config.h in Headers */,
@@ -3623,6 +3630,7 @@
 				C90301C0129DEA5000B30679 /* PreferenceVersionHelper.m in Sources */,
 				C90C9E8312A06196009F43CE /* MISearchBar.m in Sources */,
 				C90CA25C12A0CDD9009F43CE /* MIChannelSearchController.m in Sources */,
+				1D6DAE8419E36F5800548A30 /* Util.m in Sources */,
 				C920EDBC1303C05200CD80DA /* IrssiRunloop.m in Sources */,
 				C91264BE1304F4BA006E0AA4 /* IrssiConstants.m in Sources */,
 			);

@@ -32,6 +32,8 @@
 #import "signals.h"
 #include <unistd.h>
 #include "themes.h"
+#include "Defaults.h"
+#include "Util.h"
 
 #import "AIMenuAdditions.h"
 #import "NSString+Additions.h"
@@ -426,6 +428,43 @@
   [soundListPopUpButton selectItemWithTitle:[eventController stringForEvent:event alert:@"playSoundSound"]];
 }
 
+/**
+ * via: http://rhult.github.io/articles/making-nsslider-snap/
+ */
+- (IBAction)sliderValueChanged:(id)sender
+{
+  // via: http://stackoverflow.com/a/12066378/362042
+  NSEvent *event = [[NSApplication sharedApplication] currentEvent];
+  BOOL startingDrag = event.type == NSLeftMouseDown;
+  BOOL endingDrag = event.type == NSLeftMouseUp;
+  BOOL dragging = event.type == NSLeftMouseDragged;
+  
+  NSAssert(startingDrag || endingDrag || dragging, @"unexpected event type caused slider change: %@", event);
+
+  double range = [sender maxValue] - [sender minValue];
+  double tickInterval = range / ([sender numberOfTickMarks] - 1);
+  
+  double relativeValue = [sender doubleValue] - [sender minValue];
+  
+  // Get the distance to the nearest tick.
+  int nearestTick = round(relativeValue / tickInterval);
+  double distance = relativeValue - nearestTick * tickInterval;
+  
+  // Change the check here depending on how much resistance you
+  // want, or if you don't want it to depend on the tick interval.
+  if (fabs(distance) < tickInterval / 8)
+  {
+    [sender setDoubleValue:[sender doubleValue] - distance];
+  }
+
+  // if user has let go of the slider, play the current sound
+  if (endingDrag)
+  {
+    playSoundNamed([[soundListPopUpButton selectedItem] title]);
+  }
+}
+
+
 - (IBAction)chatEventPopup:(id)sender
 {
   NSString *eventCode = [eventController eventCodeForName:[[chatEventPopUpButton selectedItem] title]];
@@ -451,15 +490,8 @@
 - (IBAction)soundListPopUp:(id)sender
 {
   NSString *event = [eventController eventCodeForName:[[chatEventPopUpButton selectedItem] title]];
-  NSSound *selectedSound = [NSSound soundNamed:[[soundListPopUpButton selectedItem] title]];
-  if (!selectedSound) // one of our own sounds, not found by soundNamed:
-  {
-    NSString *soundPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Sounds"];
-    soundPath = [soundPath stringByAppendingPathComponent:[[soundListPopUpButton selectedItem] title]];
-    soundPath = [soundPath stringByAppendingPathExtension:@"aiff"];
-    selectedSound = [[[NSSound alloc] initWithContentsOfFile:soundPath byReference:YES] autorelease];
-  }
-  [selectedSound play];
+  
+  playSoundNamed([[soundListPopUpButton selectedItem] title]);
   
   [eventController setStringForEvent:event alert:@"playSoundSound" value:[[soundListPopUpButton selectedItem] title]];
   
