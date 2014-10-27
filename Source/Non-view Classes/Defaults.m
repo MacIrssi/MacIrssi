@@ -23,7 +23,7 @@ static NSUserDefaults *standardDefaults;
 @implementation Defaults
 
 + (void)initialize {
-  standardDefaults = [NSUserDefaults standardUserDefaults];
+    standardDefaults = [NSUserDefaults standardUserDefaults];
 }
 
 + (void)registerDefaults {
@@ -38,11 +38,11 @@ static NSUserDefaults *standardDefaults;
 #pragma mark Default getters
 
 + (NSInteger)integerForKey:(NSString *)defaultName {
-  return [standardDefaults integerForKey:defaultName];
+    return [standardDefaults integerForKey:defaultName];
 }
 
 + (BOOL)boolForKey:(NSString *)defaultName {
-  return [standardDefaults boolForKey:defaultName];
+    return [standardDefaults boolForKey:defaultName];
 }
 
 
@@ -50,7 +50,7 @@ static NSUserDefaults *standardDefaults;
 #pragma mark Default setters
 
 + (void)setInteger:(NSInteger)value forKey:(NSString *)defaultName {
-  [standardDefaults setInteger:value forKey:defaultName];
+    [standardDefaults setInteger:value forKey:defaultName];
 }
 
 
