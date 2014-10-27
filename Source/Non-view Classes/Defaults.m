@@ -16,6 +16,8 @@
  */
 
 #import <Foundation/NSUserDefaults.h>
+#import "EventController.h"
+#import "PreferenceViewController.h"
 #import "Defaults.h"
 
 static NSUserDefaults *standardDefaults;
@@ -27,10 +29,38 @@ static NSUserDefaults *standardDefaults;
 }
 
 + (void)registerDefaults {
-  [standardDefaults registerDefaults:@{
-                                       @"ChatView.padding.horizontal": @2,
-                                       @"ChatView.padding.vertical": @5
-                                       }];
+    NSData *defaultFont = [NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Monaco" size:12.0]];
+
+    [standardDefaults registerDefaults:
+     @{
+       @"ChatView.padding.horizontal": @2,
+       @"ChatView.padding.vertical": @5,
+
+       @"shortcutDict": [NSDictionary dictionary],
+
+       @"eventSilences": [NSDictionary dictionary],
+       @"eventDefaults": [EventController defaults],
+
+       @"channelFont": defaultFont,
+       @"nickListFont": defaultFont,
+
+       @"showNicklist": @TRUE,
+       @"useFloaterOnPriv": @TRUE,
+       @"askQuit": @FALSE,
+       @"bounceIconOnPriv": @FALSE,
+
+       @"channelInTitle": @TRUE,
+       @"homeEndGoesToTextView": @TRUE,
+       @"inputTextEntrySpellCheck": @TRUE,
+       @"showAlbumInSlashiTunes": @TRUE,
+       @"antiAliasFonts": @TRUE,
+       @"useSmallTextEntryFont": @FALSE,
+
+       @"channelBarOrientation": @0,
+       @"tabShortcuts": [NSNumber numberWithInt:TabShortcutArrows],
+       @"defaultQuitMessage": @"Get MacIrssi - https://github.com/MacIrssi/MacIrssi "
+
+       }];
 }
 
 
